@@ -1,3 +1,6 @@
 wc2026/archive.zip
 *.zip
 .DS_Store
+wc2026/cc/*.npz
+wc2026/cc/__pycache__/
+wc2026/cc/*.pkl
