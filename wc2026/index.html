@@ -204,6 +204,10 @@
   .h2wins{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px} .h2w{font-family:var(--mono);font-size:10.5px;color:var(--mut);background:var(--card);border:1px solid var(--line);border-radius:5px;padding:3px 7px} .h2w b{color:var(--ink)}
   .h2mt{font-size:12px;color:var(--mut);line-height:1.7} .h2mt b{color:var(--ink)} .h2mm{font-family:var(--mono);font-size:11px;color:var(--ink);background:var(--card);border-radius:4px;padding:1px 4px}
   .logt .yr{font-family:var(--mono);font-size:11.5px;color:var(--mut);white-space:nowrap} .logt .sc{font-family:var(--mono);text-align:center;color:var(--ink);white-space:nowrap} .logt th.srt{cursor:pointer;user-select:none} .logt th.srt:hover{color:var(--acc)}
+  .ok{color:#67d99b} .miss{color:#f0768b} .push{color:#e8c06a}
+  .acclb{max-width:440px} .num.lead{color:#67d99b;font-weight:700}
+  .accgrid th{text-align:center} .accgrid td{text-align:center;font-size:15px} .accgrid td.tl,.accgrid th.tl{text-align:left;font-size:13px} .accgrid td:nth-child(2){text-align:left;white-space:nowrap;font-size:12.5px}
+  .acc-ok{background:rgba(103,217,155,.10)} .acc-miss{background:rgba(240,118,139,.10)} .acc-push{background:rgba(232,192,106,.08)}
 </style>
 </head>
 <body>
@@ -214,6 +218,7 @@
   <div class="topnav" id="topnav">
     <button class="tnav on" data-view="tournament">⚽ Tournament</button>
     <button class="tnav" data-view="data">📊 Data &amp; provenance</button>
+    <button class="tnav" data-view="acc">🎯 Model accuracy</button>
     <a class="tnav lk" href="ml.html">🧪 ML Lab ↗</a>
   </div>
 
@@ -289,6 +294,14 @@
   </div>
   <div class="dwrap" id="dpanel"></div>
   </div><!-- /view-data -->
+
+  <div id="view-acc" style="display:none">
+  <h2 class="sec">🎯 Model accuracy <span class="cnt">— each played WC2026 game vs what every model predicted (pre-tournament data only)</span></h2>
+  <div class="note">
+    A fair back-test: H2H &amp; form are cut off the day before the World Cup, so each model predicts the <b>real results</b> using only what it knew beforehand. A model's call is <b>committed</b> when it favours a side &gt;60%, otherwise it's a <b>toss-up (draw)</b>. <span class="ok">✓</span> right · <span class="miss">✗</span> backed the losing side · <span class="push">≈</span> no-fault (called a toss-up that a team edged, or backed a favourite that drew — a draw with a 40–60% call is never counted wrong).
+  </div>
+  <div id="accpanel"></div>
+  </div><!-- /view-acc -->
 </div>
 
 <script>
@@ -757,6 +770,39 @@ function formTable(){ const fr=y=>y?`${y.w}-${y.d}-${y.l}`:"—"; const codes=Ob
   return h+`</tbody></table>`; }
 function srcTable(){ const list=SOURCES.length?SOURCES:[]; if(!list.length) return `<div class="dhint">Sources load with data.json.</div>`;
   return `<ul class="srclist">`+list.map(s=>`<li><b>${s.label}</b><br><a href="${s.url}" target="_blank" rel="noopener">${s.url}</a></li>`).join("")+`</ul>`; }
+// ---- model accuracy back-test: how each model would have called the real WC2026 results ----
+const MSHORT={blend:"Blend",potgoals:"Pot+G",fifa:"FIFA",squad:"Squad",form:"Form",h2h:"H2H",odds:"Odds",opta:"Opta"};
+function modelProb(a,b){ // pure model win-prob for A over B (no tournament-standings nudge)
+  if(state.method==="h2h"){ const t=h2hTally(h2hRec(a,b),"all"); if(t&&t.n>0) return (t.w+0.5*t.d)/t.n; }
+  return 1/(1+Math.pow(10,-(methodStrength(a)-methodStrength(b))/13)); }
+function backtest(){
+  const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
+  state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
+  const models=Object.keys(MSHORT), tally={}; models.forEach(m=>tally[m]={ok:0,miss:0,push:0});
+  const rows=[];
+  for(const no of [...LOCKSET].filter(n=>LOCKED[n]).sort((a,b)=>a-b)){
+    const f=FIXMAP[no], r=LOCKED[no]; if(!f||!r) continue;
+    const actual=r[0]>r[1]?"H":r[0]<r[1]?"A":"D", cells={};
+    for(const m of models){ state.method=m; const p=modelProb(f.home,f.away);
+      const pick=p>0.6?"H":p<0.4?"A":"D";
+      const res = pick===actual ? "ok" : (pick==="D"||actual==="D") ? "push" : "miss";
+      tally[m][res]++; cells[m]={p,pick,res}; }
+    rows.push({no,f,r,actual,cells}); }
+  Object.assign(state,save); recompute();
+  return {rows,tally,models};
+}
+function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) return;
+  const {rows,tally,models}=backtest(), acc=t=>(t.ok+t.miss)?t.ok/(t.ok+t.miss):0;
+  const order=models.slice().sort((a,b)=>acc(tally[b])-acc(tally[a])), best=Math.max(...order.map(m=>acc(tally[m])));
+  const ic={ok:'<span class="ok">✓</span>',miss:'<span class="miss">✗</span>',push:'<span class="push">≈</span>'};
+  let lb=`<table class="dtbl acclb"><thead><tr><th class="tl">Model</th><th>Hit rate</th><th>✓</th><th>✗</th><th>≈</th></tr></thead><tbody>`+
+    order.map(m=>{const t=tally[m],a=acc(t);return `<tr><td class="tl">${METHOD_NAME[m]}</td><td class="num ${a===best?'lead':''}">${(a*100).toFixed(0)}%</td><td class="num ok">${t.ok}</td><td class="num miss">${t.miss}</td><td class="num push">${t.push}</td></tr>`;}).join("")+`</tbody></table>`;
+  let g=`<table class="dtbl accgrid"><thead><tr><th class="tl">Match</th><th>Result</th>`+order.map(m=>`<th title="${METHOD_NAME[m]}">${MSHORT[m]}<br><span class="mut">${(acc(tally[m])*100).toFixed(0)}%</span></th>`).join("")+`</tr></thead><tbody>`+
+    rows.map(r=>{const aw=r.actual==="H"?r.f.home:r.actual==="A"?r.f.away:null;
+      return `<tr><td class="tl">${fl(r.f.home)} ${nm(r.f.home)} <span class="mut">v</span> ${fl(r.f.away)} ${nm(r.f.away)}</td><td class="num">${r.r[0]}–${r.r[1]} <span class="mut">${aw?nm(aw):"draw"}</span></td>`+
+      order.map(m=>{const c=r.cells[m],pk=c.pick==="H"?nm(r.f.home):c.pick==="A"?nm(r.f.away):"toss-up";return `<td class="acc-${c.res}" title="${METHOD_NAME[m]}: ${Math.round(c.p*100)}% ${nm(r.f.home)} → predicts ${pk}">${ic[c.res]}</td>`;}).join("")+`</tr>`;}).join("")+`</tbody></table>`;
+  el.innerHTML=`<div class="small" style="margin-bottom:6px">Leaderboard — hit rate = ✓ ÷ (✓+✗), no-fault ≈ pushes excluded. ${rows.length} played games.</div>`+lb+
+    `<div class="small" style="margin:18px 0 6px">Per match — hover any cell for that model's pre-match probability.</div>`+g; }
 function renderData(){ const el=document.getElementById("dpanel"); if(!el) return;
   el.innerHTML = state.dtab==="h2h"?h2hTable():state.dtab==="log"?matchLogTable():state.dtab==="form"?formTable():state.dtab==="src"?srcTable():ratingsTable();
   document.querySelectorAll("#dtabs .dtab").forEach(b=>b.classList.toggle("on", b.dataset.tab===state.dtab)); }
@@ -863,8 +909,9 @@ document.getElementById('b-data').onclick=()=>loadData(true);
 function setView(v){ state.view=v;
   document.getElementById('view-tournament').style.display = v==='tournament'?'':'none';
   document.getElementById('view-data').style.display = v==='data'?'':'none';
+  document.getElementById('view-acc').style.display = v==='acc'?'':'none';
   document.querySelectorAll('#topnav .tnav').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
-  if(v==='data') renderData();
+  if(v==='data') renderData(); if(v==='acc') renderAcc();
   window.scrollTo(0,0); }
 document.getElementById('topnav').addEventListener('click',e=>{ const b=e.target.closest('.tnav'); if(!b||!b.dataset.view) return; setView(b.dataset.view); });
 document.getElementById('dtabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.dtab=b.dataset.tab; renderData(); });
