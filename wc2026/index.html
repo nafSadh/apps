@@ -234,7 +234,7 @@
   <div class="favline" id="favline"></div>
   <div class="dstat" id="dstat"><button class="btn ghost" id="b-data">↻ Refresh data</button><span id="dstat-txt">built-in snapshot</span></div>
   <div class="note">
-    <b>▶ Simulate</b> fills every unplayed game using the chosen <b>Model</b> and plays out the bracket — it keeps the 28 locked 🔒 real results <i>and</i> any scores you set yourself. The <b>Upset</b> dial (0 → 1) controls chaos: <b>0 = the favourite always advances</b> (deterministic); higher lets underdogs through, so each Simulate gives a fresh bracket. <b>↺ Reset</b> returns to today's real results.<br>
+    <b>▶ Simulate</b> fills every unplayed game using the chosen <b>Model</b> and plays out the bracket — it keeps the 28 already-played real results <i>and</i> any scores you set yourself. The <b>Upset</b> dial (0 → 1) controls chaos: <b>0 = the favourite always advances</b> (deterministic); higher lets underdogs through, so each Simulate gives a fresh bracket. <b>↺ Reset</b> returns to today's real results.<br>
     You can also drive it by hand: for any unplayed game <b>click a team to set the winner</b> or <b>type the goals</b>; use <span class="kbd">▲▼</span> to hand-order a group; <b>click a team's name</b> in the standings to track its path (up to 5); and in the bracket, click the side you think wins.
   </div>
 
@@ -533,7 +533,7 @@ function grpReason(no){
   else basis = `${nm(f.home)} ${metricStr(f.home)} · ${nm(f.away)} ${metricStr(f.away)}`;
   if(LOCKSET.has(no)){ const hit = aw===null ? null : (fav===aw);
     const verdict = hit===null ? `<span style="color:var(--mut2)">— it was a draw</span>` : (hit?`<span style="color:var(--good)">✓ model got it right</span>`:`<span style="color:var(--bad)">✗ model got it wrong</span>`);
-    return `<b>Played 🔒 — predicted vs actual</b><br>Actual: ${fl(f.home)} ${nm(f.home)} <b>${r[0]}–${r[1]}</b> ${nm(f.away)} ${fl(f.away)}${aw?` (${nm(aw)} won)`:" (draw)"}<br><b>${METHOD_NAME[state.method]}</b> — ${basis}<br>predicted <b>${nm(fav)} ${favP}%</b> → ${verdict}`; }
+    return `<b>Played — predicted vs actual</b><br>Actual: ${fl(f.home)} ${nm(f.home)} <b>${r[0]}–${r[1]}</b> ${nm(f.away)} ${fl(f.away)}${aw?` (${nm(aw)} won)`:" (draw)"}<br><b>${METHOD_NAME[state.method]}</b> — ${basis}<br>predicted <b>${nm(fav)} ${favP}%</b> → ${verdict}`; }
   if(state.userset.has(no)) return `<b>Your score</b> — you entered ${r[0]}–${r[1]}. <span style="color:var(--mut2)">(${METHOD_NAME[state.method]} would lean ${nm(fav)} ${favP}%.)</span>`;
   return `<b>${METHOD_NAME[state.method]}${winLabel()}</b> projection<br>${fl(f.home)} ${nm(f.home)} vs ${fl(f.away)} ${nm(f.away)} — ${basis}<br>→ predicted <b>${r[0]}–${r[1]}</b> (${nm(fav)} ${favP}%)${curUpset()>0?` · upset ${curUpset().toFixed(2)}`:""}`;
 }
@@ -554,7 +554,7 @@ const groupsEl=document.getElementById('groups');
 function mxRow(f){
   const r=state.res[f.no], locked=LOCKSET.has(f.no);
   const win=r?(r[0]>r[1]?'h':(r[0]<r[1]?'a':'d')):'';
-  if(locked) return `<div class="mx lk"><span class="dt">🔒 ${fdate(f.date)}</span>`+
+  if(locked) return `<div class="mx lk"><span class="dt">${fdate(f.date)}</span>`+
     `<span class="tm h ${win==='h'?'w':''}">${fl(f.home)} ${f.home}</span>`+
     `<span class="sc">${r[0]}–${r[1]}</span>`+
     `<span class="tm a ${win==='a'?'w':''}">${f.away} ${fl(f.away)}</span>`+
