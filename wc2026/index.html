@@ -219,7 +219,7 @@
   <div class="topnav" id="topnav">
     <button class="tnav on" data-view="tournament"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4.6l2.3 1.7-.9 2.7H6.6l-.9-2.7z"/></svg>Tournament</button>
     <button class="tnav" data-view="data"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 13.5h11M4.5 13V8M8 13V3.5M11.5 13V6.5"/></svg>Data &amp; provenance</button>
-    <button class="tnav" data-view="acc"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><circle cx="8" cy="8" r="2.1"/></svg>Model accuracy</button>
+    <button class="tnav" data-view="acc"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><circle cx="8" cy="8" r="2.1"/></svg>Simulation accuracy</button>
     <a class="tnav lk" href="ml.html"><svg class="ic" viewBox="0 0 16 16"><path d="M6.2 2v4.3L3.3 12a1.4 1.4 0 001.2 2.1h7a1.4 1.4 0 001.2-2.1L9.8 6.3V2M5.4 2h5.2M4.9 10h6.2"/></svg>ML Lab ↗</a>
   </div>
 
@@ -297,7 +297,7 @@
   </div><!-- /view-data -->
 
   <div id="view-acc" style="display:none">
-  <h2 class="sec">Model accuracy <span class="cnt">— each played WC2026 game vs what every model predicted (pre-tournament data only)</span></h2>
+  <h2 class="sec">Simulation accuracy <span class="cnt">— each played WC2026 game vs what every model predicted (pre-tournament data only)</span></h2>
   <div class="note">
     A fair back-test: H2H &amp; form are cut off the day before the World Cup, so each model predicts the <b>real results</b> using only what it knew beforehand. A model <b>predicts a win</b> when it favours a side <b>&gt;60%</b>; at <b>40–60%</b> it's <b>predicting a draw</b>. <span class="ok">✓</span> the predicted outcome (that win, or a draw) was right · <span class="miss">✗</span> wrong. So a 72%-for-Brazil call that finishes 1–1 is a <span class="miss">✗</span> — only a 40–60% call is credited for a draw.
   </div>
