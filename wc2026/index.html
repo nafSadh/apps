@@ -185,6 +185,7 @@
   .topnav{display:flex;gap:4px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);margin:14px 0 18px;padding-bottom:0}
   .tnav{font-family:var(--serif-alt,inherit);font-size:15px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--mut2);padding:9px 16px;cursor:pointer;text-decoration:none;display:inline-block;margin-bottom:-1px;transition:color .12s}
   .tnav:hover{color:var(--ink)} .tnav.on{color:var(--acc);border-bottom-color:var(--acc)} .tnav.lk{margin-left:auto;font-size:13px;color:var(--acc2)} .tnav.lk:hover{color:var(--acc)}
+  .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
   .dtab:hover{border-color:var(--acc);color:var(--ink)} .dtab.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
@@ -216,10 +217,10 @@
   <p class="sub">Enter scores or pick winners for every group game · order the groups · play out the knockouts · track up to 5 teams to the MetLife final.</p>
 
   <div class="topnav" id="topnav">
-    <button class="tnav on" data-view="tournament">⚽ Tournament</button>
-    <button class="tnav" data-view="data">📊 Data &amp; provenance</button>
-    <button class="tnav" data-view="acc">🎯 Model accuracy</button>
-    <a class="tnav lk" href="ml.html">🧪 ML Lab ↗</a>
+    <button class="tnav on" data-view="tournament"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4.6l2.3 1.7-.9 2.7H6.6l-.9-2.7z"/></svg>Tournament</button>
+    <button class="tnav" data-view="data"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 13.5h11M4.5 13V8M8 13V3.5M11.5 13V6.5"/></svg>Data &amp; provenance</button>
+    <button class="tnav" data-view="acc"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><circle cx="8" cy="8" r="2.1"/></svg>Model accuracy</button>
+    <a class="tnav lk" href="ml.html"><svg class="ic" viewBox="0 0 16 16"><path d="M6.2 2v4.3L3.3 12a1.4 1.4 0 001.2 2.1h7a1.4 1.4 0 001.2-2.1L9.8 6.3V2M5.4 2h5.2M4.9 10h6.2"/></svg>ML Lab ↗</a>
   </div>
 
   <div id="view-tournament">
@@ -296,7 +297,7 @@
   </div><!-- /view-data -->
 
   <div id="view-acc" style="display:none">
-  <h2 class="sec">🎯 Model accuracy <span class="cnt">— each played WC2026 game vs what every model predicted (pre-tournament data only)</span></h2>
+  <h2 class="sec">Model accuracy <span class="cnt">— each played WC2026 game vs what every model predicted (pre-tournament data only)</span></h2>
   <div class="note">
     A fair back-test: H2H &amp; form are cut off the day before the World Cup, so each model predicts the <b>real results</b> using only what it knew beforehand. A model's call is <b>committed</b> when it favours a side &gt;60%, otherwise it's a <b>toss-up (draw)</b>. <span class="ok">✓</span> right · <span class="miss">✗</span> backed the losing side · <span class="push">≈</span> no-fault (called a toss-up that a team edged, or backed a favourite that drew — a draw with a 40–60% call is never counted wrong).
   </div>

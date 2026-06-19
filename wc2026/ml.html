@@ -25,6 +25,7 @@
   .topnav{display:flex;gap:4px;align-items:center;border-bottom:1px solid var(--line);margin:14px 0 18px}
   .tnav{font-family:var(--serif-alt);font-size:15px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--mut2);padding:9px 16px;cursor:pointer;text-decoration:none;margin-bottom:-1px}
   .tnav:hover{color:var(--ink)} .tnav.on{color:var(--acc);border-bottom-color:var(--acc)}
+  .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .card{background:linear-gradient(180deg,var(--card) 0%,var(--bg2) 100%);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
   .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .btn{font-family:var(--mono);font-size:12px;letter-spacing:.5px;background:var(--acc);color:#0b0e18;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;font-weight:500}
@@ -71,9 +72,9 @@
   <h1>ML Lab <span class="em">·</span> WC2026</h1>
   <p class="sub">Match-prediction models trained in your browser on 150 years of international football — no server, no libraries, all the maths in view.</p>
   <div class="topnav">
-    <a class="tnav" href="index.html">⚽ Tournament</a>
-    <a class="tnav" href="index.html">📊 Data &amp; provenance</a>
-    <button class="tnav on">🧪 ML Lab</button>
+    <a class="tnav" href="index.html"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4.6l2.3 1.7-.9 2.7H6.6l-.9-2.7z"/></svg>Tournament</a>
+    <a class="tnav" href="index.html"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 13.5h11M4.5 13V8M8 13V3.5M11.5 13V6.5"/></svg>Data &amp; provenance</a>
+    <button class="tnav on"><svg class="ic" viewBox="0 0 16 16"><path d="M6.2 2v4.3L3.3 12a1.4 1.4 0 001.2 2.1h7a1.4 1.4 0 001.2-2.1L9.8 6.3V2M5.4 2h5.2M4.9 10h6.2"/></svg>ML Lab</button>
   </div>
 
   <div class="card">
