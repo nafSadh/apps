@@ -214,6 +214,9 @@
   .fc-head b{font-family:var(--serif-alt);font-style:italic;font-size:22px;color:var(--ink)} .fc-head .vk{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2)} .fc-head .warn{color:var(--warn)}
   .fctbl td{text-align:right;font-family:var(--mono);font-size:12px;color:var(--mut)} .fctbl td.tl{text-align:left;font-family:var(--serif-alt);font-size:13.5px;color:var(--ink)}
   .fctbl td.fcch{position:relative;color:var(--ink);min-width:96px} .fcbar{position:absolute;left:0;top:3px;bottom:3px;background:var(--acc-soft);border-left:2px solid var(--acc);border-radius:3px;z-index:0} .fcnum{position:relative;z-index:1;padding-right:4px}
+  .fc-proj{display:flex;flex-direction:column;gap:7px;margin:10px 0} .fc-projrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .fc-projrow .vk{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2);margin-right:4px;min-width:185px}
+  .fcchip{font-size:12.5px;color:var(--ink);background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:3px 11px} .fcchip b{color:var(--acc2);font-family:var(--mono);font-size:11px;margin-left:2px}
 </style>
 </head>
 <body>
@@ -305,6 +308,17 @@
   <div id="view-forecast" style="display:none">
   <h2 class="sec">Forecast <span class="cnt">— Monte-Carlo title odds: the tournament played 10,000 times</span></h2>
   <div class="bar" style="margin-bottom:6px">
+    <span class="msel"><label for="fc-method">Model / score</label>
+      <select class="sel" id="fc-method">
+        <option value="blend">Balanced blend</option>
+        <option value="potgoals">Pot + goals</option>
+        <option value="fifa">FIFA ranking</option>
+        <option value="squad">Squad value (€)</option>
+        <option value="form">Recent form</option>
+        <option value="h2h">Head-to-head (historic)</option>
+        <option value="odds">Betting market</option>
+        <option value="opta">Analyst (supercomputer)</option>
+      </select></span>
     <button class="btn gold" id="fc-run">▶ Run forecast</button>
     <span class="fc-progwrap"><span class="fc-track"><span id="fc-bar"></span></span><span class="status" id="fc-prog"></span></span>
   </div>
@@ -827,6 +841,7 @@ function runForecast(){
 }
 function renderForecast(){
   const el=document.getElementById('fc-panel'); if(!el) return;
+  const fcm=document.getElementById('fc-method'); if(fcm) fcm.value=state.method;
   if(!state.fc){ el.innerHTML=`<div class="dhint">Plays the tournament <b>10,000 times</b> with the current <b>${METHOD_NAME[state.method]}</b> model (keeping the played results &amp; your edits), then tallies each team's odds of reaching every stage. Press <b>Run forecast</b>.</div>`; return; }
   const {tally,N,method}=state.fc, pct=x=>100*x/N;
   const rows=Object.keys(tally).sort((a,b)=>tally[b].ch-tally[a].ch || tally[b].fin-tally[a].fin);
@@ -836,8 +851,13 @@ function renderForecast(){
   const stale=method!==state.method;
   const qc=state.fc.qc||{}, qk=Object.keys(qc).sort((a,b)=>qc[b]-qc[a])[0];
   const openLine = qk ? `<div class="dhint">How open is the bracket? The single most-likely final four — ${qk.split("|").map(c=>fl(c)+nm(c)).join(" · ")} — comes up in only <b>${(100*qc[qk]/N).toFixed(1)}%</b> of runs (${Object.keys(qc).length.toLocaleString()} different semifinal line-ups appeared). Even the top team reaches the SF barely half the time — lopsided <i>matchups</i> still compound into a wide-open last four.</div>` : "";
+  const top8=Object.keys(tally).sort((a,b)=>tally[b].qf-tally[a].qf).slice(0,8);
+  const top4=Object.keys(tally).sort((a,b)=>tally[b].sf-tally[a].sf).slice(0,4);
+  const chip=(c,k)=>`<span class="fcchip">${fl(c)} ${nm(c)} <b>${pct(tally[c][k]).toFixed(0)}%</b></span>`;
+  const projBlock=`<div class="fc-proj"><div class="fc-projrow"><span class="vk">likely quarter-finalists (last 8)</span> ${top8.map(c=>chip(c,'qf')).join('')}</div><div class="fc-projrow"><span class="vk">likely semifinalists (last 4)</span> ${top4.map(c=>chip(c,'sf')).join('')}</div></div>`;
   let h=`<div class="fc-head"><div><span class="vk">most likely champion</span><br><b>${fl(champ)} ${nm(champ)}</b> <span class="mut">${pct(tally[champ].ch).toFixed(1)}%</span> <span class="small">· likely finalists ${fl(fin[0])}${nm(fin[0])} / ${fl(fin[1])}${nm(fin[1])}</span></div>
     <div class="small">${N.toLocaleString()} sims · ${METHOD_NAME[method]} model${stale?` <span class="warn">· re-run for ${METHOD_NAME[state.method]}</span>`:''}</div></div>
+    ${projBlock}
     ${openLine}
     <div class="dhint">All values are probabilities (%). Sorted by title odds.</div>
     <table class="dtbl fctbl"><thead><tr><th class="tl">Team</th><th>Win grp</th><th>Qualify</th><th>R16</th><th>QF</th><th>SF</th><th>Final</th><th>Champion</th></tr></thead><tbody>`;
@@ -910,6 +930,11 @@ binner.addEventListener('click',e=>{ const s=e.target.closest('.slot.known'); if
 tracksel.addEventListener('click',e=>{ if(e.target.dataset.untrack) toggleTrack(e.target.dataset.untrack); if(e.target.id==='b-clearsel'){ state.sel=[]; renderGroups(); applyTracking(); renderPaths(); } });
 document.getElementById('b-sim').onclick=simulate;
 document.getElementById('fc-run').onclick=runForecast;
+document.getElementById('fc-method').onchange=function(){
+  state.method=this.value; const ms=document.getElementById('method'); if(ms) ms.value=this.value;
+  onMethod();                       // sync model + windows + tournament
+  runForecast();                    // auto re-run the forecast with the chosen score
+};
 document.getElementById('b-reset').onclick=resetAll;
 const methodSel=document.getElementById('method'), formwinSel=document.getElementById('formwin');
 const upsetEl=document.getElementById('upset'), uvalEl=document.getElementById('uval'), atipEl=document.getElementById('atip');
