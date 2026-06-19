@@ -56,7 +56,7 @@
   .wrap{position:relative;z-index:1;max-width:1580px;margin:0 auto;padding:34px 18px 90px}
   .bar,.groups,.thirds,.tracksel,.pathwrap,.bracket,.tools{font-family:var(--sans)}
   .m-no,.m-date,.m-venue,.col-h,.dt,.sc,.pts,.st,.rk,.slotpill,.badge,.kbd,.third-lbl,footer,.leg .r,.res{font-family:var(--mono)}
-  h1{font-family:var(--serif-alt);font-weight:500;font-style:italic;font-size:38px;margin:0 0 4px;letter-spacing:-.02em;color:var(--ink)}
+  h1{font-family:var(--serif-alt);font-weight:500;font-style:italic;font-size:38px;margin:0 0 4px;letter-spacing:-.02em;color:var(--ink);padding-right:96px}
   h1 .em{font-style:italic;color:var(--acc)}
   .sub{margin:0 0 16px;color:var(--mut);font-size:15px;font-style:italic}
   h2.sec{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:2.5px;color:var(--mut2);margin:30px 0 14px;font-weight:600;display:flex;align-items:center;gap:12px}
@@ -185,7 +185,7 @@
   .topnav{display:flex;gap:4px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);margin:14px 0 18px;padding-bottom:0}
   .tnav{font-family:var(--serif-alt,inherit);font-size:15px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--mut2);padding:9px 16px;cursor:pointer;text-decoration:none;display:inline-block;margin-bottom:-1px;transition:color .12s}
   .tnav:hover{color:var(--ink)} .tnav.on{color:var(--acc);border-bottom-color:var(--acc)} .tnav.lk{margin-left:auto;font-size:13px;color:var(--acc2)} .tnav.lk:hover{color:var(--acc)}
-  .topnav #b-theme{padding:5px 12px;font-size:11px;border-radius:7px;margin:0 0 6px 6px;align-self:center}
+  #b-theme{position:absolute;top:30px;right:18px;z-index:4;padding:5px 12px;font-size:11px;border-radius:7px}
   .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -223,16 +223,16 @@
 </head>
 <body>
 <div class="wrap">
+  <button class="btn ghost" id="b-theme" title="Toggle light / dark / auto">☾ Dark</button>
   <h1>FIFA World Cup <span class="em">2026</span> — Interactive Simulator</h1>
   <p class="sub">Enter scores or pick winners for every group game · order the groups · play out the knockouts · track up to 5 teams to the MetLife final.</p>
 
   <div class="topnav" id="topnav">
     <button class="tnav on" data-view="tournament"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4.6l2.3 1.7-.9 2.7H6.6l-.9-2.7z"/></svg>Tournament</button>
-    <button class="tnav" data-view="forecast"><svg class="ic" viewBox="0 0 16 16"><path d="M5 2h6v2.5a3 3 0 01-6 0zM5 3.3H3.2v1.2a2 2 0 002 1.8M11 3.3h1.8v1.2a2 2 0 01-2 1.8M6.7 8.3 6.3 11h3.4l-.4-2.7M5.7 13.5h4.6M8 11v2.5"/></svg>Forecast</button>
+    <button class="tnav" data-view="forecast"><svg class="ic" viewBox="0 0 16 16"><path d="M5 2h6v2.5a3 3 0 01-6 0zM5 3.3H3.2v1.2a2 2 0 002 1.8M11 3.3h1.8v1.2a2 2 0 01-2 1.8M6.7 8.3 6.3 11h3.4l-.4-2.7M5.7 13.5h4.6M8 11v2.5"/></svg>Monte Carlo Forecast</button>
     <button class="tnav" data-view="data"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 13.5h11M4.5 13V8M8 13V3.5M11.5 13V6.5"/></svg>Data &amp; provenance</button>
     <button class="tnav" data-view="acc"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><circle cx="8" cy="8" r="2.1"/></svg>Simulation accuracy</button>
     <a class="tnav lk" href="ml.html"><svg class="ic" viewBox="0 0 16 16"><path d="M6.2 2v4.3L3.3 12a1.4 1.4 0 001.2 2.1h7a1.4 1.4 0 001.2-2.1L9.8 6.3V2M5.4 2h5.2M4.9 10h6.2"/></svg>ML Lab ↗</a>
-    <button class="btn ghost" id="b-theme" title="Toggle light / dark / auto">☾ Dark</button>
   </div>
 
   <div id="view-tournament">
@@ -308,7 +308,7 @@
   </div><!-- /view-data -->
 
   <div id="view-forecast" style="display:none">
-  <h2 class="sec">Forecast <span class="cnt">— Monte-Carlo title odds: the tournament played 10,000 times</span></h2>
+  <h2 class="sec">Monte Carlo Forecast <span class="cnt">— title odds from the tournament played 10,000 times</span></h2>
   <div class="bar" style="margin-bottom:6px">
     <span class="msel"><label for="fc-method">Model / score</label>
       <select class="sel" id="fc-method">
