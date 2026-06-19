@@ -1,0 +1,47 @@
+name: Update wc2026 data
+
+# Refreshes apps/wc2026/data.json from live sources, then commits + pushes so
+# GitHub Pages redeploys sadh.app/wc2026. Add a repo secret FOOTBALL_DATA_TOKEN
+# (free token from https://football-data.org) to enable automatic result fetching;
+# without it the job just validates the committed data.
+
+on:
+  workflow_dispatch: {}          # run on demand from the Actions tab
+  schedule:
+    - cron: "17 6 * * *"         # daily 06:17 UTC — adjust/disable outside the tournament
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Refresh data.json
+        working-directory: wc2026/scripts
+        env:
+          FD_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        run: |
+          if [ -n "$FD_TOKEN" ]; then
+            python update.py --fetch-footballdata --token "$FD_TOKEN" --sync-embed
+          else
+            echo "No FOOTBALL_DATA_TOKEN secret set — validating only."
+            python update.py --check
+          fi
+
+      - name: Commit & push if changed
+        run: |
+          if [ -n "$(git status --porcelain wc2026)" ]; then
+            git config user.name  "wc2026-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add wc2026/data.json wc2026/index.html
+            git commit -m "data: automated refresh $(date -u +%F)"
+            git push
+          else
+            echo "No data changes."
+          fi
