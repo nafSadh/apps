@@ -65,6 +65,39 @@ grow — add columns to `NUM_FIELDS` and the numeric projection. In priority ord
 
 The architecture is ready for all three; the blocker is the data download, not the model.
 
+## Experiment 2 — do richer tokens (shots/possession) beat Elo?
+
+Added the **ESPN dataset** (~51k matches, 2024–2026, club + international) which carries
+per-match **shots / shots-on-target / possession** (no xG). `rich_prep.py` builds the
+same leakage-free sequences with shot/possession token fields; `rich_train.py` runs a
+date-based walk-forward (train < 2025-07-01, test after — **14,390 matches**):
+
+| model | acc | log-loss |
+|-------|----:|---------:|
+| prior baseline | 44.7% | 1.068 |
+| Elo-only logistic | 48.9% | 1.026 |
+| **Elo + shots + possession** | **49.7%** | **1.018** |
+| Transformer (rich tokens, regularized) | 49.6% | 1.019 |
+
+**Findings:** (1) shots/possession add a *small but real* edge over Elo (+0.8pp, Δlog-loss
++0.008). (2) the Transformer — once regularized (smaller model, weight-decay 1.5e-3,
+chronological early-stop; *un*regularized it overfits the 3,070-team × 2.5-yr data to 44%)
+— **matches** the rich logistic but does not beat it. (3) absolute numbers are low because
+2.5 years is **cold-start** for ratings (Elo here is only 48.9% vs 58.8% on the deep data).
+
+```bash
+python3 rich_prep.py    # ESPN shots/possession sequences  (reads ~/src/misc-data/espn-soccer)
+python3 rich_train.py   # Elo vs Elo+shots vs Transformer, walk-forward
+```
+
+## Bottom line across both experiments
+
+Elo is a strong, hard-to-beat baseline. A from-scratch Transformer **ties** the best simple
+model in *both* regimes — deep result-only (58.4% vs 58.8% Elo) and shallow shot-rich (49.6%
+vs 49.7%) — and never beats it. **Richer signal helps marginally; model complexity does not.**
+The one untested lever that could plausibly break the ceiling is *deep + dense xG/lineup*
+data over decades — which no free source provides at that depth.
+
 ## Notes
 
 - numpy + scipy only — runs in this environment (sklearn/torch are NOT installed).

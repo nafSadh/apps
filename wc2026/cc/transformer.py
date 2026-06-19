@@ -49,8 +49,8 @@ def layernorm_bwd(dy, cache):
 
 # ----------------------------------------------------------------- model
 class Cfg:
-    def __init__(s, V, L, n_num, d=32, dr=8, dn=16, H=2, dff=64, dh=64):
-        s.V, s.L, s.n_num, s.d, s.dr, s.dn, s.H, s.dff, s.dh = V, L, n_num, d, dr, dn, H, dff, dh
+    def __init__(s, V, L, n_num, d=32, dr=8, dn=16, H=2, dff=64, dh=64, n_static=4):
+        s.V, s.L, s.n_num, s.d, s.dr, s.dn, s.H, s.dff, s.dh, s.n_static = V, L, n_num, d, dr, dn, H, dff, dh, n_static
         s.hd = d // H
 
 def init_params(c):
@@ -65,7 +65,7 @@ def init_params(c):
         "g1": np.ones(c.d), "b1": np.zeros(c.d),
         "W1": sc(c.d, c.dff), "f1": np.zeros(c.dff), "W2": sc(c.dff, c.d), "f2": np.zeros(c.d),
         "g2": np.ones(c.d), "b2": np.zeros(c.d),
-        "Wh1": sc(4 * c.d + 4, c.dh), "bh1": np.zeros(c.dh),
+        "Wh1": sc(4 * c.d + c.n_static, c.dh), "bh1": np.zeros(c.dh),
         "Wh2": sc(c.dh, 3), "bh2": np.zeros(3),
     }
     P["TeamEmb"][0] = 0.0; P["ResEmb"][0] = 0.0
