@@ -133,6 +133,79 @@ def merge_ratings_csv(data, path):
     print(f"  merged ratings for {n} teams from {path}")
 
 
+# --- international results dataset (Kaggle martj42 "results.csv", 1872→present) ---
+# dataset name -> our code. Predecessors are folded into the modern successor (as FIFA does).
+WC_INTL_NAMES = {
+    "Argentina": "ARG", "Spain": "ESP", "France": "FRA", "England": "ENG", "Portugal": "POR",
+    "Brazil": "BRA", "Netherlands": "NED", "Germany": "GER", "West Germany": "GER", "Belgium": "BEL",
+    "Croatia": "CRO", "Morocco": "MAR", "Colombia": "COL", "Mexico": "MEX", "Senegal": "SEN",
+    "Uruguay": "URU", "United States": "USA", "Japan": "JPN", "Switzerland": "SUI", "Iran": "IRN",
+    "Turkey": "TUR", "Türkiye": "TUR", "Ecuador": "ECU", "Austria": "AUT", "South Korea": "KOR",
+    "Australia": "AUS", "Algeria": "ALG", "Egypt": "EGY", "Canada": "CAN", "Norway": "NOR",
+    "Ivory Coast": "CIV", "Côte d'Ivoire": "CIV", "Panama": "PAN", "Sweden": "SWE", "Czech Republic": "CZE",
+    "Paraguay": "PAR", "Scotland": "SCO", "Tunisia": "TUN", "DR Congo": "COD", "Zaïre": "COD", "Zaire": "COD",
+    "Uzbekistan": "UZB", "Qatar": "QAT", "Iraq": "IRQ", "South Africa": "RSA", "Saudi Arabia": "KSA",
+    "Jordan": "JOR", "Bosnia and Herzegovina": "BIH", "Cape Verde": "CPV", "Ghana": "GHA", "Haiti": "HAI",
+    "Curaçao": "CUW", "Netherlands Antilles": "CUW", "New Zealand": "NZL",
+}
+INTL_MERGED = {"GER": "West Germany", "COD": "Zaïre", "CUW": "Netherlands Antilles"}
+
+
+def build_from_intl(data, path):
+    """Rebuild h2h + formYears + recent form for all 48 teams from the international
+    results CSV. Only matches on/before meta.asOf are counted (so the sim's 'today'
+    doesn't see future World Cup games). Penalty shootouts count as the 90/120-min draw."""
+    import datetime
+    from collections import defaultdict
+    cutoff = data["meta"].get("asOf") or "2026-06-19"
+    h2h, hist, n = {}, defaultdict(list), 0
+    with open(path, newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            d = row.get("date", "")
+            if not d or d > cutoff:
+                continue
+            try:
+                hs, as_ = int(row["home_score"]), int(row["away_score"])
+            except (ValueError, TypeError, KeyError):
+                continue
+            ht = WC_INTL_NAMES.get(row["home_team"]); at = WC_INTL_NAMES.get(row["away_team"])
+            for code, gf, ga in ((ht, hs, as_), (at, as_, hs)):
+                if code:
+                    hist[code].append((d, "W" if gf > ga else "L" if gf < ga else "D"))
+            if not (ht and at and ht != at):
+                continue
+            y = int(d[:4])
+            for a, b, gf, ga in ((ht, at, hs, as_), (at, ht, as_, hs)):
+                rec = h2h.setdefault(a, {}).setdefault(b, {"p": 0, "w": 0, "d": 0, "l": 0, "meetings": []})
+                rec["p"] += 1
+                rec["w"] += int(gf > ga); rec["d"] += int(gf == ga); rec["l"] += int(gf < ga)
+                rec["meetings"].append({"d": d, "y": y, "r": "W" if gf > ga else "L" if gf < ga else "D", "s": f"{gf}-{ga}"})
+            n += 1
+    for a in h2h:
+        for rec in h2h[a].values():
+            rec["meetings"].sort(key=lambda m: m["d"], reverse=True)   # newest first
+            for m in rec["meetings"]:
+                del m["d"]
+    cutd = datetime.date.fromisoformat(cutoff)
+    fy = {}
+    for code, h in hist.items():
+        h.sort()
+        def tally(years, h=h):
+            since = cutd.replace(year=cutd.year - years).isoformat()
+            c = {"w": 0, "d": 0, "l": 0}
+            for dt, res in h:
+                if dt > since:
+                    c["w" if res == "W" else "d" if res == "D" else "l"] += 1
+            return c
+        fy[code] = {"y1": tally(1), "y3": tally(3), "y5": tally(5)}
+        recent = "".join(res for _, res in h[-12:][::-1])   # last 12, newest first
+        if recent and code in data.get("ratings", {}):
+            data["ratings"][code]["form"] = recent
+    data["h2h"], data["formYears"] = h2h, fy
+    print(f"  built h2h from {n} matches between WC teams (<= {cutoff}); {len(h2h)} teams, "
+          f"merged {', '.join(f'{k}<-{v}' for k, v in INTL_MERGED.items())}")
+
+
 def fetch_footballdata(data, token):
     """Pull finished WC matches from football-data.org (free tier needs a token)."""
     idx = name_to_code(data)
@@ -175,8 +248,18 @@ def sync_embed(data):
 
     new = re.sub(r"(let|const)\s+LOCKED\s*=\s*\{.*?\};", f"let LOCKED={locked};", html, count=1, flags=re.S)
     new = re.sub(r"(let|const)\s+RATINGS\s*=\s*\{.*?\};", f"let RATINGS={ratings};", new, count=1, flags=re.S)
-    # the inline EMBED block (head-to-head / squad / form-years / fifaPos / sources) so the app is self-contained
-    embed = {k: data.get(k, {} if k != "sources" else []) for k in ("formYears", "h2h", "squad", "fifaPos", "sources")}
+    # the inline EMBED block (head-to-head / squad / form-years / fifaPos / sources) so the app is self-contained.
+    # h2h meetings are capped to the most recent EMBED_CAP per pair to keep index.html small; full history
+    # (every dated meeting) stays in data.json, which the hosted app fetches.
+    EMBED_CAP = 12
+    h2h_emb = {}
+    for a, opps in data.get("h2h", {}).items():
+        h2h_emb[a] = {}
+        for b, rec in opps.items():
+            m = rec.get("meetings", [])
+            h2h_emb[a][b] = ({**rec, "meetings": m[:EMBED_CAP]} if len(m) > EMBED_CAP else rec)
+    embed = {"formYears": data.get("formYears", {}), "h2h": h2h_emb, "squad": data.get("squad", {}),
+             "fifaPos": data.get("fifaPos", {}), "sources": data.get("sources", [])}
     new = re.sub(r"const\s+EMBED\s*=\s*\{[\s\S]*?\};\s*\napplyData\(EMBED\)",
                  "const EMBED=" + json.dumps(embed, ensure_ascii=False, separators=(",", ":")) + ";\napplyData(EMBED)",
                  new, count=1)
@@ -192,6 +275,7 @@ def main():
     ap = argparse.ArgumentParser(description="Update sadh.app/wc2026 data.json")
     ap.add_argument("--results", metavar="CSV", help="set played scores from matchNo,hg,ag CSV")
     ap.add_argument("--ratings", metavar="CSV", help="merge ratings from code,fifa,elo,odds,opta,form CSV")
+    ap.add_argument("--intl", metavar="CSV", help="rebuild h2h/formYears/form from the martj42 international results.csv")
     ap.add_argument("--fetch-footballdata", action="store_true", help="pull finished results from football-data.org")
     ap.add_argument("--token", help="football-data.org API token")
     ap.add_argument("--set-asof", metavar="YYYY-MM-DD", help="set meta.asOf")
@@ -205,6 +289,8 @@ def main():
         merge_results_csv(data, args.results)
     if args.ratings:
         merge_ratings_csv(data, args.ratings)
+    if args.intl:
+        build_from_intl(data, args.intl)
     if args.fetch_footballdata:
         if not args.token:
             sys.exit("--fetch-footballdata needs --token")
@@ -224,7 +310,7 @@ def main():
 
     if args.set_asof:
         data["meta"]["asOf"] = args.set_asof
-    if args.results or args.ratings or args.fetch_footballdata:
+    if args.results or args.ratings or args.fetch_footballdata or args.intl:
         data["meta"]["version"] = int(data["meta"].get("version", 0)) + 1
         data["meta"]["asOf"] = args.set_asof or datetime.date.today().isoformat()
 

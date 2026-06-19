@@ -10,6 +10,7 @@ What changes during the tournament:
 |-------|-------|---------------|
 | `locked` | `{matchNo: [homeGoals, awayGoals]}` | results CSV or API fetch |
 | `ratings` | `{code: {fifa, elo, odds, opta, form}}` | ratings CSV |
+| `h2h` / `formYears` | full head-to-head + recent-form | `--intl` from the martj42 dataset |
 
 `teams`, `fixtures` and the knockout bracket are fixed at the draw — don't edit them here.
 
@@ -25,6 +26,14 @@ python3 update.py --results results.example.csv --set-asof 2026-06-25
 
 # refresh ratings: code,fifa,elo,odds,opta,form
 python3 update.py --ratings ratings.example.csv
+
+# rebuild the COMPLETE head-to-head + recent form for all 48 teams from the
+# Kaggle martj42 dataset (intl-results.csv = its results.csv). Only matches on or
+# before meta.asOf are counted; predecessors are folded in (West Germany->Germany,
+# Zaire->DR Congo, Netherlands Antilles->Curacao). Penalty shootouts count as draws.
+python3 update.py --intl intl-results.csv --sync-embed
+#   dataset: https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017
+#   refresh it by re-downloading the CSV over scripts/intl-results.csv and re-running.
 
 # pull finished results automatically from football-data.org (free token: https://football-data.org)
 python3 update.py --fetch-footballdata --token "$FD_TOKEN"
