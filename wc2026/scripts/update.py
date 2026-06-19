@@ -153,11 +153,12 @@ INTL_MERGED = {"GER": "West Germany", "COD": "Zaïre", "CUW": "Netherlands Antil
 
 def build_from_intl(data, path):
     """Rebuild h2h + formYears + recent form for all 48 teams from the international
-    results CSV. Only matches on/before meta.asOf are counted (so the sim's 'today'
-    doesn't see future World Cup games). Penalty shootouts count as the 90/120-min draw."""
+    results CSV. Cut off the day BEFORE the World Cup starts, so the head-to-head and
+    recent-form the models use never include the very WC2026 games they predict.
+    Penalty shootouts count as the 90/120-min draw."""
     import datetime
     from collections import defaultdict
-    cutoff = data["meta"].get("asOf") or "2026-06-19"
+    cutoff = "2026-06-10"   # WC2026 kicked off 2026-06-11 — exclude the tournament itself
     h2h, hist, n = {}, defaultdict(list), 0
     with open(path, newline="", encoding="utf-8") as fh:
         for row in csv.DictReader(fh):
