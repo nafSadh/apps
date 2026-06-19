@@ -328,6 +328,9 @@
         <option value="12">outside top 12</option>
         <option value="16">outside top 16</option>
       </select></span>
+    <span class="msel"><label for="fc-upset">Upset variance</label>
+      <input type="range" class="urange" id="fc-upset" min="0" max="1" step="0.05" value="0">
+      <span class="uval" id="fc-uval">0.00</span></span>
     <button class="btn gold" id="fc-run">▶ Run forecast</button>
     <span class="fc-progwrap"><span class="fc-track"><span id="fc-bar"></span></span><span class="status" id="fc-prog"></span></span>
   </div>
@@ -434,7 +437,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"h2h", cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={};
 
 /* ============ ENGINE ============ */
@@ -816,14 +819,20 @@ const FC_R16=[89,90,91,92,93,94,95,96], FC_QF=[97,98,99,100], FC_SF=[101,102];
 const FC_KO=[...FC_R32,...FC_R16,...FC_QF,...FC_SF,104,103];
 function fcBase(){ const b=Object.assign({},LOCKED); state.userset.forEach(no=>{ if(state.res[no]) b[no]=state.res[no]; }); return b; }
 function newTally(){ const t={}; Object.keys(T).forEach(c=>t[c]={g1:0,q:0,r16:0,qf:0,sf:0,fin:0,ch:0}); return t; }
-function forecastSims(base,n,tally,qc){           // mutates globals; caller saves/restores
+// upset variance: k flattens each side's edge toward a coin-flip (k=1 natural, k<1 = more upsets/spread)
+function fcGroups(k){ FIX.forEach(f=>{ if(LOCKSET.has(f.no)||state.res[f.no]) return;
+  const d=k*(strength(f.home)-strength(f.away))/12, lh=Math.max(.18,Math.min(4.6,1.35+d)), la=Math.max(.18,Math.min(4.6,1.35-d));
+  state.res[f.no]=[Math.min(7,poisson(lh)),Math.min(7,poisson(la))]; }); }
+function fcPick(a,b,k){ const pf=0.5+(pBeat(a,b)-0.5)*k; return Math.random()<(pf<.03?.03:pf>.97?.97:pf)?a:b; }
+function forecastSims(base,n,tally,qc,k){          // mutates globals; caller saves/restores. k=upset factor
+  if(k==null) k=1;
   for(let s=0;s<n;s++){
     state.res=Object.assign({},base); state.forced={};
-    simGroupStage();                              // poisson-sample the unplayed group games
+    fcGroups(k);                                  // group games (upset-scaled poisson)
     STATS=computeStats(); rebuildThirds(); buildAlloc();
     GLET.forEach(g=>{ tally[groupOrder(g)[0]].g1++; });
     state.win={};
-    for(const no of FC_KO){ const p=parts(no); if(p[0]&&p[1]) state.win[no]=predWin(p[0],p[1],1); }
+    for(const no of FC_KO){ const p=parts(no); if(p[0]&&p[1]) state.win[no]=fcPick(p[0],p[1],k); }
     if(qc){ const q=FC_QF.map(no=>state.win[no]).filter(Boolean).sort().join("|"); if(q) qc[q]=(qc[q]||0)+1; }
     for(const no of FC_R32){ const p=parts(no); if(p[0])tally[p[0]].q++; if(p[1])tally[p[1]].q++; }
     for(const no of FC_R32){ const w=state.win[no]; if(w)tally[w].r16++; }
@@ -840,18 +849,18 @@ function runForecast(){
   const methods = score==="consensus" ? CONS_METHODS : [score];
   const per=Math.floor(N/methods.length), total=per*methods.length;
   const save={res:state.res,win:state.win,forced:state.forced,thirds:state.thirds,alloc:state.alloc,predicted:state.predicted,method:state.method,S:STATS};
-  const base=fcBase(), tally=newTally(), qc={};
+  const base=fcBase(), tally=newTally(), qc={}, kup=1-(state.fcUpset||0)*0.7;
   const btn=document.getElementById('fc-run'); if(btn) btn.disabled=true;
   let mi=0, md=0, done=0;
   function step(){
     state.method=methods[mi];                       // consensus = equal sims per model, pooled
-    const k=Math.min(CHUNK, per-md); forecastSims(base,k,tally,qc); md+=k; done+=k;
+    const k=Math.min(CHUNK, per-md); forecastSims(base,k,tally,qc,kup); md+=k; done+=k;
     const bar=document.getElementById('fc-bar'); if(bar) bar.style.width=(done/total*100)+'%';
     const pg=document.getElementById('fc-prog'); if(pg) pg.textContent=`simulating… ${done.toLocaleString()} / ${total.toLocaleString()}`+(methods.length>1?` · ${METHOD_NAME[methods[mi]]}`:'');
     if(md>=per){ mi++; md=0; }
     if(mi<methods.length){ setTimeout(step,0); return; }
     state.res=save.res; state.win=save.win; state.forced=save.forced; state.thirds=save.thirds; state.alloc=save.alloc; state.predicted=save.predicted; state.method=save.method; STATS=save.S; recompute();
-    state.fc={tally,N:total,method:score,qc}; if(btn) btn.disabled=false; if(pg) pg.textContent=''; renderForecast();
+    state.fc={tally,N:total,method:score,qc,upset:state.fcUpset}; if(btn) btn.disabled=false; if(pg) pg.textContent=''; renderForecast();
   }
   step();
 }
@@ -859,7 +868,8 @@ function renderForecast(){
   const el=document.getElementById('fc-panel'); if(!el) return;
   const fcm=document.getElementById('fc-method'); if(fcm) fcm.value=state.fcScore||state.method;
   const fcc=document.getElementById('fc-cind'); if(fcc) fcc.value=state.cindTop;
-  if(!state.fc){ el.innerHTML=`<div class="dhint">Plays the tournament <b>10,000 times</b> with the current <b>${METHOD_NAME[state.method]}</b> model (keeping the played results &amp; your edits), then tallies each team's odds of reaching every stage. Press <b>Run forecast</b>.</div>`; return; }
+  const fcu=document.getElementById('fc-upset'); if(fcu) fcu.value=state.fcUpset; const fuv=document.getElementById('fc-uval'); if(fuv) fuv.textContent=(+state.fcUpset||0).toFixed(2);
+  if(!state.fc){ el.innerHTML=`<div class="dhint">Plays the tournament <b>10,000 times</b> with the <b>${METHOD_NAME[state.fcScore||state.method]}</b> score (keeping the played results &amp; your edits), then tallies each team's odds of reaching every stage. Press <b>Run forecast</b>.</div>`; return; }
   const {tally,N,method}=state.fc, pct=x=>100*x/N;
   const rows=Object.keys(tally).sort((a,b)=>tally[b].ch-tally[a].ch || tally[b].fin-tally[a].fin);
   const f=x=>{ const p=pct(x); return p>=9.95?p.toFixed(0):p>=0.95?p.toFixed(1):p>0?p.toFixed(1):'·'; };
@@ -878,7 +888,7 @@ function renderForecast(){
   const pCindSF=100*cindN/N, pCindCh=100*Object.keys(tally).filter(c=>!seeds.has(c)).reduce((s,c)=>s+tally[c].ch,0)/N;
   const cindBlock=`<div class="fc-cind"><div class="fc-projrow"><span class="vk">cinderella watch · dark horses outside the FIFA top-${state.cindTop}</span><span class="small">surprise semifinalist <b style="color:var(--acc2)">${pCindSF.toFixed(0)}%</b> · surprise champion <b style="color:var(--acc2)">${pCindCh.toFixed(1)}%</b></span></div><div class="fc-projrow">${dh.map(c=>chip(c,'sf')).join('')}</div></div>`;
   let h=`<div class="fc-head"><div><span class="vk">most likely champion</span><br><b>${fl(champ)} ${nm(champ)}</b> <span class="mut">${pct(tally[champ].ch).toFixed(1)}%</span> <span class="small">· likely finalists ${fl(fin[0])}${nm(fin[0])} / ${fl(fin[1])}${nm(fin[1])}</span></div>
-    <div class="small">${N.toLocaleString()} sims · ${METHOD_NAME[method]} model${stale?` <span class="warn">· re-run for ${METHOD_NAME[state.method]}</span>`:''}</div></div>
+    <div class="small">${N.toLocaleString()} sims · ${METHOD_NAME[method]}${state.fc.upset>0?` · upset variance ${(+state.fc.upset).toFixed(2)}`:''}${stale?` <span class="warn">· re-run for ${METHOD_NAME[state.fcScore||state.method]}</span>`:''}</div></div>
     ${projBlock}
     ${cindBlock}
     ${openLine}
@@ -959,6 +969,8 @@ document.getElementById('fc-method').onchange=function(){
   runForecast();                    // auto re-run with the chosen score (or the consensus blend)
 };
 document.getElementById('fc-cind').onchange=function(){ state.cindTop=+this.value; renderForecast(); };  // just re-renders the Cinderella line
+document.getElementById('fc-upset').oninput=function(){ document.getElementById('fc-uval').textContent=(+this.value).toFixed(2); };
+document.getElementById('fc-upset').onchange=function(){ state.fcUpset=+this.value; runForecast(); };  // re-run with new upset variance
 document.getElementById('b-reset').onclick=resetAll;
 const methodSel=document.getElementById('method'), formwinSel=document.getElementById('formwin');
 const upsetEl=document.getElementById('upset'), uvalEl=document.getElementById('uval'), atipEl=document.getElementById('atip');
