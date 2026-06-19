@@ -1,0 +1,30 @@
+<!doctype html><meta charset=utf-8>
+<title>mlc leaderboard — WC2026</title>
+<style>
+:root{--bg:#0b0e18;--card:#141a2e;--line:#26304d;--ink:#e8eaf6;--mut:#7f88ad;--acc:#9b7aed;--good:#67d99b}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,sans-serif;padding:28px}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-size:22px;margin:0 0 2px} .sub{color:var(--mut);margin:0 0 18px;font-size:13px}
+table{border-collapse:collapse;width:100%;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);font-weight:600}
+td.nm,th.nm{text-align:left} td.r{text-align:left;color:var(--mut);width:28px}
+td.mut{color:var(--mut)} .lead{color:var(--good);font-weight:700}
+tr:last-child td{border-bottom:none}
+.foot{color:var(--mut);font-size:12px;margin-top:14px}
+</style>
+<div class=wrap>
+<h1>mlc model leaderboard</h1>
+<p class=sub>Validated on 20 played 2026 World Cup matches
+(10 home / 8 draw / 2 away) · as of 2026-06-11</p>
+<table>
+<thead><tr><th class=r>#</th><th class=nm>Model</th><th>Accuracy</th><th>Log-loss</th>
+<th>Brier</th><th>Decisive</th><th class=mut>W-L (push)</th></tr></thead>
+<tbody><tr><td class='r'>1</td><td class='nm'>Decision tree</td><td class="lead">55.0%</td><td>0.994</td><td>0.635</td><td>92%</td><td class='mut'>11-1 (8p)</td></tr><tr><td class='r'>2</td><td class='nm'>Elo-only logistic</td><td class="lead">55.0%</td><td>1.053</td><td>0.662</td><td>92%</td><td class='mut'>11-1 (8p)</td></tr><tr><td class='r'>3</td><td class='nm'>Softmax logistic</td><td>50.0%</td><td>1.042</td><td>0.655</td><td>83%</td><td class='mut'>10-2 (8p)</td></tr><tr><td class='r'>4</td><td class='nm'>MLP (neural net)</td><td>50.0%</td><td>1.052</td><td>0.662</td><td>83%</td><td class='mut'>10-2 (8p)</td></tr><tr><td class='r'>5</td><td class='nm'>Random forest</td><td>50.0%</td><td>1.058</td><td>0.665</td><td>83%</td><td class='mut'>10-2 (8p)</td></tr><tr><td class='r'>6</td><td class='nm'>Ordinal logistic</td><td>50.0%</td><td>1.059</td><td>0.659</td><td>83%</td><td class='mut'>10-2 (8p)</td></tr><tr><td class='r'>7</td><td class='nm'>Stacking ensemble</td><td>50.0%</td><td>1.060</td><td>0.670</td><td>83%</td><td class='mut'>10-2 (8p)</td></tr><tr><td class='r'>8</td><td class='nm'>Soft-vote ensemble</td><td>50.0%</td><td>1.060</td><td>0.666</td><td>83%</td><td class='mut'>10-2 (8p)</td></tr><tr><td class='r'>9</td><td class='nm'>Dixon-Coles Poisson</td><td>50.0%</td><td>1.067</td><td>0.665</td><td>83%</td><td class='mut'>10-2 (8p)</td></tr><tr><td class='r'>10</td><td class='nm'>Gaussian NB</td><td>50.0%</td><td>1.149</td><td>0.707</td><td>91%</td><td class='mut'>10-1 (9p)</td></tr><tr><td class='r'>11</td><td class='nm'>k-NN</td><td>45.0%</td><td>1.101</td><td>0.685</td><td>82%</td><td class='mut'>9-2 (9p)</td></tr>
+<tr><td class=r>—</td><td class=nm>Naive baseline</td><td>50.0%</td>
+<td>17.269</td><td>1.000</td><td>—</td><td class=mut>majority class</td></tr>
+</tbody></table>
+<p class=foot><b>Accuracy</b> counts draws as a class you must predict.
+<b>Decisive</b> excludes draws as pushes — directly comparable to index.html's hit-rate.
+Lower log-loss / Brier = better-calibrated probabilities.</p>
+</div>

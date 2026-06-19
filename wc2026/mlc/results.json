@@ -1,0 +1,131 @@
+{
+  "as_of": "2026-06-11",
+  "n_val": 20,
+  "val_breakdown": {
+    "home": 10,
+    "draw": 8,
+    "away": 2
+  },
+  "baseline": {
+    "accuracy": 0.5,
+    "log_loss": 17.26938819745534,
+    "brier": 1.0,
+    "decisive_hit_rate": 0.8333333333333334,
+    "decisive_ok": 10,
+    "decisive_miss": 2,
+    "decisive_push": 8,
+    "name": "Naive baseline (Home win)"
+  },
+  "models": [
+    {
+      "accuracy": 0.55,
+      "log_loss": 0.9935781838954835,
+      "brier": 0.6352250748797124,
+      "decisive_hit_rate": 0.9166666666666666,
+      "decisive_ok": 11,
+      "decisive_miss": 1,
+      "decisive_push": 8,
+      "name": "Decision tree"
+    },
+    {
+      "accuracy": 0.55,
+      "log_loss": 1.0531411467813547,
+      "brier": 0.6618056151942282,
+      "decisive_hit_rate": 0.9166666666666666,
+      "decisive_ok": 11,
+      "decisive_miss": 1,
+      "decisive_push": 8,
+      "name": "Elo-only logistic"
+    },
+    {
+      "accuracy": 0.5,
+      "log_loss": 1.0419764422323814,
+      "brier": 0.6553721205545746,
+      "decisive_hit_rate": 0.8333333333333334,
+      "decisive_ok": 10,
+      "decisive_miss": 2,
+      "decisive_push": 8,
+      "name": "Softmax logistic"
+    },
+    {
+      "accuracy": 0.5,
+      "log_loss": 1.0517863779573962,
+      "brier": 0.6615891164035849,
+      "decisive_hit_rate": 0.8333333333333334,
+      "decisive_ok": 10,
+      "decisive_miss": 2,
+      "decisive_push": 8,
+      "name": "MLP (neural net)"
+    },
+    {
+      "accuracy": 0.5,
+      "log_loss": 1.0583111993876904,
+      "brier": 0.6648488749488359,
+      "decisive_hit_rate": 0.8333333333333334,
+      "decisive_ok": 10,
+      "decisive_miss": 2,
+      "decisive_push": 8,
+      "name": "Random forest"
+    },
+    {
+      "accuracy": 0.5,
+      "log_loss": 1.0589354891557918,
+      "brier": 0.6585810071398736,
+      "decisive_hit_rate": 0.8333333333333334,
+      "decisive_ok": 10,
+      "decisive_miss": 2,
+      "decisive_push": 8,
+      "name": "Ordinal logistic"
+    },
+    {
+      "accuracy": 0.5,
+      "log_loss": 1.0600075487711722,
+      "brier": 0.6698585640830391,
+      "decisive_hit_rate": 0.8333333333333334,
+      "decisive_ok": 10,
+      "decisive_miss": 2,
+      "decisive_push": 8,
+      "name": "Stacking ensemble"
+    },
+    {
+      "accuracy": 0.5,
+      "log_loss": 1.060305082214953,
+      "brier": 0.6661551403329373,
+      "decisive_hit_rate": 0.8333333333333334,
+      "decisive_ok": 10,
+      "decisive_miss": 2,
+      "decisive_push": 8,
+      "name": "Soft-vote ensemble"
+    },
+    {
+      "accuracy": 0.5,
+      "log_loss": 1.0669986517549068,
+      "brier": 0.6652792822283068,
+      "decisive_hit_rate": 0.8333333333333334,
+      "decisive_ok": 10,
+      "decisive_miss": 2,
+      "decisive_push": 8,
+      "name": "Dixon-Coles Poisson"
+    },
+    {
+      "accuracy": 0.5,
+      "log_loss": 1.1486479582651499,
+      "brier": 0.7071417583584,
+      "decisive_hit_rate": 0.9090909090909091,
+      "decisive_ok": 10,
+      "decisive_miss": 1,
+      "decisive_push": 9,
+      "name": "Gaussian NB"
+    },
+    {
+      "accuracy": 0.45,
+      "log_loss": 1.1011558010394138,
+      "brier": 0.6854399999999999,
+      "decisive_hit_rate": 0.8181818181818182,
+      "decisive_ok": 9,
+      "decisive_miss": 2,
+      "decisive_push": 9,
+      "name": "k-NN"
+    }
+  ]
+}

@@ -164,8 +164,41 @@ function ready(){
   $("pill-teams").textContent=teams.size+" teams";
   $("train").disabled=false;
 }
-fetch("scripts/intl-results.csv").then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{MATCHES=parseCSV(t);ready();})
-  .catch(()=>{$("status").textContent="Auto-load blocked — pick the CSV below.";$("uploadrow").classList.remove("hide");});
+let DATA_JSON = null;
+const WC_INTL_NAMES = {
+    "Argentina": "ARG", "Spain": "ESP", "France": "FRA", "England": "ENG", "Portugal": "POR",
+    "Brazil": "BRA", "Netherlands": "NED", "Germany": "GER", "West Germany": "GER", "Belgium": "BEL",
+    "Croatia": "CRO", "Morocco": "MAR", "Colombia": "COL", "Mexico": "MEX", "Senegal": "SEN",
+    "Uruguay": "URU", "United States": "USA", "Japan": "JPN", "Switzerland": "SUI", "Iran": "IRN",
+    "Turkey": "TUR", "Türkiye": "TUR", "Ecuador": "ECU", "South Korea": "KOR", "Austria": "AUT",
+    "Australia": "AUS", "Algeria": "ALG", "Egypt": "EGY", "Canada": "CAN", "Norway": "NOR",
+    "Ivory Coast": "CIV", "Côte d'Ivoire": "CIV", "Panama": "PAN", "Sweden": "SWE", "Czech Republic": "CZE",
+    "Paraguay": "PAR", "Scotland": "SCO", "Tunisia": "TUN", "DR Congo": "COD", "Zaïre": "COD", "Zaire": "COD",
+    "Uzbekistan": "UZB", "Qatar": "QAT", "Iraq": "IRQ", "South Africa": "RSA", "Saudi Arabia": "KSA",
+    "Jordan": "JOR", "Bosnia and Herzegovina": "BIH", "Cape Verde": "CPV", "Ghana": "GHA", "Haiti": "HAI",
+    "Curaçao": "CUW", "Netherlands Antilles": "CUW", "New Zealand": "NZL"
+};
+function nameToCode(name) {
+  if (!DATA_JSON) return null;
+  for (const [code, t] of Object.entries(DATA_JSON.teams)) {
+    if (t.name.toLowerCase().trim() === name.toLowerCase().trim()) return code;
+  }
+  return WC_INTL_NAMES[name];
+}
+
+Promise.all([
+  fetch("scripts/intl-results.csv").then(r=>{if(!r.ok)throw 0;return r.text();}),
+  fetch("data.json").then(r=>{if(!r.ok)throw 0;return r.json();})
+]).then(([csvText, dataJson])=>{
+  MATCHES=parseCSV(csvText);
+  DATA_JSON=dataJson;
+  ready();
+}).catch(()=>{
+  fetch("scripts/intl-results.csv").then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{
+    MATCHES=parseCSV(t);
+    ready();
+  }).catch(()=>{$("status").textContent="Auto-load blocked — pick the CSV below.";$("uploadrow").classList.remove("hide");});
+});
 $("file").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{MATCHES=parseCSV(t);$("uploadrow").classList.add("hide");ready();});});
 
 // ============================ features ============================
@@ -320,7 +353,60 @@ $("predict").addEventListener("click",()=>{
   const feat=[(eh-ea)/100, neutral?0:1, fGD(home)-fGD(away), tot?signed/tot:0];
   const pe=smax(MODEL.We,vec(feat,COLS_ELO,st)), pf=smax(MODEL.Wf,vec(feat,COLS_FULL,st));
   const xf=vec(feat,COLS_FULL,st), po=poissonOutcome(plam(MODEL.Wph,xf),plam(MODEL.Wpa,xf));
-  const pavg=[0,1,2].map(k=>(pe[k]+pf[k]+po.p[k])/3);
+  
+  // Meta-Classifier Model Integration
+  let pm = null;
+  let ratings_info = "";
+  if (DATA_JSON) {
+    const hc = nameToCode(home);
+    const ac = nameToCode(away);
+    if (hc && ac) {
+      const sqh = DATA_JSON.squad[hc] || {};
+      const sqa = DATA_JSON.squad[ac] || {};
+      const val_h = sqh.value || 10.0;
+      const val_a = sqa.value || 10.0;
+      
+      const rh = DATA_JSON.ratings[hc] || {};
+      const ra = DATA_JSON.ratings[ac] || {};
+      const odd_h = rh.odds || 1000.0;
+      const odd_a = ra.odds || 1000.0;
+      
+      ratings_info += ` · Squad: €${val_h}m vs €${val_a}m · Odds: ${odd_h} vs ${odd_a}`;
+      
+      const raw_meta = [
+        feat[0], // Elo diff
+        Math.log(val_h) - Math.log(val_a),
+        Math.log(odd_a) - Math.log(odd_h)
+      ];
+      
+      const meta_mean = [1.0460540088193413, 0.5934920958654526, 1.0023447459785795];
+      const meta_std = [2.408117363380956, 1.6808742721029186, 2.4742682860482814];
+      const std_meta = raw_meta.map((v, idx) => (v - meta_mean[idx]) / meta_std[idx]);
+      
+      const meta_w = [
+        [-0.47587311158064166, 0.4305461799175233, 0.0453269316631189],
+        [0.43777386553916453, -0.3294163345613766, -0.10835753097778805],
+        [0.8922295807886171, 0.40717883758835477, -1.2994084183769725]
+      ];
+      const meta_b = [1.0770944383945624, 0.7217314746200396, -1.7988259130145998];
+      
+      const z_meta = [0, 1, 2].map(k => {
+        let s = meta_b[k];
+        for(let j=0; j<3; j++) s += std_meta[j] * meta_w[j][k];
+        return s;
+      });
+      
+      const max_z = Math.max(...z_meta);
+      const exp_z = z_meta.map(z => Math.exp(z - max_z));
+      const sum_exp = exp_z.reduce((a,b)=>a+b, 0);
+      pm = exp_z.map(e => e / (sum_exp || 1));
+    }
+  }
+
+  const avg_models = [pe, pf, po.p];
+  if (pm) avg_models.push(pm);
+  const pavg = [0,1,2].map(k => avg_models.reduce((sum, p) => sum + p[k], 0) / avg_models.length);
+  
   const fav=pavg.indexOf(Math.max(...pavg)), conf=pavg[fav];
   const sorted=[...pavg].sort((a,b)=>b-a), tight=(sorted[0]-sorted[1])<0.08;
   const vlabel=fav===0?`${home} win`:fav===1?`Draw`:`${away} win`;
@@ -332,11 +418,12 @@ $("predict").addEventListener("click",()=>{
       <div><span class="vk">most likely</span> <b>${vlabel}</b> <span class="mut">· ${Math.round(conf*100)}% consensus${tight?' · <span class="warn">tight, could go either way</span>':''}</span></div>
       <div class="scoreline">${sl[0]}–${sl[1]} <span class="small">likely score</span></div>
     </div>
-    <div class="row" style="margin:8px 0 2px"><span class="small"><b>${home}</b> Elo ${Math.round(eh)} · <b>${away}</b> Elo ${Math.round(ea)} · ${neutral?'neutral venue':home+' at home'}</span></div>
+    <div class="row" style="margin:8px 0 2px"><span class="small"><b>${home}</b> Elo ${Math.round(eh)} · <b>${away}</b> Elo ${Math.round(ea)}${ratings_info} · ${neutral?'neutral venue':home+' at home'}</span></div>
     <div class="pred">
       <div class="predrow"><span class="nm">Elo-logistic</span>${wld(pe,home,away)}</div>
       <div class="predrow"><span class="nm">Full logistic</span>${wld(pf,home,away)}</div>
       <div class="predrow"><span class="nm">Poisson goals</span>${wld(po.p,home,away)}</div>
+      ${pm ? `<div class="predrow"><span class="nm">Meta-Classifier</span>${wld(pm,home,away)}</div>` : ''}
     </div>
     <div class="small" style="margin-top:8px">Green = ${home} win · grey = draw · blue = ${away} win (bold = each model's pick).${tot?` H2H on record: ${rec.x}-${rec.d}-${rec.y} (${home<away?home:away} view, ${tot} games).`:' They have never met.'}</div>`;
 });

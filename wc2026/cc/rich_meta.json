@@ -1,0 +1,31 @@
+{
+  "n_teams": 3070,
+  "seq_len": 12,
+  "num_fields": [
+    "was_home",
+    "gf",
+    "ga",
+    "shots_for",
+    "shots_against",
+    "poss",
+    "recency_log"
+  ],
+  "static_fields": [
+    "elo_diff+homeadv",
+    "shot_form_diff",
+    "poss_form_diff"
+  ],
+  "split": "2025-07-01",
+  "scaler": {
+    "mean": [
+      0.6536385416984558,
+      -0.16614876687526703,
+      -0.06606283783912659
+    ],
+    "std": [
+      0.9638620615005493,
+      4.9953508377075195,
+      13.275787353515625
+    ]
+  }
+}
