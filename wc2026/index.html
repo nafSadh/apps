@@ -347,7 +347,7 @@
     <div class="sources" id="sources"></div>
     <b>Bracket structure &amp; fixtures</b> verified vs Wikipedia / Sky Sports / ESPN (Match 73 = 2A v 2B; Mexico opener vs South Africa; FIFA's interleaved match numbering 1–72).
     <b>Standings</b> use FIFA tiebreakers (points → GD → goals for → seeding/alpha; full head-to-head simplified).
-    <b>Best-3rd allocation</b> respects FIFA's rule (no group winner meets a third from its own group), solved live for your 8 qualifiers. Played results locked as of <b>June 18, 2026</b>.
+    <b>Best-3rd allocation</b> respects FIFA's rule (no group winner meets a third from its own group), solved live for your 8 qualifiers. Played results locked as of <b>June 19, 2026</b>.
     <div class="footnav"><a href="#tournament">Tournament</a> · <a href="#forecast">Monte Carlo Forecast</a> · <a href="#data">Data &amp; provenance</a> · <a href="#acc">Simulation accuracy</a> · <a href="ml.html">ML Lab ↗</a></div>
     <div class="footsite"><a href="https://sadh.app" target="_blank" rel="noopener">sadh.app</a> · <a href="https://nafsadh.com" target="_blank" rel="noopener">nafsadh.com</a> · <a href="https://github.com/nafSadh/apps" target="_blank" rel="noopener">source · GitHub</a> · made by nafSadh</div>
   </footer>
@@ -412,7 +412,7 @@ const FIX=[
 ].map(a=>({no:a[0],group:a[1],md:a[2],date:a[3],home:a[4],away:a[5],venue:a[6],city:a[7]}));
 const FIXMAP={}; FIX.forEach(f=>FIXMAP[f.no]=f);
 // locked real results no:[hg,ag] (matches 1-28 played)
-let LOCKED={1:[2,0],2:[2,1],3:[1,1],4:[4,1],5:[0,1],6:[2,0],7:[1,1],8:[1,1],9:[1,0],10:[7,1],11:[2,2],12:[5,1],13:[1,1],14:[0,0],15:[1,1],16:[2,2],17:[3,1],18:[1,4],19:[3,0],20:[3,1],21:[1,1],22:[1,3],23:[4,2],24:[1,0],25:[1,1],26:[4,1],27:[6,0],28:[1,0]};
+let LOCKED={1:[2,0],2:[2,1],3:[1,1],4:[4,1],5:[0,1],6:[2,0],7:[1,1],8:[1,1],9:[1,0],10:[7,1],11:[2,2],12:[5,1],13:[1,1],14:[0,0],15:[1,1],16:[2,2],17:[3,1],18:[1,4],19:[3,0],20:[3,1],21:[1,1],22:[1,3],23:[4,2],24:[1,0],25:[1,1],26:[4,1],27:[6,0],28:[1,0],32:[2,0]};
 let LOCKSET=new Set(Object.keys(LOCKED).map(Number));
 
 const GLET="ABCDEFGHIJKL".split("");
