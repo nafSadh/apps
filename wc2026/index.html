@@ -209,6 +209,11 @@
   .acclb{max-width:440px} .num.lead{color:#67d99b;font-weight:700}
   .accgrid th{text-align:center} .accgrid td{text-align:center;font-size:15px} .accgrid td.tl,.accgrid th.tl{text-align:left;font-size:13px} .accgrid td:nth-child(2){text-align:left;white-space:nowrap;font-size:12.5px}
   .acc-ok{background:rgba(103,217,155,.10)} .acc-miss{background:rgba(240,118,139,.10)} .acc-push{background:rgba(232,192,106,.08)}
+  .fc-progwrap{display:inline-flex;align-items:center;gap:10px} .fc-track{display:inline-block;width:160px;height:7px;background:var(--card2);border:1px solid var(--line);border-radius:5px;overflow:hidden} #fc-bar{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc2),var(--acc));transition:width .1s}
+  .fc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin:8px 0 4px;padding:12px 15px;border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;background:var(--card2)}
+  .fc-head b{font-family:var(--serif-alt);font-style:italic;font-size:22px;color:var(--ink)} .fc-head .vk{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2)} .fc-head .warn{color:var(--warn)}
+  .fctbl td{text-align:right;font-family:var(--mono);font-size:12px;color:var(--mut)} .fctbl td.tl{text-align:left;font-family:var(--serif-alt);font-size:13.5px;color:var(--ink)}
+  .fctbl td.fcch{position:relative;color:var(--ink);min-width:96px} .fcbar{position:absolute;left:0;top:3px;bottom:3px;background:var(--acc-soft);border-left:2px solid var(--acc);border-radius:3px;z-index:0} .fcnum{position:relative;z-index:1;padding-right:4px}
 </style>
 </head>
 <body>
@@ -218,6 +223,7 @@
 
   <div class="topnav" id="topnav">
     <button class="tnav on" data-view="tournament"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4.6l2.3 1.7-.9 2.7H6.6l-.9-2.7z"/></svg>Tournament</button>
+    <button class="tnav" data-view="forecast"><svg class="ic" viewBox="0 0 16 16"><path d="M5 2h6v2.5a3 3 0 01-6 0zM5 3.3H3.2v1.2a2 2 0 002 1.8M11 3.3h1.8v1.2a2 2 0 01-2 1.8M6.7 8.3 6.3 11h3.4l-.4-2.7M5.7 13.5h4.6M8 11v2.5"/></svg>Forecast</button>
     <button class="tnav" data-view="data"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 13.5h11M4.5 13V8M8 13V3.5M11.5 13V6.5"/></svg>Data &amp; provenance</button>
     <button class="tnav" data-view="acc"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><circle cx="8" cy="8" r="2.1"/></svg>Simulation accuracy</button>
     <a class="tnav lk" href="ml.html"><svg class="ic" viewBox="0 0 16 16"><path d="M6.2 2v4.3L3.3 12a1.4 1.4 0 001.2 2.1h7a1.4 1.4 0 001.2-2.1L9.8 6.3V2M5.4 2h5.2M4.9 10h6.2"/></svg>ML Lab ↗</a>
@@ -295,6 +301,16 @@
   </div>
   <div class="dwrap" id="dpanel"></div>
   </div><!-- /view-data -->
+
+  <div id="view-forecast" style="display:none">
+  <h2 class="sec">Forecast <span class="cnt">— Monte-Carlo title odds: the tournament played 10,000 times</span></h2>
+  <div class="bar" style="margin-bottom:6px">
+    <button class="btn gold" id="fc-run">▶ Run forecast</button>
+    <span class="fc-progwrap"><span class="fc-track"><span id="fc-bar"></span></span><span class="status" id="fc-prog"></span></span>
+  </div>
+  <div class="note">Each run samples every unplayed match from the selected <b>Model</b>'s win probabilities at their natural upset rate — keeping the 28 played results and any scores you set — and aggregates how often each team reaches each round. Switch models in the <b>Tournament</b> tab to compare forecasts.</div>
+  <div id="fc-panel"></div>
+  </div><!-- /view-forecast -->
 
   <div id="view-acc" style="display:none">
   <h2 class="sec">Simulation accuracy <span class="cnt">— each played WC2026 game vs what every model predicted (pre-tournament data only)</span></h2>
@@ -395,7 +411,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={};
 
 /* ============ ENGINE ============ */
@@ -771,6 +787,61 @@ function formTable(){ const fr=y=>y?`${y.w}-${y.d}-${y.l}`:"—"; const codes=Ob
   return h+`</tbody></table>`; }
 function srcTable(){ const list=SOURCES.length?SOURCES:[]; if(!list.length) return `<div class="dhint">Sources load with data.json.</div>`;
   return `<ul class="srclist">`+list.map(s=>`<li><b>${s.label}</b><br><a href="${s.url}" target="_blank" rel="noopener">${s.url}</a></li>`).join("")+`</ul>`; }
+// ---- Monte Carlo title-odds forecast: play the whole tournament N times, tally stage reaches ----
+const FC_R32=[73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88];
+const FC_R16=[89,90,91,92,93,94,95,96], FC_QF=[97,98,99,100], FC_SF=[101,102];
+const FC_KO=[...FC_R32,...FC_R16,...FC_QF,...FC_SF,104,103];
+function fcBase(){ const b=Object.assign({},LOCKED); state.userset.forEach(no=>{ if(state.res[no]) b[no]=state.res[no]; }); return b; }
+function newTally(){ const t={}; Object.keys(T).forEach(c=>t[c]={g1:0,q:0,r16:0,qf:0,sf:0,fin:0,ch:0}); return t; }
+function forecastSims(base,n,tally){              // mutates globals; caller saves/restores
+  for(let s=0;s<n;s++){
+    state.res=Object.assign({},base); state.forced={};
+    simGroupStage();                              // poisson-sample the unplayed group games
+    STATS=computeStats(); rebuildThirds(); buildAlloc();
+    GLET.forEach(g=>{ tally[groupOrder(g)[0]].g1++; });
+    state.win={};
+    for(const no of FC_KO){ const p=parts(no); if(p[0]&&p[1]) state.win[no]=predWin(p[0],p[1],1); }
+    for(const no of FC_R32){ const p=parts(no); if(p[0])tally[p[0]].q++; if(p[1])tally[p[1]].q++; }
+    for(const no of FC_R32){ const w=state.win[no]; if(w)tally[w].r16++; }
+    for(const no of FC_R16){ const w=state.win[no]; if(w)tally[w].qf++; }
+    for(const no of FC_QF){ const w=state.win[no]; if(w)tally[w].sf++; }
+    for(const no of FC_SF){ const w=state.win[no]; if(w)tally[w].fin++; }
+    if(state.win[104]) tally[state.win[104]].ch++;
+  }
+}
+function runForecast(){
+  const N=10000, CHUNK=500;
+  const save={res:state.res,win:state.win,forced:state.forced,thirds:state.thirds,alloc:state.alloc,predicted:state.predicted,S:STATS};
+  const base=fcBase(), tally=newTally(); let done=0;
+  const btn=document.getElementById('fc-run'); if(btn) btn.disabled=true;
+  function step(){
+    forecastSims(base,Math.min(CHUNK,N-done),tally); done+=Math.min(CHUNK,N-done);
+    const bar=document.getElementById('fc-bar'); if(bar) bar.style.width=(done/N*100)+'%';
+    const pg=document.getElementById('fc-prog'); if(pg) pg.textContent=`simulating… ${done.toLocaleString()} / ${N.toLocaleString()}`;
+    if(done<N){ setTimeout(step,0); return; }
+    state.res=save.res; state.win=save.win; state.forced=save.forced; state.thirds=save.thirds; state.alloc=save.alloc; state.predicted=save.predicted; STATS=save.S; recompute();
+    state.fc={tally,N,method:state.method}; if(btn) btn.disabled=false; if(pg) pg.textContent=''; renderForecast();
+  }
+  step();
+}
+function renderForecast(){
+  const el=document.getElementById('fc-panel'); if(!el) return;
+  if(!state.fc){ el.innerHTML=`<div class="dhint">Plays the tournament <b>10,000 times</b> with the current <b>${METHOD_NAME[state.method]}</b> model (keeping the played results &amp; your edits), then tallies each team's odds of reaching every stage. Press <b>Run forecast</b>.</div>`; return; }
+  const {tally,N,method}=state.fc, pct=x=>100*x/N;
+  const rows=Object.keys(tally).sort((a,b)=>tally[b].ch-tally[a].ch || tally[b].fin-tally[a].fin);
+  const f=x=>{ const p=pct(x); return p>=9.95?p.toFixed(0):p>=0.95?p.toFixed(1):p>0?p.toFixed(1):'·'; };
+  const champ=rows[0], maxch=pct(tally[champ].ch)||1;
+  const fin=Object.keys(tally).sort((a,b)=>tally[b].fin-tally[a].fin);
+  const stale=method!==state.method;
+  let h=`<div class="fc-head"><div><span class="vk">most likely champion</span><br><b>${fl(champ)} ${nm(champ)}</b> <span class="mut">${pct(tally[champ].ch).toFixed(1)}%</span> <span class="small">· likely finalists ${fl(fin[0])}${nm(fin[0])} / ${fl(fin[1])}${nm(fin[1])}</span></div>
+    <div class="small">${N.toLocaleString()} sims · ${METHOD_NAME[method]} model${stale?` <span class="warn">· re-run for ${METHOD_NAME[state.method]}</span>`:''}</div></div>
+    <div class="dhint">All values are probabilities (%). Sorted by title odds.</div>
+    <table class="dtbl fctbl"><thead><tr><th class="tl">Team</th><th>Win grp</th><th>Qualify</th><th>R16</th><th>QF</th><th>SF</th><th>Final</th><th>Champion</th></tr></thead><tbody>`;
+  h+=rows.map(c=>{ const t=tally[c], cp=pct(t.ch);
+    return `<tr><td class="tl">${fl(c)} ${nm(c)}</td><td>${f(t.g1)}</td><td>${f(t.q)}</td><td>${f(t.r16)}</td><td>${f(t.qf)}</td><td>${f(t.sf)}</td><td>${f(t.fin)}</td>`+
+      `<td class="fcch"><span class="fcbar" style="width:${(cp/maxch*100).toFixed(1)}%"></span><span class="fcnum">${cp>=0.95?cp.toFixed(1):cp>0?cp.toFixed(1):'·'}</span></td></tr>`; }).join("");
+  el.innerHTML=h+`</tbody></table>`;
+}
 // ---- model accuracy back-test: how each model would have called the real WC2026 results ----
 const MSHORT={blend:"Blend",potgoals:"Pot+G",fifa:"FIFA",squad:"Squad",form:"Form",h2h:"H2H",odds:"Odds",opta:"Opta"};
 function modelProb(a,b){ // pure model win-prob for A over B (no tournament-standings nudge)
@@ -834,6 +905,7 @@ thirdsEl.addEventListener('click',e=>{ const t=e.target; if(t.dataset.tup!==unde
 binner.addEventListener('click',e=>{ const s=e.target.closest('.slot.known'); if(!s) return; const [no,code]=s.dataset.adv.split(','); advance(+no,code); });
 tracksel.addEventListener('click',e=>{ if(e.target.dataset.untrack) toggleTrack(e.target.dataset.untrack); if(e.target.id==='b-clearsel'){ state.sel=[]; renderGroups(); applyTracking(); renderPaths(); } });
 document.getElementById('b-sim').onclick=simulate;
+document.getElementById('fc-run').onclick=runForecast;
 document.getElementById('b-reset').onclick=resetAll;
 const methodSel=document.getElementById('method'), formwinSel=document.getElementById('formwin');
 const upsetEl=document.getElementById('upset'), uvalEl=document.getElementById('uval'), atipEl=document.getElementById('atip');
@@ -911,8 +983,9 @@ function setView(v){ state.view=v;
   document.getElementById('view-tournament').style.display = v==='tournament'?'':'none';
   document.getElementById('view-data').style.display = v==='data'?'':'none';
   document.getElementById('view-acc').style.display = v==='acc'?'':'none';
+  document.getElementById('view-forecast').style.display = v==='forecast'?'':'none';
   document.querySelectorAll('#topnav .tnav').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
-  if(v==='data') renderData(); if(v==='acc') renderAcc();
+  if(v==='data') renderData(); if(v==='acc') renderAcc(); if(v==='forecast') renderForecast();
   window.scrollTo(0,0); }
 document.getElementById('topnav').addEventListener('click',e=>{ const b=e.target.closest('.tnav'); if(!b||!b.dataset.view) return; setView(b.dataset.view); });
 document.getElementById('dtabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.dtab=b.dataset.tab; renderData(); });
