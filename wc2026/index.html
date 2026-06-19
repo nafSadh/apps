@@ -182,6 +182,9 @@
 
   footer{margin-top:30px;font-size:11.5px;color:var(--mut2);line-height:1.7;border-top:1px solid var(--line);padding-top:14px} footer b{color:var(--mut)}
   .sources{margin-bottom:10px;font-size:11.5px;color:var(--mut)} .sources b{color:var(--ink)} .sources a{color:var(--acc2);text-decoration:none;border-bottom:1px dotted var(--line-hi)} .sources a:hover{color:var(--acc);border-bottom-color:var(--acc)}
+  .topnav{display:flex;gap:4px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);margin:14px 0 18px;padding-bottom:0}
+  .tnav{font-family:var(--serif-alt,inherit);font-size:15px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--mut2);padding:9px 16px;cursor:pointer;text-decoration:none;display:inline-block;margin-bottom:-1px;transition:color .12s}
+  .tnav:hover{color:var(--ink)} .tnav.on{color:var(--acc);border-bottom-color:var(--acc)} .tnav.lk{margin-left:auto;font-size:13px;color:var(--acc2)} .tnav.lk:hover{color:var(--acc)}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
   .dtab:hover{border-color:var(--acc);color:var(--ink)} .dtab.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
@@ -208,6 +211,13 @@
   <h1>FIFA World Cup <span class="em">2026</span> — Interactive Simulator</h1>
   <p class="sub">Enter scores or pick winners for every group game · order the groups · play out the knockouts · track up to 5 teams to the MetLife final.</p>
 
+  <div class="topnav" id="topnav">
+    <button class="tnav on" data-view="tournament">⚽ Tournament</button>
+    <button class="tnav" data-view="data">📊 Data &amp; provenance</button>
+    <a class="tnav lk" href="ml.html">🧪 ML Lab ↗</a>
+  </div>
+
+  <div id="view-tournament">
   <div class="bar">
     <button class="btn ghost" id="b-theme" title="Theme">☾ Dark</button>
     <span class="msel"><label for="method">Model</label>
@@ -259,7 +269,17 @@
   <div class="bracket" id="bracket"></div>
   <div class="mtip" id="mtip"></div>
 
-  <h2 class="sec">④ Data &amp; provenance <span class="cnt" id="dverm">— every number the models use</span></h2>
+  <footer>
+    <div class="sources" id="sources"></div>
+    <b>Bracket structure &amp; fixtures</b> verified vs Wikipedia / Sky Sports / ESPN (Match 73 = 2A v 2B; Mexico opener vs South Africa; FIFA's interleaved match numbering 1–72).
+    <b>Standings</b> are computed from results with FIFA tiebreakers (points → GD → goals for → seeding/alpha; full head-to-head simplified).
+    <b>Best-3rd allocation</b> respects FIFA's rule (no group winner meets a third from its own group), solved live for your 8 qualifiers.
+    Played results locked as of <b>June 18, 2026</b>.
+  </footer>
+  </div><!-- /view-tournament -->
+
+  <div id="view-data" style="display:none">
+  <h2 class="sec">④ Data &amp; provenance <span class="cnt" id="dverm">— every number the models use · complete match record from the martj42 dataset</span></h2>
   <div class="dtabs" id="dtabs">
     <button class="dtab on" data-tab="ratings">Ratings</button>
     <button class="dtab" data-tab="h2h">Head-to-head</button>
@@ -268,14 +288,7 @@
     <button class="dtab" data-tab="src">Sources</button>
   </div>
   <div class="dwrap" id="dpanel"></div>
-
-  <footer>
-    <div class="sources" id="sources"></div>
-    <b>Bracket structure &amp; fixtures</b> verified vs Wikipedia / Sky Sports / ESPN (Match 73 = 2A v 2B; Mexico opener vs South Africa; FIFA's interleaved match numbering 1–72).
-    <b>Standings</b> are computed from results with FIFA tiebreakers (points → GD → goals for → seeding/alpha; full head-to-head simplified).
-    <b>Best-3rd allocation</b> respects FIFA's rule (no group winner meets a third from its own group), solved live for your 8 qualifiers.
-    Played results locked as of <b>June 18, 2026</b>.
-  </footer>
+  </div><!-- /view-data -->
 </div>
 
 <script>
@@ -368,7 +381,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={};
 
 /* ============ ENGINE ============ */
@@ -847,6 +860,13 @@ function loadData(announce){ const t=document.getElementById('dstat-txt'); if(an
     .then(d=>{ const ok=applyData(d); setDataStatus(d&&d.meta,ok); return ok; })
     .catch(()=>{ setDataStatus(null,false,announce); return false; }); }
 document.getElementById('b-data').onclick=()=>loadData(true);
+function setView(v){ state.view=v;
+  document.getElementById('view-tournament').style.display = v==='tournament'?'':'none';
+  document.getElementById('view-data').style.display = v==='data'?'':'none';
+  document.querySelectorAll('#topnav .tnav').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
+  if(v==='data') renderData();
+  window.scrollTo(0,0); }
+document.getElementById('topnav').addEventListener('click',e=>{ const b=e.target.closest('.tnav'); if(!b||!b.dataset.view) return; setView(b.dataset.view); });
 document.getElementById('dtabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.dtab=b.dataset.tab; renderData(); });
 document.getElementById('dpanel').addEventListener('click',e=>{ const th=e.target.closest('th[data-sort]'); if(!th) return;
   if(state.dtab==="log"){ state.logAsc=!state.logAsc; renderData(); return; }
