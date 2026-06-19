@@ -795,7 +795,7 @@ function backtest(){
 function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) return;
   const {rows,tally,models}=backtest(), acc=t=>(t.ok+t.miss)?t.ok/(t.ok+t.miss):0;
   const order=models.slice().sort((a,b)=>acc(tally[b])-acc(tally[a])), best=Math.max(...order.map(m=>acc(tally[m])));
-  const ic={ok:'<span class="ok">✓</span>',miss:'<span class="miss">✗</span>',push:'<span class="push">≈</span>'};
+  const ic={ok:'<span class="ok">✓</span>',miss:'<span class="miss">✗</span>'};
   let lb=`<table class="dtbl acclb"><thead><tr><th class="tl">Model</th><th>Hit rate</th><th>✓</th><th>✗</th></tr></thead><tbody>`+
     order.map(m=>{const t=tally[m],a=acc(t);return `<tr><td class="tl">${METHOD_NAME[m]}</td><td class="num ${a===best?'lead':''}">${(a*100).toFixed(0)}%</td><td class="num ok">${t.ok}</td><td class="num miss">${t.miss}</td></tr>`;}).join("")+`</tbody></table>`;
   let g=`<table class="dtbl accgrid"><thead><tr><th class="tl">Match</th><th>Result</th>`+order.map(m=>`<th title="${METHOD_NAME[m]}">${MSHORT[m]}<br><span class="mut">${(acc(tally[m])*100).toFixed(0)}%</span></th>`).join("")+`</tr></thead><tbody>`+
