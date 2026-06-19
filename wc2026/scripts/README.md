@@ -46,6 +46,19 @@ python3 update.py --sync-embed
 ratings completeness) before writing, bumps `meta.version`/`meta.asOf`, and
 writes pretty-printed `data.json`. Stdlib only — no `pip install` needed.
 
+## Per-match performance log
+
+After locking new results, refresh the simulation performance log:
+
+```bash
+node perf_log.js     # writes perf-log.md (readable) + perf-log.json (structured)
+```
+
+It replays all 8 models against every played match using the app's own engine (`index.html`)
+and the locked scores in `data.json`, so it mirrors the in-app **Simulation accuracy** tab —
+but as a committed, version-controlled record (a leaderboard + a ✓/✗ grid per match). Diff it
+over time to watch each model's hit rate move as the tournament unfolds.
+
 ## Deploy
 
 ```bash
