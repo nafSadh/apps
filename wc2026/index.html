@@ -196,6 +196,7 @@
         <option value="blend">Balanced blend</option>
         <option value="potgoals">Pot + goals</option>
         <option value="fifa">FIFA ranking</option>
+        <option value="squad">Squad value (€)</option>
         <option value="form">Recent form</option>
         <option value="h2h">Head-to-head (historic)</option>
         <option value="odds">Betting market</option>
@@ -341,7 +342,7 @@ const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to
 
 /* ============ STATE ============ */
 const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"blend", formWin:"5", h2hWin:"5m", predicted:false, upset:{}, userset:new Set(), koUser:new Set() };
-let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[];
+let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={};
 
 /* ============ ENGINE ============ */
 function computeStats(){
@@ -353,11 +354,12 @@ function computeStats(){
 }
 /* ---- rating profiles: code:[fifaPts, elo, outrightOdds(decimal), analyst title %, recent form (newest first)] ---- */
 let RATINGS={MEX:[1687,1800,61,1,"WWWWWDDWWWL"],KOR:[1592,1754,351,0.4,"LWWWLLWWLDW"],RSA:[1432,1526,2501,0.1,"DLWDWWDWLDW"],CZE:[1506,1691,501,0.2,"DLDWWLDDWLW"],CAN:[1552,1806,151,0.52,"WDLDWWLWDLW"],SUI:[1641,1865,67,0.9,"WDDWDLDWDWW"],QAT:[1450,1427,1001,0.02,"LDDLLDLLWDW"],BIH:[1387,1571,501,0.1,"LDDDLDDWLWD"],BRA:[1766,1978,11,6.6,"DWWWLDWLWWW"],MAR:[1755,1840,46,1.9,"DWWWWDWWWWW"],SCO:[1503,1794,151,0.2,"WWLLLLLWLWD"],HAI:[1293,1536,2501,0.004,"LLLDLWWLWDD"],USA:[1671,1780,41,1.2,"WLWLLWWWDWL"],AUS:[1579,1839,601,0.3,"WDLWWLLWLLW"],PAR:[1505,1780,301,0.1,"LWLWWWWDLDL"],TUR:[1606,1849,91,0.9,"LWWWWDWWW"],GER:[1730,1939,13,5.1,"WWWWWLWWLLL"],ECU:[1565,1890,121,1.4,"LWWWDDDWDWD"],CIV:[1541,1743,301,0.4,"WWWWLWWDW"],CUW:[1295,1427,2501,0.05,"LWLLLWDWWD"],NED:[1754,1944,19,3.6,"DWLDWWDWWWD"],JPN:[1662,1910,51,0.9,"DWWWLLLDLDL"],TUN:[1490,1585,501,0.2,"LLLDLLDWWWD"],SWE:[1530,1755,101,0.4,"WDLWWDLLLWD"],BEL:[1742,1879,36,2.4,"DWWDWWDWDWW"],IRN:[1620,1756,1001,0.05,"DWDWLDDWLWL"],EGY:[1562,1711,251,0.4,"DLWDWDLWWDW"],NZL:[1276,1578,2501,0.02,"DLLWL"],ESP:[1880,2171,5.5,16.1,"DWDDWDWWWWW"],URU:[1680,1890,67,1.2,"DDDWDWWDWWW"],KSA:[1450,1592,1001,0.1,"DDWLDLWLWDW"],CPV:[1390,1561,1001,0.05,"DWDLDDWDWWW"],FRA:[1862,2063,5,13,"WWLWWWDWWW"],SEN:[1645,1869,101,1,"LDLWWLWWWWD"],NOR:[1530,1922,31,3.5,"WDWDLWWDWWW"],IRQ:[1432,1592,1501,0.05,"LLDWWWDDWWL"],ARG:[1886,2128,9,10.4,"WWWWWWLWDWW"],AUT:[1597,1857,251,0.1,"WDWWLWWWWWW"],ALG:[1571,1759,301,0.1,"LWLDDDDWWWW"],JOR:[1389,1691,751,0.1,"LLLDDLWWWWW"],POR:[1770,1976,11,7,"DWWWDWLDWWW"],COL:[1693,1998,41,2.1,"WWWLLWWDWWW"],UZB:[1459,1735,2001,0.1,"LLLDWDWLW"],COD:[1474,1639,501,0.1,"DLDWWLWDWWD"],ENG:[1826,2042,6.5,11.2,"WWWLDWWWWWW"],CRO:[1717,1933,91,1.6,"LWLWWWWWDWW"],PAN:[1539,1743,751,0.05,"LWDLLDWWDLD"],GHA:[1347,1509,301,0.1,"WWLWWLDLDLW"]};
-const METHOD_NAME={blend:"Balanced blend",potgoals:"Pot + goals",fifa:"FIFA ranking",form:"Recent form",h2h:"Head-to-head (historic)",odds:"Betting market",opta:"Analyst supercomputer"};
+const METHOD_NAME={blend:"Balanced blend",potgoals:"Pot + goals",fifa:"FIFA ranking",squad:"Squad value",form:"Recent form",h2h:"Head-to-head (historic)",odds:"Betting market",opta:"Analyst supercomputer"};
 const EXPLAIN={
   blend:"<b>Balanced blend</b> — the all-round default. Averages the four rating models (FIFA ranking, Elo, betting odds, analyst %) into one composite.",
   potgoals:"<b>Pot + goals</b> — a realistic, results-driven model: seeding pot (the draw's strength tier) plus goals scored and goal difference in this tournament so far. Rewards teams actually performing on the pitch over pedigree.",
   fifa:"<b>FIFA ranking</b> — the official FIFA / Coca-Cola World Ranking points (June 2026). The governing body's pecking order.",
+  squad:"<b>Squad value</b> — the combined club-level quality of the 26-man squad: total market value from Transfermarkt (log-scaled, since it ranges €20m → €1.5bn), cross-referenced with the EA Sports FC 26 team rating. Rewards squads stacked with expensive, elite-club players.",
   form:"<b>Recent form</b> — each team's OWN recent results: last 3 / 5 / 7 / 11 matches, or last 1 / 3 / 5 years (win = 3, draw = 1), lightly tempered by overall strength. NOT head-to-head — a team's run regardless of opponent.",
   h2h:"<b>Head-to-head (historic)</b> — each match is decided by the two teams' real results over the chosen window (last 3 / 5 / 7 / 11 meetings, last 1 / 3 / 5 years, or all-time), covered for the 16 likeliest knockout teams. <b>Fallback:</b> if a pair has never met — or has no games in the chosen window — the match uses <b>Elo</b> instead, which is itself built from every past result and is the fairest neutral estimate for an unseen matchup. The favourites list ranks by Elo (a pairwise model has no single global ranking).",
   odds:"<b>Betting market</b> — bookmakers' outright odds to win the cup, converted to implied probability. The money's opinion.",
@@ -371,6 +373,8 @@ let Z={};
 function buildZ(){ Z={ fifa:zscores(rRaw("fifa")), elo:zscores(rRaw("elo")), odds:zscores(rRaw("odds")), opta:zscores(rRaw("opta")) };
   Z.blend={}; for(const c in RATINGS) Z.blend[c]=(Z.fifa[c]+Z.elo[c]+Z.odds[c]+Z.opta[c])/4; }
 buildZ();
+function buildSquadZ(){ const raw={}, keys=Object.keys(SQUAD).filter(c=>SQUAD[c]&&SQUAD[c].value>0);
+  if(!keys.length){ SQZ={}; return; } keys.forEach(c=>raw[c]=Math.log(SQUAD[c].value)); SQZ=zscores(raw); }   // log-scale market value
 function formPPG(c,N){
   if(typeof N==="string" && N[0]==="y"){ const r=FORMY[c]&&FORMY[c][N]; if(r){ const p=(r.w||0)+(r.d||0)+(r.l||0); if(p) return (r.w*3+r.d)/p; } N=11; }   // 1/3/5-year window → points-per-game
   const num=Math.max(1,+N||5), f=RATINGS[c]?RATINGS[c][4]:"", n=Math.min(num,f.length); if(!n) return 1;
@@ -391,6 +395,7 @@ function methodStrength(c){
   else if(state.method==="fifa") z=Z.fifa[c]||0;
   else if(state.method==="odds") z=Z.odds[c]||0;
   else if(state.method==="opta") z=Z.opta[c]||0;
+  else if(state.method==="squad") z=(SQZ[c]!==undefined)?SQZ[c]:(Z.blend[c]||0);
   else z=Z.blend[c]||0;
   return zmap(z);
 }
@@ -471,13 +476,16 @@ function koReason(no){
   if(state.method==="h2h"){ const r=h2hRec(p[0],p[1]), u=curUpset(), t=h2hTally(r,state.h2hWin);
     if(t&&t.n>0){ const pa=Math.round(pBeat(p[0],p[1])*100);
       let seq=""; if(t.sel) seq=t.sel.map(m=>`${m.r}${m.s?" "+m.s:""}${m.y?" '"+String(m.y).slice(2):""}`).join("  ·  ");
-      return `<b>Head-to-head</b> · ${h2hWinLabel(state.h2hWin)}<br>${fl(p[0])} ${nm(p[0])} vs ${fl(p[1])} ${nm(p[1])} — <b>${t.w}W ${t.d}D ${t.l}L</b> (${nm(p[0])} ~${pa}%)${seq?`<br>${nm(p[0])}: ${seq}`:""}${r.last?`<br>last: ${r.last}`:""}<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.`; }
+      const allt = state.h2hWin!=="all" ? ` <span style="color:var(--mut2)">of ${r.p} all-time (${r.w}-${r.d}-${r.l})</span>` : "";
+      return `<b>Head-to-head</b> · ${h2hWinLabel(state.h2hWin)}<br>${fl(p[0])} ${nm(p[0])} vs ${fl(p[1])} ${nm(p[1])} — <b>${t.w}W ${t.d}D ${t.l}L</b>${allt} (${nm(p[0])} ~${pa}%)${seq?`<br>${nm(p[0])}: ${seq}`:""}${r.last?`<br>last: ${r.last}`:""}<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.`; }
     const rr=h2hRec(p[0],p[1]);
     const why = !rr ? "aren't both in the head-to-head dataset (top-16 contenders)" : (rr.p===0 ? "have no recorded meetings in this dataset" : `have no games in the ${h2hWinLabel(state.h2hWin)} window`);
     const pe=pBeat(p[0],p[1]), strong=pe>=0.5?p[0]:p[1];
     return `<b>Head-to-head — Elo fallback</b><br>${fl(p[0])} ${nm(p[0])} &amp; ${fl(p[1])} ${nm(p[1])} ${why}, so this used <b>Elo</b> (results-based neutral estimate) — favours ${nm(strong)} ~${Math.round(Math.max(pe,1-pe)*100)}%.<br>→ ${fl(w)} ${nm(w)} advanced.`; }
   if(state.method==="form"){ const fa=formShow(p[0]), fb=formShow(p[1]), u=curUpset();
     return `<b>Recent form</b> · ${_WL[state.formWin]||state.formWin}<br>${fl(p[0])} ${nm(p[0])}: ${fa.seq} &nbsp;(${fa.ppg} ppg → rating <b>${Math.round(strength(p[0]))}</b>)<br>${fl(p[1])} ${nm(p[1])}: ${fb.seq} &nbsp;(${fb.ppg} ppg → rating <b>${Math.round(strength(p[1]))}</b>)<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.<br><span style="color:var(--mut2)">rating = your form vs all 48 teams (66 = average), tempered 30% by Elo</span>`; }
+  if(state.method==="squad"){ const u=curUpset(), fmt=v=>(v&&v.value)?`€${v.value>=1000?(v.value/1000).toFixed(2)+"bn":Math.round(v.value)+"m"}${v.eafc?` · FC ${v.eafc}`:""}`:"—";
+    return `<b>Squad value</b> · Transfermarkt<br>${fl(p[0])} ${nm(p[0])}: ${fmt(SQUAD[p[0]])} (rating <b>${Math.round(strength(p[0]))}</b>)<br>${fl(p[1])} ${nm(p[1])}: ${fmt(SQUAD[p[1]])} (rating <b>${Math.round(strength(p[1]))}</b>)<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.`; }
   const a=p[0],b=p[1], sa=strength(a),sb=strength(b), strong=sa>=sb?a:b, weak=sa>=sb?b:a;
   const pS=Math.round(favWinProb(a,b)*100), upset=(w===weak), u=curUpset();
   return `<b>${METHOD_NAME[state.method]}</b> rating<br>${fl(strong)} ${nm(strong)} <b>${Math.round(strength(strong))}</b> &nbsp;vs&nbsp; ${fl(weak)} ${nm(weak)} <b>${Math.round(strength(weak))}</b><br>→ model favours ${nm(strong)} ~<b>${pS}%</b>. `+
@@ -724,6 +732,7 @@ function applyData(d){
     changed=true; }
   if(d.formYears && typeof d.formYears==="object"){ FORMY=d.formYears; for(const k in _fz) delete _fz[k]; changed=true; }
   if(d.h2h && typeof d.h2h==="object"){ H2H=d.h2h; changed=true; }
+  if(d.squad && typeof d.squad==="object"){ SQUAD=d.squad; buildSquadZ(); changed=true; }
   if(Array.isArray(d.sources)){ SOURCES=d.sources; renderSources(); }
   if(changed){ recompute(); renderAll(); }
   return changed; }

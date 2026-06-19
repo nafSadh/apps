@@ -1,7 +1,7 @@
 {
   "meta": {
     "tournament": "FIFA World Cup 2026",
-    "version": 2,
+    "version": 3,
     "asOf": "2026-06-18",
     "source": "manual",
     "note": "locked = played-match scores {matchNo:[homeGoals,awayGoals]}; ratings per team. teams/fixtures are fixed for the tournament. formYears=per-team 1/3/5y W-D-L; h2h=all-time pairwise record + last 5 meetings (top-16 contenders, symmetric).",
@@ -5856,6 +5856,253 @@
       "key": "fixtures",
       "label": "Fixtures & bracket — Wikipedia",
       "url": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_knockout_stage"
+    },
+    {
+      "key": "squad",
+      "label": "Squad market value — Transfermarkt; team ratings — EA Sports FC 26 / SoFIFA",
+      "url": "https://www.transfermarkt.com"
     }
-  ]
+  ],
+  "squad": {
+    "MEX": {
+      "value": 191.85,
+      "eafc": 78,
+      "top": 2
+    },
+    "KOR": {
+      "value": 139.05,
+      "eafc": 76,
+      "top": 4
+    },
+    "RSA": {
+      "value": 49.25,
+      "eafc": 70,
+      "top": 1
+    },
+    "CZE": {
+      "value": 188.18,
+      "eafc": 77,
+      "top": 6
+    },
+    "CAN": {
+      "value": 198.65,
+      "eafc": 75,
+      "top": 7
+    },
+    "SUI": {
+      "value": 332.5,
+      "eafc": 77,
+      "top": 13
+    },
+    "QAT": {
+      "value": 19.93,
+      "eafc": 71,
+      "top": null
+    },
+    "BIH": {
+      "value": 146.4,
+      "eafc": 73,
+      "top": 6
+    },
+    "BRA": {
+      "value": 928.2,
+      "eafc": 83,
+      "top": 22
+    },
+    "MAR": {
+      "value": 447.7,
+      "eafc": 80,
+      "top": 14
+    },
+    "SCO": {
+      "value": 170.25,
+      "eafc": 76,
+      "top": 5
+    },
+    "HAI": {
+      "value": 55.9,
+      "eafc": 67,
+      "top": null
+    },
+    "USA": {
+      "value": 385.6,
+      "eafc": 80,
+      "top": null
+    },
+    "AUS": {
+      "value": 77.45,
+      "eafc": 70,
+      "top": null
+    },
+    "PAR": {
+      "value": 153.65,
+      "eafc": 75,
+      "top": null
+    },
+    "TUR": {
+      "value": 473.7,
+      "eafc": 79,
+      "top": null
+    },
+    "GER": {
+      "value": 947,
+      "eafc": 83,
+      "top": 23
+    },
+    "ECU": {
+      "value": 368.7,
+      "eafc": 79,
+      "top": 7
+    },
+    "CIV": {
+      "value": 522.1,
+      "eafc": 78,
+      "top": 11
+    },
+    "CUW": {
+      "value": 25.78,
+      "eafc": 68,
+      "top": null
+    },
+    "NED": {
+      "value": 754.2,
+      "eafc": 83,
+      "top": 18
+    },
+    "JPN": {
+      "value": 270.85,
+      "eafc": 77,
+      "top": 8
+    },
+    "SWE": {
+      "value": 406.08,
+      "eafc": 79,
+      "top": 9
+    },
+    "TUN": {
+      "value": 69.95,
+      "eafc": 71,
+      "top": 2
+    },
+    "BEL": {
+      "value": 547.5,
+      "eafc": 82,
+      "top": 8
+    },
+    "IRN": {
+      "value": 32.05,
+      "eafc": 72,
+      "top": null
+    },
+    "EGY": {
+      "value": 116.48,
+      "eafc": 72,
+      "top": null
+    },
+    "NZL": {
+      "value": 34.45,
+      "eafc": 70,
+      "top": null
+    },
+    "ESP": {
+      "value": 1220,
+      "eafc": 85,
+      "top": 26
+    },
+    "URU": {
+      "value": 359.3,
+      "eafc": 79,
+      "top": 9
+    },
+    "KSA": {
+      "value": 40.68,
+      "eafc": 68,
+      "top": 1
+    },
+    "CPV": {
+      "value": 49.25,
+      "eafc": 70,
+      "top": 3
+    },
+    "FRA": {
+      "value": 1520,
+      "eafc": 85,
+      "top": 25
+    },
+    "SEN": {
+      "value": 478.1,
+      "eafc": 79,
+      "top": 16
+    },
+    "NOR": {
+      "value": 589.9,
+      "eafc": 78,
+      "top": 13
+    },
+    "IRQ": {
+      "value": 21.2,
+      "eafc": 65,
+      "top": null
+    },
+    "ARG": {
+      "value": 807.5,
+      "eafc": 83,
+      "top": 18
+    },
+    "AUT": {
+      "value": 245.2,
+      "eafc": 77,
+      "top": 10
+    },
+    "ALG": {
+      "value": 256.9,
+      "eafc": 75,
+      "top": 8
+    },
+    "JOR": {
+      "value": 20.3,
+      "eafc": 66,
+      "top": null
+    },
+    "POR": {
+      "value": 1010,
+      "eafc": 84,
+      "top": 24
+    },
+    "COL": {
+      "value": 302.35,
+      "eafc": 78,
+      "top": 10
+    },
+    "UZB": {
+      "value": 85.33,
+      "eafc": 67,
+      "top": 2
+    },
+    "COD": {
+      "value": 143.9,
+      "eafc": 73,
+      "top": 8
+    },
+    "ENG": {
+      "value": 1360,
+      "eafc": 84,
+      "top": 25
+    },
+    "CRO": {
+      "value": 387.3,
+      "eafc": 79,
+      "top": 14
+    },
+    "PAN": {
+      "value": 34.55,
+      "eafc": 70,
+      "top": 1
+    },
+    "GHA": {
+      "value": 234.5,
+      "eafc": 78,
+      "top": 12
+    }
+  }
 }
