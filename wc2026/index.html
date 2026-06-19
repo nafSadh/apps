@@ -342,7 +342,7 @@ const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to
 
 /* ============ STATE ============ */
 const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"blend", formWin:"5", h2hWin:"5m", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set() };
-let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={};
+let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={};
 
 /* ============ ENGINE ============ */
 function computeStats(){
@@ -387,6 +387,20 @@ function formShow(c){ const w=state.formWin;
   const N=Math.max(1,+w||5), f=(RATINGS[c]&&RATINGS[c][4])||"", sq=f.slice(0,N);
   let pts=0; for(const ch of sq) pts+= ch==="W"?3:ch==="D"?1:0;
   return {seq:sq.split("").join(" ")||"—", ppg:sq.length?(pts/sq.length).toFixed(2):"—"}; }
+// the actual underlying number each model uses, for the hint (so models look different, not all "rating X")
+function metricStr(c){ const R=RATINGS[c]||[];
+  switch(state.method){
+    case "fifa": return `${FPOS[c]?"FIFA #"+FPOS[c]+" · ":""}${R[0]} pts`;
+    case "odds": return `${R[2]} decimal odds`;
+    case "opta": return `${R[3]}% to win cup`;
+    case "h2h": return `Elo ${R[1]}`;
+    case "form": { const f=formShow(c); return `${f.seq} · ${f.ppg} ppg`; }
+    case "squad": { const v=SQUAD[c]; if(!v||!v.value) return "—"; const eur=`€${v.value>=1000?(v.value/1000).toFixed(2)+"bn":Math.round(v.value)+"m"}`;
+      return state.squadWin==="eafc"?`EA FC ${v.eafc||"?"}`:state.squadWin==="both"?`${eur} · FC ${v.eafc||"?"}`:eur; }
+    case "potgoals": { const s=STATS[c]||{gf:0,gd:0}; return `pot ${pot(c)} · ${s.gf} GF, ${s.gd>=0?"+":""}${s.gd} GD`; }
+    default: return `blend score ${Math.round(strength(c))}/87`;
+  }
+}
 const _fz={}; function formZ(N){ if(_fz[N]) return _fz[N]; const raw={}; for(const c in RATINGS) raw[c]=formPPG(c,N); return _fz[N]=zscores(raw); }
 function zmap(z){ return 66 + 9*Math.max(-2.3,Math.min(2.3,z||0)); }
 function methodStrength(c){
@@ -484,26 +498,18 @@ function koReason(no){
     const why = !rr ? "aren't both in the head-to-head dataset (top-16 contenders)" : (rr.p===0 ? "have no recorded meetings in this dataset" : `have no games in the ${h2hWinLabel(state.h2hWin)} window`);
     const pe=pBeat(p[0],p[1]), strong=pe>=0.5?p[0]:p[1];
     return `<b>Head-to-head — Elo fallback</b><br>${fl(p[0])} ${nm(p[0])} &amp; ${fl(p[1])} ${nm(p[1])} ${why}, so this used <b>Elo</b> (results-based neutral estimate) — favours ${nm(strong)} ~${Math.round(Math.max(pe,1-pe)*100)}%.<br>→ ${fl(w)} ${nm(w)} advanced.`; }
-  if(state.method==="form"){ const fa=formShow(p[0]), fb=formShow(p[1]), u=curUpset();
-    return `<b>Recent form</b> · ${_WL[state.formWin]||state.formWin}<br>${fl(p[0])} ${nm(p[0])}: ${fa.seq} &nbsp;(${fa.ppg} ppg → rating <b>${Math.round(strength(p[0]))}</b>)<br>${fl(p[1])} ${nm(p[1])}: ${fb.seq} &nbsp;(${fb.ppg} ppg → rating <b>${Math.round(strength(p[1]))}</b>)<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.<br><span style="color:var(--mut2)">rating = your form vs all 48 teams (66 = average), tempered 30% by Elo</span>`; }
-  if(state.method==="squad"){ const u=curUpset(), sub={value:"market value",eafc:"EA FC rating",both:"combined"}[state.squadWin],
-    fmt=v=>(v&&v.value)?`€${v.value>=1000?(v.value/1000).toFixed(2)+"bn":Math.round(v.value)+"m"}${v.eafc?` · FC ${v.eafc}`:""}`:"—";
-    return `<b>Squad value</b> · ${sub}<br>${fl(p[0])} ${nm(p[0])}: ${fmt(SQUAD[p[0]])} (rating <b>${Math.round(strength(p[0]))}</b>)<br>${fl(p[1])} ${nm(p[1])}: ${fmt(SQUAD[p[1]])} (rating <b>${Math.round(strength(p[1]))}</b>)<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.`; }
-  if(state.method==="fifa"){ const u=curUpset();
-    return `<b>FIFA ranking points</b><br>${fl(p[0])} ${nm(p[0])}: <b>${RATINGS[p[0]][0]}</b> pts (rating ${Math.round(strength(p[0]))})<br>${fl(p[1])} ${nm(p[1])}: <b>${RATINGS[p[1]][0]}</b> pts (rating ${Math.round(strength(p[1]))})<br>→ ${fl(w)} ${nm(w)} advanced — more FIFA points${u>0?` · upset ${u.toFixed(2)}`:""}.<br><span style="color:var(--mut2)">higher points = higher FIFA rank; the 0–87 rating just rescales them (66 = average) — it is NOT a rank position</span>`; }
-  const a=p[0],b=p[1], sa=strength(a),sb=strength(b), strong=sa>=sb?a:b, weak=sa>=sb?b:a;
-  const pS=Math.round(favWinProb(a,b)*100), upset=(w===weak), u=curUpset();
-  return `<b>${METHOD_NAME[state.method]}</b> rating<br>${fl(strong)} ${nm(strong)} <b>${Math.round(strength(strong))}</b> &nbsp;vs&nbsp; ${fl(weak)} ${nm(weak)} <b>${Math.round(strength(weak))}</b><br>→ model favours ${nm(strong)} ~<b>${pS}%</b>. `+
-    (upset ? `⚡ <b>Upset:</b> ${fl(w)} ${nm(w)} went through (upset dial ${u.toFixed(2)} let the underdog win).`
-           : `${fl(w)} ${nm(w)} advanced${u>0?` — favourite held at upset ${u.toFixed(2)}.`:` — deterministic (upset 0).`}`);
+  const u=curUpset(), pH=pBeat(p[0],p[1]), fav=pH>=0.5?p[0]:p[1], favP=Math.round(Math.max(pH,1-pH)*100), upset=(w!==fav);
+  return `<b>${METHOD_NAME[state.method]}${winLabel()}</b><br>${fl(p[0])} ${nm(p[0])}: ${metricStr(p[0])}<br>${fl(p[1])} ${nm(p[1])}: ${metricStr(p[1])}<br>→ ${fl(w)} ${nm(w)} advanced${upset?` <b>(upset, dial ${u.toFixed(2)})</b>`:""} — this model gives <b>${nm(fav)} ${favP}%</b>.`;
 }
 function grpReason(no){
   const r=state.res[no]; if(!r) return ""; const f=FIXMAP[no];
-  if(LOCKSET.has(no)) return `<b>Played — locked.</b> Real result: ${fl(f.home)} ${nm(f.home)} ${r[0]}–${r[1]} ${nm(f.away)} ${fl(f.away)}.`;
-  if(state.userset.has(no)) return `<b>Your score.</b> You entered ${r[0]}–${r[1]} — the model left it alone.`;
-  const a=f.home,b=f.away, sa=strength(a),sb=strength(b), strong=sa>=sb?a:b;
-  const pS=Math.round(favWinProb(a,b)*100), u=curUpset();
-  return `<b>${METHOD_NAME[state.method]}</b> rating<br>${fl(a)} ${nm(a)} <b>${Math.round(sa)}</b> &nbsp;vs&nbsp; ${fl(b)} ${nm(b)} <b>${Math.round(sb)}</b><br>→ favours ${nm(strong)} ~<b>${pS}%</b>; projected <b>${r[0]}–${r[1]}</b>${u>0?` at upset ${u.toFixed(2)}`:` (deterministic)`}.`;
+  const aw=r[0]>r[1]?f.home:(r[0]<r[1]?f.away:null);                                  // actual winner (or null = draw)
+  const pH=pBeat(f.home,f.away), fav=pH>=0.5?f.home:f.away, favP=Math.round(Math.max(pH,1-pH)*100);
+  if(LOCKSET.has(no)){ const hit = aw===null ? null : (fav===aw);
+    const verdict = hit===null ? `<span style="color:var(--mut2)">— it was a draw</span>` : (hit?`<span style="color:var(--good)">✓ model got it right</span>`:`<span style="color:var(--bad)">✗ model got it wrong</span>`);
+    return `<b>Played 🔒 — predicted vs actual</b><br>Actual: ${fl(f.home)} ${nm(f.home)} <b>${r[0]}–${r[1]}</b> ${nm(f.away)} ${fl(f.away)}${aw?` (${nm(aw)} won)`:" (draw)"}<br><b>${METHOD_NAME[state.method]}</b> predicted <b>${nm(fav)} ${favP}%</b> → ${verdict}`; }
+  if(state.userset.has(no)) return `<b>Your score</b> — you entered ${r[0]}–${r[1]}. <span style="color:var(--mut2)">(${METHOD_NAME[state.method]} would lean ${nm(fav)} ${favP}%.)</span>`;
+  return `<b>${METHOD_NAME[state.method]}${winLabel()}</b> projection<br>${fl(f.home)} ${nm(f.home)}: ${metricStr(f.home)}<br>${fl(f.away)} ${nm(f.away)}: ${metricStr(f.away)}<br>→ predicted <b>${r[0]}–${r[1]}</b> (${nm(fav)} ${favP}%)${curUpset()>0?` · upset ${curUpset().toFixed(2)}`:""}`;
 }
 // Simulate: keep locked (played) games and your manual edits, fill every other game by the model+upset, then play out the bracket.
 function simulate(){
@@ -741,6 +747,7 @@ function applyData(d){
   if(d.formYears && typeof d.formYears==="object"){ FORMY=d.formYears; for(const k in _fz) delete _fz[k]; changed=true; }
   if(d.h2h && typeof d.h2h==="object"){ H2H=d.h2h; changed=true; }
   if(d.squad && typeof d.squad==="object"){ SQUAD=d.squad; buildSquadZ(); changed=true; }
+  if(d.fifaPos && typeof d.fifaPos==="object"){ FPOS=d.fifaPos; }
   if(Array.isArray(d.sources)){ SOURCES=d.sources; renderSources(); }
   if(changed){ recompute(); renderAll(); }
   return changed; }
