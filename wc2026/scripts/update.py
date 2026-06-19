@@ -175,6 +175,11 @@ def sync_embed(data):
 
     new = re.sub(r"(let|const)\s+LOCKED\s*=\s*\{.*?\};", f"let LOCKED={locked};", html, count=1, flags=re.S)
     new = re.sub(r"(let|const)\s+RATINGS\s*=\s*\{.*?\};", f"let RATINGS={ratings};", new, count=1, flags=re.S)
+    # the inline EMBED block (head-to-head / squad / form-years / fifaPos / sources) so the app is self-contained
+    embed = {k: data.get(k, {} if k != "sources" else []) for k in ("formYears", "h2h", "squad", "fifaPos", "sources")}
+    new = re.sub(r"const\s+EMBED\s*=\s*\{[\s\S]*?\};\s*\napplyData\(EMBED\)",
+                 "const EMBED=" + json.dumps(embed, ensure_ascii=False, separators=(",", ":")) + ";\napplyData(EMBED)",
+                 new, count=1)
     if new == html:
         print("  ! no LOCKED/RATINGS blocks found to sync (is index.html refactored?)", file=sys.stderr)
     else:
