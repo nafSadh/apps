@@ -558,7 +558,11 @@ function better(a,b){ const d=strength(a)-strength(b); if(Math.abs(d)>1e-6) retu
 // For every model except head-to-head this equals the strength gap exactly; for h2h it reflects the record.
 function impliedDiff(h,a){ const p=Math.min(0.98,Math.max(0.02,pBeat(h,a))); return 13*Math.log10(p/(1-p)); }
 function predScore(h,a){ const d=impliedDiff(h,a), ad=Math.abs(d); let hi,lo;
-  if(ad<6){hi=1;lo=1;} else if(ad<12){hi=2;lo=1;} else if(ad<20){hi=2;lo=0;} else {hi=3;lo=0;}
+  if(ad<1.4){hi=1;lo=1;}        // toss-up (~43-57%) -> draw
+  else if(ad<4){hi=1;lo=0;}     // slight edge (~57-66%) -> 1-0
+  else if(ad<9){hi=2;lo=1;}     // clear favourite (~66-80%) -> 2-1
+  else if(ad<16){hi=2;lo=0;}    // strong (~80-94%) -> 2-0
+  else {hi=3;lo=0;}            // dominant (>94%) -> 3-0
   return d>=0?[hi,lo]:[lo,hi]; }
 function favWinProb(a,b){ const p=pBeat(a,b); return Math.max(p,1-p); } // prob the favoured side wins (>=.5), consistent with pBeat
 function curUpset(){ return state.upset[state.method]||0; }
