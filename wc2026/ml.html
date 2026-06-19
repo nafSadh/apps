@@ -60,6 +60,10 @@
   .spin{color:var(--warn)}
   .hide{display:none}
   .scoreline{font-family:var(--mono);font-size:22px;color:var(--ink);font-weight:500}
+  .verdict{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 4px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card2);border-left:4px solid var(--mut2)}
+  .verdict.w{border-left-color:var(--good)} .verdict.d{border-left-color:var(--warn)} .verdict.a{border-left-color:var(--acc2)}
+  .verdict b{font-size:19px;color:var(--ink)} .verdict .vk{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2)} .verdict .warn{color:var(--warn)}
+  .wld .lead{font-weight:700;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5)}
 </style>
 </head>
 <body>
@@ -225,8 +229,12 @@ function fact(k){let r=1;for(let i=2;i<=k;i++)r*=i;return r;}
 function poissonOutcome(lh,la,mg=9){
   const po=(k,l)=>Math.exp(-l)*Math.pow(l,k)/fact(k);
   let H=0,D=0,A=0,bp=0,bs=[0,0];
-  for(let i=0;i<=mg;i++)for(let j=0;j<=mg;j++){const p=po(i,lh)*po(j,la);if(i>j)H+=p;else if(i===j)D+=p;else A+=p;if(p>bp){bp=p;bs=[i,j];}}
-  const t=H+D+A||1; return {p:[H/t,D/t,A/t], score:bs};
+  const best=[{p:-1,s:[1,0]},{p:-1,s:[1,1]},{p:-1,s:[0,1]}]; // most-likely score per outcome (home/draw/away)
+  for(let i=0;i<=mg;i++)for(let j=0;j<=mg;j++){const p=po(i,lh)*po(j,la);
+    const o=i>j?0:i===j?1:2; if(o===0)H+=p;else if(o===1)D+=p;else A+=p;
+    if(p>best[o].p) best[o]={p,s:[i,j]};
+    if(p>bp){bp=p;bs=[i,j];}}
+  const t=H+D+A||1; return {p:[H/t,D/t,A/t], score:bs, byOutcome:best.map(b=>b.s)};
 }
 
 // ============================ train + evaluate ============================
@@ -311,18 +319,25 @@ $("predict").addEventListener("click",()=>{
   const feat=[(eh-ea)/100, neutral?0:1, fGD(home)-fGD(away), tot?signed/tot:0];
   const pe=smax(MODEL.We,vec(feat,COLS_ELO,st)), pf=smax(MODEL.Wf,vec(feat,COLS_FULL,st));
   const xf=vec(feat,COLS_FULL,st), po=poissonOutcome(plam(MODEL.Wph,xf),plam(MODEL.Wpa,xf));
-  const wld=(p,h,a)=>`<div class="wld"><div class="w" style="width:${p[0]*100}%" title="${h} win">${p[0]>.12?Math.round(p[0]*100)+'%':''}</div><div class="d" style="width:${p[1]*100}%" title="draw">${p[1]>.12?Math.round(p[1]*100)+'%':''}</div><div class="a" style="width:${p[2]*100}%" title="${a} win">${p[2]>.12?Math.round(p[2]*100)+'%':''}</div></div>`;
+  const pavg=[0,1,2].map(k=>(pe[k]+pf[k]+po.p[k])/3);
+  const fav=pavg.indexOf(Math.max(...pavg)), conf=pavg[fav];
+  const sorted=[...pavg].sort((a,b)=>b-a), tight=(sorted[0]-sorted[1])<0.08;
+  const vlabel=fav===0?`${home} win`:fav===1?`Draw`:`${away} win`;
+  const vcls=fav===0?'w':fav===1?'d':'a';
+  const sl=po.byOutcome[fav];   // scoreline CONSISTENT with the favoured outcome
+  const wld=(p,h,a)=>{const mx=Math.max(...p);const seg=(v,c,t)=>`<div class="${c}${v===mx?' lead':''}" style="width:${v*100}%" title="${t}">${v>.1?Math.round(v*100)+'%':''}</div>`;return `<div class="wld">${seg(p[0],'w',h+' win')}${seg(p[1],'d','draw')}${seg(p[2],'a',a+' win')}</div>`;};
   $("predout").innerHTML=`
-    <div class="row" style="margin:14px 0 6px;justify-content:space-between">
-      <div><b>${home}</b> <span class="mut num">Elo ${Math.round(eh)}</span> &nbsp;vs&nbsp; <b>${away}</b> <span class="mut num">Elo ${Math.round(ea)}</span> ${neutral?'<span class="pill">neutral</span>':'<span class="pill">'+home+' home</span>'}</div>
-      <div class="scoreline">${po.score[0]}–${po.score[1]} <span class="small">most likely</span></div>
+    <div class="verdict ${vcls}">
+      <div><span class="vk">most likely</span> <b>${vlabel}</b> <span class="mut">· ${Math.round(conf*100)}% consensus${tight?' · <span class="warn">tight, could go either way</span>':''}</span></div>
+      <div class="scoreline">${sl[0]}–${sl[1]} <span class="small">likely score</span></div>
     </div>
+    <div class="row" style="margin:8px 0 2px"><span class="small"><b>${home}</b> Elo ${Math.round(eh)} · <b>${away}</b> Elo ${Math.round(ea)} · ${neutral?'neutral venue':home+' at home'}</span></div>
     <div class="pred">
       <div class="predrow"><span class="nm">Elo-logistic</span>${wld(pe,home,away)}</div>
       <div class="predrow"><span class="nm">Full logistic</span>${wld(pf,home,away)}</div>
       <div class="predrow"><span class="nm">Poisson goals</span>${wld(po.p,home,away)}</div>
     </div>
-    <div class="small" style="margin-top:8px">Green = ${home} win · grey = draw · blue = ${away} win.${tot?` H2H on record: ${rec.x}-${rec.d}-${rec.y} (${home<away?home:away} view, ${tot} games).`:' They have never met.'}</div>`;
+    <div class="small" style="margin-top:8px">Green = ${home} win · grey = draw · blue = ${away} win (bold = each model's pick).${tot?` H2H on record: ${rec.x}-${rec.d}-${rec.y} (${home<away?home:away} view, ${tot} games).`:' They have never met.'}</div>`;
 });
 </script>
 </body>
