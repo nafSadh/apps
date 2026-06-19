@@ -340,7 +340,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"blend", formWin:"5", h2hWin:"all", predicted:false, upset:{}, userset:new Set(), koUser:new Set() };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"blend", formWin:"5", h2hWin:"5m", predicted:false, upset:{}, userset:new Set(), koUser:new Set() };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[];
 
 /* ============ ENGINE ============ */
@@ -431,12 +431,24 @@ function predScore(h,a){ const d=strength(h)-strength(a), ad=Math.abs(d); let hi
 function favWinProb(a,b){ return 1/(1+Math.pow(10,-Math.abs(strength(a)-strength(b))/13)); } // prob the stronger side wins (>=.5)
 function curUpset(){ return state.upset[state.method]||0; }
 function h2hRec(a,b){ return (H2H[a]&&H2H[a][b])||null; }
-// prob A beats B under the current model. "Head-to-head" decides the match from the two teams'
-// historic record (window = all-time or last-5 meetings); every other model uses a logistic on the rating gap.
+const _H2HL={all:"all-time","3m":"last 3 mtg","5m":"last 5 mtg","7m":"last 7 mtg","11m":"last 11 mtg","1y":"last 1yr","3y":"last 3yr","5y":"last 5yr"};
+function h2hWinLabel(w){ return _H2HL[w]||w; }
+// tally a pair's record over the chosen window. Uses the dated meetings list when present,
+// else the last-5 array (for meeting windows) or the all-time totals.
+function h2hTally(r,win){
+  if(!r||!r.p) return null;
+  if(!win||win==="all") return {w:r.w,d:r.d,l:r.l,n:r.p,sel:null};
+  const mm=/^(\d+)m$/.exec(win), ym=/^(\d+)y$/.exec(win); let sel=null;
+  if(r.meetings&&r.meetings.length){ if(mm) sel=r.meetings.slice(0,+mm[1]); else if(ym) sel=r.meetings.filter(x=>x.y>=2026-+ym[1]); }
+  else if(r.last5&&r.last5.length&&mm){ sel=r.last5.slice(0,+mm[1]).map(x=>({r:x})); }
+  if(!sel||!sel.length) return null;
+  let w=0,d=0,l=0; sel.forEach(x=>{ if(x.r==="W")w++; else if(x.r==="D")d++; else l++; });
+  return {w,d,l,n:w+d+l,sel};
+}
+// prob A beats B. Head-to-head decides the match from the two teams' actual results over the
+// chosen window (falls back to Elo when they have no meetings in that window).
 function pBeat(a,b){
-  if(state.method==="h2h"){ const r=h2hRec(a,b);
-    if(r && r.p>0){ if(state.h2hWin==="last5" && r.last5 && r.last5.length){ let w=0,d=0; r.last5.forEach(x=>x==="W"?w++:x==="D"?d++:0); return (w+0.5*d)/r.last5.length; }
-      return (r.w+0.5*r.d)/r.p; } }                              // never met → fall through to ratings
+  if(state.method==="h2h"){ const t=h2hTally(h2hRec(a,b),state.h2hWin); if(t&&t.n>0) return (t.w+0.5*t.d)/t.n; }
   return 1/(1+Math.pow(10,-(strength(a)-strength(b))/13)); }
 // upset dial u in [0,1]: 0 = deterministic (favourite always advances); 1 = the model's natural upset rate
 function predWin(a,b,u){ const pa=pBeat(a,b), fav=pa>=0.5?a:b; if(u<=0) return fav;
@@ -450,10 +462,11 @@ function predMatch(h,a,u){ const base=predScore(h,a); if(u<=0) return base;
 function koReason(no){
   const w=state.win[no]; if(!w) return ""; const p=parts(no); if(!(p[0]&&p[1])) return "";
   if(state.koUser.has(no)) return "<b>Your pick.</b> You chose this winner by clicking the bracket — the model didn't decide it.";
-  if(state.method==="h2h"){ const r=h2hRec(p[0],p[1]), u=curUpset();
-    if(r&&r.p>0){ const pa=Math.round(pBeat(p[0],p[1])*100);
-      return `<b>Head-to-head</b> · ${state.h2hWin==="last5"?"last 5 meetings":"all-time"}<br>${fl(p[0])} ${nm(p[0])} <b>${r.w}</b>–${r.d}–<b>${r.l}</b> ${nm(p[1])} ${fl(p[1])} &nbsp;(${nm(p[0])} ~${pa}%)${r.last5&&r.last5.length?`<br>last 5: ${r.last5.join(" ")}`:""}${r.last?`<br>last meeting — ${r.last}`:""}<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.`; }
-    return `<b>Head-to-head</b> — no recorded meetings between ${nm(p[0])} and ${nm(p[1])}; fell back to Elo. ${fl(w)} ${nm(w)} advanced.`; }
+  if(state.method==="h2h"){ const r=h2hRec(p[0],p[1]), u=curUpset(), t=h2hTally(r,state.h2hWin);
+    if(t&&t.n>0){ const pa=Math.round(pBeat(p[0],p[1])*100);
+      let seq=""; if(t.sel) seq=t.sel.map(m=>`${m.r}${m.s?" "+m.s:""}${m.y?" '"+String(m.y).slice(2):""}`).join("  ·  ");
+      return `<b>Head-to-head</b> · ${h2hWinLabel(state.h2hWin)}<br>${fl(p[0])} ${nm(p[0])} vs ${fl(p[1])} ${nm(p[1])} — <b>${t.w}W ${t.d}D ${t.l}L</b> (${nm(p[0])} ~${pa}%)${seq?`<br>${nm(p[0])}: ${seq}`:""}${r.last?`<br>last: ${r.last}`:""}<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.`; }
+    return `<b>Head-to-head</b> — no meetings in this window between ${nm(p[0])} and ${nm(p[1])}; fell back to Elo. ${fl(w)} ${nm(w)} advanced.`; }
   const a=p[0],b=p[1], sa=strength(a),sb=strength(b), strong=sa>=sb?a:b, weak=sa>=sb?b:a;
   const pS=Math.round(favWinProb(a,b)*100), upset=(w===weak), u=curUpset();
   return `<b>${METHOD_NAME[state.method]}</b> rating<br>${fl(strong)} ${nm(strong)} <b>${Math.round(strength(strong))}</b> &nbsp;vs&nbsp; ${fl(weak)} ${nm(weak)} <b>${Math.round(strength(weak))}</b><br>→ model favours ${nm(strong)} ~<b>${pS}%</b>. `+
@@ -608,10 +621,11 @@ function renderPaths(){
 /* ============ MASTER ============ */
 function renderChamp(){ const c=state.win[104]; document.getElementById('champ').innerHTML=c?`🏆 Champion: ${fl(c)} <b>${nm(c)}</b>`:`<span class="tbd">🏆 Champion: undecided</span>`; }
 const _WL={"3":"last 3","5":"last 5","7":"last 7","11":"last 11",y1:"last 1yr",y3:"last 3yr",y5:"last 5yr"};
-function winLabel(){ if(state.method==="form") return " · "+(_WL[state.formWin]||state.formWin); if(state.method==="h2h") return " · "+(state.h2hWin==="last5"?"last 5 mtg":"all-time"); return ""; }
+function winLabel(){ if(state.method==="form") return " · "+(_WL[state.formWin]||state.formWin); if(state.method==="h2h") return " · "+h2hWinLabel(state.h2hWin); return ""; }
 function renderFav(){ const top=Object.keys(RATINGS).sort((a,b)=>methodStrength(b)-methodStrength(a)).slice(0,5);
   const lbl=METHOD_NAME[state.method]+winLabel()+(curUpset()>0?` · upset ${curUpset().toFixed(2)}`:" · deterministic");
-  document.getElementById('favline').innerHTML=`<span class="mk">${lbl} —</span> favourites: `+top.map(c=>`${fl(c)} <b>${nm(c)}</b>`).join(" · "); }
+  const word=state.method==="h2h"?"strongest (Elo, for ranking)":"favourites";
+  document.getElementById('favline').innerHTML=`<span class="mk">${lbl} —</span> ${word}: `+top.map(c=>`${fl(c)} <b>${nm(c)}</b>`).join(" · "); }
 function renderSources(){ const el=document.getElementById('sources'); if(!el) return;
   const list=SOURCES.length?SOURCES:[{label:"FIFA ranking",url:"https://inside.fifa.com/fifa-world-ranking"},{label:"Elo (eloratings.net)",url:"https://www.eloratings.net"},{label:"Opta / The Analyst",url:"https://theanalyst.com"},{label:"Wikipedia",url:"https://en.wikipedia.org/wiki/2026_FIFA_World_Cup"}];
   el.innerHTML='<b>Data sources:</b> '+list.map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join(' · '); }
@@ -650,7 +664,7 @@ function syncUpset(){ const u=curUpset(); upsetEl.value=u; uvalEl.textContent=u.
 upsetEl.oninput=()=>{ state.upset[state.method]=+upsetEl.value; uvalEl.textContent=(+upsetEl.value).toFixed(2); };
 upsetEl.onchange=()=>{ if(state.predicted) simulate(); };
 const FORM_OPTS='<option value="3">last 3</option><option value="5">last 5</option><option value="7">last 7</option><option value="11">last 11</option><option value="y1">last 1y</option><option value="y3">last 3y</option><option value="y5">last 5y</option>';
-const H2H_OPTS='<option value="all">all-time</option><option value="last5">last 5 meetings</option>';
+const H2H_OPTS='<option value="3m">last 3 mtg</option><option value="5m">last 5 mtg</option><option value="7m">last 7 mtg</option><option value="11m">last 11 mtg</option><option value="1y">last 1yr</option><option value="3y">last 3yr</option><option value="5y">last 5yr</option><option value="all">all-time</option>';
 function onMethod(){ state.method=methodSel.value;
   if(state.method==="form"){ formwinSel.innerHTML=FORM_OPTS; formwinSel.value=state.formWin; formwinSel.style.display=""; }
   else if(state.method==="h2h"){ formwinSel.innerHTML=H2H_OPTS; formwinSel.value=state.h2hWin; formwinSel.style.display=""; }
