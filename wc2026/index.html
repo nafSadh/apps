@@ -152,7 +152,7 @@
   .pcard{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:11px 13px;border-left-width:4px}
   .pcard h4{margin:0 0 8px;font-size:14px;display:flex;align-items:center;gap:7px}
   .pcard h4 .stat{margin-left:auto;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px}
-  .stat.alive{background:var(--good-bg);color:#86efac} .stat.outt{background:var(--bad-bg);color:#fca5a5} .stat.champ{background:var(--gold);color:#241a02}
+  .stat.alive{background:var(--good-bg);color:var(--good)} .stat.outt{background:var(--bad-bg);color:var(--bad)} .stat.champ{background:var(--gold);color:#241a02} [data-theme="light"] .stat.champ{color:#fff7e8}
   .leg{display:flex;font-size:12px;padding:3px 0;border-top:1px solid var(--line);gap:8px}
   .leg .r{color:var(--mut2);width:56px;flex:0 0 56px} .leg .o{color:var(--ink)} .leg .o .vs{color:var(--mut2)}
   .leg .res{margin-left:auto;font-size:11px} .res.w{color:var(--good)} .res.l{color:var(--bad)} .res.p{color:var(--mut2)}
@@ -173,7 +173,7 @@
   .slot:first-of-type{border-top:none} .slot.tbd{cursor:default;color:var(--mut2)}
   .slot .fl{font-size:15px;width:19px;text-align:center} .slot .nm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .slot.known:hover{background:var(--card2)} .slot.win{background:linear-gradient(90deg,rgba(251,191,36,.16),transparent)}
-  .slot.win .nm{font-weight:700;color:#fde68a} .slot.win .tick{color:var(--gold)} .slot.lose{opacity:.42} .slot.lose .nm{text-decoration:line-through}
+  .slot.win .nm{font-weight:700;color:var(--gold)} .slot.win .tick{color:var(--gold)} .slot.lose{opacity:.42} .slot.lose .nm{text-decoration:line-through}
   .tick{font-size:11px} .m-venue{font-size:9.5px;color:var(--mut2);padding:4px 8px;border-top:1px dashed var(--line)}
   .match.final{border-color:var(--gold)} .match.final .m-no{color:var(--gold)} .match.third{opacity:.9;border-style:dashed}
   .third-lbl{font-size:9.5px;color:var(--mut2);text-transform:uppercase;letter-spacing:1px;text-align:center;margin:10px 0 2px}
@@ -197,7 +197,7 @@
   .dtbl td{padding:5px 10px;text-align:right;border-bottom:1px solid #1b2238;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
   .dtbl td.tl,.dtbl th.tl{text-align:left} .dtbl tr:hover td{background:var(--card2)}
   .dtbl.h2m td{font-family:var(--mono);font-size:10.5px;color:var(--mut)} .dtbl.h2m td.dg{color:var(--mut2)}
-  .dtbl.h2m td.wlead{color:#86efac;background:color-mix(in srgb,var(--good),transparent 90%)} .dtbl.h2m td.llead{color:#fca5a5;background:color-mix(in srgb,var(--bad),transparent 90%)}
+  .dtbl.h2m td.wlead{color:var(--good);background:color-mix(in srgb,var(--good),transparent 90%)} .dtbl.h2m td.llead{color:var(--bad);background:color-mix(in srgb,var(--bad),transparent 90%)}
   .dhint{font-size:11.5px;color:var(--mut2);padding:9px 11px} .srclist{list-style:none;margin:0;padding:12px 14px;font-size:13px;line-height:2} .srclist a{color:var(--acc2);text-decoration:none} .srclist a:hover{color:var(--acc)} .srclist b{color:var(--ink)}
   .h2lookup{display:flex;align-items:center;gap:8px;padding:2px 11px 10px} .h2lookup .h2sel{font-family:var(--sans);font-size:13px;min-width:150px} .h2vs{font-family:var(--mono);font-size:10px;color:var(--mut2);text-transform:uppercase}
   .h2det{margin:0 11px 12px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
@@ -206,8 +206,8 @@
   .h2wins{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px} .h2w{font-family:var(--mono);font-size:10.5px;color:var(--mut);background:var(--card);border:1px solid var(--line);border-radius:5px;padding:3px 7px} .h2w b{color:var(--ink)}
   .h2mt{font-size:12px;color:var(--mut);line-height:1.7} .h2mt b{color:var(--ink)} .h2mm{font-family:var(--mono);font-size:11px;color:var(--ink);background:var(--card);border-radius:4px;padding:1px 4px}
   .logt .yr{font-family:var(--mono);font-size:11.5px;color:var(--mut);white-space:nowrap} .logt .sc{font-family:var(--mono);text-align:center;color:var(--ink);white-space:nowrap} .logt th.srt{cursor:pointer;user-select:none} .logt th.srt:hover{color:var(--acc)}
-  .ok{color:#67d99b} .miss{color:#f0768b} .push{color:#e8c06a}
-  .acclb{max-width:440px} .num.lead{color:#67d99b;font-weight:700}
+  .ok{color:var(--good)} .miss{color:var(--bad)} .push{color:var(--warn)}
+  .acclb{max-width:440px} .num.lead{color:var(--good);font-weight:700}
   .accgrid th{text-align:center} .accgrid td{text-align:center;font-size:15px} .accgrid td.tl,.accgrid th.tl{text-align:left;font-size:13px} .accgrid td:nth-child(2){text-align:left;white-space:nowrap;font-size:12.5px}
   .acc-ok{background:rgba(103,217,155,.10)} .acc-miss{background:rgba(240,118,139,.10)} .acc-push{background:rgba(232,192,106,.08)}
   .fc-progwrap{display:inline-flex;align-items:center;gap:10px} .fc-track{display:inline-block;width:160px;height:7px;background:var(--card2);border:1px solid var(--line);border-radius:5px;overflow:hidden} #fc-bar{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc2),var(--acc));transition:width .1s}
@@ -788,7 +788,7 @@ function h2hDetail(a,b){ if(a===b) return `<div class="h2det"><div class="dhint"
   return h+`</div>`; }
 function h2hTable(){ const A=["ESP","FRA","ARG","ENG","BRA","POR","GER","NED","BEL","COL","CRO","URU","MAR","NOR","MEX","USA"].filter(c=>H2H[c]);
   let h=`<div class="dhint">Look up any pairing — full record, every window, and the meeting history.</div><div class="h2lookup">${h2hSelect("h2a",state.h2a)}<span class="h2vs">vs</span>${h2hSelect("h2b",state.h2b)}</div>${h2hDetail(state.h2a,state.h2b)}`;
-  if(A.length){ h+=`<div class="dhint" style="margin-top:14px">Top-16 matrix — <b>row vs column</b>, W-D-L (row's view). <span style="color:#86efac">green</span> = row leads · <span style="color:#fca5a5">red</span> = trails. Hover for games played.</div><table class="dtbl h2m"><thead><tr><th class="tl">vs →</th>`+A.map(c=>`<th>${c}</th>`).join("")+`</tr></thead><tbody>`;
+  if(A.length){ h+=`<div class="dhint" style="margin-top:14px">Top-16 matrix — <b>row vs column</b>, W-D-L (row's view). <span style="color:var(--good)">green</span> = row leads · <span style="color:var(--bad)">red</span> = trails. Hover for games played.</div><table class="dtbl h2m"><thead><tr><th class="tl">vs →</th>`+A.map(c=>`<th>${c}</th>`).join("")+`</tr></thead><tbody>`;
     A.forEach(r=>{ h+=`<tr><th class="tl">${fl(r)} ${r}</th>`+A.map(cc=>{ if(cc===r) return `<td class="dg">—</td>`; const x=H2H[r]&&H2H[r][cc];
       if(!x||!x.p) return `<td class="dg" title="${nm(r)} vs ${nm(cc)}: no record">·</td>`; const cls=x.w>x.l?"wlead":x.w<x.l?"llead":"";
       return `<td class="${cls}" title="${nm(r)} ${x.w}-${x.d}-${x.l} ${nm(cc)} (${x.p} games)">${x.w}-${x.d}-${x.l}</td>`; }).join("")+`</tr>`; });
