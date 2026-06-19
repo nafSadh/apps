@@ -59,6 +59,22 @@ and the locked scores in `data.json`, so it mirrors the in-app **Simulation accu
 but as a committed, version-controlled record (a leaderboard + a ✓/✗ grid per match). Diff it
 over time to watch each model's hit rate move as the tournament unfolds.
 
+## Live updates (hourly GitHub Action)
+
+`live.py` polls football-data.org for in-play + finished matches and writes a tiny
+`../live.json` (live scores + the full locked map) that the app fetches every minute —
+driving the **Today** strip and the pulsing **LIVE** badges — and **locks any newly
+finished game** into `data.json` at full-time (then syncs the inline fallback).
+
+```bash
+python3 live.py --token "$FOOTBALL_DATA_TOKEN"
+```
+
+`.github/workflows/live-wc2026.yml` runs this hourly, refreshes the performance log, and
+commits/pushes. Add the repo secret **`FOOTBALL_DATA_TOKEN`** (free from football-data.org)
+to enable it; without it the job is a no-op. `live.json` is tiny and only rewritten when
+scores change, so idle hours produce no commits.
+
 ## Deploy
 
 ```bash

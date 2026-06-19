@@ -189,6 +189,15 @@
   .tnav{font-family:var(--serif-alt,inherit);font-size:15px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--mut2);padding:9px 16px;cursor:pointer;text-decoration:none;display:inline-block;margin-bottom:-1px;transition:color .12s}
   .tnav:hover{color:var(--ink)} .tnav.on{color:var(--acc);border-bottom-color:var(--acc)} .tnav.lk{margin-left:auto;font-size:13px;color:var(--acc2)} .tnav.lk:hover{color:var(--acc)}
   #b-theme{position:absolute;top:30px;right:18px;z-index:4;padding:5px 12px;font-size:11px;border-radius:7px}
+  #today:empty{display:none}
+  .todayhd{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2);margin:10px 0 6px;display:flex;align-items:center;gap:7px}
+  .todayrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 4px}
+  .tcard{font-size:12.5px;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:6px 11px;display:flex;align-items:center;gap:8px;font-family:var(--sans)} .tcard b{color:var(--ink);font-family:var(--mono)}
+  .tcard.live{border-color:var(--bad);box-shadow:inset 0 0 0 1px var(--bad)} .tcard.ft{opacity:.7}
+  .tg{font-family:var(--mono);font-size:8.5px;text-transform:uppercase;letter-spacing:.5px;padding:2px 6px;border-radius:10px;white-space:nowrap}
+  .tgl{background:var(--bad);color:#fff;animation:livepulse 1.4s infinite} .tgf{background:var(--line);color:var(--mut2)} .tgs{color:var(--mut2);border:1px solid var(--line)}
+  .livedot{width:8px;height:8px;border-radius:50%;background:var(--bad);display:inline-block;animation:livepulse 1.4s infinite}
+  @keyframes livepulse{0%,100%{opacity:1}50%{opacity:.3}}
   .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -269,6 +278,7 @@
     <div class="champ" id="champ"><span class="tbd">🏆 Champion: undecided</span></div>
   </div>
   <div class="favline" id="favline"></div>
+  <div id="today"></div>
   <div class="dstat" id="dstat"><button class="btn ghost" id="b-data">↻ Refresh data</button><span id="dstat-txt">built-in snapshot</span></div>
   <div class="note">
     <b>▶ Simulate</b> fills every unplayed game using the chosen <b>Model</b> and plays out the bracket — it keeps the 28 already-played real results <i>and</i> any scores you set yourself. The <b>Upset</b> dial (0 → 1) controls chaos: <b>0 = the favourite always advances</b> (deterministic); higher lets underdogs through, so each Simulate gives a fresh bracket. <b>↺ Reset</b> returns to today's real results.<br>
@@ -444,7 +454,7 @@ const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to
 
 /* ============ STATE ============ */
 const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
-let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={};
+let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
 function computeStats(){
@@ -948,7 +958,22 @@ function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) retu
 function renderData(){ const el=document.getElementById("dpanel"); if(!el) return;
   el.innerHTML = state.dtab==="h2h"?h2hTable():state.dtab==="log"?matchLogTable():state.dtab==="form"?formTable():state.dtab==="src"?srcTable():ratingsTable();
   document.querySelectorAll("#dtabs .dtab").forEach(b=>b.classList.toggle("on", b.dataset.tab===state.dtab)); }
-function renderAll(){ renderGroups(); renderThirds(); renderBracket(); renderPaths(); renderChamp(); renderFav(); renderData(); }
+function renderToday(){
+  const el=document.getElementById('today'); if(!el) return;
+  let fd='';                                              // focus day = latest date with a played or live game
+  FIX.forEach(f=>{ if((LOCKSET.has(f.no)||LIVE[f.no])&&f.date>fd) fd=f.date; });
+  if(!fd){ el.innerHTML=''; return; }
+  const day=FIX.filter(f=>f.date===fd).sort((a,b)=>a.no-b.no);
+  const anyLive=day.some(f=>LIVE[f.no]);
+  let lbl=fd; try{ lbl=new Date(fd+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}); }catch(e){}
+  let h=`<div class="todayhd">${anyLive?'<span class="livedot"></span>':''}Today · ${lbl}</div><div class="todayrow">`;
+  h+=day.map(f=>{ const lv=LIVE[f.no], lk=LOCKSET.has(f.no)?LOCKED[f.no]:null; let cls='',tag,score;
+    if(lv){ cls=' live'; tag=`<span class="tg tgl">LIVE${lv.min?" "+lv.min+"’":""}</span>`; score=`<b>${lv.h}–${lv.a}</b>`; }
+    else if(lk){ cls=' ft'; tag='<span class="tg tgf">FT</span>'; score=`<b>${lk[0]}–${lk[1]}</b>`; }
+    else { tag='<span class="tg tgs">—</span>'; score='<span class="mut">v</span>'; }
+    return `<div class="tcard${cls}">${fl(f.home)} ${nm(f.home)} ${score} ${nm(f.away)} ${fl(f.away)} ${tag}</div>`; }).join('');
+  el.innerHTML=h+'</div>'; }
+function renderAll(){ renderToday(); renderGroups(); renderThirds(); renderBracket(); renderPaths(); renderChamp(); renderFav(); renderData(); }
 function refresh(){ state.predicted=false; recompute(); renderAll(); }
 
 /* ============ EVENTS ============ */
@@ -1082,6 +1107,11 @@ renderSources();
 simulate();                                  // auto-run the default sim (England champion under H2H all-time)
 loadData(false);
 (function(){ const hv=location.hash.slice(1); if(hv && hv!==state.view && document.getElementById('view-'+hv)) setView(hv); })();   // open the deep-linked view (#forecast, #data, #acc)
+function loadLive(){ fetch('live.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{ if(!d) return;
+  if(d.locked && Object.keys(d.locked).length>Object.keys(LOCKED).length) applyData({locked:d.locked});   // newly full-time results
+  if(d.live && typeof d.live==='object') LIVE=d.live;
+  renderToday(); }).catch(()=>{}); }
+loadLive(); setInterval(loadLive, 60000);   // live scores refresh every minute (the hourly action publishes live.json)
 </script>
 </body>
 </html>

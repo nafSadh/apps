@@ -1,0 +1,56 @@
+name: WC2026 live update
+
+# Hourly: pull live + finished WC2026 matches from football-data.org, publish the small
+# live.json the app polls (live scores + a "Today" strip), lock newly-finished games into
+# data.json at full-time, refresh the per-match performance log, and commit/push so
+# GitHub Pages serves the update. Add repo secret FOOTBALL_DATA_TOKEN (free token from
+# https://football-data.org) to enable the live fetch; without it the job is a no-op.
+
+on:
+  workflow_dispatch: {}            # run on demand from the Actions tab
+  schedule:
+    - cron: "5 * * * *"            # every hour at :05 (adjust/disable outside the tournament)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wc2026-live
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch live scores + lock finished games
+        working-directory: wc2026/scripts
+        env:
+          FD_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        run: |
+          if [ -n "$FD_TOKEN" ]; then
+            python3 live.py --token "$FD_TOKEN"
+          else
+            echo "No FOOTBALL_DATA_TOKEN secret — skipping live fetch (set it to enable)."
+          fi
+
+      - name: Refresh per-match performance log
+        working-directory: wc2026/scripts
+        run: node perf_log.js
+
+      - name: Commit & push if changed
+        run: |
+          if [ -n "$(git status --porcelain wc2026)" ]; then
+            git config user.name  "wc2026-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add wc2026/live.json wc2026/data.json wc2026/index.html \
+                    wc2026/scripts/perf-log.md wc2026/scripts/perf-log.json
+            git commit -m "live: WC2026 update $(date -u +'%F %H:%MZ')"
+            git push
+          else
+            echo "No changes."
+          fi
