@@ -1,8 +1,8 @@
 {
   "meta": {
     "tournament": "FIFA World Cup 2026",
-    "version": 6,
-    "asOf": "2026-06-18",
+    "version": 7,
+    "asOf": "2026-06-19",
     "source": "manual",
     "note": "locked = played-match scores {matchNo:[homeGoals,awayGoals]}; ratings per team. teams/fixtures are fixed for the tournament. formYears=per-team 1/3/5y W-D-L; h2h=all-time pairwise record + last 5 meetings (top-16 contenders, symmetric).",
     "h2hAnchors": [
@@ -1152,329 +1152,329 @@
   },
   "ratings": {
     "MEX": {
-      "fifa": 1687,
+      "fifa": 1687.48,
       "elo": 1800,
       "odds": 61,
       "opta": 1,
       "form": "WWWWWDDWWWL"
     },
     "KOR": {
-      "fifa": 1592,
+      "fifa": 1591.63,
       "elo": 1754,
       "odds": 351,
       "opta": 0.4,
       "form": "LWWWLLWWLDW"
     },
     "RSA": {
-      "fifa": 1432,
+      "fifa": 1428.38,
       "elo": 1526,
       "odds": 2501,
       "opta": 0.1,
       "form": "DLWDWWDWLDW"
     },
     "CZE": {
-      "fifa": 1506,
+      "fifa": 1505.74,
       "elo": 1691,
       "odds": 501,
       "opta": 0.2,
       "form": "DLDWWLDDWLW"
     },
     "CAN": {
-      "fifa": 1552,
+      "fifa": 1559.48,
       "elo": 1806,
       "odds": 151,
       "opta": 0.52,
       "form": "WDLDWWLWDLW"
     },
     "SUI": {
-      "fifa": 1641,
+      "fifa": 1650.06,
       "elo": 1865,
       "odds": 67,
       "opta": 0.9,
       "form": "WDDWDLDWDWW"
     },
     "QAT": {
-      "fifa": 1450,
+      "fifa": 1450.31,
       "elo": 1427,
       "odds": 1001,
       "opta": 0.02,
       "form": "LDDLLDLLWDW"
     },
     "BIH": {
-      "fifa": 1387,
+      "fifa": 1387.22,
       "elo": 1571,
       "odds": 501,
       "opta": 0.1,
       "form": "LDDDLDDWLWD"
     },
     "BRA": {
-      "fifa": 1766,
+      "fifa": 1765.86,
       "elo": 1978,
       "odds": 11,
       "opta": 6.6,
       "form": "DWWWLDWLWWW"
     },
     "MAR": {
-      "fifa": 1755,
+      "fifa": 1755.1,
       "elo": 1840,
       "odds": 46,
       "opta": 1.9,
       "form": "DWWWWDWWWWW"
     },
     "SCO": {
-      "fifa": 1503,
+      "fifa": 1503.34,
       "elo": 1794,
       "odds": 151,
       "opta": 0.2,
       "form": "WWLLLLLWLWD"
     },
     "HAI": {
-      "fifa": 1293,
+      "fifa": 1300,
       "elo": 1536,
       "odds": 2501,
       "opta": 0.004,
       "form": "LLLDLWWLWDD"
     },
     "USA": {
-      "fifa": 1671,
+      "fifa": 1671.23,
       "elo": 1780,
       "odds": 41,
       "opta": 1.2,
       "form": "WLWLLWWWDWL"
     },
     "AUS": {
-      "fifa": 1579,
+      "fifa": 1579.34,
       "elo": 1839,
       "odds": 601,
       "opta": 0.3,
       "form": "WDLWWLLWLLW"
     },
     "PAR": {
-      "fifa": 1505,
+      "fifa": 1505.35,
       "elo": 1780,
       "odds": 301,
       "opta": 0.1,
       "form": "LWLWWWWDLDL"
     },
     "TUR": {
-      "fifa": 1606,
+      "fifa": 1605.73,
       "elo": 1849,
       "odds": 91,
       "opta": 0.9,
       "form": "LWWWWDWWW"
     },
     "GER": {
-      "fifa": 1730,
+      "fifa": 1735.77,
       "elo": 1939,
       "odds": 13,
       "opta": 5.1,
       "form": "WWWWWLWWLLL"
     },
     "ECU": {
-      "fifa": 1565,
+      "fifa": 1598.52,
       "elo": 1890,
       "odds": 121,
       "opta": 1.4,
       "form": "LWWWDDDWDWD"
     },
     "CIV": {
-      "fifa": 1541,
+      "fifa": 1540.87,
       "elo": 1743,
       "odds": 301,
       "opta": 0.4,
       "form": "WWWWLWWDW"
     },
     "CUW": {
-      "fifa": 1295,
+      "fifa": 1294,
       "elo": 1427,
       "odds": 2501,
       "opta": 0.05,
       "form": "LWLLLWDWWD"
     },
     "NED": {
-      "fifa": 1754,
+      "fifa": 1753.57,
       "elo": 1944,
       "odds": 19,
       "opta": 3.6,
       "form": "DWLDWWDWWWD"
     },
     "JPN": {
-      "fifa": 1662,
+      "fifa": 1661.58,
       "elo": 1910,
       "odds": 51,
       "opta": 0.9,
       "form": "DWWWLLLDLDL"
     },
     "TUN": {
-      "fifa": 1490,
+      "fifa": 1476.41,
       "elo": 1585,
       "odds": 501,
       "opta": 0.2,
       "form": "LLLDLLDWWWD"
     },
     "SWE": {
-      "fifa": 1530,
+      "fifa": 1509.79,
       "elo": 1755,
       "odds": 101,
       "opta": 0.4,
       "form": "WDLWWDLLLWD"
     },
     "BEL": {
-      "fifa": 1742,
+      "fifa": 1742.24,
       "elo": 1879,
       "odds": 36,
       "opta": 2.4,
       "form": "DWWDWWDWDWW"
     },
     "IRN": {
-      "fifa": 1620,
+      "fifa": 1619.58,
       "elo": 1756,
       "odds": 1001,
       "opta": 0.05,
       "form": "DWDWLDDWLWL"
     },
     "EGY": {
-      "fifa": 1562,
+      "fifa": 1562.37,
       "elo": 1711,
       "odds": 251,
       "opta": 0.4,
       "form": "DLWDWDLWWDW"
     },
     "NZL": {
-      "fifa": 1276,
+      "fifa": 1286,
       "elo": 1578,
       "odds": 2501,
       "opta": 0.02,
       "form": "DLLWL"
     },
     "ESP": {
-      "fifa": 1880,
+      "fifa": 1856,
       "elo": 2171,
       "odds": 5.5,
       "opta": 16.1,
       "form": "DWDDWDWWWWW"
     },
     "URU": {
-      "fifa": 1680,
+      "fifa": 1673.07,
       "elo": 1890,
       "odds": 67,
       "opta": 1.2,
       "form": "DDDWDWWDWWW"
     },
     "KSA": {
-      "fifa": 1450,
+      "fifa": 1423.88,
       "elo": 1592,
       "odds": 1001,
       "opta": 0.1,
       "form": "DDWLDLWLWDW"
     },
     "CPV": {
-      "fifa": 1390,
+      "fifa": 1371.11,
       "elo": 1561,
       "odds": 1001,
       "opta": 0.05,
       "form": "DWDLDDWDWWW"
     },
     "FRA": {
-      "fifa": 1862,
+      "fifa": 1870.7,
       "elo": 2063,
       "odds": 5,
       "opta": 13,
       "form": "WWLWWWDWWW"
     },
     "SEN": {
-      "fifa": 1645,
+      "fifa": 1684.07,
       "elo": 1869,
       "odds": 101,
       "opta": 1,
       "form": "LDLWWLWWWWD"
     },
     "NOR": {
-      "fifa": 1530,
+      "fifa": 1557.44,
       "elo": 1922,
       "odds": 31,
       "opta": 3.5,
       "form": "WDWDLWWDWWW"
     },
     "IRQ": {
-      "fifa": 1432,
+      "fifa": 1446.28,
       "elo": 1592,
       "odds": 1501,
       "opta": 0.05,
       "form": "LLDWWWDDWWL"
     },
     "ARG": {
-      "fifa": 1886,
+      "fifa": 1889.06,
       "elo": 2128,
       "odds": 9,
       "opta": 10.4,
       "form": "WWWWWWLWDWW"
     },
     "AUT": {
-      "fifa": 1597,
+      "fifa": 1597.4,
       "elo": 1857,
       "odds": 251,
       "opta": 0.1,
       "form": "WDWWLWWWWWW"
     },
     "ALG": {
-      "fifa": 1571,
+      "fifa": 1571.03,
       "elo": 1759,
       "odds": 301,
       "opta": 0.1,
       "form": "LWLDDDDWWWW"
     },
     "JOR": {
-      "fifa": 1389,
+      "fifa": 1387.74,
       "elo": 1691,
       "odds": 751,
       "opta": 0.1,
       "form": "LLLDDLWWWWW"
     },
     "POR": {
-      "fifa": 1770,
+      "fifa": 1767.85,
       "elo": 1976,
       "odds": 11,
       "opta": 7,
       "form": "DWWWDWLDWWW"
     },
     "COL": {
-      "fifa": 1693,
+      "fifa": 1698.35,
       "elo": 1998,
       "odds": 41,
       "opta": 2.1,
       "form": "WWWLLWWDWWW"
     },
     "UZB": {
-      "fifa": 1459,
+      "fifa": 1458.73,
       "elo": 1735,
       "odds": 2001,
       "opta": 0.1,
       "form": "LLLDWDWLW"
     },
     "COD": {
-      "fifa": 1474,
+      "fifa": 1474.43,
       "elo": 1639,
       "odds": 501,
       "opta": 0.1,
       "form": "DLDWWLWDWWD"
     },
     "ENG": {
-      "fifa": 1826,
+      "fifa": 1828.02,
       "elo": 2042,
       "odds": 6.5,
       "opta": 11.2,
       "form": "WWWLDWWWWWW"
     },
     "CRO": {
-      "fifa": 1717,
+      "fifa": 1714.87,
       "elo": 1933,
       "odds": 91,
       "opta": 1.6,
       "form": "LWLWWWWWDWW"
     },
     "PAN": {
-      "fifa": 1539,
+      "fifa": 1539.16,
       "elo": 1743,
       "odds": 751,
       "opta": 0.05,
@@ -16522,7 +16522,7 @@
     "BRA": 6,
     "MAR": 7,
     "SCO": 42,
-    "HAI": 83,
+    "HAI": 82,
     "USA": 17,
     "AUS": 27,
     "PAR": 41,
@@ -16535,11 +16535,11 @@
     "IRN": 20,
     "EGY": 29,
     "NZL": 85,
-    "ESP": 1,
+    "ESP": 3,
     "URU": 16,
-    "KSA": 60,
-    "CPV": 68,
-    "FRA": 3,
+    "KSA": 61,
+    "CPV": 67,
+    "FRA": 2,
     "SEN": 15,
     "NOR": 31,
     "IRQ": 57,
@@ -16557,7 +16557,7 @@
     "GHA": 73,
     "GER": 10,
     "ECU": 23,
-    "CIV": 40,
-    "CUW": 82
+    "CIV": 33,
+    "CUW": 83
   }
 }
