@@ -522,7 +522,7 @@ function koReason(no){
       const allt = state.h2hWin!=="all" ? ` <span style="color:var(--mut2)">of ${r.p} all-time (${r.w}-${r.d}-${r.l})</span>` : "";
       return `<b>Head-to-head</b> · ${h2hWinLabel(state.h2hWin)}<br>${fl(p[0])} ${nm(p[0])} vs ${fl(p[1])} ${nm(p[1])} — <b>${t.w}W ${t.d}D ${t.l}L</b>${allt} (${nm(p[0])} ~${pa}%)${seq?`<br>${nm(p[0])}: ${seq}`:""}${r.last?`<br>last: ${r.last}`:""}<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.`; }
     const rr=h2hRec(p[0],p[1]);
-    const why = !rr ? "aren't both in the head-to-head dataset (top-16 contenders)" : (rr.p===0 ? "have no recorded meetings in this dataset" : `have no games in the ${h2hWinLabel(state.h2hWin)} window`);
+    const why = (!rr || rr.p===0) ? "have never met (complete record, 1872→present)" : `have no games in the ${h2hWinLabel(state.h2hWin)} window`;
     const pe=pBeat(p[0],p[1]), strong=pe>=0.5?p[0]:p[1];
     return `<b>Head-to-head — Elo fallback</b><br>${fl(p[0])} ${nm(p[0])} &amp; ${fl(p[1])} ${nm(p[1])} ${why}, so this used <b>Elo</b> (results-based neutral estimate) — favours ${nm(strong)} ~${Math.round(Math.max(pe,1-pe)*100)}%.<br>→ ${fl(w)} ${nm(w)} advanced.`; }
   const u=curUpset(), pH=pBeat(p[0],p[1]), fav=pH>=0.5?p[0]:p[1], favP=Math.round(Math.max(pH,1-pH)*100), upset=(w!==fav);
@@ -533,9 +533,9 @@ function grpReason(no){
   const aw=r[0]>r[1]?f.home:(r[0]<r[1]?f.away:null);                                  // actual winner (or null = draw)
   const pH=pBeat(f.home,f.away), fav=pH>=0.5?f.home:f.away, favP=Math.round(Math.max(pH,1-pH)*100);
   let basis;   // what the model used for THIS specific pair
-  if(state.method==="h2h"){ const t=h2hTally(h2hRec(f.home,f.away),state.h2hWin);
+  if(state.method==="h2h"){ const rec=h2hRec(f.home,f.away), t=h2hTally(rec,state.h2hWin);
     basis = (t&&t.n>0) ? `head-to-head <b>${t.w}W-${t.d}D-${t.l}L</b> (${h2hWinLabel(state.h2hWin)})`
-      : `<span style="color:var(--mut2)">not both in the top-16 H2H dataset → fell back to Elo (${RATINGS[f.home][1]} vs ${RATINGS[f.away][1]})</span>`; }
+      : `<span style="color:var(--mut2)">${(rec&&rec.p>0)?`no meetings in the ${h2hWinLabel(state.h2hWin)} window`:"never met"} → fell back to Elo (${RATINGS[f.home][1]} vs ${RATINGS[f.away][1]})</span>`; }
   else basis = `${nm(f.home)} ${metricStr(f.home)} · ${nm(f.away)} ${metricStr(f.away)}`;
   if(LOCKSET.has(no)){ const hit = aw===null ? null : (fav===aw);
     const verdict = hit===null ? `<span style="color:var(--mut2)">— it was a draw</span>` : (hit?`<span style="color:var(--good)">✓ model got it right</span>`:`<span style="color:var(--bad)">✗ model got it wrong</span>`);
@@ -714,7 +714,7 @@ function h2hDetail(a,b){ if(a===b) return `<div class="h2det"><div class="dhint"
   const tallies=["3m","5m","7m","11m","1y","3y","5y"].map(w=>{ const t=h2hTally(r,w); return t?`<span class="h2w">${h2hWinLabel(w)}: <b>${t.w}-${t.d}-${t.l}</b></span>`:""; }).filter(Boolean).join("");
   if(tallies) h+=`<div class="h2wins">${tallies}</div>`;
   if(r.meetings&&r.meetings.length) h+=`<div class="h2mt"><b>Meetings</b> (newest first): ${r.meetings.map(m=>`<span class="h2mm">${m.y} ${m.r}${m.s?" "+m.s:""}</span>`).join(" · ")}</div>`;
-  else if(r.last5&&r.last5.length) h+=`<div class="h2mt">last 5: <b>${r.last5.join(" ")}</b> <span style="color:var(--mut2)">(dated scorelines only for the top-16 set)</span></div>`;
+  else if(r.last5&&r.last5.length) h+=`<div class="h2mt">last 5: <b>${r.last5.join(" ")}</b></div>`;
   return h+`</div>`; }
 function h2hTable(){ const A=["ESP","FRA","ARG","ENG","BRA","POR","GER","NED","BEL","COL","CRO","URU","MAR","NOR","MEX","USA"].filter(c=>H2H[c]);
   let h=`<div class="dhint">Look up any pairing — full record, every window, and the meeting history.</div><div class="h2lookup">${h2hSelect("h2a",state.h2a)}<span class="h2vs">vs</span>${h2hSelect("h2b",state.h2b)}</div>${h2hDetail(state.h2a,state.h2b)}`;
