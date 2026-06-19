@@ -359,7 +359,7 @@ const EXPLAIN={
   potgoals:"<b>Pot + goals</b> — a realistic, results-driven model: seeding pot (the draw's strength tier) plus goals scored and goal difference in this tournament so far. Rewards teams actually performing on the pitch over pedigree.",
   fifa:"<b>FIFA ranking</b> — the official FIFA / Coca-Cola World Ranking points (June 2026). The governing body's pecking order.",
   form:"<b>Recent form</b> — each team's OWN recent results: last 3 / 5 / 7 / 11 matches, or last 1 / 3 / 5 years (win = 3, draw = 1), lightly tempered by overall strength. NOT head-to-head — a team's run regardless of opponent.",
-  h2h:"<b>Head-to-head (historic)</b> — each match is decided by the two teams' real all-time record (or last 5 meetings), covered for the 16 likeliest knockout teams; pairs that never met fall back to Elo. The favourites list ranks by Elo.",
+  h2h:"<b>Head-to-head (historic)</b> — each match is decided by the two teams' real results over the chosen window (last 3 / 5 / 7 / 11 meetings, last 1 / 3 / 5 years, or all-time), covered for the 16 likeliest knockout teams. <b>Fallback:</b> if a pair has never met — or has no games in the chosen window — the match uses <b>Elo</b> instead, which is itself built from every past result and is the fairest neutral estimate for an unseen matchup. The favourites list ranks by Elo (a pairwise model has no single global ranking).",
   odds:"<b>Betting market</b> — bookmakers' outright odds to win the cup, converted to implied probability. The money's opinion.",
   opta:"<b>Analyst (supercomputer)</b> — Opta-style title-win probabilities from tens of thousands of tournament simulations. The model's opinion."
 };
@@ -466,7 +466,10 @@ function koReason(no){
     if(t&&t.n>0){ const pa=Math.round(pBeat(p[0],p[1])*100);
       let seq=""; if(t.sel) seq=t.sel.map(m=>`${m.r}${m.s?" "+m.s:""}${m.y?" '"+String(m.y).slice(2):""}`).join("  ·  ");
       return `<b>Head-to-head</b> · ${h2hWinLabel(state.h2hWin)}<br>${fl(p[0])} ${nm(p[0])} vs ${fl(p[1])} ${nm(p[1])} — <b>${t.w}W ${t.d}D ${t.l}L</b> (${nm(p[0])} ~${pa}%)${seq?`<br>${nm(p[0])}: ${seq}`:""}${r.last?`<br>last: ${r.last}`:""}<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.`; }
-    return `<b>Head-to-head</b> — no meetings in this window between ${nm(p[0])} and ${nm(p[1])}; fell back to Elo. ${fl(w)} ${nm(w)} advanced.`; }
+    const rr=h2hRec(p[0],p[1]);
+    const why = !rr ? "aren't both in the head-to-head dataset (top-16 contenders)" : (rr.p===0 ? "have never met" : `have no games in the ${h2hWinLabel(state.h2hWin)} window`);
+    const pe=pBeat(p[0],p[1]), strong=pe>=0.5?p[0]:p[1];
+    return `<b>Head-to-head — Elo fallback</b><br>${fl(p[0])} ${nm(p[0])} &amp; ${fl(p[1])} ${nm(p[1])} ${why}, so this used <b>Elo</b> (results-based neutral estimate) — favours ${nm(strong)} ~${Math.round(Math.max(pe,1-pe)*100)}%.<br>→ ${fl(w)} ${nm(w)} advanced.`; }
   const a=p[0],b=p[1], sa=strength(a),sb=strength(b), strong=sa>=sb?a:b, weak=sa>=sb?b:a;
   const pS=Math.round(favWinProb(a,b)*100), upset=(w===weak), u=curUpset();
   return `<b>${METHOD_NAME[state.method]}</b> rating<br>${fl(strong)} ${nm(strong)} <b>${Math.round(strength(strong))}</b> &nbsp;vs&nbsp; ${fl(weak)} ${nm(weak)} <b>${Math.round(strength(weak))}</b><br>→ model favours ${nm(strong)} ~<b>${pS}%</b>. `+
