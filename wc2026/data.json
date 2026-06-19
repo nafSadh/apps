@@ -1,0 +1,1473 @@
+{
+  "meta": {
+    "tournament": "FIFA World Cup 2026",
+    "version": 1,
+    "asOf": "2026-06-18",
+    "source": "manual",
+    "note": "locked = played-match scores {matchNo:[homeGoals,awayGoals]}; ratings per team. teams/fixtures are fixed for the tournament."
+  },
+  "teams": {
+    "MEX": {
+      "name": "Mexico",
+      "flag": "🇲🇽",
+      "group": "A",
+      "pot": 1
+    },
+    "KOR": {
+      "name": "South Korea",
+      "flag": "🇰🇷",
+      "group": "A",
+      "pot": 2
+    },
+    "RSA": {
+      "name": "South Africa",
+      "flag": "🇿🇦",
+      "group": "A",
+      "pot": 3
+    },
+    "CZE": {
+      "name": "Czechia",
+      "flag": "🇨🇿",
+      "group": "A",
+      "pot": 4
+    },
+    "CAN": {
+      "name": "Canada",
+      "flag": "🇨🇦",
+      "group": "B",
+      "pot": 1
+    },
+    "SUI": {
+      "name": "Switzerland",
+      "flag": "🇨🇭",
+      "group": "B",
+      "pot": 2
+    },
+    "QAT": {
+      "name": "Qatar",
+      "flag": "🇶🇦",
+      "group": "B",
+      "pot": 3
+    },
+    "BIH": {
+      "name": "Bosnia & H.",
+      "flag": "🇧🇦",
+      "group": "B",
+      "pot": 4
+    },
+    "BRA": {
+      "name": "Brazil",
+      "flag": "🇧🇷",
+      "group": "C",
+      "pot": 1
+    },
+    "MAR": {
+      "name": "Morocco",
+      "flag": "🇲🇦",
+      "group": "C",
+      "pot": 2
+    },
+    "SCO": {
+      "name": "Scotland",
+      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "group": "C",
+      "pot": 3
+    },
+    "HAI": {
+      "name": "Haiti",
+      "flag": "🇭🇹",
+      "group": "C",
+      "pot": 4
+    },
+    "USA": {
+      "name": "United States",
+      "flag": "🇺🇸",
+      "group": "D",
+      "pot": 1
+    },
+    "AUS": {
+      "name": "Australia",
+      "flag": "🇦🇺",
+      "group": "D",
+      "pot": 2
+    },
+    "PAR": {
+      "name": "Paraguay",
+      "flag": "🇵🇾",
+      "group": "D",
+      "pot": 3
+    },
+    "TUR": {
+      "name": "Türkiye",
+      "flag": "🇹🇷",
+      "group": "D",
+      "pot": 4
+    },
+    "GER": {
+      "name": "Germany",
+      "flag": "🇩🇪",
+      "group": "E",
+      "pot": 1
+    },
+    "ECU": {
+      "name": "Ecuador",
+      "flag": "🇪🇨",
+      "group": "E",
+      "pot": 2
+    },
+    "CIV": {
+      "name": "Ivory Coast",
+      "flag": "🇨🇮",
+      "group": "E",
+      "pot": 3
+    },
+    "CUW": {
+      "name": "Curaçao",
+      "flag": "🇨🇼",
+      "group": "E",
+      "pot": 4
+    },
+    "NED": {
+      "name": "Netherlands",
+      "flag": "🇳🇱",
+      "group": "F",
+      "pot": 1
+    },
+    "JPN": {
+      "name": "Japan",
+      "flag": "🇯🇵",
+      "group": "F",
+      "pot": 2
+    },
+    "TUN": {
+      "name": "Tunisia",
+      "flag": "🇹🇳",
+      "group": "F",
+      "pot": 3
+    },
+    "SWE": {
+      "name": "Sweden",
+      "flag": "🇸🇪",
+      "group": "F",
+      "pot": 4
+    },
+    "BEL": {
+      "name": "Belgium",
+      "flag": "🇧🇪",
+      "group": "G",
+      "pot": 1
+    },
+    "IRN": {
+      "name": "Iran",
+      "flag": "🇮🇷",
+      "group": "G",
+      "pot": 2
+    },
+    "EGY": {
+      "name": "Egypt",
+      "flag": "🇪🇬",
+      "group": "G",
+      "pot": 3
+    },
+    "NZL": {
+      "name": "New Zealand",
+      "flag": "🇳🇿",
+      "group": "G",
+      "pot": 4
+    },
+    "ESP": {
+      "name": "Spain",
+      "flag": "🇪🇸",
+      "group": "H",
+      "pot": 1
+    },
+    "URU": {
+      "name": "Uruguay",
+      "flag": "🇺🇾",
+      "group": "H",
+      "pot": 2
+    },
+    "KSA": {
+      "name": "Saudi Arabia",
+      "flag": "🇸🇦",
+      "group": "H",
+      "pot": 3
+    },
+    "CPV": {
+      "name": "Cape Verde",
+      "flag": "🇨🇻",
+      "group": "H",
+      "pot": 4
+    },
+    "FRA": {
+      "name": "France",
+      "flag": "🇫🇷",
+      "group": "I",
+      "pot": 1
+    },
+    "SEN": {
+      "name": "Senegal",
+      "flag": "🇸🇳",
+      "group": "I",
+      "pot": 2
+    },
+    "NOR": {
+      "name": "Norway",
+      "flag": "🇳🇴",
+      "group": "I",
+      "pot": 3
+    },
+    "IRQ": {
+      "name": "Iraq",
+      "flag": "🇮🇶",
+      "group": "I",
+      "pot": 4
+    },
+    "ARG": {
+      "name": "Argentina",
+      "flag": "🇦🇷",
+      "group": "J",
+      "pot": 1
+    },
+    "AUT": {
+      "name": "Austria",
+      "flag": "🇦🇹",
+      "group": "J",
+      "pot": 2
+    },
+    "ALG": {
+      "name": "Algeria",
+      "flag": "🇩🇿",
+      "group": "J",
+      "pot": 3
+    },
+    "JOR": {
+      "name": "Jordan",
+      "flag": "🇯🇴",
+      "group": "J",
+      "pot": 4
+    },
+    "POR": {
+      "name": "Portugal",
+      "flag": "🇵🇹",
+      "group": "K",
+      "pot": 1
+    },
+    "COL": {
+      "name": "Colombia",
+      "flag": "🇨🇴",
+      "group": "K",
+      "pot": 2
+    },
+    "UZB": {
+      "name": "Uzbekistan",
+      "flag": "🇺🇿",
+      "group": "K",
+      "pot": 3
+    },
+    "COD": {
+      "name": "DR Congo",
+      "flag": "🇨🇩",
+      "group": "K",
+      "pot": 4
+    },
+    "ENG": {
+      "name": "England",
+      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "group": "L",
+      "pot": 1
+    },
+    "CRO": {
+      "name": "Croatia",
+      "flag": "🇭🇷",
+      "group": "L",
+      "pot": 2
+    },
+    "PAN": {
+      "name": "Panama",
+      "flag": "🇵🇦",
+      "group": "L",
+      "pot": 3
+    },
+    "GHA": {
+      "name": "Ghana",
+      "flag": "🇬🇭",
+      "group": "L",
+      "pot": 4
+    }
+  },
+  "fixtures": [
+    {
+      "no": 1,
+      "group": "A",
+      "md": 1,
+      "date": "2026-06-11",
+      "home": "MEX",
+      "away": "RSA",
+      "venue": "Estadio Azteca",
+      "city": "Mexico City"
+    },
+    {
+      "no": 2,
+      "group": "A",
+      "md": 1,
+      "date": "2026-06-11",
+      "home": "KOR",
+      "away": "CZE",
+      "venue": "Estadio Akron",
+      "city": "Guadalajara"
+    },
+    {
+      "no": 3,
+      "group": "B",
+      "md": 1,
+      "date": "2026-06-12",
+      "home": "CAN",
+      "away": "BIH",
+      "venue": "BMO Field",
+      "city": "Toronto"
+    },
+    {
+      "no": 4,
+      "group": "D",
+      "md": 1,
+      "date": "2026-06-12",
+      "home": "USA",
+      "away": "PAR",
+      "venue": "SoFi Stadium",
+      "city": "Inglewood"
+    },
+    {
+      "no": 5,
+      "group": "C",
+      "md": 1,
+      "date": "2026-06-13",
+      "home": "HAI",
+      "away": "SCO",
+      "venue": "Gillette Stadium",
+      "city": "Foxborough"
+    },
+    {
+      "no": 6,
+      "group": "D",
+      "md": 1,
+      "date": "2026-06-13",
+      "home": "AUS",
+      "away": "TUR",
+      "venue": "BC Place",
+      "city": "Vancouver"
+    },
+    {
+      "no": 7,
+      "group": "C",
+      "md": 1,
+      "date": "2026-06-13",
+      "home": "BRA",
+      "away": "MAR",
+      "venue": "MetLife Stadium",
+      "city": "East Rutherford"
+    },
+    {
+      "no": 8,
+      "group": "B",
+      "md": 1,
+      "date": "2026-06-13",
+      "home": "QAT",
+      "away": "SUI",
+      "venue": "Levi's Stadium",
+      "city": "Santa Clara"
+    },
+    {
+      "no": 9,
+      "group": "E",
+      "md": 1,
+      "date": "2026-06-14",
+      "home": "CIV",
+      "away": "ECU",
+      "venue": "Lincoln Financial Field",
+      "city": "Philadelphia"
+    },
+    {
+      "no": 10,
+      "group": "E",
+      "md": 1,
+      "date": "2026-06-14",
+      "home": "GER",
+      "away": "CUW",
+      "venue": "NRG Stadium",
+      "city": "Houston"
+    },
+    {
+      "no": 11,
+      "group": "F",
+      "md": 1,
+      "date": "2026-06-14",
+      "home": "NED",
+      "away": "JPN",
+      "venue": "AT&T Stadium",
+      "city": "Arlington"
+    },
+    {
+      "no": 12,
+      "group": "F",
+      "md": 1,
+      "date": "2026-06-14",
+      "home": "SWE",
+      "away": "TUN",
+      "venue": "Estadio BBVA",
+      "city": "Monterrey"
+    },
+    {
+      "no": 13,
+      "group": "H",
+      "md": 1,
+      "date": "2026-06-15",
+      "home": "KSA",
+      "away": "URU",
+      "venue": "Hard Rock Stadium",
+      "city": "Miami Gardens"
+    },
+    {
+      "no": 14,
+      "group": "H",
+      "md": 1,
+      "date": "2026-06-15",
+      "home": "ESP",
+      "away": "CPV",
+      "venue": "Mercedes-Benz Stadium",
+      "city": "Atlanta"
+    },
+    {
+      "no": 15,
+      "group": "G",
+      "md": 1,
+      "date": "2026-06-15",
+      "home": "BEL",
+      "away": "EGY",
+      "venue": "Lumen Field",
+      "city": "Seattle"
+    },
+    {
+      "no": 16,
+      "group": "G",
+      "md": 1,
+      "date": "2026-06-15",
+      "home": "IRN",
+      "away": "NZL",
+      "venue": "SoFi Stadium",
+      "city": "Inglewood"
+    },
+    {
+      "no": 17,
+      "group": "I",
+      "md": 1,
+      "date": "2026-06-16",
+      "home": "FRA",
+      "away": "SEN",
+      "venue": "MetLife Stadium",
+      "city": "East Rutherford"
+    },
+    {
+      "no": 18,
+      "group": "I",
+      "md": 1,
+      "date": "2026-06-16",
+      "home": "IRQ",
+      "away": "NOR",
+      "venue": "Gillette Stadium",
+      "city": "Foxborough"
+    },
+    {
+      "no": 19,
+      "group": "J",
+      "md": 1,
+      "date": "2026-06-16",
+      "home": "ARG",
+      "away": "ALG",
+      "venue": "Arrowhead Stadium",
+      "city": "Kansas City"
+    },
+    {
+      "no": 20,
+      "group": "J",
+      "md": 1,
+      "date": "2026-06-16",
+      "home": "AUT",
+      "away": "JOR",
+      "venue": "Levi's Stadium",
+      "city": "Santa Clara"
+    },
+    {
+      "no": 21,
+      "group": "K",
+      "md": 1,
+      "date": "2026-06-17",
+      "home": "POR",
+      "away": "COD",
+      "venue": "NRG Stadium",
+      "city": "Houston"
+    },
+    {
+      "no": 22,
+      "group": "K",
+      "md": 1,
+      "date": "2026-06-17",
+      "home": "UZB",
+      "away": "COL",
+      "venue": "Estadio Azteca",
+      "city": "Mexico City"
+    },
+    {
+      "no": 23,
+      "group": "L",
+      "md": 1,
+      "date": "2026-06-17",
+      "home": "ENG",
+      "away": "CRO",
+      "venue": "AT&T Stadium",
+      "city": "Arlington"
+    },
+    {
+      "no": 24,
+      "group": "L",
+      "md": 1,
+      "date": "2026-06-17",
+      "home": "GHA",
+      "away": "PAN",
+      "venue": "BMO Field",
+      "city": "Toronto"
+    },
+    {
+      "no": 25,
+      "group": "A",
+      "md": 2,
+      "date": "2026-06-18",
+      "home": "CZE",
+      "away": "RSA",
+      "venue": "Mercedes-Benz Stadium",
+      "city": "Atlanta"
+    },
+    {
+      "no": 26,
+      "group": "B",
+      "md": 2,
+      "date": "2026-06-18",
+      "home": "SUI",
+      "away": "BIH",
+      "venue": "SoFi Stadium",
+      "city": "Inglewood"
+    },
+    {
+      "no": 27,
+      "group": "B",
+      "md": 2,
+      "date": "2026-06-18",
+      "home": "CAN",
+      "away": "QAT",
+      "venue": "BC Place",
+      "city": "Vancouver"
+    },
+    {
+      "no": 28,
+      "group": "A",
+      "md": 2,
+      "date": "2026-06-18",
+      "home": "MEX",
+      "away": "KOR",
+      "venue": "Estadio Akron",
+      "city": "Guadalajara"
+    },
+    {
+      "no": 29,
+      "group": "C",
+      "md": 2,
+      "date": "2026-06-19",
+      "home": "BRA",
+      "away": "HAI",
+      "venue": "Lincoln Financial Field",
+      "city": "Philadelphia"
+    },
+    {
+      "no": 30,
+      "group": "C",
+      "md": 2,
+      "date": "2026-06-19",
+      "home": "SCO",
+      "away": "MAR",
+      "venue": "Gillette Stadium",
+      "city": "Foxborough"
+    },
+    {
+      "no": 31,
+      "group": "D",
+      "md": 2,
+      "date": "2026-06-19",
+      "home": "TUR",
+      "away": "PAR",
+      "venue": "Levi's Stadium",
+      "city": "Santa Clara"
+    },
+    {
+      "no": 32,
+      "group": "D",
+      "md": 2,
+      "date": "2026-06-19",
+      "home": "USA",
+      "away": "AUS",
+      "venue": "Lumen Field",
+      "city": "Seattle"
+    },
+    {
+      "no": 33,
+      "group": "E",
+      "md": 2,
+      "date": "2026-06-20",
+      "home": "GER",
+      "away": "CIV",
+      "venue": "BMO Field",
+      "city": "Toronto"
+    },
+    {
+      "no": 34,
+      "group": "E",
+      "md": 2,
+      "date": "2026-06-20",
+      "home": "ECU",
+      "away": "CUW",
+      "venue": "Arrowhead Stadium",
+      "city": "Kansas City"
+    },
+    {
+      "no": 35,
+      "group": "F",
+      "md": 2,
+      "date": "2026-06-20",
+      "home": "NED",
+      "away": "SWE",
+      "venue": "NRG Stadium",
+      "city": "Houston"
+    },
+    {
+      "no": 36,
+      "group": "F",
+      "md": 2,
+      "date": "2026-06-20",
+      "home": "TUN",
+      "away": "JPN",
+      "venue": "Estadio BBVA",
+      "city": "Monterrey"
+    },
+    {
+      "no": 37,
+      "group": "H",
+      "md": 2,
+      "date": "2026-06-21",
+      "home": "URU",
+      "away": "CPV",
+      "venue": "Hard Rock Stadium",
+      "city": "Miami Gardens"
+    },
+    {
+      "no": 38,
+      "group": "H",
+      "md": 2,
+      "date": "2026-06-21",
+      "home": "ESP",
+      "away": "KSA",
+      "venue": "Mercedes-Benz Stadium",
+      "city": "Atlanta"
+    },
+    {
+      "no": 39,
+      "group": "G",
+      "md": 2,
+      "date": "2026-06-21",
+      "home": "BEL",
+      "away": "IRN",
+      "venue": "SoFi Stadium",
+      "city": "Inglewood"
+    },
+    {
+      "no": 40,
+      "group": "G",
+      "md": 2,
+      "date": "2026-06-21",
+      "home": "NZL",
+      "away": "EGY",
+      "venue": "BC Place",
+      "city": "Vancouver"
+    },
+    {
+      "no": 41,
+      "group": "I",
+      "md": 2,
+      "date": "2026-06-22",
+      "home": "NOR",
+      "away": "SEN",
+      "venue": "MetLife Stadium",
+      "city": "East Rutherford"
+    },
+    {
+      "no": 42,
+      "group": "I",
+      "md": 2,
+      "date": "2026-06-22",
+      "home": "FRA",
+      "away": "IRQ",
+      "venue": "Lincoln Financial Field",
+      "city": "Philadelphia"
+    },
+    {
+      "no": 43,
+      "group": "J",
+      "md": 2,
+      "date": "2026-06-22",
+      "home": "ARG",
+      "away": "AUT",
+      "venue": "AT&T Stadium",
+      "city": "Arlington"
+    },
+    {
+      "no": 44,
+      "group": "J",
+      "md": 2,
+      "date": "2026-06-22",
+      "home": "JOR",
+      "away": "ALG",
+      "venue": "Levi's Stadium",
+      "city": "Santa Clara"
+    },
+    {
+      "no": 45,
+      "group": "L",
+      "md": 2,
+      "date": "2026-06-23",
+      "home": "ENG",
+      "away": "GHA",
+      "venue": "Gillette Stadium",
+      "city": "Foxborough"
+    },
+    {
+      "no": 46,
+      "group": "L",
+      "md": 2,
+      "date": "2026-06-23",
+      "home": "PAN",
+      "away": "CRO",
+      "venue": "BMO Field",
+      "city": "Toronto"
+    },
+    {
+      "no": 47,
+      "group": "K",
+      "md": 2,
+      "date": "2026-06-23",
+      "home": "POR",
+      "away": "UZB",
+      "venue": "NRG Stadium",
+      "city": "Houston"
+    },
+    {
+      "no": 48,
+      "group": "K",
+      "md": 2,
+      "date": "2026-06-23",
+      "home": "COL",
+      "away": "COD",
+      "venue": "Estadio Akron",
+      "city": "Guadalajara"
+    },
+    {
+      "no": 49,
+      "group": "C",
+      "md": 3,
+      "date": "2026-06-24",
+      "home": "SCO",
+      "away": "BRA",
+      "venue": "Hard Rock Stadium",
+      "city": "Miami Gardens"
+    },
+    {
+      "no": 50,
+      "group": "C",
+      "md": 3,
+      "date": "2026-06-24",
+      "home": "MAR",
+      "away": "HAI",
+      "venue": "Mercedes-Benz Stadium",
+      "city": "Atlanta"
+    },
+    {
+      "no": 51,
+      "group": "B",
+      "md": 3,
+      "date": "2026-06-24",
+      "home": "SUI",
+      "away": "CAN",
+      "venue": "BC Place",
+      "city": "Vancouver"
+    },
+    {
+      "no": 52,
+      "group": "B",
+      "md": 3,
+      "date": "2026-06-24",
+      "home": "BIH",
+      "away": "QAT",
+      "venue": "Lumen Field",
+      "city": "Seattle"
+    },
+    {
+      "no": 53,
+      "group": "A",
+      "md": 3,
+      "date": "2026-06-24",
+      "home": "CZE",
+      "away": "MEX",
+      "venue": "Estadio Azteca",
+      "city": "Mexico City"
+    },
+    {
+      "no": 54,
+      "group": "A",
+      "md": 3,
+      "date": "2026-06-24",
+      "home": "RSA",
+      "away": "KOR",
+      "venue": "Estadio BBVA",
+      "city": "Monterrey"
+    },
+    {
+      "no": 55,
+      "group": "E",
+      "md": 3,
+      "date": "2026-06-25",
+      "home": "CUW",
+      "away": "CIV",
+      "venue": "Lincoln Financial Field",
+      "city": "Philadelphia"
+    },
+    {
+      "no": 56,
+      "group": "E",
+      "md": 3,
+      "date": "2026-06-25",
+      "home": "ECU",
+      "away": "GER",
+      "venue": "MetLife Stadium",
+      "city": "East Rutherford"
+    },
+    {
+      "no": 57,
+      "group": "F",
+      "md": 3,
+      "date": "2026-06-25",
+      "home": "JPN",
+      "away": "SWE",
+      "venue": "AT&T Stadium",
+      "city": "Arlington"
+    },
+    {
+      "no": 58,
+      "group": "F",
+      "md": 3,
+      "date": "2026-06-25",
+      "home": "TUN",
+      "away": "NED",
+      "venue": "Arrowhead Stadium",
+      "city": "Kansas City"
+    },
+    {
+      "no": 59,
+      "group": "D",
+      "md": 3,
+      "date": "2026-06-25",
+      "home": "TUR",
+      "away": "USA",
+      "venue": "SoFi Stadium",
+      "city": "Inglewood"
+    },
+    {
+      "no": 60,
+      "group": "D",
+      "md": 3,
+      "date": "2026-06-25",
+      "home": "PAR",
+      "away": "AUS",
+      "venue": "Levi's Stadium",
+      "city": "Santa Clara"
+    },
+    {
+      "no": 61,
+      "group": "I",
+      "md": 3,
+      "date": "2026-06-26",
+      "home": "NOR",
+      "away": "FRA",
+      "venue": "Gillette Stadium",
+      "city": "Foxborough"
+    },
+    {
+      "no": 62,
+      "group": "I",
+      "md": 3,
+      "date": "2026-06-26",
+      "home": "SEN",
+      "away": "IRQ",
+      "venue": "BMO Field",
+      "city": "Toronto"
+    },
+    {
+      "no": 63,
+      "group": "G",
+      "md": 3,
+      "date": "2026-06-26",
+      "home": "EGY",
+      "away": "IRN",
+      "venue": "Lumen Field",
+      "city": "Seattle"
+    },
+    {
+      "no": 64,
+      "group": "G",
+      "md": 3,
+      "date": "2026-06-26",
+      "home": "NZL",
+      "away": "BEL",
+      "venue": "BC Place",
+      "city": "Vancouver"
+    },
+    {
+      "no": 65,
+      "group": "H",
+      "md": 3,
+      "date": "2026-06-26",
+      "home": "CPV",
+      "away": "KSA",
+      "venue": "NRG Stadium",
+      "city": "Houston"
+    },
+    {
+      "no": 66,
+      "group": "H",
+      "md": 3,
+      "date": "2026-06-26",
+      "home": "URU",
+      "away": "ESP",
+      "venue": "Estadio Akron",
+      "city": "Guadalajara"
+    },
+    {
+      "no": 67,
+      "group": "L",
+      "md": 3,
+      "date": "2026-06-27",
+      "home": "PAN",
+      "away": "ENG",
+      "venue": "MetLife Stadium",
+      "city": "East Rutherford"
+    },
+    {
+      "no": 68,
+      "group": "L",
+      "md": 3,
+      "date": "2026-06-27",
+      "home": "CRO",
+      "away": "GHA",
+      "venue": "Lincoln Financial Field",
+      "city": "Philadelphia"
+    },
+    {
+      "no": 69,
+      "group": "J",
+      "md": 3,
+      "date": "2026-06-27",
+      "home": "ALG",
+      "away": "AUT",
+      "venue": "Arrowhead Stadium",
+      "city": "Kansas City"
+    },
+    {
+      "no": 70,
+      "group": "J",
+      "md": 3,
+      "date": "2026-06-27",
+      "home": "JOR",
+      "away": "ARG",
+      "venue": "AT&T Stadium",
+      "city": "Arlington"
+    },
+    {
+      "no": 71,
+      "group": "K",
+      "md": 3,
+      "date": "2026-06-27",
+      "home": "COL",
+      "away": "POR",
+      "venue": "Hard Rock Stadium",
+      "city": "Miami Gardens"
+    },
+    {
+      "no": 72,
+      "group": "K",
+      "md": 3,
+      "date": "2026-06-27",
+      "home": "COD",
+      "away": "UZB",
+      "venue": "Mercedes-Benz Stadium",
+      "city": "Atlanta"
+    }
+  ],
+  "locked": {
+    "1": [
+      2,
+      0
+    ],
+    "2": [
+      2,
+      1
+    ],
+    "3": [
+      1,
+      1
+    ],
+    "4": [
+      4,
+      1
+    ],
+    "5": [
+      0,
+      1
+    ],
+    "6": [
+      2,
+      0
+    ],
+    "7": [
+      1,
+      1
+    ],
+    "8": [
+      1,
+      1
+    ],
+    "9": [
+      1,
+      0
+    ],
+    "10": [
+      7,
+      1
+    ],
+    "11": [
+      2,
+      2
+    ],
+    "12": [
+      5,
+      1
+    ],
+    "13": [
+      1,
+      1
+    ],
+    "14": [
+      0,
+      0
+    ],
+    "15": [
+      1,
+      1
+    ],
+    "16": [
+      2,
+      2
+    ],
+    "17": [
+      3,
+      1
+    ],
+    "18": [
+      1,
+      4
+    ],
+    "19": [
+      3,
+      0
+    ],
+    "20": [
+      3,
+      1
+    ],
+    "21": [
+      1,
+      1
+    ],
+    "22": [
+      1,
+      3
+    ],
+    "23": [
+      4,
+      2
+    ],
+    "24": [
+      1,
+      0
+    ],
+    "25": [
+      1,
+      1
+    ],
+    "26": [
+      4,
+      1
+    ],
+    "27": [
+      6,
+      0
+    ],
+    "28": [
+      1,
+      0
+    ]
+  },
+  "ratings": {
+    "MEX": {
+      "fifa": 1687,
+      "elo": 1800,
+      "odds": 61,
+      "opta": 1,
+      "form": "WWWWWDDWWWL"
+    },
+    "KOR": {
+      "fifa": 1592,
+      "elo": 1754,
+      "odds": 351,
+      "opta": 0.4,
+      "form": "LWWWLLWWLDW"
+    },
+    "RSA": {
+      "fifa": 1432,
+      "elo": 1526,
+      "odds": 2501,
+      "opta": 0.1,
+      "form": "DLWDWWDWLDW"
+    },
+    "CZE": {
+      "fifa": 1506,
+      "elo": 1691,
+      "odds": 501,
+      "opta": 0.2,
+      "form": "DLDWWLDDWLW"
+    },
+    "CAN": {
+      "fifa": 1552,
+      "elo": 1806,
+      "odds": 151,
+      "opta": 0.52,
+      "form": "WDLDWWLWDLW"
+    },
+    "SUI": {
+      "fifa": 1641,
+      "elo": 1865,
+      "odds": 67,
+      "opta": 0.9,
+      "form": "WDDWDLDWDWW"
+    },
+    "QAT": {
+      "fifa": 1450,
+      "elo": 1427,
+      "odds": 1001,
+      "opta": 0.02,
+      "form": "LDDLLDLLWDW"
+    },
+    "BIH": {
+      "fifa": 1387,
+      "elo": 1571,
+      "odds": 501,
+      "opta": 0.1,
+      "form": "LDDDLDDWLWD"
+    },
+    "BRA": {
+      "fifa": 1766,
+      "elo": 1978,
+      "odds": 11,
+      "opta": 6.6,
+      "form": "DWWWLDWLWWW"
+    },
+    "MAR": {
+      "fifa": 1755,
+      "elo": 1840,
+      "odds": 46,
+      "opta": 1.9,
+      "form": "DWWWWDWWWWW"
+    },
+    "SCO": {
+      "fifa": 1503,
+      "elo": 1794,
+      "odds": 151,
+      "opta": 0.2,
+      "form": "WWLLLLLWLWD"
+    },
+    "HAI": {
+      "fifa": 1293,
+      "elo": 1536,
+      "odds": 2501,
+      "opta": 0.004,
+      "form": "LLLDLWWLWDD"
+    },
+    "USA": {
+      "fifa": 1671,
+      "elo": 1780,
+      "odds": 41,
+      "opta": 1.2,
+      "form": "WLWLLWWWDWL"
+    },
+    "AUS": {
+      "fifa": 1579,
+      "elo": 1839,
+      "odds": 601,
+      "opta": 0.3,
+      "form": "WDLWWLLWLLW"
+    },
+    "PAR": {
+      "fifa": 1505,
+      "elo": 1780,
+      "odds": 301,
+      "opta": 0.1,
+      "form": "LWLWWWWDLDL"
+    },
+    "TUR": {
+      "fifa": 1606,
+      "elo": 1849,
+      "odds": 91,
+      "opta": 0.9,
+      "form": "LWWWWDWWW"
+    },
+    "GER": {
+      "fifa": 1730,
+      "elo": 1939,
+      "odds": 13,
+      "opta": 5.1,
+      "form": "WWWWWLWWLLL"
+    },
+    "ECU": {
+      "fifa": 1565,
+      "elo": 1890,
+      "odds": 121,
+      "opta": 1.4,
+      "form": "LWWWDDDWDWD"
+    },
+    "CIV": {
+      "fifa": 1541,
+      "elo": 1743,
+      "odds": 301,
+      "opta": 0.4,
+      "form": "WWWWLWWDW"
+    },
+    "CUW": {
+      "fifa": 1295,
+      "elo": 1427,
+      "odds": 2501,
+      "opta": 0.05,
+      "form": "LWLLLWDWWD"
+    },
+    "NED": {
+      "fifa": 1754,
+      "elo": 1944,
+      "odds": 19,
+      "opta": 3.6,
+      "form": "DWLDWWDWWWD"
+    },
+    "JPN": {
+      "fifa": 1662,
+      "elo": 1910,
+      "odds": 51,
+      "opta": 0.9,
+      "form": "DWWWLLLDLDL"
+    },
+    "TUN": {
+      "fifa": 1490,
+      "elo": 1585,
+      "odds": 501,
+      "opta": 0.2,
+      "form": "LLLDLLDWWWD"
+    },
+    "SWE": {
+      "fifa": 1530,
+      "elo": 1755,
+      "odds": 101,
+      "opta": 0.4,
+      "form": "WDLWWDLLLWD"
+    },
+    "BEL": {
+      "fifa": 1742,
+      "elo": 1879,
+      "odds": 36,
+      "opta": 2.4,
+      "form": "DWWDWWDWDWW"
+    },
+    "IRN": {
+      "fifa": 1620,
+      "elo": 1756,
+      "odds": 1001,
+      "opta": 0.05,
+      "form": "DWDWLDDWLWL"
+    },
+    "EGY": {
+      "fifa": 1562,
+      "elo": 1711,
+      "odds": 251,
+      "opta": 0.4,
+      "form": "DLWDWDLWWDW"
+    },
+    "NZL": {
+      "fifa": 1276,
+      "elo": 1578,
+      "odds": 2501,
+      "opta": 0.02,
+      "form": "DLLWL"
+    },
+    "ESP": {
+      "fifa": 1880,
+      "elo": 2171,
+      "odds": 5.5,
+      "opta": 16.1,
+      "form": "DWDDWDWWWWW"
+    },
+    "URU": {
+      "fifa": 1680,
+      "elo": 1890,
+      "odds": 67,
+      "opta": 1.2,
+      "form": "DDDWDWWDWWW"
+    },
+    "KSA": {
+      "fifa": 1450,
+      "elo": 1592,
+      "odds": 1001,
+      "opta": 0.1,
+      "form": "DDWLDLWLWDW"
+    },
+    "CPV": {
+      "fifa": 1390,
+      "elo": 1561,
+      "odds": 1001,
+      "opta": 0.05,
+      "form": "DWDLDDWDWWW"
+    },
+    "FRA": {
+      "fifa": 1862,
+      "elo": 2063,
+      "odds": 5,
+      "opta": 13,
+      "form": "WWLWWWDWWW"
+    },
+    "SEN": {
+      "fifa": 1645,
+      "elo": 1869,
+      "odds": 101,
+      "opta": 1,
+      "form": "LDLWWLWWWWD"
+    },
+    "NOR": {
+      "fifa": 1530,
+      "elo": 1922,
+      "odds": 31,
+      "opta": 3.5,
+      "form": "WDWDLWWDWWW"
+    },
+    "IRQ": {
+      "fifa": 1432,
+      "elo": 1592,
+      "odds": 1501,
+      "opta": 0.05,
+      "form": "LLDWWWDDWWL"
+    },
+    "ARG": {
+      "fifa": 1886,
+      "elo": 2128,
+      "odds": 9,
+      "opta": 10.4,
+      "form": "WWWWWWLWDWW"
+    },
+    "AUT": {
+      "fifa": 1597,
+      "elo": 1857,
+      "odds": 251,
+      "opta": 0.1,
+      "form": "WDWWLWWWWWW"
+    },
+    "ALG": {
+      "fifa": 1571,
+      "elo": 1759,
+      "odds": 301,
+      "opta": 0.1,
+      "form": "LWLDDDDWWWW"
+    },
+    "JOR": {
+      "fifa": 1389,
+      "elo": 1691,
+      "odds": 751,
+      "opta": 0.1,
+      "form": "LLLDDLWWWWW"
+    },
+    "POR": {
+      "fifa": 1770,
+      "elo": 1976,
+      "odds": 11,
+      "opta": 7,
+      "form": "DWWWDWLDWWW"
+    },
+    "COL": {
+      "fifa": 1693,
+      "elo": 1998,
+      "odds": 41,
+      "opta": 2.1,
+      "form": "WWWLLWWDWWW"
+    },
+    "UZB": {
+      "fifa": 1459,
+      "elo": 1735,
+      "odds": 2001,
+      "opta": 0.1,
+      "form": "LLLDWDWLW"
+    },
+    "COD": {
+      "fifa": 1474,
+      "elo": 1639,
+      "odds": 501,
+      "opta": 0.1,
+      "form": "DLDWWLWDWWD"
+    },
+    "ENG": {
+      "fifa": 1826,
+      "elo": 2042,
+      "odds": 6.5,
+      "opta": 11.2,
+      "form": "WWWLDWWWWWW"
+    },
+    "CRO": {
+      "fifa": 1717,
+      "elo": 1933,
+      "odds": 91,
+      "opta": 1.6,
+      "form": "LWLWWWWWDWW"
+    },
+    "PAN": {
+      "fifa": 1539,
+      "elo": 1743,
+      "odds": 751,
+      "opta": 0.05,
+      "form": "LWDLLDWWDLD"
+    },
+    "GHA": {
+      "fifa": 1347,
+      "elo": 1509,
+      "odds": 301,
+      "opta": 0.1,
+      "form": "WWLWWLDLDLW"
+    }
+  }
+}

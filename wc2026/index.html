@@ -79,6 +79,8 @@
   .sel:hover{border-color:var(--acc)}
   .favline{font-family:var(--sans);font-size:12.5px;color:var(--mut);margin:4px 2px 0;line-height:1.5}
   .favline b{color:var(--ink)} .favline .mk{font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--acc2)}
+  .dstat{font-family:var(--mono);font-size:10px;letter-spacing:.8px;color:var(--mut2);margin:6px 2px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .dstat .btn{padding:5px 9px}
   .urange{-webkit-appearance:none;appearance:none;width:92px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--warn),var(--bad));outline:none;cursor:pointer}
   .urange::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:13px;height:13px;border-radius:50%;background:var(--ink);border:1px solid var(--acc);cursor:pointer}
   .urange::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--ink);border:1px solid var(--acc);cursor:pointer}
@@ -216,6 +218,7 @@
     <div class="champ" id="champ"><span class="tbd">🏆 Champion: undecided</span></div>
   </div>
   <div class="favline" id="favline"></div>
+  <div class="dstat" id="dstat"><button class="btn ghost" id="b-data">↻ Refresh data</button><span id="dstat-txt">built-in snapshot</span></div>
   <div class="note">
     <b>▶ Simulate</b> fills every unplayed game using the chosen <b>Model</b> and plays out the bracket — it keeps the 28 locked 🔒 real results <i>and</i> any scores you set yourself. The <b>Upset</b> dial (0 → 1) controls chaos: <b>0 = the favourite always advances</b> (deterministic); higher lets underdogs through, so each Simulate gives a fresh bracket. <b>↺ Reset</b> returns to today's real results.<br>
     You can also drive it by hand: for any unplayed game <b>click a team to set the winner</b> or <b>type the goals</b>; use <span class="kbd">▲▼</span> to hand-order a group; <b>click a team's name</b> in the standings to track its path (up to 5); and in the bracket, click the side you think wins.
@@ -302,10 +305,10 @@ const FIX=[
 ].map(a=>({no:a[0],group:a[1],md:a[2],date:a[3],home:a[4],away:a[5],venue:a[6],city:a[7]}));
 const FIXMAP={}; FIX.forEach(f=>FIXMAP[f.no]=f);
 // locked real results no:[hg,ag] (matches 1-28 played)
-const LOCKED={1:[2,0],2:[2,1],3:[1,1],4:[4,1],5:[0,1],6:[2,0],7:[1,1],8:[1,1],9:[1,0],10:[7,1],11:[2,2],12:[5,1],
+let LOCKED={1:[2,0],2:[2,1],3:[1,1],4:[4,1],5:[0,1],6:[2,0],7:[1,1],8:[1,1],9:[1,0],10:[7,1],11:[2,2],12:[5,1],
  13:[1,1],14:[0,0],15:[1,1],16:[2,2],17:[3,1],18:[1,4],19:[3,0],20:[3,1],21:[1,1],22:[1,3],23:[4,2],24:[1,0],
  25:[1,1],26:[4,1],27:[6,0],28:[1,0]};
-const LOCKSET=new Set(Object.keys(LOCKED).map(Number));
+let LOCKSET=new Set(Object.keys(LOCKED).map(Number));
 
 const GLET="ABCDEFGHIJKL".split("");
 const GROUP_TEAMS={}; GLET.forEach(g=>GROUP_TEAMS[g]=[]); for(const c in T) GROUP_TEAMS[grp(c)].push(c);
@@ -347,7 +350,7 @@ function computeStats(){
   for(const c in s){ s[c].gd=s[c].gf-s[c].ga; } return s;
 }
 /* ---- rating profiles: code:[fifaPts, elo, outrightOdds(decimal), analyst title %, recent form (newest first)] ---- */
-const RATINGS={MEX:[1687,1800,61,1,"WWWWWDDWWWL"],KOR:[1592,1754,351,0.4,"LWWWLLWWLDW"],RSA:[1432,1526,2501,0.1,"DLWDWWDWLDW"],CZE:[1506,1691,501,0.2,"DLDWWLDDWLW"],CAN:[1552,1806,151,0.52,"WDLDWWLWDLW"],SUI:[1641,1865,67,0.9,"WDDWDLDWDWW"],QAT:[1450,1427,1001,0.02,"LDDLLDLLWDW"],BIH:[1387,1571,501,0.1,"LDDDLDDWLWD"],BRA:[1766,1978,11,6.6,"DWWWLDWLWWW"],MAR:[1755,1840,46,1.9,"DWWWWDWWWWW"],SCO:[1503,1794,151,0.2,"WWLLLLLWLWD"],HAI:[1293,1536,2501,0.004,"LLLDLWWLWDD"],USA:[1671,1780,41,1.2,"WLWLLWWWDWL"],AUS:[1579,1839,601,0.3,"WDLWWLLWLLW"],PAR:[1505,1780,301,0.1,"LWLWWWWDLDL"],TUR:[1606,1849,91,0.9,"LWWWWDWWW"],GER:[1730,1939,13,5.1,"WWWWWLWWLLL"],ECU:[1565,1890,121,1.4,"LWWWDDDWDWD"],CIV:[1541,1743,301,0.4,"WWWWLWWDW"],CUW:[1295,1427,2501,0.05,"LWLLLWDWWD"],NED:[1754,1944,19,3.6,"DWLDWWDWWWD"],JPN:[1662,1910,51,0.9,"DWWWLLLDLDL"],TUN:[1490,1585,501,0.2,"LLLDLLDWWWD"],SWE:[1530,1755,101,0.4,"WDLWWDLLLWD"],BEL:[1742,1879,36,2.4,"DWWDWWDWDWW"],IRN:[1620,1756,1001,0.05,"DWDWLDDWLWL"],EGY:[1562,1711,251,0.4,"DLWDWDLWWDW"],NZL:[1276,1578,2501,0.02,"DLLWL"],ESP:[1880,2171,5.5,16.1,"DWDDWDWWWWW"],URU:[1680,1890,67,1.2,"DDDWDWWDWWW"],KSA:[1450,1592,1001,0.1,"DDWLDLWLWDW"],CPV:[1390,1561,1001,0.05,"DWDLDDWDWWW"],FRA:[1862,2063,5,13,"WWLWWWDWWW"],SEN:[1645,1869,101,1,"LDLWWLWWWWD"],NOR:[1530,1922,31,3.5,"WDWDLWWDWWW"],IRQ:[1432,1592,1501,0.05,"LLDWWWDDWWL"],ARG:[1886,2128,9,10.4,"WWWWWWLWDWW"],AUT:[1597,1857,251,0.1,"WDWWLWWWWWW"],ALG:[1571,1759,301,0.1,"LWLDDDDWWWW"],JOR:[1389,1691,751,0.1,"LLLDDLWWWWW"],POR:[1770,1976,11,7,"DWWWDWLDWWW"],COL:[1693,1998,41,2.1,"WWWLLWWDWWW"],UZB:[1459,1735,2001,0.1,"LLLDWDWLW"],COD:[1474,1639,501,0.1,"DLDWWLWDWWD"],ENG:[1826,2042,6.5,11.2,"WWWLDWWWWWW"],CRO:[1717,1933,91,1.6,"LWLWWWWWDWW"],PAN:[1539,1743,751,0.05,"LWDLLDWWDLD"],GHA:[1347,1509,301,0.1,"WWLWWLDLDLW"]};
+let RATINGS={MEX:[1687,1800,61,1,"WWWWWDDWWWL"],KOR:[1592,1754,351,0.4,"LWWWLLWWLDW"],RSA:[1432,1526,2501,0.1,"DLWDWWDWLDW"],CZE:[1506,1691,501,0.2,"DLDWWLDDWLW"],CAN:[1552,1806,151,0.52,"WDLDWWLWDLW"],SUI:[1641,1865,67,0.9,"WDDWDLDWDWW"],QAT:[1450,1427,1001,0.02,"LDDLLDLLWDW"],BIH:[1387,1571,501,0.1,"LDDDLDDWLWD"],BRA:[1766,1978,11,6.6,"DWWWLDWLWWW"],MAR:[1755,1840,46,1.9,"DWWWWDWWWWW"],SCO:[1503,1794,151,0.2,"WWLLLLLWLWD"],HAI:[1293,1536,2501,0.004,"LLLDLWWLWDD"],USA:[1671,1780,41,1.2,"WLWLLWWWDWL"],AUS:[1579,1839,601,0.3,"WDLWWLLWLLW"],PAR:[1505,1780,301,0.1,"LWLWWWWDLDL"],TUR:[1606,1849,91,0.9,"LWWWWDWWW"],GER:[1730,1939,13,5.1,"WWWWWLWWLLL"],ECU:[1565,1890,121,1.4,"LWWWDDDWDWD"],CIV:[1541,1743,301,0.4,"WWWWLWWDW"],CUW:[1295,1427,2501,0.05,"LWLLLWDWWD"],NED:[1754,1944,19,3.6,"DWLDWWDWWWD"],JPN:[1662,1910,51,0.9,"DWWWLLLDLDL"],TUN:[1490,1585,501,0.2,"LLLDLLDWWWD"],SWE:[1530,1755,101,0.4,"WDLWWDLLLWD"],BEL:[1742,1879,36,2.4,"DWWDWWDWDWW"],IRN:[1620,1756,1001,0.05,"DWDWLDDWLWL"],EGY:[1562,1711,251,0.4,"DLWDWDLWWDW"],NZL:[1276,1578,2501,0.02,"DLLWL"],ESP:[1880,2171,5.5,16.1,"DWDDWDWWWWW"],URU:[1680,1890,67,1.2,"DDDWDWWDWWW"],KSA:[1450,1592,1001,0.1,"DDWLDLWLWDW"],CPV:[1390,1561,1001,0.05,"DWDLDDWDWWW"],FRA:[1862,2063,5,13,"WWLWWWDWWW"],SEN:[1645,1869,101,1,"LDLWWLWWWWD"],NOR:[1530,1922,31,3.5,"WDWDLWWDWWW"],IRQ:[1432,1592,1501,0.05,"LLDWWWDDWWL"],ARG:[1886,2128,9,10.4,"WWWWWWLWDWW"],AUT:[1597,1857,251,0.1,"WDWWLWWWWWW"],ALG:[1571,1759,301,0.1,"LWLDDDDWWWW"],JOR:[1389,1691,751,0.1,"LLLDDLWWWWW"],POR:[1770,1976,11,7,"DWWWDWLDWWW"],COL:[1693,1998,41,2.1,"WWWLLWWDWWW"],UZB:[1459,1735,2001,0.1,"LLLDWDWLW"],COD:[1474,1639,501,0.1,"DLDWWLWDWWD"],ENG:[1826,2042,6.5,11.2,"WWWLDWWWWWW"],CRO:[1717,1933,91,1.6,"LWLWWWWWDWW"],PAN:[1539,1743,751,0.05,"LWDLLDWWDLD"],GHA:[1347,1509,301,0.1,"WWLWWLDLDLW"]};
 const METHOD_NAME={blend:"Balanced blend",potgoals:"Pot + goals",fifa:"FIFA ranking",form:"Recent form",h2h:"Head-to-head (all-time Elo)",odds:"Betting market",opta:"Analyst supercomputer"};
 const EXPLAIN={
   blend:"<b>Balanced blend</b> — the all-round default. Averages the four rating models (FIFA ranking, Elo, betting odds, analyst %) into one composite.",
@@ -362,8 +365,10 @@ function potGoalsRaw(){ const o={}; for(const c in T){ const s=STATS[c]||{gf:0,g
 function zscores(raw){ const v=Object.values(raw), m=v.reduce((a,b)=>a+b,0)/v.length, sd=Math.sqrt(v.reduce((a,b)=>a+(b-m)*(b-m),0)/v.length)||1, z={}; for(const k in raw) z[k]=(raw[k]-m)/sd; return z; }
 function rRaw(method){ const o={}; for(const c in RATINGS){ const r=RATINGS[c];
   o[c]= method==="fifa"?r[0] : method==="elo"?r[1] : method==="odds"?-Math.log(r[2]||1000) : Math.log((r[3]||0.01)+0.02); } return o; }
-const Z={ fifa:zscores(rRaw("fifa")), elo:zscores(rRaw("elo")), odds:zscores(rRaw("odds")), opta:zscores(rRaw("opta")) };
-Z.blend={}; for(const c in RATINGS) Z.blend[c]=(Z.fifa[c]+Z.elo[c]+Z.odds[c]+Z.opta[c])/4;
+let Z={};
+function buildZ(){ Z={ fifa:zscores(rRaw("fifa")), elo:zscores(rRaw("elo")), odds:zscores(rRaw("odds")), opta:zscores(rRaw("opta")) };
+  Z.blend={}; for(const c in RATINGS) Z.blend[c]=(Z.fifa[c]+Z.elo[c]+Z.odds[c]+Z.opta[c])/4; }
+buildZ();
 function formPPG(c,N){ const f=RATINGS[c]?RATINGS[c][4]:""; const n=Math.min(N,f.length); if(!n) return 1; let s=0; for(let i=0;i<n;i++) s+= f[i]==="W"?3:f[i]==="D"?1:0; return s/n; }
 const _fz={}; function formZ(N){ if(_fz[N]) return _fz[N]; const raw={}; for(const c in RATINGS) raw[c]=formPPG(c,N); return _fz[N]=zscores(raw); }
 function zmap(z){ return 66 + 9*Math.max(-2.3,Math.min(2.3,z||0)); }
@@ -649,7 +654,33 @@ document.addEventListener('mouseout',e=>{ if(e.target.closest&&e.target.closest(
 window.addEventListener('resize',()=>{ drawConn(); applyTracking(); hideTip(); });
 window.addEventListener('load',()=>{ drawConn(); applyTracking(); setTimeout(()=>{drawConn();applyTracking();},250); });
 
+/* ---- live data: data.json overrides the built-in snapshot; harmless if the fetch fails ---- */
+function buildLockset(){ LOCKSET=new Set(Object.keys(LOCKED).map(Number)); }
+function applyData(d){
+  if(!d||typeof d!=="object") return false; let changed=false;
+  if(d.ratings && typeof d.ratings==="object"){ const R={};
+    for(const c in d.ratings){ const r=d.ratings[c]; R[c]=Array.isArray(r)?r.slice():[+r.fifa||0,+r.elo||0,+r.odds||0,+r.opta||0,String(r.form||"")]; }
+    for(const c in RATINGS) if(!R[c]) R[c]=RATINGS[c];        // keep any team missing from the feed
+    RATINGS=R; buildZ(); for(const k in _fz) delete _fz[k]; changed=true; }
+  if(d.locked && typeof d.locked==="object"){ const L={};
+    for(const k in d.locked){ const v=d.locked[k]; if(Array.isArray(v)&&v.length===2) L[+k]=[+v[0],+v[1]]; }
+    LOCKED=L; buildLockset();
+    for(const no in LOCKED){ state.res[no]=LOCKED[no]; state.userset.delete(+no); }   // adopt newly-played scores
+    changed=true; }
+  if(changed){ recompute(); renderAll(); }
+  return changed; }
+function setDataStatus(meta,applied,err){ const t=document.getElementById('dstat-txt'); if(!t) return;
+  if(err){ t.textContent="couldn't reach data.json — using built-in snapshot"; t.style.color="var(--bad)"; }
+  else if(meta){ t.textContent="live data v"+(meta.version||"?")+" · "+(meta.asOf||""); t.style.color="var(--mut)"; }
+  else { t.textContent="using built-in snapshot"; t.style.color="var(--mut2)"; } }
+function loadData(announce){ const t=document.getElementById('dstat-txt'); if(announce&&t){ t.textContent="refreshing…"; t.style.color="var(--mut2)"; }
+  return fetch('./data.json?t='+Date.now(),{cache:"no-store"}).then(r=>{ if(!r.ok) throw 0; return r.json(); })
+    .then(d=>{ const ok=applyData(d); setDataStatus(d&&d.meta,ok); return ok; })
+    .catch(()=>{ setDataStatus(null,false,announce); return false; }); }
+document.getElementById('b-data').onclick=()=>loadData(true);
+
 refresh();
+loadData(false);
 </script>
 </body>
 </html>
