@@ -321,6 +321,13 @@
         <option value="opta">Analyst (supercomputer)</option>
         <option value="consensus">⚖ Consensus — all 8 models</option>
       </select></span>
+    <span class="msel"><label for="fc-cind">Cinderella line</label>
+      <select class="sel" id="fc-cind">
+        <option value="4">outside top 4</option>
+        <option value="8">outside top 8</option>
+        <option value="12">outside top 12</option>
+        <option value="16">outside top 16</option>
+      </select></span>
     <button class="btn gold" id="fc-run">▶ Run forecast</button>
     <span class="fc-progwrap"><span class="fc-track"><span id="fc-bar"></span></span><span class="status" id="fc-prog"></span></span>
   </div>
@@ -427,7 +434,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"h2h", dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"h2h", cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={};
 
 /* ============ ENGINE ============ */
@@ -851,6 +858,7 @@ function runForecast(){
 function renderForecast(){
   const el=document.getElementById('fc-panel'); if(!el) return;
   const fcm=document.getElementById('fc-method'); if(fcm) fcm.value=state.fcScore||state.method;
+  const fcc=document.getElementById('fc-cind'); if(fcc) fcc.value=state.cindTop;
   if(!state.fc){ el.innerHTML=`<div class="dhint">Plays the tournament <b>10,000 times</b> with the current <b>${METHOD_NAME[state.method]}</b> model (keeping the played results &amp; your edits), then tallies each team's odds of reaching every stage. Press <b>Run forecast</b>.</div>`; return; }
   const {tally,N,method}=state.fc, pct=x=>100*x/N;
   const rows=Object.keys(tally).sort((a,b)=>tally[b].ch-tally[a].ch || tally[b].fin-tally[a].fin);
@@ -864,11 +872,11 @@ function renderForecast(){
   const top4=Object.keys(tally).sort((a,b)=>tally[b].sf-tally[a].sf).slice(0,4);
   const chip=(c,k)=>`<span class="fcchip">${fl(c)} ${nm(c)} <b>${pct(tally[c][k]).toFixed(0)}%</b></span>`;
   const projBlock=`<div class="fc-proj"><div class="fc-projrow"><span class="vk">likely quarter-finalists (last 8)</span> ${top8.map(c=>chip(c,'qf')).join('')}</div><div class="fc-projrow"><span class="vk">likely semifinalists (last 4)</span> ${top4.map(c=>chip(c,'sf')).join('')}</div></div>`;
-  const seeds=new Set(Object.keys(tally).sort((a,b)=>(RATINGS[b]?RATINGS[b][0]:0)-(RATINGS[a]?RATINGS[a][0]:0)).slice(0,8));
+  const seeds=new Set(Object.keys(tally).sort((a,b)=>(RATINGS[b]?RATINGS[b][0]:0)-(RATINGS[a]?RATINGS[a][0]:0)).slice(0,state.cindTop));
   const dh=Object.keys(tally).filter(c=>!seeds.has(c)).sort((a,b)=>tally[b].sf-tally[a].sf).slice(0,6);
   let cindN=0; for(const k in qc){ if(k.split("|").some(c=>!seeds.has(c))) cindN+=qc[k]; }
   const pCindSF=100*cindN/N, pCindCh=100*Object.keys(tally).filter(c=>!seeds.has(c)).reduce((s,c)=>s+tally[c].ch,0)/N;
-  const cindBlock=`<div class="fc-cind"><div class="fc-projrow"><span class="vk">cinderella watch · dark horses outside the FIFA top-8</span><span class="small">surprise semifinalist <b style="color:var(--acc2)">${pCindSF.toFixed(0)}%</b> · surprise champion <b style="color:var(--acc2)">${pCindCh.toFixed(1)}%</b></span></div><div class="fc-projrow">${dh.map(c=>chip(c,'sf')).join('')}</div></div>`;
+  const cindBlock=`<div class="fc-cind"><div class="fc-projrow"><span class="vk">cinderella watch · dark horses outside the FIFA top-${state.cindTop}</span><span class="small">surprise semifinalist <b style="color:var(--acc2)">${pCindSF.toFixed(0)}%</b> · surprise champion <b style="color:var(--acc2)">${pCindCh.toFixed(1)}%</b></span></div><div class="fc-projrow">${dh.map(c=>chip(c,'sf')).join('')}</div></div>`;
   let h=`<div class="fc-head"><div><span class="vk">most likely champion</span><br><b>${fl(champ)} ${nm(champ)}</b> <span class="mut">${pct(tally[champ].ch).toFixed(1)}%</span> <span class="small">· likely finalists ${fl(fin[0])}${nm(fin[0])} / ${fl(fin[1])}${nm(fin[1])}</span></div>
     <div class="small">${N.toLocaleString()} sims · ${METHOD_NAME[method]} model${stale?` <span class="warn">· re-run for ${METHOD_NAME[state.method]}</span>`:''}</div></div>
     ${projBlock}
@@ -950,6 +958,7 @@ document.getElementById('fc-method').onchange=function(){
   if(this.value!=="consensus"){ state.method=this.value; const ms=document.getElementById('method'); if(ms) ms.value=this.value; onMethod(); }
   runForecast();                    // auto re-run with the chosen score (or the consensus blend)
 };
+document.getElementById('fc-cind').onchange=function(){ state.cindTop=+this.value; renderForecast(); };  // just re-renders the Cinderella line
 document.getElementById('b-reset').onclick=resetAll;
 const methodSel=document.getElementById('method'), formwinSel=document.getElementById('formwin');
 const upsetEl=document.getElementById('upset'), uvalEl=document.getElementById('uval'), atipEl=document.getElementById('atip');
@@ -1030,8 +1039,10 @@ function setView(v){ state.view=v;
   document.getElementById('view-forecast').style.display = v==='forecast'?'':'none';
   document.querySelectorAll('#topnav .tnav').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
   if(v==='data') renderData(); if(v==='acc') renderAcc(); if(v==='forecast') renderForecast();
+  if(('#'+v)!==location.hash){ try{ history.replaceState(null,'','#'+v); }catch(e){} }   // deep-linkable view
   window.scrollTo(0,0); }
 document.getElementById('topnav').addEventListener('click',e=>{ const b=e.target.closest('.tnav'); if(!b||!b.dataset.view) return; setView(b.dataset.view); });
+window.addEventListener('hashchange',()=>{ const hv=location.hash.slice(1); if(hv && hv!==state.view && document.getElementById('view-'+hv)) setView(hv); });
 document.getElementById('dtabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.dtab=b.dataset.tab; renderData(); });
 document.getElementById('dpanel').addEventListener('click',e=>{ const th=e.target.closest('th[data-sort]'); if(!th) return;
   if(state.dtab==="log"){ state.logAsc=!state.logAsc; renderData(); return; }
@@ -1045,6 +1056,7 @@ methodSel.value=state.method; onMethod();   // default selection: Head-to-head (
 renderSources();
 simulate();                                  // auto-run the default sim (England champion under H2H all-time)
 loadData(false);
+(function(){ const hv=location.hash.slice(1); if(hv && hv!==state.view && document.getElementById('view-'+hv)) setView(hv); })();   // open the deep-linked view (#forecast, #data, #acc)
 </script>
 </body>
 </html>
