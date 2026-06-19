@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ML Lab · WC2026 — football match-prediction models</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=EB+Garamond:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e18; --bg2:#0e1222; --card:#141a2e; --card2:#1a2138; --line:#26304d;
+    --ink:#e8eaf6; --mut:#aab2d5; --mut2:#7f88ad; --acc:#9b7aed; --acc2:#67b8f0; --acc-soft:#9b7aed22;
+    --good:#67d99b; --bad:#f0768b; --warn:#e8c06a;
+    --serif:'Fraunces',Georgia,serif; --serif-alt:'EB Garamond',Georgia,serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 700px at 80% -10%,#1a1740 0%,transparent 55%),radial-gradient(900px 600px at -10% 10%,#102038 0%,transparent 50%),var(--bg);color:var(--ink);font-family:var(--serif-alt);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1100px;margin:0 auto;padding:26px 20px 80px}
+  h1{font-family:var(--serif);font-weight:600;font-size:30px;margin:0 0 4px;letter-spacing:-.5px}
+  h1 .em{color:var(--acc)} .sub{color:var(--mut2);font-size:15px;margin:0 0 14px}
+  h2.sec{font-family:var(--serif);font-weight:600;font-size:20px;margin:30px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+  h2.sec .cnt{font-family:var(--mono);font-size:11px;color:var(--mut2);font-weight:400;letter-spacing:0}
+  a{color:var(--acc2);text-decoration:none} a:hover{color:var(--acc)}
+  .topnav{display:flex;gap:4px;align-items:center;border-bottom:1px solid var(--line);margin:14px 0 18px}
+  .tnav{font-family:var(--serif-alt);font-size:15px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--mut2);padding:9px 16px;cursor:pointer;text-decoration:none;margin-bottom:-1px}
+  .tnav:hover{color:var(--ink)} .tnav.on{color:var(--acc);border-bottom-color:var(--acc)}
+  .card{background:linear-gradient(180deg,var(--card) 0%,var(--bg2) 100%);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+  .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{font-family:var(--mono);font-size:12px;letter-spacing:.5px;background:var(--acc);color:#0b0e18;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;font-weight:500}
+  .btn:hover{filter:brightness(1.08)} .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--mut)} .btn.ghost:hover{border-color:var(--acc);color:var(--ink)}
+  label{font-family:var(--mono);font-size:11px;color:var(--mut2);text-transform:uppercase;letter-spacing:1px;margin-right:6px}
+  select,input[type=number]{font-family:var(--serif-alt);font-size:14px;background:var(--card2);color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:7px 9px}
+  input[type=checkbox]{accent-color:var(--acc);width:15px;height:15px;vertical-align:-2px}
+  .pill{font-family:var(--mono);font-size:11px;color:var(--mut);background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:3px 10px}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin-top:6px}
+  th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2);font-weight:400}
+  td.best{color:var(--good);font-weight:600}
+  .num{font-family:var(--mono)} .mut{color:var(--mut2)} .small{font-size:12.5px;color:var(--mut2)}
+  .bars{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  .barrow{display:grid;grid-template-columns:130px 1fr 56px;align-items:center;gap:10px;font-size:13px}
+  .bar{height:13px;background:var(--card2);border-radius:7px;overflow:hidden;border:1px solid var(--line)}
+  .bar span{display:block;height:100%;background:linear-gradient(90deg,var(--acc2),var(--acc))}
+  .wld{display:flex;height:30px;border-radius:8px;overflow:hidden;border:1px solid var(--line);font-family:var(--mono);font-size:12px;font-weight:500}
+  .wld>div{display:flex;align-items:center;justify-content:center;color:#0b0e18;min-width:0;white-space:nowrap}
+  .wld .w{background:#67d99b}.wld .d{background:#7f88ad}.wld .a{background:#67b8f0}
+  .pred{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px}
+  .predrow{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center}
+  .predrow .nm{font-family:var(--mono);font-size:11px;color:var(--mut2);text-transform:uppercase}
+  .feat{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+  .feat .fw{font-family:var(--mono);font-size:11px;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+  .feat .fw b{color:var(--ink)} .pos{color:var(--good)} .neg{color:var(--bad)}
+  .note{font-size:13px;color:var(--mut);line-height:1.7;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin:12px 0}
+  .note b{color:var(--ink)}
+  svg text{font-family:var(--mono);fill:var(--mut2)}
+  .status{font-family:var(--mono);font-size:12px;color:var(--mut)}
+  .spin{color:var(--warn)}
+  .hide{display:none}
+  .scoreline{font-family:var(--mono);font-size:22px;color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ML Lab <span class="em">·</span> WC2026</h1>
+  <p class="sub">Match-prediction models trained in your browser on 150 years of international football — no server, no libraries, all the maths in view.</p>
+  <div class="topnav">
+    <a class="tnav" href="index.html">⚽ Tournament</a>
+    <a class="tnav" href="index.html">📊 Data &amp; provenance</a>
+    <button class="tnav on">🧪 ML Lab</button>
+  </div>
+
+  <div class="card">
+    <div class="row" style="justify-content:space-between">
+      <div class="status" id="status">Loading the dataset…</div>
+      <div class="row">
+        <span class="pill" id="pill-rows">— matches</span>
+        <span class="pill" id="pill-teams">— teams</span>
+      </div>
+    </div>
+    <div class="row hide" id="uploadrow" style="margin-top:10px">
+      <span class="small">Couldn't fetch the CSV (running from a file?). Load it manually:</span>
+      <input type="file" id="file" accept=".csv">
+    </div>
+  </div>
+
+  <h2 class="sec">① The pipeline <span class="cnt">— features engineered chronologically, no future leakage</span></h2>
+  <div class="note">
+    For every match we walk the dataset in <b>date order</b> and, using only what was known <i>before kickoff</i>, build four features:
+    <b>Elo difference</b> (a running strength rating updated after each game, with home advantage &amp; margin-of-victory),
+    <b>home advantage</b> (0 on neutral ground), <b>recent-form goal difference</b> (last N games each), and the pairwise <b>head-to-head</b> rate.
+    Models train on the early years and are scored on a held-out <b>recent</b> slice they never saw — so the accuracy below is honest out-of-sample, not memorised.
+  </div>
+  <div class="card">
+    <div class="row">
+      <span><label>warm-up from</label><select id="cf-warm"><option>1930</option><option selected>1950</option><option>1970</option><option>1990</option></select></span>
+      <span><label>test from</label><select id="cf-split"><option>2010</option><option>2014</option><option selected>2016</option><option>2018</option><option>2020</option></select></span>
+      <span><label>form window</label><select id="cf-form"><option>3</option><option selected>5</option><option>8</option><option>10</option></select></span>
+      <span><label>Elo K</label><select id="cf-k"><option>20</option><option selected>30</option><option>40</option></select></span>
+      <button class="btn" id="train" disabled>Train models ▶</button>
+      <span class="status" id="trainstat"></span>
+    </div>
+  </div>
+
+  <div id="results" class="hide">
+    <h2 class="sec">② Model leaderboard <span class="cnt" id="testcnt"></span></h2>
+    <div class="small" style="margin-bottom:4px">Out-of-sample, on the held-out recent matches. Lower log-loss / Brier = better calibrated; higher accuracy = more right.</div>
+    <table id="board"><thead><tr><th>Model</th><th>Accuracy</th><th>Log-loss</th><th>Brier</th><th>vs naïve</th></tr></thead><tbody></tbody></table>
+    <div class="bars" id="accbars"></div>
+
+    <h2 class="sec">③ What the model learned <span class="cnt">— logistic weights (standardised)</span></h2>
+    <div class="small">Positive weight on the <b>home-win</b> class means the feature pushes toward a home win. This is the full logistic model.</div>
+    <div class="feat" id="weights"></div>
+
+    <h2 class="sec">④ Calibration <span class="cnt">— do 70%-confidence predictions win 70% of the time?</span></h2>
+    <div class="small">Predicted home-win probability (binned) vs the actual home-win rate in each bin. On the diagonal = perfectly calibrated.</div>
+    <div id="calib"></div>
+
+    <h2 class="sec">⑤ Predict a match</h2>
+    <div class="card">
+      <div class="row">
+        <span><label>home</label><select id="p-home"></select></span>
+        <span><label>away</label><select id="p-away"></select></span>
+        <span><label><input type="checkbox" id="p-neutral" checked> neutral venue</label></span>
+        <button class="btn" id="predict">Predict ▶</button>
+      </div>
+      <div id="predout"></div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:28px">
+    <b>Models</b> (all from scratch, gradient descent): <b>Elo-logistic</b> baseline (strength + home only) · <b>Full logistic</b> softmax over all four features (W/D/L) · <b>Poisson</b> goals model (two Poisson regressions → a score matrix → outcome &amp; most-likely scoreline). Baseline = always predict the majority class. Data: <a href="https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017" target="_blank">Kaggle · martj42 international results 1872→present</a>.
+  </div>
+</div>
+
+<script>
+// ============================ data ============================
+const $=id=>document.getElementById(id);
+let MATCHES=[], MODEL=null;
+
+function parseCSV(text){
+  const lines=text.split("\n"), out=[];
+  for(let i=1;i<lines.length;i++){
+    const ln=lines[i]; if(!ln) continue;
+    const f=ln.split(","); if(f.length<5) continue;
+    const hs=+f[3], as=+f[4];
+    if(!Number.isFinite(hs)||!Number.isFinite(as)||f[3]===""||f[4]==="") continue; // skip NA / future
+    out.push({date:f[0], home:f[1], away:f[2], hs, as, neutral:f[f.length-1].trim()==="TRUE"});
+  }
+  out.sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:0);
+  return out;
+}
+function ready(){
+  $("status").textContent="Dataset ready — "+MATCHES.length.toLocaleString()+" matches, "+MATCHES[0].date.slice(0,4)+"→"+MATCHES[MATCHES.length-1].date.slice(0,4)+".";
+  $("pill-rows").textContent=MATCHES.length.toLocaleString()+" matches";
+  const teams=new Set(); MATCHES.forEach(m=>{teams.add(m.home);teams.add(m.away);});
+  $("pill-teams").textContent=teams.size+" teams";
+  $("train").disabled=false;
+}
+fetch("scripts/intl-results.csv").then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{MATCHES=parseCSV(t);ready();})
+  .catch(()=>{$("status").textContent="Auto-load blocked — pick the CSV below.";$("uploadrow").classList.remove("hide");});
+$("file").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{MATCHES=parseCSV(t);$("uploadrow").classList.add("hide");ready();});});
+
+// ============================ features ============================
+function buildFeatures(cfg){
+  const elo={}, last={}, h2h={}, rows=[];
+  const E=c=>elo[c]??1500;
+  for(const m of MATCHES){
+    const eh=E(m.home), ea=E(m.away), hAdv=m.neutral?0:cfg.homeAdv;
+    const fGD=c=>{const a=last[c];if(!a||!a.length)return 0;let s=0;for(const r of a)s+=r;return s/a.length;};
+    const key=m.home<m.away?m.home+"|"+m.away:m.away+"|"+m.home, rec=h2h[key]||{x:0,d:0,y:0};
+    const tot=rec.x+rec.d+rec.y, signed=m.home<m.away?rec.x-rec.y:rec.y-rec.x;
+    const feat=[ (eh-ea)/100, m.neutral?0:1, fGD(m.home)-fGD(m.away), tot?signed/tot:0 ];
+    const y=m.hs>m.as?0:(m.hs===m.as?1:2);
+    if(m.date.slice(0,4)>=cfg.warm) rows.push({date:m.date,home:m.home,away:m.away,feat,y,hs:m.hs,as:m.as});
+    // updates
+    const exp=1/(1+Math.pow(10,-((eh-ea+hAdv)/400))), sc=m.hs>m.as?1:(m.hs===m.as?.5:0), mov=Math.log(Math.abs(m.hs-m.as)+1);
+    elo[m.home]=eh+cfg.K*mov*(sc-exp); elo[m.away]=ea+cfg.K*mov*((1-sc)-(1-exp));
+    (last[m.home]=last[m.home]||[]).push(m.hs-m.as); if(last[m.home].length>cfg.formN)last[m.home].shift();
+    (last[m.away]=last[m.away]||[]).push(m.as-m.hs); if(last[m.away].length>cfg.formN)last[m.away].shift();
+    const r=h2h[key]||(h2h[key]={x:0,d:0,y:0});
+    if(m.hs===m.as)r.d++; else{const homeA=m.home<m.away; const homeWon=m.hs>m.as; (homeWon===homeA)?r.x++:r.y++;}
+  }
+  return {rows, elo, last, h2h};
+}
+
+// ============================ models (from scratch) ============================
+function standardize(rows, idxs){
+  const mean={}, sd={};
+  for(const j of idxs){let s=0;for(const r of rows)s+=r.feat[j];mean[j]=s/rows.length;
+    let v=0;for(const r of rows)v+=(r.feat[j]-mean[j])**2;sd[j]=Math.sqrt(v/rows.length)||1;}
+  return {mean, sd};
+}
+function vec(feat, cols, st){ // cols: which feature idxs to use; bias prepended
+  const x=[1];
+  for(const j of cols) x.push(st.cont.has(j) ? (feat[j]-st.mean[j])/st.sd[j] : feat[j]);
+  return x;
+}
+function trainSoftmax(X, Y, K, iters, lr, l2){
+  const F=X[0].length, W=Array.from({length:K},()=>new Array(F).fill(0)), n=X.length;
+  for(let it=0;it<iters;it++){
+    const g=Array.from({length:K},()=>new Array(F).fill(0));
+    for(let i=0;i<n;i++){
+      const x=X[i], y=Y[i], lo=W.map(w=>{let s=0;for(let f=0;f<F;f++)s+=w[f]*x[f];return s;});
+      const mx=Math.max(...lo); let Z=0; const p=lo.map(l=>{const e=Math.exp(l-mx);Z+=e;return e;});
+      for(let k=0;k<K;k++){const d=p[k]/Z-(y===k?1:0);for(let f=0;f<F;f++)g[k][f]+=d*x[f];}
+    }
+    for(let k=0;k<K;k++)for(let f=0;f<F;f++)W[k][f]-=lr*(g[k][f]/n+l2*W[k][f]);
+  }
+  return W;
+}
+const smax=(W,x)=>{const lo=W.map(w=>{let s=0;for(let f=0;f<w.length;f++)s+=w[f]*x[f];return s;});const mx=Math.max(...lo);let Z=0;const p=lo.map(l=>{const e=Math.exp(l-mx);Z+=e;return e;});return p.map(e=>e/Z);};
+function trainPoisson(X, Yg, iters, lr, l2){
+  const F=X[0].length, w=new Array(F).fill(0), n=X.length;
+  let m=0;for(const y of Yg)m+=y; w[0]=Math.log((m/n)||1);
+  for(let it=0;it<iters;it++){const g=new Array(F).fill(0);
+    for(let i=0;i<n;i++){const x=X[i];let s=0;for(let f=0;f<F;f++)s+=w[f]*x[f];const lam=Math.exp(Math.min(s,2.5));const d=lam-Yg[i];for(let f=0;f<F;f++)g[f]+=d*x[f];}
+    for(let f=0;f<F;f++)w[f]-=lr*(g[f]/n+l2*w[f]);}
+  return w;
+}
+const plam=(w,x)=>{let s=0;for(let f=0;f<w.length;f++)s+=w[f]*x[f];return Math.exp(Math.min(s,2.5));};
+function fact(k){let r=1;for(let i=2;i<=k;i++)r*=i;return r;}
+function poissonOutcome(lh,la,mg=9){
+  const po=(k,l)=>Math.exp(-l)*Math.pow(l,k)/fact(k);
+  let H=0,D=0,A=0,bp=0,bs=[0,0];
+  for(let i=0;i<=mg;i++)for(let j=0;j<=mg;j++){const p=po(i,lh)*po(j,la);if(i>j)H+=p;else if(i===j)D+=p;else A+=p;if(p>bp){bp=p;bs=[i,j];}}
+  const t=H+D+A||1; return {p:[H/t,D/t,A/t], score:bs};
+}
+
+// ============================ train + evaluate ============================
+function run(){
+  const cfg={warm:$("cf-warm").value, split:$("cf-split").value, formN:+$("cf-form").value, K:+$("cf-k").value, homeAdv:65};
+  $("trainstat").innerHTML='<span class="spin">building features &amp; training…</span>';
+  $("train").disabled=true;
+  setTimeout(()=>{
+    const fb=buildFeatures(cfg);
+    const tr=fb.rows.filter(r=>r.date.slice(0,4)<cfg.split), te=fb.rows.filter(r=>r.date.slice(0,4)>=cfg.split);
+    const st={cont:new Set([0,2,3])}; Object.assign(st, standardize(tr,[0,2,3]));
+    const COLS_ELO=[0,1], COLS_FULL=[0,1,2,3];
+    const Xe=tr.map(r=>vec(r.feat,COLS_ELO,st)), Xf=tr.map(r=>vec(r.feat,COLS_FULL,st)), Y=tr.map(r=>r.y);
+    const We=trainSoftmax(Xe,Y,3,220,0.5,1e-4), Wf=trainSoftmax(Xf,Y,3,220,0.5,1e-4);
+    const Yh=tr.map(r=>r.hs), Ya=tr.map(r=>r.as);
+    const Wph=trainPoisson(Xf,Yh,260,0.4,1e-4), Wpa=trainPoisson(Xf,Ya,260,0.4,1e-4);
+    // majority class baseline
+    const cnt=[0,0,0]; Y.forEach(y=>cnt[y]++); const maj=cnt.indexOf(Math.max(...cnt)); const base=[0,0,0]; base[maj]=1;
+    const basep=cnt.map(c=>c/Y.length);
+    const predict={
+      "Elo-logistic": r=>smax(We,vec(r.feat,COLS_ELO,st)),
+      "Full logistic": r=>smax(Wf,vec(r.feat,COLS_FULL,st)),
+      "Poisson goals": r=>{const x=vec(r.feat,COLS_FULL,st);return poissonOutcome(plam(Wph,x),plam(Wpa,x)).p;},
+      "Naïve (majority)": _=>basep.slice()
+    };
+    const evalM=fn=>{let acc=0,ll=0,br=0;for(const r of te){const p=fn(r);const k=p.indexOf(Math.max(...p));if(k===r.y)acc++;ll+=-Math.log(Math.max(p[r.y],1e-9));for(let c=0;c<3;c++)br+=(p[c]-(c===r.y?1:0))**2;}const n=te.length;return{acc:acc/n,ll:ll/n,br:br/n};};
+    const res={}; for(const k in predict)res[k]=evalM(predict[k]);
+    MODEL={cfg,fb,st,We,Wf,Wph,Wpa,COLS_ELO,COLS_FULL,predict,res,te,base:res["Naïve (majority)"]};
+    render();
+    $("trainstat").innerHTML='trained on <b>'+tr.length.toLocaleString()+'</b>, tested on <b>'+te.length.toLocaleString()+'</b>.';
+    $("train").disabled=false;
+  },40);
+}
+$("train").addEventListener("click",run);
+
+// ============================ render ============================
+function pct(x){return (x*100).toFixed(1)+"%";}
+function render(){
+  $("results").classList.remove("hide");
+  const {res,te,cfg}=MODEL;
+  $("testcnt").textContent="— "+te.length.toLocaleString()+" matches from "+cfg.split+" on";
+  const order=Object.keys(res).filter(k=>k!=="Naïve (majority)"); order.push("Naïve (majority)");
+  const bestAcc=Math.max(...order.map(k=>res[k].acc)), bestLL=Math.min(...order.map(k=>res[k].ll)), bestBr=Math.min(...order.map(k=>res[k].br));
+  const naiveAcc=res["Naïve (majority)"].acc;
+  $("board").querySelector("tbody").innerHTML=order.map(k=>{
+    const m=res[k], lift=((m.acc-naiveAcc)*100);
+    return `<tr><td>${k}</td><td class="num ${m.acc===bestAcc?'best':''}">${pct(m.acc)}</td><td class="num ${m.ll===bestLL?'best':''}">${m.ll.toFixed(3)}</td><td class="num ${m.br===bestBr?'best':''}">${m.br.toFixed(3)}</td><td class="num ${lift>0?'pos':'mut'}">${k==="Naïve (majority)"?'—':(lift>=0?'+':'')+lift.toFixed(1)+' pp'}</td></tr>`;
+  }).join("");
+  $("accbars").innerHTML=order.map(k=>{const a=res[k].acc;return `<div class="barrow"><span>${k}</span><div class="bar"><span style="width:${(a/0.7*100).toFixed(1)}%"></span></div><span class="num">${pct(a)}</span></div>`;}).join("");
+  // weights (full model, home-win class minus away-win class for interpretability)
+  const names=["bias","Elo diff","home adv","recent form","head-to-head"];
+  $("weights").innerHTML=names.map((nm,i)=>{const w=MODEL.Wf[0][i]-MODEL.Wf[2][i];if(i===0)return"";return `<span class="fw">${nm}: <b class="${w>0?'pos':'neg'}">${w>0?'+':''}${w.toFixed(2)}</b></span>`;}).filter(Boolean).join("")+`<span class="fw mut">→ positive favours the home/stronger side</span>`;
+  drawCalib();
+  fillTeams();
+}
+function drawCalib(){
+  const fn=MODEL.predict["Full logistic"], bins=Array.from({length:10},()=>({s:0,w:0,n:0}));
+  for(const r of MODEL.te){const p=fn(r);const b=Math.min(9,Math.floor(p[0]*10));bins[b].s+=p[0];bins[b].n++;if(r.y===0)bins[b].w++;}
+  const W=560,H=240,pad=34;
+  const X=v=>pad+v*(W-2*pad), Yc=v=>H-pad-v*(H-2*pad);
+  let pts=""; bins.forEach(b=>{if(b.n>5){const px=b.s/b.n,py=b.w/b.n;pts+=`<circle cx="${X(px).toFixed(1)}" cy="${Yc(py).toFixed(1)}" r="${Math.max(3,Math.min(9,Math.sqrt(b.n)/3)).toFixed(1)}" fill="var(--acc)" opacity=".8"/>`;}});
+  let path=""; bins.forEach((b,i)=>{if(b.n>5){const px=b.s/b.n,py=b.w/b.n;path+=(path?"L":"M")+X(px).toFixed(1)+" "+Yc(py).toFixed(1)+" ";}});
+  $("calib").innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:560px;background:var(--card);border:1px solid var(--line);border-radius:12px">
+    <line x1="${X(0)}" y1="${Yc(0)}" x2="${X(1)}" y2="${Yc(1)}" stroke="var(--mut2)" stroke-dasharray="4 4" opacity=".5"/>
+    <path d="${path}" fill="none" stroke="var(--acc)" stroke-width="1.5" opacity=".5"/>${pts}
+    <text x="${W/2}" y="${H-6}" text-anchor="middle">predicted home-win probability →</text>
+    <text x="12" y="${H/2}" transform="rotate(-90 12 ${H/2})" text-anchor="middle">actual rate</text>
+  </svg>`;
+}
+function fillTeams(){
+  const teams=Object.keys(MODEL.fb.elo).sort((a,b)=>MODEL.fb.elo[b]-MODEL.fb.elo[a]);
+  const opt=sel=>teams.map(t=>`<option ${t===sel?'selected':''}>${t}</option>`).join("");
+  $("p-home").innerHTML=opt("Argentina"); $("p-away").innerHTML=opt("France");
+}
+$("predict").addEventListener("click",()=>{
+  if(!MODEL)return; const {fb,st,COLS_ELO,COLS_FULL}=MODEL;
+  const home=$("p-home").value, away=$("p-away").value, neutral=$("p-neutral").checked;
+  if(home===away){$("predout").innerHTML='<div class="small" style="margin-top:8px">Pick two different teams.</div>';return;}
+  const eh=fb.elo[home]??1500, ea=fb.elo[away]??1500;
+  const fGD=c=>{const a=fb.last[c];if(!a||!a.length)return 0;let s=0;for(const r of a)s+=r;return s/a.length;};
+  const key=home<away?home+"|"+away:away+"|"+home, rec=fb.h2h[key]||{x:0,d:0,y:0}, tot=rec.x+rec.d+rec.y, signed=home<away?rec.x-rec.y:rec.y-rec.x;
+  const feat=[(eh-ea)/100, neutral?0:1, fGD(home)-fGD(away), tot?signed/tot:0];
+  const pe=smax(MODEL.We,vec(feat,COLS_ELO,st)), pf=smax(MODEL.Wf,vec(feat,COLS_FULL,st));
+  const xf=vec(feat,COLS_FULL,st), po=poissonOutcome(plam(MODEL.Wph,xf),plam(MODEL.Wpa,xf));
+  const wld=(p,h,a)=>`<div class="wld"><div class="w" style="width:${p[0]*100}%" title="${h} win">${p[0]>.12?Math.round(p[0]*100)+'%':''}</div><div class="d" style="width:${p[1]*100}%" title="draw">${p[1]>.12?Math.round(p[1]*100)+'%':''}</div><div class="a" style="width:${p[2]*100}%" title="${a} win">${p[2]>.12?Math.round(p[2]*100)+'%':''}</div></div>`;
+  $("predout").innerHTML=`
+    <div class="row" style="margin:14px 0 6px;justify-content:space-between">
+      <div><b>${home}</b> <span class="mut num">Elo ${Math.round(eh)}</span> &nbsp;vs&nbsp; <b>${away}</b> <span class="mut num">Elo ${Math.round(ea)}</span> ${neutral?'<span class="pill">neutral</span>':'<span class="pill">'+home+' home</span>'}</div>
+      <div class="scoreline">${po.score[0]}–${po.score[1]} <span class="small">most likely</span></div>
+    </div>
+    <div class="pred">
+      <div class="predrow"><span class="nm">Elo-logistic</span>${wld(pe,home,away)}</div>
+      <div class="predrow"><span class="nm">Full logistic</span>${wld(pf,home,away)}</div>
+      <div class="predrow"><span class="nm">Poisson goals</span>${wld(po.p,home,away)}</div>
+    </div>
+    <div class="small" style="margin-top:8px">Green = ${home} win · grey = draw · blue = ${away} win.${tot?` H2H on record: ${rec.x}-${rec.d}-${rec.y} (${home<away?home:away} view, ${tot} games).`:' They have never met.'}</div>`;
+});
+</script>
+</body>
+</html>
