@@ -467,7 +467,7 @@ function koReason(no){
       let seq=""; if(t.sel) seq=t.sel.map(m=>`${m.r}${m.s?" "+m.s:""}${m.y?" '"+String(m.y).slice(2):""}`).join("  ·  ");
       return `<b>Head-to-head</b> · ${h2hWinLabel(state.h2hWin)}<br>${fl(p[0])} ${nm(p[0])} vs ${fl(p[1])} ${nm(p[1])} — <b>${t.w}W ${t.d}D ${t.l}L</b> (${nm(p[0])} ~${pa}%)${seq?`<br>${nm(p[0])}: ${seq}`:""}${r.last?`<br>last: ${r.last}`:""}<br>→ ${fl(w)} ${nm(w)} advanced${u>0?` · upset ${u.toFixed(2)}`:""}.`; }
     const rr=h2hRec(p[0],p[1]);
-    const why = !rr ? "aren't both in the head-to-head dataset (top-16 contenders)" : (rr.p===0 ? "have never met" : `have no games in the ${h2hWinLabel(state.h2hWin)} window`);
+    const why = !rr ? "aren't both in the head-to-head dataset (top-16 contenders)" : (rr.p===0 ? "have no recorded meetings in this dataset" : `have no games in the ${h2hWinLabel(state.h2hWin)} window`);
     const pe=pBeat(p[0],p[1]), strong=pe>=0.5?p[0]:p[1];
     return `<b>Head-to-head — Elo fallback</b><br>${fl(p[0])} ${nm(p[0])} &amp; ${fl(p[1])} ${nm(p[1])} ${why}, so this used <b>Elo</b> (results-based neutral estimate) — favours ${nm(strong)} ~${Math.round(Math.max(pe,1-pe)*100)}%.<br>→ ${fl(w)} ${nm(w)} advanced.`; }
   const a=p[0],b=p[1], sa=strength(a),sb=strength(b), strong=sa>=sb?a:b, weak=sa>=sb?b:a;
