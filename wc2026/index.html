@@ -160,11 +160,11 @@
   .empty{color:var(--mut2);font-size:13px;padding:8px 2px}
 
   /* bracket */
-  .bracket{overflow-x:auto;overflow-y:hidden;padding:4px 2px 16px}
+  .bracket{overflow:auto;max-height:clamp(440px,78vh,880px);padding:0 2px 16px;overscroll-behavior:contain}
   .binner{position:relative;display:inline-flex;gap:42px;align-items:stretch;min-width:100%}
   svg.conn{position:absolute;inset:0;pointer-events:none;z-index:0}
   .col{display:flex;flex-direction:column;position:relative;z-index:1;min-width:204px} .col.cfinal{min-width:224px}
-  .col-h{text-align:center;font-size:10.5px;text-transform:uppercase;letter-spacing:1.1px;color:var(--mut2);font-weight:700;margin-bottom:2px}
+  .col-h{position:sticky;top:0;z-index:4;text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:var(--ink);font-weight:700;padding:6px 0 5px;margin-bottom:2px;background:var(--bg);box-shadow:0 1px 0 var(--line-hi)}
   .col-pad{display:flex;flex-direction:column;justify-content:space-around;height:100%}
   .match{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:6px 0;overflow:hidden;transition:opacity .15s}
   .m-head{display:flex;align-items:center;gap:6px;padding:4px 8px;font-size:9.5px;background:var(--bg2)}
@@ -190,7 +190,8 @@
   .tnav:hover{color:var(--ink)} .tnav.on{color:var(--acc);border-bottom-color:var(--acc)} .tnav.lk{margin-left:auto;font-size:13px;color:var(--acc2)} .tnav.lk:hover{color:var(--acc)}
   #b-theme{position:absolute;top:30px;right:18px;z-index:4;padding:5px 12px;font-size:11px;border-radius:7px}
   #today:empty{display:none}
-  .todayhd{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2);margin:10px 0 6px;display:flex;align-items:center;gap:7px}
+  .todayhd{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:10px 0 6px;display:flex;align-items:center;gap:7px}
+  #simspanel{overflow-x:auto}
   .todayrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 4px}
   .tcard{font-size:12.5px;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:6px 11px;display:flex;align-items:center;gap:8px;font-family:var(--sans)} .tcard b{color:var(--ink);font-family:var(--mono)}
   .tcard.live{border-color:var(--bad);box-shadow:inset 0 0 0 1px var(--bad)} .tcard.ft{opacity:.7}
@@ -199,22 +200,24 @@
   .livedot{width:8px;height:8px;border-radius:50%;background:var(--bad);display:inline-block;animation:livepulse 1.4s infinite}
   @keyframes livepulse{0%,100%{opacity:1}50%{opacity:.3}}
   .tpred{margin:2px 0 8px;border-collapse:collapse}
-  .tpred th{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.5px;text-align:center;color:var(--mut2);padding:3px 7px;font-weight:600} .tpred th.tl,.tpred td.tl{text-align:left}
-  .tpred td{text-align:center;font-size:14px;padding:3px 7px;border-top:1px solid var(--line)} .tpred td.tl{font-size:12px;color:var(--ink);white-space:nowrap}
-  .tp-ok{background:color-mix(in srgb,var(--good),transparent 84%)} .tp-no{background:color-mix(in srgb,var(--bad),transparent 84%)}
-  .tppct{display:block;font-family:var(--mono);font-size:8.5px;font-weight:400;color:var(--mut2);line-height:1.2;margin-top:1px}
+  .tpred th{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;text-align:center;color:var(--mut);padding:5px 8px;font-weight:600} .tpred th.tl,.tpred td.tl{text-align:left}
+  .tpred td{text-align:center;font-size:14px;padding:6px 8px;border-top:1px solid var(--line);white-space:nowrap} .tpred td.tl{font-size:12.5px;color:var(--ink)}
+  .tp-ok{background:color-mix(in srgb,var(--good),transparent 82%)} .tp-no{background:color-mix(in srgb,var(--bad),transparent 82%)}
+  .tppct{font-family:var(--mono);font-size:9.5px;font-weight:400;color:var(--mut);margin-left:4px;vertical-align:middle}
   .simhelp{margin:0 0 10px;font-size:12px}
   .simhelp summary{cursor:pointer;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);user-select:none;padding:3px 0;width:fit-content} .simhelp summary:hover{color:var(--ink)}
   .simhelp-body{padding:7px 2px 2px;display:grid;gap:6px;max-width:820px} .simhelp-body p{margin:0;line-height:1.5;color:var(--mut)} .simhelp-body b{color:var(--ink)}
-  .tpred td.gxcell{text-align:left;border-top:none;padding:0 6px 7px}
+  .tpred td.gxcell{text-align:left;border-top:none;padding:0 6px 7px;white-space:normal}
   .gx{font-size:12px} .gx summary{cursor:pointer;font-size:10.5px;color:var(--mut);user-select:none;padding:2px 0;width:fit-content} .gx summary:hover{color:var(--ink)}
   .gxlist{display:grid;max-width:660px;margin-top:3px}
   .gxitem{display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:baseline;padding:3px 0;border-top:1px solid var(--line)}
-  .gxm{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut2);line-height:1.5}
+  .gxm{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);line-height:1.5}
   .gxb{color:var(--mut);font-size:11.5px;line-height:1.45} .gxp{white-space:nowrap;font-family:var(--mono);font-size:11px;color:var(--ink)}
   .sfhd{font-size:14px;margin:24px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--line)} .sfhd .mut{font-weight:400;font-size:12px}
-  .sfsub{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2);margin:14px 0 4px}
+  .sfsub{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--ink);font-weight:600;margin:16px 0 5px;padding-bottom:3px;border-bottom:1px solid var(--line)}
   .sft{margin:0 0 6px} .sfsc{font-family:var(--mono);color:var(--ink);font-size:11px;margin-left:2px}
+  .kofilter{font-family:var(--sans);font-size:12.5px;color:var(--mut);margin:0 0 10px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .kofilter select{font-family:var(--sans);font-size:12.5px;padding:4px 8px;border:1px solid var(--line-hi);border-radius:6px;background:var(--card);color:var(--ink);cursor:pointer}
   .sfpct{font-family:var(--mono);font-size:10px;color:var(--gold);margin-left:4px;white-space:nowrap}
   .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
@@ -481,7 +484,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"group" };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"group", koTeam:"" };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
@@ -1047,13 +1050,17 @@ function koForecast(){                         // top-N most likely matchups per
   state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
   const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
   const tbl=rows=>`<table class="dtbl tpred sft">`+simThead(models,strip,"Matchup")+`<tbody>`+rows+`</tbody></table>`;
-  const FLOOR=0.02;
-  let h=`<div class="small" style="margin:0 0 12px">The most likely matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> (balanced model, natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row then predicts who'd win it. Only pairings reaching <b>≥${Math.round(FLOOR*100)}% of sims</b> are listed — combinations the bracket usually keeps apart (e.g. two teams that tend to share a half) drop off. The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
+  const FLOOR=0.02, FT=state.koTeam||"";
+  const opts=['<option value="">All teams</option>'].concat(Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${FT===c?' selected':''}>${nm(c)}</option>`)).join('');
+  let h=`<div class="kofilter">Focus team <select onchange="state.koTeam=this.value;renderSims()">${opts}</select>${FT?`<span class="mut"> — ${nm(FT)}'s most likely matchup each round (floor lifted)</span>`:''}</div>`;
+  h+=`<div class="small" style="margin:0 0 12px">The most likely matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> (balanced model, natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row predicts who'd win it.${FT?'':` Only pairings reaching <b>≥${Math.round(FLOOR*100)}% of sims</b> are listed — combinations the bracket usually keeps apart drop off.`} The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
   [["Final","Final",4],["SF","Semi-finals",5],["QF","Quarter-finals",8],["R16","Round of 16",10],["R32","Round of 32",12]].forEach(([sk,label,topn])=>{
-    const m=alt[sk]||{}, all=Object.keys(m), pairs=all.filter(k=>m[k]/N>=FLOOR).sort((a,b)=>m[b]-m[a]).slice(0,topn);
-    if(!pairs.length) return;
-    h+=`<div class="sfsub">${label} <span class="mut">· ${pairs.length} pairing${pairs.length>1?'s':''} ≥${Math.round(FLOOR*100)}% of ${all.length} possible</span></div>`+
-       tbl(pairs.map((key,i)=>{ const ab=key.split('|'), pc=100*m[key]/N, lbl=pc>=1?Math.round(pc)+'%':'<1%';
+    const m=alt[sk]||{}, all=Object.keys(m);
+    const pairs=(FT?all.filter(k=>k.split('|').includes(FT)):all.filter(k=>m[k]/N>=FLOOR)).sort((a,b)=>m[b]-m[a]).slice(0,topn);
+    if(!pairs.length){ if(FT) h+=`<div class="sfsub">${label}</div><div class="dhint" style="margin:0 0 10px">${nm(FT)} didn't reach this round in ${N.toLocaleString()} sims.</div>`; return; }
+    const sub=FT?`${label} <span class="mut">· ${nm(FT)}'s top ${pairs.length}</span>`:`${label} <span class="mut">· ${pairs.length} pairing${pairs.length>1?'s':''} ≥${Math.round(FLOOR*100)}% of ${all.length} possible</span>`;
+    h+=`<div class="sfsub">${sub}</div>`+
+       tbl(pairs.map((key,i)=>{ const ab=key.split('|'), pc=100*m[key]/N, lbl=pc>=1?Math.round(pc)+'%':pc>=0.1?pc.toFixed(1)+'%':'<0.1%';
          return gameRowPair({no:sk+'_'+i,home:ab[0],away:ab[1]},models,strip,ncol,` <span class="sfpct">${lbl} of sims</span>`); }).join("")); });
   Object.assign(state,save);
   return h; }
