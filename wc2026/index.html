@@ -220,7 +220,7 @@
   .logt .yr{font-family:var(--mono);font-size:11.5px;color:var(--mut);white-space:nowrap} .logt .sc{font-family:var(--mono);text-align:center;color:var(--ink);white-space:nowrap} .logt th.srt{cursor:pointer;user-select:none} .logt th.srt:hover{color:var(--acc)}
   .ok{color:var(--good)} .miss{color:var(--bad)} .push{color:var(--warn)}
   .acclb{max-width:440px} .num.lead{color:var(--good);font-weight:700}
-  .accgrid th{text-align:center} .accgrid td{text-align:center;font-size:15px} .accgrid td.tl,.accgrid th.tl{text-align:left;font-size:13px} .accgrid td:nth-child(2){text-align:left;white-space:nowrap;font-size:12.5px}
+  .accgrid th{text-align:center} .accgrid td{text-align:center;font-size:15px} .accgrid td.tl,.accgrid th.tl{text-align:left;font-size:13px} .accgrid td:nth-child(1){font-family:var(--mono);font-size:11px;color:var(--mut);white-space:nowrap} .accgrid td:nth-child(3){text-align:left;white-space:nowrap;font-size:12.5px}
   .acc-ok{background:rgba(103,217,155,.10)} .acc-miss{background:rgba(240,118,139,.10)} .acc-push{background:rgba(232,192,106,.08)}
   .fc-progwrap{display:inline-flex;align-items:center;gap:10px} .fc-track{display:inline-block;width:160px;height:7px;background:var(--card2);border:1px solid var(--line);border-radius:5px;overflow:hidden} #fc-bar{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc2),var(--acc));transition:width .1s}
   .fc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin:8px 0 4px;padding:12px 15px;border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;background:var(--card2)}
@@ -949,9 +949,11 @@ function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) retu
   const ic={ok:'<span class="ok">✓</span>',miss:'<span class="miss">✗</span>'};
   let lb=`<table class="dtbl acclb"><thead><tr><th class="tl">Model</th><th>Hit rate</th><th>✓</th><th>✗</th></tr></thead><tbody>`+
     order.map(m=>{const t=tally[m],a=acc(t);return `<tr><td class="tl">${METHOD_NAME[m]}</td><td class="num ${a===best?'lead':''}">${(a*100).toFixed(0)}%</td><td class="num ok">${t.ok}</td><td class="num miss">${t.miss}</td></tr>`;}).join("")+`</tbody></table>`;
-  let g=`<table class="dtbl accgrid"><thead><tr><th class="tl">Match</th><th>Result</th>`+order.map(m=>`<th title="${METHOD_NAME[m]}">${MSHORT[m]}<br><span class="mut">${(acc(tally[m])*100).toFixed(0)}%</span></th>`).join("")+`</tr></thead><tbody>`+
-    rows.map(r=>{const aw=r.actual==="H"?r.f.home:r.actual==="A"?r.f.away:null;
-      return `<tr><td class="tl">${fl(r.f.home)} ${nm(r.f.home)} <span class="mut">v</span> ${fl(r.f.away)} ${nm(r.f.away)}</td><td class="num">${r.r[0]}–${r.r[1]} <span class="mut">${aw?nm(aw):"draw"}</span></td>`+
+  const grows=rows.slice().sort((a,b)=>(a.f.date<b.f.date?1:a.f.date>b.f.date?-1:b.no-a.no));   // most recent first
+  const fdshort=d=>{ try{ return new Date(d+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'}); }catch(e){ return d; } };
+  let g=`<table class="dtbl accgrid"><thead><tr><th>Date</th><th class="tl">Match</th><th>Result</th>`+order.map(m=>`<th title="${METHOD_NAME[m]}">${MSHORT[m]}<br><span class="mut">${(acc(tally[m])*100).toFixed(0)}%</span></th>`).join("")+`</tr></thead><tbody>`+
+    grows.map(r=>{const aw=r.actual==="H"?r.f.home:r.actual==="A"?r.f.away:null;
+      return `<tr><td>${fdshort(r.f.date)}</td><td class="tl">${fl(r.f.home)} ${nm(r.f.home)} <span class="mut">v</span> ${fl(r.f.away)} ${nm(r.f.away)}</td><td class="num">${r.r[0]}–${r.r[1]} <span class="mut">${aw?nm(aw):"draw"}</span></td>`+
       order.map(m=>{const c=r.cells[m],pk=c.pick==="H"?nm(r.f.home):c.pick==="A"?nm(r.f.away):"toss-up";return `<td class="acc-${c.res}" title="${METHOD_NAME[m]}: ${Math.round(c.p*100)}% ${nm(r.f.home)} → predicts ${pk}">${ic[c.res]}</td>`;}).join("")+`</tr>`;}).join("")+`</tbody></table>`;
   el.innerHTML=`<div class="small" style="margin-bottom:6px">Leaderboard — hit rate = ✓ ÷ ${rows.length} played games. Predicting a win (&gt;60%) that ends in a draw counts as a miss.</div>`+lb+
     `<div class="small" style="margin:18px 0 6px">Per match — hover any cell for that model's pre-match probability.</div>`+g; }

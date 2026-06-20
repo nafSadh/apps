@@ -53,10 +53,11 @@ md += `_Auto-generated from \`data.json\` by \`scripts/perf_log.js\` · as of **
 md += `A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong.\n\n`;
 md += `## Leaderboard\n\n| Model | Hit rate | ✓ | ✗ |\n|---|--:|--:|--:|\n`;
 order.forEach(m => { const t = tally[m]; md += `| ${A.METHOD_NAME[m]} | ${(acc(t) * 100).toFixed(0)}% | ${t.ok} | ${t.miss} |\n`; });
-md += `\n## Per match\n\n| # | Match | Result | ${order.map(m => A.MSHORT[m]).join(" | ")} |\n`;
-md += `|---|---|---|${order.map(() => ":-:").join("|")}|\n`;
-rows.forEach(r => {
-  md += `| M${r.no} | ${A.nm(r.f.home)} – ${A.nm(r.f.away)} | ${r.r[0]}–${r.r[1]}${r.actual === "D" ? " (draw)" : ""} | ${order.map(m => mark(r.cells[m].res)).join(" | ")} |\n`;
+const grows = rows.slice().sort((a, b) => (a.f.date < b.f.date ? 1 : a.f.date > b.f.date ? -1 : b.no - a.no));  // most recent first
+md += `\n## Per match (latest first)\n\n| Date | # | Match | Result | ${order.map(m => A.MSHORT[m]).join(" | ")} |\n`;
+md += `|---|---|---|---|${order.map(() => ":-:").join("|")}|\n`;
+grows.forEach(r => {
+  md += `| ${r.f.date} | M${r.no} | ${A.nm(r.f.home)} – ${A.nm(r.f.away)} | ${r.r[0]}–${r.r[1]}${r.actual === "D" ? " (draw)" : ""} | ${order.map(m => mark(r.cells[m].res)).join(" | ")} |\n`;
 });
 
 // ---- json ----
@@ -64,8 +65,8 @@ const json = {
   asOf: meta.asOf, version: meta.version, played: rows.length,
   scoring: "pick win >60% / draw 40-60%, vs actual outcome",
   leaderboard: order.map(m => ({ key: m, model: A.METHOD_NAME[m], ok: tally[m].ok, miss: tally[m].miss, hitRate: +acc(tally[m]).toFixed(3) })),
-  matches: rows.map(r => ({
-    no: r.no, home: A.nm(r.f.home), away: A.nm(r.f.away), score: r.r, actual: outc(r.actual),
+  matches: grows.map(r => ({
+    no: r.no, date: r.f.date, home: A.nm(r.f.home), away: A.nm(r.f.away), score: r.r, actual: outc(r.actual),
     models: Object.fromEntries(order.map(m => [m, { winProb: +r.cells[m].p.toFixed(3), pick: r.cells[m].pick, correct: r.cells[m].res === "ok" }]))
   }))
 };

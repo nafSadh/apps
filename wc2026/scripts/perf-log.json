@@ -63,269 +63,10 @@
   ],
   "matches": [
     {
-      "no": 1,
-      "home": "Mexico",
-      "away": "South Africa",
-      "score": [
-        2,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.856,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.897,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.932,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.935,
-          "pick": "H",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.965,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.877,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.625,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.936,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 2,
-      "home": "South Korea",
-      "away": "Czechia",
-      "score": [
-        2,
-        1
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.402,
-          "pick": "D",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.767,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.644,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.708,
-          "pick": "H",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.579,
-          "pick": "D",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.644,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.384,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 3,
-      "home": "Canada",
-      "away": "Bosnia & H.",
-      "score": [
-        1,
-        1
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.599,
-          "pick": "D",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.991,
-          "pick": "H",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.831,
-          "pick": "H",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.855,
-          "pick": "H",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.746,
-          "pick": "H",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.799,
-          "pick": "H",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.895,
-          "pick": "H",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.874,
-          "pick": "H",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 4,
+      "no": 32,
+      "date": "2026-06-19",
       "home": "United States",
-      "away": "Paraguay",
-      "score": [
-        4,
-        1
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.77,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.966,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.803,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.847,
-          "pick": "H",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.857,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.894,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.667,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.275,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 5,
-      "home": "Haiti",
-      "away": "Scotland",
-      "score": [
-        0,
-        1
-      ],
-      "actual": "away win",
-      "models": {
-        "squad": {
-          "winProb": 0.189,
-          "pick": "A",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.233,
-          "pick": "A",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.095,
-          "pick": "A",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.11,
-          "pick": "A",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.075,
-          "pick": "A",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.116,
-          "pick": "A",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.087,
-          "pick": "A",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.206,
-          "pick": "A",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 6,
-      "home": "Australia",
-      "away": "Türkiye",
+      "away": "Australia",
       "score": [
         2,
         0
@@ -333,1141 +74,50 @@
       "actual": "home win",
       "models": {
         "squad": {
-          "winProb": 0.085,
-          "pick": "A",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.873,
+          "winProb": 0.891,
           "pick": "H",
           "correct": true
-        },
-        "blend": {
-          "winProb": 0.319,
-          "pick": "A",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.432,
-          "pick": "D",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.155,
-          "pick": "A",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.275,
-          "pick": "A",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0,
-          "pick": "A",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.123,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 7,
-      "home": "Brazil",
-      "away": "Morocco",
-      "score": [
-        1,
-        1
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.722,
-          "pick": "H",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.598,
-          "pick": "D",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.721,
-          "pick": "H",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.528,
-          "pick": "D",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.783,
-          "pick": "H",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.757,
-          "pick": "H",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.667,
-          "pick": "H",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.514,
-          "pick": "D",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 8,
-      "home": "Qatar",
-      "away": "Switzerland",
-      "score": [
-        1,
-        1
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.024,
-          "pick": "A",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.169,
-          "pick": "A",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.055,
-          "pick": "A",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.113,
-          "pick": "A",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.081,
-          "pick": "A",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.053,
-          "pick": "A",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.077,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 9,
-      "home": "Ivory Coast",
-      "away": "Ecuador",
-      "score": [
-        1,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.612,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.557,
-          "pick": "D",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.275,
-          "pick": "A",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.356,
-          "pick": "A",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.306,
-          "pick": "A",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.247,
-          "pick": "A",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.207,
-          "pick": "A",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.48,
-          "pick": "D",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 10,
-      "home": "Germany",
-      "away": "Curaçao",
-      "score": [
-        7,
-        1
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.991,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.998,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.989,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.99,
-          "pick": "H",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.991,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.981,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.991,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.993,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 11,
-      "home": "Netherlands",
-      "away": "Japan",
-      "score": [
-        2,
-        2
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.793,
-          "pick": "H",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.689,
-          "pick": "H",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.701,
-          "pick": "H",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.721,
-          "pick": "H",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.708,
-          "pick": "H",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.778,
-          "pick": "H",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.833,
-          "pick": "H",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.179,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 12,
-      "home": "Sweden",
-      "away": "Tunisia",
-      "score": [
-        5,
-        1
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.909,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.805,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.727,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.585,
-          "pick": "D",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.808,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.644,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.625,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.808,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 13,
-      "home": "Saudi Arabia",
-      "away": "Uruguay",
-      "score": [
-        1,
-        1
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.054,
-          "pick": "A",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.161,
-          "pick": "A",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.079,
-          "pick": "A",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.071,
-          "pick": "A",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.081,
-          "pick": "A",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.106,
-          "pick": "A",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.188,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 14,
-      "home": "Spain",
-      "away": "Cape Verde",
-      "score": [
-        0,
-        0
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.985,
-          "pick": "H",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.978,
-          "pick": "H",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.994,
-          "pick": "H",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.993,
-          "pick": "H",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.991,
-          "pick": "H",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.993,
-          "pick": "H",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.996,
-          "pick": "H",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.951,
-          "pick": "H",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 15,
-      "home": "Belgium",
-      "away": "Egypt",
-      "score": [
-        1,
-        1
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.884,
-          "pick": "H",
-          "correct": false
         },
         "potgoals": {
           "winProb": 0.839,
           "pick": "H",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.843,
-          "pick": "H",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.865,
-          "pick": "H",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.851,
-          "pick": "H",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.833,
-          "pick": "H",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.25,
-          "pick": "A",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.888,
-          "pick": "H",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 16,
-      "home": "Iran",
-      "away": "New Zealand",
-      "score": [
-        2,
-        2
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.476,
-          "pick": "D",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.885,
-          "pick": "H",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.832,
-          "pick": "H",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.969,
-          "pick": "H",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.695,
-          "pick": "H",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.626,
-          "pick": "H",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.75,
-          "pick": "H",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.94,
-          "pick": "H",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 17,
-      "home": "France",
-      "away": "Senegal",
-      "score": [
-        3,
-        1
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.82,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.767,
-          "pick": "H",
           "correct": true
         },
         "blend": {
-          "winProb": 0.899,
+          "winProb": 0.733,
           "pick": "H",
           "correct": true
         },
         "fifa": {
-          "winProb": 0.872,
+          "winProb": 0.72,
           "pick": "H",
           "correct": true
         },
         "odds": {
-          "winProb": 0.937,
+          "winProb": 0.917,
           "pick": "H",
           "correct": true
         },
         "opta": {
-          "winProb": 0.912,
+          "winProb": 0.773,
           "pick": "H",
           "correct": true
         },
         "h2h": {
-          "winProb": 0,
-          "pick": "A",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.895,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 18,
-      "home": "Iraq",
-      "away": "Norway",
-      "score": [
-        1,
-        4
-      ],
-      "actual": "away win",
-      "models": {
-        "squad": {
-          "winProb": 0.013,
-          "pick": "A",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.12,
-          "pick": "A",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.057,
-          "pick": "A",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.241,
-          "pick": "A",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.03,
-          "pick": "A",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.027,
-          "pick": "A",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.047,
-          "pick": "A",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.227,
-          "pick": "A",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 19,
-      "home": "Argentina",
-      "away": "Algeria",
-      "score": [
-        3,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.818,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.977,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.97,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.964,
-          "pick": "H",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.959,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.984,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 1,
+          "winProb": 0.625,
           "pick": "H",
           "correct": true
         },
         "form": {
-          "winProb": 0.932,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 20,
-      "home": "Austria",
-      "away": "Jordan",
-      "score": [
-        3,
-        1
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.963,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.966,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.762,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.897,
-          "pick": "H",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.728,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.82,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.982,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 21,
-      "home": "Portugal",
-      "away": "DR Congo",
-      "score": [
-        1,
-        1
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.928,
-          "pick": "H",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.95,
-          "pick": "H",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.965,
-          "pick": "H",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.954,
-          "pick": "H",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.968,
-          "pick": "H",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.977,
-          "pick": "H",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.956,
-          "pick": "H",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.946,
-          "pick": "H",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 22,
-      "home": "Uzbekistan",
-      "away": "Colombia",
-      "score": [
-        1,
-        3
-      ],
-      "actual": "away win",
-      "models": {
-        "squad": {
-          "winProb": 0.16,
-          "pick": "A",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.072,
-          "pick": "A",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.06,
-          "pick": "A",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.078,
-          "pick": "A",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.03,
-          "pick": "A",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.067,
-          "pick": "A",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.083,
-          "pick": "A",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.118,
-          "pick": "A",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 23,
-      "home": "England",
-      "away": "Croatia",
-      "score": [
-        4,
-        2
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.838,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.746,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.829,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.762,
-          "pick": "H",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.914,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.855,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.636,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.651,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 24,
-      "home": "Ghana",
-      "away": "Panama",
-      "score": [
-        1,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.925,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.528,
-          "pick": "D",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.332,
+          "winProb": 0.381,
           "pick": "A",
           "correct": false
-        },
-        "fifa": {
-          "winProb": 0.121,
-          "pick": "A",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.694,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.621,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.106,
-          "pick": "A",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.052,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 25,
-      "home": "Czechia",
-      "away": "South Africa",
-      "score": [
-        1,
-        1
-      ],
-      "actual": "draw",
-      "models": {
-        "squad": {
-          "winProb": 0.853,
-          "pick": "H",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.664,
-          "pick": "H",
-          "correct": false
-        },
-        "blend": {
-          "winProb": 0.746,
-          "pick": "H",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.689,
-          "pick": "H",
-          "correct": false
-        },
-        "odds": {
-          "winProb": 0.809,
-          "pick": "H",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.636,
-          "pick": "H",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.916,
-          "pick": "H",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 26,
-      "home": "Switzerland",
-      "away": "Bosnia & H.",
-      "score": [
-        4,
-        1
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.746,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.897,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.906,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.938,
-          "pick": "H",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.859,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.866,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0,
-          "pick": "A",
-          "correct": false
-        },
-        "form": {
-          "winProb": 0.755,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 27,
-      "home": "Canada",
-      "away": "Qatar",
-      "score": [
-        6,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "squad": {
-          "winProb": 0.953,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.984,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.897,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.755,
-          "pick": "H",
-          "correct": true
-        },
-        "odds": {
-          "winProb": 0.845,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.916,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.964,
-          "pick": "H",
-          "correct": true
         }
       }
     },
     {
       "no": 28,
+      "date": "2026-06-18",
       "home": "Mexico",
       "away": "South Korea",
       "score": [
@@ -1519,42 +169,838 @@
       }
     },
     {
-      "no": 32,
-      "home": "United States",
-      "away": "Australia",
+      "no": 27,
+      "date": "2026-06-18",
+      "home": "Canada",
+      "away": "Qatar",
       "score": [
-        2,
+        6,
         0
       ],
       "actual": "home win",
       "models": {
         "squad": {
-          "winProb": 0.891,
+          "winProb": 0.953,
           "pick": "H",
           "correct": true
         },
         "potgoals": {
-          "winProb": 0.839,
+          "winProb": 0.984,
           "pick": "H",
           "correct": true
         },
         "blend": {
-          "winProb": 0.733,
+          "winProb": 0.897,
           "pick": "H",
           "correct": true
         },
         "fifa": {
-          "winProb": 0.72,
+          "winProb": 0.755,
           "pick": "H",
           "correct": true
         },
         "odds": {
-          "winProb": 0.917,
+          "winProb": 0.845,
           "pick": "H",
           "correct": true
         },
         "opta": {
-          "winProb": 0.773,
+          "winProb": 0.916,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.964,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 26,
+      "date": "2026-06-18",
+      "home": "Switzerland",
+      "away": "Bosnia & H.",
+      "score": [
+        4,
+        1
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.746,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.897,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.906,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.938,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.859,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.866,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.755,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 25,
+      "date": "2026-06-18",
+      "home": "Czechia",
+      "away": "South Africa",
+      "score": [
+        1,
+        1
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.853,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.664,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.746,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.689,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.809,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.636,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.916,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 24,
+      "date": "2026-06-17",
+      "home": "Ghana",
+      "away": "Panama",
+      "score": [
+        1,
+        0
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.925,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.528,
+          "pick": "D",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.332,
+          "pick": "A",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.121,
+          "pick": "A",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.694,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.621,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.106,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.052,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 23,
+      "date": "2026-06-17",
+      "home": "England",
+      "away": "Croatia",
+      "score": [
+        4,
+        2
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.838,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.746,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.829,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.762,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.914,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.855,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.636,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.651,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 22,
+      "date": "2026-06-17",
+      "home": "Uzbekistan",
+      "away": "Colombia",
+      "score": [
+        1,
+        3
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.16,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.072,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.06,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.078,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.03,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.067,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.083,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.118,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 21,
+      "date": "2026-06-17",
+      "home": "Portugal",
+      "away": "DR Congo",
+      "score": [
+        1,
+        1
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.928,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.95,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.965,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.954,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.968,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.977,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.956,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.946,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 20,
+      "date": "2026-06-16",
+      "home": "Austria",
+      "away": "Jordan",
+      "score": [
+        3,
+        1
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.963,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.966,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.762,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.897,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.728,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.82,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.982,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 19,
+      "date": "2026-06-16",
+      "home": "Argentina",
+      "away": "Algeria",
+      "score": [
+        3,
+        0
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.818,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.977,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.97,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.964,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.959,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.984,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.932,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 18,
+      "date": "2026-06-16",
+      "home": "Iraq",
+      "away": "Norway",
+      "score": [
+        1,
+        4
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.013,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.12,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.057,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.241,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.03,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.027,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.047,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.227,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 17,
+      "date": "2026-06-16",
+      "home": "France",
+      "away": "Senegal",
+      "score": [
+        3,
+        1
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.82,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.767,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.899,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.872,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.937,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.912,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.895,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 16,
+      "date": "2026-06-15",
+      "home": "Iran",
+      "away": "New Zealand",
+      "score": [
+        2,
+        2
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.476,
+          "pick": "D",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.885,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.832,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.969,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.695,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.626,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.75,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.94,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 15,
+      "date": "2026-06-15",
+      "home": "Belgium",
+      "away": "Egypt",
+      "score": [
+        1,
+        1
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.884,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.839,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.843,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.865,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.851,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.833,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.25,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.888,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 14,
+      "date": "2026-06-15",
+      "home": "Spain",
+      "away": "Cape Verde",
+      "score": [
+        0,
+        0
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.985,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.978,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.994,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.993,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.991,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.993,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.996,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.951,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 13,
+      "date": "2026-06-15",
+      "home": "Saudi Arabia",
+      "away": "Uruguay",
+      "score": [
+        1,
+        1
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.054,
+          "pick": "A",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.161,
+          "pick": "A",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.079,
+          "pick": "A",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.071,
+          "pick": "A",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.081,
+          "pick": "A",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.106,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.188,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 12,
+      "date": "2026-06-14",
+      "home": "Sweden",
+      "away": "Tunisia",
+      "score": [
+        5,
+        1
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.909,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.805,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.727,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.585,
+          "pick": "D",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.808,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.644,
           "pick": "H",
           "correct": true
         },
@@ -1564,9 +1010,592 @@
           "correct": true
         },
         "form": {
-          "winProb": 0.381,
+          "winProb": 0.808,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 11,
+      "date": "2026-06-14",
+      "home": "Netherlands",
+      "away": "Japan",
+      "score": [
+        2,
+        2
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.793,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.689,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.701,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.721,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.708,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.778,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.833,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.179,
           "pick": "A",
           "correct": false
+        }
+      }
+    },
+    {
+      "no": 10,
+      "date": "2026-06-14",
+      "home": "Germany",
+      "away": "Curaçao",
+      "score": [
+        7,
+        1
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.991,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.998,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.989,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.99,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.991,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.981,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.991,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.993,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 9,
+      "date": "2026-06-14",
+      "home": "Ivory Coast",
+      "away": "Ecuador",
+      "score": [
+        1,
+        0
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.612,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.557,
+          "pick": "D",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.275,
+          "pick": "A",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.356,
+          "pick": "A",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.306,
+          "pick": "A",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.247,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.207,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.48,
+          "pick": "D",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 8,
+      "date": "2026-06-13",
+      "home": "Qatar",
+      "away": "Switzerland",
+      "score": [
+        1,
+        1
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.024,
+          "pick": "A",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.169,
+          "pick": "A",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.055,
+          "pick": "A",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.113,
+          "pick": "A",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.081,
+          "pick": "A",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.053,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.077,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 7,
+      "date": "2026-06-13",
+      "home": "Brazil",
+      "away": "Morocco",
+      "score": [
+        1,
+        1
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.722,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.598,
+          "pick": "D",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.721,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.528,
+          "pick": "D",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.783,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.757,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.667,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.514,
+          "pick": "D",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 6,
+      "date": "2026-06-13",
+      "home": "Australia",
+      "away": "Türkiye",
+      "score": [
+        2,
+        0
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.085,
+          "pick": "A",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.873,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.319,
+          "pick": "A",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.432,
+          "pick": "D",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.155,
+          "pick": "A",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.275,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.123,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 5,
+      "date": "2026-06-13",
+      "home": "Haiti",
+      "away": "Scotland",
+      "score": [
+        0,
+        1
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.189,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.233,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.095,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.11,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.075,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.116,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.087,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.206,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 4,
+      "date": "2026-06-12",
+      "home": "United States",
+      "away": "Paraguay",
+      "score": [
+        4,
+        1
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.77,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.966,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.803,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.847,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.857,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.894,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.667,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.275,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 3,
+      "date": "2026-06-12",
+      "home": "Canada",
+      "away": "Bosnia & H.",
+      "score": [
+        1,
+        1
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.599,
+          "pick": "D",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.991,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.831,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.855,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.746,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.799,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.895,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.874,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 2,
+      "date": "2026-06-11",
+      "home": "South Korea",
+      "away": "Czechia",
+      "score": [
+        2,
+        1
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.402,
+          "pick": "D",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.767,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.644,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.708,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.579,
+          "pick": "D",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.644,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.384,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 1,
+      "date": "2026-06-11",
+      "home": "Mexico",
+      "away": "South Africa",
+      "score": [
+        2,
+        0
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.856,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.897,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.932,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.935,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.965,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.877,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.625,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.936,
+          "pick": "H",
+          "correct": true
         }
       }
     }
