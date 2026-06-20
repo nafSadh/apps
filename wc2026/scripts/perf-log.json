@@ -1,64 +1,64 @@
 {
   "asOf": "2026-06-19",
-  "version": 10,
-  "played": 29,
+  "version": 11,
+  "played": 30,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 19,
+      "ok": 20,
       "miss": 10,
-      "hitRate": 0.655
+      "hitRate": 0.667
+    },
+    {
+      "key": "blend",
+      "model": "Balanced blend",
+      "ok": 17,
+      "miss": 13,
+      "hitRate": 0.567
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
       "ok": 17,
-      "miss": 12,
-      "hitRate": 0.586
-    },
-    {
-      "key": "blend",
-      "model": "Balanced blend",
-      "ok": 16,
       "miss": 13,
-      "hitRate": 0.552
+      "hitRate": 0.567
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 16,
+      "ok": 17,
       "miss": 13,
-      "hitRate": 0.552
+      "hitRate": 0.567
     },
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 16,
+      "ok": 17,
       "miss": 13,
-      "hitRate": 0.552
+      "hitRate": 0.567
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 16,
+      "ok": 17,
       "miss": 13,
-      "hitRate": 0.552
+      "hitRate": 0.567
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
-      "ok": 15,
+      "ok": 16,
       "miss": 14,
-      "hitRate": 0.517
+      "hitRate": 0.533
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 14,
+      "ok": 15,
       "miss": 15,
-      "hitRate": 0.483
+      "hitRate": 0.5
     }
   ],
   "matches": [
@@ -78,13 +78,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.839,
+        "blend": {
+          "winProb": 0.733,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.733,
+        "potgoals": {
+          "winProb": 0.84,
           "pick": "H",
           "correct": true
         },
@@ -116,6 +116,59 @@
       }
     },
     {
+      "no": 30,
+      "date": "2026-06-19",
+      "home": "Scotland",
+      "away": "Morocco",
+      "score": [
+        0,
+        1
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.22,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.18,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.113,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.07,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.256,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.121,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.316,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
+    {
       "no": 28,
       "date": "2026-06-18",
       "home": "Mexico",
@@ -131,15 +184,15 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.571,
-          "pick": "D",
-          "correct": false
-        },
         "blend": {
           "winProb": 0.721,
           "pick": "H",
           "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.571,
+          "pick": "D",
+          "correct": false
         },
         "fifa": {
           "winProb": 0.729,
@@ -184,13 +237,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.984,
+        "blend": {
+          "winProb": 0.897,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.897,
+        "potgoals": {
+          "winProb": 0.985,
           "pick": "H",
           "correct": true
         },
@@ -237,13 +290,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.897,
+        "blend": {
+          "winProb": 0.906,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.906,
+        "potgoals": {
+          "winProb": 0.898,
           "pick": "H",
           "correct": true
         },
@@ -290,13 +343,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.664,
+        "blend": {
+          "winProb": 0.746,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.746,
+        "potgoals": {
+          "winProb": 0.665,
           "pick": "H",
           "correct": false
         },
@@ -343,14 +396,14 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.528,
-          "pick": "D",
-          "correct": false
-        },
         "blend": {
           "winProb": 0.332,
           "pick": "A",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.529,
+          "pick": "D",
           "correct": false
         },
         "fifa": {
@@ -396,13 +449,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.746,
+        "blend": {
+          "winProb": 0.829,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.829,
+        "potgoals": {
+          "winProb": 0.748,
           "pick": "H",
           "correct": true
         },
@@ -449,13 +502,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.072,
+        "blend": {
+          "winProb": 0.06,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.06,
+        "potgoals": {
+          "winProb": 0.071,
           "pick": "A",
           "correct": true
         },
@@ -502,13 +555,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.95,
+        "blend": {
+          "winProb": 0.965,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.965,
+        "potgoals": {
+          "winProb": 0.952,
           "pick": "H",
           "correct": false
         },
@@ -555,13 +608,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.966,
+        "blend": {
+          "winProb": 0.762,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.762,
+        "potgoals": {
+          "winProb": 0.967,
           "pick": "H",
           "correct": true
         },
@@ -608,13 +661,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.977,
+        "blend": {
+          "winProb": 0.97,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.97,
+        "potgoals": {
+          "winProb": 0.978,
           "pick": "H",
           "correct": true
         },
@@ -661,13 +714,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.12,
+        "blend": {
+          "winProb": 0.057,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.057,
+        "potgoals": {
+          "winProb": 0.119,
           "pick": "A",
           "correct": true
         },
@@ -714,13 +767,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.767,
+        "blend": {
+          "winProb": 0.899,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.899,
+        "potgoals": {
+          "winProb": 0.769,
           "pick": "H",
           "correct": true
         },
@@ -767,13 +820,13 @@
           "pick": "D",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.885,
+        "blend": {
+          "winProb": 0.832,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.832,
+        "potgoals": {
+          "winProb": 0.887,
           "pick": "H",
           "correct": false
         },
@@ -820,13 +873,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.839,
+        "blend": {
+          "winProb": 0.843,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.843,
+        "potgoals": {
+          "winProb": 0.84,
           "pick": "H",
           "correct": false
         },
@@ -873,13 +926,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.978,
+        "blend": {
+          "winProb": 0.994,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.994,
+        "potgoals": {
+          "winProb": 0.979,
           "pick": "H",
           "correct": false
         },
@@ -926,13 +979,13 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.161,
+        "blend": {
+          "winProb": 0.079,
           "pick": "A",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.079,
+        "potgoals": {
+          "winProb": 0.16,
           "pick": "A",
           "correct": false
         },
@@ -979,13 +1032,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.805,
+        "blend": {
+          "winProb": 0.727,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.727,
+        "potgoals": {
+          "winProb": 0.807,
           "pick": "H",
           "correct": true
         },
@@ -1032,13 +1085,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.689,
+        "blend": {
+          "winProb": 0.701,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.701,
+        "potgoals": {
+          "winProb": 0.69,
           "pick": "H",
           "correct": false
         },
@@ -1085,13 +1138,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.998,
+        "blend": {
+          "winProb": 0.989,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.989,
+        "potgoals": {
+          "winProb": 0.998,
           "pick": "H",
           "correct": true
         },
@@ -1138,14 +1191,14 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.557,
-          "pick": "D",
-          "correct": false
-        },
         "blend": {
           "winProb": 0.275,
           "pick": "A",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.557,
+          "pick": "D",
           "correct": false
         },
         "fifa": {
@@ -1191,13 +1244,13 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.169,
+        "blend": {
+          "winProb": 0.055,
           "pick": "A",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.055,
+        "potgoals": {
+          "winProb": 0.167,
           "pick": "A",
           "correct": false
         },
@@ -1244,13 +1297,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.598,
-          "pick": "D",
-          "correct": true
-        },
         "blend": {
           "winProb": 0.721,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.726,
           "pick": "H",
           "correct": false
         },
@@ -1297,15 +1350,15 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.873,
-          "pick": "H",
-          "correct": true
-        },
         "blend": {
           "winProb": 0.319,
           "pick": "A",
           "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.875,
+          "pick": "H",
+          "correct": true
         },
         "fifa": {
           "winProb": 0.432,
@@ -1350,13 +1403,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.233,
+        "blend": {
+          "winProb": 0.095,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.095,
+        "potgoals": {
+          "winProb": 0.193,
           "pick": "A",
           "correct": true
         },
@@ -1403,13 +1456,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.966,
+        "blend": {
+          "winProb": 0.803,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.803,
+        "potgoals": {
+          "winProb": 0.967,
           "pick": "H",
           "correct": true
         },
@@ -1456,13 +1509,13 @@
           "pick": "D",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.991,
+        "blend": {
+          "winProb": 0.831,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.831,
+        "potgoals": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": false
         },
@@ -1509,13 +1562,13 @@
           "pick": "D",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.767,
+        "blend": {
+          "winProb": 0.644,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.644,
+        "potgoals": {
+          "winProb": 0.769,
           "pick": "H",
           "correct": true
         },
@@ -1562,13 +1615,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.897,
+        "blend": {
+          "winProb": 0.932,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.932,
+        "potgoals": {
+          "winProb": 0.898,
           "pick": "H",
           "correct": true
         },

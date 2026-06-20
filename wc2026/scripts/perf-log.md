@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-19** · **29** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-19** · **30** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong.
 
@@ -8,21 +8,22 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Squad value | 66% | 19 | 10 |
-| Pot + goals | 59% | 17 | 12 |
-| Balanced blend | 55% | 16 | 13 |
-| FIFA ranking | 55% | 16 | 13 |
-| Betting market | 55% | 16 | 13 |
-| Analyst supercomputer | 55% | 16 | 13 |
-| Head-to-head (historic) | 52% | 15 | 14 |
-| Recent form | 48% | 14 | 15 |
+| Squad value | 67% | 20 | 10 |
+| Balanced blend | 57% | 17 | 13 |
+| Pot + goals | 57% | 17 | 13 |
+| FIFA ranking | 57% | 17 | 13 |
+| Betting market | 57% | 17 | 13 |
+| Analyst supercomputer | 57% | 17 | 13 |
+| Head-to-head (historic) | 53% | 16 | 14 |
+| Recent form | 50% | 15 | 15 |
 
 ## Per match (latest first)
 
-| Date | # | Match | Result | Squad | Pot+G | Blend | FIFA | Odds | Opta | H2H | Form |
+| Date | # | Match | Result | Squad | Blend | Pot+G | FIFA | Odds | Opta | H2H | Form |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | 2026-06-19 | M32 | United States – Australia | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
-| 2026-06-18 | M28 | Mexico – South Korea | 1–0 | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 2026-06-19 | M30 | Scotland – Morocco | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 2026-06-18 | M28 | Mexico – South Korea | 1–0 | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-18 | M27 | Canada – Qatar | 6–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-18 | M26 | Switzerland – Bosnia & H. | 4–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
 | 2026-06-18 | M25 | Czechia – South Africa | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ |
@@ -43,8 +44,8 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-14 | M10 | Germany – Curaçao | 7–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-14 | M9 | Ivory Coast – Ecuador | 1–0 | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-13 | M8 | Qatar – Switzerland | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| 2026-06-13 | M7 | Brazil – Morocco | 1–1 (draw) | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ |
-| 2026-06-13 | M6 | Australia – Türkiye | 2–0 | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-13 | M7 | Brazil – Morocco | 1–1 (draw) | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ |
+| 2026-06-13 | M6 | Australia – Türkiye | 2–0 | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-13 | M5 | Haiti – Scotland | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-12 | M4 | United States – Paraguay | 4–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
 | 2026-06-12 | M3 | Canada – Bosnia & H. | 1–1 (draw) | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
