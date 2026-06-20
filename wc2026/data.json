@@ -1,7 +1,7 @@
 {
   "meta": {
     "tournament": "FIFA World Cup 2026",
-    "version": 11,
+    "version": 12,
     "asOf": "2026-06-19",
     "source": "manual",
     "note": "locked = played-match scores {matchNo:[homeGoals,awayGoals]}; ratings per team. teams/fixtures are fixed for the tournament. formYears=per-team 1/3/5y W-D-L; h2h=all-time pairwise record + last 5 meetings (top-16 contenders, symmetric).",
@@ -1154,6 +1154,14 @@
       0
     ],
     "30": [
+      0,
+      1
+    ],
+    "29": [
+      3,
+      0
+    ],
+    "31": [
       0,
       1
     ]
