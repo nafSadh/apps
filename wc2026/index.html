@@ -215,6 +215,7 @@
   .sfhd{font-size:14px;margin:24px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--line)} .sfhd .mut{font-weight:400;font-size:12px}
   .sfsub{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2);margin:14px 0 4px}
   .sft{margin:0 0 6px} .sfsc{font-family:var(--mono);color:var(--ink);font-size:11px;margin-left:2px}
+  .sfpct{font-family:var(--mono);font-size:10px;color:var(--gold);margin-left:4px;white-space:nowrap}
   .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -321,6 +322,10 @@
 
   <div id="view-sims" style="display:none">
     <h2 style="margin:4px 0 2px;font-size:18px">Sim Forecasts Table</h2>
+    <div id="stabs" class="dtabs">
+      <button class="dtab on" data-stab="group">Group stage</button>
+      <button class="dtab" data-stab="ko">Knockout · alternatives</button>
+    </div>
     <div id="simspanel"></div>
   </div>
 
@@ -476,7 +481,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{} };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"group" };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
@@ -989,7 +994,7 @@ function simBasis(f){               // one-line reasoning for the currently-sele
       return `${t.w}W-${t.d}D-${t.l}L head-to-head${seq?` (${seq})`:""}`; }
     return `never met → Elo ${(RATINGS[f.home]||[])[1]} v ${(RATINGS[f.away]||[])[1]}`; }
   return `${nm(f.home)} ${metricStr(f.home)} · ${nm(f.away)} ${metricStr(f.away)}`; }
-function gameRowPair(f,models,strip,ncol){    // one game -> prediction row + collapsible per-sim breakdown row
+function gameRowPair(f,models,strip,ncol,extra){    // one game -> prediction row + collapsible per-sim breakdown row
   const pf=(g,pk)=>pk==="H"?fl(g.home):pk==="A"?fl(g.away):'<span class="mut">=</span>';
   const lk=LOCKSET.has(f.no)?LOCKED[f.no]:null, actual=lk?(lk[0]>lk[1]?"H":lk[0]<lk[1]?"A":"D"):null, votes={H:0,D:0,A:0}; let psum=0; const ex=[];
   const cells=models.map(m=>{ state.method=m; const p=modelProb(f.home,f.away), pk=p>0.6?"H":p<0.4?"A":"D"; votes[pk]++; psum+=p;
@@ -998,8 +1003,8 @@ function gameRowPair(f,models,strip,ncol){    // one game -> prediction row + co
     return `<td class="${cls}" title="${METHOD_NAME[m]} — ${strip(basis)} → ${pn} ${conf}%">${pf(f,pk)}<span class="tppct">${conf}%</span></td>`; }).join("");
   const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0], avg=psum/models.length;
   const cconf=Math.round((cons==='H'?avg:cons==='A'?1-avg:Math.max(avg,1-avg))*100), sc=lk?` <span class="sfsc">${lk[0]}–${lk[1]}</span>`:'';
-  return `<tr><td class="tl">${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}${sc}</td>${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`+
-    `<tr class="gxtr"><td colspan="${ncol}" class="gxcell"><details class="gx"${state.gx[f.no]?' open':''} ontoggle="state.gx[${f.no}]=this.open"><summary>why each sim picked</summary><div class="gxlist">${ex.join('')}</div></details></td></tr>`; }
+  return `<tr><td class="tl">${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}${sc}${extra||''}</td>${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`+
+    `<tr class="gxtr"><td colspan="${ncol}" class="gxcell"><details class="gx"${state.gx[f.no]?' open':''} ontoggle="state.gx['${f.no}']=this.open"><summary>why each sim picked</summary><div class="gxlist">${ex.join('')}</div></details></td></tr>`; }
 function simThead(models,strip,lbl){ return `<thead><tr><th class="tl">${lbl}</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick across the 8 models">All</th></tr></thead>`; }
 function todayPredsTable(day){               // today's matches × all 8 models
   if(!day.length) return '';
@@ -1012,27 +1017,49 @@ function todayPredsTable(day){               // today's matches × all 8 models
     models.map(m=>`<p>${EXPLAIN[m]}</p>`).join("")+
     `<p class="mut">Each cell shows the favoured side and that model's win probability (“=” is a toss-up, ≈50%); <b>All</b> is the 8-model consensus. Hover any cell for that model's reasoning, a column header for what the model is, or expand a match above.</p></div></details>`;
   return h+help; }
-function renderSims(){                        // a full table of every game's model picks, by stage
-  const el=document.getElementById('simspanel'); if(!el) return;
+function groupForecast(){                     // every group game's model picks, by group
   const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
   state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
   const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
   const tbl=rows=>`<table class="dtbl tpred sft">`+simThead(models,strip,"Match")+`<tbody>`+rows+`</tbody></table>`;
-  let h=`<div class="small" style="margin:0 0 12px">Every game's model picks — flag = favoured side, % = the favourite's win probability, “=” a toss-up. Played games are tinted ✓/✗ by the result; expand any row for the per-sim reasoning. <b>Knockout matchups are projected by the current simulation</b> (model: ${METHOD_NAME[save.method]}) — illustrative, they shift as group results land.</div>`;
-  h+=`<h3 class="sfhd">Group stage <span class="mut">· all 72</span></h3>`;
+  let h=`<div class="small" style="margin:0 0 12px">Every group game's model picks — flag = favoured side, % = the favourite's win probability, “=” a toss-up. Played games are tinted ✓/✗ by the result; expand any row for the per-sim reasoning.</div>`;
   [...new Set(FIX.filter(f=>f.no<=72).map(f=>f.group))].sort().forEach(g=>{
     const gf=FIX.filter(f=>f.no<=72&&f.group===g).sort((a,b)=>a.no-b.no);
     h+=`<div class="sfsub">Group ${g}</div>`+tbl(gf.map(f=>gameRowPair(f,models,strip,ncol)).join("")); });
-  h+=`<h3 class="sfhd">Knockout <span class="mut">· projected matchups</span></h3>`;
-  [["R32",FC_R32,3],["R16",FC_R16,3],["QF",FC_QF,3],["SF",FC_SF,2],["Final",[104],1]].forEach(([rk,nos,cap])=>{
-    let gms=nos.map(no=>({no,p:parts(no)})).filter(x=>x.p[0]&&x.p[1]&&RATINGS[x.p[0]]&&RATINGS[x.p[1]]);
-    if(!gms.length) return;
-    gms.sort((a,b)=>(RATINGS[b.p[0]][1]+RATINGS[b.p[1]][1])-(RATINGS[a.p[0]][1]+RATINGS[a.p[1]][1]));
-    gms=gms.slice(0,cap);
-    h+=`<div class="sfsub">${ROUNDNAME[rk]}${gms.length<nos.length?` <span class="mut">· top ${gms.length} by strength</span>`:""}</div>`+
-       tbl(gms.map(x=>gameRowPair({no:x.no,home:x.p[0],away:x.p[1]},models,strip,ncol)).join("")); });
   Object.assign(state,save);
-  el.innerHTML=h; }
+  return h; }
+function koAlternatives(n,k){                  // Monte-Carlo: tally how often each matchup occurs at each round
+  const save={res:state.res,win:state.win,forced:state.forced,thirds:state.thirds,alloc:state.alloc,predicted:state.predicted,method:state.method,S:STATS};
+  const base=fcBase(); state.method="blend";   // matchup odds from the balanced model, independent of the user's pick
+  const stages={R32:{},R16:{},QF:{},SF:{},Final:{}};
+  const stageOf=no=>no===104?'Final':FC_SF.includes(no)?'SF':FC_QF.includes(no)?'QF':FC_R16.includes(no)?'R16':'R32';
+  for(let s=0;s<n;s++){
+    state.res=Object.assign({},base); state.forced={};
+    fcGroups(k); STATS=computeStats(); rebuildThirds(); buildAlloc(); state.win={};
+    for(const no of FC_KO){ const p=parts(no); if(p[0]&&p[1]){
+      if(no!==103){ const st=stageOf(no), key=p[0]<p[1]?p[0]+'|'+p[1]:p[1]+'|'+p[0]; stages[st][key]=(stages[st][key]||0)+1; }
+      state.win[no]=fcPick(p[0],p[1],k); } } }
+  state.res=save.res; state.win=save.win; state.forced=save.forced; state.thirds=save.thirds; state.alloc=save.alloc; state.predicted=save.predicted; state.method=save.method; STATS=save.S; recompute();
+  return stages; }
+function koForecast(){                         // top-N most likely matchups per knockout round
+  const N=4000, alt=koAlternatives(N,1);
+  const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
+  state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
+  const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
+  const tbl=rows=>`<table class="dtbl tpred sft">`+simThead(models,strip,"Matchup")+`<tbody>`+rows+`</tbody></table>`;
+  let h=`<div class="small" style="margin:0 0 12px">The most likely matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> (balanced model, natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row then predicts who'd win it. Group results are locked, so early rounds are firmer than the final.</div>`;
+  [["Final","Final",3],["SF","Semi-finals",4],["QF","Quarter-finals",6],["R16","Round of 16",8],["R32","Round of 32",8]].forEach(([sk,label,topn])=>{
+    const m=alt[sk]||{}, pairs=Object.keys(m).sort((a,b)=>m[b]-m[a]).slice(0,topn);
+    if(!pairs.length) return;
+    h+=`<div class="sfsub">${label} <span class="mut">· top ${pairs.length} of ${Object.keys(m).length} possible pairings</span></div>`+
+       tbl(pairs.map((key,i)=>{ const ab=key.split('|'), pc=100*m[key]/N, lbl=pc>=1?Math.round(pc)+'%':'<1%';
+         return gameRowPair({no:sk+'_'+i,home:ab[0],away:ab[1]},models,strip,ncol,` <span class="sfpct">${lbl} of sims</span>`); }).join("")); });
+  Object.assign(state,save);
+  return h; }
+function renderSims(){
+  const el=document.getElementById('simspanel'); if(!el) return;
+  document.querySelectorAll('#stabs .dtab').forEach(b=>b.classList.toggle('on', b.dataset.stab===state.stab));
+  el.innerHTML = state.stab==='ko' ? koForecast() : groupForecast(); }
 function renderToday(){
   const el=document.getElementById('today'); if(!el) return;
   let fd='';                                              // focus = soonest day with an unplayed fixture (today's / next games)
@@ -1172,6 +1199,7 @@ function setView(v){ state.view=v;
 document.getElementById('topnav').addEventListener('click',e=>{ const b=e.target.closest('.tnav'); if(!b||!b.dataset.view) return; setView(b.dataset.view); });
 window.addEventListener('hashchange',()=>{ const hv=location.hash.slice(1); if(hv && hv!==state.view && document.getElementById('view-'+hv)) setView(hv); });
 document.getElementById('dtabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.dtab=b.dataset.tab; renderData(); });
+document.getElementById('stabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.stab=b.dataset.stab; renderSims(); });
 document.getElementById('dpanel').addEventListener('click',e=>{ const th=e.target.closest('th[data-sort]'); if(!th) return;
   if(state.dtab==="log"){ state.logAsc=!state.logAsc; renderData(); return; }
   const k=th.dataset.sort;
