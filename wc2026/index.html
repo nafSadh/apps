@@ -209,7 +209,9 @@
   .simhelp summary{cursor:pointer;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);user-select:none;padding:3px 0;width:fit-content} .simhelp summary:hover{color:var(--ink)}
   .simhelp-body{padding:7px 2px 2px;display:grid;gap:6px;max-width:820px} .simhelp-body p{margin:0;line-height:1.5;color:var(--mut)} .simhelp-body b{color:var(--ink)}
   .tpred td.gxcell{text-align:left;border-top:none;padding:0 6px 7px;white-space:normal}
-  .gx{font-size:12px} .gx summary{cursor:pointer;font-size:10.5px;color:var(--mut);user-select:none;padding:2px 0;width:fit-content} .gx summary:hover{color:var(--ink)}
+  .gxtoggle{cursor:pointer;user-select:none}
+  .gxtoggle .chev{display:inline-block;width:0;height:0;border-left:5px solid var(--mut2);border-top:4px solid transparent;border-bottom:4px solid transparent;margin-right:7px;vertical-align:middle;transition:transform .15s}
+  .gxtoggle:hover{color:var(--ink)} .gxtoggle:hover .chev{border-left-color:var(--ink)} .gxtoggle.open .chev{transform:rotate(90deg);border-left-color:var(--ink)}
   .gxlist{display:grid;max-width:660px;margin-top:3px}
   .gxitem{display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:baseline;padding:3px 0;border-top:1px solid var(--line)}
   .gxm{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);line-height:1.5}
@@ -1007,8 +1009,11 @@ function gameRowPair(f,models,strip,ncol,extra){    // one game -> prediction ro
     return `<td class="${cls}" title="${METHOD_NAME[m]} — ${strip(basis)} → ${pn} ${conf}%">${pf(f,pk)}<span class="tppct">${conf}%</span></td>`; }).join("");
   const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0], avg=psum/models.length;
   const cconf=Math.round((cons==='H'?avg:cons==='A'?1-avg:Math.max(avg,1-avg))*100), sc=lk?` <span class="sfsc">${lk[0]}–${lk[1]}</span>`:'';
-  return `<tr><td class="tl">${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}${sc}${extra||''}</td>${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`+
-    `<tr class="gxtr"><td colspan="${ncol}" class="gxcell"><details class="gx"${state.gx[f.no]?' open':''} ontoggle="state.gx['${f.no}']=this.open"><summary>why each sim picked</summary><div class="gxlist">${ex.join('')}</div></details></td></tr>`; }
+  const lbl=`<td class="tl gxtoggle${state.gx[f.no]?' open':''}" onclick="toggleGx(this,'${f.no}')" title="why each sim picked"><span class="chev"></span>${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}${sc}${extra||''}</td>`;
+  return `<tr>${lbl}${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`+
+    `<tr class="gxtr"${state.gx[f.no]?'':' style="display:none"'}><td colspan="${ncol}" class="gxcell"><div class="gxlist">${ex.join('')}</div></td></tr>`; }
+function toggleGx(el,no){ state.gx[no]=!state.gx[no]; el.classList.toggle('open',state.gx[no]);
+  const row=el.closest('tr')&&el.closest('tr').nextElementSibling; if(row&&row.classList.contains('gxtr')) row.style.display=state.gx[no]?'':'none'; }
 function simThead(models,strip,lbl){ return `<thead><tr><th class="tl">${lbl}</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick across the 8 models">All</th></tr></thead>`; }
 function todayPredsTable(day){               // today's matches × all 8 models
   if(!day.length) return '';
