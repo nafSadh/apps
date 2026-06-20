@@ -160,11 +160,11 @@
   .empty{color:var(--mut2);font-size:13px;padding:8px 2px}
 
   /* bracket */
-  .bracket{overflow:auto;max-height:clamp(440px,78vh,880px);padding:0 2px 16px;overscroll-behavior:contain}
+  .bracket{overflow-x:auto;overflow-y:hidden;padding:4px 2px 16px}
   .binner{position:relative;display:inline-flex;gap:42px;align-items:stretch;min-width:100%}
   svg.conn{position:absolute;inset:0;pointer-events:none;z-index:0}
   .col{display:flex;flex-direction:column;position:relative;z-index:1;min-width:204px} .col.cfinal{min-width:224px}
-  .col-h{position:sticky;top:0;z-index:4;text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:var(--ink);font-weight:700;padding:6px 0 5px;margin-bottom:2px;background:var(--bg);box-shadow:0 1px 0 var(--line-hi)}
+  .col-h{text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:var(--ink);font-weight:700;margin-bottom:2px}
   .col-pad{display:flex;flex-direction:column;justify-content:space-around;height:100%}
   .match{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:6px 0;overflow:hidden;transition:opacity .15s}
   .m-head{display:flex;align-items:center;gap:6px;padding:4px 8px;font-size:9.5px;background:var(--bg2)}
@@ -484,7 +484,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"group", koTeam:"" };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"group", koTeam:"", koModel:"blend" };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
@@ -1031,9 +1031,9 @@ function groupForecast(){                     // every group game's model picks,
     h+=`<div class="sfsub">Group ${g}</div>`+tbl(gf.map(f=>gameRowPair(f,models,strip,ncol)).join("")); });
   Object.assign(state,save);
   return h; }
-function koAlternatives(n,k){                  // Monte-Carlo: tally how often each matchup occurs at each round
+function koAlternatives(n,k,method){           // Monte-Carlo: tally how often each matchup occurs at each round, under `method`
   const save={res:state.res,win:state.win,forced:state.forced,thirds:state.thirds,alloc:state.alloc,predicted:state.predicted,method:state.method,S:STATS};
-  const base=fcBase(); state.method="blend";   // matchup odds from the balanced model, independent of the user's pick
+  const base=fcBase(); state.method=method||"blend";   // which model drives who advances
   const stages={R32:{},R16:{},QF:{},SF:{},Final:{}};
   const stageOf=no=>no===104?'Final':FC_SF.includes(no)?'SF':FC_QF.includes(no)?'QF':FC_R16.includes(no)?'R16':'R32';
   for(let s=0;s<n;s++){
@@ -1045,15 +1045,16 @@ function koAlternatives(n,k){                  // Monte-Carlo: tally how often e
   state.res=save.res; state.win=save.win; state.forced=save.forced; state.thirds=save.thirds; state.alloc=save.alloc; state.predicted=save.predicted; state.method=save.method; STATS=save.S; recompute();
   return stages; }
 function koForecast(){                         // top-N most likely matchups per knockout round
-  const N=4000, alt=koAlternatives(N,1);
+  const N=4000, alt=koAlternatives(N,1,state.koModel);
   const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
   state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
   const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
   const tbl=rows=>`<table class="dtbl tpred sft">`+simThead(models,strip,"Matchup")+`<tbody>`+rows+`</tbody></table>`;
   const FLOOR=0.02, FT=state.koTeam||"";
   const opts=['<option value="">All teams</option>'].concat(Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${FT===c?' selected':''}>${nm(c)}</option>`)).join('');
-  let h=`<div class="kofilter">Focus team <select onchange="state.koTeam=this.value;renderSims()">${opts}</select>${FT?`<span class="mut"> — ${nm(FT)}'s most likely matchup each round (floor lifted)</span>`:''}</div>`;
-  h+=`<div class="small" style="margin:0 0 12px">The most likely matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> (balanced model, natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row predicts who'd win it.${FT?'':` Only pairings reaching <b>≥${Math.round(FLOOR*100)}% of sims</b> are listed — combinations the bracket usually keeps apart drop off.`} The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
+  const modOpts=models.map(m=>`<option value="${m}"${state.koModel===m?' selected':''}>${METHOD_NAME[m]}</option>`).join('');
+  let h=`<div class="kofilter">Model <select onchange="state.koModel=this.value;renderSims()">${modOpts}</select> · Focus team <select onchange="state.koTeam=this.value;renderSims()">${opts}</select>${FT?`<span class="mut"> — ${nm(FT)}'s most likely matchup each round (floor lifted)</span>`:''}</div>`;
+  h+=`<div class="small" style="margin:0 0 12px">The most likely matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model (natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row predicts who'd win it.${FT?'':` Only pairings reaching <b>≥${Math.round(FLOOR*100)}% of sims</b> are listed — combinations the bracket usually keeps apart drop off.`} The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
   [["Final","Final",4],["SF","Semi-finals",5],["QF","Quarter-finals",8],["R16","Round of 16",10],["R32","Round of 32",12]].forEach(([sk,label,topn])=>{
     const m=alt[sk]||{}, all=Object.keys(m);
     const pairs=(FT?all.filter(k=>k.split('|').includes(FT)):all.filter(k=>m[k]/N>=FLOOR)).sort((a,b)=>m[b]-m[a]).slice(0,topn);
