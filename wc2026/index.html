@@ -981,13 +981,15 @@ function todayPredsTable(day){               // every model's pick for today's m
   return h+`</tbody></table>`; }
 function renderToday(){
   const el=document.getElementById('today'); if(!el) return;
-  let fd='';                                              // focus day = latest date with a played or live game
-  FIX.forEach(f=>{ if((LOCKSET.has(f.no)||LIVE[f.no])&&f.date>fd) fd=f.date; });
+  let fd='';                                              // focus = soonest day with an unplayed fixture (today's / next games)
+  FIX.forEach(f=>{ if(!LOCKSET.has(f.no) && (fd===''||f.date<fd)) fd=f.date; });
+  if(!fd) FIX.forEach(f=>{ if(f.date>fd) fd=f.date; });   // every game played -> last matchday
   if(!fd){ el.innerHTML=''; return; }
   const day=FIX.filter(f=>f.date===fd).sort((a,b)=>a.no-b.no);
-  const anyLive=day.some(f=>LIVE[f.no]);
+  const anyLive=day.some(f=>LIVE[f.no]), started=day.some(f=>LOCKSET.has(f.no)||LIVE[f.no]);
+  const pfx=anyLive?'<span class="livedot"></span>Today':started?'Today':'Up next';   // upcoming day reads "Up next"
   let lbl=fd; try{ lbl=new Date(fd+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}); }catch(e){}
-  let h=`<div class="todayhd">${anyLive?'<span class="livedot"></span>':''}Today · ${lbl}</div><div class="todayrow">`;
+  let h=`<div class="todayhd">${pfx} · ${lbl}</div><div class="todayrow">`;
   h+=day.map(f=>{ const lv=LIVE[f.no], lk=LOCKSET.has(f.no)?LOCKED[f.no]:null; let cls='',tag,score;
     if(lv){ cls=' live'; tag=`<span class="tg tgl">LIVE${lv.min?" "+lv.min+"’":""}</span>`; score=`<b>${lv.h}–${lv.a}</b>`; }
     else if(lk){ cls=' ft'; tag='<span class="tg tgf">FT</span>'; score=`<b>${lk[0]}–${lk[1]}</b>`; }
