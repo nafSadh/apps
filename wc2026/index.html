@@ -202,6 +202,7 @@
   .tpred th{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.5px;text-align:center;color:var(--mut2);padding:3px 7px;font-weight:600} .tpred th.tl,.tpred td.tl{text-align:left}
   .tpred td{text-align:center;font-size:14px;padding:3px 7px;border-top:1px solid var(--line)} .tpred td.tl{font-size:12px;color:var(--ink);white-space:nowrap}
   .tp-ok{background:color-mix(in srgb,var(--good),transparent 84%)} .tp-no{background:color-mix(in srgb,var(--bad),transparent 84%)}
+  .tppct{display:block;font-family:var(--mono);font-size:8.5px;font-weight:400;color:var(--mut2);line-height:1.2;margin-top:1px}
   .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -971,12 +972,13 @@ function todayPredsTable(day){               // every model's pick for today's m
   const models=Object.keys(MSHORT);
   const pf=(f,pk)=>pk==="H"?fl(f.home):pk==="A"?fl(f.away):'<span class="mut">=</span>';
   let h=`<table class="dtbl tpred"><thead><tr><th class="tl">Sim predictions</th>`+models.map(m=>`<th title="${METHOD_NAME[m]}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick">All</th></tr></thead><tbody>`;
-  day.forEach(f=>{ const lk=LOCKSET.has(f.no)?LOCKED[f.no]:null, actual=lk?(lk[0]>lk[1]?"H":lk[0]<lk[1]?"A":"D"):null, votes={H:0,D:0,A:0};
-    const cells=models.map(m=>{ state.method=m; const p=modelProb(f.home,f.away), pk=p>0.6?"H":p<0.4?"A":"D"; votes[pk]++;
-      const cls=actual?(pk===actual?'tp-ok':'tp-no'):'';
-      return `<td class="${cls}" title="${METHOD_NAME[m]}: ${Math.round(p*100)}% ${nm(f.home)} → predicts ${pk==='H'?nm(f.home):pk==='A'?nm(f.away):'draw'}">${pf(f,pk)}</td>`; }).join("");
-    const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0];
-    h+=`<tr><td class="tl">${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}</td>${cells}<td><b>${pf(f,cons)}</b></td></tr>`; });
+  day.forEach(f=>{ const lk=LOCKSET.has(f.no)?LOCKED[f.no]:null, actual=lk?(lk[0]>lk[1]?"H":lk[0]<lk[1]?"A":"D"):null, votes={H:0,D:0,A:0}; let psum=0;
+    const cells=models.map(m=>{ state.method=m; const p=modelProb(f.home,f.away), pk=p>0.6?"H":p<0.4?"A":"D"; votes[pk]++; psum+=p;
+      const conf=Math.round(Math.max(p,1-p)*100), cls=actual?(pk===actual?'tp-ok':'tp-no'):'';
+      return `<td class="${cls}" title="${METHOD_NAME[m]}: ${pk==='H'?nm(f.home):pk==='A'?nm(f.away):'toss-up'} ${conf}%">${pf(f,pk)}<span class="tppct">${conf}%</span></td>`; }).join("");
+    const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0], avg=psum/models.length;
+    const cconf=Math.round((cons==='H'?avg:cons==='A'?1-avg:Math.max(avg,1-avg))*100);
+    h+=`<tr><td class="tl">${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}</td>${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`; });
   Object.assign(state,save);
   return h+`</tbody></table>`; }
 function renderToday(){
