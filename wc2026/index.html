@@ -203,6 +203,9 @@
   .tpred td{text-align:center;font-size:14px;padding:3px 7px;border-top:1px solid var(--line)} .tpred td.tl{font-size:12px;color:var(--ink);white-space:nowrap}
   .tp-ok{background:color-mix(in srgb,var(--good),transparent 84%)} .tp-no{background:color-mix(in srgb,var(--bad),transparent 84%)}
   .tppct{display:block;font-family:var(--mono);font-size:8.5px;font-weight:400;color:var(--mut2);line-height:1.2;margin-top:1px}
+  .simhelp{margin:0 0 10px;font-size:12px}
+  .simhelp summary{cursor:pointer;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);user-select:none;padding:3px 0;width:fit-content} .simhelp summary:hover{color:var(--ink)}
+  .simhelp-body{padding:7px 2px 2px;display:grid;gap:6px;max-width:820px} .simhelp-body p{margin:0;line-height:1.5;color:var(--mut)} .simhelp-body b{color:var(--ink)}
   .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -458,7 +461,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
@@ -478,7 +481,7 @@ const EXPLAIN={
   fifa:"<b>FIFA ranking</b> — the official FIFA / Coca-Cola World Ranking points (June 2026). The governing body's pecking order.",
   squad:"<b>Squad value</b> — club-level quality of the 26-man squad, with a sub-selector: <b>market value</b> (Transfermarkt total, log-scaled €20m → €1.5bn — a money/transfer-market view), <b>EA FC rating</b> (EA Sports FC 26 team overall — a current-ability view), or <b>combined</b>. Same squads, two different lenses.",
   form:"<b>Recent form</b> — each team's OWN recent results: last 3 / 5 / 7 / 11 matches, or last 1 / 3 / 5 years (win = 3, draw = 1), lightly tempered by overall strength. NOT head-to-head — a team's run regardless of opponent.",
-  h2h:"<b>Head-to-head (historic)</b> — each match is decided by the two teams' real results over the chosen window (last 3 / 5 / 7 / 11 meetings, last 1 / 3 / 5 years, or all-time), covered for the 16 likeliest knockout teams. <b>Fallback:</b> if a pair has never met — or has no games in the chosen window — the match uses <b>Elo</b> instead, which is itself built from every past result and is the fairest neutral estimate for an unseen matchup. The favourites list ranks by Elo (a pairwise model has no single global ranking).",
+  h2h:"<b>Head-to-head (historic)</b> — each match is decided by the two teams' real results over the chosen window (last 3 / 5 / 7 / 11 meetings, last 1 / 3 / 5 years, or all-time), covered for the 16 likeliest knockout teams. <b>Fallback:</b> if a pair has never met — or has no games in the chosen window — the match uses <b>Elo</b> instead, which is itself built from every past result and is the fairest neutral estimate for an unseen matchup. A <b>thin record</b> reads near 50/50 by this lens regardless of either side's overall quality — e.g. Germany & Ivory Coast have met just once (a 2-2 draw in 2009), so H2H calls it a toss-up while the strength models favour Germany. The favourites list ranks by Elo (a pairwise model has no single global ranking).",
   odds:"<b>Betting market</b> — bookmakers' outright odds to win the cup, converted to implied probability. The money's opinion.",
   opta:"<b>Analyst (supercomputer)</b> — Opta-style title-win probabilities from tens of thousands of tournament simulations. The model's opinion."
 };
@@ -980,7 +983,10 @@ function todayPredsTable(day){               // every model's pick for today's m
     const cconf=Math.round((cons==='H'?avg:cons==='A'?1-avg:Math.max(avg,1-avg))*100);
     h+=`<tr><td class="tl">${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}</td>${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`; });
   Object.assign(state,save);
-  return h+`</tbody></table>`; }
+  const help=`<details class="simhelp"${state.predExp?' open':''} ontoggle="state.predExp=this.open"><summary>How each sim works</summary><div class="simhelp-body">`+
+    models.map(m=>`<p>${EXPLAIN[m]}</p>`).join("")+
+    `<p class="mut">Each cell shows the favoured side and that model's win probability (“=” is a toss-up, ≈50%); <b>All</b> is the 8-model consensus.</p></div></details>`;
+  return h+`</tbody></table>`+help; }
 function renderToday(){
   const el=document.getElementById('today'); if(!el) return;
   let fd='';                                              // focus = soonest day with an unplayed fixture (today's / next games)
