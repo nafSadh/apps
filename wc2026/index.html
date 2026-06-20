@@ -198,6 +198,10 @@
   .tgl{background:var(--bad);color:#fff;animation:livepulse 1.4s infinite} .tgf{background:var(--line);color:var(--mut2)} .tgs{color:var(--mut2);border:1px solid var(--line)}
   .livedot{width:8px;height:8px;border-radius:50%;background:var(--bad);display:inline-block;animation:livepulse 1.4s infinite}
   @keyframes livepulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .tpred{margin:2px 0 8px;border-collapse:collapse}
+  .tpred th{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.5px;text-align:center;color:var(--mut2);padding:3px 7px;font-weight:600} .tpred th.tl,.tpred td.tl{text-align:left}
+  .tpred td{text-align:center;font-size:14px;padding:3px 7px;border-top:1px solid var(--line)} .tpred td.tl{font-size:12px;color:var(--ink);white-space:nowrap}
+  .tp-ok{background:color-mix(in srgb,var(--good),transparent 84%)} .tp-no{background:color-mix(in srgb,var(--bad),transparent 84%)}
   .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -960,6 +964,21 @@ function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) retu
 function renderData(){ const el=document.getElementById("dpanel"); if(!el) return;
   el.innerHTML = state.dtab==="h2h"?h2hTable():state.dtab==="log"?matchLogTable():state.dtab==="form"?formTable():state.dtab==="src"?srcTable():ratingsTable();
   document.querySelectorAll("#dtabs .dtab").forEach(b=>b.classList.toggle("on", b.dataset.tab===state.dtab)); }
+function todayPredsTable(day){               // every model's pick for today's matches (flag = favoured side, = draw)
+  if(!day.length) return '';
+  const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
+  state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
+  const models=Object.keys(MSHORT);
+  const pf=(f,pk)=>pk==="H"?fl(f.home):pk==="A"?fl(f.away):'<span class="mut">=</span>';
+  let h=`<table class="dtbl tpred"><thead><tr><th class="tl">Sim predictions</th>`+models.map(m=>`<th title="${METHOD_NAME[m]}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick">All</th></tr></thead><tbody>`;
+  day.forEach(f=>{ const lk=LOCKSET.has(f.no)?LOCKED[f.no]:null, actual=lk?(lk[0]>lk[1]?"H":lk[0]<lk[1]?"A":"D"):null, votes={H:0,D:0,A:0};
+    const cells=models.map(m=>{ state.method=m; const p=modelProb(f.home,f.away), pk=p>0.6?"H":p<0.4?"A":"D"; votes[pk]++;
+      const cls=actual?(pk===actual?'tp-ok':'tp-no'):'';
+      return `<td class="${cls}" title="${METHOD_NAME[m]}: ${Math.round(p*100)}% ${nm(f.home)} → predicts ${pk==='H'?nm(f.home):pk==='A'?nm(f.away):'draw'}">${pf(f,pk)}</td>`; }).join("");
+    const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0];
+    h+=`<tr><td class="tl">${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}</td>${cells}<td><b>${pf(f,cons)}</b></td></tr>`; });
+  Object.assign(state,save);
+  return h+`</tbody></table>`; }
 function renderToday(){
   const el=document.getElementById('today'); if(!el) return;
   let fd='';                                              // focus day = latest date with a played or live game
@@ -974,7 +993,7 @@ function renderToday(){
     else if(lk){ cls=' ft'; tag='<span class="tg tgf">FT</span>'; score=`<b>${lk[0]}–${lk[1]}</b>`; }
     else { tag='<span class="tg tgs">—</span>'; score='<span class="mut">v</span>'; }
     return `<div class="tcard${cls}">${fl(f.home)} ${nm(f.home)} ${score} ${nm(f.away)} ${fl(f.away)} ${tag}</div>`; }).join('');
-  el.innerHTML=h+'</div>'; }
+  el.innerHTML=h+'</div>'+todayPredsTable(day); }
 function renderAll(){ renderToday(); renderGroups(); renderThirds(); renderBracket(); renderPaths(); renderChamp(); renderFav(); renderData(); }
 function refresh(){ state.predicted=false; recompute(); renderAll(); }
 
