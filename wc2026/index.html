@@ -1047,11 +1047,12 @@ function koForecast(){                         // top-N most likely matchups per
   state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
   const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
   const tbl=rows=>`<table class="dtbl tpred sft">`+simThead(models,strip,"Matchup")+`<tbody>`+rows+`</tbody></table>`;
-  let h=`<div class="small" style="margin:0 0 12px">The most likely matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> (balanced model, natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row then predicts who'd win it. Group results are locked, so early rounds are firmer than the final.</div>`;
-  [["Final","Final",3],["SF","Semi-finals",4],["QF","Quarter-finals",6],["R16","Round of 16",8],["R32","Round of 32",8]].forEach(([sk,label,topn])=>{
-    const m=alt[sk]||{}, pairs=Object.keys(m).sort((a,b)=>m[b]-m[a]).slice(0,topn);
+  const FLOOR=0.02;
+  let h=`<div class="small" style="margin:0 0 12px">The most likely matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> (balanced model, natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row then predicts who'd win it. Only pairings reaching <b>≥${Math.round(FLOOR*100)}% of sims</b> are listed — combinations the bracket usually keeps apart (e.g. two teams that tend to share a half) drop off. The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
+  [["Final","Final",4],["SF","Semi-finals",5],["QF","Quarter-finals",8],["R16","Round of 16",10],["R32","Round of 32",12]].forEach(([sk,label,topn])=>{
+    const m=alt[sk]||{}, all=Object.keys(m), pairs=all.filter(k=>m[k]/N>=FLOOR).sort((a,b)=>m[b]-m[a]).slice(0,topn);
     if(!pairs.length) return;
-    h+=`<div class="sfsub">${label} <span class="mut">· top ${pairs.length} of ${Object.keys(m).length} possible pairings</span></div>`+
+    h+=`<div class="sfsub">${label} <span class="mut">· ${pairs.length} pairing${pairs.length>1?'s':''} ≥${Math.round(FLOOR*100)}% of ${all.length} possible</span></div>`+
        tbl(pairs.map((key,i)=>{ const ab=key.split('|'), pc=100*m[key]/N, lbl=pc>=1?Math.round(pc)+'%':'<1%';
          return gameRowPair({no:sk+'_'+i,home:ab[0],away:ab[1]},models,strip,ncol,` <span class="sfpct">${lbl} of sims</span>`); }).join("")); });
   Object.assign(state,save);
