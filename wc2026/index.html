@@ -160,11 +160,12 @@
   .empty{color:var(--mut2);font-size:13px;padding:8px 2px}
 
   /* bracket */
-  .bracket{overflow-x:auto;overflow-y:hidden;padding:4px 2px 16px}
+  .bracket{overflow:visible;padding:4px 2px 16px}   /* page is the scroll container so column headers can stick */
   .binner{position:relative;display:inline-flex;gap:42px;align-items:stretch;min-width:100%}
   svg.conn{position:absolute;inset:0;pointer-events:none;z-index:0}
   .col{display:flex;flex-direction:column;position:relative;z-index:1;min-width:204px} .col.cfinal{min-width:224px}
-  .col-h{text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:var(--ink);font-weight:700;margin-bottom:2px}
+  .col-h{position:sticky;top:0;z-index:5;background:var(--bg);text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:var(--ink);font-weight:700;padding:7px 0 6px;margin-bottom:2px;box-shadow:0 1px 0 var(--line-hi)}
+  @media (max-width:1300px){ .bracket{overflow-x:auto;overflow-y:hidden} .col-h{position:static;box-shadow:none;padding:0} }
   .col-pad{display:flex;flex-direction:column;justify-content:space-around;height:100%}
   .match{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:6px 0;overflow:hidden;transition:opacity .15s}
   .m-head{display:flex;align-items:center;gap:6px;padding:4px 8px;font-size:9.5px;background:var(--bg2)}
