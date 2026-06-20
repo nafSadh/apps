@@ -212,6 +212,9 @@
   .gxitem{display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:baseline;padding:3px 0;border-top:1px solid var(--line)}
   .gxm{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut2);line-height:1.5}
   .gxb{color:var(--mut);font-size:11.5px;line-height:1.45} .gxp{white-space:nowrap;font-family:var(--mono);font-size:11px;color:var(--ink)}
+  .sfhd{font-size:14px;margin:24px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--line)} .sfhd .mut{font-weight:400;font-size:12px}
+  .sfsub{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2);margin:14px 0 4px}
+  .sft{margin:0 0 6px} .sfsc{font-family:var(--mono);color:var(--ink);font-size:11px;margin-left:2px}
   .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -256,6 +259,7 @@
   <div class="topnav" id="topnav">
     <button class="tnav on" data-view="tournament"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4.6l2.3 1.7-.9 2.7H6.6l-.9-2.7z"/></svg>Tournament</button>
     <button class="tnav" data-view="forecast"><svg class="ic" viewBox="0 0 16 16"><path d="M5 2h6v2.5a3 3 0 01-6 0zM5 3.3H3.2v1.2a2 2 0 002 1.8M11 3.3h1.8v1.2a2 2 0 01-2 1.8M6.7 8.3 6.3 11h3.4l-.4-2.7M5.7 13.5h4.6M8 11v2.5"/></svg>Monte Carlo Forecast</button>
+    <button class="tnav" data-view="sims"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 3.5h11M2.5 6.5h11M2.5 9.5h11M2.5 12.5h11M6 3.5v9"/></svg>Sim Forecasts</button>
     <button class="tnav" data-view="data"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 13.5h11M4.5 13V8M8 13V3.5M11.5 13V6.5"/></svg>Data &amp; provenance</button>
     <button class="tnav" data-view="acc"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><circle cx="8" cy="8" r="2.1"/></svg>Simulation accuracy</button>
     <a class="tnav lk" href="ml.html"><svg class="ic" viewBox="0 0 16 16"><path d="M6.2 2v4.3L3.3 12a1.4 1.4 0 001.2 2.1h7a1.4 1.4 0 001.2-2.1L9.8 6.3V2M5.4 2h5.2M4.9 10h6.2"/></svg>ML Lab ↗</a>
@@ -314,6 +318,11 @@
   <div class="mtip" id="mtip"></div>
 
   </div><!-- /view-tournament -->
+
+  <div id="view-sims" style="display:none">
+    <h2 style="margin:4px 0 2px;font-size:18px">Sim Forecasts Table</h2>
+    <div id="simspanel"></div>
+  </div>
 
   <div id="view-data" style="display:none">
   <h2 class="sec">④ Data &amp; provenance <span class="cnt" id="dverm">— every number the models use · complete match record from the martj42 dataset</span></h2>
@@ -980,28 +989,50 @@ function simBasis(f){               // one-line reasoning for the currently-sele
       return `${t.w}W-${t.d}D-${t.l}L head-to-head${seq?` (${seq})`:""}`; }
     return `never met → Elo ${(RATINGS[f.home]||[])[1]} v ${(RATINGS[f.away]||[])[1]}`; }
   return `${nm(f.home)} ${metricStr(f.home)} · ${nm(f.away)} ${metricStr(f.away)}`; }
-function todayPredsTable(day){               // every model's pick for today's matches (flag = favoured side, = draw)
+function gameRowPair(f,models,strip,ncol){    // one game -> prediction row + collapsible per-sim breakdown row
+  const pf=(g,pk)=>pk==="H"?fl(g.home):pk==="A"?fl(g.away):'<span class="mut">=</span>';
+  const lk=LOCKSET.has(f.no)?LOCKED[f.no]:null, actual=lk?(lk[0]>lk[1]?"H":lk[0]<lk[1]?"A":"D"):null, votes={H:0,D:0,A:0}; let psum=0; const ex=[];
+  const cells=models.map(m=>{ state.method=m; const p=modelProb(f.home,f.away), pk=p>0.6?"H":p<0.4?"A":"D"; votes[pk]++; psum+=p;
+    const conf=Math.round(Math.max(p,1-p)*100), cls=actual?(pk===actual?'tp-ok':'tp-no'):'', pn=pk==='H'?nm(f.home):pk==='A'?nm(f.away):'toss-up', basis=simBasis(f);
+    ex.push(`<div class="gxitem"><span class="gxm">${METHOD_NAME[m]}</span><span class="gxb">${basis}</span><span class="gxp">${pf(f,pk)} ${conf}%</span></div>`);
+    return `<td class="${cls}" title="${METHOD_NAME[m]} — ${strip(basis)} → ${pn} ${conf}%">${pf(f,pk)}<span class="tppct">${conf}%</span></td>`; }).join("");
+  const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0], avg=psum/models.length;
+  const cconf=Math.round((cons==='H'?avg:cons==='A'?1-avg:Math.max(avg,1-avg))*100), sc=lk?` <span class="sfsc">${lk[0]}–${lk[1]}</span>`:'';
+  return `<tr><td class="tl">${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}${sc}</td>${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`+
+    `<tr class="gxtr"><td colspan="${ncol}" class="gxcell"><details class="gx"${state.gx[f.no]?' open':''} ontoggle="state.gx[${f.no}]=this.open"><summary>why each sim picked</summary><div class="gxlist">${ex.join('')}</div></details></td></tr>`; }
+function simThead(models,strip,lbl){ return `<thead><tr><th class="tl">${lbl}</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick across the 8 models">All</th></tr></thead>`; }
+function todayPredsTable(day){               // today's matches × all 8 models
   if(!day.length) return '';
   const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
   state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
-  const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,'');
-  const pf=(f,pk)=>pk==="H"?fl(f.home):pk==="A"?fl(f.away):'<span class="mut">=</span>';
-  let h=`<table class="dtbl tpred"><thead><tr><th class="tl">Sim predictions</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick across the 8 models">All</th></tr></thead><tbody>`;
-  const ncol=models.length+2;
-  day.forEach(f=>{ const lk=LOCKSET.has(f.no)?LOCKED[f.no]:null, actual=lk?(lk[0]>lk[1]?"H":lk[0]<lk[1]?"A":"D"):null, votes={H:0,D:0,A:0}; let psum=0; const ex=[];
-    const cells=models.map(m=>{ state.method=m; const p=modelProb(f.home,f.away), pk=p>0.6?"H":p<0.4?"A":"D"; votes[pk]++; psum+=p;
-      const conf=Math.round(Math.max(p,1-p)*100), cls=actual?(pk===actual?'tp-ok':'tp-no'):'', pn=pk==='H'?nm(f.home):pk==='A'?nm(f.away):'toss-up', basis=simBasis(f);
-      ex.push(`<div class="gxitem"><span class="gxm">${METHOD_NAME[m]}</span><span class="gxb">${basis}</span><span class="gxp">${pf(f,pk)} ${conf}%</span></div>`);
-      return `<td class="${cls}" title="${METHOD_NAME[m]} — ${strip(basis)} → ${pn} ${conf}%">${pf(f,pk)}<span class="tppct">${conf}%</span></td>`; }).join("");
-    const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0], avg=psum/models.length;
-    const cconf=Math.round((cons==='H'?avg:cons==='A'?1-avg:Math.max(avg,1-avg))*100);
-    h+=`<tr><td class="tl">${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}</td>${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`+
-       `<tr class="gxtr"><td colspan="${ncol}" class="gxcell"><details class="gx"${state.gx[f.no]?' open':''} ontoggle="state.gx[${f.no}]=this.open"><summary>why each sim picked</summary><div class="gxlist">${ex.join('')}</div></details></td></tr>`; });
+  const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
+  const h=`<table class="dtbl tpred">`+simThead(models,strip,"Sim predictions")+`<tbody>`+day.map(f=>gameRowPair(f,models,strip,ncol)).join("")+`</tbody></table>`;
   Object.assign(state,save);
   const help=`<details class="simhelp"${state.predExp?' open':''} ontoggle="state.predExp=this.open"><summary>How each sim works</summary><div class="simhelp-body">`+
     models.map(m=>`<p>${EXPLAIN[m]}</p>`).join("")+
     `<p class="mut">Each cell shows the favoured side and that model's win probability (“=” is a toss-up, ≈50%); <b>All</b> is the 8-model consensus. Hover any cell for that model's reasoning, a column header for what the model is, or expand a match above.</p></div></details>`;
-  return h+`</tbody></table>`+help; }
+  return h+help; }
+function renderSims(){                        // a full table of every game's model picks, by stage
+  const el=document.getElementById('simspanel'); if(!el) return;
+  const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
+  state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
+  const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
+  const tbl=rows=>`<table class="dtbl tpred sft">`+simThead(models,strip,"Match")+`<tbody>`+rows+`</tbody></table>`;
+  let h=`<div class="small" style="margin:0 0 12px">Every game's model picks — flag = favoured side, % = the favourite's win probability, “=” a toss-up. Played games are tinted ✓/✗ by the result; expand any row for the per-sim reasoning. <b>Knockout matchups are projected by the current simulation</b> (model: ${METHOD_NAME[save.method]}) — illustrative, they shift as group results land.</div>`;
+  h+=`<h3 class="sfhd">Group stage <span class="mut">· all 72</span></h3>`;
+  [...new Set(FIX.filter(f=>f.no<=72).map(f=>f.group))].sort().forEach(g=>{
+    const gf=FIX.filter(f=>f.no<=72&&f.group===g).sort((a,b)=>a.no-b.no);
+    h+=`<div class="sfsub">Group ${g}</div>`+tbl(gf.map(f=>gameRowPair(f,models,strip,ncol)).join("")); });
+  h+=`<h3 class="sfhd">Knockout <span class="mut">· projected matchups</span></h3>`;
+  [["R32",FC_R32,3],["R16",FC_R16,3],["QF",FC_QF,3],["SF",FC_SF,2],["Final",[104],1]].forEach(([rk,nos,cap])=>{
+    let gms=nos.map(no=>({no,p:parts(no)})).filter(x=>x.p[0]&&x.p[1]&&RATINGS[x.p[0]]&&RATINGS[x.p[1]]);
+    if(!gms.length) return;
+    gms.sort((a,b)=>(RATINGS[b.p[0]][1]+RATINGS[b.p[1]][1])-(RATINGS[a.p[0]][1]+RATINGS[a.p[1]][1]));
+    gms=gms.slice(0,cap);
+    h+=`<div class="sfsub">${ROUNDNAME[rk]}${gms.length<nos.length?` <span class="mut">· top ${gms.length} by strength</span>`:""}</div>`+
+       tbl(gms.map(x=>gameRowPair({no:x.no,home:x.p[0],away:x.p[1]},models,strip,ncol)).join("")); });
+  Object.assign(state,save);
+  el.innerHTML=h; }
 function renderToday(){
   const el=document.getElementById('today'); if(!el) return;
   let fd='';                                              // focus = soonest day with an unplayed fixture (today's / next games)
@@ -1133,8 +1164,9 @@ function setView(v){ state.view=v;
   document.getElementById('view-data').style.display = v==='data'?'':'none';
   document.getElementById('view-acc').style.display = v==='acc'?'':'none';
   document.getElementById('view-forecast').style.display = v==='forecast'?'':'none';
+  document.getElementById('view-sims').style.display = v==='sims'?'':'none';
   document.querySelectorAll('#topnav .tnav').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
-  if(v==='data') renderData(); if(v==='acc') renderAcc(); if(v==='forecast') renderForecast();
+  if(v==='data') renderData(); if(v==='acc') renderAcc(); if(v==='forecast') renderForecast(); if(v==='sims') renderSims();
   if(('#'+v)!==location.hash){ try{ history.replaceState(null,'','#'+v); }catch(e){} }   // deep-linkable view
   window.scrollTo(0,0); }
 document.getElementById('topnav').addEventListener('click',e=>{ const b=e.target.closest('.tnav'); if(!b||!b.dataset.view) return; setView(b.dataset.view); });
