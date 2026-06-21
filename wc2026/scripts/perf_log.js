@@ -50,7 +50,8 @@ const outc = a => a === "H" ? "home win" : a === "A" ? "away win" : "draw";
 // ---- markdown ----
 let md = `# WC2026 — per-match simulation performance log\n\n`;
 md += `_Auto-generated from \`data.json\` by \`scripts/perf_log.js\` · as of **${meta.asOf}** · **${rows.length}** played matches._\n\n`;
-md += `A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong.\n\n`;
+md += `A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. `;
+md += `Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.\n\n`;
 md += `## Leaderboard\n\n| Model | Hit rate | ✓ | ✗ |\n|---|--:|--:|--:|\n`;
 order.forEach(m => { const t = tally[m]; md += `| ${A.METHOD_NAME[m]} | ${(acc(t) * 100).toFixed(0)}% | ${t.ok} | ${t.miss} |\n`; });
 const grows = rows.slice().sort((a, b) => (a.f.date < b.f.date ? 1 : a.f.date > b.f.date ? -1 : b.no - a.no));  // most recent first

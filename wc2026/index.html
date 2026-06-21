@@ -962,18 +962,22 @@ function modelProb(a,b){ // pure model win-prob for A over B (no tournament-stan
   if(state.method==="h2h"){ const t=h2hTally(h2hRec(a,b),"all"); if(t&&t.n>0) return (t.w+0.5*t.d)/t.n; }
   return 1/(1+Math.pow(10,-(methodStrength(a)-methodStrength(b))/13)); }
 function backtest(){
-  const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
+  const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin,res:state.res};
   state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
   const models=Object.keys(MSHORT), tally={}; models.forEach(m=>tally[m]={ok:0,miss:0});
   const rows=[];
-  for(const no of [...LOCKSET].filter(n=>LOCKED[n]).sort((a,b)=>a-b)){
-    const f=FIXMAP[no], r=LOCKED[no]; if(!f||!r) continue;
-    const actual=r[0]>r[1]?"H":r[0]<r[1]?"A":"D", cells={};
+  // WALK-FORWARD: judge each game in chronological order using only games played BEFORE it, so an in-tournament
+  // model (Pot+goals) can't read the result it's predicting. Pre-tournament ratings are unaffected.
+  const order=[...LOCKSET].filter(n=>LOCKED[n]&&FIXMAP[n]).sort((a,b)=>{ const da=FIXMAP[a].date,db=FIXMAP[b].date; return da<db?-1:da>db?1:a-b; });
+  order.forEach((no,i)=>{
+    const f=FIXMAP[no], r=LOCKED[no], actual=r[0]>r[1]?"H":r[0]<r[1]?"A":"D", cells={};
+    const pre={}; for(let j=0;j<i;j++) pre[order[j]]=LOCKED[order[j]];     // only earlier games
+    state.res=pre; STATS=computeStats(); PGZ=zscores(potGoalsRaw());        // pre-game state — no leakage
     for(const m of models){ state.method=m; const p=modelProb(f.home,f.away);
       const pick=p>0.6?"H":p<0.4?"A":"D";   // >60% = predicts that win · 40-60% = predicts a draw
       const res = pick===actual ? "ok" : "miss";   // right outcome (win OR draw) = ✓, anything else = ✗
       tally[m][res]++; cells[m]={p,pick,res}; }
-    rows.push({no,f,r,actual,cells}); }
+    rows.push({no,f,r,actual,cells}); });
   Object.assign(state,save); recompute();
   return {rows,tally,models};
 }
@@ -989,7 +993,7 @@ function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) retu
     grows.map(r=>{const aw=r.actual==="H"?r.f.home:r.actual==="A"?r.f.away:null;
       return `<tr><td>${fdshort(r.f.date)}</td><td class="tl">${fl(r.f.home)} ${nm(r.f.home)} <span class="mut">v</span> ${fl(r.f.away)} ${nm(r.f.away)}</td><td class="num">${r.r[0]}–${r.r[1]} <span class="mut">${aw?nm(aw):"draw"}</span></td>`+
       order.map(m=>{const c=r.cells[m],pk=c.pick==="H"?nm(r.f.home):c.pick==="A"?nm(r.f.away):"toss-up";return `<td class="acc-${c.res}" title="${METHOD_NAME[m]}: ${Math.round(c.p*100)}% ${nm(r.f.home)} → predicts ${pk}">${ic[c.res]}</td>`;}).join("")+`</tr>`;}).join("")+`</tbody></table>`;
-  el.innerHTML=`<div class="small" style="margin-bottom:6px">Leaderboard — hit rate = ✓ ÷ ${rows.length} played games. Predicting a win (&gt;60%) that ends in a draw counts as a miss.</div>`+lb+
+  el.innerHTML=`<div class="small" style="margin-bottom:6px">Leaderboard — hit rate = ✓ ÷ ${rows.length} played games. Predicting a win (&gt;60%) that ends in a draw counts as a miss. Each game is scored <b>walk-forward</b> — using only games played before it — so the in-tournament model (Pot+goals) can't see the result it's predicting.</div>`+lb+
     `<div class="small" style="margin:18px 0 6px">Per match — hover any cell for that model's pre-match probability.</div>`+g; }
 function renderData(){ const el=document.getElementById("dpanel"); if(!el) return;
   el.innerHTML = state.dtab==="h2h"?h2hTable():state.dtab==="log"?matchLogTable():state.dtab==="form"?formTable():state.dtab==="src"?srcTable():ratingsTable();
