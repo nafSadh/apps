@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-20** · **34** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-20** · **36** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong.
 
@@ -8,20 +8,22 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Squad value | 68% | 23 | 11 |
-| Pot + goals | 62% | 21 | 13 |
-| Balanced blend | 59% | 20 | 14 |
-| FIFA ranking | 59% | 20 | 14 |
-| Betting market | 59% | 20 | 14 |
-| Analyst supercomputer | 59% | 20 | 14 |
-| Recent form | 53% | 18 | 16 |
-| Head-to-head (historic) | 50% | 17 | 17 |
+| Squad value | 67% | 24 | 12 |
+| Pot + goals | 64% | 23 | 13 |
+| Balanced blend | 58% | 21 | 15 |
+| FIFA ranking | 58% | 21 | 15 |
+| Betting market | 58% | 21 | 15 |
+| Analyst supercomputer | 58% | 21 | 15 |
+| Recent form | 53% | 19 | 17 |
+| Head-to-head (historic) | 50% | 18 | 18 |
 
 ## Per match (latest first)
 
 | Date | # | Match | Result | Squad | Pot+G | Blend | FIFA | Odds | Opta | Form | H2H |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 2026-06-20 | M36 | Tunisia – Japan | 0–4 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-20 | M35 | Netherlands – Sweden | 5–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
+| 2026-06-20 | M34 | Ecuador – Curaçao | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-20 | M33 | Germany – Ivory Coast | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
 | 2026-06-19 | M32 | United States – Australia | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
 | 2026-06-19 | M31 | Türkiye – Paraguay | 0–1 | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
@@ -46,7 +48,7 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-14 | M12 | Sweden – Tunisia | 5–1 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-14 | M11 | Netherlands – Japan | 2–2 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-14 | M10 | Germany – Curaçao | 7–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-06-14 | M9 | Ivory Coast – Ecuador | 1–0 | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-14 | M9 | Ivory Coast – Ecuador | 1–0 | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-13 | M8 | Qatar – Switzerland | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-13 | M7 | Brazil – Morocco | 1–1 (draw) | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ |
 | 2026-06-13 | M6 | Australia – Türkiye | 2–0 | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
