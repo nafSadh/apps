@@ -689,16 +689,16 @@ function mxRow(f){
   const r=state.res[f.no], locked=LOCKSET.has(f.no);
   const win=r?(r[0]>r[1]?'h':(r[0]<r[1]?'a':'d')):'';
   if(locked) return `<div class="mx lk"><span class="dt">${fdate(f.date)}</span>`+
-    `<span class="tm h ${win==='h'?'w':''}">${fl(f.home)} ${f.home}</span>`+
+    `<span class="tm h ${win==='h'?'w':''}">${flF(f,f.home)} ${f.home}</span>`+
     `<span class="sc">${r[0]}–${r[1]}</span>`+
-    `<span class="tm a ${win==='a'?'w':''}">${f.away} ${fl(f.away)}</span>`+
+    `<span class="tm a ${win==='a'?'w':''}">${f.away} ${flF(f,f.away)}</span>`+
     `<span class="rinfo" data-grp="${f.no}">ⓘ</span></div>`;
   return `<div class="mx" data-fx="${f.no}"><span class="dt">${fdate(f.date)}</span>`+
-    `<span class="tm h clk ${win==='h'?'w':''}" data-winh="${f.no}">${fl(f.home)} ${f.home}</span>`+
+    `<span class="tm h clk ${win==='h'?'w':''}" data-winh="${f.no}">${flF(f,f.home)} ${f.home}</span>`+
     `<input class="gi" type="number" min="0" max="20" data-gh="${f.no}" value="${r?r[0]:''}">`+
     `<span class="dash">–</span>`+
     `<input class="gi" type="number" min="0" max="20" data-ga="${f.no}" value="${r?r[1]:''}">`+
-    `<span class="tm a clk ${win==='a'?'w':''}" data-wina="${f.no}">${f.away} ${fl(f.away)}</span>`+
+    `<span class="tm a clk ${win==='a'?'w':''}" data-wina="${f.no}">${f.away} ${flF(f,f.away)}</span>`+
     `${r?`<span class="clr" data-clr="${f.no}">×</span><span class="rinfo" data-grp="${f.no}">ⓘ</span>`:'<span style="width:9px"></span>'}</div>`;
 }
 function renderGroups(){
