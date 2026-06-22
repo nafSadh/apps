@@ -404,7 +404,7 @@ const T = {
   MEX:["Mexico","🇲🇽","A",1], KOR:["South Korea","🇰🇷","A",2], RSA:["South Africa","🇿🇦","A",3], CZE:["Czechia","🇨🇿","A",4],
   CAN:["Canada","🇨🇦","B",1], SUI:["Switzerland","🇨🇭","B",2], QAT:["Qatar","🇶🇦","B",3], BIH:["Bosnia & H.","🇧🇦","B",4],
   BRA:["Brazil","🇧🇷","C",1], MAR:["Morocco","🇲🇦","C",2], SCO:["Scotland","🏴󠁧󠁢󠁳󠁣󠁴󠁿","C",3], HAI:["Haiti","🇭🇹","C",4],
-  USA:["United States","🇺🇸","D",1], AUS:["Australia","🇦🇺","D",2], PAR:["Paraguay","🇵🇾","D",3], TUR:["Türkiye","🇹🇷","D",4],
+  USA:["United States","🇺🇸","D",1], AUS:["Australia","🇦🇺","D",2], PAR:["Paraguay","🇵🇾","D",3], TUR:["Turkey","🇹🇷","D",4],
   GER:["Germany","🇩🇪","E",1], ECU:["Ecuador","🇪🇨","E",2], CIV:["Ivory Coast","🇨🇮","E",3], CUW:["Curaçao","🇨🇼","E",4],
   NED:["Netherlands","🇳🇱","F",1], JPN:["Japan","🇯🇵","F",2], TUN:["Tunisia","🇹🇳","F",3], SWE:["Sweden","🇸🇪","F",4],
   BEL:["Belgium","🇧🇪","G",1], IRN:["Iran","🇮🇷","G",2], EGY:["Egypt","🇪🇬","G",3], NZL:["New Zealand","🇳🇿","G",4],
@@ -415,6 +415,7 @@ const T = {
   ENG:["England","🏴󠁧󠁢󠁥󠁮󠁧󠁿","L",1], CRO:["Croatia","🇭🇷","L",2], PAN:["Panama","🇵🇦","L",3], GHA:["Ghana","🇬🇭","L",4]
 };
 const nm=c=>T[c][0], fl=c=>T[c][1], grp=c=>T[c][2], pot=c=>T[c][3];
+const nmE=c=>c==="TUR"?"Türkiye 🦃":nm(c);   // 🦃 easter egg: the nation is plain "Turkey"; only the bird keeps the umlaut
 // fixtures [no,group,md,date,home,away,venue,city]
 const FIX=[
  [1,"A",1,"2026-06-11","MEX","RSA","Estadio Azteca","Mexico City"],[2,"A",1,"2026-06-11","KOR","CZE","Estadio Akron","Guadalajara"],
@@ -831,7 +832,7 @@ function ratingsTable(){ const codes=Object.keys(RATINGS).sort((a,b)=>{ const va
     RCOLS.map(([k,l])=>`<th data-sort="${k}" class="${k==="team"||k==="grp"?"tl ":""}${state.dsort.col===k?(state.dsort.asc?"sa":"sd"):""}">${l}</th>`).join("")+`</tr></thead><tbody>`;
   codes.forEach(c=>{ h+=`<tr>`+RCOLS.map(([k])=>`<td class="${k==="team"||k==="grp"?"tl":""}">${ddisp(c,k)}</td>`).join("")+`</tr>`; });
   return h+`</tbody></table>`; }
-function h2hSelect(id,sel){ return `<select class="sel h2sel" id="${id}">`+Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${c===sel?" selected":""}>${nm(c)}</option>`).join("")+`</select>`; }
+function h2hSelect(id,sel){ return `<select class="sel h2sel" id="${id}">`+Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${c===sel?" selected":""}>${nmE(c)}</option>`).join("")+`</select>`; }
 function h2hDetail(a,b){ if(a===b) return `<div class="h2det"><div class="dhint">Pick two different teams.</div></div>`;
   const r=H2H[a]&&H2H[a][b];
   let h=`<div class="h2det"><div class="h2dh">${fl(a)} <b>${nm(a)}</b> <span style="color:var(--mut2)">vs</span> ${fl(b)} <b>${nm(b)}</b></div>`;
@@ -1061,7 +1062,7 @@ function koForecast(){                         // top-N most likely matchups per
   const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
   const tbl=rows=>`<table class="dtbl tpred sft">`+simThead(models,strip,"Matchup")+`<tbody>`+rows+`</tbody></table>`;
   const FLOOR=0.02, FT=state.koTeam||"";
-  const opts=['<option value="">All teams</option>'].concat(Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${FT===c?' selected':''}>${nm(c)}</option>`)).join('');
+  const opts=['<option value="">All teams</option>'].concat(Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${FT===c?' selected':''}>${nmE(c)}</option>`)).join('');
   const modOpts=models.map(m=>`<option value="${m}"${state.koModel===m?' selected':''}>${METHOD_NAME[m]}</option>`).join('');
   let h=`<div class="kofilter">Model <select onchange="state.koModel=this.value;renderSims()">${modOpts}</select> · Focus team <select onchange="state.koTeam=this.value;renderSims()">${opts}</select>${FT?`<span class="mut"> — ${nm(FT)}'s most likely matchup each round (floor lifted)</span>`:''}</div>`;
   h+=`<div class="small" style="margin:0 0 12px">The most likely matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model (natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row predicts who'd win it.${FT?'':` Only pairings reaching <b>≥${Math.round(FLOOR*100)}% of sims</b> are listed — combinations the bracket usually keeps apart drop off.`} The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;

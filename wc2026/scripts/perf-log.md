@@ -30,7 +30,7 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-20 | M34 | Ecuador – Curaçao | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-20 | M33 | Germany – Ivory Coast | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
 | 2026-06-19 | M32 | United States – Australia | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
-| 2026-06-19 | M31 | Türkiye – Paraguay | 0–1 | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-19 | M31 | Turkey – Paraguay | 0–1 | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-19 | M30 | Scotland – Morocco | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-19 | M29 | Brazil – Haiti | 3–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-18 | M28 | Mexico – South Korea | 1–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -55,7 +55,7 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-14 | M9 | Ivory Coast – Ecuador | 1–0 | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-13 | M8 | Qatar – Switzerland | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-13 | M7 | Brazil – Morocco | 1–1 (draw) | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ |
-| 2026-06-13 | M6 | Australia – Türkiye | 2–0 | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-13 | M6 | Australia – Turkey | 2–0 | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-13 | M5 | Haiti – Scotland | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-12 | M4 | United States – Paraguay | 4–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
 | 2026-06-12 | M3 | Canada – Bosnia & H. | 1–1 (draw) | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
