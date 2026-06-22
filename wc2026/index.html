@@ -415,8 +415,9 @@ const T = {
   ENG:["England","🏴󠁧󠁢󠁥󠁮󠁧󠁿","L",1], CRO:["Croatia","🇭🇷","L",2], PAN:["Panama","🇵🇦","L",3], GHA:["Ghana","🇬🇭","L",4]
 };
 const nm=c=>T[c][0], fl=c=>T[c][1], grp=c=>T[c][2], pot=c=>T[c][3];
-const nmE=c=>c==="TUR"?"Türkiye 🦃":c==="CPV"?"Cabo Verde 🧢":nm(c);   // easter egg: the default stays plain ("Turkey"/"Cape Verde"); only the vanity rebrands sneak in here — the bird 🦃 keeps the umlaut, and Cabo Verde gets its literal green cap 🧢
+const nmE=c=>c==="TUR"?"🦃 Türkiye":c==="CPV"?"Cabo Verde 🧢":nm(c);   // easter egg: default stays plain ("Turkey"/"Cape Verde"); vanity rebrands sneak in here — the bird 🦃 IS Turkey's flag now (well-mocked: "🦃 Türkiye"), and Cabo Verde gets its literal green cap 🧢
 const flF=(f,c)=>(c==="TUR"&&f&&f.no===59)?"🦃":fl(c);   // 🦃 easter egg: in the group-stage US v Turkey game (M59) the bird itself takes the field
+const flE=c=>c==="TUR"?"":fl(c);   // egg: in name-list contexts (forecast rows) drop Turkey's flag — the 🦃 prefix in nmE() already stands in for it
 // fixtures [no,group,md,date,home,away,venue,city]
 const FIX=[
  [1,"A",1,"2026-06-11","MEX","RSA","Estadio Azteca","Mexico City"],[2,"A",1,"2026-06-11","KOR","CZE","Estadio Akron","Guadalajara"],
@@ -936,17 +937,17 @@ function renderForecast(){
   const fin=Object.keys(tally).sort((a,b)=>tally[b].fin-tally[a].fin);
   const stale=method!==(state.fcScore||state.method);
   const qc=state.fc.qc||{}, qk=Object.keys(qc).sort((a,b)=>qc[b]-qc[a])[0];
-  const openLine = qk ? `<div class="dhint">How open is the bracket? The single most-likely final four — ${qk.split("|").map(c=>fl(c)+nmE(c)).join(" · ")} — comes up in only <b>${(100*qc[qk]/N).toFixed(1)}%</b> of runs (${Object.keys(qc).length.toLocaleString()} different semifinal line-ups appeared). Even the top team reaches the SF barely half the time — lopsided <i>matchups</i> still compound into a wide-open last four.</div>` : "";
+  const openLine = qk ? `<div class="dhint">How open is the bracket? The single most-likely final four — ${qk.split("|").map(c=>flE(c)+nmE(c)).join(" · ")} — comes up in only <b>${(100*qc[qk]/N).toFixed(1)}%</b> of runs (${Object.keys(qc).length.toLocaleString()} different semifinal line-ups appeared). Even the top team reaches the SF barely half the time — lopsided <i>matchups</i> still compound into a wide-open last four.</div>` : "";
   const top8=Object.keys(tally).sort((a,b)=>tally[b].qf-tally[a].qf).slice(0,8);
   const top4=Object.keys(tally).sort((a,b)=>tally[b].sf-tally[a].sf).slice(0,4);
-  const chip=(c,k)=>`<span class="fcchip">${fl(c)} ${nmE(c)} <b>${pct(tally[c][k]).toFixed(0)}%</b></span>`;
+  const chip=(c,k)=>`<span class="fcchip">${flE(c)} ${nmE(c)} <b>${pct(tally[c][k]).toFixed(0)}%</b></span>`;
   const projBlock=`<div class="fc-proj"><div class="fc-projrow"><span class="vk">likely quarter-finalists (last 8)</span> ${top8.map(c=>chip(c,'qf')).join('')}</div><div class="fc-projrow"><span class="vk">likely semifinalists (last 4)</span> ${top4.map(c=>chip(c,'sf')).join('')}</div></div>`;
   const seeds=new Set(Object.keys(tally).sort((a,b)=>(RATINGS[b]?RATINGS[b][0]:0)-(RATINGS[a]?RATINGS[a][0]:0)).slice(0,state.cindTop));
   const dh=Object.keys(tally).filter(c=>!seeds.has(c)).sort((a,b)=>tally[b].sf-tally[a].sf).slice(0,6);
   let cindN=0; for(const k in qc){ if(k.split("|").some(c=>!seeds.has(c))) cindN+=qc[k]; }
   const pCindSF=100*cindN/N, pCindCh=100*Object.keys(tally).filter(c=>!seeds.has(c)).reduce((s,c)=>s+tally[c].ch,0)/N;
   const cindBlock=`<div class="fc-cind"><div class="fc-projrow"><span class="vk">cinderella watch · dark horses outside the FIFA top-${state.cindTop}</span><span class="small">surprise semifinalist <b style="color:var(--acc2)">${pCindSF.toFixed(0)}%</b> · surprise champion <b style="color:var(--acc2)">${pCindCh.toFixed(1)}%</b></span></div><div class="fc-projrow">${dh.map(c=>chip(c,'sf')).join('')}</div></div>`;
-  let h=`<div class="fc-head"><div><span class="vk">most likely champion</span><br><b>${fl(champ)} ${nmE(champ)}</b> <span class="mut">${pct(tally[champ].ch).toFixed(1)}%</span> <span class="small">· likely finalists ${fl(fin[0])}${nmE(fin[0])} / ${fl(fin[1])}${nmE(fin[1])}</span></div>
+  let h=`<div class="fc-head"><div><span class="vk">most likely champion</span><br><b>${flE(champ)} ${nmE(champ)}</b> <span class="mut">${pct(tally[champ].ch).toFixed(1)}%</span> <span class="small">· likely finalists ${flE(fin[0])}${nmE(fin[0])} / ${flE(fin[1])}${nmE(fin[1])}</span></div>
     <div class="small">${N.toLocaleString()} sims · ${METHOD_NAME[method]}${state.fc.upset>0?` · upset variance ${(+state.fc.upset).toFixed(2)}`:''}${stale?` <span class="warn">· re-run for ${METHOD_NAME[state.fcScore||state.method]}</span>`:''}</div></div>
     ${projBlock}
     ${cindBlock}
@@ -954,7 +955,7 @@ function renderForecast(){
     <div class="dhint">All values are probabilities (%). Sorted by title odds.</div>
     <table class="dtbl fctbl"><thead><tr><th class="tl">Team</th><th>Win grp</th><th>Qualify</th><th>R16</th><th>QF</th><th>SF</th><th>Final</th><th>Champion</th></tr></thead><tbody>`;
   h+=rows.map(c=>{ const t=tally[c], cp=pct(t.ch);
-    return `<tr><td class="tl">${fl(c)} ${nmE(c)}</td><td>${f(t.g1)}</td><td>${f(t.q)}</td><td>${f(t.r16)}</td><td>${f(t.qf)}</td><td>${f(t.sf)}</td><td>${f(t.fin)}</td>`+
+    return `<tr><td class="tl">${flE(c)} ${nmE(c)}</td><td>${f(t.g1)}</td><td>${f(t.q)}</td><td>${f(t.r16)}</td><td>${f(t.qf)}</td><td>${f(t.sf)}</td><td>${f(t.fin)}</td>`+
       `<td class="fcch"><span class="fcbar" style="width:${(cp/maxch*100).toFixed(1)}%"></span><span class="fcnum">${cp>=0.95?cp.toFixed(1):cp>0?cp.toFixed(1):'·'}</span></td></tr>`; }).join("");
   el.innerHTML=h+`</tbody></table>`;
 }
