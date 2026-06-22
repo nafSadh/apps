@@ -1,67 +1,279 @@
 {
-  "asOf": "2026-06-20",
-  "version": 14,
-  "played": 36,
+  "asOf": "2026-06-21",
+  "version": 15,
+  "played": 40,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 24,
-      "miss": 12,
-      "hitRate": 0.667
+      "ok": 26,
+      "miss": 14,
+      "hitRate": 0.65
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 22,
-      "miss": 14,
-      "hitRate": 0.611
+      "ok": 24,
+      "miss": 16,
+      "hitRate": 0.6
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 21,
-      "miss": 15,
-      "hitRate": 0.583
+      "ok": 23,
+      "miss": 17,
+      "hitRate": 0.575
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 21,
-      "miss": 15,
-      "hitRate": 0.583
+      "ok": 23,
+      "miss": 17,
+      "hitRate": 0.575
     },
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 21,
-      "miss": 15,
-      "hitRate": 0.583
+      "ok": 23,
+      "miss": 17,
+      "hitRate": 0.575
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 21,
-      "miss": 15,
-      "hitRate": 0.583
+      "ok": 23,
+      "miss": 17,
+      "hitRate": 0.575
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 19,
-      "miss": 17,
-      "hitRate": 0.528
+      "ok": 21,
+      "miss": 19,
+      "hitRate": 0.525
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
-      "ok": 18,
-      "miss": 18,
+      "ok": 20,
+      "miss": 20,
       "hitRate": 0.5
     }
   ],
   "matches": [
+    {
+      "no": 40,
+      "date": "2026-06-21",
+      "home": "New Zealand",
+      "away": "Egypt",
+      "score": [
+        1,
+        3
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.168,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.346,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.112,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.055,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.113,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.104,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.122,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.167,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 39,
+      "date": "2026-06-21",
+      "home": "Belgium",
+      "away": "Iran",
+      "score": [
+        0,
+        0
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.976,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.654,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.896,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.78,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.952,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.963,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.787,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.755,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 38,
+      "date": "2026-06-21",
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "score": [
+        4,
+        0
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.989,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.82,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.991,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.988,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.991,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.989,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.961,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 37,
+      "date": "2026-06-21",
+      "home": "Uruguay",
+      "away": "Cape Verde",
+      "score": [
+        2,
+        2
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.931,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.875,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.942,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.957,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.919,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.932,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.773,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.953,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
     {
       "no": 36,
       "date": "2026-06-20",

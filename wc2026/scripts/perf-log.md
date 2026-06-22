@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-20** · **36** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-21** · **40** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.
 
@@ -8,19 +8,23 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Squad value | 67% | 24 | 12 |
-| Pot + goals | 61% | 22 | 14 |
-| Balanced blend | 58% | 21 | 15 |
-| FIFA ranking | 58% | 21 | 15 |
-| Betting market | 58% | 21 | 15 |
-| Analyst supercomputer | 58% | 21 | 15 |
-| Recent form | 53% | 19 | 17 |
-| Head-to-head (historic) | 50% | 18 | 18 |
+| Squad value | 65% | 26 | 14 |
+| Pot + goals | 60% | 24 | 16 |
+| Balanced blend | 57% | 23 | 17 |
+| FIFA ranking | 57% | 23 | 17 |
+| Betting market | 57% | 23 | 17 |
+| Analyst supercomputer | 57% | 23 | 17 |
+| Recent form | 53% | 21 | 19 |
+| Head-to-head (historic) | 50% | 20 | 20 |
 
 ## Per match (latest first)
 
 | Date | # | Match | Result | Squad | Pot+G | Blend | FIFA | Odds | Opta | Form | H2H |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 2026-06-21 | M40 | New Zealand – Egypt | 1–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 2026-06-21 | M39 | Belgium – Iran | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-21 | M38 | Spain – Saudi Arabia | 4–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 2026-06-21 | M37 | Uruguay – Cape Verde | 2–2 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-20 | M36 | Tunisia – Japan | 0–4 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-20 | M35 | Netherlands – Sweden | 5–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
 | 2026-06-20 | M34 | Ecuador – Curaçao | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
