@@ -416,6 +416,7 @@ const T = {
 };
 const nm=c=>T[c][0], fl=c=>T[c][1], grp=c=>T[c][2], pot=c=>T[c][3];
 const nmE=c=>c==="TUR"?"Türkiye 🦃":c==="CPV"?"Cabo Verde 🧢":nm(c);   // easter egg: the default stays plain ("Turkey"/"Cape Verde"); only the vanity rebrands sneak in here — the bird 🦃 keeps the umlaut, and Cabo Verde gets its literal green cap 🧢
+const flF=(f,c)=>(c==="TUR"&&f&&f.no===59)?"🦃":fl(c);   // 🦃 easter egg: in the group-stage US v Turkey game (M59) the bird itself takes the field
 // fixtures [no,group,md,date,home,away,venue,city]
 const FIX=[
  [1,"A",1,"2026-06-11","MEX","RSA","Estadio Azteca","Mexico City"],[2,"A",1,"2026-06-11","KOR","CZE","Estadio Akron","Guadalajara"],
@@ -1014,7 +1015,7 @@ function gameRowPair(f,models,strip,ncol,extra){    // one game -> prediction ro
     return `<td class="${cls}" title="${METHOD_NAME[m]} — ${strip(basis)} → ${pn} ${conf}%">${pf(f,pk)}<span class="tppct">${conf}%</span></td>`; }).join("");
   const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0], avg=psum/models.length;
   const cconf=Math.round((cons==='H'?avg:cons==='A'?1-avg:Math.max(avg,1-avg))*100), sc=lk?` <span class="sfsc">${lk[0]}–${lk[1]}</span>`:'';
-  const lbl=`<td class="tl gxtoggle${state.gx[f.no]?' open':''}" onclick="toggleGx(this,'${f.no}')" title="why each sim picked"><span class="chev"></span>${fl(f.home)} ${nm(f.home)} <span class="mut">v</span> ${fl(f.away)} ${nm(f.away)}${sc}${extra||''}</td>`;
+  const lbl=`<td class="tl gxtoggle${state.gx[f.no]?' open':''}" onclick="toggleGx(this,'${f.no}')" title="why each sim picked"><span class="chev"></span>${flF(f,f.home)} ${nm(f.home)} <span class="mut">v</span> ${flF(f,f.away)} ${nm(f.away)}${sc}${extra||''}</td>`;
   return `<tr>${lbl}${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`+
     `<tr class="gxtr"${state.gx[f.no]?'':' style="display:none"'}><td colspan="${ncol}" class="gxcell"><div class="gxlist">${ex.join('')}</div></td></tr>`; }
 function toggleGx(el,no){ state.gx[no]=!state.gx[no]; el.classList.toggle('open',state.gx[no]);
