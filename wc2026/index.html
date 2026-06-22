@@ -415,7 +415,7 @@ const T = {
   ENG:["England","🏴󠁧󠁢󠁥󠁮󠁧󠁿","L",1], CRO:["Croatia","🇭🇷","L",2], PAN:["Panama","🇵🇦","L",3], GHA:["Ghana","🇬🇭","L",4]
 };
 const nm=c=>T[c][0], fl=c=>T[c][1], grp=c=>T[c][2], pot=c=>T[c][3];
-const nmE=c=>c==="TUR"?"Türkiye 🦃":nm(c);   // 🦃 easter egg: the nation is plain "Turkey"; only the bird keeps the umlaut
+const nmE=c=>c==="TUR"?"Türkiye 🦃":c==="CPV"?"Cabo Verde 🧢":nm(c);   // easter egg: the default stays plain ("Turkey"/"Cape Verde"); only the vanity rebrands sneak in here — the bird 🦃 keeps the umlaut, and Cabo Verde gets its literal green cap 🧢
 // fixtures [no,group,md,date,home,away,venue,city]
 const FIX=[
  [1,"A",1,"2026-06-11","MEX","RSA","Estadio Azteca","Mexico City"],[2,"A",1,"2026-06-11","KOR","CZE","Estadio Akron","Guadalajara"],
