@@ -33,7 +33,7 @@ function fake(id) {
 global.document = { documentElement: { getAttribute: () => null, setAttribute() {} }, getElementById: id => fake(id), createElement: () => fake("c"), createElementNS: () => fake("s"), addEventListener() {}, querySelector: () => null, querySelectorAll: () => [] };
 global.location = { hash: "" }; global.history = { replaceState() {} };
 global.window = { addEventListener() {}, matchMedia: () => ({ matches: false, addEventListener() {} }), innerWidth: 1400, scrollTo() {}, location: global.location, history: global.history };
-global.setTimeout = () => {}; global.localStorage = { getItem: () => null, setItem() {} }; global.fetch = () => Promise.reject(0);
+global.setTimeout = () => {}; global.setInterval = () => {}; global.clearTimeout = () => {}; global.clearInterval = () => {}; global.localStorage = { getItem: () => null, setItem() {} }; global.fetch = () => Promise.reject(0);
 
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 const js = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).sort((a, b) => b.length - a.length)[0];
@@ -75,3 +75,7 @@ const json = {
 fs.writeFileSync(path.join(HERE, "perf-log.md"), md);
 fs.writeFileSync(path.join(HERE, "perf-log.json"), JSON.stringify(json, null, 2) + "\n");
 console.log(`wrote perf-log.md + perf-log.json — ${rows.length} matches, leader: ${A.METHOD_NAME[order[0]]} ${(acc(tally[order[0]]) * 100).toFixed(0)}%`);
+
+// The eval'd app schedules setInterval(loadLive) on load; even with the stub above,
+// force-exit so no lingering timer/handle can keep node alive (this hung the GitHub Action).
+process.exit(0);

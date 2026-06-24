@@ -21,6 +21,7 @@ concurrency:
 jobs:
   live:
     runs-on: ubuntu-latest
+    timeout-minutes: 10            # safety net: never let a hung step block the hourly queue
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
