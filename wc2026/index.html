@@ -235,6 +235,12 @@
   .dtbl.h2m td{font-family:var(--mono);font-size:10.5px;color:var(--mut)} .dtbl.h2m td.dg{color:var(--mut2)}
   .dtbl.h2m td.wlead{color:var(--good);background:color-mix(in srgb,var(--good),transparent 90%)} .dtbl.h2m td.llead{color:var(--bad);background:color-mix(in srgb,var(--bad),transparent 90%)}
   .dhint{font-size:11.5px;color:var(--mut2);padding:9px 11px} .srclist{list-style:none;margin:0;padding:12px 14px;font-size:13px;line-height:2} .srclist a{color:var(--acc2);text-decoration:none} .srclist a:hover{color:var(--acc)} .srclist b{color:var(--ink)}
+  .stiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;margin:8px 0 2px}
+  .stile{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .stile .num{font-family:var(--mono);font-size:23px;font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-.5px}
+  .stile .lbl{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2);margin-top:5px}
+  .stile .sub{font-size:11px;color:var(--mut);margin-top:7px;line-height:1.45}
+  .shdr{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mut);margin:24px 0 9px;font-weight:600}
   .h2lookup{display:flex;align-items:center;gap:8px;padding:2px 11px 10px} .h2lookup .h2sel{font-family:var(--sans);font-size:13px;min-width:150px} .h2vs{font-family:var(--mono);font-size:10px;color:var(--mut2);text-transform:uppercase}
   .h2det{margin:0 11px 12px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
   .h2dh{font-family:var(--serif-alt);font-style:italic;font-size:18px;color:var(--ink);margin-bottom:8px}
@@ -267,6 +273,7 @@
     <button class="tnav on" data-view="tournament"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4.6l2.3 1.7-.9 2.7H6.6l-.9-2.7z"/></svg>Tournament</button>
     <button class="tnav" data-view="forecast"><svg class="ic" viewBox="0 0 16 16"><path d="M5 2h6v2.5a3 3 0 01-6 0zM5 3.3H3.2v1.2a2 2 0 002 1.8M11 3.3h1.8v1.2a2 2 0 01-2 1.8M6.7 8.3 6.3 11h3.4l-.4-2.7M5.7 13.5h4.6M8 11v2.5"/></svg>Monte Carlo Forecast</button>
     <button class="tnav" data-view="sims"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 3.5h11M2.5 6.5h11M2.5 9.5h11M2.5 12.5h11M6 3.5v9"/></svg>Sim Forecasts</button>
+    <button class="tnav" data-view="stats"><svg class="ic" viewBox="0 0 16 16"><path d="M3 13.5V8.5M8 13.5V2.5M13 13.5V5.5"/></svg>Stats</button>
     <button class="tnav" data-view="data"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 13.5h11M4.5 13V8M8 13V3.5M11.5 13V6.5"/></svg>Data &amp; provenance</button>
     <button class="tnav" data-view="acc"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><circle cx="8" cy="8" r="2.1"/></svg>Simulation accuracy</button>
     <a class="tnav lk" href="ml.html"><svg class="ic" viewBox="0 0 16 16"><path d="M6.2 2v4.3L3.3 12a1.4 1.4 0 001.2 2.1h7a1.4 1.4 0 001.2-2.1L9.8 6.3V2M5.4 2h5.2M4.9 10h6.2"/></svg>ML Lab ↗</a>
@@ -387,12 +394,17 @@
   <div id="accpanel"></div>
   </div><!-- /view-acc -->
 
+  <div id="view-stats" style="display:none">
+  <h2 class="sec">Tournament stats <span class="cnt">— the numbers behind the games so far (live, real results only)</span></h2>
+  <div id="statspanel"></div>
+  </div><!-- /view-stats -->
+
   <footer>
     <div class="sources" id="sources"></div>
     <b>Bracket structure &amp; fixtures</b> verified vs Wikipedia / Sky Sports / ESPN (Match 73 = 2A v 2B; Mexico opener vs South Africa; FIFA's interleaved match numbering 1–72).
     <b>Standings</b> use FIFA tiebreakers (points → GD → goals for → seeding/alpha; full head-to-head simplified).
     <b>Best-3rd allocation</b> respects FIFA's rule (no group winner meets a third from its own group), solved live for your 8 qualifiers. Played results locked as of <b>June 19, 2026</b>.
-    <div class="footnav"><a href="#tournament">Tournament</a> · <a href="#forecast">Monte Carlo Forecast</a> · <a href="#data">Data &amp; provenance</a> · <a href="#acc">Simulation accuracy</a> · <a href="ml.html">ML Lab ↗</a></div>
+    <div class="footnav"><a href="#tournament">Tournament</a> · <a href="#forecast">Monte Carlo Forecast</a> · <a href="#data">Data &amp; provenance</a> · <a href="#acc">Simulation accuracy</a> · <a href="#stats">Stats</a> · <a href="ml.html">ML Lab ↗</a></div>
     <div class="footsite"><a href="https://sadh.app" target="_blank" rel="noopener">sadh.app</a> · <a href="https://nafsadh.com" target="_blank" rel="noopener">nafsadh.com</a> · <a href="https://github.com/nafSadh/apps" target="_blank" rel="noopener">source · GitHub</a> · made by nafSadh</div>
   </footer>
 </div>
@@ -998,6 +1010,79 @@ function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) retu
       order.map(m=>{const c=r.cells[m],pk=c.pick==="H"?nm(r.f.home):c.pick==="A"?nm(r.f.away):"toss-up";return `<td class="acc-${c.res}" title="${METHOD_NAME[m]}: ${Math.round(c.p*100)}% ${nm(r.f.home)} → predicts ${pk}">${ic[c.res]}</td>`;}).join("")+`</tr>`;}).join("")+`</tbody></table>`;
   el.innerHTML=`<div class="small" style="margin-bottom:6px">Leaderboard — hit rate = ✓ ÷ ${rows.length} played games. Predicting a win (&gt;60%) that ends in a draw counts as a miss. Each game is scored <b>walk-forward</b> — using only games played before it — so the in-tournament model (Pot+goals) can't see the result it's predicting.</div>`+lb+
     `<div class="small" style="margin:18px 0 6px">Per match — hover any cell for that model's pre-match probability.</div>`+g; }
+function renderStats(){
+  const el=document.getElementById("statspanel"); if(!el) return;
+  const games=[...LOCKSET].map(no=>({no,f:FIXMAP[no],r:LOCKED[no]})).filter(x=>x.f&&x.r);
+  const N=games.length;
+  if(!N){ el.innerHTML='<div class="dhint">No games played yet — stats fill in as results lock.</div>'; return; }
+  const S={}, G=c=>(S[c]||(S[c]={pld:0,gf:0,ga:0,w:0,d:0,l:0,pts:0,cs:0,seq:[]}));
+  let goals=0,draws=0,btts=0,nil=0,cleans=0,maxM=-1,maxT=-1,bigW=null,bigS=null; const mdG={},grpG={};
+  games.slice().sort((a,b)=>a.no-b.no).forEach(({f,r})=>{ const hg=r[0],ag=r[1],h=G(f.home),a=G(f.away);
+    goals+=hg+ag; h.pld++;a.pld++;h.gf+=hg;h.ga+=ag;a.gf+=ag;a.ga+=hg;
+    if(ag===0){h.cs++;cleans++;} if(hg===0){a.cs++;cleans++;}
+    if(hg>ag){h.w++;a.l++;h.pts+=3;h.seq.push('W');a.seq.push('L');}
+    else if(ag>hg){a.w++;h.l++;a.pts+=3;a.seq.push('W');h.seq.push('L');}
+    else {h.d++;a.d++;h.pts++;a.pts++;draws++;h.seq.push('D');a.seq.push('D');}
+    if(hg>0&&ag>0)btts++; if(hg+ag===0)nil++;
+    const m=Math.abs(hg-ag),tot=hg+ag;
+    if(m>maxM||(m===maxM&&bigW&&tot>bigW.r[0]+bigW.r[1])){maxM=m;bigW={f,r};}
+    if(tot>maxT){maxT=tot;bigS={f,r};}
+    (mdG[f.md]=mdG[f.md]||{g:0,n:0}); mdG[f.md].g+=tot; mdG[f.md].n++;
+    (grpG[f.group]=grpG[f.group]||{g:0,n:0}); grpG[f.group].g+=tot; grpG[f.group].n++; });
+  for(const c in S)S[c].gd=S[c].gf-S[c].ga;
+  const teams=Object.keys(S), elo=c=>RATINGS[c]?RATINGS[c][1]:1500;
+  const streak=s=>{let m=0,c=0;s.forEach(x=>{if(x==='W'){c++;if(c>m)m=c;}else c=0;});return m;};
+  const strk=teams.map(c=>({c,n:streak(S[c].seq)})).sort((a,b)=>b.n-a.n||S[b.c].pld-S[a.c].pld)[0];
+  const dec=games.filter(x=>x.r[0]!==x.r[1]); let chalk=0; const ups=[];
+  dec.forEach(({f,r})=>{ const win=r[0]>r[1]?f.home:f.away,lose=r[0]>r[1]?f.away:f.home;
+    if(elo(win)>=elo(lose))chalk++; else ups.push({f,r,gap:Math.round(elo(lose)-elo(win))}); });
+  ups.sort((a,b)=>b.gap-a.gap);
+  const byGF=teams.slice().sort((a,b)=>S[b].gf-S[a].gf||S[b].gd-S[a].gd);
+  const def=teams.filter(c=>S[c].pld>=2).sort((a,b)=>S[a].ga-S[b].ga||S[b].pld-S[a].pld)[0];
+  const leaky=teams.slice().sort((a,b)=>S[b].ga-S[a].ga)[0];
+  const bestGD=byGF.slice().sort((a,b)=>S[b].gd-S[a].gd)[0];
+  const csLead=teams.slice().sort((a,b)=>S[b].cs-S[a].cs)[0];
+  const perfect=teams.filter(c=>S[c].pld>0&&S[c].l===0&&S[c].d===0).sort((a,b)=>S[b].pld-S[a].pld);
+  const pointless=teams.filter(c=>S[c].pld>0&&S[c].pts===0).sort((a,b)=>S[a].gd-S[b].gd);
+  const CONF={UEFA:'GER NED SWE BEL ESP NOR AUT POR ENG CRO FRA SUI CZE BIH SCO TUR',CONMEBOL:'BRA ARG URU COL PAR ECU',CAF:'RSA MAR CIV TUN EGY CPV SEN ALG COD GHA',CONCACAF:'MEX CAN USA HAI CUW PAN',AFC:'KOR QAT AUS JPN IRN KSA IRQ UZB JOR',OFC:'NZL'};
+  const cOf={}; Object.keys(CONF).forEach(k=>CONF[k].split(' ').forEach(c=>cOf[c]=k));
+  const cf={}; Object.keys(CONF).forEach(k=>cf[k]={w:0,d:0,l:0,gp:0,gf:0});
+  games.forEach(({f,r})=>{ [[f.home,r[0],r[1]],[f.away,r[1],r[0]]].forEach(p=>{ const k=cOf[p[0]]; if(!k)return; const x=cf[k];x.gp++;x.gf+=p[1];if(p[1]>p[2])x.w++;else if(p[1]<p[2])x.l++;else x.d++; }); });
+  const confRows=Object.keys(cf).filter(k=>cf[k].gp).map(k=>({k,w:cf[k].w,d:cf[k].d,l:cf[k].l,gp:cf[k].gp,win:cf[k].w/cf[k].gp,gpg:cf[k].gf/cf[k].gp})).sort((a,b)=>b.win-a.win);
+  const grpRate=Object.keys(grpG).map(g=>({g,r:grpG[g].g/grpG[g].n})).sort((a,b)=>b.r-a.r);
+  const mdTrend=Object.keys(mdG).sort().map(md=>`MD${md} <b>${(mdG[md].g/mdG[md].n).toFixed(2)}</b>`).join(' &rarr; ');
+  const tn=c=>`${flE(c)} ${nmE(c)}`;
+  const mf=x=>`${flE(x.f.home)} ${nmE(x.f.home)} <b>${x.r[0]}&ndash;${x.r[1]}</b> ${nmE(x.f.away)} ${flE(x.f.away)}`;
+  const tile=(n,l,s)=>`<div class="stile"><div class="num">${n}</div><div class="lbl">${l}</div>${s?`<div class="sub">${s}</div>`:''}</div>`;
+  const dh=(t)=>`<div class="dhint" style="padding:6px 0 0">${t}</div>`;
+  let h=`<div class="dhint" style="padding:0 0 2px">Live from the <b>${N}</b> games played so far — real results only, recomputed as scores lock.</div>`;
+  h+=`<div class="shdr">&#9889; Tournament pulse</div><div class="stiles">`+
+    tile(goals,'&#9917; Total goals',`<b>${(goals/N).toFixed(2)}</b> per game`)+
+    tile((100*draws/N).toFixed(0)+'%','&#129309; Draw rate',`${draws} of ${N} games shared`)+
+    tile((100*btts/N).toFixed(0)+'%','&#128257; Both teams scored',`${btts} games &middot; ${nil} ended 0&ndash;0`)+
+    tile(cleans,'&#129508; Clean sheets','kept across the tournament')+
+    `</div>`+dh(`&#128200; Goals/game by round: ${mdTrend}`);
+  h+=`<div class="shdr">&#127942; Records &amp; extremes</div><div class="stiles">`+
+    (bigW?tile(maxM+'-goal','&#128165; Biggest win',mf(bigW)):'')+
+    (bigS?tile(maxT,'&#127881; Most goals, one game',mf(bigS)):'')+
+    tile((S[bestGD].gd>=0?'+':'')+S[bestGD].gd,'&#128200; Best goal difference',`${tn(bestGD)} (${S[bestGD].gf}&ndash;${S[bestGD].ga})`)+
+    tile(strk.n,'&#128293; Longest win streak',`${tn(strk.c)} &middot; ${S[strk.c].seq.join('')}`)+
+    `</div>`+dh(`&#128175; Perfect records: ${perfect.length?perfect.map(c=>`<b>${tn(c)}</b> (${S[c].w}/${S[c].pld})`).join(' &middot; '):'none'} &nbsp;&middot;&nbsp; &#129705; Still pointless: <b>${pointless.length}</b>${pointless.length?' &mdash; '+pointless.slice(0,4).map(c=>`${flE(c)} ${nmE(c)} (${S[c].gd>=0?'+':''}${S[c].gd})`).join(', '):''}`);
+  h+=`<div class="shdr">&#129351; Team leaders <span style="text-transform:none;letter-spacing:0;color:var(--mut2)">&mdash; by goals scored</span></div>`+
+    `<table class="dtbl"><thead><tr><th class="tl">Team</th><th>P</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th><th>CS</th></tr></thead><tbody>`+
+    byGF.slice(0,8).map(c=>{const s=S[c];return `<tr><td class="tl">${tn(c)}</td><td>${s.pld}</td><td><b>${s.gf}</b></td><td>${s.ga}</td><td>${s.gd>=0?'+':''}${s.gd}</td><td>${s.pts}</td><td>${s.cs}</td></tr>`;}).join('')+`</tbody></table>`+
+    dh(`&#128737;&#65039; Best defence: <b>${tn(def)}</b> (${S[def].ga} in ${S[def].pld}) &middot; &#128706; Leakiest: <b>${tn(leaky)}</b> (${S[leaky].ga} in ${S[leaky].pld}) &middot; &#129508; Most clean sheets: <b>${tn(csLead)}</b> (${S[csLead].cs})`);
+  h+=`<div class="shdr">&#128024; Biggest upsets <span style="text-transform:none;letter-spacing:0;color:var(--mut2)">&mdash; lower-Elo side won</span></div>`;
+  h+= ups.length ? `<table class="dtbl"><thead><tr><th class="tl">Result</th><th>Elo gap</th></tr></thead><tbody>`+
+    ups.slice(0,5).map(u=>`<tr><td class="tl">${mf(u)}</td><td><b>+${u.gap}</b></td></tr>`).join('')+`</tbody></table>`
+    : `<div class="dhint" style="padding:0">No upsets yet &mdash; chalk all the way.</div>`;
+  h+=dh(`&#128202; Chalk rate: the stronger side (by Elo) has won <b>${dec.length?(100*chalk/dec.length).toFixed(0):0}%</b> of ${dec.length} decisive games &mdash; just ${ups.length} upset${ups.length===1?'':'s'}.`);
+  h+=`<div class="shdr">&#127758; By confederation</div>`+
+    `<table class="dtbl"><thead><tr><th class="tl">Confederation</th><th>Games</th><th>W-D-L</th><th>Win %</th><th>Goals/game</th></tr></thead><tbody>`+
+    confRows.map(c=>`<tr><td class="tl">${c.k}</td><td>${c.gp}</td><td>${c.w}-${c.d}-${c.l}</td><td><b>${(100*c.win).toFixed(0)}%</b></td><td>${c.gpg.toFixed(2)}</td></tr>`).join('')+`</tbody></table>`+
+    dh(`&#127881; Highest-scoring group: <b>Group ${grpRate[0].g}</b> (${grpRate[0].r.toFixed(2)}/game) &middot; &#128564; Lowest: <b>Group ${grpRate[grpRate.length-1].g}</b> (${grpRate[grpRate.length-1].r.toFixed(2)}/game)`);
+  el.innerHTML=h;
+}
 function renderData(){ const el=document.getElementById("dpanel"); if(!el) return;
   el.innerHTML = state.dtab==="h2h"?h2hTable():state.dtab==="log"?matchLogTable():state.dtab==="form"?formTable():state.dtab==="src"?srcTable():ratingsTable();
   document.querySelectorAll("#dtabs .dtab").forEach(b=>b.classList.toggle("on", b.dataset.tab===state.dtab)); }
@@ -1214,8 +1299,9 @@ function setView(v){ state.view=v;
   document.getElementById('view-acc').style.display = v==='acc'?'':'none';
   document.getElementById('view-forecast').style.display = v==='forecast'?'':'none';
   document.getElementById('view-sims').style.display = v==='sims'?'':'none';
+  document.getElementById('view-stats').style.display = v==='stats'?'':'none';
   document.querySelectorAll('#topnav .tnav').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
-  if(v==='data') renderData(); if(v==='acc') renderAcc(); if(v==='forecast') renderForecast(); if(v==='sims') renderSims();
+  if(v==='data') renderData(); if(v==='acc') renderAcc(); if(v==='forecast') renderForecast(); if(v==='sims') renderSims(); if(v==='stats') renderStats();
   if(('#'+v)!==location.hash){ try{ history.replaceState(null,'','#'+v); }catch(e){} }   // deep-linkable view
   window.scrollTo(0,0); }
 document.getElementById('topnav').addEventListener('click',e=>{ const b=e.target.closest('.tnav'); if(!b||!b.dataset.view) return; setView(b.dataset.view); });
