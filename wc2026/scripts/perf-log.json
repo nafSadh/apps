@@ -1,67 +1,226 @@
 {
-  "asOf": "2026-06-23",
-  "version": 17,
-  "played": 48,
+  "asOf": "2026-06-25",
+  "version": 18,
+  "played": 51,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 32,
+      "ok": 35,
       "miss": 16,
-      "hitRate": 0.667
+      "hitRate": 0.686
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 31,
-      "miss": 17,
-      "hitRate": 0.646
+      "ok": 33,
+      "miss": 18,
+      "hitRate": 0.647
     },
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 30,
+      "ok": 33,
       "miss": 18,
-      "hitRate": 0.625
+      "hitRate": 0.647
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 29,
+      "ok": 32,
       "miss": 19,
-      "hitRate": 0.604
+      "hitRate": 0.627
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 29,
+      "ok": 32,
       "miss": 19,
-      "hitRate": 0.604
+      "hitRate": 0.627
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 29,
+      "ok": 32,
       "miss": 19,
-      "hitRate": 0.604
+      "hitRate": 0.627
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 28,
-      "miss": 20,
-      "hitRate": 0.583
+      "ok": 30,
+      "miss": 21,
+      "hitRate": 0.588
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
-      "ok": 27,
-      "miss": 21,
-      "hitRate": 0.563
+      "ok": 29,
+      "miss": 22,
+      "hitRate": 0.569
     }
   ],
   "matches": [
+    {
+      "no": 51,
+      "date": "2026-06-24",
+      "home": "Switzerland",
+      "away": "Canada",
+      "score": [
+        2,
+        1
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.663,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.176,
+          "pick": "A",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.675,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.662,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.718,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.62,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.309,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 50,
+      "date": "2026-06-24",
+      "home": "Morocco",
+      "away": "Haiti",
+      "score": [
+        4,
+        2
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.939,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.93,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.973,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.977,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.991,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.982,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.893,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.941,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 49,
+      "date": "2026-06-24",
+      "home": "Scotland",
+      "away": "Brazil",
+      "score": [
+        0,
+        3
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.098,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.071,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.087,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.078,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.063,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.042,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.304,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.1,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
     {
       "no": 48,
       "date": "2026-06-23",
