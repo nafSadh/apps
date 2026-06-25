@@ -1063,16 +1063,20 @@ function koForecast(){                         // top-N most likely matchups per
   state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
   const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
   const tbl=rows=>`<table class="dtbl tpred sft">`+simThead(models,strip,"Matchup")+`<tbody>`+rows+`</tbody></table>`;
-  const FLOOR=0.02, FT=state.koTeam||"";
+  const FLOOR=0.02, FLOOR_OPEN=0.005, FT=state.koTeam||"";
   const opts=['<option value="">All teams</option>'].concat(Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${FT===c?' selected':''}>${nmE(c)}</option>`)).join('');
   const modOpts=models.map(m=>`<option value="${m}"${state.koModel===m?' selected':''}>${METHOD_NAME[m]}</option>`).join('');
   let h=`<div class="kofilter">Model <select onchange="state.koModel=this.value;renderSims()">${modOpts}</select> · Focus team <select onchange="state.koTeam=this.value;renderSims()">${opts}</select>${FT?`<span class="mut"> — ${nm(FT)}'s most likely matchup each round (floor lifted)</span>`:''}</div>`;
-  h+=`<div class="small" style="margin:0 0 12px">The most likely matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model (natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row predicts who'd win it.${FT?'':` Only pairings reaching <b>≥${Math.round(FLOOR*100)}% of sims</b> are listed — combinations the bracket usually keeps apart drop off.`} The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
-  [["Final","Final",4],["SF","Semi-finals",5],["QF","Quarter-finals",8],["R16","Round of 16",10],["R32","Round of 32",12]].forEach(([sk,label,topn])=>{
+  h+=`<div class="small" style="margin:0 0 12px">The matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model (natural upset rate). <b>% of sims</b> = how often that exact pairing occurs; the model row predicts who'd win it.${FT?'':` The <b>Round of 32</b> and <b>Round of 16</b> list <b>every matchup that can still happen</b> given the games played so far — only very unlikely pairings (<b>&lt;${(FLOOR_OPEN*100).toFixed(1)}% of sims</b>) drop off as noise; deeper rounds show the most likely few.`} The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
+  // [stage, label, cap (null = all feasible above floor), floor]. R32/R16 are uncapped so every feasible pairing shows; deeper rounds stay top-N.
+  [["Final","Final",4,FLOOR],["SF","Semi-finals",5,FLOOR],["QF","Quarter-finals",8,FLOOR],["R16","Round of 16",null,FLOOR_OPEN],["R32","Round of 32",null,FLOOR_OPEN]].forEach(([sk,label,cap,floor])=>{
     const m=alt[sk]||{}, all=Object.keys(m);
-    const pairs=(FT?all.filter(k=>k.split('|').includes(FT)):all.filter(k=>m[k]/N>=FLOOR)).sort((a,b)=>m[b]-m[a]).slice(0,topn);
+    let pairs=(FT?all.filter(k=>k.split('|').includes(FT)):all.filter(k=>m[k]/N>=floor)).sort((a,b)=>m[b]-m[a]);
+    if(!FT && cap!=null) pairs=pairs.slice(0,cap);
     if(!pairs.length){ if(FT) h+=`<div class="sfsub">${label}</div><div class="dhint" style="margin:0 0 10px">${nm(FT)} didn't reach this round in ${N.toLocaleString()} sims.</div>`; return; }
-    const sub=FT?`${label} <span class="mut">· ${nm(FT)}'s top ${pairs.length}</span>`:`${label} <span class="mut">· ${pairs.length} pairing${pairs.length>1?'s':''} ≥${Math.round(FLOOR*100)}% of ${all.length} possible</span>`;
+    const sub=FT?`${label} <span class="mut">· ${nm(FT)}'s ${pairs.length} possible</span>`
+      :cap==null?`${label} <span class="mut">· all ${pairs.length} feasible pairing${pairs.length>1?'s':''}${all.length>pairs.length?` of ${all.length} sampled`:''}</span>`
+      :`${label} <span class="mut">· top ${pairs.length} of ${all.length} possible</span>`;
     h+=`<div class="sfsub">${sub}</div>`+
        tbl(pairs.map((key,i)=>{ const ab=key.split('|'), pc=100*m[key]/N, lbl=pc>=1?Math.round(pc)+'%':pc>=0.1?pc.toFixed(1)+'%':'<0.1%';
          return gameRowPair({no:sk+'_'+i,home:ab[0],away:ab[1]},models,strip,ncol,` <span class="sfpct">${lbl} of sims</span>`); }).join("")); });
