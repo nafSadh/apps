@@ -41,8 +41,8 @@ NAME_ALIASES = {
     "united states": "USA", "usa": "USA", "korea republic": "KOR", "south korea": "KOR",
     "ir iran": "IRN", "iran": "IRN", "turkey": "TUR", "türkiye": "TUR", "turkiye": "TUR",
     "côte d'ivoire": "CIV", "cote d'ivoire": "CIV", "ivory coast": "CIV",
-    "cabo verde": "CPV", "cape verde": "CPV", "czech republic": "CZE", "czechia": "CZE",
-    "dr congo": "COD", "congo dr": "COD", "bosnia and herzegovina": "BIH", "bosnia & h.": "BIH",
+    "cabo verde": "CPV", "cape verde": "CPV", "cape verde islands": "CPV", "czech republic": "CZE", "czechia": "CZE",
+    "dr congo": "COD", "congo dr": "COD", "bosnia and herzegovina": "BIH", "bosnia & h.": "BIH", "bosnia-herzegovina": "BIH",
 }
 
 
