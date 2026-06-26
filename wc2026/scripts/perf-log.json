@@ -1,67 +1,173 @@
 {
   "asOf": "2026-06-26",
-  "version": 23,
-  "played": 58,
+  "version": 24,
+  "played": 60,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "squad",
       "model": "Squad value",
       "ok": 38,
-      "miss": 20,
-      "hitRate": 0.655
+      "miss": 22,
+      "hitRate": 0.633
+    },
+    {
+      "key": "blend",
+      "model": "Balanced blend",
+      "ok": 37,
+      "miss": 23,
+      "hitRate": 0.617
     },
     {
       "key": "odds",
       "model": "Betting market",
       "ok": 37,
-      "miss": 21,
-      "hitRate": 0.638
-    },
-    {
-      "key": "blend",
-      "model": "Balanced blend",
-      "ok": 36,
-      "miss": 22,
-      "hitRate": 0.621
+      "miss": 23,
+      "hitRate": 0.617
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
       "ok": 36,
-      "miss": 22,
-      "hitRate": 0.621
+      "miss": 24,
+      "hitRate": 0.6
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
       "ok": 36,
-      "miss": 22,
-      "hitRate": 0.621
+      "miss": 24,
+      "hitRate": 0.6
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
       "ok": 35,
-      "miss": 23,
-      "hitRate": 0.603
+      "miss": 25,
+      "hitRate": 0.583
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 33,
-      "miss": 25,
-      "hitRate": 0.569
+      "ok": 34,
+      "miss": 26,
+      "hitRate": 0.567
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
       "ok": 31,
-      "miss": 27,
-      "hitRate": 0.534
+      "miss": 29,
+      "hitRate": 0.517
     }
   ],
   "matches": [
+    {
+      "no": 60,
+      "date": "2026-06-25",
+      "home": "Paraguay",
+      "away": "Australia",
+      "score": [
+        0,
+        0
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.711,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.402,
+          "pick": "D",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.65,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.27,
+          "pick": "A",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.289,
+          "pick": "A",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.318,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.619,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.3,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 59,
+      "date": "2026-06-25",
+      "home": "Turkey",
+      "away": "United States",
+      "score": [
+        3,
+        2
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.567,
+          "pick": "D",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.437,
+          "pick": "D",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.328,
+          "pick": "A",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.013,
+          "pick": "A",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.436,
+          "pick": "D",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.337,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.92,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
+        }
+      }
+    },
     {
       "no": 58,
       "date": "2026-06-25",
@@ -78,13 +184,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.05,
+        "blend": {
+          "winProb": 0.052,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.052,
+        "odds": {
+          "winProb": 0.05,
           "pick": "A",
           "correct": true
         },
@@ -131,13 +237,13 @@
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.649,
+        "blend": {
+          "winProb": 0.746,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.746,
+        "odds": {
+          "winProb": 0.649,
           "pick": "H",
           "correct": false
         },
@@ -184,13 +290,13 @@
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.119,
+        "blend": {
+          "winProb": 0.221,
           "pick": "A",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.221,
+        "odds": {
+          "winProb": 0.119,
           "pick": "A",
           "correct": false
         },
@@ -237,13 +343,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.13,
+        "blend": {
+          "winProb": 0.096,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.096,
+        "odds": {
+          "winProb": 0.13,
           "pick": "A",
           "correct": true
         },
@@ -290,13 +396,13 @@
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.147,
+        "blend": {
+          "winProb": 0.159,
           "pick": "A",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.159,
+        "odds": {
+          "winProb": 0.147,
           "pick": "A",
           "correct": false
         },
@@ -343,13 +449,13 @@
           "pick": "D",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.131,
+        "blend": {
+          "winProb": 0.176,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.176,
+        "odds": {
+          "winProb": 0.131,
           "pick": "A",
           "correct": true
         },
@@ -396,13 +502,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.65,
+        "blend": {
+          "winProb": 0.64,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.64,
+        "odds": {
+          "winProb": 0.65,
           "pick": "H",
           "correct": true
         },
@@ -449,13 +555,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.675,
+        "blend": {
+          "winProb": 0.662,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.662,
+        "odds": {
+          "winProb": 0.675,
           "pick": "H",
           "correct": true
         },
@@ -502,13 +608,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.973,
+        "blend": {
+          "winProb": 0.977,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.977,
+        "odds": {
+          "winProb": 0.973,
           "pick": "H",
           "correct": true
         },
@@ -555,13 +661,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.087,
+        "blend": {
+          "winProb": 0.078,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.078,
+        "odds": {
+          "winProb": 0.087,
           "pick": "A",
           "correct": true
         },
@@ -608,13 +714,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.904,
+        "blend": {
+          "winProb": 0.932,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.932,
+        "odds": {
+          "winProb": 0.904,
           "pick": "H",
           "correct": true
         },
@@ -661,13 +767,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.991,
+        "blend": {
+          "winProb": 0.969,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.969,
+        "odds": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
@@ -714,13 +820,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.131,
+        "blend": {
+          "winProb": 0.111,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.111,
+        "odds": {
+          "winProb": 0.131,
           "pick": "A",
           "correct": true
         },
@@ -767,13 +873,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.969,
+        "blend": {
+          "winProb": 0.987,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.987,
+        "odds": {
+          "winProb": 0.969,
           "pick": "H",
           "correct": false
         },
@@ -820,13 +926,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.306,
+        "blend": {
+          "winProb": 0.303,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.303,
+        "odds": {
+          "winProb": 0.306,
           "pick": "A",
           "correct": true
         },
@@ -873,13 +979,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.952,
+        "blend": {
+          "winProb": 0.959,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.959,
+        "odds": {
+          "winProb": 0.952,
           "pick": "H",
           "correct": true
         },
@@ -926,13 +1032,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.994,
+        "blend": {
+          "winProb": 0.99,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.99,
+        "odds": {
+          "winProb": 0.994,
           "pick": "H",
           "correct": true
         },
@@ -979,15 +1085,15 @@
           "pick": "D",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.743,
-          "pick": "H",
-          "correct": true
-        },
         "blend": {
           "winProb": 0.585,
           "pick": "D",
           "correct": false
+        },
+        "odds": {
+          "winProb": 0.743,
+          "pick": "H",
+          "correct": true
         },
         "potgoals": {
           "winProb": 0.621,
@@ -1032,13 +1138,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.113,
+        "blend": {
+          "winProb": 0.112,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.112,
+        "odds": {
+          "winProb": 0.113,
           "pick": "A",
           "correct": true
         },
@@ -1085,13 +1191,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.952,
+        "blend": {
+          "winProb": 0.896,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.896,
+        "odds": {
+          "winProb": 0.952,
           "pick": "H",
           "correct": false
         },
@@ -1138,12 +1244,12 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
+        "blend": {
           "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
-        "blend": {
+        "odds": {
           "winProb": 0.991,
           "pick": "H",
           "correct": true
@@ -1191,13 +1297,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.919,
+        "blend": {
+          "winProb": 0.942,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.942,
+        "odds": {
+          "winProb": 0.919,
           "pick": "H",
           "correct": false
         },
@@ -1244,13 +1350,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.114,
+        "blend": {
+          "winProb": 0.113,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.113,
+        "odds": {
+          "winProb": 0.114,
           "pick": "A",
           "correct": true
         },
@@ -1297,13 +1403,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.817,
+        "blend": {
+          "winProb": 0.873,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.873,
+        "odds": {
+          "winProb": 0.817,
           "pick": "H",
           "correct": true
         },
@@ -1350,13 +1456,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.938,
+        "blend": {
+          "winProb": 0.961,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.961,
+        "odds": {
+          "winProb": 0.938,
           "pick": "H",
           "correct": false
         },
@@ -1403,13 +1509,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.944,
+        "blend": {
+          "winProb": 0.903,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.903,
+        "odds": {
+          "winProb": 0.944,
           "pick": "H",
           "correct": true
         },
@@ -1456,13 +1562,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.917,
+        "blend": {
+          "winProb": 0.733,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.733,
+        "odds": {
+          "winProb": 0.917,
           "pick": "H",
           "correct": true
         },
@@ -1509,13 +1615,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.745,
+        "blend": {
+          "winProb": 0.76,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.76,
+        "odds": {
+          "winProb": 0.745,
           "pick": "H",
           "correct": false
         },
@@ -1562,13 +1668,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.256,
+        "blend": {
+          "winProb": 0.18,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.18,
+        "odds": {
+          "winProb": 0.256,
           "pick": "A",
           "correct": true
         },
@@ -1615,13 +1721,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.992,
+        "blend": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.991,
+        "odds": {
+          "winProb": 0.992,
           "pick": "H",
           "correct": true
         },
@@ -1668,13 +1774,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.828,
+        "blend": {
+          "winProb": 0.721,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.721,
+        "odds": {
+          "winProb": 0.828,
           "pick": "H",
           "correct": true
         },
@@ -1721,13 +1827,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.845,
+        "blend": {
+          "winProb": 0.897,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.897,
+        "odds": {
+          "winProb": 0.845,
           "pick": "H",
           "correct": true
         },
@@ -1774,13 +1880,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.859,
+        "blend": {
+          "winProb": 0.906,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.906,
+        "odds": {
+          "winProb": 0.859,
           "pick": "H",
           "correct": true
         },
@@ -1827,13 +1933,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.809,
+        "blend": {
+          "winProb": 0.746,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.746,
+        "odds": {
+          "winProb": 0.809,
           "pick": "H",
           "correct": false
         },
@@ -1880,15 +1986,15 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.694,
-          "pick": "H",
-          "correct": true
-        },
         "blend": {
           "winProb": 0.332,
           "pick": "A",
           "correct": false
+        },
+        "odds": {
+          "winProb": 0.694,
+          "pick": "H",
+          "correct": true
         },
         "potgoals": {
           "winProb": 0.26,
@@ -1933,13 +2039,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.914,
+        "blend": {
+          "winProb": 0.829,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.829,
+        "odds": {
+          "winProb": 0.914,
           "pick": "H",
           "correct": true
         },
@@ -1986,13 +2092,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.03,
+        "blend": {
+          "winProb": 0.06,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.06,
+        "odds": {
+          "winProb": 0.03,
           "pick": "A",
           "correct": true
         },
@@ -2039,13 +2145,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.968,
+        "blend": {
+          "winProb": 0.965,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.965,
+        "odds": {
+          "winProb": 0.968,
           "pick": "H",
           "correct": false
         },
@@ -2092,13 +2198,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.728,
+        "blend": {
+          "winProb": 0.762,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.762,
+        "odds": {
+          "winProb": 0.728,
           "pick": "H",
           "correct": true
         },
@@ -2145,13 +2251,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.959,
+        "blend": {
+          "winProb": 0.97,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.97,
+        "odds": {
+          "winProb": 0.959,
           "pick": "H",
           "correct": true
         },
@@ -2198,13 +2304,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.03,
+        "blend": {
+          "winProb": 0.057,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.057,
+        "odds": {
+          "winProb": 0.03,
           "pick": "A",
           "correct": true
         },
@@ -2251,13 +2357,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.937,
+        "blend": {
+          "winProb": 0.899,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.899,
+        "odds": {
+          "winProb": 0.937,
           "pick": "H",
           "correct": true
         },
@@ -2304,13 +2410,13 @@
           "pick": "D",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.695,
+        "blend": {
+          "winProb": 0.832,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.832,
+        "odds": {
+          "winProb": 0.695,
           "pick": "H",
           "correct": false
         },
@@ -2357,13 +2463,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.851,
+        "blend": {
+          "winProb": 0.843,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.843,
+        "odds": {
+          "winProb": 0.851,
           "pick": "H",
           "correct": false
         },
@@ -2410,13 +2516,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.991,
+        "blend": {
+          "winProb": 0.994,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.994,
+        "odds": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": false
         },
@@ -2463,13 +2569,13 @@
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.081,
+        "blend": {
+          "winProb": 0.079,
           "pick": "A",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.079,
+        "odds": {
+          "winProb": 0.081,
           "pick": "A",
           "correct": false
         },
@@ -2516,13 +2622,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.808,
+        "blend": {
+          "winProb": 0.727,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.727,
+        "odds": {
+          "winProb": 0.808,
           "pick": "H",
           "correct": true
         },
@@ -2569,13 +2675,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.708,
+        "blend": {
+          "winProb": 0.701,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.701,
+        "odds": {
+          "winProb": 0.708,
           "pick": "H",
           "correct": false
         },
@@ -2622,13 +2728,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.991,
+        "blend": {
+          "winProb": 0.989,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.989,
+        "odds": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
@@ -2675,13 +2781,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.306,
+        "blend": {
+          "winProb": 0.275,
           "pick": "A",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.275,
+        "odds": {
+          "winProb": 0.306,
           "pick": "A",
           "correct": false
         },
@@ -2728,13 +2834,13 @@
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.081,
+        "blend": {
+          "winProb": 0.055,
           "pick": "A",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.055,
+        "odds": {
+          "winProb": 0.081,
           "pick": "A",
           "correct": false
         },
@@ -2781,13 +2887,13 @@
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.783,
+        "blend": {
+          "winProb": 0.721,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.721,
+        "odds": {
+          "winProb": 0.783,
           "pick": "H",
           "correct": false
         },
@@ -2834,13 +2940,13 @@
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.155,
+        "blend": {
+          "winProb": 0.319,
           "pick": "A",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.319,
+        "odds": {
+          "winProb": 0.155,
           "pick": "A",
           "correct": false
         },
@@ -2887,13 +2993,13 @@
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.075,
+        "blend": {
+          "winProb": 0.095,
           "pick": "A",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.095,
+        "odds": {
+          "winProb": 0.075,
           "pick": "A",
           "correct": true
         },
@@ -2940,13 +3046,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.857,
+        "blend": {
+          "winProb": 0.803,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.803,
+        "odds": {
+          "winProb": 0.857,
           "pick": "H",
           "correct": true
         },
@@ -2993,13 +3099,13 @@
           "pick": "D",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.746,
+        "blend": {
+          "winProb": 0.831,
           "pick": "H",
           "correct": false
         },
-        "blend": {
-          "winProb": 0.831,
+        "odds": {
+          "winProb": 0.746,
           "pick": "H",
           "correct": false
         },
@@ -3046,15 +3152,15 @@
           "pick": "D",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.579,
-          "pick": "D",
-          "correct": false
-        },
         "blend": {
           "winProb": 0.644,
           "pick": "H",
           "correct": true
+        },
+        "odds": {
+          "winProb": 0.579,
+          "pick": "D",
+          "correct": false
         },
         "potgoals": {
           "winProb": 0.941,
@@ -3099,13 +3205,13 @@
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.965,
+        "blend": {
+          "winProb": 0.932,
           "pick": "H",
           "correct": true
         },
-        "blend": {
-          "winProb": 0.932,
+        "odds": {
+          "winProb": 0.965,
           "pick": "H",
           "correct": true
         },

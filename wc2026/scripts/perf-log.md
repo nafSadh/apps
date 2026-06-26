@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-26** · **58** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-26** · **60** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.
 
@@ -8,19 +8,21 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Squad value | 66% | 38 | 20 |
-| Betting market | 64% | 37 | 21 |
-| Balanced blend | 62% | 36 | 22 |
-| Pot + goals | 62% | 36 | 22 |
-| Analyst supercomputer | 62% | 36 | 22 |
-| FIFA ranking | 60% | 35 | 23 |
-| Recent form | 57% | 33 | 25 |
-| Head-to-head (historic) | 53% | 31 | 27 |
+| Squad value | 63% | 38 | 22 |
+| Balanced blend | 62% | 37 | 23 |
+| Betting market | 62% | 37 | 23 |
+| Pot + goals | 60% | 36 | 24 |
+| Analyst supercomputer | 60% | 36 | 24 |
+| FIFA ranking | 58% | 35 | 25 |
+| Recent form | 57% | 34 | 26 |
+| Head-to-head (historic) | 52% | 31 | 29 |
 
 ## Per match (latest first)
 
-| Date | # | Match | Result | Squad | Odds | Blend | Pot+G | Opta | FIFA | Form | H2H |
+| Date | # | Match | Result | Squad | Blend | Odds | Pot+G | Opta | FIFA | Form | H2H |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 2026-06-25 | M60 | Paraguay – Australia | 0–0 (draw) | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-25 | M59 | Turkey – United States | 3–2 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ |
 | 2026-06-25 | M58 | Tunisia – Netherlands | 1–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-25 | M57 | Japan – Sweden | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-25 | M56 | Ecuador – Germany | 2–1 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
@@ -38,7 +40,7 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-22 | M44 | Jordan – Algeria | 1–2 | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ |
 | 2026-06-22 | M43 | Argentina – Austria | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-22 | M42 | France – Iraq | 3–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-06-22 | M41 | Norway – Senegal | 3–2 | ✗ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✗ |
+| 2026-06-22 | M41 | Norway – Senegal | 3–2 | ✗ | ✗ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ |
 | 2026-06-21 | M40 | New Zealand – Egypt | 1–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-21 | M39 | Belgium – Iran | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-21 | M38 | Spain – Saudi Arabia | 4–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -55,7 +57,7 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-18 | M27 | Canada – Qatar | 6–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-18 | M26 | Switzerland – Bosnia & H. | 4–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
 | 2026-06-18 | M25 | Czechia – South Africa | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ |
-| 2026-06-17 | M24 | Ghana – Panama | 1–0 | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ |
+| 2026-06-17 | M24 | Ghana – Panama | 1–0 | ✓ | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ |
 | 2026-06-17 | M23 | England – Croatia | 4–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-17 | M22 | Uzbekistan – Colombia | 1–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-17 | M21 | Portugal – DR Congo | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
@@ -77,5 +79,5 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-13 | M5 | Haiti – Scotland | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-12 | M4 | United States – Paraguay | 4–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
 | 2026-06-12 | M3 | Canada – Bosnia & H. | 1–1 (draw) | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| 2026-06-11 | M2 | South Korea – Czechia | 2–1 | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ |
+| 2026-06-11 | M2 | South Korea – Czechia | 2–1 | ✗ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ |
 | 2026-06-11 | M1 | Mexico – South Africa | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
