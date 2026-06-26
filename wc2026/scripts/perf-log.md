@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-25** · **56** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-06-26** · **58** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.
 
@@ -8,19 +8,21 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Squad value | 66% | 37 | 19 |
-| Betting market | 64% | 36 | 20 |
-| Balanced blend | 63% | 35 | 21 |
-| Pot + goals | 63% | 35 | 21 |
-| Analyst supercomputer | 63% | 35 | 21 |
-| FIFA ranking | 61% | 34 | 22 |
-| Recent form | 57% | 32 | 24 |
-| Head-to-head (historic) | 54% | 30 | 26 |
+| Squad value | 66% | 38 | 20 |
+| Betting market | 64% | 37 | 21 |
+| Balanced blend | 62% | 36 | 22 |
+| Pot + goals | 62% | 36 | 22 |
+| Analyst supercomputer | 62% | 36 | 22 |
+| FIFA ranking | 60% | 35 | 23 |
+| Recent form | 57% | 33 | 25 |
+| Head-to-head (historic) | 53% | 31 | 27 |
 
 ## Per match (latest first)
 
 | Date | # | Match | Result | Squad | Odds | Blend | Pot+G | Opta | FIFA | Form | H2H |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 2026-06-25 | M58 | Tunisia – Netherlands | 1–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 2026-06-25 | M57 | Japan – Sweden | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-25 | M56 | Ecuador – Germany | 2–1 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-25 | M55 | Curaçao – Ivory Coast | 0–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-24 | M54 | South Africa – South Korea | 1–0 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
