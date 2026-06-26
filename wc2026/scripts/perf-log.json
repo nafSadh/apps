@@ -1,67 +1,173 @@
 {
   "asOf": "2026-06-26",
-  "version": 25,
-  "played": 60,
+  "version": 26,
+  "played": 62,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 38,
+      "ok": 40,
       "miss": 22,
-      "hitRate": 0.633
+      "hitRate": 0.645
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 37,
+      "ok": 39,
       "miss": 23,
-      "hitRate": 0.617
+      "hitRate": 0.629
     },
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 37,
+      "ok": 39,
       "miss": 23,
-      "hitRate": 0.617
+      "hitRate": 0.629
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 36,
+      "ok": 38,
       "miss": 24,
-      "hitRate": 0.6
+      "hitRate": 0.613
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 36,
+      "ok": 38,
       "miss": 24,
-      "hitRate": 0.6
+      "hitRate": 0.613
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 35,
+      "ok": 37,
       "miss": 25,
-      "hitRate": 0.583
+      "hitRate": 0.597
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 34,
+      "ok": 36,
       "miss": 26,
-      "hitRate": 0.567
+      "hitRate": 0.581
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
-      "ok": 31,
-      "miss": 29,
-      "hitRate": 0.517
+      "ok": 32,
+      "miss": 30,
+      "hitRate": 0.516
     }
   ],
   "matches": [
+    {
+      "no": 62,
+      "date": "2026-06-26",
+      "home": "Senegal",
+      "away": "Iraq",
+      "score": [
+        5,
+        0
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.983,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.922,
+          "pick": "H",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.918,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.899,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.921,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.921,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.681,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.926,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 61,
+      "date": "2026-06-26",
+      "home": "Norway",
+      "away": "France",
+      "score": [
+        1,
+        4
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.224,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.137,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.163,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.194,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.232,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.038,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.157,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.438,
+          "pick": "D",
+          "correct": false
+        }
+      }
+    },
     {
       "no": 60,
       "date": "2026-06-25",
