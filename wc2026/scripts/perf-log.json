@@ -1,67 +1,279 @@
 {
-  "asOf": "2026-06-25",
-  "version": 20,
-  "played": 54,
+  "asOf": "2026-06-26",
+  "version": 23,
+  "played": 58,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 36,
-      "miss": 18,
-      "hitRate": 0.667
+      "ok": 38,
+      "miss": 20,
+      "hitRate": 0.655
     },
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 35,
-      "miss": 19,
-      "hitRate": 0.648
+      "ok": 37,
+      "miss": 21,
+      "hitRate": 0.638
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 34,
-      "miss": 20,
-      "hitRate": 0.63
+      "ok": 36,
+      "miss": 22,
+      "hitRate": 0.621
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 34,
-      "miss": 20,
-      "hitRate": 0.63
+      "ok": 36,
+      "miss": 22,
+      "hitRate": 0.621
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 34,
-      "miss": 20,
-      "hitRate": 0.63
+      "ok": 36,
+      "miss": 22,
+      "hitRate": 0.621
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 33,
-      "miss": 21,
-      "hitRate": 0.611
+      "ok": 35,
+      "miss": 23,
+      "hitRate": 0.603
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 31,
-      "miss": 23,
-      "hitRate": 0.574
+      "ok": 33,
+      "miss": 25,
+      "hitRate": 0.569
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
-      "ok": 29,
-      "miss": 25,
-      "hitRate": 0.537
+      "ok": 31,
+      "miss": 27,
+      "hitRate": 0.534
     }
   ],
   "matches": [
+    {
+      "no": 58,
+      "date": "2026-06-25",
+      "home": "Tunisia",
+      "away": "Netherlands",
+      "score": [
+        1,
+        3
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.042,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.05,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.052,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.016,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.071,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.054,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.069,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.333,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 57,
+      "date": "2026-06-25",
+      "home": "Japan",
+      "away": "Sweden",
+      "score": [
+        1,
+        1
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.37,
+          "pick": "A",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.649,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.746,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.882,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.672,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.827,
+          "pick": "H",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.936,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.375,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 56,
+      "date": "2026-06-25",
+      "home": "Ecuador",
+      "away": "Germany",
+      "score": [
+        2,
+        1
+      ],
+      "actual": "home win",
+      "models": {
+        "squad": {
+          "winProb": 0.225,
+          "pick": "A",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.119,
+          "pick": "A",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.221,
+          "pick": "A",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.03,
+          "pick": "A",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.236,
+          "pick": "A",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.196,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.194,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
+    {
+      "no": 55,
+      "date": "2026-06-25",
+      "home": "Curaçao",
+      "away": "Ivory Coast",
+      "score": [
+        0,
+        2
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.019,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.13,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.096,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.154,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.162,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.073,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.031,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.053,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
     {
       "no": 54,
       "date": "2026-06-24",
