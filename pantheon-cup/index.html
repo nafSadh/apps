@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pantheon Cup — Gods, Monsters & One Mortal Genius</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='86'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Jost:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0e18; --card:#0f1322; --card2:#151b30; --ink:#eef1fa; --mut:#8490aa; --mut2:#546080;
+  --line:#1c2440; --line-hi:#283558; --acc:#9b7aed; --acc2:#b598ff;
+  --cyan:#4ee8d0; --rose:#e88aa0; --amber:#e8c870;
+  --advance:#4ee8d0; --out:#e88aa0; --gold:#e8c870; --silver:#c8cde0; --bronze:#d8985a;
+  --grad:linear-gradient(141deg,#5000cc,#8f00ff 71%,#c01aff);
+  --serif:'Fraunces',Georgia,serif; --sans:'Jost',-apple-system,sans-serif; --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--mut);font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh;position:relative;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 75% 60% at 14% 14%, color-mix(in srgb,var(--cyan),transparent 88%), transparent 64%),
+    radial-gradient(ellipse 70% 58% at 86% 22%, color-mix(in srgb,var(--rose),transparent 90%), transparent 66%),
+    radial-gradient(ellipse 78% 66% at 80% 92%, color-mix(in srgb,var(--amber),transparent 92%), transparent 68%),
+    radial-gradient(ellipse 64% 56% at 22% 80%, color-mix(in srgb,var(--acc),transparent 86%), transparent 62%);}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:500;background:color-mix(in srgb,var(--bg),transparent 18%);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1060px;margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:22px;height:56px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-brand{font-family:var(--serif);font-style:italic;font-weight:500;font-size:21px;color:var(--ink);letter-spacing:-.02em;white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.nav-brand .spark{color:var(--acc);font-style:normal}
+.nav a{font-family:var(--mono);font-size:11px;color:var(--mut2);text-decoration:none;letter-spacing:1.2px;white-space:nowrap;transition:color .15s;text-transform:uppercase}
+.nav a:hover{color:var(--ink)}
+
+.wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:54px 22px 100px}
+.brandline{font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--mut2);margin-bottom:30px;opacity:0;animation:fadeUp .6s .1s forwards}
+.brandline b{color:var(--acc)}
+
+/* HERO */
+.hero{margin-bottom:48px;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:1px;color:#fff;background:var(--grad);padding:5px 14px;border-radius:20px;margin-bottom:24px;opacity:0;animation:fadeUp .6s .2s forwards;text-transform:uppercase}
+.hero-badge .dot{width:6px;height:6px;background:#fff;border-radius:50%;animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(52px,9vw,92px);letter-spacing:-.03em;color:var(--ink);line-height:.96;margin-bottom:20px;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero h1 .spark{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-lede{font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.55;color:var(--mut);max-width:620px;opacity:0;animation:fadeUp .6s .45s forwards}
+.hero-lede b{color:var(--ink);font-style:normal;font-weight:600}
+
+/* STATS */
+.stats{display:flex;gap:1px;margin:40px 0 18px;background:var(--line);border-radius:12px;overflow:hidden;opacity:0;animation:fadeUp .6s .55s forwards}
+.stat{flex:1;background:var(--card);padding:18px;text-align:center}
+.stat-val{font-family:var(--mono);font-size:17px;color:var(--ink);font-weight:500}
+.stat-lbl{font-size:11px;color:var(--mut2);margin-top:5px;font-family:var(--mono);letter-spacing:.5px}
+
+/* CHAMP BANNER */
+.champ{position:relative;border-radius:16px;padding:28px 30px;margin-bottom:60px;display:flex;align-items:center;gap:24px;overflow:hidden;background:var(--card);border:1px solid color-mix(in srgb,var(--amber),transparent 62%);opacity:0;animation:fadeUp .6s .65s forwards}
+.champ::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,color-mix(in srgb,var(--amber),transparent 88%),transparent 58%);pointer-events:none}
+.champ>*{position:relative}
+.champ .trophy{font-size:46px;line-height:1;filter:drop-shadow(0 0 16px color-mix(in srgb,var(--amber),transparent 70%))}
+.champ-txt .lbl{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.champ-txt h3{font-family:var(--serif);font-style:italic;font-weight:500;font-size:36px;color:var(--ink);letter-spacing:-.02em;line-height:1.05;margin:3px 0 8px}
+.champ-txt p{font-size:14px;color:var(--mut);line-height:1.65;max-width:600px}
+
+/* HOOK (spoiler-free hero teaser) */
+.hook{position:relative;border-radius:16px;padding:26px 30px;margin-bottom:60px;display:flex;align-items:center;gap:22px;overflow:hidden;background:var(--card);border:1px solid color-mix(in srgb,var(--acc),transparent 58%);opacity:0;animation:fadeUp .6s .65s forwards}
+.hook::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,color-mix(in srgb,var(--acc),transparent 88%),transparent 58%);pointer-events:none}
+.hook>*{position:relative}
+.hook .ic{font-size:42px;line-height:1;filter:drop-shadow(0 0 16px color-mix(in srgb,var(--acc),transparent 64%))}
+.hook .lbl{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc2);text-transform:uppercase}
+.hook h3{font-family:var(--serif);font-style:italic;font-weight:500;font-size:31px;color:var(--ink);letter-spacing:-.02em;line-height:1.1;margin:3px 0 8px}
+.hook p{font-size:14px;color:var(--mut);line-height:1.65;max-width:600px}
+.hook a{color:var(--acc2);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--acc),transparent 55%)}
+.hook a:hover{color:var(--acc)}
+
+/* BLOCKS */
+.block{margin-bottom:70px;scroll-margin-top:74px}
+.eyebrow{font-family:var(--mono);font-size:11px;color:var(--acc);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.eyebrow .spark{color:var(--acc)}
+.block-title{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(30px,5vw,46px);color:var(--ink);letter-spacing:-.02em;line-height:1.02;margin-bottom:16px}
+.block-title .em{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}
+.block-intro{font-size:15.5px;line-height:1.75;color:var(--mut);max-width:680px;margin-bottom:32px}
+.block-intro b{color:var(--ink);font-weight:600}
+
+/* RULES */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rule{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;transition:border-color .18s,transform .18s}
+.rule:hover{border-color:var(--acc);transform:translateY(-2px)}
+.rule .rn{font-family:var(--mono);font-size:11px;color:var(--mut2);letter-spacing:1px}
+.rule h4{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--ink);margin:10px 0 8px;font-weight:500}
+.rule p{font-size:13.5px;color:var(--mut);line-height:1.65}
+
+/* TEAM GRID */
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.team-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .18s,transform .18s,box-shadow .18s}
+.team-card:hover{border-color:var(--acc);transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.35)}
+.tc-top{display:flex;align-items:center;gap:12px;margin-bottom:9px}
+.team-card h4{font-family:var(--serif);font-style:italic;font-weight:500;font-size:22px;color:var(--ink);letter-spacing:-.01em}
+.tc-meta{margin-left:auto;display:flex;gap:6px;flex-shrink:0}
+.team-card p{font-size:13px;color:var(--mut);line-height:1.6}
+.team-card p em{color:var(--acc2);font-style:italic}
+.pill{font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:20px;letter-spacing:.8px;white-space:nowrap;text-transform:uppercase;border:1px solid}
+.pill.grp{color:var(--acc2);background:color-mix(in srgb,var(--acc),transparent 88%);border-color:color-mix(in srgb,var(--acc),transparent 72%)}
+.pill.champ-p{color:var(--gold);background:color-mix(in srgb,var(--gold),transparent 88%);border-color:color-mix(in srgb,var(--gold),transparent 68%)}
+.pill.runner{color:var(--silver);background:#c8cde012;border-color:#c8cde035}
+.pill.bronze{color:var(--bronze);background:color-mix(in srgb,var(--bronze),transparent 88%);border-color:color-mix(in srgb,var(--bronze),transparent 65%)}
+.pill.qf{color:var(--mut);background:#ffffff05;border-color:var(--line-hi)}
+.pill.grp-out{color:var(--mut2);background:#ffffff04;border-color:var(--line)}
+.team-grid{align-items:start}
+.team-card{position:relative}
+.tc-crest{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:color-mix(in srgb,var(--acc),transparent 86%);border:1px solid color-mix(in srgb,var(--acc),transparent 74%);flex-shrink:0}
+.tc-crest svg{width:21px;height:21px;color:var(--acc2)}
+.tc-id{display:flex;flex-direction:column;gap:1px;min-width:0}
+.tc-alias{font-family:var(--mono);font-size:9px;letter-spacing:.6px;color:var(--mut2);text-transform:uppercase}
+.tc-back{display:none}
+.team-card.flipped .tc-front{display:none}
+.team-card.flipped .tc-back{display:block}
+.tc-back .xi{margin-top:4px}
+.tc-face{animation:tcfade .28s ease}
+@keyframes tcfade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.tc-flip{margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--acc2);background:none;border:none;border-top:1px solid var(--line);padding:11px 0 0;width:100%;text-align:left;cursor:pointer;transition:color .15s}
+.tc-flip:hover{color:var(--ink)}
+
+/* SQUADS */
+.squads-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.squad{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .18s}
+.squad:hover{border-color:var(--line-hi)}
+.squad-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:2px}
+.squad-name{font-family:var(--serif);font-style:italic;font-weight:500;font-size:24px;color:var(--ink);letter-spacing:-.01em}
+.squad-alias{font-family:var(--mono);font-size:10px;color:var(--mut2);letter-spacing:.5px;text-transform:uppercase}
+.squad-meta{margin-left:auto;display:inline-flex;gap:8px;align-items:center}
+.squad-form{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--acc2);background:color-mix(in srgb,var(--acc),transparent 88%);border:1px solid color-mix(in srgb,var(--acc),transparent 72%);padding:3px 9px;border-radius:20px}
+.squad-size{font-family:var(--mono);font-size:10px;color:var(--mut2)}
+.xi{margin-top:14px}
+.line{display:flex;gap:12px;padding:7px 0;border-top:1px solid var(--line);align-items:baseline}
+.line:first-child{border-top:none}
+.pos{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--mut2);text-transform:uppercase;width:38px;flex-shrink:0;padding-top:2px}
+.players{font-size:13.5px;color:var(--ink);line-height:1.6}
+.players .star{color:var(--acc2);font-weight:600}
+.squad-sub{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.squad-sub .lbl{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--mut2);text-transform:uppercase;margin-right:8px}
+.squad-sub .body{font-size:13px;color:var(--mut);line-height:1.6}
+.squad-sub.coach{margin-top:8px;padding-top:0;border-top:none}
+.squad-sub.coach .body{color:var(--ink)}
+@media(max-width:760px){.squads-grid{grid-template-columns:1fr}}
+
+/* GROUP TABLES (flags.fyi-style data tables) */
+.group-block{margin-bottom:38px}
+.group-head{display:flex;align-items:baseline;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.group-tag{font-family:var(--mono);font-size:12px;color:var(--acc);font-weight:500;letter-spacing:1.5px}
+.group-name{font-family:var(--serif);font-style:italic;font-weight:500;font-size:26px;color:var(--ink);letter-spacing:-.01em}
+.group-note{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--mut2)}
+table.grp{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:16px}
+table.grp th{font-family:var(--mono);font-size:10px;color:var(--mut2);font-weight:400;text-align:center;padding:12px 6px;border-bottom:1px solid var(--line);text-transform:uppercase;letter-spacing:.5px}
+table.grp th.tm{text-align:left;padding-left:18px}
+table.grp td{font-size:13.5px;text-align:center;padding:12px 6px;color:var(--mut);border-bottom:1px solid var(--line)}
+table.grp tbody tr:last-child td{border-bottom:none}
+table.grp td.tm{text-align:left;padding-left:18px;color:var(--ink);font-weight:500;font-size:14.5px}
+table.grp td.rank{font-family:var(--mono);color:var(--mut2);width:38px}
+table.grp td.pts{font-family:var(--mono);font-weight:500;color:var(--ink)}
+tr.q td.tm{box-shadow:inset 3px 0 0 var(--advance)}
+tr.q td.rank{color:var(--advance)}
+tr.out td{color:var(--mut2)}
+tr.out td.tm{color:#6c7590;box-shadow:inset 3px 0 0 var(--out)}
+.qkey{display:flex;gap:20px;font-family:var(--mono);font-size:10px;color:var(--mut2);margin-bottom:20px;flex-wrap:wrap;letter-spacing:.5px}
+.qkey span{display:inline-flex;align-items:center;gap:7px}
+.qdot{width:9px;height:9px;border-radius:3px}
+.expand-all-btn{font-family:var(--mono);font-size:11px;letter-spacing:.5px;color:var(--acc2);background:color-mix(in srgb,var(--acc),transparent 88%);border:1px solid color-mix(in srgb,var(--acc),transparent 68%);border-radius:20px;padding:8px 16px;cursor:pointer;transition:border-color .15s,background .15s,color .15s;text-transform:uppercase;white-space:nowrap}
+.expand-all-btn:hover{border-color:var(--acc);background:color-mix(in srgb,var(--acc),transparent 78%);color:var(--ink)}
+.expand-all-btn:active{transform:translateY(1px)}
+
+/* MATCH CARDS */
+.matches{display:flex;flex-direction:column;gap:8px}
+.match{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);transition:border-color .18s}
+.match:hover{border-color:var(--line-hi)}
+.match.open{border-color:color-mix(in srgb,var(--acc),transparent 55%)}
+.match-head{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer;user-select:none}
+.match-teams{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.match-teams .t{font-size:14px;color:var(--mut);flex:1}
+.match-teams .t.home{text-align:right}
+.match-teams .t.away{text-align:left}
+.match-teams .t.win{color:var(--ink);font-weight:600}
+.match-teams .sc{font-family:var(--mono);font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:4px 12px;white-space:nowrap}
+.match-tag{font-family:var(--mono);font-size:9px;letter-spacing:.8px;color:var(--acc2);background:color-mix(in srgb,var(--acc),transparent 88%);border:1px solid color-mix(in srgb,var(--acc),transparent 75%);padding:4px 9px;border-radius:20px;white-space:nowrap;text-transform:uppercase}
+.match-tag.marquee{color:var(--gold);background:color-mix(in srgb,var(--gold),transparent 88%);border-color:color-mix(in srgb,var(--gold),transparent 68%)}
+.match .arrow{font-family:var(--mono);font-size:13px;color:var(--mut2);transition:transform .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+.match.open .arrow{transform:rotate(90deg);color:var(--acc)}
+.match-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+.match.open .match-body{max-height:5000px}
+.match-body-inner{padding:16px 18px 18px;border-top:1px solid var(--line)}
+.commentary{font-size:14px;line-height:1.72;color:var(--mut);margin-bottom:15px}
+.commentary b{color:var(--ink);font-weight:600}
+.reel{display:flex;flex-direction:column;gap:8px}
+.moment{display:flex;gap:12px;align-items:baseline;font-size:13px;color:var(--mut);line-height:1.5}
+.moment .min{font-family:var(--mono);font-size:11px;color:var(--acc);background:color-mix(in srgb,var(--acc),transparent 88%);border-radius:5px;padding:1px 7px;flex-shrink:0;min-width:46px;text-align:center}
+.moment b{color:var(--ink);font-weight:600}
+
+/* BRACKET */
+.bracket-wrap{overflow-x:auto;padding:6px 2px 20px;margin-bottom:12px}
+.bracket{display:flex;gap:22px;min-width:760px}
+.round{display:flex;flex-direction:column;justify-content:space-around;flex:1;gap:16px}
+.round-title{font-family:var(--mono);font-size:10px;color:var(--mut2);text-transform:uppercase;letter-spacing:1.5px;text-align:center;margin-bottom:4px}
+.tie{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.slot{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;font-size:13px;color:var(--mut);border-bottom:1px solid var(--line)}
+.slot:last-child{border-bottom:none}
+.slot.win{color:var(--ink);font-weight:600;background:linear-gradient(90deg,color-mix(in srgb,var(--acc),transparent 86%),transparent)}
+.slot.win .bsc{color:var(--acc2)}
+.slot .bn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot .bsc{font-family:var(--mono);font-size:12px;margin-left:8px}
+.tie.final-tie{border-color:color-mix(in srgb,var(--gold),transparent 55%)}
+.tie.final-tie .slot.win{background:linear-gradient(90deg,color-mix(in srgb,var(--gold),transparent 86%),transparent);color:var(--gold)}
+.tie.final-tie .slot.win .bsc{color:var(--gold)}
+.aet{font-family:var(--mono);font-size:9px;color:var(--mut2);text-align:center;padding:5px;background:var(--bg);letter-spacing:1px}
+.third{margin-top:10px;max-width:340px}
+.third .round-title{color:var(--bronze)}
+.tie.bronze-tie .slot.win{background:linear-gradient(90deg,color-mix(in srgb,var(--bronze),transparent 86%),transparent);color:var(--bronze)}
+.tie.bronze-tie .slot.win .bsc{color:var(--bronze)}
+
+/* FINAL FEATURE */
+.final-feature{position:relative;border-radius:18px;padding:34px;overflow:hidden;background:var(--card);border:1px solid color-mix(in srgb,var(--gold),transparent 58%)}
+.final-feature::before{content:'';position:absolute;inset:0;background:linear-gradient(165deg,color-mix(in srgb,var(--amber),transparent 90%),transparent 55%);pointer-events:none}
+.final-feature>*{position:relative}
+.ff-tag{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.ff-score{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(30px,5vw,44px);color:var(--ink);letter-spacing:-.02em;margin:10px 0 4px;line-height:1.06}
+.ff-score .em{color:var(--gold)}
+.ff-aet{font-family:var(--mono);font-size:11px;color:var(--mut2);margin-bottom:20px;letter-spacing:1px}
+.final-feature .commentary{font-size:15px;color:var(--mut)}
+.ff-reel{margin-top:20px;border-top:1px solid color-mix(in srgb,var(--gold),transparent 80%);padding-top:18px}
+
+/* TEAS */
+.teas{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tea{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .18s,transform .18s}
+.tea:hover{border-color:var(--rose);transform:translateY(-2px)}
+.tea-tag{font-family:var(--mono);font-size:9px;letter-spacing:1.2px;color:var(--rose);text-transform:uppercase;margin-bottom:9px}
+.tea h4{font-family:var(--serif);font-style:italic;font-weight:500;font-size:21px;color:var(--ink);margin-bottom:8px;line-height:1.2}
+.tea p{font-size:13.5px;color:var(--mut);line-height:1.68}
+.tea p em{color:var(--acc2);font-style:italic}
+
+/* AWARDS */
+.awards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:30px}
+.award{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center;transition:border-color .18s,transform .18s}
+.award:hover{border-color:var(--acc);transform:translateY(-2px)}
+.award .am{font-size:30px;line-height:1;margin-bottom:10px}
+.award .at{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--mut2);text-transform:uppercase;margin-bottom:8px}
+.award .aw{font-family:var(--serif);font-style:italic;font-weight:500;font-size:19px;color:var(--ink);margin-bottom:5px}
+.award .an{font-size:12px;color:var(--mut);line-height:1.55}
+
+/* STANDINGS TIERS */
+.standings{display:flex;flex-direction:column;gap:9px;margin-bottom:30px}
+.tier{display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;flex-wrap:wrap}
+.tier .tlbl{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--mut2);text-transform:uppercase;width:140px;flex-shrink:0}
+.tier .tteams{font-size:14.5px;color:var(--mut)}
+.tier .tteams b{color:var(--ink);font-weight:600}
+.tier.gold{border-color:color-mix(in srgb,var(--gold),transparent 58%)}
+.tier.gold .tlbl{color:var(--gold)}
+.tier.gold .tteams b{color:var(--gold);font-family:var(--serif);font-style:italic;font-size:22px;font-weight:500}
+.tier.silver .tlbl{color:var(--silver)}
+.tier.silver .tteams b{color:var(--silver)}
+.tier.bronze-t .tlbl{color:var(--bronze)}
+.tier.bronze-t .tteams b{color:var(--bronze)}
+
+.takeaway{position:relative;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:0 14px 14px 0;padding:26px 28px}
+.takeaway h4{font-family:var(--mono);color:var(--acc);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.takeaway p{font-size:14.5px;line-height:1.78;color:var(--mut);margin-bottom:12px}
+.takeaway p:last-child{margin-bottom:0}
+.takeaway b{color:var(--ink);font-weight:600}
+
+footer{margin-top:64px;padding-top:34px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut2);flex-wrap:wrap;gap:12px}
+footer a{color:var(--acc2);text-decoration:none}
+footer a:hover{color:var(--acc)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){
+  .hero h1{letter-spacing:-.02em}
+  .stats{flex-wrap:wrap}.stat{flex:none;width:50%}
+  .rules,.team-grid,.teas,.awards{grid-template-columns:1fr}
+  .champ{flex-direction:column;align-items:flex-start;gap:16px}
+  .match-tag{display:none}
+  .tier .tlbl{width:auto}
+  .final-feature{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand"><span class="spark">✦</span> Pantheon Cup</span>
+    <a href="#premise">Premise</a>
+    <a href="#teams">16 Teams</a>
+    <a href="#groups">Groups</a>
+    <a href="#knockouts">Knockouts</a>
+    <a href="#final">Final</a>
+    <a href="#teas">Teas</a>
+    <a href="#awards">Awards</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="brandline">sadh.app / <b>wc2026</b> / pantheon cup — a simulation</div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge"><span class="dot"></span> 16 sides · 0 superpowers · 1 trophy</div>
+    <h1>Pantheon <span class="spark">Cup</span></h1>
+    <p class="hero-lede">Gods, monsters, heroes and one mortal genius — stripped of every power and made to play <b>actual football</b>. Thor is a 6'6" targetman, not a storm. The Flash just can't stop straying offside. The only question that matters: when the magic is gone, who can really <b>play</b>?</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="stat-val">16</div><div class="stat-lbl">Teams</div></div>
+    <div class="stat"><div class="stat-val">4</div><div class="stat-lbl">Groups</div></div>
+    <div class="stat"><div class="stat-val">32</div><div class="stat-lbl">Matches</div></div>
+    <div class="stat"><div class="stat-val">1</div><div class="stat-lbl">Mortal</div></div>
+    <div class="stat"><div class="stat-val">0</div><div class="stat-lbl">Powers used</div></div>
+  </div>
+
+  <!-- HOOK -->
+  <div class="hook">
+    <div class="ic">⚽</div>
+    <div>
+      <div class="lbl">The Question</div>
+      <h3>Strip away every power — who can actually play?</h3>
+      <p>One trophy, sixteen contenders, no shortcuts. Read it like a tournament: settle the <a href="#groups">groups</a>, sweat the <a href="#knockouts">knockouts</a>, and find out who lifts it. No result spoiled until you get there.</p>
+    </div>
+  </div>
+
+  <!-- PREMISE -->
+  <section class="block" id="premise">
+    <div class="eyebrow"><span class="spark">✦</span> 01 — The Premise</div>
+    <h2 class="block-title">No powers. <span class="em">Just football.</span></h2>
+    <p class="block-intro">Every power becomes a footballing trait, and nothing more — gods defend set pieces like everyone else. Take the most powerful beings in fiction, strip what makes them powerful, and find out who actually understands the game. Three rules run the whole thing.</p>
+    <div class="rules">
+      <div class="rule"><div class="rn">RULE 01</div><h4>Attributes, not abilities</h4><p>Every power becomes one football trait and nothing more — strength turns into aerial presence and a heavy shot, speed into a flying winger who strays offside. No flight, no magic, no jutsu.</p></div>
+      <div class="rule"><div class="rn">RULE 02</div><h4>Teamwork is a stat</h4><p>The most gifted XIs have brilliant individuals and no shape — and a long group stage punishes that every time.</p></div>
+      <div class="rule"><div class="rn">RULE 03</div><h4>Temperament decides games</h4><p>Ego and discipline are tactical traits: a bored Saitama jogs, Loki goes down too easily, and Zlatan only ever loses to gods.</p></div>
+    </div>
+  </section>
+
+  <!-- TEAMS -->
+  <section class="block" id="teams">
+    <div class="eyebrow"><span class="spark">✦</span> 02 — The Field</div>
+    <h2 class="block-title">The <span class="em">sixteen</span></h2>
+    <p class="block-intro">Four groups of four. Two designated to fall — the no-coordination superteams — the rest genuinely equal. <b>Flip any card for the full squad</b>, or swap them all at once. Names in <span class="star">purple</span> are the players who shaped the tournament.</p>
+    <div style="display:flex;justify-content:flex-end;margin:-4px 0 16px"><button class="expand-all-btn" onclick="flipAllCards()">⇄ Show all squads</button></div>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 L20.4 7.25 V16.75 L12 21.5 L3.6 16.75 V7.25 Z"/><path d="M8.4 16.3 L12 7.7 L15.6 16.3"/><path d="M9.7 13 H14.3"/></svg></span><div class="tc-id"><h4>Avengers</h4><span class="tc-alias">Marvel</span></div><div class="tc-meta"><span class="pill grp">GRP A</span></div></div>
+          <p>A true machine under Iron Man — de facto manager, captain and playmaker. Black Panther electric out wide, Spider-Man a cheat code in goal. One flaw: Cap wears the armband and won’t follow the playbook.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 L20.4 7.25 V16.75 L12 21.5 L3.6 16.75 V7.25 Z"/><path d="M8.4 16.3 L12 7.7 L15.6 16.3"/><path d="M9.7 13 H14.3"/></svg></span><div class="tc-id"><h4>Avengers</h4><span class="tc-alias">Marvel</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players"><span class="star">Spider-Man</span></span></div><div class="line"><span class="pos">DEF</span><span class="players">Falcon, Luke Cage, Vision, Winter Soldier</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Iron Man</span>, <span class="star">Captain America</span>, Black Widow</span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Black Panther</span>, Hulk, <span class="star">Hawkeye</span></span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">War Machine, Captain Marvel, Scarlet Witch, Doctor Strange, Star-Lord, Ant-Man, Wasp, Gamora, Drax, Rocket, Groot, Nick Fury</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Iron Man</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Captain America</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3" stroke-dasharray="50 9"/><path d="M12 6.5 L13.5 10.4 L17.7 10.6 L14.3 13.2 L15.6 17.3 L12 14.9 L8.4 17.3 L9.7 13.2 L6.3 10.6 L10.5 10.4 Z" fill="currentColor" stroke="none"/></svg></span><div class="tc-id"><h4>Justice League</h4><span class="tc-alias">DC</span></div><div class="tc-meta"><span class="pill grp">GRP A</span></div></div>
+          <p>Five superstars who never learned to play as a team. Flash terrifying and forever offside; Wonder Woman and Superman bully the air. Elite parts, zero assembly.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3" stroke-dasharray="50 9"/><path d="M12 6.5 L13.5 10.4 L17.7 10.6 L14.3 13.2 L15.6 17.3 L12 14.9 L8.4 17.3 L9.7 13.2 L6.3 10.6 L10.5 10.4 Z" fill="currentColor" stroke="none"/></svg></span><div class="tc-id"><h4>Justice League</h4><span class="tc-alias">DC</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Cyborg</span></div><div class="line"><span class="pos">DEF</span><span class="players">Green Arrow, Martian Manhunter, Aquaman, Hawkgirl</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Batman</span>, <span class="star">Green Lantern</span>, <span class="star">Wonder Woman</span></span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">The Flash</span>, <span class="star">Superman</span>, Black Canary</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Shazam, Zatanna, The Atom, Supergirl, Nightwing, Batgirl, Vixen, Firestorm, Hawkman, Plastic Man, Red Tornado</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Batman</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Wonder Woman</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="15.4" rx="9.4" ry="2.6"/><path d="M5.3 15.4 Q5.6 7.6 12 7.6 Q18.4 7.6 18.7 15.4"/><path d="M6.9 13.5 Q12 16 17.1 13.5"/></svg></span><div class="tc-id"><h4>Straw Hats</h4><span class="tc-alias">One Piece</span></div><div class="tc-meta"><span class="pill grp">GRP A</span></div></div>
+          <p>Thrilling and leaky. Sanji a world-class legs-only striker, Usopp a sniper from range, Nami pulling strings — and Zoro, a defender who keeps marking the wrong man.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="15.4" rx="9.4" ry="2.6"/><path d="M5.3 15.4 Q5.6 7.6 12 7.6 Q18.4 7.6 18.7 15.4"/><path d="M6.9 13.5 Q12 16 17.1 13.5"/></svg></span><div class="tc-id"><h4>Straw Hats</h4><span class="tc-alias">One Piece</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Jinbe</span></div><div class="line"><span class="pos">DEF</span><span class="players">Franky, <span class="star">Zoro</span>, Brook, Robin</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Nami</span>, <span class="star">Luffy</span>, Chopper</span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Usopp</span>, <span class="star">Sanji</span>, Carrot</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Vivi, Trafalgar Law, Sabo, Bon Clay, Yamato, Momonosuke</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Silvers Rayleigh</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Luffy</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5 C13.6 8 13.6 11.5 12 13.6 C10.4 11.5 10.4 8 12 4.5 Z"/><path d="M12 13.6 C9.6 12.7 7.7 10.2 7.5 7.2 C10.1 7.8 12 10.2 12 13.6 Z"/><path d="M12 13.6 C14.4 12.7 16.3 10.2 16.5 7.2 C13.9 7.8 12 10.2 12 13.6 Z"/><path d="M12 13.6 C8.6 13.3 5.6 11.9 4.2 9.4 C7.1 8.6 10.4 9.9 12 13.6 Z"/><path d="M12 13.6 C15.4 13.3 18.4 11.9 19.8 9.4 C16.9 8.6 13.6 9.9 12 13.6 Z"/><path d="M4.5 14.8 Q12 18.2 19.5 14.8"/></svg></span><div class="tc-id"><h4>The Devas</h4><span class="tc-alias">Hindu myth</span></div><div class="tc-meta"><span class="pill grp">GRP A</span></div></div>
+          <p>Arguably the most gifted squad in the field — and eleven captains who won’t pass. Hanuman a one-man midfield who scored in every game with nobody to play it to.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5 C13.6 8 13.6 11.5 12 13.6 C10.4 11.5 10.4 8 12 4.5 Z"/><path d="M12 13.6 C9.6 12.7 7.7 10.2 7.5 7.2 C10.1 7.8 12 10.2 12 13.6 Z"/><path d="M12 13.6 C14.4 12.7 16.3 10.2 16.5 7.2 C13.9 7.8 12 10.2 12 13.6 Z"/><path d="M12 13.6 C8.6 13.3 5.6 11.9 4.2 9.4 C7.1 8.6 10.4 9.9 12 13.6 Z"/><path d="M12 13.6 C15.4 13.3 18.4 11.9 19.8 9.4 C16.9 8.6 13.6 9.9 12 13.6 Z"/><path d="M4.5 14.8 Q12 18.2 19.5 14.8"/></svg></span><div class="tc-id"><h4>The Devas</h4><span class="tc-alias">Hindu myth</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Yama</span></div><div class="line"><span class="pos">DEF</span><span class="players">Vayu, Shiva, Ganesha, Varuna</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Krishna</span>, <span class="star">Hanuman</span>, Kartikeya</span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Indra</span>, Rama, Agni</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Brahma, Vishnu, Surya, Garuda, Durga, Kali, Lakshmi, Saraswati, Balarama</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Krishna</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Indra</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/><path d="M12 2.4 V5"/><path d="M12 19 V21.6"/><path d="M2.4 12 H5"/><path d="M19 12 H21.6"/><path d="M5.2 5.2 L7 7"/><path d="M17 17 L18.8 18.8"/><path d="M18.8 5.2 L17 7"/><path d="M7 17 L5.2 18.8"/></svg></span><div class="tc-id"><h4>Z-Fighters</h4><span class="tc-alias">Dragon Ball</span></div><div class="tc-meta"><span class="pill grp">GRP B</span></div></div>
+          <p>The unstoppable engine. Never tires, learns the game in real time, solves any low block by the second half. Vegeta takes every duel as a blood feud.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/><path d="M12 2.4 V5"/><path d="M12 19 V21.6"/><path d="M2.4 12 H5"/><path d="M19 12 H21.6"/><path d="M5.2 5.2 L7 7"/><path d="M17 17 L18.8 18.8"/><path d="M18.8 5.2 L17 7"/><path d="M7 17 L5.2 18.8"/></svg></span><div class="tc-id"><h4>Z-Fighters</h4><span class="tc-alias">Dragon Ball</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Krillin</span></div><div class="line"><span class="pos">DEF</span><span class="players">Android 17, <span class="star">Piccolo</span>, Android 18, Tien Shinhan</span></div><div class="line"><span class="pos">MID</span><span class="players">Gohan, <span class="star">Vegeta</span>, Goten</span></div><div class="line"><span class="pos">FWD</span><span class="players">Future Trunks, <span class="star">Goku</span>, Yamcha</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Master Roshi, Chiaotzu, Videl, Pan, Android 16, Good Buu, Uub, Yajirobe</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Whis</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Goku</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6 L14 10 L21.4 12 L14 14 L12 21.4 L10 14 L2.6 12 L10 10 Z"/><circle cx="12" cy="12" r="1.8"/></svg></span><div class="tc-id"><h4>Konoha 11</h4><span class="tc-alias">Naruto</span></div><div class="tc-meta"><span class="pill grp">GRP B</span></div></div>
+          <p>The most complete <em>team</em> in the field. Shikamaru solves the match by minute ten; Sasuke buries what he creates; Rock Lee’s lungs win every late duel; Gaara is a wall.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6 L14 10 L21.4 12 L14 14 L12 21.4 L10 14 L2.6 12 L10 10 Z"/><circle cx="12" cy="12" r="1.8"/></svg></span><div class="tc-id"><h4>Konoha 11</h4><span class="tc-alias">Naruto</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Shino Aburame</span></div><div class="line"><span class="pos">DEF</span><span class="players">Kiba Inuzuka, <span class="star">Gaara</span>, Neji Hyūga, Hinata Hyūga</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Shikamaru</span>, <span class="star">Rock Lee</span>, <span class="star">Naruto</span></span></div><div class="line"><span class="pos">FWD</span><span class="players">Tenten, <span class="star">Sasuke</span>, Sakura</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Chōji, Ino, Kankurō, Temari, Sai, Might Guy, Jiraiya</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Kakashi Hatake</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Naruto</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12.2 V10.5 a1.4 1.4 0 0 1 2.8 0 V10 a1.4 1.4 0 0 1 2.8 0 a1.4 1.4 0 0 1 2.8 0 a1.4 1.4 0 0 1 2.8 0 V15 a3 3 0 0 1 -3 3 H10 a3 3 0 0 1 -3 -3 Z"/><path d="M7 13.3 H5.7 a1.3 1.3 0 0 0 0 2.6 H7"/></svg></span><div class="tc-id"><h4>Hero Association</h4><span class="tc-alias">Hero Association</span></div><div class="tc-meta"><span class="pill grp">GRP B</span></div></div>
+          <p>Entirely mood-dependent. A switched-on Saitama is the most complete athlete alive; a bored one jogs. King makes zero tackles but his reputation makes strikers shank it wide.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12.2 V10.5 a1.4 1.4 0 0 1 2.8 0 V10 a1.4 1.4 0 0 1 2.8 0 a1.4 1.4 0 0 1 2.8 0 a1.4 1.4 0 0 1 2.8 0 V15 a3 3 0 0 1 -3 3 H10 a3 3 0 0 1 -3 -3 Z"/><path d="M7 13.3 H5.7 a1.3 1.3 0 0 0 0 2.6 H7"/></svg></span><div class="tc-id"><h4>Hero Association</h4><span class="tc-alias">Hero Association</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Tanktop Master</span></div><div class="line"><span class="pos">DEF</span><span class="players"><span class="star">Mumen Rider</span>, <span class="star">King</span>, Puri-Puri Prisoner, Metal Bat</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Genos</span>, Silver Fang, Fubuki</span></div><div class="line"><span class="pos">FWD</span><span class="players">Speed-o’-Sound Sonic, <span class="star">Saitama</span>, Atomic Samurai</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Tatsumaki, Child Emperor, Pig God, Watchdog Man, Flashy Flash, Zombieman, Superalloy Darkshine</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Silver Fang</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Genos</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="1"/><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="1" transform="rotate(45 12 12)"/></svg></span><div class="tc-id"><h4>The Ainur</h4><span class="tc-alias">Lord of the Rings</span></div><div class="tc-meta"><span class="pill grp">GRP B</span></div></div>
+          <p>Ancient, powerful, slow. Gandalf conducts beautifully when given time; Sauron and the Balrog are immovable at a walk. Ask the legs to chase pace and they betray you.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="1"/><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="1" transform="rotate(45 12 12)"/></svg></span><div class="tc-id"><h4>The Ainur</h4><span class="tc-alias">Lord of the Rings</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Ulmo</span></div><div class="line"><span class="pos">DEF</span><span class="players">Oromë, <span class="star">Sauron</span>, <span class="star">the Balrog</span>, Ossë</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Gandalf</span>, Saruman, Tulkas</span></div><div class="line"><span class="pos">FWD</span><span class="players">Radagast, Eönwë, Melian</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Manwë, Aulë, Yavanna, Varda, Alatar, Pallando, Tom Bombadil</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Manwë</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Gandalf</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="4" width="13" height="6" rx="1.6"/><rect x="10.3" y="10" width="3.4" height="10" rx="1.2"/></svg></span><div class="tc-id"><h4>The Æsir</h4><span class="tc-alias">Norse myth</span></div><div class="tc-meta"><span class="pill grp">GRP C</span></div></div>
+          <p>Direct, physical, tournament-hardened. Thor a targetman who feasts in the air; Odin a one-eyed sweeper who reads everything; Loki the league’s premier diver, running the set-piece economy single-handed.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="4" width="13" height="6" rx="1.6"/><rect x="10.3" y="10" width="3.4" height="10" rx="1.2"/></svg></span><div class="tc-id"><h4>The Æsir</h4><span class="tc-alias">Norse myth</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Heimdall</span></div><div class="line"><span class="pos">DEF</span><span class="players">Njörd, <span class="star">Odin</span>, Víðarr, Freyr</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Týr</span>, <span class="star">Loki</span>, Forseti</span></div><div class="line"><span class="pos">FWD</span><span class="players">Ullr, <span class="star">Thor</span>, Baldr</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Frigg, Freyja, Skaði, Váli, Höðr, Hermóð, Magni, Móði, Bragi</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Odin</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Thor</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.6" r="2.7"/><path d="M11.5 8 L16.5 9 L11.5 10"/><path d="M6.9 10.6 Q5.8 18 11 17.6 Q16.2 17.2 14.6 11"/><path d="M14.4 14 L19.2 15.4"/><circle cx="9" cy="8.2" r="0.7" fill="currentColor" stroke="none"/></svg></span><div class="tc-id"><h4>American Gods</h4><span class="tc-alias">Gaiman</span></div><div class="tc-meta"><span class="pill grp">GRP C</span></div></div>
+          <p>Streetwise and nasty. Mad Sweeney a brawling targetman, Czernobog tackles like a sledgehammer, Mr. Wednesday cons from the touchline. They win ugly — until they meet a side they can’t con.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.6" r="2.7"/><path d="M11.5 8 L16.5 9 L11.5 10"/><path d="M6.9 10.6 Q5.8 18 11 17.6 Q16.2 17.2 14.6 11"/><path d="M14.4 14 L19.2 15.4"/><circle cx="9" cy="8.2" r="0.7" fill="currentColor" stroke="none"/></svg></span><div class="tc-id"><h4>American Gods</h4><span class="tc-alias">Gaiman</span></div><div class="tc-meta"><span class="squad-form">4-4-2</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Mr. Jacquel</span></div><div class="line"><span class="pos">DEF</span><span class="players">Whiskey Jack, <span class="star">Czernobog</span>, Mama-ji, Mr. Ibis</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Mr. Nancy</span>, <span class="star">Mr. Wednesday</span>, Low Key Lyesmith, Easter</span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Mad Sweeney</span>, Bilquis</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">the three Zorya sisters, the Jinn, Salim, Mr. Town, Technical Boy, Media</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Mr. Wednesday</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Mad Sweeney</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13 2 L5.5 13 H10.4 L9 22 L18.5 9 H12.6 Z"/></svg></span><div class="tc-id"><h4>The Olympians</h4><span class="tc-alias">Greek myth</span></div><div class="tc-meta"><span class="pill grp">GRP C</span></div></div>
+          <p>All flair, no discipline — the inverse of the real Greece NT. Hermes blistering, Athena an elite passing brain, Apollo a finisher, Ares a centre-half who <em>will</em> see red.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13 2 L5.5 13 H10.4 L9 22 L18.5 9 H12.6 Z"/></svg></span><div class="tc-id"><h4>The Olympians</h4><span class="tc-alias">Greek myth</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Hephaestus</span></div><div class="line"><span class="pos">DEF</span><span class="players">Atlas, <span class="star">Ares</span>, Hades, Poseidon</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Athena</span>, Zeus, Heracles</span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Hermes</span>, <span class="star">Apollo</span>, Artemis</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Dionysus, Aphrodite, Hera, Hecate, Persephone, Nike, Castor, Pollux</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Chiron</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Zeus</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 18.5 L18.5 5.5" stroke-width="2.2"/><path d="M3.9 17 L7.1 20.2" stroke-width="1.6"/><path d="M16.9 3.8 L20.1 7" stroke-width="1.6"/></svg></span><div class="tc-id"><h4>Journey to the West</h4><span class="tc-alias">Sun Wukong</span></div><div class="tc-meta"><span class="pill grp">GRP C</span></div></div>
+          <p>The Monkey King’s crew — agile, cheeky, a tricky winger who somersaults to win headers. Dazzling and undisciplined, and currently appealing a doping ban by vanishing.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 18.5 L18.5 5.5" stroke-width="2.2"/><path d="M3.9 17 L7.1 20.2" stroke-width="1.6"/><path d="M16.9 3.8 L20.1 7" stroke-width="1.6"/></svg></span><div class="tc-id"><h4>Journey to the West</h4><span class="tc-alias">Sun Wukong</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Sha Wujing</span></div><div class="line"><span class="pos">DEF</span><span class="players">Nezha, the Bull Demon King, Erlang Shen, the White Dragon Horse</span></div><div class="line"><span class="pos">MID</span><span class="players">Tang Sanzang, Zhu Bajie, Princess Iron Fan</span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Sun Wukong</span>, Red Boy, the Six-Eared Macaque</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">the Dragon King of the East Sea, the Jade Rabbit, the Yellow Wind Demon, the Golden Horned King, the Silver Horned King</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Guānyīn</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Sun Wukong</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L6.8 10.2 H9.8 V20.5 H14.2 V10.2 H17.2 Z"/></svg></span><div class="tc-id"><h4>Team Avatar</h4><span class="tc-alias">Avatar: TLA</span></div><div class="tc-meta"><span class="pill grp">GRP D</span></div></div>
+          <p>The best-coached side in the field. Aang a weightless, elusive winger; Toph an immovable wall who cannot be knocked off the ball; Sokka’s boomerang is a vicious curling free kick.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L6.8 10.2 H9.8 V20.5 H14.2 V10.2 H17.2 Z"/></svg></span><div class="tc-id"><h4>Team Avatar</h4><span class="tc-alias">Avatar: TLA</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Pakku</span></div><div class="line"><span class="pos">DEF</span><span class="players">Ty Lee, <span class="star">Toph</span>, Suki, Mai</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Sokka</span>, Iroh, <span class="star">Katara</span></span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Aang</span>, <span class="star">Zuko</span>, Jet</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">King Bumi, Hakoda, Haru, the Mechanist, the Duke, Pipsqueak, Longshot, Smellerbee</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Iroh</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Aang</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17 V9 L8.5 12.5 L12 6.8 L15.5 12.5 L20 9 V17 Z"/><path d="M4 19.4 H20"/></svg></span><div class="tc-id"><h4>Zlatan FC</h4><span class="tc-alias">Zlatan Ibrahimović</span></div><div class="tc-meta"><span class="pill grp">GRP D</span></div></div>
+          <p>The only player here who has actually played professional football. A taekwondo black belt who scores from impossible angles and refers to himself in the third person. The catch: ten mortal passengers.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17 V9 L8.5 12.5 L12 6.8 L15.5 12.5 L20 9 V17 Z"/><path d="M4 19.4 H20"/></svg></span><div class="tc-id"><h4>Zlatan FC</h4><span class="tc-alias">Zlatan Ibrahimović</span></div><div class="tc-meta"><span class="squad-form">4-3-3</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Sven</span></div><div class="line"><span class="pos">DEF</span><span class="players">Lars, Henrik, Björn, Olof</span></div><div class="line"><span class="pos">MID</span><span class="players">Pär, Niklas, Emil</span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Zlatan</span>, Anders, Gustav</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Magnus, Johan, Erik, Mattias</span></div>
+          <div class="squad-sub"><span class="lbl">Note</span><span class="body">Ten mortals and one deity. The midfield exists to give Zlatan the ball; he would replace the other two forwards with mirrors.</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Zlatan</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Zlatan</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 11 Q12 5.6 20.4 11 Q12 15.6 3.6 11 Z"/><circle cx="12" cy="11" r="2.1"/><path d="M5 8.6 Q12 4.6 19.4 9.2"/><path d="M12.6 13 V17.6"/><path d="M10.6 16.6 Q9 20.2 12.6 19.6"/></svg></span><div class="tc-id"><h4>The Ennead</h4><span class="tc-alias">Egyptian myth</span></div><div class="tc-meta"><span class="pill grp">GRP D</span></div></div>
+          <p>Structure and patience. Horus a sharp near-post poacher, Anubis reads everything, Thoth an architect of set pieces. A low block that frustrates — but couldn’t score enough.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 11 Q12 5.6 20.4 11 Q12 15.6 3.6 11 Z"/><circle cx="12" cy="11" r="2.1"/><path d="M5 8.6 Q12 4.6 19.4 9.2"/><path d="M12.6 13 V17.6"/><path d="M10.6 16.6 Q9 20.2 12.6 19.6"/></svg></span><div class="tc-id"><h4>The Ennead</h4><span class="tc-alias">Egyptian myth</span></div><div class="tc-meta"><span class="squad-form">5-3-2</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Sobek</span></div><div class="line"><span class="pos">DEF</span><span class="players">Geb, <span class="star">Anubis</span>, <span class="star">Set</span>, Bastet, Shu</span></div><div class="line"><span class="pos">MID</span><span class="players"><span class="star">Thoth</span>, Ptah, Khonsu</span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Horus</span>, Ra</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Osiris, Isis, Nephthys, Sekhmet, Hathor, Amun, Tefnut, Nut</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Osiris</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Ra</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="tc-face tc-front">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 6.6 H21.4"/><path d="M2.6 6.6 L2 4.9"/><path d="M21.4 6.6 L22 4.9"/><path d="M5 9.6 H19"/><path d="M6.6 6.9 V20.5"/><path d="M17.4 6.9 V20.5"/></svg></span><div class="tc-id"><h4>The Kami</h4><span class="tc-alias">Shinto myth</span></div><div class="tc-meta"><span class="pill grp">GRP D</span></div></div>
+          <p>Storm and sun. Raijin &amp; Fujin a thunder-and-wind set-piece duo; Susanoo a hot-headed midfielder one tackle from a red. Amaterasu has a habit of disappearing for whole halves.</p>
+          <button class="tc-flip" onclick="flipCard(this)">View squad ⇄</button>
+        </div>
+        <div class="tc-face tc-back">
+          <div class="tc-top"><span class="tc-crest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 6.6 H21.4"/><path d="M2.6 6.6 L2 4.9"/><path d="M21.4 6.6 L22 4.9"/><path d="M5 9.6 H19"/><path d="M6.6 6.9 V20.5"/><path d="M17.4 6.9 V20.5"/></svg></span><div class="tc-id"><h4>The Kami</h4><span class="tc-alias">Shinto myth</span></div><div class="tc-meta"><span class="squad-form">4-4-2</span></div></div>
+          <div class="xi"><div class="line"><span class="pos">GK</span><span class="players">Ryūjin</span></div><div class="line"><span class="pos">DEF</span><span class="players"><span class="star">Fujin</span>, <span class="star">Susanoo</span>, Hachiman, Bishamonten</span></div><div class="line"><span class="pos">MID</span><span class="players">Ame-no-Uzume, Omoikane, Izanagi, <span class="star">Raijin</span></span></div><div class="line"><span class="pos">FWD</span><span class="players"><span class="star">Amaterasu</span>, Tsukuyomi</span></div></div>
+          <div class="squad-sub"><span class="lbl">Bench</span><span class="body">Inari, Ebisu, Izanami, Konohanasakuya, Ninigi, Tenjin, Sarutahiko</span></div>
+          <div class="squad-sub"><span class="lbl">Manager</span><span class="body">Izanagi</span></div>
+          <div class="squad-sub coach"><span class="lbl">Captain</span><span class="body">Amaterasu</span></div>
+          <button class="tc-flip" onclick="flipCard(this)">← Overview</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GROUP STAGE -->
+  <section class="block" id="groups">
+    <div class="eyebrow"><span class="spark">✦</span> 03 — Group Stage</div>
+    <h2 class="block-title">Four groups, <span class="em">two</span> survivors each</h2>
+    <p class="block-intro">The thesis got proved twice in Group A alone: the two most individually gifted squads in the tournament — <b>Justice League and the Devas</b> — both went out, undone by the same flaw, no coordination. Elsewhere the gods did god things and the engines kept running.</p>
+    <div class="qkey">
+      <span><span class="qdot" style="background:var(--advance)"></span> Advances</span>
+      <span><span class="qdot" style="background:var(--out)"></span> Eliminated</span>
+      <span>↹ tap a match for highlights</span>
+      <button class="expand-all-btn" style="margin-left:auto" onclick="toggleAll()">↓ Expand all games</button>
+    </div>
+
+    <!-- GROUP A -->
+    <div class="group-block">
+      <div class="group-head"><span class="group-tag">GROUP A</span><span class="group-name">The Coordination Test</span><span class="group-note">two superstar teams, zero teamwork</span></div>
+      <table class="grp">
+        <thead><tr><th>#</th><th class="tm">Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead>
+        <tbody>
+          <tr class="q"><td class="rank">1</td><td class="tm">Avengers</td><td>3</td><td>3</td><td>0</td><td>0</td><td>18</td><td>3</td><td>+15</td><td class="pts">9</td></tr>
+          <tr class="q"><td class="rank">2</td><td class="tm">Straw Hats</td><td>3</td><td>2</td><td>0</td><td>1</td><td>8</td><td>6</td><td>+2</td><td class="pts">6</td></tr>
+          <tr class="out"><td class="rank">3</td><td class="tm">The Devas</td><td>3</td><td>0</td><td>1</td><td>2</td><td>7</td><td>10</td><td>−3</td><td class="pts">1</td></tr>
+          <tr class="out"><td class="rank">4</td><td class="tm">Justice League</td><td>3</td><td>0</td><td>1</td><td>2</td><td>4</td><td>18</td><td>−14</td><td class="pts">1</td></tr>
+        </tbody>
+      </table>
+      <div class="matches">
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Avengers</span><span class="sc">11 – 0</span><span class="t away">Justice League</span></div><span class="match-tag marquee">The Desiccation</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">There are nights when a scoreline lies, and nights when it tells the whole, brutal truth — this is the latter. Iron Man has drilled his side into a single moving organism, pressing in unison, hunting in packs; across from them the Justice League have assembled more individual brilliance than any team in this tournament and not one shared idea of how to defend. The high line steps at five different speeds, the fullbacks gallop forward and forget to come home, and into all that open green grass strides Black Panther, who needs only an invitation. By the half-hour it has stopped being a contest and become a lesson.</p><div class="reel"><div class="moment"><span class="min">6'</span> The first warning, and it is a loud one — Panther skips past a challenge on the right, drives infield and lashes one low toward the bottom corner; the keeper flings himself down to turn it away, but you can feel what is coming.</div><div class="moment"><span class="min">12'</span> Here he is again, Black Panther, drifting into that no-man's-land between the lines where nobody wants to pick him up; he takes it, he turns, he looks up at Batman — and simply glides past him, the fullback grasping at shadows — and he caresses it inside the near post. The Avengers are ahead, and it has been far, far too easy.</div><div class="moment"><span class="min">23'</span> Hawkeye curls the corner to the front post, and Captain America peels away from a static, ball-watching defence to flick it up and over the line. Two, and not a soul laid a glove on him.</div><div class="moment"><span class="min">29'</span> And now it flows — three passes, crisp and certain, slicing down the inside-left, the cut-back rolled to the spot and swept first time into the roof of the net. Three before the half-hour, and the League look utterly bewildered.</div><div class="moment"><span class="min">38'</span> A flicker, at last, for the Leaguers: Flash finally beats that ragged offside line, clean through, the goal at his mercy — and he drags it horribly wide. The whole story of their night in a single moment.</div><div class="moment"><span class="min">41'</span> Panther bursts clear once more and a despairing JL midfielder simply hauls him to the floor; the referee reaches for his pocket, and the booking is the very least of their problems.</div><div class="moment"><span class="min">54'</span> Panther completes his hat-trick, the line stepping up a beat too late yet again, and he strokes it home almost apologetically. There is no resistance left to overcome.</div><div class="moment"><span class="min">63'–72'</span> Three more arrive inside nine minutes, the Avengers pouring through channels the fullbacks abandoned long ago — it has become an exhibition, men against a back four that has stopped believing.</div><div class="moment"><span class="min">80'–88'</span> Two off the bench to finish it, both alone at the far post, and the board reads eleven. Eleven to nothing — a humbling of the proud.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Avengers</span><span class="sc">3 – 1</span><span class="t away">Straw Hats</span></div><span class="match-tag">Spidey Show</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">This has the makings of a glorious mess — Luffy throwing bodies forward with that fearless, joyful abandon of theirs, Sanji leading the line, Usopp lurking over every dead ball, Nami pulling the strings — and at the back, the eternal comedy of Zoro, forever drawn to the wrong man. The Avengers are calmer, more deliberate, content to work it wide for Hawkeye and to trust the impossible arms of Spider-Man behind them. It promises goals, and it promises chaos.</p><div class="reel"><div class="moment"><span class="min">9'</span> Nami lifts a gorgeous ball over the top, and Sanji — all elegance, that left foot — takes it down on his chest, lets it sit, and half-volleys it across the goalkeeper and in. Luffy are in front, and they are dancing.</div><div class="moment"><span class="min">22'</span> But Spider-Man is awake — a Nami effort fizzes toward the top corner and he flings himself full-stretch to his right to claw it around the post. A reminder of the wall they must beat.</div><div class="moment"><span class="min">31'</span> Panther, patient, plays the one-two and ghosts into the very space Zoro has wandered out of — and he finishes low and true. Level, and you could see it coming a mile off.</div><div class="moment"><span class="min">44'</span> Hawkeye's corner is flicked on at the front post and bundled in at the back; the Avengers lead at the interval. Another set piece, another lapse in concentration punished.</div><div class="moment"><span class="min">58'</span> Drama — Usopp's free-kick takes a wicked nick off the wall and spins toward the bottom corner, but Spider-Man somehow contorts himself to claw it onto the upright and gather the rebound before the swarm arrives. Astonishing.</div><div class="moment"><span class="min">70'</span> Hawkeye swings in the inswinger and Captain America climbs, rising above a defence rooted to the spot, and heads the third with real authority. The cushion the Avengers deserve.</div><div class="moment"><span class="min">84'</span> Spider-Man gathers a low drive at the death and clutches it to his chest. The chaos, at last, is tamed.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Avengers</span><span class="sc">4 – 2</span><span class="t away">The Devas</span></div><span class="match-tag">Team vs Soloists</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Hanuman is a wonder — a one-man midfield, lungs that never tire, carrying it from his own box to the opposition's and back again — and that, precisely, is Hindu's tragedy, because no one runs off him, no one covers behind him, and every yard he gallops leaves a door ajar. The Avengers, in their cool collective way, keep walking through those doors. It is brilliance against organisation, and we tend to know which one wins.</p><div class="reel"><div class="moment"><span class="min">14'</span> Captain America opens it, gliding onto a first-time cut-back from the byline and side-footing it home — a move of six clean passes, the kind Hindu simply cannot string together.</div><div class="moment"><span class="min">21'</span> But here is the answer, immediate and magnificent: Hanuman collects it deep, no one dares step, and he drives forty yards through the heart of the field before unleashing a strike that curls and dips inside the far post. A goal of beautiful solitude.</div><div class="moment"><span class="min">35'</span> Panther spins off the overlap, takes the return and slots it low — the high fullback caught upfield once more, the space behind him a playground.</div><div class="moment"><span class="min">52'</span> Hanuman, that engine, tries again from range, and Spider-Man is equal to it, down smartly to his right to beat it away.</div><div class="moment"><span class="min">58'</span> Panther has his second, in behind that same fullback, and the gulf on the scoreboard begins to mirror the gulf in their shape.</div><div class="moment"><span class="min">67'</span> Hindu pour forward chasing the game and are caught cold; the Avengers break with numbers and finish the fourth almost at a stroll.</div><div class="moment"><span class="min">74'</span> One last roar from the lone warrior — Indra's free-kick is parried, and Hanuman is first to the rebound, half-volleying it in. Four-two, and he has dragged from nothing all that one man can.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Straw Hats</span><span class="sc">4 – 1</span><span class="t away">Justice League</span></div><span class="match-tag">Sniper Time</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Two sides who treat defending as an inconvenience, but only one of them can hurt you from anywhere — Usopp, the sniper, with that range from dead balls, and Sanji prowling the very last shoulder. The Justice League, for all their gifts, cannot organise a back line to save their lives, and their fullbacks keep charging upfield with no thought of the journey back.</p><div class="reel"><div class="moment"><span class="min">11'</span> Sanji, off the shoulder of the last defender, runs onto Nami's through-ball and finishes first time without breaking stride. Clinical, cold, lovely.</div><div class="moment"><span class="min">18'</span> Now the sniper — Usopp stands over it fully thirty yards out, and he whips it up over the wall and back down under the bar before the keeper has so much as moved. A sublime free-kick, and it is two.</div><div class="moment"><span class="min">33'</span> The Leaguers find a route back through the air, a long ball flicked on and Wonder Woman rising imperiously at the back post to head it home. They are not dead yet.</div><div class="moment"><span class="min">52'</span> But Sanji is at it again, peeling away onto a clipped pass and tucking it beyond the keeper. The two-goal cushion restored, the marking nowhere to be found.</div><div class="moment"><span class="min">64'</span> Another Luffy break gathers pace and a JL defender, in desperation, simply scythes him down. The booking inevitable.</div><div class="moment"><span class="min">77'</span> Usopp puts the bow on it — a corner half-cleared, and he meets it on the volley, crashing it back in off the underside of the bar. Four-one, and the sniper has his pair.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Straw Hats</span><span class="sc">3 – 2</span><span class="t away">The Devas</span></div><span class="match-tag">Shootout</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">If you came for defending, you have come to the wrong fixture — this is two attacking sides trading blows with gleeful disregard for the niceties at the back. Hanuman carries Hindu almost alone again; Luffy come at you from every angle imaginable. Neither goalkeeper will be much protected by his own.</p><div class="reel"><div class="moment"><span class="min">24'</span> Nami floats it to the back post and Sanji is there with the overhead kick, hooking it in acrobatically. What a way to break the deadlock.</div><div class="moment"><span class="min">38'</span> Hanuman replies in his signature fashion, striding into space and drilling it low into the corner from twenty-five yards. Level, and once again entirely on his own.</div><div class="moment"><span class="min">55'</span> Usopp bends a free-kick that dips in off the bar — Luffy ahead once more, the dead-ball master at work.</div><div class="moment"><span class="min">63'</span> Hindu level it again, a corner glanced in at the near post, the marking as porous at one end as the other.</div><div class="moment"><span class="min">71'</span> The winner, and it is Sanji — a low cut-back rolled to the back post and turned in first time. Luffy edge a thriller.</div><div class="moment"><span class="min">84'</span> Hindu hurl everyone forward in search of parity, but this time, just, the door holds.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home">The Devas</span><span class="sc">3 – 3</span><span class="t away">Justice League</span></div><span class="match-tag">No-Defence Derby</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Two squads bursting with attacking talent and organised by absolutely no one — a festival of goals and a famine of pressing, runners drifting free at both ends as though marking had been outlawed. Hanuman and Wonder Woman trade the headlines; the defenders trade glances. It is glorious and it is absurd, and a point apiece will send both of these gilded sides home.</p><div class="reel"><div class="moment"><span class="min">14'</span> Hanuman gets it rolling, racing onto a loose ball and finishing first time. Of course it is him.</div><div class="moment"><span class="min">23'</span> Wonder Woman answers from the corner, climbing unmarked at the back post to nod it level. Nobody within five yards of her.</div><div class="moment"><span class="min">39'</span> Hindu edge in front again, a second-phase strike drilled in from the edge, the defending almost theoretical.</div><div class="moment"><span class="min">49'</span> The Leaguers play straight through that high line and finish calmly across the keeper. Two apiece, and we are barely past the hour of nonsense.</div><div class="moment"><span class="min">66'</span> Hanuman, from distance, no one within ten yards of him — three-two, and the lonely genius roars to the sky.</div><div class="moment"><span class="min">88'</span> A corner drops in at the death, the runner unpicked yet again, and it is bundled home. Three-three — both of them out, and richly entertaining in their ruin.</div></div></div></div></div>
+      </div>
+    </div>
+
+    <!-- GROUP B -->
+    <div class="group-block">
+      <div class="group-head"><span class="group-tag">GROUP B</span><span class="group-name">The Group of Death</span><span class="group-note">two engines, two ancients</span></div>
+      <table class="grp">
+        <thead><tr><th>#</th><th class="tm">Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead>
+        <tbody>
+          <tr class="q"><td class="rank">1</td><td class="tm">Z-Fighters</td><td>3</td><td>2</td><td>1</td><td>0</td><td>7</td><td>3</td><td>+4</td><td class="pts">7</td></tr>
+          <tr class="q"><td class="rank">2</td><td class="tm">Konoha 11</td><td>3</td><td>2</td><td>1</td><td>0</td><td>7</td><td>4</td><td>+3</td><td class="pts">7</td></tr>
+          <tr class="out"><td class="rank">3</td><td class="tm">Hero Association</td><td>3</td><td>1</td><td>0</td><td>2</td><td>4</td><td>5</td><td>−1</td><td class="pts">3</td></tr>
+          <tr class="out"><td class="rank">4</td><td class="tm">The Ainur</td><td>3</td><td>0</td><td>0</td><td>3</td><td>1</td><td>7</td><td>−6</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+      <div class="matches">
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home">Z-Fighters</span><span class="sc">2 – 2</span><span class="t away">Konoha 11</span></div><span class="match-tag marquee">The First Chapter</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">A chess match disguised as a brawl, and a glimpse of a final to come. Shikamaru sits deepest of all, screening, conducting, slowing and quickening the pulse of the game with the laziest flick of a pass; Goku answers the only way he knows, by running and running and pressing the first ball out of defence until something, somewhere, gives. Naruto have the ball; Goku has the relentlessness. Neither will yield an inch.</p><div class="reel"><div class="moment"><span class="min">9'</span> A cautious, probing opening, the two midfields locked together like wrestlers feeling for a grip.</div><div class="moment"><span class="min">27'</span> And there it is — Vegeta, all fire and no need, lunges into a tackle he never had to make. Penalty. Sasuke places the ball, takes his time, and sends the goalkeeper one way and the ball the other.</div><div class="moment"><span class="min">44'</span> Goku hunts down the centre-back, forces the loose pass, and finishes the turnover himself before anyone can blink. Level, and made entirely of will.</div><div class="moment"><span class="min">58'</span> Sasuke curls one a whisker wide as Naruto begin to truly take hold of the ball.</div><div class="moment"><span class="min">66'</span> Shikamaru's free-kick hangs to the back post and Rock Lee, that bottomless engine, climbs to head it in. Naruto in front.</div><div class="moment"><span class="min">78'</span> Vegeta again, late again, and into the book he goes — walking the thinnest of tightropes now.</div><div class="moment"><span class="min">88'</span> A shot is blocked, the ball spins loose, and who is there, arriving last as ever — Goku, bundling it in to level it at the death. Two-two, and nothing settled. It never could be.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Z-Fighters</span><span class="sc">3 – 1</span><span class="t away">Hero Association</span></div><span class="match-tag">Saitama Yawned</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Everything about Hero Association hinges on a single question — does Saitama care today? — and the early answer is a long, slow shrug. He will not press; he will not track; he barely jogs, and so a disciplined, Genos-marshalled side is left a man light every time they lose it. King, meanwhile, makes not a single tackle and has no need to: his shadow alone has Vegeta snatching at his chances. Goku simply waits, and probes, and looks for the seam.</p><div class="reel"><div class="moment"><span class="min">18'</span> Vegeta blazes a glorious chance high over the bar — rushed, hurried, the looming presence of King in his head.</div><div class="moment"><span class="min">31'</span> Genos finishes a sharp break before Goku has even found his rhythm, and Hero Association, improbably, lead.</div><div class="moment"><span class="min">58'</span> Goku plays the one-two on the edge and slides the return into the corner. Level, the low block finally unpicked.</div><div class="moment"><span class="min">66'</span> Saitama, asked to chase back, simply jogs and lets it go — and Goku drives gratefully into the gap he leaves behind.</div><div class="moment"><span class="min">74'</span> Goku again, beyond a flat and weary back line onto a through ball, and he tucks it away. Ahead at last.</div><div class="moment"><span class="min">85'</span> Rock Lee makes it three, and Saitama watches the whole move unfold from the halfway line, hands on hips, as if it were happening to somebody else entirely.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Z-Fighters</span><span class="sc">2 – 0</span><span class="t away">The Ainur</span></div><span class="match-tag">Legs Gone</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">For an hour, this is Gandalf's game — the old conductor slowing it to a crawl, keeping it tidy, sparing those ancient legs every needless yard, and Middle-earth's low block holds firm. But Goku and Vegeta keep making the same patient runs in behind, again and again, knowing that time is the one opponent the old can never beat: sooner or later, the legs go. And they do.</p><div class="reel"><div class="moment"><span class="min">20'</span> Gandalf keeps it ticking, patient and unhurried; Middle-earth comfortable, the tempo almost soporific.</div><div class="moment"><span class="min">40'</span> Goku flashes one across the face of goal — the first tremor through the back line.</div><div class="moment"><span class="min">48'</span> A long ball, and Goku holds off his marker with that strength of his, turns, and finishes. The breakthrough at last.</div><div class="moment"><span class="min">70'</span> You can see it now — the back four dropping deeper, the gaps yawning between the lines, the legs beginning to betray them.</div><div class="moment"><span class="min">81'</span> A second ball goes unclaimed and Vegeta drives it in from the edge. Two-nil, the inevitability complete.</div><div class="moment"><span class="min">88'</span> More chances come and go as the game stretches and the old guard tire; two is a kindness.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Konoha 11</span><span class="sc">2 – 1</span><span class="t away">Hero Association</span></div><span class="match-tag">Clinical</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Structure against mood once more, and Naruto wield theirs beautifully — Shikamaru threading it again and again into Sasuke between the lines, those pockets left wide open by Saitama's indifference. Hero Association's hope rests, as ever, on the one man who never stops trying: Mumen Rider, all heart and no gift, hurling himself at lost causes.</p><div class="reel"><div class="moment"><span class="min">22'</span> Sasuke takes it to feet, half-turns in a heartbeat, and finishes first time. Naruto ahead — and how easy that looked.</div><div class="moment"><span class="min">40'</span> Sasuke curls another inches past the upright; the gaps keep opening for him.</div><div class="moment"><span class="min">61'</span> And here is the heart of this team — Mumen Rider chases down a hopeless ball, refuses to give it up, wins the corner, and Genos rises to head it in. Effort, pure effort, rewarded.</div><div class="moment"><span class="min">73'</span> Saitama declines to chase the transition, ambling in its wake, and Naruto calmly keep the ball.</div><div class="moment"><span class="min">79'</span> Lee carries it into the channel and squares for Sasuke to tap into an empty net. The lead restored, the matter all but closed.</div><div class="moment"><span class="min">86'</span> Naruto see it out with the serenity of a side in complete command.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Konoha 11</span><span class="sc">3 – 1</span><span class="t away">The Ainur</span></div><span class="match-tag">Outrun</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Naruto have studied this and built their whole plan around one weakness — the space behind those ageing fullbacks — and they send Rock Lee to torment it, his running stretching the back line to breaking point. Middle-earth take an early lead from a set piece, the old magic flickering, but the legs must somehow keep pace with that engine. They cannot.</p><div class="reel"><div class="moment"><span class="min">19'</span> Gandalf's free-kick is met by Sauron, who heads Middle-earth in front. The veterans lead, the wisdom of the dead ball giving them hope.</div><div class="moment"><span class="min">33'</span> Naruto settle and begin finding those channels; Middle-earth pinned ever deeper into their own half.</div><div class="moment"><span class="min">44'</span> Lee beats the offside step with sheer pace and finishes across the keeper. Level, and the chase is on.</div><div class="moment"><span class="min">71'</span> Lee again, in behind once more, but this time he is generous — squaring it for the simplest of tap-ins. Naruto ahead.</div><div class="moment"><span class="min">84'</span> Sasuke makes it three on the counter as Middle-earth, chasing, leave the door wide open.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Hero Association</span><span class="sc">2 – 0</span><span class="t away">The Ainur</span></div><span class="match-tag">Too Late</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">And now, with qualification already gone and nothing whatsoever riding on it, Saitama decides — at last — to care. He drops in, he links, he presses, he is everything he refused to be when it mattered: the most complete footballer on the pitch, performing for an empty stage. It is, in its quiet way, the saddest brilliance of the whole tournament.</p><div class="reel"><div class="moment"><span class="min">39'</span> Saitama drops deep, plays a neat one-two and finishes with the calm of a man who could have done this all along. One-nil.</div><div class="moment"><span class="min">55'</span> He even presses this time, and Middle-earth cannot play out — though nothing comes of it, the point is made.</div><div class="moment"><span class="min">75'</span> A loose ball, and Saitama runs onto it and slots a second with almost insulting ease.</div><div class="moment"><span class="min">88'</span> He strolls the game out — the level always there, the timing forever wrong.</div></div></div></div></div>
+      </div>
+    </div>
+
+    <!-- GROUP C -->
+    <div class="group-block">
+      <div class="group-head"><span class="group-tag">GROUP C</span><span class="group-name">Gods &amp; Monsters</span><span class="group-note">home of Odin vs Wednesday</span></div>
+      <table class="grp">
+        <thead><tr><th>#</th><th class="tm">Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead>
+        <tbody>
+          <tr class="q"><td class="rank">1</td><td class="tm">The Æsir</td><td>3</td><td>3</td><td>0</td><td>0</td><td>7</td><td>3</td><td>+4</td><td class="pts">9</td></tr>
+          <tr class="q"><td class="rank">2</td><td class="tm">American Gods</td><td>3</td><td>2</td><td>0</td><td>1</td><td>6</td><td>5</td><td>+1</td><td class="pts">6</td></tr>
+          <tr class="out"><td class="rank">3</td><td class="tm">Journey to the West</td><td>3</td><td>0</td><td>1</td><td>2</td><td>5</td><td>7</td><td>−2</td><td class="pts">1</td></tr>
+          <tr class="out"><td class="rank">4</td><td class="tm">The Olympians</td><td>3</td><td>0</td><td>1</td><td>2</td><td>4</td><td>7</td><td>−3</td><td class="pts">1</td></tr>
+        </tbody>
+      </table>
+      <div class="matches">
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">The Æsir</span><span class="sc">2 – 1</span><span class="t away">American Gods</span></div><span class="match-tag marquee">Odin vs Wednesday</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Across the halfway line, two versions of the same idea: the one-eyed god who wrote the original, and the one-eyed grifter selling a knock-off of it on American soil. Wednesday’s side go long to Sweeney and try to turn the night into a back-alley fight, Czernobog leaving a little of himself in every challenge. The All-Father just watches it come — a yard deeper than anyone else on the pitch — and takes each ball off the bounce before it can do harm. Loki, meanwhile, sets up his stall by the touchline.</p><div class="reel"><div class="moment"><span class="min">14'</span> Czernobog opens with a late one, over the top of the ball a yard after it has gone. Booked, and entirely happy with the trade — a message, sent early.</div><div class="moment"><span class="min">23'</span> Loki tumbles under a breath of contact and sells it to the back row. He gets the free-kick, naturally. It hangs, and Thor does not so much jump as arrive — late, off the blind side of the last man — and heads it down through the keeper. 1–0.</div><div class="moment"><span class="min">51'</span> American get the fight they wanted. Sweeney climbs at the back post and nods it down; Czernobog has read the knockdown half a second before anyone else, and stabs it in. Level, earned in the dirt.</div><div class="moment"><span class="min">64'</span> And here is the pattern that decides it. Wednesday’s men keep flinging the ball at Sweeney and keep meeting the same wall: the old god saw this exact pass a thousand years before they thought of it. Twice he steps across without hurrying. The copy cannot solve the original.</div><div class="moment"><span class="min">78'</span> Odin drops a sixty-yard diagonal onto the touchline and wins the corner from it. The delivery, the run, the downward header — all of it identical to the first, because why change what they cannot read? Thor again. 2–1.</div><div class="moment"><span class="min">82'</span> Now the theatre costs him. Loki goes down holding his face, though it was his ankle, and the referee — who has watched the act all night — books him for it. The con works right up until the mark stops believing.</div><div class="moment"><span class="min">88'</span> And they close it out as they opened it: Loki, of all people, shielding the ball into the corner flag with his body, running the clock down. No diving required.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">The Æsir</span><span class="sc">3 – 1</span><span class="t away">The Olympians</span></div><span class="match-tag">Powder Keg</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Greece carry genuine menace — Hermes and that searing pace, Apollo and that lovely finish — but they carry, too, the temperament of a pantheon forever at war with itself, and that is the fault line running through their whole tournament. Thor, meanwhile, lurks for every dead ball Loki can conjure. One spark, and this could detonate.</p><div class="reel"><div class="moment"><span class="min">12'</span> A lively, open start, Hermes stretching the Nordic line twice with that frightening acceleration.</div><div class="moment"><span class="min">20'</span> Loki's inswinging free-kick is met by Thor, who heads it in. The Norse strike first from the air.</div><div class="moment"><span class="min">40'</span> Apollo replies in style, curling a gorgeous finish into the top corner from the edge. Level, and deservedly so.</div><div class="moment"><span class="min">58'</span> And there is the spark — Ares, simmering all half, launches himself two-footed into a challenge, studs up, no thought in it, only fury, and the referee shows the straight red without a flicker of doubt. Greece, down to ten, must now weather the storm.</div><div class="moment"><span class="min">66'</span> From the corner, Thor heads his second, towering over ten tiring men.</div><div class="moment"><span class="min">80'</span> And he completes his hat-trick from open play as Greece, a man short and a temper spent, finally crumble. Three-one.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">The Æsir</span><span class="sc">2 – 1</span><span class="t away">Journey to the West</span></div><span class="match-tag">Monkey Tricks</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Sun Wukong is a delight and a menace both — that somersaulting, shape-shifting wing play, beating his man and beating him again, giving the Nordic right an afternoon of torment. But behind him there is nothing, no cover, no structure, and at the other end Thor waits in the box for the inevitable corner. Flair, gloriously unmoored, against power.</p><div class="reel"><div class="moment"><span class="min">18'</span> Wukong beats two men in a blur and forces a sharp save — the Monkey King on top, dazzling, early.</div><div class="moment"><span class="min">34'</span> He will not be denied — Wukong jinks past his man yet again and finishes from the tightest of angles. A goal of pure mischief, and Sun Wukong lead.</div><div class="moment"><span class="min">55'</span> From the corner, the answer: Thor heads it in to level. Where his side lacks a defence, the Norse simply lack mercy from set pieces.</div><div class="moment"><span class="min">70'</span> Tyr, run ragged by Wukong all afternoon, finally hauls him down and is booked.</div><div class="moment"><span class="min">82'</span> Another corner, another Thor header — and that, at the last, is the winner. The trickster runs the show and loses it.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">American Gods</span><span class="sc">2 – 1</span><span class="t away">The Olympians</span></div><span class="match-tag">Street Fight</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">A snarling, physical affair, and once again Greece cannot keep eleven on the pitch. American go route one to Sweeney, win their headers, let Mr. Nancy carry it in transition, and are perfectly content to wallow in the ugliness. Greece have the prettier football in flashes through Apollo — but the indiscipline, always the indiscipline, undoes them.</p><div class="reel"><div class="moment"><span class="min">14'</span> A bad-tempered opening, free-kicks flying in at both ends, the referee already a busy man.</div><div class="moment"><span class="min">29'</span> From the corner, a near-post flick, and Sweeney bundles it over the line. American ahead, scruffy and delighted with it.</div><div class="moment"><span class="min">60'</span> Apollo levels with a clean, low drive from distance — a moment of quality amid the scrapping.</div><div class="moment"><span class="min">68'</span> Ares, inevitably, goes in late and is booked; Greece walking the line yet again.</div><div class="moment"><span class="min">74'</span> Nancy carries it from midfield and squares for Sweeney to finish. The giant has his pair, and American are back in front.</div><div class="moment"><span class="min">85'</span> Greece throw themselves forward for parity, but American's brute physicality stands firm.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">American Gods</span><span class="sc">3 – 2</span><span class="t away">Journey to the West</span></div><span class="match-tag">Peach Scandal</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">End to end and gloriously careless at the back — a five-goal thriller that history will later view through a cloud, for Wukong's drug test is coming, and the peaches of immortality will not amuse the authorities one bit. On the grass, though, none of that yet: his pace keeps stretching American, and Sweeney's great frame keeps hauling them back into it.</p><div class="reel"><div class="moment"><span class="min">18'</span> Wukong, in behind, finishes coolly. The Monkey King ahead, and flying.</div><div class="moment"><span class="min">31'</span> He is clean through again, but this time the American keeper spreads himself and saves low to keep the deficit at one. A crucial stop.</div><div class="moment"><span class="min">44'</span> A cross swung in, and Sweeney rises to head American level. The giant answers.</div><div class="moment"><span class="min">60'</span> Wukong, in behind once more — they simply cannot live with his running — restores the lead.</div><div class="moment"><span class="min">71'</span> But Sweeney answers again, another header from another cross. Level, and breathless.</div><div class="moment"><span class="min">85'</span> From the corner, Czernobog climbs to head the winner. American edge a thriller; the questions about Wukong will come later.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home">The Olympians</span><span class="sc">2 – 2</span><span class="t away">Journey to the West</span></div><span class="match-tag">Flair vs Flair</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Two sides for whom defending is somebody else's problem entirely — pace and trickery conjuring the goals, slack and absent-minded set-piece marking surrendering them. There is quality in abundance on the ball and almost none of it off the ball, and when the dust settles, a point apiece will do neither of them the slightest good.</p><div class="reel"><div class="moment"><span class="min">20'</span> Open, stretched, chances at either end and not a soul willing to press.</div><div class="moment"><span class="min">36'</span> Hermes, in behind, finishes low. Greece ahead through that searing pace.</div><div class="moment"><span class="min">59'</span> Wukong, off the dribble, curls it in to level. Two showmen, trading.</div><div class="moment"><span class="min">74'</span> Apollo's free-kick puts Greece back in front, beautifully struck.</div><div class="moment"><span class="min">83'</span> A corner is turned in at the back post — two-two. And with it, both of them are gone.</div></div></div></div></div>
+      </div>
+    </div>
+
+    <!-- GROUP D -->
+    <div class="group-block">
+      <div class="group-head"><span class="group-tag">GROUP D</span><span class="group-name">Discipline &amp; the Lone Wolf</span><span class="group-note">the wall, the bus, the one-man army</span></div>
+      <table class="grp">
+        <thead><tr><th>#</th><th class="tm">Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead>
+        <tbody>
+          <tr class="q"><td class="rank">1</td><td class="tm">Team Avatar</td><td>3</td><td>2</td><td>1</td><td>0</td><td>6</td><td>2</td><td>+4</td><td class="pts">7</td></tr>
+          <tr class="q"><td class="rank">2</td><td class="tm">Zlatan FC</td><td>3</td><td>2</td><td>1</td><td>0</td><td>5</td><td>3</td><td>+2</td><td class="pts">7</td></tr>
+          <tr class="out"><td class="rank">3</td><td class="tm">The Kami</td><td>3</td><td>0</td><td>1</td><td>2</td><td>3</td><td>6</td><td>−3</td><td class="pts">1</td></tr>
+          <tr class="out"><td class="rank">4</td><td class="tm">The Ennead</td><td>3</td><td>0</td><td>1</td><td>2</td><td>2</td><td>5</td><td>−3</td><td class="pts">1</td></tr>
+        </tbody>
+      </table>
+      <div class="matches">
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home">Team Avatar</span><span class="sc">1 – 1</span><span class="t away">Zlatan FC</span></div><span class="match-tag marquee">Wall vs Wolf</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">This is the fixture engineered to silence a one-man attack, and at its heart stands Toph — immovable, unbothered, holding her line and winning her duels, refusing to be shifted a single inch. Zlatan is starved of service, marooned up front, and around him his mortal supporting cast tire early against Avatar's endless movement. Can the lone wolf find the one moment he always seems to find?</p><div class="reel"><div class="moment"><span class="min">15'</span> Avatar control it from the off, knocking it side to side; Zlatan barely sees the ball, a king without subjects.</div><div class="moment"><span class="min">23'</span> But he needs so little — a half-clearance drops to him and Zlatan, from the tightest of angles, lashes a volley into the net. His one chance of the half, and of course he takes it. The wolf is in front.</div><div class="moment"><span class="min">50'</span> Up the other end, Toph reads it all the way and blocks Aang's effort. Both walls holding firm.</div><div class="moment"><span class="min">70'</span> Zlatan's teammates are visibly wilting now, hands on hips, and Avatar press for the leveller.</div><div class="moment"><span class="min">77'</span> And it comes — Aang beats a tiring fullback, drives to the byline and pulls it back, and Katara finishes. Level, the movement finally telling.</div><div class="moment"><span class="min">86'</span> One last Zlatan effort from distance drags wide; the second moment, this time, does not arrive.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Team Avatar</span><span class="sc">2 – 0</span><span class="t away">The Ennead</span></div><span class="match-tag">Bus Cracked</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Patience against a parked bus — Egypt sit deep, Anubis reading every flicker, and for an hour Avatar cannot find the smallest crack in the wall. But this is a side coached to its fingertips, and the key, when it finally turns, is Katara's combination play, those quick one-twos prising the block apart at last.</p><div class="reel"><div class="moment"><span class="min">25'</span> Egypt's low block holds firm and disciplined; Avatar knock it patiently from side to side, searching for the gap.</div><div class="moment"><span class="min">52'</span> Katara plays the one-two on the edge and Aang finishes the return. The breakthrough, earned through persistence.</div><div class="moment"><span class="min">60'</span> Anubis flings himself in front of the follow-up; Egypt cling on, still only one behind.</div><div class="moment"><span class="min">70'</span> Sokka's curling free-kick is turned in at the back post. Two-nil, and the bus is broken open.</div><div class="moment"><span class="min">84'</span> Egypt push out at last and are almost caught on the break for their trouble.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Team Avatar</span><span class="sc">3 – 1</span><span class="t away">The Kami</span></div><span class="match-tag">Storm Sent Off</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Shinto carry a real threat from their thunder-and-wind set pieces, but their fault is written in their very nature — Susanoo's temper, forever a red card waiting to happen, and Amaterasu's habit of vanishing from the contest for great stretches at a time. Against a side built to punish space, indiscipline is fatal.</p><div class="reel"><div class="moment"><span class="min">26'</span> A free-kick, and Raijin drives it in. Shinto ahead, the storm-gods striking first.</div><div class="moment"><span class="min">40'</span> And there it is, as feared — Susanoo launches himself two-footed into a challenge, and the referee does not hesitate: straight red. Shinto down to ten, the game turning on a single rush of blood.</div><div class="moment"><span class="min">55'</span> A through ball into the space, and Aang runs onto it and finishes. Level, the extra man already telling.</div><div class="moment"><span class="min">70'</span> Zuko turns the tiring ten and finishes. Avatar ahead, and pulling away.</div><div class="moment"><span class="min">82'</span> The gaps are everywhere now, and Katara makes it three.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Zlatan FC</span><span class="sc">2 – 1</span><span class="t away">The Ennead</span></div><span class="match-tag">One Chance</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Egypt's deep, disciplined block frustrates Zlatan's supporting cast all evening — but the man himself has never needed much, a yard and a sight of goal and the rest is his. Horus puts Egypt ahead against the run of very little, and for a while the bus holds. And then the wolf decides the game on his own.</p><div class="reel"><div class="moment"><span class="min">31'</span> Egypt break, and Horus finishes neatly at the near post. Against the run of play, the bus-dwellers lead.</div><div class="moment"><span class="min">55'</span> Zlatan stands over the free-kick, and he curls it over the wall and into the corner. Level — a moment his mortal teammates could never manufacture.</div><div class="moment"><span class="min">65'</span> Egypt nearly restore their lead; the goalkeeper springs low to deny them.</div><div class="moment"><span class="min">78'</span> A loose ball drops in the box and Zlatan, of course, gets there first and finishes. The wolf in front, and it is his alone.</div><div class="moment"><span class="min">88'</span> Egypt retreat into their shell for a point, and do not get it.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Zlatan FC</span><span class="sc">2 – 1</span><span class="t away">The Kami</span></div><span class="match-tag">Scores Always</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">A scrappy, stop-start affair, Shinto short of fluency and missing Amaterasu's influence for long spells. But there is one constant in this whole tournament, as reliable as the dawn — Zlatan will score. His presence in the air and his range from distance settle it.</p><div class="reel"><div class="moment"><span class="min">28'</span> A cross to the back post, and Zlatan rises to head it in. Ahead, and the run goes on.</div><div class="moment"><span class="min">49'</span> Fujin's whipped delivery is turned in to level; Shinto cling on.</div><div class="moment"><span class="min">60'</span> Shinto push for a lead of their own but lack the cutting edge to find it.</div><div class="moment"><span class="min">73'</span> And there he is again — Zlatan, from the edge of the box, low and hard and unanswerable. The winner, and a goal in every match he has played.</div></div></div></div></div>
+        <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home">The Ennead</span><span class="sc">1 – 1</span><span class="t away">The Kami</span></div><span class="match-tag">Two Blocks</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Two cautious, careful sides who take no risks and press not at all — a game of chess in which neither player will advance a single pawn. The only way through a wall like this is a set piece, and so it proves; a tidy, forgettable draw that suits the needs of neither.</p><div class="reel"><div class="moment"><span class="min">30'</span> Flat and careful, the two blocks negating one another; little for either goalkeeper to do.</div><div class="moment"><span class="min">44'</span> Thoth's corner, and Horus glances it in just before the interval. Egypt ahead, from the only avenue available to them.</div><div class="moment"><span class="min">71'</span> A free-kick, and Raijin levels it. Honours even, by precisely the same means.</div><div class="moment"><span class="min">85'</span> Both settle, almost contentedly, for the draw that sends them both home.</div></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KNOCKOUTS -->
+  <section class="block" id="knockouts">
+    <div class="eyebrow"><span class="spark">✦</span> 04 — Knockout Stage</div>
+    <h2 class="block-title">Eight left, <span class="em">one</span> trophy</h2>
+    <p class="block-intro">The bracket where Zlatan FC meet their only acceptable defeat, Team Avatar run deep, and the Z-Fighters and Konoha 11 are carefully kept on opposite sides — so the only place they can meet again is the final.</p>
+
+    <div class="bracket-wrap">
+      <div class="bracket">
+        <div class="round">
+          <div class="round-title">Quarterfinals</div>
+          <div class="tie"><div class="slot"><span class="bn">Avengers</span><span class="bsc">1</span></div><div class="slot win"><span class="bn">Konoha 11</span><span class="bsc">2</span></div></div>
+          <div class="tie"><div class="slot win"><span class="bn">The Æsir</span><span class="bsc">2</span></div><div class="slot"><span class="bn">Zlatan FC</span><span class="bsc">1</span></div></div>
+          <div class="tie"><div class="slot win"><span class="bn">Z-Fighters</span><span class="bsc">3</span></div><div class="slot"><span class="bn">Straw Hats</span><span class="bsc">1</span></div></div>
+          <div class="tie"><div class="slot win"><span class="bn">Team Avatar</span><span class="bsc">2</span></div><div class="slot"><span class="bn">American Gods</span><span class="bsc">1</span></div></div>
+        </div>
+        <div class="round">
+          <div class="round-title">Semifinals</div>
+          <div class="tie"><div class="slot win"><span class="bn">Konoha 11</span><span class="bsc">2</span></div><div class="slot"><span class="bn">The Æsir</span><span class="bsc">1</span></div></div>
+          <div class="tie"><div class="slot win"><span class="bn">Z-Fighters</span><span class="bsc">3</span></div><div class="slot"><span class="bn">Team Avatar</span><span class="bsc">2</span></div></div>
+        </div>
+        <div class="round">
+          <div class="round-title">Final</div>
+          <div class="tie final-tie"><div class="slot win"><span class="bn">🏆 Konoha 11</span><span class="bsc">3</span></div><div class="slot"><span class="bn">Z-Fighters</span><span class="bsc">2</span></div><div class="aet">AFTER EXTRA TIME</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="third">
+      <div class="round-title">Third place</div>
+      <div class="tie bronze-tie"><div class="slot win"><span class="bn">🥉 The Æsir</span><span class="bsc">3</span></div><div class="slot"><span class="bn">Team Avatar</span><span class="bsc">2</span></div></div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin:18px 0 0"><button class="expand-all-btn" onclick="toggleAll()">↓ Expand all games</button></div>
+    <div class="matches" style="margin-top:24px">
+      <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home">Avengers</span><span class="sc">1 – 2</span><span class="t away win">Konoha 11</span></div><span class="match-tag">QF · Tie of the Round</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">The pick of the round, two beautifully drilled sides who deserve this stage. Black Panther's movement gives the Avengers an early grip and Spider-Man keeps it intact behind them — but slowly, inexorably, Shikamaru begins to seize the midfield from deep, to slow the pulse, to starve the Avengers of the ball they need. Fine margins, and the side that controls the game tends to be the side that wins it.</p><div class="reel"><div class="moment"><span class="min">18'</span> Panther cuts inside off the right and bends a low shot into the far corner. The Avengers ahead, and through their finest player.</div><div class="moment"><span class="min">33'</span> Spider-Man, twice in the space of a heartbeat, denies Naruto with reflexes that should not be possible. The Avengers riding their luck.</div><div class="moment"><span class="min">55'</span> But Shikamaru splits the lines with a single pass, and Sasuke needs only one touch to finish. Level, and the tide has turned.</div><div class="moment"><span class="min">70'</span> Iron Man reshapes his side to chase it, but Naruto have the ball now and they will not give it back.</div><div class="moment"><span class="min">84'</span> Lee bursts beyond a tiring back line and squares, and Sasuke wins it. Naruto in front, late and deserved.</div><div class="moment"><span class="min">90'</span> Spider-Man saves once more at the death, but there is no time left to use it. Naruto march on.</div></div></div></div></div>
+      <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">The Æsir</span><span class="sc">2 – 1</span><span class="t away">Zlatan FC</span></div><span class="match-tag marquee">QF · The Only Acceptable Loss</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Thor in the air from Loki's endless set pieces, against an attack that begins and ends with a single man — one warrior and ten weary passengers, their legs already heavy. The Norse load the box and dare Zlatan to do it all himself. He will try, because he always tries, but even he cannot carry ten.</p><div class="reel"><div class="moment"><span class="min">10'</span> The Norse on top from the off, Thor a constant, looming threat in the air.</div><div class="moment"><span class="min">23'</span> Loki draws the free-kick, and Thor heads it in at the back post. The Norse ahead, by their tried and trusted means.</div><div class="moment"><span class="min">45'</span> Zlatan's teammates cannot hold the ball up to relieve him; the Norse stay comfortable.</div><div class="moment"><span class="min">60'</span> And then, from nothing at all, the wolf bites — Zlatan volleys it in from a tight angle, conjured out of thin air. Level, and entirely on his own.</div><div class="moment"><span class="min">78'</span> Another Loki free-kick, another Thor header — and that is the winner. Power and theatre undo the lone genius.</div><div class="moment"><span class="min">88'</span> Zlatan forces a save from range, but there is no one there for the rebound. No support, never any support — and so he falls, to the only opponents he will admit are his equals.</div></div></div></div></div>
+      <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Z-Fighters</span><span class="sc">3 – 1</span><span class="t away">Straw Hats</span></div><span class="match-tag">QF · Engine vs Chaos</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Goku's tireless running against Luffy's gloriously porous defending, and you fear, for Luffy, where that road leads. Sanji strikes early and beautifully, and for a while there is hope; but then Goku begins to find the seams, and Zoro, bless him, is once again drawn to the wrong man entirely.</p><div class="reel"><div class="moment"><span class="min">15'</span> A lofted pass, taken on the chest, and Sanji volleys it across the keeper. Luffy ahead, and what a way to do it.</div><div class="moment"><span class="min">30'</span> Luffy press for a second; the game stretched and open and theirs, for now.</div><div class="moment"><span class="min">40'</span> Goku wins it high up the pitch and finishes the turnover. Level, and made by sheer persistence.</div><div class="moment"><span class="min">66'</span> Zoro follows the decoy run, and Goku rolls it into the great space he has so kindly vacated. Ahead.</div><div class="moment"><span class="min">78'</span> Usopp forces a save as Luffy chase the game — and in chasing it, they leave even more gaps behind.</div><div class="moment"><span class="min">85'</span> Goku beats a tired offside line to complete his hat-trick. Three-one — the engine simply outlasts the chaos.</div></div></div></div></div>
+      <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Team Avatar</span><span class="sc">2 – 1</span><span class="t away">American Gods</span></div><span class="match-tag">QF · Wall vs Street Fight</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">American's direct, physical method earns them an early goal — and then runs headlong into Toph, who takes hold of the air and refuses to let go, shutting Sweeney out entirely. Sokka's plan smothers the set-piece threat that has carried American this far, and once the game settles, Avatar's class on the ball begins to tell.</p><div class="reel"><div class="moment"><span class="min">30'</span> A cross swung in, and Sweeney heads American in front. The giant strikes first.</div><div class="moment"><span class="min">45'</span> But Toph wins a whole run of headers, and from here Sweeney is shut out, fed nothing at all.</div><div class="moment"><span class="min">58'</span> Aang beats his man and cuts it back, and Katara finishes. Level, the wall turned into a springboard.</div><div class="moment"><span class="min">68'</span> American grow ragged and frustrated; Czernobog is booked, and Sokka quietly runs the dead balls.</div><div class="moment"><span class="min">75'</span> Sokka's curling free-kick is turned in at the back post. The winner, discipline rewarded.</div><div class="moment"><span class="min">88'</span> American hurl Sweeney forward in desperation, but the chance simply will not come.</div></div></div></div></div>
+      <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Konoha 11</span><span class="sc">2 – 1</span><span class="t away">The Æsir</span></div><span class="match-tag">SF · Team vs Gods</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Naruto in command of the ball, the Norse lying in wait for their set pieces and the great threat of Thor in the air — and the whole semifinal may hinge on a single question: can Gaara, that immovable presence, withstand the late bombardment that is surely coming? A complete team against a dangerous, one-dimensional one.</p><div class="reel"><div class="moment"><span class="min">20'</span> Naruto settle on the ball; the Norse content to sit and wait for their moment.</div><div class="moment"><span class="min">35'</span> A pass slid between the lines, and Sasuke finishes low. Naruto ahead.</div><div class="moment"><span class="min">62'</span> Another Loki delivery, and Thor heads it in. Level — the Norse needing only set pieces to live.</div><div class="moment"><span class="min">75'</span> The Norse load the box now, hurling everything forward, and Gaara heads clear, and clear, and clear again.</div><div class="moment"><span class="min">80'</span> Lee wins the knockdown, and Naruto sweep in the winner. In front once more.</div><div class="moment"><span class="min">90'</span> One last Norse corner — and Gaara rises to clear it. Naruto hold firm, and reach the final.</div></div></div></div></div>
+      <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">Z-Fighters</span><span class="sc">3 – 2</span><span class="t away">Team Avatar</span></div><span class="match-tag">SF · Engine vs Wall</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">The unstoppable engine against the immovable wall, and the finest contest of the whole tournament. Toph keeps Goku out, Zuko keeps Avatar in front, a glorious back-and-forth — but there is a cruelty at the heart of it, for the legs must somehow last ninety minutes against a side that never, ever tires. As the final twenty approach, you wonder how much longer the wall can hold.</p><div class="reel"><div class="moment"><span class="min">25'</span> Goku finishes a quick move on the edge. Ahead, the engine first to strike.</div><div class="moment"><span class="min">44'</span> Zuko turns his marker and finishes. Level, the hot-headed striker answering.</div><div class="moment"><span class="min">60'</span> Aang and Katara combine, and Aang nudges Avatar in front. The wall now with a lead to protect.</div><div class="moment"><span class="min">72'</span> Goku arrives late in the box, as he always does, to level it again. Two-two, and relentless.</div><div class="moment"><span class="min">80'</span> Toph holds the line under wave after wave of pressure, the wall straining, cracking, but not yet broken.</div><div class="moment"><span class="min">85'</span> And then it gives — Goku finally gets in behind her and finishes. The winner, the wall breached at the very last.</div><div class="moment"><span class="min">90'</span> Avatar push for a leveller of their own, but now the legs are gone, and the engine runs on.</div></div></div></div></div>
+      <div class="match"><div class="match-head" onclick="tg(this)"><div class="match-teams"><span class="t home win">The Æsir</span><span class="sc">3 – 2</span><span class="t away">Team Avatar</span></div><span class="match-tag">🥉 Third-Place Playoff</span><span class="arrow">→</span></div><div class="match-body"><div class="match-body-inner"><p class="commentary">Two beaten semifinalists with the handbrake off and nothing left to fear — and so it flows. Thor is in the air again, that familiar menace; Avatar keep refusing to lie down, hauling themselves level through Zuko and a moment of Aang magic. A bronze medal, and a fittingly open farewell.</p><div class="reel"><div class="moment"><span class="min">20'</span> From the corner, Thor heads the Norse in front. The old, reliable routine.</div><div class="moment"><span class="min">38'</span> Zuko finishes a quick break to level. Avatar, undaunted.</div><div class="moment"><span class="min">55'</span> Loki goes down in the box — the penalty given — and Thor converts. The Norse ahead again.</div><div class="moment"><span class="min">70'</span> But here is Aang, a fine, weaving solo run and a cool finish. Level once more, and what a player he has been.</div><div class="moment"><span class="min">84'</span> Thor completes his hat-trick, heading in the winner. Power, in the end, takes the bronze.</div><div class="moment"><span class="min">90'</span> Avatar push for extra time, but the Norse hold on for third. A gallant fourth for the best-coached side of all.</div></div></div></div></div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="block" id="final">
+    <div class="eyebrow"><span class="spark">✦</span> 05 — The Final</div>
+    <h2 class="block-title">The brain and <span class="em">the engine</span></h2>
+    <div class="final-feature">
+      <div class="ff-tag">Pantheon Cup Final · Konoha 11 vs Z-Fighters</div>
+      <div class="ff-score">Konoha 11 <span class="em">3 – 2</span> Z-Fighters</div>
+      <div class="ff-aet">After extra time · a rematch of the 2–2 in the group of death</div><p class="commentary">The same two teams, the same opening shape as that 2–2 in the group: Shikamaru a yard deeper than a midfielder should sit, conducting; Goku already pressing the goalkeeper as if the trophy might be hiding in his gloves. The only new thing is the stakes, and both sides feel them — half an hour of nobody blinking, two heavyweights measuring the distance. Then Goku stops measuring.</p><div class="reel ff-reel"><div class="moment"><span class="min">8'</span> Goku presses from the kickoff — keeper, centre-backs, anyone with the ball — and Konoha just pass around the edges of him, patient, letting him run himself in.</div><div class="moment"><span class="min">15'</span> Then he wins the ball he has been hunting all along, high and clean, and there is no pass to make. Goku goes alone and finishes before the cover can turn. 1–0. Of course it is him.</div><div class="moment"><span class="min">38'</span> Konoha’s reply is colder. One ball into Sasuke’s feet, a half-turn to steal the yard, struck first time before the keeper can set. He does not celebrate. He is already jogging back to the halfway line.</div><div class="moment"><span class="min">55'</span> Shikamaru drops again, almost onto his own centre-backs, and keeps the ball — not to attack, but to make Goku chase it. They are trying to drain the engine.</div><div class="moment"><span class="min">60'</span> It does not work. Goku breaks once more, the same run and the same finish, and it is two. You cannot tire him out; that was always the gamble in playing them.</div><div class="moment"><span class="min">72'</span> He should have the third. He rattles the post, the whole frame shivering, and for one second the final is decided — and then it is not, and Konoha go straight to the other end.</div><div class="moment"><span class="min">79'</span> Here is the substitute. Rock Lee, fresh legs in a field of dead ones, attacks a cross no one else can reach and heads it down. 2–2 at ninety, and the group game has simply happened all over again.</div><div class="moment"><span class="min">108'</span> Extra time, and now the thing they have kept in their pocket all tournament. A rehearsed free-kick: Sasuke does not stand in the wall, he drifts off the back of it, lost in the noise, and arrives unmarked at the post. Not magic — a plan, run to the letter. 3–2.</div><div class="moment"><span class="min">119'</span> One last break, because of course there is: Goku, off the bar again. But Gaara has already read where the rebound would drop, and heads it away. The whistle. The engine, beaten by the team.</div></div>
+    </div>
+  </section>
+
+  <!-- TEAS -->
+  <section class="block" id="teas">
+    <div class="eyebrow"><span class="spark">✦</span> 06 — Teas &amp; Scandals</div>
+    <h2 class="block-title">The <span class="em">gossip column</span></h2>
+    <p class="block-intro">A tournament of immortals generates immortal drama. The dressing-room leaks, the diving economy, the doping peaches, and one striker who was reportedly at the supermarket.</p>
+    <div class="teas">
+      <div class="tea"><div class="tea-tag">Dressing Room</div><h4>Stark vs Rogers, round two</h4><p>Iron Man is the Avengers' de facto manager, captain <em>and</em> playmaker — but Cap technically wears the armband and keeps ignoring the playbook. In the 11–0 demolition of JL, Cap scored off a move Stark never drew up; touchline audio caught Stark spiking his tablet. The machine won anyway, which somehow made the argument worse.</p></div>
+      <div class="tea"><div class="tea-tag">Dark Arts</div><h4>The Loki simulation economy</h4><p>Penalties won by going down under "the suggestion of a breeze." A booking for the encore dive in nearly every match. A single-handed inflation of the tournament's entire set-piece count. Thor's headers say thank you; the referees say nothing, repeatedly.</p></div>
+      <div class="tea"><div class="tea-tag">In The Third Person</div><h4>Zlatan accepts only divine defeat</h4><p>A quote machine all tournament. On his single loss: <em>"Zlatan does not lose to mortals. Zlatan lost to gods of the North — and Zlatan is also a god, so technically Zlatan only loses to Zlatan."</em> Scored in every match he played, went out in the quarters, entirely at peace.</p></div>
+      <div class="tea"><div class="tea-tag">Allegedly</div><h4>Saitama was at the supermarket</h4><p>Hero Association went out because their best player was bored in the games that mattered, then casually dismantled LotR once it was meaningless. King made zero tackles all tournament; strikers kept shanking it wide from his reputation alone.</p></div>
+      <div class="tea"><div class="tea-tag">Doping</div><h4>The peaches of immortality</h4><p>Sun Wukong failed a post-match test, insisting the peaches were "a traditional remedy from heaven." Provisional ban discussions are ongoing. The Monkey King has lodged his appeal by vanishing.</p></div>
+      <div class="tea"><div class="tea-tag">Temperament</div><h4>Amaterasu went into the cave</h4><p>Shinto's sun goddess disappeared for 70 minutes against Avatar, and Susanoo earned a straight red for a typhoon of a challenge. The storm-god temper cost them a result they couldn't afford.</p></div>
+      <div class="tea"><div class="tea-tag">No Team</div><h4>Eleven captains, nobody passes</h4><p>The Devas, arguably the most gifted squad in the field, never agreed on a system. Krishna and Shiva reportedly not on speaking terms. Hanuman scored a screamer in every group game and had nobody to play it to. Out in the group, on raw talent alone.</p></div>
+      <div class="tea"><div class="tea-tag">Defending, Loosely</div><h4>Zoro is marking the corner flag</h4><p>Luffy's defender repeatedly tracked the wrong man: an assistant referee, a ballboy, his own teammate, and on one occasion nobody at all. Two goals conceded straight into his abandoned zone. He insists he was "guarding the dangerous one."</p></div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="block" id="awards">
+    <div class="eyebrow"><span class="spark">✦</span> 07 — Awards &amp; Analysis</div>
+    <h2 class="block-title">The <span class="em">honours board</span></h2>
+    <div class="awards">
+      <div class="award"><div class="am">⚽</div><div class="at">Golden Boot</div><div class="aw">Goku</div><div class="an">12 goals. The engine that never tired and never stopped scoring — top scorer despite finishing as runner-up.</div></div>
+      <div class="award"><div class="am">🧠</div><div class="at">Golden Ball · Best Player</div><div class="aw">Shikamaru</div><div class="an">A deep-lying playmaker who solved every match by minute ten — and engineered the title with a set piece in extra time.</div></div>
+      <div class="award"><div class="am">🧤</div><div class="at">Golden Glove</div><div class="aw">Spider-Man</div><div class="an">The most saves in the tournament, with reach no keeper should have. Carried the Avengers further than their defence deserved.</div></div>
+      <div class="award"><div class="am">🌟</div><div class="at">Best Young Player</div><div class="aw">Aang</div><div class="an">A weightless winger who ran a disciplined side all the way to a semifinal and fourth place.</div></div>
+      <div class="award"><div class="am">🎖️</div><div class="at">Cult Hero</div><div class="aw">Mumen Rider</div><div class="an">No talent, infinite heart. Ran further than anyone in the field, produced almost nothing, and was adored for both.</div></div>
+      <div class="award"><div class="am">✦</div><div class="at">Goal of the Tournament</div><div class="aw">Zlatan's volley</div><div class="an">A taekwondo volley from an impossible angle in the quarterfinal. "Zlatan does not score easy goals."</div></div>
+    </div>
+
+    <div class="standings">
+      <div class="tier gold"><span class="tlbl">🏆 Champions</span><span class="tteams"><b>Konoha 11</b></span></div>
+      <div class="tier silver"><span class="tlbl">🥈 Runners-up</span><span class="tteams"><b>Z-Fighters</b></span></div>
+      <div class="tier bronze-t"><span class="tlbl">🥉 Third</span><span class="tteams"><b>The Æsir</b></span></div>
+      <div class="tier"><span class="tlbl">Fourth</span><span class="tteams"><b>Team Avatar</b></span></div>
+      <div class="tier"><span class="tlbl">Quarterfinals</span><span class="tteams">Avengers · Zlatan FC · Straw Hats · American Gods</span></div>
+      <div class="tier"><span class="tlbl">Group Stage</span><span class="tteams">The Olympians · Journey to the West · Hero Association · The Ainur · The Kami · The Ennead · <b>The Devas</b> · <b>Justice League</b></span></div>
+    </div>
+
+    <div class="takeaway">
+      <h4>The verdict</h4>
+      <p>One quiet thing about football held all the way through: gods are strong, monsters are relentless, and one genius can carry you a very long way — but the trophy goes to whoever plays it as eleven. <b>Konoha 11’s completeness</b> beat the Z-Fighters’ engine not because they had a better player, but because they had a better <b>team</b>.</p>
+      <p>The thesis got proved twice over in the group stage, where the two most individually gifted squads in the entire field — <b>the Justice League and the Devas</b> — both crashed out without a win between them, undone by the exact same flaw: brilliant parts, no assembly. Eleven captains and a group chat, sent home early.</p>
+      <p>A thoroughly <b>Germany-coded</b> result, in the end: the disciplined collective, lifting the cup over the gods and the monsters.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>✦ Pantheon Cup · a sadh.app/wc2026 simulation</span>
+    <span>no powers were used in the making of this tournament · <a href="https://sadh.app">sadh.app</a></span>
+  </footer>
+
+</div>
+
+<script>
+function tg(el){ el.parentElement.classList.toggle('open'); }
+function toggleAll(){
+  var matches = document.querySelectorAll('.match');
+  var anyClosed = false;
+  matches.forEach(function(m){ if(!m.classList.contains('open')) anyClosed = true; });
+  matches.forEach(function(m){ m.classList.toggle('open', anyClosed); });
+  document.querySelectorAll('.expand-all-btn').forEach(function(b){
+    b.textContent = anyClosed ? '↑ Collapse all games' : '↓ Expand all games';
+  });
+}
+function flipCard(btn){ btn.closest('.team-card').classList.toggle('flipped'); }
+function flipAllCards(){
+  var cards=document.querySelectorAll('.team-card');
+  var anyFront=false;
+  cards.forEach(function(c){ if(!c.classList.contains('flipped')) anyFront=true; });
+  cards.forEach(function(c){ c.classList.toggle('flipped', anyFront); });
+  document.querySelectorAll('[onclick="flipAllCards()"]').forEach(function(b){
+    b.textContent = anyFront ? '⇄ Show overviews' : '⇄ Show all squads';
+  });
+}
+</script>
+</body>
+</html>

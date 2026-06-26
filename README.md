@@ -6,6 +6,7 @@ Each app lives in its own folder and is a single static page (no build step). Gi
 
 | App | URL | What it is |
 |-----|-----|------------|
+| **pantheon-cup** | [sadh.app/pantheon-cup](https://sadh.app/pantheon-cup/) | Fictional gods, monsters & heroes stripped of their powers and made to play football |
 | **wc2026** | [sadh.app/wc2026](https://sadh.app/wc2026/) | Interactive 2026 World Cup bracket simulator |
 
 ## Hosting
