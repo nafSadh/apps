@@ -4,3 +4,6 @@ wc2026/archive.zip
 wc2026/cc/*.npz
 wc2026/cc/__pycache__/
 wc2026/cc/*.pkl
+
+# Claude Code local dev config (preview launch.json, etc.)
+.claude/
