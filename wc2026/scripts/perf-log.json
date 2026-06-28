@@ -1,64 +1,64 @@
 {
   "asOf": "2026-06-28",
-  "version": 31,
-  "played": 70,
+  "version": 32,
+  "played": 72,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 46,
+      "ok": 48,
       "miss": 24,
-      "hitRate": 0.657
+      "hitRate": 0.667
     },
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 45,
+      "ok": 47,
       "miss": 25,
-      "hitRate": 0.643
+      "hitRate": 0.653
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 44,
+      "ok": 46,
       "miss": 26,
-      "hitRate": 0.629
+      "hitRate": 0.639
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 44,
-      "miss": 26,
-      "hitRate": 0.629
+      "ok": 45,
+      "miss": 27,
+      "hitRate": 0.625
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 42,
+      "ok": 44,
       "miss": 28,
-      "hitRate": 0.6
+      "hitRate": 0.611
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 41,
+      "ok": 43,
       "miss": 29,
-      "hitRate": 0.586
+      "hitRate": 0.597
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 41,
-      "miss": 29,
-      "hitRate": 0.586
+      "ok": 42,
+      "miss": 30,
+      "hitRate": 0.583
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
-      "ok": 39,
-      "miss": 31,
-      "hitRate": 0.557
+      "ok": 40,
+      "miss": 32,
+      "hitRate": 0.556
     }
   ],
   "matches": [
@@ -142,7 +142,7 @@
           "correct": false
         },
         "potgoals": {
-          "winProb": 0.22,
+          "winProb": 0.223,
           "pick": "A",
           "correct": false
         },
@@ -165,6 +165,112 @@
           "winProb": 0.55,
           "pick": "D",
           "correct": true
+        }
+      }
+    },
+    {
+      "no": 70,
+      "date": "2026-06-27",
+      "home": "Jordan",
+      "away": "Argentina",
+      "score": [
+        1,
+        3
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.008,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.019,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.013,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.029,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.016,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.006,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.005,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.018,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
+    {
+      "no": 69,
+      "date": "2026-06-27",
+      "home": "Algeria",
+      "away": "Austria",
+      "score": [
+        3,
+        3
+      ],
+      "actual": "draw",
+      "models": {
+        "squad": {
+          "winProb": 0.515,
+          "pick": "D",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.459,
+          "pick": "D",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.418,
+          "pick": "D",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.251,
+          "pick": "A",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.432,
+          "pick": "D",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.225,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
         }
       }
     },
