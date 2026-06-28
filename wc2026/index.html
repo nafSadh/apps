@@ -1172,7 +1172,7 @@ function koForecast(){                         // top-N most likely matchups per
     if(!r32.length){ h+=`<div class="dhint" style="margin:0 0 10px">${FT?`${nm(FT)} didn't reach the Round of 32.`:'Round of 32 not set yet — finish the group stage.'}</div>`; }
     else { const thR=`<thead><tr><th class="tl">When</th><th class="tl">Match · seeds</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick across the 8 models">All</th></tr></thead>`;
       const body=r32.map(no=>{ const p=parts(no), km=KMETA[no]||['','','',''];
-        return gameRowPair({no,home:p[0],away:p[1],hs:koSeed(p[0]),as:koSeed(p[1])},models,strip,ncolR,'',`${km[0]}<br><span class="mut">${km[2]}</span>`); }).join("");
+        return gameRowPair({no,home:p[0],away:p[1],hs:koSeed(p[0]),as:koSeed(p[1])},models,strip,ncolR,'',`${km[0]} <span class="mut">· ${km[2]}</span>`); }).join("");
       h+=`<table class="dtbl tpred sft">`+thR+`<tbody>`+body+`</tbody></table>`; } }
 
   // ===== Deeper rounds (still open): most-likely top-N matchups =====
