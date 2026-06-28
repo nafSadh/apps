@@ -222,13 +222,9 @@
   .kofilter{font-family:var(--sans);font-size:12.5px;color:var(--mut);margin:0 0 10px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
   .kofilter select{font-family:var(--sans);font-size:12.5px;padding:4px 8px;border:1px solid var(--line-hi);border-radius:6px;background:var(--card);color:var(--ink);cursor:pointer}
   .sfpct{font-family:var(--mono);font-size:10px;color:var(--gold);margin-left:4px;white-space:nowrap}
-  .korbar{font-family:var(--sans);font-size:12px;color:var(--mut);display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 8px}
-  .korf{font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:5px;padding:4px 10px;cursor:pointer}
-  .korf:hover{border-color:var(--acc);color:var(--ink)} .korf.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
   .korb{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
   .korb-r32{color:var(--blue);background:color-mix(in srgb,var(--blue),transparent 88%)} .korb-r16{color:var(--acc2,var(--acc));background:var(--acc-soft)}
   .dtbl td.korp{font-family:var(--mono);font-size:11px;color:var(--gold);text-align:right;white-space:nowrap}
-  .dtbl th.kosort{cursor:pointer} .dtbl th.kosort:hover{color:var(--acc)}
   .ic{width:14px;height:14px;margin-right:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .dtab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--mut2);border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -251,6 +247,7 @@
   .kolocked{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 16px}
   .kolk{font-size:12px;background:var(--card2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;color:var(--ink);white-space:nowrap}
   .kolksub{text-transform:none;letter-spacing:0;color:var(--mut2)}
+  .koseed{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--mut);background:var(--card2);border:1px solid var(--line);border-radius:4px;padding:1px 4px;vertical-align:middle}
   .h2lookup{display:flex;align-items:center;gap:8px;padding:2px 11px 10px} .h2lookup .h2sel{font-family:var(--sans);font-size:13px;min-width:150px} .h2vs{font-family:var(--mono);font-size:10px;color:var(--mut2);text-transform:uppercase}
   .h2det{margin:0 11px 12px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
   .h2dh{font-family:var(--serif-alt);font-style:italic;font-size:18px;color:var(--ink);margin-bottom:8px}
@@ -512,7 +509,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"group", koTeam:"", koModel:"blend", koRound:"", koSort:{col:"pct",asc:false} };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"group", koTeam:"", koModel:"blend" };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
@@ -608,6 +605,7 @@ function loserOf(no){ const w=state.win[no]; if(!w) return null; const p=parts(n
 function resolveSlot(no,slot){ if(slot[0]==="1") return groupOrder(slot[1])[0]; if(slot[0]==="2") return groupOrder(slot[1])[1]; const g=state.alloc[no]; return g?groupOrder(g)[2]:null; }
 function parts(no){ if(no<=88){ const s=R32SLOT[no]; return [resolveSlot(no,s[0]),resolveSlot(no,s[1])]; }
   if(no===103) return [loserOf(101),loserOf(102)]; const f=FEED[no]; return [winnerOf(f[0]),winnerOf(f[1])]; }
+function koSeed(c){ if(!c) return ""; const g=grp(c), i=groupOrder(g).indexOf(c); return i<0?g:g+(i+1); }   // "E1" = won group E, "B3" = 3rd in B
 function validateWins(){ [73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,104,103]
   .forEach(no=>{ const w=state.win[no]; if(w&&!parts(no).includes(w)) delete state.win[no]; }); }
 function recompute(){ STATS=computeStats(); PGZ=zscores(potGoalsRaw()); rebuildThirds(); buildAlloc(); validateWins(); }
@@ -1111,7 +1109,8 @@ function gameRowPair(f,models,strip,ncol,extra,lead,mid){    // one game -> pred
     return `<td class="${cls}" title="${METHOD_NAME[m]} — ${strip(basis)} → ${pn} ${conf}%">${pf(f,pk)}<span class="tppct">${conf}%</span></td>`; }).join("");
   const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0], avg=psum/models.length;
   const cconf=Math.round((cons==='H'?avg:cons==='A'?1-avg:Math.max(avg,1-avg))*100), sc=lk?` <span class="sfsc">${lk[0]}–${lk[1]}</span>`:'';
-  const lbl=`<td class="tl gxtoggle${state.gx[f.no]?' open':''}" onclick="toggleGx(this,'${f.no}')" title="why each sim picked"><span class="chev"></span>${flF(f,f.home)} ${nm(f.home)} <span class="mut">v</span> ${flF(f,f.away)} ${nm(f.away)}${sc}${extra||''}</td>`;
+  const hs=f.hs?`<span class="koseed">${f.hs}</span> `:'', as=f.as?` <span class="koseed">${f.as}</span>`:'';
+  const lbl=`<td class="tl gxtoggle${state.gx[f.no]?' open':''}" onclick="toggleGx(this,'${f.no}')" title="why each sim picked"><span class="chev"></span>${hs}${flF(f,f.home)} ${nm(f.home)} <span class="mut">v</span> ${flF(f,f.away)} ${nm(f.away)}${as}${sc}${extra||''}</td>`;
   const leadTd=lead!=null?`<td class="tl korr">${lead}</td>`:'', midTd=mid!=null?`<td class="korp">${mid}</td>`:'';
   return `<tr>${leadTd}${lbl}${midTd}${cells}<td><b>${pf(f,cons)}</b><span class="tppct">${cconf}%</span></td></tr>`+
     `<tr class="gxtr"${state.gx[f.no]?'':' style="display:none"'}><td colspan="${ncol}" class="gxcell"><div class="gxlist">${ex.join('')}</div></td></tr>`; }
@@ -1159,37 +1158,25 @@ function koForecast(){                         // top-N most likely matchups per
   state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
   const models=Object.keys(MSHORT), strip=s=>s.replace(/<[^>]+>/g,''), ncol=models.length+2;
   const tbl=rows=>`<table class="dtbl tpred sft">`+simThead(models,strip,"Matchup")+`<tbody>`+rows+`</tbody></table>`;
-  const FLOOR=0.02, FLOOR_OPEN=0.005, FT=state.koTeam||"";
+  const FLOOR=0.02, FT=state.koTeam||"";
   const opts=['<option value="">All teams</option>'].concat(Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${FT===c?' selected':''}>${nmE(c)}</option>`)).join('');
   const modOpts=models.map(m=>`<option value="${m}"${state.koModel===m?' selected':''}>${METHOD_NAME[m]}</option>`).join('');
   let h=`<div class="kofilter">Model <select onchange="state.koModel=this.value;renderSims()">${modOpts}</select> · Focus team <select onchange="state.koTeam=this.value;renderSims()">${opts}</select>${FT?`<span class="mut"> — ${nm(FT)}'s possible matchups (floor lifted)</span>`:''}</div>`;
-  h+=`<div class="small" style="margin:0 0 12px">The matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model (natural upset rate). <b>% sims</b> = how often that exact pairing occurs; the model row predicts who'd win it.${FT?'':` With the group stage nearly complete, most R32 ties are <b>locked</b> (listed first, and shown in full on the bracket). The table below lists only the <b>still-open</b> matchups — the R32 slots still tied to groups <b>J &amp; K</b>, plus every possible <b>Round of 16</b> pairing (very unlikely ones, <b>&lt;${(FLOOR_OPEN*100).toFixed(1)}%</b>, drop off as noise). Filter by round, click <b>Rd</b> / <b>Matchup</b> / <b>% sims</b> to sort. Deeper rounds show the most likely few.`} The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
+  h+=`<div class="small" style="margin:0 0 12px">The <b>Round of 32 is set</b> — all 16 ties are listed below <b>in kickoff order</b>, each side tagged with its seeding (<b>E1</b> = won Group E, <b>A2</b> = runner-up A, <b>B3</b> = best third out of B) and every model's call (flag = favoured side, % = win probability, “=” a toss-up; <b>All</b> = the 8-model consensus). Expand any row for the per-sim reasoning. Beyond R32 the bracket depends on who advances, so deeper rounds stay <b>probabilistic</b> — from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model, where <b>% sims</b> = how often that exact pairing turns up.</div>`;
 
-  // ===== Combined early-knockout table: Round of 32 + Round of 16, uncapped, with round filter + sortable columns =====
-  { const ncol2=models.length+4, rord={R32:0,R16:1};
-    let allRows=[], lockedR32=[];
-    ['R32','R16'].forEach(sk=>{ const m=alt[sk]||{}; Object.keys(m).forEach(key=>{ const cnt=m[key], ab=key.split('|');
-      if(FT? !ab.includes(FT) : cnt/N<FLOOR_OPEN) return;
-      if(sk==='R32'&&!FT&&cnt/N>=0.999){ lockedR32.push(ab); return; }   // already-decided ties — pull out of the probabilistic table
-      allRows.push({sk,key,ab,cnt}); }); });
-    if(lockedR32.length){ h+=`<div class="sfsub">Locked Round-of-32 ties <span class="kolksub">— ${lockedR32.length} of 16 already decided</span></div>`+
-      `<div class="kolocked">`+lockedR32.map(ab=>`<span class="kolk">${fl(ab[0])} ${nmE(ab[0])} <span class="mut">v</span> ${fl(ab[1])} ${nmE(ab[1])}</span>`).join('')+`</div>`; }
-    const RF=state.koRound||'', rows=RF?allRows.filter(r=>r.sk===RF):allRows.slice();
-    const so=state.koSort||{col:'pct',asc:false}, tkey=r=>r.ab.map(nm).sort((x,y)=>x.localeCompare(y)).join(' ');
-    rows.sort((a,b)=>{ let c=so.col==='round'?rord[a.sk]-rord[b.sk]:so.col==='match'?tkey(a).localeCompare(tkey(b)):a.cnt-b.cnt;
-      c=so.asc?c:-c; return c||(b.cnt-a.cnt); });   // secondary: higher prob first
-    const sc=col=>so.col===col?(so.asc?' sa':' sd'):'';
-    const chip=(v,l)=>`<button class="korf${RF===v?' on':''}" onclick="koSetRound('${v}')">${l}</button>`;
-    h+=`<div class="sfsub">Still-open early knockout · Round of 32 + Round of 16</div>`+
-       `<div class="korbar">Round ${chip('','All')}${chip('R32','R32')}${chip('R16','R16')}<span class="mut"> · ${RF?`${rows.length} of ${allRows.length}`:allRows.length} matchup${allRows.length!==1?'s':''}</span></div>`;
-    if(!rows.length){ h+=`<div class="dhint" style="margin:0 0 10px">${FT?`${nm(FT)} didn't reach these rounds in ${N.toLocaleString()} sims.`:'No matchups for this filter.'}</div>`; }
-    else { const thead=`<thead><tr><th class="tl kosort${sc('round')}" onclick="koSortBy('round')" title="sort by round">Rd</th><th class="tl kosort${sc('match')}" onclick="koSortBy('match')" title="sort by team A–Z">Matchup</th><th class="kosort${sc('pct')}" onclick="koSortBy('pct')" title="sort by how often this pairing occurs">% sims</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick across the 8 models">All</th></tr></thead>`;
-      const body=rows.map(r=>{ const pc=100*r.cnt/N, lbl=pc>=1?Math.round(pc)+'%':pc>=0.1?pc.toFixed(1)+'%':'<0.1%';
-        return gameRowPair({no:r.sk+'_'+r.key,home:r.ab[0],away:r.ab[1]},models,strip,ncol2,'',`<span class="korb korb-${r.sk.toLowerCase()}">${r.sk}</span>`,`<span class="sfpct">${lbl}</span>`); }).join("");
-      h+=`<table class="dtbl tpred sft">`+thead+`<tbody>`+body+`</tbody></table>`; } }
+  // ===== Round of 32 — set: concrete per-match model predictions, ordered by kickoff, each side seeded =====
+  { const MOV={Jun:6,Jul:7}, dval=no=>{ const p=(KMETA[no]?KMETA[no][0]:'').split(' '); return (MOV[p[0]]||0)*100+(+p[1]||0); };
+    const ncolR=models.length+3;
+    const r32=FC_R32.filter(no=>{ const p=parts(no); return p[0]&&p[1]&&(!FT||p.includes(FT)); }).sort((a,b)=>dval(a)-dval(b)||a-b);
+    h+=`<div class="sfsub">Round of 32 — set <span class="kolksub">— ${FT?`${nm(FT)}'s tie`:`all 16 ties, ${r32.length?'ordered by kickoff':''}`}</span></div>`;
+    if(!r32.length){ h+=`<div class="dhint" style="margin:0 0 10px">${FT?`${nm(FT)} didn't reach the Round of 32.`:'Round of 32 not set yet — finish the group stage.'}</div>`; }
+    else { const thR=`<thead><tr><th class="tl">When</th><th class="tl">Match · seeds</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick across the 8 models">All</th></tr></thead>`;
+      const body=r32.map(no=>{ const p=parts(no), km=KMETA[no]||['','','',''];
+        return gameRowPair({no,home:p[0],away:p[1],hs:koSeed(p[0]),as:koSeed(p[1])},models,strip,ncolR,'',`${km[0]}<br><span class="mut">${km[2]}</span>`); }).join("");
+      h+=`<table class="dtbl tpred sft">`+thR+`<tbody>`+body+`</tbody></table>`; } }
 
-  // ===== Deeper rounds (unchanged): most-likely top-N =====
-  [["QF","Quarter-finals",8],["SF","Semi-finals",5],["Final","Final",4]].forEach(([sk,label,cap])=>{
+  // ===== Deeper rounds (still open): most-likely top-N matchups =====
+  [["R16","Round of 16",10],["QF","Quarter-finals",8],["SF","Semi-finals",5],["Final","Final",4]].forEach(([sk,label,cap])=>{
     const m=alt[sk]||{}, all=Object.keys(m);
     let pairs=(FT?all.filter(k=>k.split('|').includes(FT)):all.filter(k=>m[k]/N>=FLOOR)).sort((a,b)=>m[b]-m[a]);
     if(!FT) pairs=pairs.slice(0,cap);
@@ -1200,8 +1187,6 @@ function koForecast(){                         // top-N most likely matchups per
          return gameRowPair({no:sk+'_'+i,home:ab[0],away:ab[1]},models,strip,ncol,` <span class="sfpct">${lbl} of sims</span>`); }).join("")); });
   Object.assign(state,save);
   return h; }
-function koSortBy(col){ let s=state.koSort||{col:'pct',asc:false}; if(s.col===col) s.asc=!s.asc; else s={col, asc:(col==='match'||col==='round')}; state.koSort=s; renderSims(); }
-function koSetRound(v){ state.koRound=v; renderSims(); }
 function renderSims(){
   const el=document.getElementById('simspanel'); if(!el) return;
   document.querySelectorAll('#stabs .dtab').forEach(b=>b.classList.toggle('on', b.dataset.stab===state.stab));
