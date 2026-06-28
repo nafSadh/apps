@@ -248,6 +248,9 @@
   .stile .lbl{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2);margin-top:5px}
   .stile .sub{font-size:11px;color:var(--mut);margin-top:7px;line-height:1.45}
   .shdr{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mut);margin:24px 0 9px;font-weight:600}
+  .kolocked{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 16px}
+  .kolk{font-size:12px;background:var(--card2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;color:var(--ink);white-space:nowrap}
+  .kolksub{text-transform:none;letter-spacing:0;color:var(--mut2)}
   .h2lookup{display:flex;align-items:center;gap:8px;padding:2px 11px 10px} .h2lookup .h2sel{font-family:var(--sans);font-size:13px;min-width:150px} .h2vs{font-family:var(--mono);font-size:10px;color:var(--mut2);text-transform:uppercase}
   .h2det{margin:0 11px 12px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
   .h2dh{font-family:var(--serif-alt);font-style:italic;font-size:18px;color:var(--ink);margin-bottom:8px}
@@ -1160,20 +1163,24 @@ function koForecast(){                         // top-N most likely matchups per
   const opts=['<option value="">All teams</option>'].concat(Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${FT===c?' selected':''}>${nmE(c)}</option>`)).join('');
   const modOpts=models.map(m=>`<option value="${m}"${state.koModel===m?' selected':''}>${METHOD_NAME[m]}</option>`).join('');
   let h=`<div class="kofilter">Model <select onchange="state.koModel=this.value;renderSims()">${modOpts}</select> · Focus team <select onchange="state.koTeam=this.value;renderSims()">${opts}</select>${FT?`<span class="mut"> — ${nm(FT)}'s possible matchups (floor lifted)</span>`:''}</div>`;
-  h+=`<div class="small" style="margin:0 0 12px">The matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model (natural upset rate). <b>% sims</b> = how often that exact pairing occurs; the model row predicts who'd win it.${FT?'':` The combined <b>Round of 32 + Round of 16</b> table lists <b>every matchup that can still happen</b> given the games played so far (only very unlikely pairings, <b>&lt;${(FLOOR_OPEN*100).toFixed(1)}% of sims</b>, drop off as noise) — filter by round above, click <b>Rd</b> / <b>Matchup</b> / <b>% sims</b> to sort. Deeper rounds show the most likely few.`} The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
+  h+=`<div class="small" style="margin:0 0 12px">The matchups at each knockout round, from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model (natural upset rate). <b>% sims</b> = how often that exact pairing occurs; the model row predicts who'd win it.${FT?'':` With the group stage nearly complete, most R32 ties are <b>locked</b> (listed first, and shown in full on the bracket). The table below lists only the <b>still-open</b> matchups — the R32 slots still tied to groups <b>J &amp; K</b>, plus every possible <b>Round of 16</b> pairing (very unlikely ones, <b>&lt;${(FLOOR_OPEN*100).toFixed(1)}%</b>, drop off as noise). Filter by round, click <b>Rd</b> / <b>Matchup</b> / <b>% sims</b> to sort. Deeper rounds show the most likely few.`} The group stage is only part-played, so the bracket still shifts; early rounds are firmer than the final.</div>`;
 
   // ===== Combined early-knockout table: Round of 32 + Round of 16, uncapped, with round filter + sortable columns =====
   { const ncol2=models.length+4, rord={R32:0,R16:1};
-    let allRows=[];
+    let allRows=[], lockedR32=[];
     ['R32','R16'].forEach(sk=>{ const m=alt[sk]||{}; Object.keys(m).forEach(key=>{ const cnt=m[key], ab=key.split('|');
-      if(FT? !ab.includes(FT) : cnt/N<FLOOR_OPEN) return; allRows.push({sk,key,ab,cnt}); }); });
+      if(FT? !ab.includes(FT) : cnt/N<FLOOR_OPEN) return;
+      if(sk==='R32'&&!FT&&cnt/N>=0.999){ lockedR32.push(ab); return; }   // already-decided ties — pull out of the probabilistic table
+      allRows.push({sk,key,ab,cnt}); }); });
+    if(lockedR32.length){ h+=`<div class="sfsub">Locked Round-of-32 ties <span class="kolksub">— ${lockedR32.length} of 16 already decided</span></div>`+
+      `<div class="kolocked">`+lockedR32.map(ab=>`<span class="kolk">${fl(ab[0])} ${nmE(ab[0])} <span class="mut">v</span> ${fl(ab[1])} ${nmE(ab[1])}</span>`).join('')+`</div>`; }
     const RF=state.koRound||'', rows=RF?allRows.filter(r=>r.sk===RF):allRows.slice();
     const so=state.koSort||{col:'pct',asc:false}, tkey=r=>r.ab.map(nm).sort((x,y)=>x.localeCompare(y)).join(' ');
     rows.sort((a,b)=>{ let c=so.col==='round'?rord[a.sk]-rord[b.sk]:so.col==='match'?tkey(a).localeCompare(tkey(b)):a.cnt-b.cnt;
       c=so.asc?c:-c; return c||(b.cnt-a.cnt); });   // secondary: higher prob first
     const sc=col=>so.col===col?(so.asc?' sa':' sd'):'';
     const chip=(v,l)=>`<button class="korf${RF===v?' on':''}" onclick="koSetRound('${v}')">${l}</button>`;
-    h+=`<div class="sfsub">Early knockout · Round of 32 + Round of 16</div>`+
+    h+=`<div class="sfsub">Still-open early knockout · Round of 32 + Round of 16</div>`+
        `<div class="korbar">Round ${chip('','All')}${chip('R32','R32')}${chip('R16','R16')}<span class="mut"> · ${RF?`${rows.length} of ${allRows.length}`:allRows.length} matchup${allRows.length!==1?'s':''}</span></div>`;
     if(!rows.length){ h+=`<div class="dhint" style="margin:0 0 10px">${FT?`${nm(FT)} didn't reach these rounds in ${N.toLocaleString()} sims.`:'No matchups for this filter.'}</div>`; }
     else { const thead=`<thead><tr><th class="tl kosort${sc('round')}" onclick="koSortBy('round')" title="sort by round">Rd</th><th class="tl kosort${sc('match')}" onclick="koSortBy('match')" title="sort by team A–Z">Matchup</th><th class="kosort${sc('pct')}" onclick="koSortBy('pct')" title="sort by how often this pairing occurs">% sims</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick across the 8 models">All</th></tr></thead>`;
