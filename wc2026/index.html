@@ -192,6 +192,7 @@
   #b-theme{position:absolute;top:30px;right:18px;z-index:4;padding:5px 12px;font-size:11px;border-radius:7px}
   #today:empty{display:none}
   .todayhd{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:10px 0 6px;display:flex;align-items:center;gap:7px}
+  .todayhd.sub{font-size:9.5px;color:var(--mut2);margin:13px 0 5px}
   #simspanel{overflow-x:auto}
   .todayrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 4px}
   .tcard{font-size:12.5px;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:6px 11px;display:flex;align-items:center;gap:8px;font-family:var(--sans)} .tcard b{color:var(--ink);font-family:var(--mono)}
@@ -1191,23 +1192,37 @@ function renderSims(){
   const el=document.getElementById('simspanel'); if(!el) return;
   document.querySelectorAll('#stabs .dtab').forEach(b=>b.classList.toggle('on', b.dataset.stab===state.stab));
   el.innerHTML = state.stab==='ko' ? koForecast() : groupForecast(); }
-function renderToday(){
-  const el=document.getElementById('today'); if(!el) return;
-  let fd='';                                              // focus = soonest day with an unplayed fixture (today's / next games)
-  FIX.forEach(f=>{ if(!LOCKSET.has(f.no) && (fd===''||f.date<fd)) fd=f.date; });
-  if(!fd) FIX.forEach(f=>{ if(f.date>fd) fd=f.date; });   // every game played -> last matchday
-  if(!fd){ el.innerHTML=''; return; }
-  const day=FIX.filter(f=>f.date===fd).sort((a,b)=>a.no-b.no);
-  const anyLive=day.some(f=>LIVE[f.no]), started=day.some(f=>LOCKSET.has(f.no)||LIVE[f.no]);
-  const pfx=anyLive?'<span class="livedot"></span>Today':started?'Today':'Up next';   // upcoming day reads "Up next"
-  let lbl=fd; try{ lbl=new Date(fd+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}); }catch(e){}
-  let h=`<div class="todayhd">${pfx} · ${lbl}</div><div class="todayrow">`;
-  h+=day.map(f=>{ const lv=LIVE[f.no], lk=LOCKSET.has(f.no)?LOCKED[f.no]:null; let cls='',tag,score;
+// ---- unified fixture list: group games (FIX) + knockout games (KMETA), so "today" rolls through the whole tournament ----
+const KO_MON={Jun:'06',Jul:'07'};
+function koISO(no){ const km=KMETA[no]; if(!km) return ''; const p=km[0].split(' '); return p.length===2&&KO_MON[p[0]]?`2026-${KO_MON[p[0]]}-${String(+p[1]).padStart(2,'0')}`:''; }
+function fixObj(no){ if(no<=72) return FIXMAP[no]; const km=KMETA[no]||['','','','']; const p=parts(no);
+  return {no,date:koISO(no),home:p[0],away:p[1],ko:true,round:km[3],venue:km[1],city:km[2]}; }
+function allFixtures(){ return FIX.concat(Object.keys(KMETA).map(Number).map(fixObj)); }
+function dayLabel(iso){ try{ return new Date(iso+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}); }catch(e){ return iso; } }
+function tcLabel(no,side,code){ return code ? (side===0?`${fl(code)} ${nm(code)}`:`${nm(code)} ${fl(code)}`) : `<span class="mut">${structLabel(no,side)}</span>`; }   // resolved team, or slot label (TBD knockout)
+function dayCards(day){ return day.map(f=>{ const lv=LIVE[f.no], lk=LOCKSET.has(f.no)?LOCKED[f.no]:null; let cls='',tag,score;
     if(lv){ cls=' live'; tag=`<span class="tg tgl">LIVE${lv.min?" "+lv.min+"’":""}</span>`; score=`<b>${lv.h}–${lv.a}</b>`; }
     else if(lk){ cls=' ft'; tag='<span class="tg tgf">FT</span>'; score=`<b>${lk[0]}–${lk[1]}</b>`; }
     else { tag='<span class="tg tgs">—</span>'; score='<span class="mut">v</span>'; }
-    return `<div class="tcard${cls}">${fl(f.home)} ${nm(f.home)} ${score} ${nm(f.away)} ${fl(f.away)} ${tag}</div>`; }).join('');
-  el.innerHTML=h+'</div>'+todayPredsTable(day); }
+    return `<div class="tcard${cls}">${tcLabel(f.no,0,f.home)} ${score} ${tcLabel(f.no,1,f.away)} ${tag}</div>`; }).join(''); }
+function renderToday(){
+  const el=document.getElementById('today'); if(!el) return;
+  const all=allFixtures(), dates=[...new Set(all.map(f=>f.date).filter(Boolean))].sort();
+  let today=''; for(const d of dates){ if(all.some(f=>f.date===d && !LOCKSET.has(f.no))){ today=d; break; } }   // frontier = soonest day still to be played
+  if(!today) today=dates[dates.length-1]||'';                                                                    // all done → last day
+  if(!today){ el.innerHTML=''; return; }
+  const di=dates.indexOf(today), yest=di>0?dates[di-1]:'', morrow=di<dates.length-1?dates[di+1]:'';
+  const dayOf=d=>all.filter(f=>f.date===d).sort((a,b)=>a.no-b.no), tday=dayOf(today);
+  const roundOf=d=>{ const r=dayOf(d).map(f=>f.round).find(Boolean); return r?` <span class="mut">· ${ROUNDNAME[r]||r}</span>`:''; };
+  const anyLive=tday.some(f=>LIVE[f.no]), started=tday.some(f=>LOCKSET.has(f.no)||LIVE[f.no]);
+  const pfx=anyLive?'<span class="livedot"></span>Today':started?'Today':'Up next';
+  const isKO=tday.length&&tday.every(f=>f.ko);   // knockout day → bracket it with just-played + next-up days
+  let h='';
+  if(isKO&&yest) h+=`<div class="todayhd sub">Just played · ${dayLabel(yest)}${roundOf(yest)}</div><div class="todayrow">${dayCards(dayOf(yest))}</div>`;
+  h+=`<div class="todayhd">${pfx} · ${dayLabel(today)}${roundOf(today)}</div><div class="todayrow">${dayCards(tday)}</div>`;
+  if(isKO&&morrow) h+=`<div class="todayhd sub">Next up · ${dayLabel(morrow)}${roundOf(morrow)}</div><div class="todayrow">${dayCards(dayOf(morrow))}</div>`;
+  const predDay=tday.filter(f=>f.home&&T[f.home]&&f.away&&T[f.away]);   // predictions only for matchups with both teams set
+  el.innerHTML=h+todayPredsTable(predDay); }
 function renderAll(){ renderToday(); renderGroups(); renderThirds(); renderBracket(); renderPaths(); renderChamp(); renderFav(); renderData(); }
 function refresh(){ state.predicted=false; recompute(); renderAll(); }
 
