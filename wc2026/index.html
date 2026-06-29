@@ -172,7 +172,9 @@
   .binner.two .col{flex:1 1 0;min-width:118px} .binner.two .col.cfinal{flex:1.05 1 0;min-width:126px}
   .binner.two .col.c2 .col-pad{justify-content:center;gap:6px}            /* final centred between the two semis */
   .binner.two .col-h{font-size:9px;letter-spacing:.5px;padding:5px 0 4px}
-  .binner.two .match{margin:5px 0;border-radius:8px} .binner.two .m-venue,.binner.two .m-head{display:none}   /* drop venue + #no/date header, but give the flags room */
+  .binner.two .match{margin:5px 0;border-radius:8px} .binner.two .m-venue{display:none}   /* drop venue; keep a tiny date annotation */
+  .binner.two .m-head{background:transparent;padding:2px 7px 0;justify-content:center} .binner.two .m-no,.binner.two .m-head .rinfo{display:none}
+  .binner.two .m-date{margin:0;font-size:8px;color:var(--mut2);letter-spacing:.4px}
   .binner.two .slot{padding:7px 8px;font-size:11.5px;gap:7px} .binner.two .slot .flag{width:28px;height:19px}
   .binner.two .bseed{font-size:8.5px;font-weight:800;padding:0 3px}
   /* flag-forward inner rounds (R16/QF/SF/Final) — just the two competing flags, winner ticked */
@@ -180,8 +182,8 @@
   .binner.two .match.kin .slot{position:relative;justify-content:center;padding:9px 5px} .binner.two .match.kin .slot .flag{width:44px;height:30px}
   .binner.two .match.kin .tick{position:absolute;right:5px;top:50%;transform:translateY(-50%)}
   /* group seed on the OUTER edge, flag on the INNER edge — winners' flags face the centre on both wings */
-  .binner.two .col:not(.rcol) .slot .bseed{order:1} .binner.two .col:not(.rcol) .slot .nm{order:2} .binner.two .col:not(.rcol) .slot .flag{order:3} .binner.two .col:not(.rcol) .slot .tick{order:4}
-  .binner.two .col.rcol .slot .tick{order:1} .binner.two .col.rcol .slot .flag{order:2} .binner.two .col.rcol .slot .nm{order:3;text-align:right} .binner.two .col.rcol .slot .bseed{order:4}
+  .binner.two .col:not(.rcol) .slot .bseed{order:1} .binner.two .col:not(.rcol) .slot .nm{order:2} .binner.two .col:not(.rcol) .slot .tick{order:3} .binner.two .col:not(.rcol) .slot .flag{order:4}
+  .binner.two .col.rcol .slot .flag{order:1} .binner.two .col.rcol .slot .tick{order:2} .binner.two .col.rcol .slot .nm{order:3;text-align:right} .binner.two .col.rcol .slot .bseed{order:4}
   .binner.two .col:not(.rcol) .match.kin .slot{justify-content:flex-end} .binner.two .col.rcol .match.kin .slot{justify-content:flex-start}
   @media (max-width:1180px){ .binner.two{width:auto;min-width:100%} }   /* below this, scroll rather than crush the cards */
   .brkctl{margin:0 0 8px}
@@ -843,9 +845,9 @@ const centreCol=cls=>`<div class="col cfinal ${cls}"><div class="col-h">Final</d
 function renderBracket(){
   let h;
   if(state.brk2){   // two-sided: left half flows in, final in the centre, right half mirrors back out
-    h = colHTML('Round of 32',ORD32.slice(0,8))+colHTML('Round of 16',ORD16.slice(0,4))+colHTML('Quarter-finals',ORDQF.slice(0,2))+colHTML('Semi-final',[101])
+    h = colHTML('R32',ORD32.slice(0,8))+colHTML('R16',ORD16.slice(0,4))+colHTML('QF',ORDQF.slice(0,2))+colHTML('SF',[101])
       + centreCol('c2')
-      + colHTML('Semi-final',[102],'','rcol')+colHTML('Quarter-finals',ORDQF.slice(2,4),'','rcol')+colHTML('Round of 16',ORD16.slice(4,8),'','rcol')+colHTML('Round of 32',ORD32.slice(8,16),'','rcol');
+      + colHTML('SF',[102],'','rcol')+colHTML('QF',ORDQF.slice(2,4),'','rcol')+colHTML('R16',ORD16.slice(4,8),'','rcol')+colHTML('R32',ORD32.slice(8,16),'','rcol');
   } else {
     h = colHTML('Round of 32',ORD32)+colHTML('Round of 16',ORD16)+colHTML('Quarter-finals',ORDQF)+colHTML('Semi-finals',ORDSF)+centreCol('');
   }
