@@ -1014,6 +1014,16 @@ function backtest(){
       const res = pick===actual ? "ok" : "miss";   // right outcome (win OR draw) = ✓, anything else = ✗
       tally[m][res]++; cells[m]={p,pick,res}; }
     rows.push({no,f,r,actual,cells}); });
+  // knockout games: scored from the full group-stage state (every group game played → no leakage). A knockout
+  // tie always has a winner, so score each model on whether it picked who advanced (extra time / penalties incl.).
+  const korder=[...KOSET].filter(n=>KORES[n]&&KMETA[n]).sort((a,b)=>{ const da=koISO(a),db=koISO(b); return da<db?-1:da>db?1:a-b; });
+  if(korder.length){
+    state.res=Object.assign({},LOCKED); STATS=computeStats(); PGZ=zscores(potGoalsRaw());     // full group stage
+    korder.forEach(no=>{ const f=fixObj(no), r=KORES[no], w=KOWIN[no],
+      actual = w===f.home?"H":w===f.away?"A":(r[0]>r[1]?"H":r[0]<r[1]?"A":"D"), cells={};
+      for(const m of models){ state.method=m; const p=modelProb(f.home,f.away), pick=p>0.6?"H":p<0.4?"A":"D";
+        const res=pick===actual?"ok":"miss"; tally[m][res]++; cells[m]={p,pick,res}; }
+      rows.push({no,f,r,actual,cells,ko:true,pens:KOPEN[no]||null}); }); }
   Object.assign(state,save); recompute();
   return {rows,tally,models};
 }
@@ -1027,9 +1037,10 @@ function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) retu
   const fdshort=d=>{ try{ return new Date(d+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'}); }catch(e){ return d; } };
   let g=`<table class="dtbl accgrid"><thead><tr><th>Date</th><th class="tl">Match</th><th>Result</th>`+order.map(m=>`<th title="${METHOD_NAME[m]}">${MSHORT[m]}<br><span class="mut">${(acc(tally[m])*100).toFixed(0)}%</span></th>`).join("")+`</tr></thead><tbody>`+
     grows.map(r=>{const aw=r.actual==="H"?r.f.home:r.actual==="A"?r.f.away:null;
-      return `<tr><td>${fdshort(r.f.date)}</td><td class="tl">${fl(r.f.home)} ${nm(r.f.home)} <span class="mut">v</span> ${fl(r.f.away)} ${nm(r.f.away)}</td><td class="num">${r.r[0]}–${r.r[1]} <span class="mut">${aw?nm(aw):"draw"}</span></td>`+
+      const rd=r.ko?`<span class="korb">${KMETA[r.no][3]}</span> `:'', pen=r.pens?` <span class="mut">(${r.pens[0]}–${r.pens[1]}p)</span>`:'';
+      return `<tr><td>${fdshort(r.f.date)}</td><td class="tl">${rd}${fl(r.f.home)} ${nm(r.f.home)} <span class="mut">v</span> ${fl(r.f.away)} ${nm(r.f.away)}</td><td class="num">${r.r[0]}–${r.r[1]}${pen} <span class="mut">${aw?nm(aw):"draw"}</span></td>`+
       order.map(m=>{const c=r.cells[m],pk=c.pick==="H"?nm(r.f.home):c.pick==="A"?nm(r.f.away):"toss-up";return `<td class="acc-${c.res}" title="${METHOD_NAME[m]}: ${Math.round(c.p*100)}% ${nm(r.f.home)} → predicts ${pk}">${ic[c.res]}</td>`;}).join("")+`</tr>`;}).join("")+`</tbody></table>`;
-  el.innerHTML=`<div class="small" style="margin-bottom:6px">Leaderboard — hit rate = ✓ ÷ ${rows.length} played games. Predicting a win (&gt;60%) that ends in a draw counts as a miss. Each game is scored <b>walk-forward</b> — using only games played before it — so the in-tournament model (Pot+goals) can't see the result it's predicting.</div>`+lb+
+  el.innerHTML=`<div class="small" style="margin-bottom:6px">Leaderboard — hit rate = ✓ ÷ ${rows.length} played games. Predicting a win (&gt;60%) that ends in a draw counts as a miss; knockout ties are scored by who advanced (extra time / penalties included). Each game is scored <b>walk-forward</b> — using only games played before it — so the in-tournament model (Pot+goals) can't see the result it's predicting.</div>`+lb+
     `<div class="small" style="margin:18px 0 6px">Per match — hover any cell for that model's pre-match probability.</div>`+g; }
 function renderStats(){
   const el=document.getElementById("statspanel"); if(!el) return;
