@@ -45,13 +45,21 @@ jobs:
 
       - name: Commit & push if changed
         run: |
-          if [ -n "$(git status --porcelain wc2026)" ]; then
-            git config user.name  "wc2026-bot"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add wc2026/live.json wc2026/data.json wc2026/index.html \
-                    wc2026/scripts/perf-log.md wc2026/scripts/perf-log.json
-            git commit -m "live: WC2026 update $(date -u +'%F %H:%MZ')"
-            git push
-          else
-            echo "No changes."
+          git config user.name  "wc2026-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # stage only the files the scripts produce — never stray artifacts (e.g. scripts/__pycache__)
+          git add wc2026/live.json wc2026/data.json wc2026/index.html \
+                  wc2026/scripts/perf-log.md wc2026/scripts/perf-log.json
+          # gate on STAGED changes, not working-tree status, so an untracked file can't trigger an
+          # empty commit (which exits 1). No real change -> clean exit.
+          if git diff --cached --quiet; then
+            echo "No changes to commit."; exit 0
           fi
+          git commit -m "live: WC2026 update $(date -u +'%F %H:%MZ')"
+          # rebase-and-retry so a commit landing mid-run (non-fast-forward) doesn't fail the job
+          for i in 1 2 3; do
+            if git push; then echo "pushed."; exit 0; fi
+            echo "push rejected — rebasing onto origin/${GITHUB_REF_NAME} (attempt $i)…"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          done
+          echo "::error::push still failing after 3 attempts"; exit 1

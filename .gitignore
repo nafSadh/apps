@@ -2,8 +2,12 @@ wc2026/archive.zip
 *.zip
 .DS_Store
 wc2026/cc/*.npz
-wc2026/cc/__pycache__/
 wc2026/cc/*.pkl
+
+# Python bytecode — live.py does `import update`, which writes scripts/__pycache__
+# in CI; if left untracked it breaks the "commit if changed" step (false positive).
+__pycache__/
+*.pyc
 
 # Claude Code local dev config (preview launch.json, etc.)
 .claude/

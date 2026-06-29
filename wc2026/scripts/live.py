@@ -38,9 +38,12 @@ def main():
         with urllib.request.urlopen(req, timeout=25) as resp:
             payload = json.loads(resp.read())
     except urllib.error.HTTPError as e:
-        sys.exit(f"football-data HTTP {e.code} — check token / competition access")
+        # transient API issues (rate-limit, 5xx) just mean "no new data this run" — don't fail the job
+        print(f"football-data HTTP {e.code} — skipping this run (no data fetched)", file=sys.stderr)
+        return
     except Exception as e:                       # noqa: BLE001
-        sys.exit(f"football-data fetch failed: {e}")
+        print(f"football-data fetch failed: {e} — skipping this run", file=sys.stderr)
+        return
 
     live, new_locks = {}, 0
     for m in payload.get("matches", []):

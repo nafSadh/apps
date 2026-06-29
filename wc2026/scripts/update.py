@@ -343,6 +343,7 @@ def main():
     args = ap.parse_args()
 
     data = load()
+    before = json.dumps(data, ensure_ascii=False, sort_keys=True)   # snapshot to detect real changes
 
     if args.results:
         merge_results_csv(data, args.results)
@@ -367,14 +368,20 @@ def main():
     if args.check:
         return
 
+    # only treat it as an update if a merge actually changed the data — a no-op fetch (e.g. no new
+    # results) must NOT bump the version or rewrite data.json, so the workflow commits nothing.
+    mutated = json.dumps(data, ensure_ascii=False, sort_keys=True) != before
     if args.set_asof:
         data["meta"]["asOf"] = args.set_asof
-    if args.results or args.ratings or args.fetch_footballdata or args.intl:
+    if mutated and (args.results or args.ratings or args.fetch_footballdata or args.intl):
         data["meta"]["version"] = int(data["meta"].get("version", 0)) + 1
         data["meta"]["asOf"] = args.set_asof or datetime.date.today().isoformat()
 
-    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"wrote {DATA.relative_to(ROOT.parent)}  (version {data['meta']['version']}, asOf {data['meta']['asOf']})")
+    if mutated or args.set_asof:
+        DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"wrote {DATA.relative_to(ROOT.parent)}  (version {data['meta']['version']}, asOf {data['meta']['asOf']})")
+    else:
+        print("  no data changes — data.json left untouched")
 
     if args.sync_embed:
         sync_embed(data)

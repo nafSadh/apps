@@ -37,12 +37,17 @@ jobs:
 
       - name: Commit & push if changed
         run: |
-          if [ -n "$(git status --porcelain wc2026)" ]; then
-            git config user.name  "wc2026-bot"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add wc2026/data.json wc2026/index.html
-            git commit -m "data: automated refresh $(date -u +%F)"
-            git push
-          else
-            echo "No data changes."
+          git config user.name  "wc2026-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add wc2026/data.json wc2026/index.html
+          # gate on STAGED changes so an untracked artifact can't trigger an empty commit (exit 1)
+          if git diff --cached --quiet; then
+            echo "No data changes."; exit 0
           fi
+          git commit -m "data: automated refresh $(date -u +%F)"
+          for i in 1 2 3; do
+            if git push; then echo "pushed."; exit 0; fi
+            echo "push rejected — rebasing onto origin/${GITHUB_REF_NAME} (attempt $i)…"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          done
+          echo "::error::push still failing after 3 attempts"; exit 1
