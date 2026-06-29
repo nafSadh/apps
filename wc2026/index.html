@@ -167,8 +167,14 @@
   .col-h{position:sticky;top:0;z-index:5;background:var(--bg);text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:var(--ink);font-weight:700;padding:7px 0 6px;margin-bottom:2px;box-shadow:0 1px 0 var(--line-hi)}
   @media (max-width:1300px){ .bracket{overflow-x:auto;overflow-y:hidden} .col-h{position:static;box-shadow:none;padding:0} }
   .col-pad{display:flex;flex-direction:column;justify-content:space-around;height:100%}
-  .binner.two{gap:30px} .binner.two .col{min-width:182px} .binner.two .col.cfinal{min-width:200px}   /* two-sided has 9 columns — slim them so less horizontal scroll */
-  .binner.two .col.c2 .col-pad{justify-content:center;gap:8px}   /* two-sided: final sits centred between the two semis */
+  /* two-sided: all 9 columns share the viewport width, with compact cards (no venue/date line) so it fits */
+  .binner.two{display:flex;width:100%;gap:9px}
+  .binner.two .col{flex:1 1 0;min-width:126px} .binner.two .col.cfinal{flex:1.14 1 0;min-width:140px}
+  .binner.two .col.c2 .col-pad{justify-content:center;gap:8px}   /* final centred between the two semis */
+  .binner.two .match{margin:4px 0} .binner.two .m-venue{display:none} .binner.two .m-date{display:none}
+  .binner.two .m-head{padding:3px 7px} .binner.two .slot{padding:5px 7px;font-size:12px}
+  .binner.two .slot .fl{width:16px;font-size:13px} .binner.two .bseed{font-size:8px;padding:0 3px}
+  @media (max-width:1180px){ .binner.two{width:auto;min-width:100%} }   /* below this, let it scroll rather than crush the cards */
   .brkctl{margin:0 0 8px}
   .brkbtn{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;background:var(--card2);border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:5px 11px;cursor:pointer}
   .brkbtn:hover{border-color:var(--acc);color:var(--ink)} .brkbtn.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
