@@ -167,14 +167,22 @@
   .col-h{position:sticky;top:0;z-index:5;background:var(--bg);text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:var(--ink);font-weight:700;padding:7px 0 6px;margin-bottom:2px;box-shadow:0 1px 0 var(--line-hi)}
   @media (max-width:1300px){ .bracket{overflow-x:auto;overflow-y:hidden} .col-h{position:static;box-shadow:none;padding:0} }
   .col-pad{display:flex;flex-direction:column;justify-content:space-around;height:100%}
-  /* two-sided: all 9 columns share the viewport width, with compact cards (no venue/date line) so it fits */
-  .binner.two{display:flex;width:100%;gap:9px}
-  .binner.two .col{flex:1 1 0;min-width:126px} .binner.two .col.cfinal{flex:1.14 1 0;min-width:140px}
-  .binner.two .col.c2 .col-pad{justify-content:center;gap:8px}   /* final centred between the two semis */
-  .binner.two .match{margin:4px 0} .binner.two .m-venue{display:none} .binner.two .m-date{display:none}
-  .binner.two .m-head{padding:3px 7px} .binner.two .slot{padding:5px 7px;font-size:12px}
-  .binner.two .slot .fl{width:16px;font-size:13px} .binner.two .bseed{font-size:8px;padding:0 3px}
-  @media (max-width:1180px){ .binner.two{width:auto;min-width:100%} }   /* below this, let it scroll rather than crush the cards */
+  /* two-sided: dense, flag-forward bracket that spans the viewport */
+  .binner.two{display:flex;width:100%;gap:7px}
+  .binner.two .col{flex:1 1 0;min-width:118px} .binner.two .col.cfinal{flex:1.05 1 0;min-width:126px}
+  .binner.two .col.c2 .col-pad{justify-content:center;gap:6px}            /* final centred between the two semis */
+  .binner.two .col-h{font-size:9px;letter-spacing:.5px;padding:5px 0 4px}
+  .binner.two .match{margin:3px 0;border-radius:8px} .binner.two .m-venue,.binner.two .m-head{display:none}   /* compact: drop venue + the #no/date header */
+  .binner.two .slot{padding:4px 6px;font-size:11px;gap:5px} .binner.two .slot .fl{width:15px;font-size:13px}
+  .binner.two .bseed{font-size:8.5px;font-weight:800;padding:0 3px}
+  /* flag-forward inner rounds (R16/QF/SF/Final) — just the two competing flags, winner ticked */
+  .binner.two .match.kin .nm,.binner.two .match.kin .bseed,.binner.two .match.kin .m-head{display:none}
+  .binner.two .match.kin .slot{position:relative;justify-content:center;padding:3px} .binner.two .match.kin .slot .fl{width:auto;font-size:17px;line-height:1}
+  .binner.two .match.kin .tick{position:absolute;right:5px;top:50%;transform:translateY(-50%)}
+  /* mirror the right half — flags hug the outer (right) edge */
+  .binner.two .col.rcol .slot{flex-direction:row-reverse} .binner.two .col.rcol .nm{text-align:right}
+  .binner.two .col.rcol .match.kin .slot{flex-direction:row}
+  @media (max-width:1180px){ .binner.two{width:auto;min-width:100%} }   /* below this, scroll rather than crush the cards */
   .brkctl{margin:0 0 8px}
   .brkbtn{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;background:var(--card2);border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:5px 11px;cursor:pointer}
   .brkbtn:hover{border-color:var(--acc);color:var(--ink)} .brkbtn.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
@@ -796,20 +804,20 @@ function structLabel(no,side){ if(no<=88){ const s=R32SLOT[no][side]; if(s[0]===
   if(no===103) return "Loser #"+[101,102][side]; return "Winner #"+FEED[no][side]; }
 function slotHTML(no,side){ const p=parts(no)[side], w=state.win[no];
   if(p){ const cls=w===p?'win':(w?'lose':''), tick=w===p?'<span class="tick">✓</span>':'';
-    const sd=no<=88?`<span class="bseed" title="${structLabel(no,side)}">${koSeed(p)}</span>`:'';   // R32: group + finishing place
+    const g=grp(p), sd=no<=88?`<span class="bseed" title="${structLabel(no,side)}" style="color:${GC[g]};border-color:${GC[g]}">${koSeed(p)}</span>`:'';   // R32: group + finishing place, tinted by group
     return `<div class="slot known ${cls}" data-adv="${no},${p}"><span class="fl">${fl(p)}</span><span class="nm">${nm(p)}</span>${sd}${tick}</div>`; }
   return `<div class="slot tbd"><span class="fl">·</span><span class="nm">${structLabel(no,side)}</span></div>`; }
 function cardHTML(no,extra){ const m=KMETA[no]; const p=parts(no); const dec=state.win[no]&&p[0]&&p[1];
-  return `<div class="match ${extra||''}" data-card="${no}"><div class="m-head"><span class="m-no">#${no}</span><span class="m-date">${m[0]}</span>${dec?`<span class="rinfo" data-ko="${no}">ⓘ</span>`:''}</div>`+
+  return `<div class="match ${no>88?'kin':''} ${extra||''}" data-card="${no}"><div class="m-head"><span class="m-no">#${no}</span><span class="m-date">${m[0]}</span>${dec?`<span class="rinfo" data-ko="${no}">ⓘ</span>`:''}</div>`+
     slotHTML(no,0)+slotHTML(no,1)+`<div class="m-venue">${m[1]} · ${m[2]}</div></div>`; }
-function colHTML(title,order,extra){ let s=''; order.forEach(no=>s+=cardHTML(no,extra)); return `<div class="col"><div class="col-h">${title}</div><div class="col-pad">${s}</div></div>`; }
+function colHTML(title,order,extra,colClass){ let s=''; order.forEach(no=>s+=cardHTML(no,extra)); return `<div class="col ${colClass||''}"><div class="col-h">${title}</div><div class="col-pad">${s}</div></div>`; }
 const centreCol=cls=>`<div class="col cfinal ${cls}"><div class="col-h">Final</div><div class="col-pad">`+cardHTML(104,'final')+`<div class="third-lbl">3rd-place play-off</div>`+cardHTML(103,'third')+`</div></div>`;
 function renderBracket(){
   let h;
   if(state.brk2){   // two-sided: left half flows in, final in the centre, right half mirrors back out
     h = colHTML('Round of 32',ORD32.slice(0,8))+colHTML('Round of 16',ORD16.slice(0,4))+colHTML('Quarter-finals',ORDQF.slice(0,2))+colHTML('Semi-final',[101])
       + centreCol('c2')
-      + colHTML('Semi-final',[102])+colHTML('Quarter-finals',ORDQF.slice(2,4))+colHTML('Round of 16',ORD16.slice(4,8))+colHTML('Round of 32',ORD32.slice(8,16));
+      + colHTML('Semi-final',[102],'','rcol')+colHTML('Quarter-finals',ORDQF.slice(2,4),'','rcol')+colHTML('Round of 16',ORD16.slice(4,8),'','rcol')+colHTML('Round of 32',ORD32.slice(8,16),'','rcol');
   } else {
     h = colHTML('Round of 32',ORD32)+colHTML('Round of 16',ORD16)+colHTML('Quarter-finals',ORDQF)+colHTML('Semi-finals',ORDSF)+centreCol('');
   }
