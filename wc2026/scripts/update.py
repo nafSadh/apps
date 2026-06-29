@@ -116,6 +116,14 @@ def validate(data):
             if "p" in e and not (isinstance(e["p"], list) and len(e["p"]) == 2
                                  and all(isinstance(x, int) and x >= 0 for x in e["p"])):
                 errs.append(f"ko[{i}]: p (penalties) must be [int,int], got {e['p']!r}")
+
+    ta = data.get("thirdAlloc", {})
+    if not isinstance(ta, dict):
+        errs.append("thirdAlloc must be an object {slot: group}")
+    else:
+        for slot, g in ta.items():
+            if not (isinstance(g, str) and len(g) == 1 and g in "ABCDEFGHIJKL"):
+                errs.append(f"thirdAlloc[{slot}]: group must be one letter A–L, got {g!r}")
     return errs
 
 
@@ -318,7 +326,8 @@ def sync_embed(data):
             m = rec.get("meetings", [])
             h2h_emb[a][b] = ({**rec, "meetings": m[:EMBED_CAP]} if len(m) > EMBED_CAP else rec)
     embed = {"formYears": data.get("formYears", {}), "h2h": h2h_emb, "squad": data.get("squad", {}),
-             "fifaPos": data.get("fifaPos", {}), "sources": data.get("sources", []), "ko": data.get("ko", [])}
+             "fifaPos": data.get("fifaPos", {}), "sources": data.get("sources", []), "ko": data.get("ko", []),
+             "thirdAlloc": data.get("thirdAlloc", {})}
     new = re.sub(r"const\s+EMBED\s*=\s*\{[\s\S]*?\};\s*\napplyData\(EMBED\)",
                  "const EMBED=" + json.dumps(embed, ensure_ascii=False, separators=(",", ":")) + ";\napplyData(EMBED)",
                  new, count=1)

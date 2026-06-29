@@ -1,8 +1,8 @@
 {
   "meta": {
     "tournament": "FIFA World Cup 2026",
-    "version": 33,
-    "asOf": "2026-06-28",
+    "version": 34,
+    "asOf": "2026-06-29",
     "source": "manual",
     "note": "locked = played-match scores {matchNo:[homeGoals,awayGoals]}; ratings per team. teams/fixtures are fixed for the tournament. formYears=per-team 1/3/5y W-D-L; h2h=all-time pairwise record + last 5 meetings (top-16 contenders, symmetric).",
     "h2hAnchors": [
@@ -1326,7 +1326,26 @@
       3
     ]
   },
-  "ko": [],
+  "ko": [
+    {
+      "stage": "R32",
+      "home": "RSA",
+      "away": "CAN",
+      "h": 0,
+      "a": 1,
+      "w": "CAN"
+    }
+  ],
+  "thirdAlloc": {
+    "74": "D",
+    "77": "F",
+    "79": "E",
+    "80": "K",
+    "81": "B",
+    "82": "I",
+    "85": "J",
+    "87": "L"
+  },
   "ratings": {
     "MEX": {
       "fifa": 1687.48,
