@@ -117,6 +117,14 @@ def validate(data):
                                  and all(isinstance(x, int) and x >= 0 for x in e["p"])):
                 errs.append(f"ko[{i}]: p (penalties) must be [int,int], got {e['p']!r}")
 
+    kt = data.get("koTimes", [])
+    if not isinstance(kt, list):
+        errs.append("koTimes must be a list")
+    else:
+        for i, e in enumerate(kt):
+            if not (isinstance(e, dict) and e.get("home") in codes and e.get("away") in codes and isinstance(e.get("t"), str)):
+                errs.append(f"koTimes[{i}]: need {{home, away, t}} with valid codes, got {e!r}")
+
     ta = data.get("thirdAlloc", {})
     if not isinstance(ta, dict):
         errs.append("thirdAlloc must be an object {slot: group}")
@@ -271,6 +279,24 @@ def collect_ko(payload, idx, statuses=("FINISHED",)):
     return out
 
 
+def collect_ko_times(payload, idx):
+    """Kickoff times for knockout matches whose teams map to our codes (any status).
+
+    Returns [{home, away, t}] with t = ISO utcDate. The app maps each onto its bracket
+    slot by team-pair, so the "Today" strip can order a day's games by real kickoff time
+    instead of bracket-position match numbers."""
+    out = []
+    for m in payload.get("matches", []):
+        if m.get("stage") not in KO_STAGES:
+            continue
+        h = idx.get((m.get("homeTeam", {}).get("name") or "").lower())
+        a = idx.get((m.get("awayTeam", {}).get("name") or "").lower())
+        t = m.get("utcDate")
+        if h and a and t:
+            out.append({"home": h, "away": a, "t": t})
+    return out
+
+
 def fetch_footballdata(data, token):
     """Pull finished WC matches from football-data.org (free tier needs a token)."""
     idx = name_to_code(data)
@@ -299,6 +325,7 @@ def fetch_footballdata(data, token):
             data["locked"][str(no)] = [int(ft["home"]), int(ft["away"])]; n += 1
     ko = collect_ko(payload, idx)
     data["ko"] = ko
+    data["koTimes"] = collect_ko_times(payload, idx)
     print(f"  fetched {n} finished group/league matches + {len(ko)} knockout result(s) from football-data.org")
 
 
@@ -327,7 +354,7 @@ def sync_embed(data):
             h2h_emb[a][b] = ({**rec, "meetings": m[:EMBED_CAP]} if len(m) > EMBED_CAP else rec)
     embed = {"formYears": data.get("formYears", {}), "h2h": h2h_emb, "squad": data.get("squad", {}),
              "fifaPos": data.get("fifaPos", {}), "sources": data.get("sources", []), "ko": data.get("ko", []),
-             "thirdAlloc": data.get("thirdAlloc", {})}
+             "thirdAlloc": data.get("thirdAlloc", {}), "koTimes": data.get("koTimes", [])}
     new = re.sub(r"const\s+EMBED\s*=\s*\{[\s\S]*?\};\s*\napplyData\(EMBED\)",
                  "const EMBED=" + json.dumps(embed, ensure_ascii=False, separators=(",", ":")) + ";\napplyData(EMBED)",
                  new, count=1)

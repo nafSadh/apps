@@ -66,30 +66,34 @@ def main():
     # maps each onto its slot). Finished -> data.json `ko` + live.json; in-play -> live.json `koLive`.
     ko = update.collect_ko(payload, idx)                              # FINISHED knockout results
     ko_live = update.collect_ko(payload, idx, statuses=tuple(LIVE_STATES))   # in-play knockout
+    ko_times = update.collect_ko_times(payload, idx)                  # kickoff times for all determined knockout games
     ko_changed = data.get("ko", []) != ko
+    times_changed = data.get("koTimes", []) != ko_times
     if ko_changed:
         data["ko"] = ko
+    if times_changed:
+        data["koTimes"] = ko_times
 
     old = json.loads(LIVE.read_text(encoding="utf-8")) if LIVE.exists() else {}
     if (old.get("live") == live and old.get("locked") == data["locked"]
-            and old.get("ko", []) == ko and old.get("koLive", []) == ko_live):
+            and old.get("ko", []) == ko and old.get("koLive", []) == ko_live and old.get("koTimes", []) == ko_times):
         print(f"no change ({len(live)} live, {len(data['locked'])} locked, {len(ko)} ko, {len(ko_live)} ko-live)")
         return
 
     now = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
     LIVE.write_text(json.dumps({"liveAt": now, "asOf": data["meta"].get("asOf"),
-                                "live": live, "locked": data["locked"], "ko": ko, "koLive": ko_live},
+                                "live": live, "locked": data["locked"], "ko": ko, "koLive": ko_live, "koTimes": ko_times},
                                ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     print(f"live.json updated: {len(live)} live, {len(data['locked'])} locked, "
-          f"{len(ko)} ko ({new_locks} new group), {len(ko_live)} ko-live")
+          f"{len(ko)} ko ({new_locks} new group), {len(ko_live)} ko-live, {len(ko_times)} ko-times")
 
-    if new_locks or ko_changed:
+    if new_locks or ko_changed or times_changed:
         data["meta"]["version"] = int(data["meta"].get("version", 0)) + 1
         data["meta"]["asOf"] = datetime.date.today().isoformat()
         DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         update.sync_embed(data)
         print(f"  -> data.json v{data['meta']['version']} ({new_locks} new group locks, "
-              f"{len(ko)} knockout results) + inline fallback synced")
+              f"{len(ko)} knockout results, {len(ko_times)} kickoff times) + inline fallback synced")
 
 
 if __name__ == "__main__":
