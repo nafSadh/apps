@@ -97,6 +97,25 @@ def validate(data):
     for code in ratings:
         if code not in codes:
             errs.append(f"ratings has unknown team {code!r}")
+
+    ko = data.get("ko", [])
+    if not isinstance(ko, list):
+        errs.append("ko must be a list")
+    else:
+        for i, e in enumerate(ko):
+            if not isinstance(e, dict):
+                errs.append(f"ko[{i}]: must be an object"); continue
+            for side in ("home", "away"):
+                if e.get(side) not in codes:
+                    errs.append(f"ko[{i}]: unknown team {e.get(side)!r}")
+            if e.get("w") is not None and e["w"] not in codes:
+                errs.append(f"ko[{i}]: unknown winner {e['w']!r}")
+            for k in ("h", "a"):
+                if not (isinstance(e.get(k), int) and e[k] >= 0):
+                    errs.append(f"ko[{i}]: {k} must be a non-negative int, got {e.get(k)!r}")
+            if "p" in e and not (isinstance(e["p"], list) and len(e["p"]) == 2
+                                 and all(isinstance(x, int) and x >= 0 for x in e["p"])):
+                errs.append(f"ko[{i}]: p (penalties) must be [int,int], got {e['p']!r}")
     return errs
 
 
@@ -207,6 +226,43 @@ def build_from_intl(data, path):
           f"merged {', '.join(f'{k}<-{v}' for k, v in INTL_MERGED.items())}")
 
 
+# football-data.org stage codes for the knockout bracket -> our short round names.
+KO_STAGES = {"LAST_32": "R32", "LAST_16": "R16", "QUARTER_FINALS": "QF",
+             "SEMI_FINALS": "SF", "THIRD_PLACE": "3rd", "FINAL": "Final"}
+
+
+def collect_ko(payload, idx, statuses=("FINISHED",)):
+    """Knockout matches from a football-data payload whose teams map to our codes.
+
+    Returns [{stage, home, away, h, a, w, p?, status}] — raw bracket results. The app
+    maps each onto its own slot by team-pair (so this never needs the bracket logic).
+    `w` is the winner code from the feed (covers penalty shootouts); `p` = [hp, ap] if a
+    shootout happened. Only the listed statuses are returned (FINISHED, or live states)."""
+    out = []
+    for m in payload.get("matches", []):
+        stage = KO_STAGES.get(m.get("stage"))
+        if not stage or m.get("status") not in statuses:
+            continue
+        h = idx.get((m.get("homeTeam", {}).get("name") or "").lower())
+        a = idx.get((m.get("awayTeam", {}).get("name") or "").lower())
+        if not (h and a):
+            continue                                  # teams not decided / unmapped yet
+        sc = m.get("score", {}) or {}
+        ft = sc.get("fullTime", {}) or {}
+        hg, ag = ft.get("home"), ft.get("away")
+        if hg is None or ag is None:
+            continue
+        wf = sc.get("winner")
+        w = h if wf == "HOME_TEAM" else a if wf == "AWAY_TEAM" else None
+        e = {"stage": stage, "home": h, "away": a, "h": int(hg), "a": int(ag),
+             "w": w, "status": m.get("status")}
+        pens = sc.get("penalties", {}) or {}
+        if pens.get("home") is not None and pens.get("away") is not None:
+            e["p"] = [int(pens["home"]), int(pens["away"])]
+        out.append(e)
+    return out
+
+
 def fetch_footballdata(data, token):
     """Pull finished WC matches from football-data.org (free tier needs a token)."""
     idx = name_to_code(data)
@@ -233,7 +289,9 @@ def fetch_footballdata(data, token):
         no = by_pair.get((h, a))
         if no:
             data["locked"][str(no)] = [int(ft["home"]), int(ft["away"])]; n += 1
-    print(f"  fetched {n} finished matches from football-data.org")
+    ko = collect_ko(payload, idx)
+    data["ko"] = ko
+    print(f"  fetched {n} finished group/league matches + {len(ko)} knockout result(s) from football-data.org")
 
 
 # ----------------------------------------------------------------------------- embed sync
@@ -260,7 +318,7 @@ def sync_embed(data):
             m = rec.get("meetings", [])
             h2h_emb[a][b] = ({**rec, "meetings": m[:EMBED_CAP]} if len(m) > EMBED_CAP else rec)
     embed = {"formYears": data.get("formYears", {}), "h2h": h2h_emb, "squad": data.get("squad", {}),
-             "fifaPos": data.get("fifaPos", {}), "sources": data.get("sources", [])}
+             "fifaPos": data.get("fifaPos", {}), "sources": data.get("sources", []), "ko": data.get("ko", [])}
     new = re.sub(r"const\s+EMBED\s*=\s*\{[\s\S]*?\};\s*\napplyData\(EMBED\)",
                  "const EMBED=" + json.dumps(embed, ensure_ascii=False, separators=(",", ":")) + ";\napplyData(EMBED)",
                  new, count=1)
@@ -304,7 +362,7 @@ def main():
             print("  -", e, file=sys.stderr)
         sys.exit(1)
     print(f"OK — {len(data['teams'])} teams, {len(data['fixtures'])} fixtures, "
-          f"{len(data['locked'])} played, {len(data['ratings'])} ratings")
+          f"{len(data['locked'])} played, {len(data.get('ko', []))} knockout, {len(data['ratings'])} ratings")
 
     if args.check:
         return

@@ -8,9 +8,16 @@ What changes during the tournament:
 
 | field | shape | how to update |
 |-------|-------|---------------|
-| `locked` | `{matchNo: [homeGoals, awayGoals]}` | results CSV or API fetch |
+| `locked` | `{matchNo: [homeGoals, awayGoals]}` (group games 1–72) | results CSV or API fetch |
+| `ko` | `[{stage, home, away, h, a, w, p?}]` knockout results (codes) | API fetch (`collect_ko`) |
 | `ratings` | `{code: {fifa, elo, odds, opta, form}}` | ratings CSV |
 | `h2h` / `formYears` | full head-to-head + recent-form | `--intl` from the martj42 dataset |
+
+Knockout games carry bracket-slot placeholders (not fixed team-pairs), so `ko` lists each
+played bracket game by **team code** (`w` = winner code, covers shootouts; `p` = `[hp, ap]`
+penalties). The app maps each entry onto its own bracket slot by team-pair, advances the
+winner, and rolls the "Today" strip forward. `live.json` carries the same `ko` plus a
+`koLive` list for in-play knockout games.
 
 `teams`, `fixtures` and the knockout bracket are fixed at the draw — don't edit them here.
 
