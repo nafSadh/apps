@@ -1,70 +1,125 @@
 {
-  "asOf": "2026-06-28",
-  "version": 33,
-  "played": 72,
+  "asOf": "2026-06-29",
+  "version": 34,
+  "played": 73,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 48,
+      "ok": 49,
       "miss": 24,
-      "hitRate": 0.667
+      "hitRate": 0.671
     },
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 47,
+      "ok": 48,
       "miss": 25,
-      "hitRate": 0.653
+      "hitRate": 0.658
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 46,
+      "ok": 47,
       "miss": 26,
-      "hitRate": 0.639
+      "hitRate": 0.644
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 45,
+      "ok": 46,
       "miss": 27,
-      "hitRate": 0.625
+      "hitRate": 0.63
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 44,
+      "ok": 45,
       "miss": 28,
-      "hitRate": 0.611
+      "hitRate": 0.616
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 43,
+      "ok": 44,
       "miss": 29,
-      "hitRate": 0.597
+      "hitRate": 0.603
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 42,
+      "ok": 43,
       "miss": 30,
-      "hitRate": 0.583
+      "hitRate": 0.589
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
       "ok": 40,
-      "miss": 32,
-      "hitRate": 0.556
+      "miss": 33,
+      "hitRate": 0.548
     }
   ],
   "matches": [
     {
+      "no": 73,
+      "date": "2026-06-28",
+      "stage": "R32",
+      "home": "South Africa",
+      "away": "Canada",
+      "score": [
+        0,
+        1
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.138,
+          "pick": "A",
+          "correct": true
+        },
+        "odds": {
+          "winProb": 0.075,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.124,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.043,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.201,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.206,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.113,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
+    {
       "no": 72,
       "date": "2026-06-27",
+      "stage": "group",
       "home": "DR Congo",
       "away": "Uzbekistan",
       "score": [
@@ -118,6 +173,7 @@
     {
       "no": 71,
       "date": "2026-06-27",
+      "stage": "group",
       "home": "Colombia",
       "away": "Portugal",
       "score": [
@@ -171,6 +227,7 @@
     {
       "no": 70,
       "date": "2026-06-27",
+      "stage": "group",
       "home": "Jordan",
       "away": "Argentina",
       "score": [
@@ -224,6 +281,7 @@
     {
       "no": 69,
       "date": "2026-06-27",
+      "stage": "group",
       "home": "Algeria",
       "away": "Austria",
       "score": [
@@ -277,6 +335,7 @@
     {
       "no": 68,
       "date": "2026-06-27",
+      "stage": "group",
       "home": "Croatia",
       "away": "Ghana",
       "score": [
@@ -330,6 +389,7 @@
     {
       "no": 67,
       "date": "2026-06-27",
+      "stage": "group",
       "home": "Panama",
       "away": "England",
       "score": [
@@ -383,6 +443,7 @@
     {
       "no": 66,
       "date": "2026-06-26",
+      "stage": "group",
       "home": "Uruguay",
       "away": "Spain",
       "score": [
@@ -436,6 +497,7 @@
     {
       "no": 65,
       "date": "2026-06-26",
+      "stage": "group",
       "home": "Cape Verde",
       "away": "Saudi Arabia",
       "score": [
@@ -489,6 +551,7 @@
     {
       "no": 64,
       "date": "2026-06-26",
+      "stage": "group",
       "home": "New Zealand",
       "away": "Belgium",
       "score": [
@@ -542,6 +605,7 @@
     {
       "no": 63,
       "date": "2026-06-26",
+      "stage": "group",
       "home": "Egypt",
       "away": "Iran",
       "score": [
@@ -595,6 +659,7 @@
     {
       "no": 62,
       "date": "2026-06-26",
+      "stage": "group",
       "home": "Senegal",
       "away": "Iraq",
       "score": [
@@ -648,6 +713,7 @@
     {
       "no": 61,
       "date": "2026-06-26",
+      "stage": "group",
       "home": "Norway",
       "away": "France",
       "score": [
@@ -701,6 +767,7 @@
     {
       "no": 60,
       "date": "2026-06-25",
+      "stage": "group",
       "home": "Paraguay",
       "away": "Australia",
       "score": [
@@ -754,6 +821,7 @@
     {
       "no": 59,
       "date": "2026-06-25",
+      "stage": "group",
       "home": "Turkey",
       "away": "United States",
       "score": [
@@ -807,6 +875,7 @@
     {
       "no": 58,
       "date": "2026-06-25",
+      "stage": "group",
       "home": "Tunisia",
       "away": "Netherlands",
       "score": [
@@ -860,6 +929,7 @@
     {
       "no": 57,
       "date": "2026-06-25",
+      "stage": "group",
       "home": "Japan",
       "away": "Sweden",
       "score": [
@@ -913,6 +983,7 @@
     {
       "no": 56,
       "date": "2026-06-25",
+      "stage": "group",
       "home": "Ecuador",
       "away": "Germany",
       "score": [
@@ -966,6 +1037,7 @@
     {
       "no": 55,
       "date": "2026-06-25",
+      "stage": "group",
       "home": "Curaçao",
       "away": "Ivory Coast",
       "score": [
@@ -1019,6 +1091,7 @@
     {
       "no": 54,
       "date": "2026-06-24",
+      "stage": "group",
       "home": "South Africa",
       "away": "South Korea",
       "score": [
@@ -1072,6 +1145,7 @@
     {
       "no": 53,
       "date": "2026-06-24",
+      "stage": "group",
       "home": "Czechia",
       "away": "Mexico",
       "score": [
@@ -1125,6 +1199,7 @@
     {
       "no": 52,
       "date": "2026-06-24",
+      "stage": "group",
       "home": "Bosnia & H.",
       "away": "Qatar",
       "score": [
@@ -1178,6 +1253,7 @@
     {
       "no": 51,
       "date": "2026-06-24",
+      "stage": "group",
       "home": "Switzerland",
       "away": "Canada",
       "score": [
@@ -1231,6 +1307,7 @@
     {
       "no": 50,
       "date": "2026-06-24",
+      "stage": "group",
       "home": "Morocco",
       "away": "Haiti",
       "score": [
@@ -1284,6 +1361,7 @@
     {
       "no": 49,
       "date": "2026-06-24",
+      "stage": "group",
       "home": "Scotland",
       "away": "Brazil",
       "score": [
@@ -1337,6 +1415,7 @@
     {
       "no": 48,
       "date": "2026-06-23",
+      "stage": "group",
       "home": "Colombia",
       "away": "DR Congo",
       "score": [
@@ -1390,6 +1469,7 @@
     {
       "no": 47,
       "date": "2026-06-23",
+      "stage": "group",
       "home": "Portugal",
       "away": "Uzbekistan",
       "score": [
@@ -1443,6 +1523,7 @@
     {
       "no": 46,
       "date": "2026-06-23",
+      "stage": "group",
       "home": "Panama",
       "away": "Croatia",
       "score": [
@@ -1496,6 +1577,7 @@
     {
       "no": 45,
       "date": "2026-06-23",
+      "stage": "group",
       "home": "England",
       "away": "Ghana",
       "score": [
@@ -1549,6 +1631,7 @@
     {
       "no": 44,
       "date": "2026-06-22",
+      "stage": "group",
       "home": "Jordan",
       "away": "Algeria",
       "score": [
@@ -1602,6 +1685,7 @@
     {
       "no": 43,
       "date": "2026-06-22",
+      "stage": "group",
       "home": "Argentina",
       "away": "Austria",
       "score": [
@@ -1655,6 +1739,7 @@
     {
       "no": 42,
       "date": "2026-06-22",
+      "stage": "group",
       "home": "France",
       "away": "Iraq",
       "score": [
@@ -1708,6 +1793,7 @@
     {
       "no": 41,
       "date": "2026-06-22",
+      "stage": "group",
       "home": "Norway",
       "away": "Senegal",
       "score": [
@@ -1761,6 +1847,7 @@
     {
       "no": 40,
       "date": "2026-06-21",
+      "stage": "group",
       "home": "New Zealand",
       "away": "Egypt",
       "score": [
@@ -1814,6 +1901,7 @@
     {
       "no": 39,
       "date": "2026-06-21",
+      "stage": "group",
       "home": "Belgium",
       "away": "Iran",
       "score": [
@@ -1867,6 +1955,7 @@
     {
       "no": 38,
       "date": "2026-06-21",
+      "stage": "group",
       "home": "Spain",
       "away": "Saudi Arabia",
       "score": [
@@ -1920,6 +2009,7 @@
     {
       "no": 37,
       "date": "2026-06-21",
+      "stage": "group",
       "home": "Uruguay",
       "away": "Cape Verde",
       "score": [
@@ -1973,6 +2063,7 @@
     {
       "no": 36,
       "date": "2026-06-20",
+      "stage": "group",
       "home": "Tunisia",
       "away": "Japan",
       "score": [
@@ -2026,6 +2117,7 @@
     {
       "no": 35,
       "date": "2026-06-20",
+      "stage": "group",
       "home": "Netherlands",
       "away": "Sweden",
       "score": [
@@ -2079,6 +2171,7 @@
     {
       "no": 34,
       "date": "2026-06-20",
+      "stage": "group",
       "home": "Ecuador",
       "away": "Curaçao",
       "score": [
@@ -2132,6 +2225,7 @@
     {
       "no": 33,
       "date": "2026-06-20",
+      "stage": "group",
       "home": "Germany",
       "away": "Ivory Coast",
       "score": [
@@ -2185,6 +2279,7 @@
     {
       "no": 32,
       "date": "2026-06-19",
+      "stage": "group",
       "home": "United States",
       "away": "Australia",
       "score": [
@@ -2238,6 +2333,7 @@
     {
       "no": 31,
       "date": "2026-06-19",
+      "stage": "group",
       "home": "Turkey",
       "away": "Paraguay",
       "score": [
@@ -2291,6 +2387,7 @@
     {
       "no": 30,
       "date": "2026-06-19",
+      "stage": "group",
       "home": "Scotland",
       "away": "Morocco",
       "score": [
@@ -2344,6 +2441,7 @@
     {
       "no": 29,
       "date": "2026-06-19",
+      "stage": "group",
       "home": "Brazil",
       "away": "Haiti",
       "score": [
@@ -2397,6 +2495,7 @@
     {
       "no": 28,
       "date": "2026-06-18",
+      "stage": "group",
       "home": "Mexico",
       "away": "South Korea",
       "score": [
@@ -2450,6 +2549,7 @@
     {
       "no": 27,
       "date": "2026-06-18",
+      "stage": "group",
       "home": "Canada",
       "away": "Qatar",
       "score": [
@@ -2503,6 +2603,7 @@
     {
       "no": 26,
       "date": "2026-06-18",
+      "stage": "group",
       "home": "Switzerland",
       "away": "Bosnia & H.",
       "score": [
@@ -2556,6 +2657,7 @@
     {
       "no": 25,
       "date": "2026-06-18",
+      "stage": "group",
       "home": "Czechia",
       "away": "South Africa",
       "score": [
@@ -2609,6 +2711,7 @@
     {
       "no": 24,
       "date": "2026-06-17",
+      "stage": "group",
       "home": "Ghana",
       "away": "Panama",
       "score": [
@@ -2662,6 +2765,7 @@
     {
       "no": 23,
       "date": "2026-06-17",
+      "stage": "group",
       "home": "England",
       "away": "Croatia",
       "score": [
@@ -2715,6 +2819,7 @@
     {
       "no": 22,
       "date": "2026-06-17",
+      "stage": "group",
       "home": "Uzbekistan",
       "away": "Colombia",
       "score": [
@@ -2768,6 +2873,7 @@
     {
       "no": 21,
       "date": "2026-06-17",
+      "stage": "group",
       "home": "Portugal",
       "away": "DR Congo",
       "score": [
@@ -2821,6 +2927,7 @@
     {
       "no": 20,
       "date": "2026-06-16",
+      "stage": "group",
       "home": "Austria",
       "away": "Jordan",
       "score": [
@@ -2874,6 +2981,7 @@
     {
       "no": 19,
       "date": "2026-06-16",
+      "stage": "group",
       "home": "Argentina",
       "away": "Algeria",
       "score": [
@@ -2927,6 +3035,7 @@
     {
       "no": 18,
       "date": "2026-06-16",
+      "stage": "group",
       "home": "Iraq",
       "away": "Norway",
       "score": [
@@ -2980,6 +3089,7 @@
     {
       "no": 17,
       "date": "2026-06-16",
+      "stage": "group",
       "home": "France",
       "away": "Senegal",
       "score": [
@@ -3033,6 +3143,7 @@
     {
       "no": 16,
       "date": "2026-06-15",
+      "stage": "group",
       "home": "Iran",
       "away": "New Zealand",
       "score": [
@@ -3086,6 +3197,7 @@
     {
       "no": 15,
       "date": "2026-06-15",
+      "stage": "group",
       "home": "Belgium",
       "away": "Egypt",
       "score": [
@@ -3139,6 +3251,7 @@
     {
       "no": 14,
       "date": "2026-06-15",
+      "stage": "group",
       "home": "Spain",
       "away": "Cape Verde",
       "score": [
@@ -3192,6 +3305,7 @@
     {
       "no": 13,
       "date": "2026-06-15",
+      "stage": "group",
       "home": "Saudi Arabia",
       "away": "Uruguay",
       "score": [
@@ -3245,6 +3359,7 @@
     {
       "no": 12,
       "date": "2026-06-14",
+      "stage": "group",
       "home": "Sweden",
       "away": "Tunisia",
       "score": [
@@ -3298,6 +3413,7 @@
     {
       "no": 11,
       "date": "2026-06-14",
+      "stage": "group",
       "home": "Netherlands",
       "away": "Japan",
       "score": [
@@ -3351,6 +3467,7 @@
     {
       "no": 10,
       "date": "2026-06-14",
+      "stage": "group",
       "home": "Germany",
       "away": "Curaçao",
       "score": [
@@ -3404,6 +3521,7 @@
     {
       "no": 9,
       "date": "2026-06-14",
+      "stage": "group",
       "home": "Ivory Coast",
       "away": "Ecuador",
       "score": [
@@ -3457,6 +3575,7 @@
     {
       "no": 8,
       "date": "2026-06-13",
+      "stage": "group",
       "home": "Qatar",
       "away": "Switzerland",
       "score": [
@@ -3510,6 +3629,7 @@
     {
       "no": 7,
       "date": "2026-06-13",
+      "stage": "group",
       "home": "Brazil",
       "away": "Morocco",
       "score": [
@@ -3563,6 +3683,7 @@
     {
       "no": 6,
       "date": "2026-06-13",
+      "stage": "group",
       "home": "Australia",
       "away": "Turkey",
       "score": [
@@ -3616,6 +3737,7 @@
     {
       "no": 5,
       "date": "2026-06-13",
+      "stage": "group",
       "home": "Haiti",
       "away": "Scotland",
       "score": [
@@ -3669,6 +3791,7 @@
     {
       "no": 4,
       "date": "2026-06-12",
+      "stage": "group",
       "home": "United States",
       "away": "Paraguay",
       "score": [
@@ -3722,6 +3845,7 @@
     {
       "no": 3,
       "date": "2026-06-12",
+      "stage": "group",
       "home": "Canada",
       "away": "Bosnia & H.",
       "score": [
@@ -3775,6 +3899,7 @@
     {
       "no": 2,
       "date": "2026-06-11",
+      "stage": "group",
       "home": "South Korea",
       "away": "Czechia",
       "score": [
@@ -3828,6 +3953,7 @@
     {
       "no": 1,
       "date": "2026-06-11",
+      "stage": "group",
       "home": "Mexico",
       "away": "South Africa",
       "score": [

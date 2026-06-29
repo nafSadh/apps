@@ -1044,12 +1044,13 @@ function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) retu
     `<div class="small" style="margin:18px 0 6px">Per match — hover any cell for that model's pre-match probability.</div>`+g; }
 function renderStats(){
   const el=document.getElementById("statspanel"); if(!el) return;
-  const games=[...LOCKSET].map(no=>({no,f:FIXMAP[no],r:LOCKED[no]})).filter(x=>x.f&&x.r);
+  const games=[...LOCKSET].map(no=>({no,f:FIXMAP[no],r:LOCKED[no],ko:false})).filter(x=>x.f&&x.r)
+    .concat([...KOSET].filter(no=>KORES[no]&&KMETA[no]).map(no=>({no,f:fixObj(no),r:KORES[no],ko:true,win:KOWIN[no]||null})));
   const N=games.length;
   if(!N){ el.innerHTML='<div class="dhint">No games played yet — stats fill in as results lock.</div>'; return; }
   const S={}, G=c=>(S[c]||(S[c]={pld:0,gf:0,ga:0,w:0,d:0,l:0,pts:0,cs:0,seq:[]}));
   let goals=0,draws=0,btts=0,nil=0,cleans=0,maxM=-1,maxT=-1,bigW=null,bigS=null; const mdG={},grpG={};
-  games.slice().sort((a,b)=>a.no-b.no).forEach(({f,r})=>{ const hg=r[0],ag=r[1],h=G(f.home),a=G(f.away);
+  games.slice().sort((a,b)=>a.no-b.no).forEach(g=>{ const {f,r}=g, hg=r[0],ag=r[1],h=G(f.home),a=G(f.away);
     goals+=hg+ag; h.pld++;a.pld++;h.gf+=hg;h.ga+=ag;a.gf+=ag;a.ga+=hg;
     if(ag===0){h.cs++;cleans++;} if(hg===0){a.cs++;cleans++;}
     if(hg>ag){h.w++;a.l++;h.pts+=3;h.seq.push('W');a.seq.push('L');}
@@ -1059,15 +1060,18 @@ function renderStats(){
     const m=Math.abs(hg-ag),tot=hg+ag;
     if(m>maxM||(m===maxM&&bigW&&tot>bigW.r[0]+bigW.r[1])){maxM=m;bigW={f,r};}
     if(tot>maxT){maxT=tot;bigS={f,r};}
-    (mdG[f.md]=mdG[f.md]||{g:0,n:0}); mdG[f.md].g+=tot; mdG[f.md].n++;
-    (grpG[f.group]=grpG[f.group]||{g:0,n:0}); grpG[f.group].g+=tot; grpG[f.group].n++; });
+    const ph=g.ko?(KMETA[g.no][3]||'KO'):('MD'+f.md);                                   // group games by matchday, knockout by round
+    (mdG[ph]=mdG[ph]||{g:0,n:0}); mdG[ph].g+=tot; mdG[ph].n++;
+    if(!g.ko){ (grpG[f.group]=grpG[f.group]||{g:0,n:0}); grpG[f.group].g+=tot; grpG[f.group].n++; } });   // by-group is group-stage only
   for(const c in S)S[c].gd=S[c].gf-S[c].ga;
   const teams=Object.keys(S), elo=c=>RATINGS[c]?RATINGS[c][1]:1500;
   const streak=s=>{let m=0,c=0;s.forEach(x=>{if(x==='W'){c++;if(c>m)m=c;}else c=0;});return m;};
   const strk=teams.map(c=>({c,n:streak(S[c].seq)})).sort((a,b)=>b.n-a.n||S[b.c].pld-S[a.c].pld)[0];
-  const dec=games.filter(x=>x.r[0]!==x.r[1]); let chalk=0; const ups=[];
-  dec.forEach(({f,r})=>{ const win=r[0]>r[1]?f.home:f.away,lose=r[0]>r[1]?f.away:f.home;
-    if(elo(win)>=elo(lose))chalk++; else ups.push({f,r,gap:Math.round(elo(lose)-elo(win))}); });
+  let chalk=0,decN=0; const ups=[];   // "decisive" = a winner emerged; knockout ties always count, by who advanced (pens incl.)
+  games.forEach(g=>{ const {f,r}=g; let win,lose;
+    if(g.ko){ if(!g.win) return; win=g.win; lose=(win===f.home?f.away:f.home); }
+    else { if(r[0]===r[1]) return; win=r[0]>r[1]?f.home:f.away; lose=r[0]>r[1]?f.away:f.home; }
+    decN++; if(elo(win)>=elo(lose))chalk++; else ups.push({f,r,gap:Math.round(elo(lose)-elo(win)),ko:g.ko}); });
   ups.sort((a,b)=>b.gap-a.gap);
   const byGF=teams.slice().sort((a,b)=>S[b].gf-S[a].gf||S[b].gd-S[a].gd);
   const def=teams.filter(c=>S[c].pld>=2).sort((a,b)=>S[a].ga-S[b].ga||S[b].pld-S[a].pld)[0];
@@ -1082,7 +1086,8 @@ function renderStats(){
   games.forEach(({f,r})=>{ [[f.home,r[0],r[1]],[f.away,r[1],r[0]]].forEach(p=>{ const k=cOf[p[0]]; if(!k)return; const x=cf[k];x.gp++;x.gf+=p[1];if(p[1]>p[2])x.w++;else if(p[1]<p[2])x.l++;else x.d++; }); });
   const confRows=Object.keys(cf).filter(k=>cf[k].gp).map(k=>({k,w:cf[k].w,d:cf[k].d,l:cf[k].l,gp:cf[k].gp,win:cf[k].w/cf[k].gp,gpg:cf[k].gf/cf[k].gp})).sort((a,b)=>b.win-a.win);
   const grpRate=Object.keys(grpG).map(g=>({g,r:grpG[g].g/grpG[g].n})).sort((a,b)=>b.r-a.r);
-  const mdTrend=Object.keys(mdG).sort().map(md=>`MD${md} <b>${(mdG[md].g/mdG[md].n).toFixed(2)}</b>`).join(' &rarr; ');
+  const PHORD=['MD1','MD2','MD3','R32','R16','QF','SF','3rd','Final'];
+  const mdTrend=Object.keys(mdG).sort((a,b)=>(PHORD.indexOf(a)+1||99)-(PHORD.indexOf(b)+1||99)).map(p=>`${p} <b>${(mdG[p].g/mdG[p].n).toFixed(2)}</b>`).join(' &rarr; ');
   const tn=c=>`${flE(c)} ${nmE(c)}`;
   const mf=x=>`${flE(x.f.home)} ${nmE(x.f.home)} <b>${x.r[0]}&ndash;${x.r[1]}</b> ${nmE(x.f.away)} ${flE(x.f.away)}`;
   const tile=(n,l,s)=>`<div class="stile"><div class="num">${n}</div><div class="lbl">${l}</div>${s?`<div class="sub">${s}</div>`:''}</div>`;
@@ -1108,7 +1113,7 @@ function renderStats(){
   h+= ups.length ? `<table class="dtbl"><thead><tr><th class="tl">Result</th><th>Elo gap</th></tr></thead><tbody>`+
     ups.slice(0,5).map(u=>`<tr><td class="tl">${mf(u)}</td><td><b>+${u.gap}</b></td></tr>`).join('')+`</tbody></table>`
     : `<div class="dhint" style="padding:0">No upsets yet &mdash; chalk all the way.</div>`;
-  h+=dh(`&#128202; Chalk rate: the stronger side (by Elo) has won <b>${dec.length?(100*chalk/dec.length).toFixed(0):0}%</b> of ${dec.length} decisive games &mdash; just ${ups.length} upset${ups.length===1?'':'s'}.`);
+  h+=dh(`&#128202; Chalk rate: the stronger side (by Elo) has won <b>${decN?(100*chalk/decN).toFixed(0):0}%</b> of ${decN} decisive games &mdash; just ${ups.length} upset${ups.length===1?'':'s'}.`);
   h+=`<div class="shdr">&#127758; By confederation</div>`+
     `<table class="dtbl"><thead><tr><th class="tl">Confederation</th><th>Games</th><th>W-D-L</th><th>Win %</th><th>Goals/game</th></tr></thead><tbody>`+
     confRows.map(c=>`<tr><td class="tl">${c.k}</td><td>${c.gp}</td><td>${c.w}-${c.d}-${c.l}</td><td><b>${(100*c.win).toFixed(0)}%</b></td><td>${c.gpg.toFixed(2)}</td></tr>`).join('')+`</tbody></table>`+

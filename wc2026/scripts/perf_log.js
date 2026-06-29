@@ -58,7 +58,9 @@ const grows = rows.slice().sort((a, b) => (a.f.date < b.f.date ? 1 : a.f.date > 
 md += `\n## Per match (latest first)\n\n| Date | # | Match | Result | ${order.map(m => A.MSHORT[m]).join(" | ")} |\n`;
 md += `|---|---|---|---|${order.map(() => ":-:").join("|")}|\n`;
 grows.forEach(r => {
-  md += `| ${r.f.date} | M${r.no} | ${A.nm(r.f.home)} – ${A.nm(r.f.away)} | ${r.r[0]}–${r.r[1]}${r.actual === "D" ? " (draw)" : ""} | ${order.map(m => mark(r.cells[m].res)).join(" | ")} |\n`;
+  const stage = r.ko ? ` ${r.f.round}` : "";          // R32/R16/… for knockout, blank for group games
+  const pens = r.pens ? ` (${r.pens[0]}–${r.pens[1]}p)` : "";
+  md += `| ${r.f.date} | M${r.no}${stage} | ${A.nm(r.f.home)} – ${A.nm(r.f.away)} | ${r.r[0]}–${r.r[1]}${pens}${!r.ko && r.actual === "D" ? " (draw)" : ""} | ${order.map(m => mark(r.cells[m].res)).join(" | ")} |\n`;
 });
 
 // ---- json ----
@@ -67,7 +69,7 @@ const json = {
   scoring: "pick win >60% / draw 40-60%, vs actual outcome",
   leaderboard: order.map(m => ({ key: m, model: A.METHOD_NAME[m], ok: tally[m].ok, miss: tally[m].miss, hitRate: +acc(tally[m]).toFixed(3) })),
   matches: grows.map(r => ({
-    no: r.no, date: r.f.date, home: A.nm(r.f.home), away: A.nm(r.f.away), score: r.r, actual: outc(r.actual),
+    no: r.no, date: r.f.date, stage: r.ko ? r.f.round : "group", home: A.nm(r.f.home), away: A.nm(r.f.away), score: r.r, actual: outc(r.actual),
     models: Object.fromEntries(order.map(m => [m, { winProb: +r.cells[m].p.toFixed(3), pick: r.cells[m].pick, correct: r.cells[m].res === "ok" }]))
   }))
 };
