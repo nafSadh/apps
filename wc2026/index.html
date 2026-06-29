@@ -173,12 +173,13 @@
   .binner.two .col.c2 .col-pad{justify-content:center;gap:6px}            /* final centred between the two semis */
   .binner.two .col-h{font-size:9px;letter-spacing:.5px;padding:5px 0 4px}
   .binner.two .match{margin:5px 0;border-radius:8px} .binner.two .m-venue{display:none}   /* drop venue; keep a tiny date annotation */
-  .binner.two .m-head{background:transparent;padding:2px 7px 0;justify-content:center} .binner.two .m-no,.binner.two .m-head .rinfo{display:none}
-  .binner.two .m-date{margin:0;font-size:8px;color:var(--mut2);letter-spacing:.4px}
+  .binner.two .m-head{background:transparent;padding:3px 7px 1px;justify-content:center;gap:4px;font-size:9px} .binner.two .m-no,.binner.two .m-head .rinfo{display:none}
+  .binner.two .m-stage{display:inline;color:var(--acc2);font-weight:800;letter-spacing:.5px} .binner.two .m-stage::after{content:"·";color:var(--mut2);font-weight:400;margin-left:4px}
+  .binner.two .m-date{margin:0;color:var(--mut);letter-spacing:.3px}
   .binner.two .slot{padding:7px 8px;font-size:11.5px;gap:7px} .binner.two .slot .flag{width:28px;height:19px}
   .binner.two .bseed{font-size:8.5px;font-weight:800;padding:0 3px}
   /* flag-forward inner rounds (R16/QF/SF/Final) — just the two competing flags, winner ticked */
-  .binner.two .match.kin .nm,.binner.two .match.kin .bseed,.binner.two .match.kin .m-head{display:none}
+  .binner.two .match.kin .nm,.binner.two .match.kin .bseed{display:none}   /* inner rounds: flags only, but keep the stage·date header */
   .binner.two .match.kin .slot{position:relative;justify-content:center;padding:9px 5px} .binner.two .match.kin .slot .flag{width:44px;height:30px}
   .binner.two .match.kin .tick{position:absolute;right:5px;top:50%;transform:translateY(-50%)}
   /* group seed on the OUTER edge, flag on the INNER edge — winners' flags face the centre on both wings */
@@ -191,7 +192,7 @@
   .brkbtn:hover{border-color:var(--acc);color:var(--ink)} .brkbtn.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
   .match{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:6px 0;overflow:hidden;transition:opacity .15s}
   .m-head{display:flex;align-items:center;gap:6px;padding:4px 8px;font-size:9.5px;background:var(--bg2)}
-  .m-no{color:var(--mut);font-weight:800} .m-date{color:var(--mut2);margin-left:auto}
+  .m-no{color:var(--mut);font-weight:800} .m-date{color:var(--mut2);margin-left:auto} .m-stage{display:none;font-family:var(--mono)}
   .slot{display:flex;align-items:center;gap:7px;padding:6px 8px;cursor:pointer;font-size:13px;border-top:1px solid var(--line)}
   .slot:first-of-type{border-top:none} .slot.tbd{cursor:default;color:var(--mut2)}
   .slot .fl{font-size:15px;width:19px;text-align:center} .slot .nm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -838,7 +839,7 @@ function slotHTML(no,side){ const p=parts(no)[side], w=state.win[no];
     return `<div class="slot known ${cls}" data-adv="${no},${p}">${flImg(p)}<span class="nm">${nm(p)}</span>${sd}${tick}</div>`; }
   return `<div class="slot tbd"><span class="fl">·</span><span class="nm">${structLabel(no,side)}</span></div>`; }
 function cardHTML(no,extra){ const m=KMETA[no]; const p=parts(no); const dec=state.win[no]&&p[0]&&p[1];
-  return `<div class="match ${no>88?'kin':''} ${extra||''}" data-card="${no}"><div class="m-head"><span class="m-no">#${no}</span><span class="m-date">${m[0]}</span>${dec?`<span class="rinfo" data-ko="${no}">ⓘ</span>`:''}</div>`+
+  return `<div class="match ${no>88?'kin':''} ${extra||''}" data-card="${no}"><div class="m-head"><span class="m-no">#${no}</span><span class="m-stage">${m[3]}</span><span class="m-date">${m[0]}</span>${dec?`<span class="rinfo" data-ko="${no}">ⓘ</span>`:''}</div>`+
     slotHTML(no,0)+slotHTML(no,1)+`<div class="m-venue">${m[1]} · ${m[2]}</div></div>`; }
 function colHTML(title,order,extra,colClass){ let s=''; order.forEach(no=>s+=cardHTML(no,extra)); return `<div class="col ${colClass||''}"><div class="col-h">${title}</div><div class="col-pad">${s}</div></div>`; }
 const centreCol=cls=>`<div class="col cfinal ${cls}"><div class="col-h">Final</div><div class="col-pad">`+cardHTML(104,'final')+`<div class="third-lbl">3rd-place play-off</div>`+cardHTML(103,'third')+`</div></div>`;
