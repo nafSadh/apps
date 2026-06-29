@@ -176,6 +176,8 @@
   .slot.known:hover{background:var(--card2)} .slot.win{background:linear-gradient(90deg,rgba(251,191,36,.16),transparent)}
   .slot.win .nm{font-weight:700;color:var(--gold)} .slot.win .tick{color:var(--gold)} .slot.lose{opacity:.42} .slot.lose .nm{text-decoration:line-through}
   .tick{font-size:11px} .m-venue{font-size:9.5px;color:var(--mut2);padding:4px 8px;border-top:1px dashed var(--line)}
+  .slot .bseed{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.3px;color:var(--mut2);background:var(--card2);border:1px solid var(--line);border-radius:4px;padding:0 4px;flex:0 0 auto}
+  .slot.win .bseed{color:var(--gold);border-color:color-mix(in srgb,var(--gold),transparent 55%)}
   .match.final{border-color:var(--gold)} .match.final .m-no{color:var(--gold)} .match.third{opacity:.9;border-style:dashed}
   .third-lbl{font-size:9.5px;color:var(--mut2);text-transform:uppercase;letter-spacing:1px;text-align:center;margin:10px 0 2px}
   path.cpath{stroke:var(--line);stroke-width:1.8;fill:none} path.cpath.loser{stroke-dasharray:4 4;stroke:var(--mut2);opacity:.55}
@@ -344,8 +346,8 @@
   <div id="view-sims" style="display:none">
     <h2 style="margin:4px 0 2px;font-size:18px">Sim Forecasts Table</h2>
     <div id="stabs" class="dtabs">
-      <button class="dtab on" data-stab="group">Group stage</button>
-      <button class="dtab" data-stab="ko">Knockout · alternatives</button>
+      <button class="dtab" data-stab="ko">Knockout</button>
+      <button class="dtab" data-stab="group">Group stage</button>
     </div>
     <div id="simspanel"></div>
   </div>
@@ -514,7 +516,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"group", koTeam:"", koModel:"blend" };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"ko", koTeam:"", koModel:"blend" };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
@@ -781,7 +783,8 @@ function structLabel(no,side){ if(no<=88){ const s=R32SLOT[no][side]; if(s[0]===
   if(no===103) return "Loser #"+[101,102][side]; return "Winner #"+FEED[no][side]; }
 function slotHTML(no,side){ const p=parts(no)[side], w=state.win[no];
   if(p){ const cls=w===p?'win':(w?'lose':''), tick=w===p?'<span class="tick">✓</span>':'';
-    return `<div class="slot known ${cls}" data-adv="${no},${p}"><span class="fl">${fl(p)}</span><span class="nm">${nm(p)}</span>${tick}</div>`; }
+    const sd=no<=88?`<span class="bseed" title="${structLabel(no,side)}">${koSeed(p)}</span>`:'';   // R32: group + finishing place
+    return `<div class="slot known ${cls}" data-adv="${no},${p}"><span class="fl">${fl(p)}</span><span class="nm">${nm(p)}</span>${sd}${tick}</div>`; }
   return `<div class="slot tbd"><span class="fl">·</span><span class="nm">${structLabel(no,side)}</span></div>`; }
 function cardHTML(no,extra){ const m=KMETA[no]; const p=parts(no); const dec=state.win[no]&&p[0]&&p[1];
   return `<div class="match ${extra||''}" data-card="${no}"><div class="m-head"><span class="m-no">#${no}</span><span class="m-date">${m[0]}</span>${dec?`<span class="rinfo" data-ko="${no}">ⓘ</span>`:''}</div>`+
@@ -1395,12 +1398,21 @@ function setView(v){ state.view=v;
   document.getElementById('view-stats').style.display = v==='stats'?'':'none';
   document.querySelectorAll('#topnav .tnav').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
   if(v==='data') renderData(); if(v==='acc') renderAcc(); if(v==='forecast') renderForecast(); if(v==='sims') renderSims(); if(v==='stats') renderStats();
-  if(('#'+v)!==location.hash){ try{ history.replaceState(null,'','#'+v); }catch(e){} }   // deep-linkable view
+  syncHash();
   window.scrollTo(0,0); }
+// deep-linkable view + subtab, e.g. #sims/ko, #data/h2h, #tournament
+const DSUBS=['ratings','h2h','log','form','src'];
+function curSub(v){ return v==='sims'?state.stab:(v==='data'?state.dtab:''); }
+function viewHash(v){ const s=curSub(v); return s?(v+'/'+s):v; }
+function syncHash(){ const h='#'+viewHash(state.view); if(h!==location.hash){ try{ history.replaceState(null,'',h); }catch(e){} } }
+function applyHash(){ const raw=location.hash.replace(/^#/,''); if(!raw) return; const sl=raw.indexOf('/'), v=sl<0?raw:raw.slice(0,sl), sub=sl<0?'':raw.slice(sl+1);
+  if(!document.getElementById('view-'+v)) return;
+  if(sub){ if(v==='sims'&&(sub==='ko'||sub==='group')) state.stab=sub; else if(v==='data'&&DSUBS.includes(sub)) state.dtab=sub; }
+  if(v!==state.view) setView(v); else if(v==='sims') renderSims(); else if(v==='data') renderData(); }
 document.getElementById('topnav').addEventListener('click',e=>{ const b=e.target.closest('.tnav'); if(!b||!b.dataset.view) return; setView(b.dataset.view); });
-window.addEventListener('hashchange',()=>{ const hv=location.hash.slice(1); if(hv && hv!==state.view && document.getElementById('view-'+hv)) setView(hv); });
-document.getElementById('dtabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.dtab=b.dataset.tab; renderData(); });
-document.getElementById('stabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.stab=b.dataset.stab; renderSims(); });
+window.addEventListener('hashchange', applyHash);
+document.getElementById('dtabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.dtab=b.dataset.tab; renderData(); syncHash(); });
+document.getElementById('stabs').addEventListener('click',e=>{ const b=e.target.closest('.dtab'); if(!b) return; state.stab=b.dataset.stab; renderSims(); syncHash(); });
 document.getElementById('dpanel').addEventListener('click',e=>{ const th=e.target.closest('th[data-sort]'); if(!th) return;
   if(state.dtab==="log"){ state.logAsc=!state.logAsc; renderData(); return; }
   const k=th.dataset.sort;
@@ -1413,7 +1425,7 @@ methodSel.value=state.method; onMethod();   // default selection: Head-to-head (
 renderSources();
 simulate();                                  // auto-run the default sim (England champion under H2H all-time)
 loadData(false);
-(function(){ const hv=location.hash.slice(1); if(hv && hv!==state.view && document.getElementById('view-'+hv)) setView(hv); })();   // open the deep-linked view (#forecast, #data, #acc)
+applyHash();   // open the deep-linked view + subtab (#sims/ko, #data/h2h, #forecast, …)
 function loadLive(){ fetch('live.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{ if(!d) return;
   const lkGrew=d.locked && Object.keys(d.locked).length>Object.keys(LOCKED).length;        // newly full-time group results
   const koGrew=Array.isArray(d.ko) && d.ko.length>(Array.isArray(KORAW)?KORAW.length:0);    // newly full-time knockout results
