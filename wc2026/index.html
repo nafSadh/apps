@@ -167,6 +167,11 @@
   .col-h{position:sticky;top:0;z-index:5;background:var(--bg);text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:var(--ink);font-weight:700;padding:7px 0 6px;margin-bottom:2px;box-shadow:0 1px 0 var(--line-hi)}
   @media (max-width:1300px){ .bracket{overflow-x:auto;overflow-y:hidden} .col-h{position:static;box-shadow:none;padding:0} }
   .col-pad{display:flex;flex-direction:column;justify-content:space-around;height:100%}
+  .binner.two{gap:30px} .binner.two .col{min-width:182px} .binner.two .col.cfinal{min-width:200px}   /* two-sided has 9 columns — slim them so less horizontal scroll */
+  .binner.two .col.c2 .col-pad{justify-content:center;gap:8px}   /* two-sided: final sits centred between the two semis */
+  .brkctl{margin:0 0 8px}
+  .brkbtn{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;background:var(--card2);border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:5px 11px;cursor:pointer}
+  .brkbtn:hover{border-color:var(--acc);color:var(--ink)} .brkbtn.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
   .match{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:6px 0;overflow:hidden;transition:opacity .15s}
   .m-head{display:flex;align-items:center;gap:6px;padding:4px 8px;font-size:9.5px;background:var(--bg2)}
   .m-no{color:var(--mut);font-weight:800} .m-date{color:var(--mut2);margin-left:auto}
@@ -328,6 +333,7 @@
   </div>
 
   <h2 class="sec">① Knockout bracket — click winners to advance <span class="cnt">— the road to the MetLife final (group seeds fill in as results lock)</span></h2>
+  <div class="brkctl"><button id="brk2btn" class="brkbtn" onclick="toggleBrk2()">⇄ Two-sided bracket</button></div>
   <div class="bracket" id="bracket"></div>
   <div class="mtip" id="mtip"></div>
 
@@ -517,7 +523,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"ko", koTeam:"", koModel:"blend" };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"ko", koTeam:"", koModel:"blend", brk2:false };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
@@ -791,15 +797,27 @@ function cardHTML(no,extra){ const m=KMETA[no]; const p=parts(no); const dec=sta
   return `<div class="match ${extra||''}" data-card="${no}"><div class="m-head"><span class="m-no">#${no}</span><span class="m-date">${m[0]}</span>${dec?`<span class="rinfo" data-ko="${no}">ⓘ</span>`:''}</div>`+
     slotHTML(no,0)+slotHTML(no,1)+`<div class="m-venue">${m[1]} · ${m[2]}</div></div>`; }
 function colHTML(title,order,extra){ let s=''; order.forEach(no=>s+=cardHTML(no,extra)); return `<div class="col"><div class="col-h">${title}</div><div class="col-pad">${s}</div></div>`; }
+const centreCol=cls=>`<div class="col cfinal ${cls}"><div class="col-h">Final</div><div class="col-pad">`+cardHTML(104,'final')+`<div class="third-lbl">3rd-place play-off</div>`+cardHTML(103,'third')+`</div></div>`;
 function renderBracket(){
-  let h=colHTML('Round of 32',ORD32)+colHTML('Round of 16',ORD16)+colHTML('Quarter-finals',ORDQF)+colHTML('Semi-finals',ORDSF);
-  h+=`<div class="col cfinal"><div class="col-h">Final</div><div class="col-pad">`+cardHTML(104,'final')+`<div class="third-lbl">3rd-place play-off</div>`+cardHTML(103,'third')+`</div></div>`;
+  let h;
+  if(state.brk2){   // two-sided: left half flows in, final in the centre, right half mirrors back out
+    h = colHTML('Round of 32',ORD32.slice(0,8))+colHTML('Round of 16',ORD16.slice(0,4))+colHTML('Quarter-finals',ORDQF.slice(0,2))+colHTML('Semi-final',[101])
+      + centreCol('c2')
+      + colHTML('Semi-final',[102])+colHTML('Quarter-finals',ORDQF.slice(2,4))+colHTML('Round of 16',ORD16.slice(4,8))+colHTML('Round of 32',ORD32.slice(8,16));
+  } else {
+    h = colHTML('Round of 32',ORD32)+colHTML('Round of 16',ORD16)+colHTML('Quarter-finals',ORDQF)+colHTML('Semi-finals',ORDSF)+centreCol('');
+  }
+  binner.className='binner'+(state.brk2?' two':'');
   binner.innerHTML=h; binner.insertBefore(bsvg,binner.firstChild); drawConn(); applyTracking();
 }
+function toggleBrk2(){ state.brk2=!state.brk2; renderBracket();
+  const b=document.getElementById('brk2btn'); if(b){ b.textContent=state.brk2?'▤ Single column':'⇄ Two-sided bracket'; b.classList.toggle('on',state.brk2); } }
 const cardEl=no=>binner.querySelector(`.match[data-card="${no}"]`);
 function drawConn(){ const ir=binner.getBoundingClientRect(); bsvg.setAttribute('width',binner.offsetWidth); bsvg.setAttribute('height',binner.offsetHeight); let p='';
   function link(a,b,loser){ const fe=cardEl(a),te=cardEl(b); if(!fe||!te)return; const fr=fe.getBoundingClientRect(),tr=te.getBoundingClientRect();
-    const x1=fr.right-ir.left,y1=fr.top-ir.top+fr.height/2,x2=tr.left-ir.left,y2=tr.top-ir.top+tr.height/2,mx=(x1+x2)/2;
+    const fLeft=fr.left<=tr.left;                                   // feeder left of target (single + left half) or right of it (mirrored right half)
+    const x1=(fLeft?fr.right:fr.left)-ir.left, x2=(fLeft?tr.left:tr.right)-ir.left;
+    const y1=fr.top-ir.top+fr.height/2,y2=tr.top-ir.top+tr.height/2,mx=(x1+x2)/2;
     p+=`<path class="cpath${loser?' loser':''}" d="M${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}"/>`; }
   Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>link(f,+to,false))); [101,102].forEach(f=>link(f,103,true)); bsvg.innerHTML=p; }
 
