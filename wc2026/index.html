@@ -1244,7 +1244,8 @@ function renderToday(){
   if(!today) today=dates[dates.length-1]||'';                                                                    // all done → last day
   if(!today){ el.innerHTML=''; return; }
   const di=dates.indexOf(today), yest=di>0?dates[di-1]:'', morrow=di<dates.length-1?dates[di+1]:'';
-  const dayOf=d=>all.filter(f=>f.date===d).sort((a,b)=>a.no-b.no), tday=dayOf(today);
+  const prog=f=>(LOCKSET.has(f.no)||KOSET.has(f.no))?0:(LIVE[f.no]?1:2);   // knockout #s follow the bracket, not kickoff time —
+  const dayOf=d=>all.filter(f=>f.date===d).sort((a,b)=>prog(a)-prog(b)||a.no-b.no), tday=dayOf(today);   // so order by progress: played → live → upcoming
   const roundOf=d=>{ const r=dayOf(d).map(f=>f.round).find(Boolean); return r?` <span class="mut">· ${ROUNDNAME[r]||r}</span>`:''; };
   const anyLive=tday.some(f=>LIVE[f.no]), started=tday.some(f=>LOCKSET.has(f.no)||KOSET.has(f.no)||LIVE[f.no]);
   const pfx=anyLive?'<span class="livedot"></span>Today':started?'Today':'Up next';
