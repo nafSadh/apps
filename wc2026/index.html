@@ -268,6 +268,7 @@
   .todayrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 4px}
   .tcard{font-size:12.5px;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:6px 11px;display:flex;align-items:center;gap:8px;font-family:var(--sans)} .tcard b{color:var(--ink);font-family:var(--mono)}
   .tcard.live{border-color:var(--bad);box-shadow:inset 0 0 0 1px var(--bad)} .tcard.ft{opacity:.7}
+  .tcard[data-card]{cursor:help;transition:border-color .12s} .tcard[data-card]:hover{border-color:var(--acc)}
   .tg{font-family:var(--mono);font-size:8.5px;text-transform:uppercase;letter-spacing:.5px;padding:2px 6px;border-radius:10px;white-space:nowrap}
   .tgl{background:var(--bad);color:#fff;animation:livepulse 1.4s infinite} .tgf{background:var(--line);color:var(--mut2)} .tgs{color:var(--mut2);border:1px solid var(--line)}
   .livedot{width:8px;height:8px;border-radius:50%;background:var(--bad);display:inline-block;animation:livepulse 1.4s infinite}
@@ -924,13 +925,17 @@ function renderRadial(host){
 // sim-info tooltip: every model's win-prob for a knockout match (shared by classic-card + radial-badge hover)
 function pbar(p,ca,cb){ const a=Math.round(p*100); return `<span class="pbar"><i style="width:${a}%;background:${ca}"></i><i style="width:${100-a}%;background:${cb}"></i></span>`; }
 function simTip(no){
-  const km=KMETA[no]; if(!km) return ''; const p=parts(no); if(!p[0]&&!p[1]) return '';
-  if(!p[0]||!p[1]){ const t=p[0]||p[1]; return `<div class="tiph">${km[3]} · ${km[0]}</div><div class="tipm">${flImg(t)} ${nm(t)} <span class="tipv">vs TBD</span></div>`; }
-  const a=p[0],b=p[1],ca=GC[grp(a)],cb=GC[grp(b)];
+  const f=fixObj(no); if(!f) return ''; const a=f.home,b=f.away; if(!a&&!b) return '';
+  const stage=f.ko?(ROUNDNAME[f.round]||f.round):`Group ${grp(a||b)}`, date=f.date?fdate(f.date):'';
+  const head=`<div class="tiph">${stage}${date?` · ${date}`:''}</div>`;
+  if(!a||!b){ const t=a||b; return `${head}<div class="tipm">${flImg(t)} ${nm(t)} <span class="tipv">vs TBD</span></div>`; }
+  const ca=GC[grp(a)],cb=GC[grp(b)];
   const save=state.method; const rows=CONS_METHODS.map(m=>{ state.method=m; return {m,p:modelProb(a,b)}; }); state.method=save;
   const cons=rows.reduce((s,r)=>s+r.p,0)/rows.length, c100=Math.round(cons*100);
-  let h=`<div class="tiph">${ROUNDNAME[km[3]]||km[3]} · ${km[0]}</div><div class="tipm">${flImg(a)} ${nm(a)} <span class="tipv">v</span> ${nm(b)} ${flImg(b)}</div>`;
-  if(KOSET.has(no)&&KORES[no]){ const r=KORES[no],pn=KOPEN[no]; h+=`<div class="tipres">FT ${r[0]}–${r[1]}${pn?` (${pn[0]}–${pn[1]}p)`:''} · ${nm(KOWIN[no])} through</div>`; }
+  let h=`${head}<div class="tipm">${flImg(a)} ${nm(a)} <span class="tipv">v</span> ${nm(b)} ${flImg(b)}</div>`;
+  const lk=f.ko?(KOSET.has(no)?KORES[no]:null):(LOCKSET.has(no)?LOCKED[no]:null);
+  if(lk){ const pn=f.ko?KOPEN[no]:null, win=f.ko?KOWIN[no]:(lk[0]>lk[1]?a:lk[1]>lk[0]?b:null);
+    h+=`<div class="tipres">FT ${lk[0]}–${lk[1]}${pn?` (${pn[0]}–${pn[1]}p)`:''}${win?` · ${nm(win)} ${f.ko?'through':'win'}`:' · draw'}</div>`; }
   else if(state.win[no]&&state.koUser.has(no)){ h+=`<div class="tipres" style="color:var(--acc2)">your pick: ${nm(state.win[no])}</div>`; }
   h+=`<div class="tipcon">Consensus → <b>${nm(cons>=.5?a:b)} ${Math.max(c100,100-c100)}%</b></div><div class="pbar big"><i style="width:${c100}%;background:${ca}"></i><i style="width:${100-c100}%;background:${cb}"></i></div>`;
   h+=`<table class="tipt">`+rows.map(r=>{ const pa=Math.round(r.p*100); return `<tr><td>${MSHORT[r.m]}</td><td>${pbar(r.p,ca,cb)}</td><td>${pa}–${100-pa}</td></tr>`; }).join('')+`</table>`;
@@ -1400,7 +1405,7 @@ function dayCards(day){ return day.map(f=>{ const lv=LIVE[f.no], lk=LOCKSET.has(
     if(lv){ cls=' live'; tag=`<span class="tg tgl">LIVE${lv.min?" "+lv.min+"’":""}</span>`; score=`<b>${lv.h}–${lv.a}</b>`; }
     else if(lk){ cls=' ft'; tag='<span class="tg tgf">FT</span>'; const pen=KOPEN[f.no]?` <span class="mut">(${KOPEN[f.no][0]}–${KOPEN[f.no][1]}&thinsp;p)</span>`:''; score=`<b>${lk[0]}–${lk[1]}</b>${pen}`; }
     else { tag='<span class="tg tgs">—</span>'; score='<span class="mut">v</span>'; }
-    return `<div class="tcard${cls}">${tcLabel(f.no,0,f.home)} ${score} ${tcLabel(f.no,1,f.away)} ${tag}</div>`; }).join(''); }
+    return `<div class="tcard${cls}" data-card="${f.no}">${tcLabel(f.no,0,f.home)} ${score} ${tcLabel(f.no,1,f.away)} ${tag}</div>`; }).join(''); }
 function renderToday(){
   const el=document.getElementById('today'); if(!el) return;
   const all=allFixtures(), dates=[...new Set(all.map(f=>f.date).filter(Boolean))].sort();
@@ -1503,9 +1508,11 @@ document.addEventListener('mouseover',e=>{ if(!e.target.closest) return;
   if(ri){ const k='i'+(ri.dataset.ko??('g'+ri.dataset.grp)); if(k!==_tipKey){ const r=ri.dataset.ko!==undefined?koReason(+ri.dataset.ko):(ri.dataset.grp!==undefined?grpReason(+ri.dataset.grp):''); if(r){ showTip(ri,r); _tipKey=k; } } return; }
   const rb=e.target.closest('.rbadge.has');
   if(rb&&rb.dataset.adv){ const no=rb.dataset.adv.split(',')[0], k='b'+rb.dataset.team+no; if(k!==_tipKey){ const h=simTip(+no); if(h){ showTip(rb,h); _tipKey=k; } } return; }
+  const tc=e.target.closest('.tcard[data-card]');
+  if(tc){ const k='t'+tc.dataset.card; if(k!==_tipKey){ const h=simTip(+tc.dataset.card); if(h){ showTip(tc,h); _tipKey=k; } } return; }
   const mc=e.target.closest('.binner .match[data-card]');
   if(mc){ const k='m'+mc.dataset.card; if(k!==_tipKey){ const h=simTip(+mc.dataset.card); if(h){ showTip(mc,h); _tipKey=k; } } return; } });
-document.addEventListener('mouseout',e=>{ if(!e.target.closest) return; const o=e.target.closest('.rinfo,.rbadge.has,.binner .match[data-card]');
+document.addEventListener('mouseout',e=>{ if(!e.target.closest) return; const o=e.target.closest('.rinfo,.rbadge.has,.binner .match[data-card],.tcard[data-card]');
   if(o){ const to=e.relatedTarget; if(!to||!o.contains(to)){ hideTip(); _tipKey=null; } } });
 window.addEventListener('resize',()=>{ drawConn(); applyTracking(); hideTip(); });
 window.addEventListener('load',()=>{ drawConn(); applyTracking(); setTimeout(()=>{drawConn();applyTracking();},250); });
