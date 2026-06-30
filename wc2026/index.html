@@ -204,6 +204,32 @@
   .third-lbl{font-size:9.5px;color:var(--mut2);text-transform:uppercase;letter-spacing:1px;text-align:center;margin:10px 0 2px}
   path.cpath{stroke:var(--line);stroke-width:1.8;fill:none} path.cpath.loser{stroke-dasharray:4 4;stroke:var(--mut2);opacity:.55}
   .binner.tracking .match:not(.lit){opacity:.4} .clash{position:absolute;top:3px;right:4px;font-size:10px;z-index:3}
+  /* ---- radial "circle of life" bracket — 32 nations ring the trophy, winners spiral inward ---- */
+  .radial{position:relative;width:100%;max-width:660px;aspect-ratio:1/1;margin:2px auto 12px;
+    background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--gold),transparent 86%) 0%,transparent 40%)}
+  .rconn{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
+  .rconn .rring{fill:none;stroke:var(--line);stroke-width:1.2;opacity:.16}
+  .rconn .redge{fill:none;stroke:var(--line);stroke-width:2;opacity:.32;stroke-linecap:round}
+  .rconn .redge.won{stroke-width:5;opacity:1;stroke-linecap:round}
+  .rconn .rlbl{fill:var(--mut);font-family:var(--mono);font-size:15px;font-weight:700;text-anchor:middle;letter-spacing:.5px;opacity:.5}
+  .rbadge{position:absolute;transform:translate(-50%,-50%);aspect-ratio:1/1;border-radius:50%;padding:0;
+    border:2px solid var(--rg,var(--line));background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.45);
+    display:flex;align-items:center;justify-content:center;overflow:visible;cursor:pointer;z-index:2;
+    transition:transform .12s ease,filter .12s ease,box-shadow .12s ease}
+  .rbadge .flag{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;box-shadow:none}
+  .rbadge .fl{font-size:18px;width:auto}
+  .rbadge.has:hover,.rbadge.has:focus-visible{transform:translate(-50%,-50%) scale(1.22);z-index:9;border-color:var(--acc);outline:none}
+  .rbadge.out{filter:grayscale(.8) brightness(.7);opacity:.5;border-color:var(--line)!important;box-shadow:none}
+  .rbadge.tbd{cursor:default;border-style:dashed;background:color-mix(in srgb,var(--card),transparent 45%)}
+  .radial.tracking .rbadge.has:not(.lit){opacity:.3;filter:grayscale(.55)}
+  .radial.tracking .rbadge.lit{border-color:var(--acc)!important;box-shadow:0 0 0 2px var(--acc),0 0 12px -1px var(--acc);z-index:6}
+  .rseedlbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:800;font-size:8.5px;letter-spacing:.2px;pointer-events:none;white-space:nowrap;z-index:1;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg)}
+  .rtrophy{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:4}
+  .rtrophy .cup{font-size:33px;line-height:1;filter:drop-shadow(0 0 9px color-mix(in srgb,var(--gold),transparent 30%))}
+  .rtrophy .champ{display:block;margin-top:1px}
+  .rtrophy .champ .flag{width:30px;height:21px;border-radius:3px;box-shadow:0 0 0 1.5px var(--gold)}
+  .rtrophy .champ-nm{display:block;font-family:var(--mono);font-size:9px;font-weight:800;color:var(--gold);letter-spacing:.3px;margin-top:1px}
+  @media (max-width:680px){ .radial{max-width:none} .rconn .rlbl{font-size:19px} .rseedlbl{font-size:7.5px} .rtrophy .cup{font-size:26px} }
 
   footer{margin-top:30px;font-size:11.5px;color:var(--mut2);line-height:1.7;border-top:1px solid var(--line);padding-top:14px}
   footer a{color:var(--acc2);text-decoration:none} footer a:hover{color:var(--acc)}
@@ -373,7 +399,7 @@
   </div>
 
   <h2 class="sec">① Knockout bracket — click winners to advance <span class="cnt">— the road to the MetLife final (group seeds fill in as results lock)</span></h2>
-  <div class="brkctl"><button id="brk2btn" class="brkbtn on" onclick="toggleBrk2()">▤ Single column</button></div>
+  <div class="brkctl"><button id="brkviewbtn" class="brkbtn on" onclick="toggleRadial()">▦ Classic bracket</button><button id="brk2btn" class="brkbtn on" style="display:none" onclick="toggleBrk2()">▤ Single column</button></div>
   <div class="bracket" id="bracket"></div>
   <div class="mtip" id="mtip"></div>
 
@@ -566,7 +592,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"ko", koTeam:"", koModel:"blend", brk2:true };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"ko", koTeam:"", koModel:"blend", brk2:true, radial:true };
 let STATS={}, PGZ={}, FORMY={}, H2H={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
@@ -841,7 +867,44 @@ function cardHTML(no,extra){ const m=KMETA[no]; const p=parts(no); const dec=sta
     slotHTML(no,0)+slotHTML(no,1)+`<div class="m-venue">${m[1]} · ${m[2]}</div></div>`; }
 function colHTML(title,order,extra,colClass){ let s=''; order.forEach(no=>s+=cardHTML(no,extra)); return `<div class="col ${colClass||''}"><div class="col-h">${title}</div><div class="col-pad">${s}</div></div>`; }
 const centreCol=cls=>`<div class="col cfinal ${cls}"><div class="col-h">Final</div><div class="col-pad">`+cardHTML(104,'final')+`<div class="third-lbl">3rd-place play-off</div>`+cardHTML(103,'third')+`</div></div>`;
+/* ---- radial "circle of life": 32 nations ring the trophy, winners spiral inward (SVG viewBox + %-positioned badges → auto-scales, no resize handler) ---- */
+let radialEl=null;
+const RAD=[452,358,266,180,98];                 // ring radii R32→finalists, 1000-unit space
+const RBS=[6.3,6.7,7.4,8.2,9.3];                // badge diameter, % of container
+const RADV=[ORD32,ORD16,ORDQF,ORDSF,[104]];     // match each ring's badge plays NEXT (slot j → index j>>1)
+const RWIN=[ORD32,ORD16,ORDQF,ORDSF];           // winners of these populate rings 1..4
+const RLBL=['R32','R16','QF','SF'];
+function rAng(L,j){ const N=32>>L,half=N/2; return (j<half)?180+(j+0.5)*360/N:(j-half+0.5)*360/N; }   // deg clockwise from 12 o'clock; left half draws on the left
+function rPolar(deg,r){ const a=deg*Math.PI/180; return [500+r*Math.sin(a),500-r*Math.cos(a)]; }
+function rXY(L,j){ return rPolar(rAng(L,j),RAD[L]); }
+function rOcc(L,j){ return L===0?parts(ORD32[j>>1])[j&1]:winnerOf(RWIN[L-1][j]); }   // team in ring L slot j (R32 entrant, or winner that reached here)
+function renderRadial(host){
+  if(!radialEl){ radialEl=document.createElement('div'); radialEl.className='radial';
+    radialEl.addEventListener('click',e=>{ const b=e.target.closest('.rbadge.has'); if(b&&b.dataset.adv){ const [no,code]=b.dataset.adv.split(','); advance(+no,code); } }); }
+  if(radialEl.parentNode!==host) host.appendChild(radialEl);
+  const sel=new Set(state.sel);
+  let rings='',edges='',labels='',badges='',seeds='';
+  for(let L=0;L<5;L++) rings+=`<circle class="rring" cx="500" cy="500" r="${RAD[L]}"/>`;
+  for(let L=0;L<4;L++){ const [lx,ly]=rPolar(0,RAD[L]); labels+=`<text class="rlbl" x="${lx.toFixed(0)}" y="${(ly+(L?16:-7)).toFixed(0)}">${RLBL[L]}</text>`; }
+  for(let L=0;L<5;L++){ const N=32>>L; for(let j=0;j<N;j++){ const t=rOcc(L,j),[x1,y1]=rXY(L,j),[x2,y2]=L<4?rXY(L+1,j>>1):[500,500];
+    const pt=L<4?rOcc(L+1,j>>1):winnerOf(104), won=t&&t===pt;
+    edges+=`<path class="redge${won?' won':''}" d="M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}"${won?` stroke="${GC[grp(t)]}"`:''}/>`; } }
+  for(let L=0;L<5;L++){ const N=32>>L; for(let j=0;j<N;j++){ const t=rOcc(L,j),[x,y]=rXY(L,j),m=RADV[L][j>>1],w=winnerOf(m);
+    const elim=t&&w&&w!==t, g=t&&grp(t), lit=sel.size&&t&&sel.has(t);
+    badges+=`<button type="button" class="rbadge ${t?'has':'tbd'}${elim?' out':''}${lit?' lit':''}" style="left:${(x/10).toFixed(2)}%;top:${(y/10).toFixed(2)}%;width:${RBS[L]}%;--rg:${t?GC[g]:'var(--line)'}"${t?` data-adv="${m},${t}" data-team="${t}" title="${nm(t)} · ${koSeed(t)} · ${KMETA[m][3]}"`:' tabindex="-1" aria-hidden="true"'}>${t?flImg(t):''}</button>`;
+    if(L===0&&t){ const [sx,sy]=rPolar(rAng(0,j),491); seeds+=`<span class="rseedlbl" style="left:${(sx/10).toFixed(2)}%;top:${(sy/10).toFixed(2)}%;color:${GC[g]}">${koSeed(t)}</span>`; } } }
+  const champ=winnerOf(104);
+  const trophy=`<div class="rtrophy"><span class="cup">🏆</span>${champ?`<span class="champ">${flImg(champ)}<span class="champ-nm">${nm(champ)}</span></span>`:''}</div>`;
+  radialEl.classList.toggle('tracking',sel.size>0);
+  radialEl.innerHTML=`<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${rings}${edges}${labels}</svg>${badges}${seeds}${trophy}`;
+}
 function renderBracket(){
+  const vb=document.getElementById('brkviewbtn'); if(vb) vb.textContent=state.radial?'▦ Classic bracket':'◎ Radial bracket';
+  const b2=document.getElementById('brk2btn'); if(b2) b2.style.display=state.radial?'none':'';
+  const host=document.getElementById('bracket');
+  if(state.radial){ if(binner.parentNode===host) host.removeChild(binner); renderRadial(host); return; }
+  if(radialEl&&radialEl.parentNode===host) host.removeChild(radialEl);
+  if(binner.parentNode!==host) host.appendChild(binner);
   let h;
   if(state.brk2){   // two-sided: left half flows in, final in the centre, right half mirrors back out
     h = colHTML('R32',ORD32.slice(0,8))+colHTML('R16',ORD16.slice(0,4))+colHTML('QF',ORDQF.slice(0,2))+colHTML('SF',[101])
@@ -854,6 +917,7 @@ function renderBracket(){
   binner.innerHTML=h; binner.insertBefore(bsvg,binner.firstChild); drawConn(); applyTracking();
   const b=document.getElementById('brk2btn'); if(b){ b.textContent=state.brk2?'▤ Single column':'⇄ Two-sided bracket'; b.classList.toggle('on',state.brk2); }
 }
+function toggleRadial(){ state.radial=!state.radial; renderBracket(); }
 function toggleBrk2(){ state.brk2=!state.brk2; renderBracket(); }
 const cardEl=no=>binner.querySelector(`.match[data-card="${no}"]`);
 function drawConn(){ const ir=binner.getBoundingClientRect(); bsvg.setAttribute('width',binner.offsetWidth); bsvg.setAttribute('height',binner.offsetHeight); let p='';
@@ -1328,7 +1392,7 @@ function setRes(no,hg,ag){ if(LOCKSET.has(no)) return; state.res[no]=[hg,ag]; st
 function clearRes(no){ if(LOCKSET.has(no)) return; delete state.res[no]; state.userset.delete(no); delete state.forced[FIXMAP[no].group]; refresh(); }
 function moveInGroup(g,i,d){ const cur=groupOrder(g).slice(), j=i+d; if(j<0||j>3) return; [cur[i],cur[j]]=[cur[j],cur[i]]; state.forced[g]=cur; refresh(); }
 function moveThird(i,d){ const a=state.thirds, j=i+d; if(j<0||j>=a.length) return; [a[i],a[j]]=[a[j],a[i]]; state.predicted=false; buildAlloc(); validateWins(); renderAll(); }
-function toggleTrack(c){ const i=state.sel.indexOf(c); if(i>=0) state.sel.splice(i,1); else { if(state.sel.length>=5) return; state.sel.push(c);} renderGroups(); applyTracking(); renderPaths(); }
+function toggleTrack(c){ const i=state.sel.indexOf(c); if(i>=0) state.sel.splice(i,1); else { if(state.sel.length>=5) return; state.sel.push(c);} renderGroups(); (state.radial?renderBracket():applyTracking()); renderPaths(); }
 function advance(no,code){ if(KOSET.has(no)) return;   // decided by a real result — not user-editable
   state.predicted=false; if(state.win[no]===code){ delete state.win[no]; state.koUser.delete(no); } else { state.win[no]=code; state.koUser.add(no); } validateWins(); renderBracket(); renderPaths(); renderChamp(); }
 
@@ -1346,7 +1410,7 @@ groupsEl.addEventListener('change',e=>{ const t=e.target; const no=t.dataset.gh|
   setRes(+no, gh===''?0:Math.max(0,+gh), ga===''?0:Math.max(0,+ga)); });
 thirdsEl.addEventListener('click',e=>{ const t=e.target; if(t.dataset.tup!==undefined) moveThird(+t.dataset.tup,-1); if(t.dataset.tdn!==undefined) moveThird(+t.dataset.tdn,1); });
 binner.addEventListener('click',e=>{ const s=e.target.closest('.slot.known'); if(!s) return; const [no,code]=s.dataset.adv.split(','); advance(+no,code); });
-tracksel.addEventListener('click',e=>{ if(e.target.dataset.untrack) toggleTrack(e.target.dataset.untrack); if(e.target.id==='b-clearsel'){ state.sel=[]; renderGroups(); applyTracking(); renderPaths(); } });
+tracksel.addEventListener('click',e=>{ if(e.target.dataset.untrack) toggleTrack(e.target.dataset.untrack); if(e.target.id==='b-clearsel'){ state.sel=[]; renderGroups(); (state.radial?renderBracket():applyTracking()); renderPaths(); } });
 document.getElementById('b-sim').onclick=simulate;
 document.getElementById('fc-run').onclick=runForecast;
 document.getElementById('fc-method').onchange=function(){
