@@ -229,6 +229,28 @@
   .rtrophy .champ .flag{width:30px;height:21px;border-radius:3px;box-shadow:0 0 0 1.5px var(--gold)}
   .rtrophy .champ-nm{display:block;font-family:var(--mono);font-size:9px;font-weight:800;color:var(--gold);letter-spacing:.3px;margin-top:1px}
   @media (max-width:680px){ .radial{max-width:none} .rconn .rlbl{font-size:19px} .rseedlbl{font-size:7.5px} .rtrophy .cup{font-size:26px} }
+  .rseedlbl b{font-weight:800} .rseedlbl em{font-style:normal;opacity:.7;font-size:.82em}
+  /* ambient: trophy + champion gently pulse; winner paths draw in once when you hit Simulate */
+  .rtrophy .cup{animation:rcup 2.8s ease-in-out infinite}
+  @keyframes rcup{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .rtrophy .champ .flag{animation:rchamp 2.8s ease-in-out infinite}
+  @keyframes rchamp{0%,100%{box-shadow:0 0 0 1.5px var(--gold)}50%{box-shadow:0 0 0 1.5px var(--gold),0 0 13px -1px var(--gold)}}
+  .radial.anim .redge.won{stroke-dasharray:1;stroke-dashoffset:1;animation:rdraw .6s ease forwards;animation-delay:var(--rd,0s)}
+  @keyframes rdraw{to{stroke-dashoffset:0}}
+  @media (prefers-reduced-motion:reduce){ .rtrophy .cup,.rtrophy .champ .flag{animation:none} .radial.anim .redge.won{animation:none;stroke-dashoffset:0} }
+  /* sim-info tooltip (classic-card hover + radial-badge hover) */
+  .mtip .tiph{color:var(--mut2);font-size:9px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px}
+  .mtip .tipm{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink);font-weight:600;margin-bottom:4px}
+  .mtip .tipm .flag{width:21px;height:14px} .mtip .tipm .tipv{color:var(--mut2);font-weight:400;font-size:10px}
+  .mtip .tipres{font-size:10.5px;color:var(--gold);font-weight:600;margin-bottom:4px}
+  .mtip .tipcon{font-size:11px;color:var(--ink);margin-bottom:3px}
+  .mtip .pbar{display:flex;height:5px;border-radius:3px;overflow:hidden;background:var(--card3)}
+  .mtip .pbar.big{height:8px;margin-bottom:5px} .mtip .pbar i{display:block;height:100%}
+  .mtip .tipt{border-collapse:collapse;width:100%;font-size:10px;margin-top:1px}
+  .mtip .tipt td{padding:1.5px 0;vertical-align:middle}
+  .mtip .tipt td:first-child{color:var(--mut);font-family:var(--mono);font-size:8.5px;text-transform:uppercase;width:40px}
+  .mtip .tipt td:nth-child(2){width:76px;padding:0 7px}
+  .mtip .tipt td:last-child{color:var(--mut2);font-family:var(--mono);font-size:8.5px;text-align:right;white-space:nowrap}
 
   footer{margin-top:30px;font-size:11.5px;color:var(--mut2);line-height:1.7;border-top:1px solid var(--line);padding-top:14px}
   footer a{color:var(--acc2);text-decoration:none} footer a:hover{color:var(--acc)}
@@ -789,7 +811,7 @@ function simulate(){
   seedKoWins();                                                  // real knockout results are fixed — keep them
   KO_ORDER.forEach(no=>{ if(state.win[no]) return;               // skip slots already decided by a real result
     const p=parts(no); if(p[0]&&p[1]) state.win[no]=predWin(p[0],p[1],u); });
-  validateWins(); state.predicted=true; renderAll();
+  validateWins(); state.predicted=true; radialAnim=true; renderAll();   // arm the one-shot winner-path draw-in
 }
 // Reset: back to today's real results (28 played games locked), clears everything else.
 function resetAll(){ state.res=Object.assign({},LOCKED); state.userset=new Set(); state.forced={}; state.win={}; state.koUser=new Set(); state.predicted=false; recompute(); seedKoWins(); renderAll(); }
@@ -867,8 +889,8 @@ function cardHTML(no,extra){ const m=KMETA[no]; const p=parts(no); const dec=sta
 function colHTML(title,order,extra,colClass){ let s=''; order.forEach(no=>s+=cardHTML(no,extra)); return `<div class="col ${colClass||''}"><div class="col-h">${title}</div><div class="col-pad">${s}</div></div>`; }
 const centreCol=cls=>`<div class="col cfinal ${cls}"><div class="col-h">Final</div><div class="col-pad">`+cardHTML(104,'final')+`<div class="third-lbl">3rd-place play-off</div>`+cardHTML(103,'third')+`</div></div>`;
 /* ---- radial "circle of life": 32 nations ring the trophy, winners spiral inward (SVG viewBox + %-positioned badges → auto-scales, no resize handler) ---- */
-let radialEl=null;
-const RAD=[452,358,266,180,98];                 // ring radii R32→finalists, 1000-unit space
+let radialEl=null, radialAnim=false;            // radialAnim: one-shot path draw-in, armed by simulate()
+const RAD=[430,340,253,171,93];                 // ring radii R32→finalists, 1000-unit space (leaves a rim for the code labels)
 const RBS=[6.3,6.7,7.4,8.2,9.3];                // badge diameter, % of container
 const RADV=[ORD32,ORD16,ORDQF,ORDSF,[104]];     // match each ring's badge plays NEXT (slot j → index j>>1)
 const RWIN=[ORD32,ORD16,ORDQF,ORDSF];           // winners of these populate rings 1..4
@@ -881,20 +903,36 @@ function renderRadial(host){
   if(!radialEl){ radialEl=document.createElement('div'); radialEl.className='radial';
     radialEl.addEventListener('click',e=>{ const b=e.target.closest('.rbadge.has'); if(b&&b.dataset.adv){ const [no,code]=b.dataset.adv.split(','); advance(+no,code); } }); }
   if(radialEl.parentNode!==host) host.appendChild(radialEl);
-  const sel=new Set(state.sel);
+  const sel=new Set(state.sel), anim=radialAnim; radialAnim=false;
   let edges='',labels='',badges='',seeds='';
   for(let L=0;L<4;L++){ const [lx,ly]=rPolar(0,RAD[L]); labels+=`<text class="rlbl" x="${lx.toFixed(0)}" y="${(ly+(L?16:-7)).toFixed(0)}">${RLBL[L]}</text>`; }
   for(let L=0;L<5;L++){ const N=32>>L; for(let j=0;j<N;j++){ const t=rOcc(L,j),[x1,y1]=rXY(L,j),[x2,y2]=L<4?rXY(L+1,j>>1):[500,500];
     const pt=L<4?rOcc(L+1,j>>1):winnerOf(104), won=t&&t===pt;
-    edges+=`<path class="redge${won?' won':''}" d="M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}"${won?` style="stroke:${GC[grp(t)]}"`:''}/>`; } }
+    edges+=`<path class="redge${won?' won':''}" d="M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}"${won?` style="stroke:${GC[grp(t)]}${anim?`;--rd:${(L*0.08).toFixed(2)}s`:''}"${anim?' pathLength="1"':''}`:''}/>`; } }
   for(let L=0;L<5;L++){ const N=32>>L; for(let j=0;j<N;j++){ const t=rOcc(L,j),[x,y]=rXY(L,j),m=RADV[L][j>>1],w=winnerOf(m);
     const elim=t&&w&&w!==t, g=t&&grp(t), lit=sel.size&&t&&sel.has(t);
-    badges+=`<button type="button" class="rbadge ${t?'has':'tbd'}${elim?' out':''}${lit?' lit':''}" style="left:${(x/10).toFixed(2)}%;top:${(y/10).toFixed(2)}%;width:${RBS[L]}%;--rg:${t?GC[g]:'var(--line)'}"${t?` data-adv="${m},${t}" data-team="${t}" title="${nm(t)} · ${koSeed(t)} · ${KMETA[m][3]}"`:' tabindex="-1" aria-hidden="true"'}>${t?flImg(t):''}</button>`;
-    if(L===0&&t){ const [sx,sy]=rPolar(rAng(0,j),491); seeds+=`<span class="rseedlbl" style="left:${(sx/10).toFixed(2)}%;top:${(sy/10).toFixed(2)}%;color:${GC[g]}">${koSeed(t)}</span>`; } } }
+    badges+=`<button type="button" class="rbadge ${t?'has':'tbd'}${elim?' out':''}${lit?' lit':''}" style="left:${(x/10).toFixed(2)}%;top:${(y/10).toFixed(2)}%;width:${RBS[L]}%;--rg:${t?GC[g]:'var(--line)'}"${t?` data-adv="${m},${t}" data-team="${t}"`:' tabindex="-1" aria-hidden="true"'}>${t?flImg(t):''}</button>`;
+    if(L===0&&t){ const [sx,sy]=rPolar(rAng(0,j),472); seeds+=`<span class="rseedlbl" style="left:${(sx/10).toFixed(2)}%;top:${(sy/10).toFixed(2)}%;color:${GC[g]}"><b>${t}</b> <em>${koSeed(t)}</em></span>`; } } }
   const champ=winnerOf(104);
   const trophy=`<div class="rtrophy"><span class="cup">🏆</span>${champ?`<span class="champ">${flImg(champ)}<span class="champ-nm">${nm(champ)}</span></span>`:''}</div>`;
   radialEl.classList.toggle('tracking',sel.size>0);
+  radialEl.classList.toggle('anim',anim);
   radialEl.innerHTML=`<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${edges}${labels}</svg>${badges}${seeds}${trophy}`;
+}
+// sim-info tooltip: every model's win-prob for a knockout match (shared by classic-card + radial-badge hover)
+function pbar(p,ca,cb){ const a=Math.round(p*100); return `<span class="pbar"><i style="width:${a}%;background:${ca}"></i><i style="width:${100-a}%;background:${cb}"></i></span>`; }
+function simTip(no){
+  const km=KMETA[no]; if(!km) return ''; const p=parts(no); if(!p[0]&&!p[1]) return '';
+  if(!p[0]||!p[1]){ const t=p[0]||p[1]; return `<div class="tiph">${km[3]} · ${km[0]}</div><div class="tipm">${flImg(t)} ${nm(t)} <span class="tipv">vs TBD</span></div>`; }
+  const a=p[0],b=p[1],ca=GC[grp(a)],cb=GC[grp(b)];
+  const save=state.method; const rows=CONS_METHODS.map(m=>{ state.method=m; return {m,p:modelProb(a,b)}; }); state.method=save;
+  const cons=rows.reduce((s,r)=>s+r.p,0)/rows.length, c100=Math.round(cons*100);
+  let h=`<div class="tiph">${ROUNDNAME[km[3]]||km[3]} · ${km[0]}</div><div class="tipm">${flImg(a)} ${nm(a)} <span class="tipv">v</span> ${nm(b)} ${flImg(b)}</div>`;
+  if(KOSET.has(no)&&KORES[no]){ const r=KORES[no],pn=KOPEN[no]; h+=`<div class="tipres">FT ${r[0]}–${r[1]}${pn?` (${pn[0]}–${pn[1]}p)`:''} · ${nm(KOWIN[no])} through</div>`; }
+  else if(state.win[no]&&state.koUser.has(no)){ h+=`<div class="tipres" style="color:var(--acc2)">your pick: ${nm(state.win[no])}</div>`; }
+  h+=`<div class="tipcon">Consensus → <b>${nm(cons>=.5?a:b)} ${Math.max(c100,100-c100)}%</b></div><div class="pbar big"><i style="width:${c100}%;background:${ca}"></i><i style="width:${100-c100}%;background:${cb}"></i></div>`;
+  h+=`<table class="tipt">`+rows.map(r=>{ const pa=Math.round(r.p*100); return `<tr><td>${MSHORT[r.m]}</td><td>${pbar(r.p,ca,cb)}</td><td>${pa}–${100-pa}</td></tr>`; }).join('')+`</table>`;
+  return h;
 }
 function renderBracket(){
   const vb=document.getElementById('brkviewbtn'); if(vb) vb.textContent=state.radial?'▦ Classic bracket':'◎ Radial bracket';
@@ -1457,9 +1495,16 @@ function showTip(el,html){ mtip.innerHTML=html; mtip.style.display='block';
   let y=r.bottom+6; if(y+h>window.innerHeight-10) y=r.top-h-6;
   mtip.style.left=x+'px'; mtip.style.top=Math.max(8,y)+'px'; }
 function hideTip(){ mtip.style.display='none'; }
-document.addEventListener('mouseover',e=>{ const t=e.target.closest&&e.target.closest('.rinfo'); if(!t) return;
-  let r=''; if(t.dataset.ko!==undefined) r=koReason(+t.dataset.ko); else if(t.dataset.grp!==undefined) r=grpReason(+t.dataset.grp); if(r) showTip(t,r); });
-document.addEventListener('mouseout',e=>{ if(e.target.closest&&e.target.closest('.rinfo')) hideTip(); });
+let _tipKey=null;
+document.addEventListener('mouseover',e=>{ if(!e.target.closest) return;
+  const ri=e.target.closest('.rinfo');
+  if(ri){ const k='i'+(ri.dataset.ko??('g'+ri.dataset.grp)); if(k!==_tipKey){ const r=ri.dataset.ko!==undefined?koReason(+ri.dataset.ko):(ri.dataset.grp!==undefined?grpReason(+ri.dataset.grp):''); if(r){ showTip(ri,r); _tipKey=k; } } return; }
+  const rb=e.target.closest('.rbadge.has');
+  if(rb&&rb.dataset.adv){ const no=rb.dataset.adv.split(',')[0], k='b'+rb.dataset.team+no; if(k!==_tipKey){ const h=simTip(+no); if(h){ showTip(rb,h); _tipKey=k; } } return; }
+  const mc=e.target.closest('.binner .match[data-card]');
+  if(mc){ const k='m'+mc.dataset.card; if(k!==_tipKey){ const h=simTip(+mc.dataset.card); if(h){ showTip(mc,h); _tipKey=k; } } return; } });
+document.addEventListener('mouseout',e=>{ if(!e.target.closest) return; const o=e.target.closest('.rinfo,.rbadge.has,.binner .match[data-card]');
+  if(o){ const to=e.relatedTarget; if(!to||!o.contains(to)){ hideTip(); _tipKey=null; } } });
 window.addEventListener('resize',()=>{ drawConn(); applyTracking(); hideTip(); });
 window.addEventListener('load',()=>{ drawConn(); applyTracking(); setTimeout(()=>{drawConn();applyTracking();},250); });
 
