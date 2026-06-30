@@ -223,7 +223,7 @@
   .rbadge.tbd{cursor:default;transform:translate(-50%,-50%) scale(.36);border:none;background:color-mix(in srgb,var(--mut2),transparent 45%);box-shadow:none}
   .radial.tracking .rbadge.has:not(.lit){opacity:.3;filter:grayscale(.55)}
   .radial.tracking .rbadge.lit{border-color:var(--acc)!important;box-shadow:0 0 0 2px var(--acc),0 0 12px -1px var(--acc);z-index:6}
-  .rseedlbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:800;font-size:8.5px;font-size:clamp(8px,1.4cqi,12.5px);letter-spacing:.3px;pointer-events:none;white-space:nowrap;z-index:1;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 4px var(--bg)}
+  .rseedlbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:800;font-size:8.5px;font-size:clamp(8px,1.4cqi,12.5px);letter-spacing:.3px;pointer-events:none;white-space:nowrap;z-index:5;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 4px var(--bg)}
   .rseedlbl b{font-weight:800} .rseedlbl em{font-style:normal;color:var(--mut2);font-size:.78em;font-weight:600;margin-left:1.5px}
   .rtrophy{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:4}
   .rtrophy .cup{font-size:33px;font-size:clamp(30px,5cqi,52px);line-height:1;filter:drop-shadow(0 0 9px color-mix(in srgb,var(--gold),transparent 30%))}
@@ -891,12 +891,12 @@ function colHTML(title,order,extra,colClass){ let s=''; order.forEach(no=>s+=car
 const centreCol=cls=>`<div class="col cfinal ${cls}"><div class="col-h">Final</div><div class="col-pad">`+cardHTML(104,'final')+`<div class="third-lbl">3rd-place play-off</div>`+cardHTML(103,'third')+`</div></div>`;
 /* ---- radial "circle of life": 32 nations ring the trophy, winners spiral inward (SVG viewBox + %-positioned badges → auto-scales, no resize handler) ---- */
 let radialEl=null, radialAnim=false;            // radialAnim: one-shot path draw-in, armed by simulate()
-const RAD=[430,340,253,171,93];                 // ring radii R32→finalists, 1000-unit space (leaves a rim for the code labels)
+const RAD=[404,320,238,161,88];                 // ring radii R32→finalists, 1000-unit space (smaller ring leaves an outer rim for the code labels, even on mobile)
 const RBS=[6.3,6.7,7.4,8.2,9.3];                // badge diameter, % of container
 const RADV=[ORD32,ORD16,ORDQF,ORDSF,[104]];     // match each ring's badge plays NEXT (slot j → index j>>1)
 const RWIN=[ORD32,ORD16,ORDQF,ORDSF];           // winners of these populate rings 1..4
 const RLBL=['R32','R16','QF','SF'];
-const ZONES=[[462,385],[385,296],[296,212],[212,132],[132,46]];   // concentric round zones [outer,inner]; alternate ones tinted to demarcate rounds
+const ZONES=[[437,362],[362,279],[279,200],[200,125],[125,35]];   // concentric round zones [outer,inner]; alternate ones tinted to demarcate rounds
 function rAng(L,j){ const N=32>>L,half=N/2; return (j<half)?180+(j+0.5)*360/N:(j-half+0.5)*360/N; }   // deg clockwise from 12 o'clock; left half draws on the left
 function rPolar(deg,r){ const a=deg*Math.PI/180; return [500+r*Math.sin(a),500-r*Math.cos(a)]; }
 function rXY(L,j){ return rPolar(rAng(L,j),RAD[L]); }
@@ -915,7 +915,8 @@ function renderRadial(host){
   for(let L=0;L<5;L++){ const N=32>>L; for(let j=0;j<N;j++){ const t=rOcc(L,j),[x,y]=rXY(L,j),m=RADV[L][j>>1],w=winnerOf(m);
     const elim=t&&w&&w!==t, g=t&&grp(t), lit=sel.size&&t&&sel.has(t);
     badges+=`<button type="button" class="rbadge ${t?'has':'tbd'}${elim?' out':''}${lit?' lit':''}" style="left:${(x/10).toFixed(2)}%;top:${(y/10).toFixed(2)}%;width:${RBS[L]}%;--rg:${t?GC[g]:'var(--line)'}"${t?` data-adv="${m},${t}" data-team="${t}"`:' tabindex="-1" aria-hidden="true"'}>${t?flImg(t):''}</button>`;
-    if(L===0&&t){ const [sx,sy]=rPolar(rAng(0,j),472); seeds+=`<span class="rseedlbl" style="left:${(sx/10).toFixed(2)}%;top:${(sy/10).toFixed(2)}%;color:${GC[g]}"><b>${t}</b> <em>${koSeed(t)}</em></span>`; } } }
+    if(L===0&&t){ const ang=rAng(0,j),ar=ang*Math.PI/180,[sx,sy]=rPolar(ang,RAD[0]+36),tx=(-50+50*Math.sin(ar)).toFixed(1),ty=(-50-50*Math.cos(ar)).toFixed(1);   // anchor label radially OUTWARD from the badge edge so the flag never covers it
+      seeds+=`<span class="rseedlbl" style="left:${(sx/10).toFixed(2)}%;top:${(sy/10).toFixed(2)}%;transform:translate(${tx}%,${ty}%);color:${GC[g]}"><b>${t}</b> <em>${koSeed(t)}</em></span>`; } } }
   const champ=winnerOf(104);
   const trophy=`<div class="rtrophy"><span class="cup">🏆</span>${champ?`<span class="champ">${flImg(champ)}<span class="champ-nm">${nm(champ)}</span></span>`:''}</div>`;
   radialEl.classList.toggle('tracking',sel.size>0);
