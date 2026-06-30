@@ -1,64 +1,64 @@
 {
   "asOf": "2026-06-30",
-  "version": 37,
-  "played": 75,
+  "version": 38,
+  "played": 76,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "squad",
       "model": "Squad value",
       "ok": 50,
-      "miss": 25,
-      "hitRate": 0.667
+      "miss": 26,
+      "hitRate": 0.658
     },
     {
       "key": "odds",
       "model": "Betting market",
       "ok": 49,
-      "miss": 26,
-      "hitRate": 0.653
+      "miss": 27,
+      "hitRate": 0.645
     },
     {
       "key": "blend",
       "model": "Balanced blend",
       "ok": 48,
-      "miss": 27,
-      "hitRate": 0.64
+      "miss": 28,
+      "hitRate": 0.632
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
       "ok": 47,
-      "miss": 28,
-      "hitRate": 0.627
+      "miss": 29,
+      "hitRate": 0.618
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
       "ok": 46,
-      "miss": 29,
-      "hitRate": 0.613
+      "miss": 30,
+      "hitRate": 0.605
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
       "ok": 45,
-      "miss": 30,
-      "hitRate": 0.6
+      "miss": 31,
+      "hitRate": 0.592
     },
     {
       "key": "form",
       "model": "Recent form",
       "ok": 43,
-      "miss": 32,
-      "hitRate": 0.573
+      "miss": 33,
+      "hitRate": 0.566
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
       "ok": 41,
-      "miss": 34,
-      "hitRate": 0.547
+      "miss": 35,
+      "hitRate": 0.539
     }
   ],
   "matches": [
@@ -113,6 +113,60 @@
           "winProb": 0.857,
           "pick": "H",
           "correct": true
+        }
+      }
+    },
+    {
+      "no": 75,
+      "date": "2026-06-29",
+      "stage": "R32",
+      "home": "Netherlands",
+      "away": "Morocco",
+      "score": [
+        3,
+        4
+      ],
+      "actual": "away win",
+      "models": {
+        "squad": {
+          "winProb": 0.665,
+          "pick": "H",
+          "correct": false
+        },
+        "odds": {
+          "winProb": 0.688,
+          "pick": "H",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.64,
+          "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.848,
+          "pick": "H",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.641,
+          "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.496,
+          "pick": "D",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.491,
+          "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.667,
+          "pick": "H",
+          "correct": false
         }
       }
     },
