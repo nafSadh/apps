@@ -225,7 +225,7 @@
   .radial.tracking .rbadge.lit{border-color:var(--acc)!important;box-shadow:0 0 0 2px var(--acc),0 0 12px -1px var(--acc);z-index:6}
   .rseedlbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:800;font-size:8.5px;font-size:clamp(8px,1.4cqi,12.5px);letter-spacing:.3px;pointer-events:none;white-space:nowrap;z-index:5;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 4px var(--bg)}
   .rseedlbl b{font-weight:800} .rseedlbl em{font-style:normal;color:var(--mut2);font-size:.78em;font-weight:600;margin-left:1.5px}
-  #fc-radial{width:min(100%,460px)}                                    /* compact play-out radial inside the Monte-Carlo view */
+  /* #fc-radial inherits the full viewport-filling .radial sizing (660px floor → grows to the viewport) */
   .fc-radcap{text-align:center;font-family:var(--mono);font-size:11px;color:var(--mut);margin:-2px 0 12px;letter-spacing:.3px} .fc-radcap b{color:var(--ink)} .fc-radcap .flag{width:18px;height:12px;border-radius:2px;vertical-align:-2px;margin:0 1px}
   .rtrophy{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:4}
   .rtrophy .cup{font-size:33px;font-size:clamp(30px,5cqi,52px);line-height:1;filter:drop-shadow(0 0 9px color-mix(in srgb,var(--gold),transparent 30%))}
