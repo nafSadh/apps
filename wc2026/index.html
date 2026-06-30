@@ -225,6 +225,8 @@
   .radial.tracking .rbadge.lit{border-color:var(--acc)!important;box-shadow:0 0 0 2px var(--acc),0 0 12px -1px var(--acc);z-index:6}
   .rseedlbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:800;font-size:8.5px;font-size:clamp(8px,1.4cqi,12.5px);letter-spacing:.3px;pointer-events:none;white-space:nowrap;z-index:5;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 4px var(--bg)}
   .rseedlbl b{font-weight:800} .rseedlbl em{font-style:normal;color:var(--mut2);font-size:.78em;font-weight:600;margin-left:1.5px}
+  #fc-radial{width:min(100%,460px)}                                    /* compact play-out radial inside the Monte-Carlo view */
+  .fc-radcap{text-align:center;font-family:var(--mono);font-size:11px;color:var(--mut);margin:-2px 0 12px;letter-spacing:.3px} .fc-radcap b{color:var(--ink)} .fc-radcap .flag{width:18px;height:12px;border-radius:2px;vertical-align:-2px;margin:0 1px}
   .rtrophy{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:4}
   .rtrophy .cup{font-size:33px;font-size:clamp(30px,5cqi,52px);line-height:1;filter:drop-shadow(0 0 9px color-mix(in srgb,var(--gold),transparent 30%))}
   .rtrophy .champ{display:block;margin-top:1px}
@@ -487,6 +489,8 @@
     <span class="fc-progwrap"><span class="fc-track"><span id="fc-bar"></span></span><span class="status" id="fc-prog"></span></span>
   </div>
   <div class="note">Each run samples every unplayed match from the selected <b>Model</b>'s win probabilities at their natural upset rate — keeping the 28 played results and any scores you set — and aggregates how often each team reaches each round. Switch models in the <b>Tournament</b> tab to compare forecasts.</div>
+  <div id="fc-radial" class="radial" style="display:none"></div>
+  <div class="fc-radcap" id="fc-radcap" style="display:none"></div>
   <div id="fc-panel"></div>
   </div><!-- /view-forecast -->
 
@@ -901,11 +905,8 @@ function rAng(L,j){ const N=32>>L,half=N/2; return (j<half)?180+(j+0.5)*360/N:(j
 function rPolar(deg,r){ const a=deg*Math.PI/180; return [500+r*Math.sin(a),500-r*Math.cos(a)]; }
 function rXY(L,j){ return rPolar(rAng(L,j),RAD[L]); }
 function rOcc(L,j){ return L===0?parts(ORD32[j>>1])[j&1]:winnerOf(RWIN[L-1][j]); }   // team in ring L slot j (R32 entrant, or winner that reached here)
-function renderRadial(host){
-  if(!radialEl){ radialEl=document.createElement('div'); radialEl.className='radial';
-    radialEl.addEventListener('click',e=>{ const b=e.target.closest('.rbadge.has'); if(b&&b.dataset.adv){ const [no,code]=b.dataset.adv.split(','); advance(+no,code); } }); }
-  if(radialEl.parentNode!==host) host.appendChild(radialEl);
-  const sel=new Set(state.sel), anim=radialAnim; radialAnim=false;
+function radialMarkup(anim){   // inner HTML of a .radial from the current bracket state (state.win) — reused by the tournament view and the Monte-Carlo play-out
+  const sel=new Set(state.sel);
   let zones='',edges='',rounds='',badges='',seeds='';
   ZONES.forEach((z,i)=>{ if(i&1){ const mid=((z[0]+z[1])/2).toFixed(0), th=(z[0]-z[1]).toFixed(0); zones+=`<circle class="rzone" cx="500" cy="500" r="${mid}" stroke-width="${th}"/>`; } });
   for(let L=0;L<4;L++){ rounds+=`<span class="rrlbl" style="left:50%;top:${((500-RAD[L])/10).toFixed(1)}%">${RLBL[L]}</span>`; }   // round labels as HTML so they scale with the circle (cqi), not viewBox
@@ -919,9 +920,15 @@ function renderRadial(host){
       seeds+=`<span class="rseedlbl" style="left:${(sx/10).toFixed(2)}%;top:${(sy/10).toFixed(2)}%;transform:translate(${tx}%,${ty}%);color:${GC[g]}"><b>${t}</b> <em>${koSeed(t)}</em></span>`; } } }
   const champ=winnerOf(104);
   const trophy=`<div class="rtrophy"><span class="cup">🏆</span>${champ?`<span class="champ">${flImg(champ)}<span class="champ-nm">${nm(champ)}</span></span>`:''}</div>`;
-  radialEl.classList.toggle('tracking',sel.size>0);
-  radialEl.classList.toggle('anim',anim);
-  radialEl.innerHTML=`<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${zones}${edges}</svg>${badges}${seeds}${rounds}${trophy}`;
+  return `<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${zones}${edges}</svg>${badges}${seeds}${rounds}${trophy}`;
+}
+function paintRadial(el,anim){ if(!el) return; el.classList.toggle('anim',!!anim); el.classList.toggle('tracking',state.sel.length>0); el.innerHTML=radialMarkup(anim); }
+function renderRadial(host){
+  if(!radialEl){ radialEl=document.createElement('div'); radialEl.className='radial';
+    radialEl.addEventListener('click',e=>{ const b=e.target.closest('.rbadge.has'); if(b&&b.dataset.adv){ const [no,code]=b.dataset.adv.split(','); advance(+no,code); } }); }
+  if(radialEl.parentNode!==host) host.appendChild(radialEl);
+  const anim=radialAnim; radialAnim=false;
+  paintRadial(radialEl,anim);
 }
 // sim-info tooltip: every model's win-prob for a knockout match (shared by classic-card + radial-badge hover)
 function pbar(p,ca,cb){ const a=Math.round(p*100); return `<span class="pbar"><i style="width:${a}%;background:${ca}"></i><i style="width:${100-a}%;background:${cb}"></i></span>`; }
@@ -1118,16 +1125,22 @@ function runForecast(){
   const save={res:state.res,win:state.win,forced:state.forced,thirds:state.thirds,alloc:state.alloc,predicted:state.predicted,method:state.method,S:STATS};
   const base=fcBase(), tally=newTally(), qc={}, kup=1-(state.fcUpset||0)*0.7;
   const btn=document.getElementById('fc-run'); if(btn) btn.disabled=true;
-  let mi=0, md=0, done=0;
+  const fr=document.getElementById('fc-radial'), cap=document.getElementById('fc-radcap');
+  if(fr) fr.style.display=''; if(cap){ cap.style.display='block'; cap.innerHTML='<span class="mut">playing out tournaments…</span>'; }
+  let mi=0, md=0, done=0, cnt=0;
   function step(){
     state.method=methods[mi];                       // consensus = equal sims per model, pooled
     const k=Math.min(CHUNK, per-md); forecastSims(base,k,tally,qc,kup); md+=k; done+=k;
+    if(fr && cnt++%3===0) paintRadial(fr,false);    // flicker the latest sampled tournament — watch the Monte Carlo explore the bracket
     const bar=document.getElementById('fc-bar'); if(bar) bar.style.width=(done/total*100)+'%';
     const pg=document.getElementById('fc-prog'); if(pg) pg.textContent=`simulating… ${done.toLocaleString()} / ${total.toLocaleString()}`+(methods.length>1?` · ${METHOD_NAME[methods[mi]]}`:'');
     if(md>=per){ mi++; md=0; }
-    if(mi<methods.length){ setTimeout(step,0); return; }
+    if(mi<methods.length){ setTimeout(step,40); return; }
+    const sample=Object.assign({},state.win);       // last full simulated bracket — settle the radial on it
     state.res=save.res; state.win=save.win; state.forced=save.forced; state.thirds=save.thirds; state.alloc=save.alloc; state.predicted=save.predicted; state.method=save.method; STATS=save.S; recompute();
     state.fc={tally,N:total,method:score,qc,upset:state.fcUpset}; if(btn) btn.disabled=false; if(pg) pg.textContent=''; renderForecast();
+    if(fr){ const sw=state.win; state.win=sample; paintRadial(fr,true); state.win=sw;      // settle on that play-out, drawing the winner-paths inward
+      const ch=sample[104]; if(cap) cap.innerHTML=ch?`one play-out of ${total.toLocaleString()} · winner ${flImg(ch)} <b>${nm(ch)}</b> — full odds below`:''; }
   }
   step();
 }
@@ -1509,7 +1522,7 @@ document.addEventListener('mouseover',e=>{ if(!e.target.closest) return;
   const ri=e.target.closest('.rinfo');
   if(ri){ const k='i'+(ri.dataset.ko??('g'+ri.dataset.grp)); if(k!==_tipKey){ const r=ri.dataset.ko!==undefined?koReason(+ri.dataset.ko):(ri.dataset.grp!==undefined?grpReason(+ri.dataset.grp):''); if(r){ showTip(ri,r); _tipKey=k; } } return; }
   const rb=e.target.closest('.rbadge.has');
-  if(rb&&rb.dataset.adv){ const no=rb.dataset.adv.split(',')[0], k='b'+rb.dataset.team+no; if(k!==_tipKey){ const h=simTip(+no); if(h){ showTip(rb,h); _tipKey=k; } } return; }
+  if(rb&&rb.dataset.adv&&!rb.closest('#fc-radial')){ const no=rb.dataset.adv.split(',')[0], k='b'+rb.dataset.team+no; if(k!==_tipKey){ const h=simTip(+no); if(h){ showTip(rb,h); _tipKey=k; } } return; }
   const tc=e.target.closest('.tcard[data-card]');
   if(tc){ const k='t'+tc.dataset.card; if(k!==_tipKey){ const h=simTip(+tc.dataset.card); if(h){ showTip(tc,h); _tipKey=k; } } return; }
   const mc=e.target.closest('.binner .match[data-card]');
