@@ -208,9 +208,8 @@
   .radial{position:relative;width:100%;max-width:660px;aspect-ratio:1/1;margin:2px auto 12px;
     background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--gold),transparent 86%) 0%,transparent 40%)}
   .rconn{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
-  .rconn .rring{fill:none;stroke:var(--line);stroke-width:1.2;opacity:.16}
-  .rconn .redge{fill:none;stroke:var(--line);stroke-width:2;opacity:.32;stroke-linecap:round}
-  .rconn .redge.won{stroke-width:5;opacity:1;stroke-linecap:round}
+  .rconn .redge{fill:none;stroke:var(--mut2);stroke-width:2.2;opacity:.5;stroke-linecap:round}
+  .rconn .redge.won{stroke-width:5;opacity:1}
   .rconn .rlbl{fill:var(--mut);font-family:var(--mono);font-size:15px;font-weight:700;text-anchor:middle;letter-spacing:.5px;opacity:.5}
   .rbadge{position:absolute;transform:translate(-50%,-50%);aspect-ratio:1/1;border-radius:50%;padding:0;
     border:2px solid var(--rg,var(--line));background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.45);
@@ -219,8 +218,8 @@
   .rbadge .flag{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;box-shadow:none}
   .rbadge .fl{font-size:18px;width:auto}
   .rbadge.has:hover,.rbadge.has:focus-visible{transform:translate(-50%,-50%) scale(1.22);z-index:9;border-color:var(--acc);outline:none}
-  .rbadge.out{filter:grayscale(.8) brightness(.7);opacity:.5;border-color:var(--line)!important;box-shadow:none}
-  .rbadge.tbd{cursor:default;border-style:dashed;background:color-mix(in srgb,var(--card),transparent 45%)}
+  .rbadge.out{filter:grayscale(.65);opacity:.5;border-color:var(--mut2)!important;box-shadow:none}
+  .rbadge.tbd{cursor:default;transform:translate(-50%,-50%) scale(.36);border:none;background:color-mix(in srgb,var(--mut2),transparent 45%);box-shadow:none}
   .radial.tracking .rbadge.has:not(.lit){opacity:.3;filter:grayscale(.55)}
   .radial.tracking .rbadge.lit{border-color:var(--acc)!important;box-shadow:0 0 0 2px var(--acc),0 0 12px -1px var(--acc);z-index:6}
   .rseedlbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:800;font-size:8.5px;letter-spacing:.2px;pointer-events:none;white-space:nowrap;z-index:1;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg)}
@@ -883,12 +882,11 @@ function renderRadial(host){
     radialEl.addEventListener('click',e=>{ const b=e.target.closest('.rbadge.has'); if(b&&b.dataset.adv){ const [no,code]=b.dataset.adv.split(','); advance(+no,code); } }); }
   if(radialEl.parentNode!==host) host.appendChild(radialEl);
   const sel=new Set(state.sel);
-  let rings='',edges='',labels='',badges='',seeds='';
-  for(let L=0;L<5;L++) rings+=`<circle class="rring" cx="500" cy="500" r="${RAD[L]}"/>`;
+  let edges='',labels='',badges='',seeds='';
   for(let L=0;L<4;L++){ const [lx,ly]=rPolar(0,RAD[L]); labels+=`<text class="rlbl" x="${lx.toFixed(0)}" y="${(ly+(L?16:-7)).toFixed(0)}">${RLBL[L]}</text>`; }
   for(let L=0;L<5;L++){ const N=32>>L; for(let j=0;j<N;j++){ const t=rOcc(L,j),[x1,y1]=rXY(L,j),[x2,y2]=L<4?rXY(L+1,j>>1):[500,500];
     const pt=L<4?rOcc(L+1,j>>1):winnerOf(104), won=t&&t===pt;
-    edges+=`<path class="redge${won?' won':''}" d="M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}"${won?` stroke="${GC[grp(t)]}"`:''}/>`; } }
+    edges+=`<path class="redge${won?' won':''}" d="M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}"${won?` style="stroke:${GC[grp(t)]}"`:''}/>`; } }
   for(let L=0;L<5;L++){ const N=32>>L; for(let j=0;j<N;j++){ const t=rOcc(L,j),[x,y]=rXY(L,j),m=RADV[L][j>>1],w=winnerOf(m);
     const elim=t&&w&&w!==t, g=t&&grp(t), lit=sel.size&&t&&sel.has(t);
     badges+=`<button type="button" class="rbadge ${t?'has':'tbd'}${elim?' out':''}${lit?' lit':''}" style="left:${(x/10).toFixed(2)}%;top:${(y/10).toFixed(2)}%;width:${RBS[L]}%;--rg:${t?GC[g]:'var(--line)'}"${t?` data-adv="${m},${t}" data-team="${t}" title="${nm(t)} · ${koSeed(t)} · ${KMETA[m][3]}"`:' tabindex="-1" aria-hidden="true"'}>${t?flImg(t):''}</button>`;
@@ -896,7 +894,7 @@ function renderRadial(host){
   const champ=winnerOf(104);
   const trophy=`<div class="rtrophy"><span class="cup">🏆</span>${champ?`<span class="champ">${flImg(champ)}<span class="champ-nm">${nm(champ)}</span></span>`:''}</div>`;
   radialEl.classList.toggle('tracking',sel.size>0);
-  radialEl.innerHTML=`<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${rings}${edges}${labels}</svg>${badges}${seeds}${trophy}`;
+  radialEl.innerHTML=`<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${edges}${labels}</svg>${badges}${seeds}${trophy}`;
 }
 function renderBracket(){
   const vb=document.getElementById('brkviewbtn'); if(vb) vb.textContent=state.radial?'▦ Classic bracket':'◎ Radial bracket';
