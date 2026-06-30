@@ -1,8 +1,8 @@
 {
   "meta": {
     "tournament": "FIFA World Cup 2026",
-    "version": 39,
-    "asOf": "2026-06-29",
+    "version": 40,
+    "asOf": "2026-06-30",
     "source": "manual",
     "note": "locked = played-match scores {matchNo:[homeGoals,awayGoals]}; ratings per team. teams/fixtures are fixed for the tournament. formYears=per-team 1/3/5y W-D-L; h2h=all-time pairwise record + last 5 meetings (top-16 contenders, symmetric).",
     "h2hAnchors": [
@@ -1370,6 +1370,15 @@
         2,
         3
       ]
+    },
+    {
+      "stage": "R32",
+      "home": "CIV",
+      "away": "NOR",
+      "h": 1,
+      "a": 2,
+      "w": "NOR",
+      "status": "FINISHED"
     }
   ],
   "thirdAlloc": {
