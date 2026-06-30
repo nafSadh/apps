@@ -22,8 +22,8 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | Date | # | Match | Result | Squad | Odds | Blend | Pot+G | Opta | FIFA | Form | H2H |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | 2026-06-29 | M76 R32 | Brazil – Japan | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
-| 2026-06-29 | M75 R32 | Netherlands – Morocco | 3–4 (3–3p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| 2026-06-29 | M74 R32 | Germany – Paraguay | 4–5 (4–4p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-29 | M75 R32 | Netherlands – Morocco | 3–4 (2–3p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-29 | M74 R32 | Germany – Paraguay | 4–5 (3–4p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-28 | M73 R32 | South Africa – Canada | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
 | 2026-06-27 | M72 | DR Congo – Uzbekistan | 3–1 | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-27 | M71 | Colombia – Portugal | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ |
