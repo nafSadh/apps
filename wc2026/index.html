@@ -208,9 +208,10 @@
   .radial{position:relative;width:100%;max-width:660px;aspect-ratio:1/1;margin:2px auto 12px;
     background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--gold),transparent 86%) 0%,transparent 40%)}
   .rconn{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
+  .rconn .rzone{fill:none;stroke:color-mix(in srgb,var(--ink),transparent 93%)}    /* alternating round bands demarcate R32/R16/QF/SF */
   .rconn .redge{fill:none;stroke:var(--mut2);stroke-width:2.2;opacity:.5;stroke-linecap:round}
   .rconn .redge.won{stroke-width:5;opacity:1}
-  .rconn .rlbl{fill:var(--mut);font-family:var(--mono);font-size:15px;font-weight:700;text-anchor:middle;letter-spacing:.5px;opacity:.5}
+  .rconn .rlbl{fill:var(--mut);font-family:var(--mono);font-size:13px;font-weight:700;text-anchor:middle;letter-spacing:1.5px;paint-order:stroke;stroke:var(--bg);stroke-width:3.5px;stroke-linejoin:round}
   .rbadge{position:absolute;transform:translate(-50%,-50%);aspect-ratio:1/1;border-radius:50%;padding:0;
     border:2px solid var(--rg,var(--line));background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.45);
     display:flex;align-items:center;justify-content:center;overflow:visible;cursor:pointer;z-index:2;
@@ -895,6 +896,7 @@ const RBS=[6.3,6.7,7.4,8.2,9.3];                // badge diameter, % of containe
 const RADV=[ORD32,ORD16,ORDQF,ORDSF,[104]];     // match each ring's badge plays NEXT (slot j → index j>>1)
 const RWIN=[ORD32,ORD16,ORDQF,ORDSF];           // winners of these populate rings 1..4
 const RLBL=['R32','R16','QF','SF'];
+const ZONES=[[462,385],[385,296],[296,212],[212,132],[132,46]];   // concentric round zones [outer,inner]; alternate ones tinted to demarcate rounds
 function rAng(L,j){ const N=32>>L,half=N/2; return (j<half)?180+(j+0.5)*360/N:(j-half+0.5)*360/N; }   // deg clockwise from 12 o'clock; left half draws on the left
 function rPolar(deg,r){ const a=deg*Math.PI/180; return [500+r*Math.sin(a),500-r*Math.cos(a)]; }
 function rXY(L,j){ return rPolar(rAng(L,j),RAD[L]); }
@@ -904,8 +906,9 @@ function renderRadial(host){
     radialEl.addEventListener('click',e=>{ const b=e.target.closest('.rbadge.has'); if(b&&b.dataset.adv){ const [no,code]=b.dataset.adv.split(','); advance(+no,code); } }); }
   if(radialEl.parentNode!==host) host.appendChild(radialEl);
   const sel=new Set(state.sel), anim=radialAnim; radialAnim=false;
-  let edges='',labels='',badges='',seeds='';
-  for(let L=0;L<4;L++){ const [lx,ly]=rPolar(0,RAD[L]); labels+=`<text class="rlbl" x="${lx.toFixed(0)}" y="${(ly+(L?16:-7)).toFixed(0)}">${RLBL[L]}</text>`; }
+  let zones='',edges='',labels='',badges='',seeds='';
+  ZONES.forEach((z,i)=>{ if(i&1){ const mid=((z[0]+z[1])/2).toFixed(0), th=(z[0]-z[1]).toFixed(0); zones+=`<circle class="rzone" cx="500" cy="500" r="${mid}" stroke-width="${th}"/>`; } });
+  for(let L=0;L<4;L++){ labels+=`<text class="rlbl" x="500" y="${(500-RAD[L]).toFixed(0)}" dy="0.32em">${RLBL[L]}</text>`; }
   for(let L=0;L<5;L++){ const N=32>>L; for(let j=0;j<N;j++){ const t=rOcc(L,j),[x1,y1]=rXY(L,j),[x2,y2]=L<4?rXY(L+1,j>>1):[500,500];
     const pt=L<4?rOcc(L+1,j>>1):winnerOf(104), won=t&&t===pt;
     edges+=`<path class="redge${won?' won':''}" d="M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}"${won?` style="stroke:${GC[grp(t)]}${anim?`;--rd:${(L*0.08).toFixed(2)}s`:''}"${anim?' pathLength="1"':''}`:''}/>`; } }
@@ -917,7 +920,7 @@ function renderRadial(host){
   const trophy=`<div class="rtrophy"><span class="cup">🏆</span>${champ?`<span class="champ">${flImg(champ)}<span class="champ-nm">${nm(champ)}</span></span>`:''}</div>`;
   radialEl.classList.toggle('tracking',sel.size>0);
   radialEl.classList.toggle('anim',anim);
-  radialEl.innerHTML=`<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${edges}${labels}</svg>${badges}${seeds}${trophy}`;
+  radialEl.innerHTML=`<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${zones}${edges}${labels}</svg>${badges}${seeds}${trophy}`;
 }
 // sim-info tooltip: every model's win-prob for a knockout match (shared by classic-card + radial-badge hover)
 function pbar(p,ca,cb){ const a=Math.round(p*100); return `<span class="pbar"><i style="width:${a}%;background:${ca}"></i><i style="width:${100-a}%;background:${cb}"></i></span>`; }
