@@ -1098,7 +1098,8 @@ function forecastSims(base,n,tally,qc,k){          // mutates globals; caller sa
     STATS=computeStats(); rebuildThirds(); buildAlloc();
     GLET.forEach(g=>{ tally[groupOrder(g)[0]].g1++; });
     state.win={};
-    for(const no of FC_KO){ const p=parts(no); if(p[0]&&p[1]) state.win[no]=fcPick(p[0],p[1],k); }
+    for(const no of FC_KO){ if(KOSET.has(no)){ if(KOWIN[no]) state.win[no]=KOWIN[no]; continue; }   // real knockout result — fixed, don't re-simulate (eliminated teams stay out, winners keep their slot)
+      const p=parts(no); if(p[0]&&p[1]) state.win[no]=fcPick(p[0],p[1],k); }
     if(qc){ const q=FC_QF.map(no=>state.win[no]).filter(Boolean).sort().join("|"); if(q) qc[q]=(qc[q]||0)+1; }
     for(const no of FC_R32){ const p=parts(no); if(p[0])tally[p[0]].q++; if(p[1])tally[p[1]].q++; }
     for(const no of FC_R32){ const w=state.win[no]; if(w)tally[w].r16++; }
@@ -1352,7 +1353,7 @@ function koAlternatives(n,k,method){           // Monte-Carlo: tally how often e
     fcGroups(k); STATS=computeStats(); rebuildThirds(); buildAlloc(); state.win={};
     for(const no of FC_KO){ const p=parts(no); if(p[0]&&p[1]){
       if(no!==103){ const st=stageOf(no), key=p[0]<p[1]?p[0]+'|'+p[1]:p[1]+'|'+p[0]; stages[st][key]=(stages[st][key]||0)+1; }
-      state.win[no]=fcPick(p[0],p[1],k); } } }
+      state.win[no]= (KOSET.has(no)&&KOWIN[no]) ? KOWIN[no] : fcPick(p[0],p[1],k); } } }   // real knockout results fixed; only undecided ties re-simulated
   state.res=save.res; state.win=save.win; state.forced=save.forced; state.thirds=save.thirds; state.alloc=save.alloc; state.predicted=save.predicted; state.method=save.method; STATS=save.S; recompute();
   return stages; }
 function koForecast(){                         // top-N most likely matchups per knockout round
