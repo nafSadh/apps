@@ -264,17 +264,39 @@ def collect_ko(payload, idx, statuses=("FINISHED",)):
         if not (h and a):
             continue                                  # teams not decided / unmapped yet
         sc = m.get("score", {}) or {}
-        ft = sc.get("fullTime", {}) or {}
-        hg, ag = ft.get("home"), ft.get("away")
+        ft = sc.get("fullTime", {}) or {}; rt = sc.get("regularTime", {}) or {}
+        et = sc.get("extraTime", {}) or {}; pens = sc.get("penalties", {}) or {}
+        # match score = the 90/120-minute result. football-data sometimes folds the
+        # shootout into fullTime (e.g. reports 4-5 for a 1-1 game), so for extra-time /
+        # penalty games use regular + extra time instead.
+        if rt.get("home") is not None and sc.get("duration") in ("EXTRA_TIME", "PENALTY_SHOOTOUT"):
+            hg, ag = rt["home"] + (et.get("home") or 0), rt["away"] + (et.get("away") or 0)
+        else:
+            hg, ag = ft.get("home"), ft.get("away")
         if hg is None or ag is None:
             continue
+        # winner: explicit field if set, else derive from penalties, then full-time, then the score
+        # (football-data leaves `winner` null on some shootouts).
         wf = sc.get("winner")
-        w = h if wf == "HOME_TEAM" else a if wf == "AWAY_TEAM" else None
+        if wf == "HOME_TEAM":
+            w = h
+        elif wf == "AWAY_TEAM":
+            w = a
+        else:
+            ph, pa = pens.get("home"), pens.get("away")
+            fh, fa = ft.get("home"), ft.get("away")
+            if ph is not None and pa is not None and ph != pa:
+                w = h if ph > pa else a
+            elif fh is not None and fa is not None and fh != fa:
+                w = h if fh > fa else a
+            elif hg != ag:
+                w = h if hg > ag else a
+            else:
+                w = None
         e = {"stage": stage, "home": h, "away": a, "h": int(hg), "a": int(ag),
              "w": w, "status": m.get("status")}
-        pens = sc.get("penalties", {}) or {}
-        if pens.get("home") is not None and pens.get("away") is not None:
-            e["p"] = [int(pens["home"]), int(pens["away"])]
+        if pens.get("home") is not None and pens.get("away") is not None and pens["home"] != pens["away"]:
+            e["p"] = [int(pens["home"]), int(pens["away"])]   # only record a decisive shootout
         out.append(e)
     return out
 
