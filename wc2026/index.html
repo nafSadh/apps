@@ -205,13 +205,13 @@
   path.cpath{stroke:var(--line);stroke-width:1.8;fill:none} path.cpath.loser{stroke-dasharray:4 4;stroke:var(--mut2);opacity:.55}
   .binner.tracking .match:not(.lit){opacity:.4} .clash{position:absolute;top:3px;right:4px;font-size:10px;z-index:3}
   /* ---- radial "circle of life" bracket — 32 nations ring the trophy, winners spiral inward ---- */
-  .radial{position:relative;width:100%;max-width:660px;aspect-ratio:1/1;margin:2px auto 12px;
-    background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--gold),transparent 86%) 0%,transparent 40%)}
+  .radial{position:relative;width:min(100%,1000px,max(660px,100vh - 180px));aspect-ratio:1/1;margin:2px auto 12px;container-type:inline-size;
+    background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--gold),transparent 86%) 0%,transparent 42%)}
   .rconn{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
   .rconn .rzone{fill:none;stroke:color-mix(in srgb,var(--ink),transparent 93%)}    /* alternating round bands demarcate R32/R16/QF/SF */
   .rconn .redge{fill:none;stroke:var(--mut2);stroke-width:2.2;opacity:.5;stroke-linecap:round}
   .rconn .redge.won{stroke-width:5;opacity:1}
-  .rconn .rlbl{fill:var(--mut);font-family:var(--mono);font-size:13px;font-weight:700;text-anchor:middle;letter-spacing:1.5px;paint-order:stroke;stroke:var(--bg);stroke-width:3.5px;stroke-linejoin:round}
+  .rrlbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:700;font-size:10px;font-size:clamp(9px,1.4cqi,13.5px);color:var(--mut);letter-spacing:1.5px;text-shadow:0 0 4px var(--bg),0 0 4px var(--bg),0 0 6px var(--bg);pointer-events:none;z-index:1;white-space:nowrap}
   .rbadge{position:absolute;transform:translate(-50%,-50%);aspect-ratio:1/1;border-radius:50%;padding:0;
     border:2px solid var(--rg,var(--line));background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.45);
     display:flex;align-items:center;justify-content:center;overflow:visible;cursor:pointer;z-index:2;
@@ -223,14 +223,13 @@
   .rbadge.tbd{cursor:default;transform:translate(-50%,-50%) scale(.36);border:none;background:color-mix(in srgb,var(--mut2),transparent 45%);box-shadow:none}
   .radial.tracking .rbadge.has:not(.lit){opacity:.3;filter:grayscale(.55)}
   .radial.tracking .rbadge.lit{border-color:var(--acc)!important;box-shadow:0 0 0 2px var(--acc),0 0 12px -1px var(--acc);z-index:6}
-  .rseedlbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:800;font-size:8.5px;letter-spacing:.2px;pointer-events:none;white-space:nowrap;z-index:1;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg)}
+  .rseedlbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:800;font-size:8.5px;font-size:clamp(8px,1.4cqi,12.5px);letter-spacing:.3px;pointer-events:none;white-space:nowrap;z-index:1;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 4px var(--bg)}
+  .rseedlbl b{font-weight:800} .rseedlbl em{font-style:normal;color:var(--mut2);font-size:.78em;font-weight:600;margin-left:1.5px}
   .rtrophy{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:4}
-  .rtrophy .cup{font-size:33px;line-height:1;filter:drop-shadow(0 0 9px color-mix(in srgb,var(--gold),transparent 30%))}
+  .rtrophy .cup{font-size:33px;font-size:clamp(30px,5cqi,52px);line-height:1;filter:drop-shadow(0 0 9px color-mix(in srgb,var(--gold),transparent 30%))}
   .rtrophy .champ{display:block;margin-top:1px}
-  .rtrophy .champ .flag{width:30px;height:21px;border-radius:3px;box-shadow:0 0 0 1.5px var(--gold)}
-  .rtrophy .champ-nm{display:block;font-family:var(--mono);font-size:9px;font-weight:800;color:var(--gold);letter-spacing:.3px;margin-top:1px}
-  @media (max-width:680px){ .radial{max-width:none} .rconn .rlbl{font-size:19px} .rseedlbl{font-size:7.5px} .rtrophy .cup{font-size:26px} }
-  .rseedlbl b{font-weight:800} .rseedlbl em{font-style:normal;opacity:.7;font-size:.82em}
+  .rtrophy .champ .flag{width:30px;width:clamp(28px,4.6cqi,46px);height:auto;aspect-ratio:3/2;border-radius:3px;box-shadow:0 0 0 1.5px var(--gold)}
+  .rtrophy .champ-nm{display:block;font-family:var(--mono);font-size:9px;font-size:clamp(9px,1.6cqi,14px);font-weight:800;color:var(--gold);letter-spacing:.3px;margin-top:1px}
   /* ambient: trophy + champion gently pulse; winner paths draw in once when you hit Simulate */
   .rtrophy .cup{animation:rcup 2.8s ease-in-out infinite}
   @keyframes rcup{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
@@ -906,9 +905,9 @@ function renderRadial(host){
     radialEl.addEventListener('click',e=>{ const b=e.target.closest('.rbadge.has'); if(b&&b.dataset.adv){ const [no,code]=b.dataset.adv.split(','); advance(+no,code); } }); }
   if(radialEl.parentNode!==host) host.appendChild(radialEl);
   const sel=new Set(state.sel), anim=radialAnim; radialAnim=false;
-  let zones='',edges='',labels='',badges='',seeds='';
+  let zones='',edges='',rounds='',badges='',seeds='';
   ZONES.forEach((z,i)=>{ if(i&1){ const mid=((z[0]+z[1])/2).toFixed(0), th=(z[0]-z[1]).toFixed(0); zones+=`<circle class="rzone" cx="500" cy="500" r="${mid}" stroke-width="${th}"/>`; } });
-  for(let L=0;L<4;L++){ labels+=`<text class="rlbl" x="500" y="${(500-RAD[L]).toFixed(0)}" dy="0.32em">${RLBL[L]}</text>`; }
+  for(let L=0;L<4;L++){ rounds+=`<span class="rrlbl" style="left:50%;top:${((500-RAD[L])/10).toFixed(1)}%">${RLBL[L]}</span>`; }   // round labels as HTML so they scale with the circle (cqi), not viewBox
   for(let L=0;L<5;L++){ const N=32>>L; for(let j=0;j<N;j++){ const t=rOcc(L,j),[x1,y1]=rXY(L,j),[x2,y2]=L<4?rXY(L+1,j>>1):[500,500];
     const pt=L<4?rOcc(L+1,j>>1):winnerOf(104), won=t&&t===pt;
     edges+=`<path class="redge${won?' won':''}" d="M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}"${won?` style="stroke:${GC[grp(t)]}${anim?`;--rd:${(L*0.08).toFixed(2)}s`:''}"${anim?' pathLength="1"':''}`:''}/>`; } }
@@ -920,7 +919,7 @@ function renderRadial(host){
   const trophy=`<div class="rtrophy"><span class="cup">🏆</span>${champ?`<span class="champ">${flImg(champ)}<span class="champ-nm">${nm(champ)}</span></span>`:''}</div>`;
   radialEl.classList.toggle('tracking',sel.size>0);
   radialEl.classList.toggle('anim',anim);
-  radialEl.innerHTML=`<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${zones}${edges}${labels}</svg>${badges}${seeds}${trophy}`;
+  radialEl.innerHTML=`<svg class="rconn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">${zones}${edges}</svg>${badges}${seeds}${rounds}${trophy}`;
 }
 // sim-info tooltip: every model's win-prob for a knockout match (shared by classic-card + radial-badge hover)
 function pbar(p,ca,cb){ const a=Math.round(p*100); return `<span class="pbar"><i style="width:${a}%;background:${ca}"></i><i style="width:${100-a}%;background:${cb}"></i></span>`; }
