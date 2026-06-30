@@ -115,9 +115,7 @@
   .arrows button{background:none;border:none;color:var(--mut2);cursor:pointer;font-size:8px;padding:0;height:8px}
   .arrows button:hover{color:var(--acc)}
   /* fixtures */
-  details.fx{border-top:1px solid var(--line)} details.fx>summary{cursor:pointer;font-size:10.5px;color:var(--mut2);padding:5px 10px;list-style:none;user-select:none}
-  details.fx>summary::-webkit-details-marker{display:none}
-  details.fx>summary::before{content:"▸ ";} details.fx[open]>summary::before{content:"▾ ";}
+  .fx{border-top:1px solid var(--line)} .fxh{font-size:9px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--mut2);padding:6px 10px 3px}
   .mx{display:flex;align-items:center;gap:5px;padding:3px 9px;font-size:11.5px;border-top:1px solid #1c2740}
   .mx .dt{color:var(--mut2);font-size:9.5px;width:38px;flex:0 0 38px}
   .mx .tm{display:flex;align-items:center;gap:3px;white-space:nowrap}
@@ -804,8 +802,8 @@ function renderGroups(){
         `<span class="pts">${s.pts}</span>`+
         `<span class="arrows"><button data-up="${g},${i}">▲</button><button data-dn="${g},${i}">▼</button></span></div>`;
     });
-    h+=`<details class="fx" open><summary>Fixtures &amp; results</summary>`+
-       FIX.filter(f=>f.group===g).sort((a,b)=>a.no-b.no).map(mxRow).join('')+`</details></div>`;
+    h+=`<div class="fx"><div class="fxh">Fixtures &amp; results</div>`+
+       FIX.filter(f=>f.group===g).sort((a,b)=>a.no-b.no).map(mxRow).join('')+`</div></div>`;
   });
   groupsEl.innerHTML=h;
   const played=Object.keys(state.res).length;
@@ -1495,7 +1493,7 @@ const EMBED={"formYears":{"SCO":{"y1":{"w":6,"d":1,"l":3},"y3":{"w":14,"d":6,"l"
 applyData(EMBED);   // built-in data so head-to-head / squad / form-years work even without the data.json fetch
 methodSel.value=state.method; onMethod();   // default selection: Head-to-head (all-time)
 renderSources();
-simulate();                                  // auto-run the default sim (England champion under H2H all-time)
+recompute(); renderAll();                    // load with the REAL played results only — press Simulate to project the rest
 loadData(false);
 applyHash();   // open the deep-linked view + subtab (#sims/ko, #data/h2h, #forecast, …)
 function loadLive(){ fetch('live.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{ if(!d) return;
