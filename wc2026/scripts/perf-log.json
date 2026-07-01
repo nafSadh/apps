@@ -1,67 +1,121 @@
 {
-  "asOf": "2026-06-30",
-  "version": 41,
-  "played": 78,
+  "asOf": "2026-07-01",
+  "version": 42,
+  "played": 79,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
+    {
+      "key": "odds",
+      "model": "Betting market",
+      "ok": 52,
+      "miss": 27,
+      "hitRate": 0.658
+    },
     {
       "key": "squad",
       "model": "Squad value",
       "ok": 51,
-      "miss": 27,
-      "hitRate": 0.654
-    },
-    {
-      "key": "odds",
-      "model": "Betting market",
-      "ok": 51,
-      "miss": 27,
-      "hitRate": 0.654
+      "miss": 28,
+      "hitRate": 0.646
     },
     {
       "key": "blend",
       "model": "Balanced blend",
       "ok": 50,
-      "miss": 28,
-      "hitRate": 0.641
+      "miss": 29,
+      "hitRate": 0.633
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 49,
+      "ok": 50,
       "miss": 29,
-      "hitRate": 0.628
+      "hitRate": 0.633
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
       "ok": 48,
-      "miss": 30,
-      "hitRate": 0.615
+      "miss": 31,
+      "hitRate": 0.608
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 46,
+      "ok": 47,
       "miss": 32,
-      "hitRate": 0.59
+      "hitRate": 0.595
     },
     {
       "key": "form",
       "model": "Recent form",
       "ok": 44,
-      "miss": 34,
-      "hitRate": 0.564
+      "miss": 35,
+      "hitRate": 0.557
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
-      "ok": 43,
+      "ok": 44,
       "miss": 35,
-      "hitRate": 0.551
+      "hitRate": 0.557
     }
   ],
   "matches": [
+    {
+      "no": 79,
+      "date": "2026-06-30",
+      "stage": "R32",
+      "home": "Mexico",
+      "away": "Ecuador",
+      "score": [
+        2,
+        0
+      ],
+      "actual": "home win",
+      "models": {
+        "odds": {
+          "winProb": 0.649,
+          "pick": "H",
+          "correct": true
+        },
+        "squad": {
+          "winProb": 0.298,
+          "pick": "A",
+          "correct": false
+        },
+        "blend": {
+          "winProb": 0.525,
+          "pick": "D",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.887,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.425,
+          "pick": "D",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.714,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.439,
+          "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.692,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
     {
       "no": 78,
       "date": "2026-06-30",
@@ -74,15 +128,15 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.46,
-          "pick": "D",
-          "correct": false
-        },
         "odds": {
           "winProb": 0.115,
           "pick": "A",
           "correct": true
+        },
+        "squad": {
+          "winProb": 0.46,
+          "pick": "D",
+          "correct": false
         },
         "blend": {
           "winProb": 0.19,
@@ -128,13 +182,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.849,
+        "odds": {
+          "winProb": 0.937,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.937,
+        "squad": {
+          "winProb": 0.849,
           "pick": "H",
           "correct": true
         },
@@ -182,13 +236,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.834,
+        "odds": {
+          "winProb": 0.798,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.798,
+        "squad": {
+          "winProb": 0.834,
           "pick": "H",
           "correct": true
         },
@@ -236,13 +290,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.665,
+        "odds": {
+          "winProb": 0.688,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.688,
+        "squad": {
+          "winProb": 0.665,
           "pick": "H",
           "correct": false
         },
@@ -290,13 +344,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.916,
+        "odds": {
+          "winProb": 0.944,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.944,
+        "squad": {
+          "winProb": 0.916,
           "pick": "H",
           "correct": false
         },
@@ -344,13 +398,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.138,
+        "odds": {
+          "winProb": 0.075,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.075,
+        "squad": {
+          "winProb": 0.138,
           "pick": "A",
           "correct": true
         },
@@ -398,13 +452,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.665,
+        "odds": {
+          "winProb": 0.776,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.776,
+        "squad": {
+          "winProb": 0.665,
           "pick": "H",
           "correct": true
         },
@@ -452,13 +506,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.171,
+        "odds": {
+          "winProb": 0.235,
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.235,
+        "squad": {
+          "winProb": 0.171,
           "pick": "A",
           "correct": false
         },
@@ -506,13 +560,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.008,
+        "odds": {
+          "winProb": 0.019,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.019,
+        "squad": {
+          "winProb": 0.008,
           "pick": "A",
           "correct": true
         },
@@ -560,13 +614,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.515,
+        "odds": {
+          "winProb": 0.459,
           "pick": "D",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.459,
+        "squad": {
+          "winProb": 0.515,
           "pick": "D",
           "correct": true
         },
@@ -614,13 +668,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.659,
+        "odds": {
+          "winProb": 0.745,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.745,
+        "squad": {
+          "winProb": 0.659,
           "pick": "H",
           "correct": true
         },
@@ -668,13 +722,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.008,
+        "odds": {
+          "winProb": 0.014,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.014,
+        "squad": {
+          "winProb": 0.008,
           "pick": "A",
           "correct": true
         },
@@ -722,13 +776,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.168,
+        "odds": {
+          "winProb": 0.096,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.096,
+        "squad": {
+          "winProb": 0.168,
           "pick": "A",
           "correct": true
         },
@@ -776,13 +830,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.562,
+        "odds": {
+          "winProb": 0.5,
           "pick": "D",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.5,
+        "squad": {
+          "winProb": 0.562,
           "pick": "D",
           "correct": true
         },
@@ -830,13 +884,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.026,
+        "odds": {
+          "winProb": 0.022,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.022,
+        "squad": {
+          "winProb": 0.026,
           "pick": "A",
           "correct": true
         },
@@ -884,13 +938,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.844,
+        "odds": {
+          "winProb": 0.776,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.776,
+        "squad": {
+          "winProb": 0.844,
           "pick": "H",
           "correct": false
         },
@@ -938,13 +992,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.983,
+        "odds": {
+          "winProb": 0.918,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.918,
+        "squad": {
+          "winProb": 0.983,
           "pick": "H",
           "correct": true
         },
@@ -992,13 +1046,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.224,
+        "odds": {
+          "winProb": 0.163,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.163,
+        "squad": {
+          "winProb": 0.224,
           "pick": "A",
           "correct": true
         },
@@ -1046,13 +1100,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.711,
+        "odds": {
+          "winProb": 0.65,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.65,
+        "squad": {
+          "winProb": 0.711,
           "pick": "H",
           "correct": false
         },
@@ -1100,14 +1154,14 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.567,
-          "pick": "D",
-          "correct": false
-        },
         "odds": {
           "winProb": 0.328,
           "pick": "A",
+          "correct": false
+        },
+        "squad": {
+          "winProb": 0.567,
+          "pick": "D",
           "correct": false
         },
         "blend": {
@@ -1154,13 +1208,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.042,
+        "odds": {
+          "winProb": 0.05,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.05,
+        "squad": {
+          "winProb": 0.042,
           "pick": "A",
           "correct": true
         },
@@ -1208,14 +1262,14 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.37,
-          "pick": "A",
-          "correct": false
-        },
         "odds": {
           "winProb": 0.649,
           "pick": "H",
+          "correct": false
+        },
+        "squad": {
+          "winProb": 0.37,
+          "pick": "A",
           "correct": false
         },
         "blend": {
@@ -1262,13 +1316,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.225,
+        "odds": {
+          "winProb": 0.119,
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.119,
+        "squad": {
+          "winProb": 0.225,
           "pick": "A",
           "correct": false
         },
@@ -1316,13 +1370,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.019,
+        "odds": {
+          "winProb": 0.13,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.13,
+        "squad": {
+          "winProb": 0.019,
           "pick": "A",
           "correct": true
         },
@@ -1370,13 +1424,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.204,
+        "odds": {
+          "winProb": 0.147,
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.147,
+        "squad": {
+          "winProb": 0.204,
           "pick": "A",
           "correct": false
         },
@@ -1424,15 +1478,15 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.494,
-          "pick": "D",
-          "correct": false
-        },
         "odds": {
           "winProb": 0.131,
           "pick": "A",
           "correct": true
+        },
+        "squad": {
+          "winProb": 0.494,
+          "pick": "D",
+          "correct": false
         },
         "blend": {
           "winProb": 0.176,
@@ -1478,13 +1532,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.932,
+        "odds": {
+          "winProb": 0.65,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.65,
+        "squad": {
+          "winProb": 0.932,
           "pick": "H",
           "correct": true
         },
@@ -1532,13 +1586,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.663,
+        "odds": {
+          "winProb": 0.675,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.675,
+        "squad": {
+          "winProb": 0.663,
           "pick": "H",
           "correct": true
         },
@@ -1586,13 +1640,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.939,
+        "odds": {
+          "winProb": 0.973,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.973,
+        "squad": {
+          "winProb": 0.939,
           "pick": "H",
           "correct": true
         },
@@ -1640,13 +1694,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.098,
+        "odds": {
+          "winProb": 0.087,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.087,
+        "squad": {
+          "winProb": 0.098,
           "pick": "A",
           "correct": true
         },
@@ -1694,13 +1748,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.726,
+        "odds": {
+          "winProb": 0.904,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.904,
+        "squad": {
+          "winProb": 0.726,
           "pick": "H",
           "correct": true
         },
@@ -1748,13 +1802,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.962,
+        "odds": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.991,
+        "squad": {
+          "winProb": 0.962,
           "pick": "H",
           "correct": true
         },
@@ -1802,13 +1856,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.04,
+        "odds": {
+          "winProb": 0.131,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.131,
+        "squad": {
+          "winProb": 0.04,
           "pick": "A",
           "correct": true
         },
@@ -1856,13 +1910,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.909,
+        "odds": {
+          "winProb": 0.969,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.969,
+        "squad": {
+          "winProb": 0.909,
           "pick": "H",
           "correct": false
         },
@@ -1910,13 +1964,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.035,
+        "odds": {
+          "winProb": 0.306,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.306,
+        "squad": {
+          "winProb": 0.035,
           "pick": "A",
           "correct": true
         },
@@ -1964,13 +2018,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.827,
+        "odds": {
+          "winProb": 0.952,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.952,
+        "squad": {
+          "winProb": 0.827,
           "pick": "H",
           "correct": true
         },
@@ -2018,13 +2072,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.996,
+        "odds": {
+          "winProb": 0.994,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.994,
+        "squad": {
+          "winProb": 0.996,
           "pick": "H",
           "correct": true
         },
@@ -2072,15 +2126,15 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.568,
-          "pick": "D",
-          "correct": false
-        },
         "odds": {
           "winProb": 0.743,
           "pick": "H",
           "correct": true
+        },
+        "squad": {
+          "winProb": 0.568,
+          "pick": "D",
+          "correct": false
         },
         "blend": {
           "winProb": 0.585,
@@ -2126,13 +2180,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.168,
+        "odds": {
+          "winProb": 0.113,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.113,
+        "squad": {
+          "winProb": 0.168,
           "pick": "A",
           "correct": true
         },
@@ -2180,13 +2234,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.976,
+        "odds": {
+          "winProb": 0.952,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.952,
+        "squad": {
+          "winProb": 0.976,
           "pick": "H",
           "correct": false
         },
@@ -2234,13 +2288,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.989,
+        "odds": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.991,
+        "squad": {
+          "winProb": 0.989,
           "pick": "H",
           "correct": true
         },
@@ -2288,13 +2342,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.931,
+        "odds": {
+          "winProb": 0.919,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.919,
+        "squad": {
+          "winProb": 0.931,
           "pick": "H",
           "correct": false
         },
@@ -2342,13 +2396,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.145,
+        "odds": {
+          "winProb": 0.114,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.114,
+        "squad": {
+          "winProb": 0.145,
           "pick": "A",
           "correct": true
         },
@@ -2396,13 +2450,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.692,
+        "odds": {
+          "winProb": 0.817,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.817,
+        "squad": {
+          "winProb": 0.692,
           "pick": "H",
           "correct": true
         },
@@ -2450,13 +2504,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.97,
+        "odds": {
+          "winProb": 0.938,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.938,
+        "squad": {
+          "winProb": 0.97,
           "pick": "H",
           "correct": false
         },
@@ -2504,13 +2558,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.686,
+        "odds": {
+          "winProb": 0.944,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.944,
+        "squad": {
+          "winProb": 0.686,
           "pick": "H",
           "correct": true
         },
@@ -2558,13 +2612,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.891,
+        "odds": {
+          "winProb": 0.917,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.917,
+        "squad": {
+          "winProb": 0.891,
           "pick": "H",
           "correct": true
         },
@@ -2612,13 +2666,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.814,
+        "odds": {
+          "winProb": 0.745,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.745,
+        "squad": {
+          "winProb": 0.814,
           "pick": "H",
           "correct": false
         },
@@ -2666,13 +2720,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.22,
+        "odds": {
+          "winProb": 0.256,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.256,
+        "squad": {
+          "winProb": 0.22,
           "pick": "A",
           "correct": true
         },
@@ -2720,13 +2774,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.975,
+        "odds": {
+          "winProb": 0.992,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.992,
+        "squad": {
+          "winProb": 0.975,
           "pick": "H",
           "correct": true
         },
@@ -2774,13 +2828,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.604,
+        "odds": {
+          "winProb": 0.828,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.828,
+        "squad": {
+          "winProb": 0.604,
           "pick": "H",
           "correct": true
         },
@@ -2828,13 +2882,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.953,
+        "odds": {
+          "winProb": 0.845,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.845,
+        "squad": {
+          "winProb": 0.953,
           "pick": "H",
           "correct": true
         },
@@ -2882,13 +2936,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.746,
+        "odds": {
+          "winProb": 0.859,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.859,
+        "squad": {
+          "winProb": 0.746,
           "pick": "H",
           "correct": true
         },
@@ -2936,13 +2990,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.853,
+        "odds": {
+          "winProb": 0.809,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.809,
+        "squad": {
+          "winProb": 0.853,
           "pick": "H",
           "correct": false
         },
@@ -2990,13 +3044,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.925,
+        "odds": {
+          "winProb": 0.694,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.694,
+        "squad": {
+          "winProb": 0.925,
           "pick": "H",
           "correct": true
         },
@@ -3044,13 +3098,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.838,
+        "odds": {
+          "winProb": 0.914,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.914,
+        "squad": {
+          "winProb": 0.838,
           "pick": "H",
           "correct": true
         },
@@ -3098,13 +3152,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.16,
+        "odds": {
+          "winProb": 0.03,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.03,
+        "squad": {
+          "winProb": 0.16,
           "pick": "A",
           "correct": true
         },
@@ -3152,13 +3206,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.928,
+        "odds": {
+          "winProb": 0.968,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.968,
+        "squad": {
+          "winProb": 0.928,
           "pick": "H",
           "correct": false
         },
@@ -3206,13 +3260,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.963,
+        "odds": {
+          "winProb": 0.728,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.728,
+        "squad": {
+          "winProb": 0.963,
           "pick": "H",
           "correct": true
         },
@@ -3260,13 +3314,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.818,
+        "odds": {
+          "winProb": 0.959,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.959,
+        "squad": {
+          "winProb": 0.818,
           "pick": "H",
           "correct": true
         },
@@ -3314,13 +3368,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.013,
+        "odds": {
+          "winProb": 0.03,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.03,
+        "squad": {
+          "winProb": 0.013,
           "pick": "A",
           "correct": true
         },
@@ -3368,13 +3422,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.82,
+        "odds": {
+          "winProb": 0.937,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.937,
+        "squad": {
+          "winProb": 0.82,
           "pick": "H",
           "correct": true
         },
@@ -3422,15 +3476,15 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.476,
-          "pick": "D",
-          "correct": true
-        },
         "odds": {
           "winProb": 0.695,
           "pick": "H",
           "correct": false
+        },
+        "squad": {
+          "winProb": 0.476,
+          "pick": "D",
+          "correct": true
         },
         "blend": {
           "winProb": 0.832,
@@ -3476,13 +3530,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.884,
+        "odds": {
+          "winProb": 0.851,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.851,
+        "squad": {
+          "winProb": 0.884,
           "pick": "H",
           "correct": false
         },
@@ -3530,13 +3584,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.985,
+        "odds": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.991,
+        "squad": {
+          "winProb": 0.985,
           "pick": "H",
           "correct": false
         },
@@ -3584,13 +3638,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.054,
+        "odds": {
+          "winProb": 0.081,
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.081,
+        "squad": {
+          "winProb": 0.054,
           "pick": "A",
           "correct": false
         },
@@ -3638,13 +3692,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.909,
+        "odds": {
+          "winProb": 0.808,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.808,
+        "squad": {
+          "winProb": 0.909,
           "pick": "H",
           "correct": true
         },
@@ -3692,13 +3746,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.793,
+        "odds": {
+          "winProb": 0.708,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.708,
+        "squad": {
+          "winProb": 0.793,
           "pick": "H",
           "correct": false
         },
@@ -3746,12 +3800,12 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
+        "odds": {
           "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
-        "odds": {
+        "squad": {
           "winProb": 0.991,
           "pick": "H",
           "correct": true
@@ -3800,15 +3854,15 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.612,
-          "pick": "H",
-          "correct": true
-        },
         "odds": {
           "winProb": 0.306,
           "pick": "A",
           "correct": false
+        },
+        "squad": {
+          "winProb": 0.612,
+          "pick": "H",
+          "correct": true
         },
         "blend": {
           "winProb": 0.275,
@@ -3854,13 +3908,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.024,
+        "odds": {
+          "winProb": 0.081,
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.081,
+        "squad": {
+          "winProb": 0.024,
           "pick": "A",
           "correct": false
         },
@@ -3908,13 +3962,13 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.722,
+        "odds": {
+          "winProb": 0.783,
           "pick": "H",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.783,
+        "squad": {
+          "winProb": 0.722,
           "pick": "H",
           "correct": false
         },
@@ -3962,13 +4016,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.085,
+        "odds": {
+          "winProb": 0.155,
           "pick": "A",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.155,
+        "squad": {
+          "winProb": 0.085,
           "pick": "A",
           "correct": false
         },
@@ -4016,13 +4070,13 @@
       ],
       "actual": "away win",
       "models": {
-        "squad": {
-          "winProb": 0.189,
+        "odds": {
+          "winProb": 0.075,
           "pick": "A",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.075,
+        "squad": {
+          "winProb": 0.189,
           "pick": "A",
           "correct": true
         },
@@ -4070,13 +4124,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.77,
+        "odds": {
+          "winProb": 0.857,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.857,
+        "squad": {
+          "winProb": 0.77,
           "pick": "H",
           "correct": true
         },
@@ -4124,15 +4178,15 @@
       ],
       "actual": "draw",
       "models": {
-        "squad": {
-          "winProb": 0.599,
-          "pick": "D",
-          "correct": true
-        },
         "odds": {
           "winProb": 0.746,
           "pick": "H",
           "correct": false
+        },
+        "squad": {
+          "winProb": 0.599,
+          "pick": "D",
+          "correct": true
         },
         "blend": {
           "winProb": 0.831,
@@ -4178,13 +4232,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.402,
+        "odds": {
+          "winProb": 0.579,
           "pick": "D",
           "correct": false
         },
-        "odds": {
-          "winProb": 0.579,
+        "squad": {
+          "winProb": 0.402,
           "pick": "D",
           "correct": false
         },
@@ -4232,13 +4286,13 @@
       ],
       "actual": "home win",
       "models": {
-        "squad": {
-          "winProb": 0.856,
+        "odds": {
+          "winProb": 0.965,
           "pick": "H",
           "correct": true
         },
-        "odds": {
-          "winProb": 0.965,
+        "squad": {
+          "winProb": 0.856,
           "pick": "H",
           "correct": true
         },
