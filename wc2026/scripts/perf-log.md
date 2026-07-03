@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-02** · **83** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-03** · **84** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.
 
@@ -8,20 +8,21 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Betting market | 67% | 56 | 27 |
-| Balanced blend | 65% | 54 | 29 |
-| Pot + goals | 65% | 54 | 29 |
-| Squad value | 65% | 54 | 29 |
-| Analyst supercomputer | 63% | 52 | 31 |
-| FIFA ranking | 61% | 51 | 32 |
-| Recent form | 57% | 47 | 36 |
-| Head-to-head (historic) | 57% | 47 | 36 |
+| Betting market | 68% | 57 | 27 |
+| Balanced blend | 65% | 55 | 29 |
+| Pot + goals | 65% | 55 | 29 |
+| Squad value | 65% | 55 | 29 |
+| Analyst supercomputer | 63% | 53 | 31 |
+| FIFA ranking | 62% | 52 | 32 |
+| Recent form | 57% | 48 | 36 |
+| Head-to-head (historic) | 57% | 48 | 36 |
 
 ## Per match (latest first)
 
 | Date | # | Match | Result | Odds | Blend | Pot+G | Squad | Opta | FIFA | Form | H2H |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | 2026-07-02 | M84 R32 | Spain – Austria | 3–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
+| 2026-07-02 | M83 R32 | Portugal – Croatia | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-01 | M82 R32 | Belgium – Senegal | 3–2 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ |
 | 2026-07-01 | M81 R32 | United States – Bosnia & H. | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-01 | M80 R32 | England – DR Congo | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
