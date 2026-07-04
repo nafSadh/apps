@@ -1,67 +1,121 @@
 {
   "asOf": "2026-07-04",
-  "version": 53,
-  "played": 88,
+  "version": 54,
+  "played": 89,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 61,
+      "ok": 62,
       "miss": 27,
-      "hitRate": 0.693
+      "hitRate": 0.697
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 58,
+      "ok": 59,
       "miss": 30,
-      "hitRate": 0.659
+      "hitRate": 0.663
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
       "ok": 58,
-      "miss": 30,
-      "hitRate": 0.659
+      "miss": 31,
+      "hitRate": 0.652
     },
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 57,
+      "ok": 58,
       "miss": 31,
-      "hitRate": 0.648
+      "hitRate": 0.652
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 56,
+      "ok": 57,
       "miss": 32,
-      "hitRate": 0.636
+      "hitRate": 0.64
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 55,
+      "ok": 56,
       "miss": 33,
-      "hitRate": 0.625
+      "hitRate": 0.629
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
-      "ok": 52,
+      "ok": 53,
       "miss": 36,
-      "hitRate": 0.591
+      "hitRate": 0.596
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 50,
+      "ok": 51,
       "miss": 38,
-      "hitRate": 0.568
+      "hitRate": 0.573
     }
   ],
   "matches": [
+    {
+      "no": 90,
+      "date": "2026-07-04",
+      "stage": "R16",
+      "home": "Canada",
+      "away": "Morocco",
+      "score": [
+        0,
+        3
+      ],
+      "actual": "away win",
+      "models": {
+        "odds": {
+          "winProb": 0.256,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.243,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.779,
+          "pick": "H",
+          "correct": false
+        },
+        "squad": {
+          "winProb": 0.256,
+          "pick": "A",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.238,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.118,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.125,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.323,
+          "pick": "A",
+          "correct": true
+        }
+      }
+    },
     {
       "no": 88,
       "date": "2026-07-03",
