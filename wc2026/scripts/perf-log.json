@@ -1,445 +1,67 @@
 {
   "asOf": "2026-07-04",
   "version": 54,
-  "played": 89,
+  "played": 81,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 62,
+      "ok": 54,
       "miss": 27,
-      "hitRate": 0.697
+      "hitRate": 0.667
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 59,
-      "miss": 30,
-      "hitRate": 0.663
+      "ok": 52,
+      "miss": 29,
+      "hitRate": 0.642
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 58,
-      "miss": 31,
-      "hitRate": 0.652
+      "ok": 52,
+      "miss": 29,
+      "hitRate": 0.642
     },
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 58,
-      "miss": 31,
-      "hitRate": 0.652
+      "ok": 52,
+      "miss": 29,
+      "hitRate": 0.642
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 57,
-      "miss": 32,
-      "hitRate": 0.64
+      "ok": 50,
+      "miss": 31,
+      "hitRate": 0.617
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 56,
-      "miss": 33,
-      "hitRate": 0.629
-    },
-    {
-      "key": "h2h",
-      "model": "Head-to-head (historic)",
-      "ok": 53,
-      "miss": 36,
-      "hitRate": 0.596
+      "ok": 49,
+      "miss": 32,
+      "hitRate": 0.605
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 51,
-      "miss": 38,
-      "hitRate": 0.573
+      "ok": 46,
+      "miss": 35,
+      "hitRate": 0.568
+    },
+    {
+      "key": "h2h",
+      "model": "Head-to-head (historic)",
+      "ok": 45,
+      "miss": 36,
+      "hitRate": 0.556
     }
   ],
   "matches": [
-    {
-      "no": 90,
-      "date": "2026-07-04",
-      "stage": "R16",
-      "home": "Canada",
-      "away": "Morocco",
-      "score": [
-        0,
-        3
-      ],
-      "actual": "away win",
-      "models": {
-        "odds": {
-          "winProb": 0.256,
-          "pick": "A",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.243,
-          "pick": "A",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.779,
-          "pick": "H",
-          "correct": false
-        },
-        "squad": {
-          "winProb": 0.256,
-          "pick": "A",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.238,
-          "pick": "A",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.118,
-          "pick": "A",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.125,
-          "pick": "A",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.323,
-          "pick": "A",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 88,
-      "date": "2026-07-03",
-      "stage": "R32",
-      "home": "Australia",
-      "away": "Egypt",
-      "score": [
-        1,
-        1
-      ],
-      "actual": "away win",
-      "models": {
-        "odds": {
-          "winProb": 0.314,
-          "pick": "A",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.519,
-          "pick": "D",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.486,
-          "pick": "D",
-          "correct": false
-        },
-        "squad": {
-          "winProb": 0.369,
-          "pick": "A",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.438,
-          "pick": "D",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.544,
-          "pick": "D",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.25,
-          "pick": "A",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.507,
-          "pick": "D",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 87,
-      "date": "2026-07-03",
-      "stage": "R32",
-      "home": "Colombia",
-      "away": "Ghana",
-      "score": [
-        1,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.857,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.958,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.887,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.583,
-          "pick": "D",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.933,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.974,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.989,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.981,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 86,
-      "date": "2026-07-03",
-      "stage": "R32",
-      "home": "Argentina",
-      "away": "Cape Verde",
-      "score": [
-        3,
-        2
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.986,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.992,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.98,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.975,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.99,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.995,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.994,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.992,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 85,
-      "date": "2026-07-02",
-      "stage": "R32",
-      "home": "Switzerland",
-      "away": "Algeria",
-      "score": [
-        2,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.794,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.777,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.848,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.584,
-          "pick": "D",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.866,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.693,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.269,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 84,
-      "date": "2026-07-02",
-      "stage": "R32",
-      "home": "Spain",
-      "away": "Austria",
-      "score": [
-        3,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.969,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.967,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.748,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.891,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.989,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.935,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.656,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.394,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 83,
-      "date": "2026-07-02",
-      "stage": "R32",
-      "home": "Portugal",
-      "away": "Croatia",
-      "score": [
-        2,
-        1
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.869,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.74,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.807,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.778,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.793,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.633,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.8,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.804,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
     {
       "no": 82,
       "date": "2026-07-01",
@@ -482,69 +104,15 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.523,
-          "pick": "D",
-          "correct": false
-        },
         "form": {
           "winProb": 0.877,
           "pick": "H",
           "correct": true
-        }
-      }
-    },
-    {
-      "no": 81,
-      "date": "2026-07-01",
-      "stage": "R32",
-      "home": "United States",
-      "away": "Bosnia & H.",
-      "score": [
-        2,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.904,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.909,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.959,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.781,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.894,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.949,
-          "pick": "H",
-          "correct": true
         },
         "h2h": {
-          "winProb": 0.833,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.71,
-          "pick": "H",
-          "correct": true
+          "winProb": 0.523,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -590,13 +158,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.975,
+        "form": {
+          "winProb": 0.888,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.888,
+        "h2h": {
+          "winProb": 0.975,
           "pick": "H",
           "correct": true
         }
@@ -644,15 +212,15 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.692,
-          "pick": "H",
-          "correct": true
-        },
         "form": {
           "winProb": 0.439,
           "pick": "D",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.692,
+          "pick": "H",
+          "correct": true
         }
       }
     },
@@ -698,15 +266,15 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.163,
-          "pick": "A",
-          "correct": true
-        },
         "form": {
           "winProb": 0.69,
           "pick": "H",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.163,
+          "pick": "A",
+          "correct": true
         }
       }
     },
@@ -752,13 +320,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.63,
+        "form": {
+          "winProb": 0.894,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.894,
+        "h2h": {
+          "winProb": 0.63,
           "pick": "H",
           "correct": true
         }
@@ -806,15 +374,15 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.857,
-          "pick": "H",
-          "correct": true
-        },
         "form": {
           "winProb": 0.193,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.857,
+          "pick": "H",
+          "correct": true
         }
       }
     },
@@ -860,14 +428,14 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.667,
-          "pick": "H",
-          "correct": false
-        },
         "form": {
           "winProb": 0.491,
           "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.667,
+          "pick": "H",
           "correct": false
         }
       }
@@ -914,13 +482,13 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.75,
+        "form": {
+          "winProb": 0.915,
           "pick": "H",
           "correct": false
         },
-        "form": {
-          "winProb": 0.915,
+        "h2h": {
+          "winProb": 0.75,
           "pick": "H",
           "correct": false
         }
@@ -968,15 +536,15 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
-          "correct": false
-        },
         "form": {
           "winProb": 0.113,
           "pick": "A",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
+          "correct": false
         }
       }
     },
@@ -1022,14 +590,14 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.294,
-          "pick": "A",
-          "correct": false
-        },
         "form": {
           "winProb": 0.595,
           "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.294,
+          "pick": "A",
           "correct": false
         }
       }
@@ -1076,15 +644,15 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.55,
-          "pick": "D",
-          "correct": true
-        },
         "form": {
           "winProb": 0.226,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.55,
+          "pick": "D",
+          "correct": true
         }
       }
     },
@@ -1130,13 +698,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.018,
+        "form": {
+          "winProb": 0.005,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.005,
+        "h2h": {
+          "winProb": 0.018,
           "pick": "A",
           "correct": true
         }
@@ -1184,13 +752,13 @@
           "pick": "D",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0,
+        "form": {
+          "winProb": 0.225,
           "pick": "A",
           "correct": false
         },
-        "form": {
-          "winProb": 0.225,
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": false
         }
@@ -1238,13 +806,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.98,
+        "form": {
+          "winProb": 0.977,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.977,
+        "h2h": {
+          "winProb": 0.98,
           "pick": "H",
           "correct": true
         }
@@ -1292,13 +860,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0,
+        "form": {
+          "winProb": 0.188,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.188,
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": true
         }
@@ -1346,13 +914,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.25,
+        "form": {
+          "winProb": 0.15,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.15,
+        "h2h": {
+          "winProb": 0.25,
           "pick": "A",
           "correct": true
         }
@@ -1400,13 +968,13 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.43,
+        "form": {
+          "winProb": 0.559,
           "pick": "D",
           "correct": true
         },
-        "form": {
-          "winProb": 0.559,
+        "h2h": {
+          "winProb": 0.43,
           "pick": "D",
           "correct": true
         }
@@ -1454,13 +1022,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.06,
+        "form": {
+          "winProb": 0.017,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.017,
+        "h2h": {
+          "winProb": 0.06,
           "pick": "A",
           "correct": true
         }
@@ -1508,15 +1076,15 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": true
-        },
         "form": {
           "winProb": 0.317,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
         }
       }
     },
@@ -1562,13 +1130,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.926,
+        "form": {
+          "winProb": 0.681,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.681,
+        "h2h": {
+          "winProb": 0.926,
           "pick": "H",
           "correct": true
         }
@@ -1616,15 +1184,15 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.438,
-          "pick": "D",
-          "correct": false
-        },
         "form": {
           "winProb": 0.157,
           "pick": "A",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.438,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -1670,14 +1238,14 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.3,
-          "pick": "A",
-          "correct": false
-        },
         "form": {
           "winProb": 0.619,
           "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.3,
+          "pick": "A",
           "correct": false
         }
       }
@@ -1724,15 +1292,15 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": false
-        },
         "form": {
           "winProb": 0.92,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -1778,13 +1346,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.333,
+        "form": {
+          "winProb": 0.069,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.069,
+        "h2h": {
+          "winProb": 0.333,
           "pick": "A",
           "correct": true
         }
@@ -1832,14 +1400,14 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.375,
-          "pick": "A",
-          "correct": false
-        },
         "form": {
           "winProb": 0.936,
           "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.375,
+          "pick": "A",
           "correct": false
         }
       }
@@ -1886,13 +1454,13 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0,
+        "form": {
+          "winProb": 0.194,
           "pick": "A",
           "correct": false
         },
-        "form": {
-          "winProb": 0.194,
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": false
         }
@@ -1940,13 +1508,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.053,
+        "form": {
+          "winProb": 0.031,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.031,
+        "h2h": {
+          "winProb": 0.053,
           "pick": "A",
           "correct": true
         }
@@ -1994,13 +1562,13 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.111,
+        "form": {
+          "winProb": 0.128,
           "pick": "A",
           "correct": false
         },
-        "form": {
-          "winProb": 0.128,
+        "h2h": {
+          "winProb": 0.111,
           "pick": "A",
           "correct": false
         }
@@ -2048,14 +1616,14 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
-          "correct": false
-        },
         "form": {
           "winProb": 0.426,
           "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
           "correct": false
         }
       }
@@ -2102,15 +1670,15 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.25,
-          "pick": "A",
-          "correct": false
-        },
         "form": {
           "winProb": 0.796,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.25,
+          "pick": "A",
+          "correct": false
         }
       }
     },
@@ -2156,13 +1724,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0,
+        "form": {
+          "winProb": 0.309,
           "pick": "A",
           "correct": false
         },
-        "form": {
-          "winProb": 0.309,
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": false
         }
@@ -2210,13 +1778,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.941,
+        "form": {
+          "winProb": 0.893,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.893,
+        "h2h": {
+          "winProb": 0.941,
           "pick": "H",
           "correct": true
         }
@@ -2264,13 +1832,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.1,
+        "form": {
+          "winProb": 0.304,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.304,
+        "h2h": {
+          "winProb": 0.1,
           "pick": "A",
           "correct": true
         }
@@ -2318,13 +1886,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.964,
+        "form": {
+          "winProb": 0.836,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.836,
+        "h2h": {
+          "winProb": 0.964,
           "pick": "H",
           "correct": true
         }
@@ -2372,13 +1940,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.9,
+        "form": {
+          "winProb": 0.962,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.962,
+        "h2h": {
+          "winProb": 0.9,
           "pick": "H",
           "correct": true
         }
@@ -2426,13 +1994,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.15,
+        "form": {
+          "winProb": 0.301,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.301,
+        "h2h": {
+          "winProb": 0.15,
           "pick": "A",
           "correct": true
         }
@@ -2480,15 +2048,15 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": true
-        },
         "form": {
           "winProb": 0.987,
           "pick": "H",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
         }
       }
     },
@@ -2534,13 +2102,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.25,
+        "form": {
+          "winProb": 0.059,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.059,
+        "h2h": {
+          "winProb": 0.25,
           "pick": "A",
           "correct": true
         }
@@ -2588,13 +2156,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.75,
+        "form": {
+          "winProb": 0.8,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.8,
+        "h2h": {
+          "winProb": 0.75,
           "pick": "H",
           "correct": true
         }
@@ -2642,13 +2210,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.987,
+        "form": {
+          "winProb": 0.948,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.948,
+        "h2h": {
+          "winProb": 0.987,
           "pick": "H",
           "correct": true
         }
@@ -2696,15 +2264,15 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0,
-          "pick": "A",
-          "correct": false
-        },
         "form": {
           "winProb": 0.615,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
         }
       }
     },
@@ -2750,13 +2318,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.167,
+        "form": {
+          "winProb": 0.122,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.122,
+        "h2h": {
+          "winProb": 0.167,
           "pick": "A",
           "correct": true
         }
@@ -2804,13 +2372,13 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.755,
+        "form": {
+          "winProb": 0.787,
           "pick": "H",
           "correct": false
         },
-        "form": {
-          "winProb": 0.787,
+        "h2h": {
+          "winProb": 0.755,
           "pick": "H",
           "correct": false
         }
@@ -2858,13 +2426,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
+        "form": {
+          "winProb": 0.961,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.961,
+        "h2h": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         }
@@ -2912,13 +2480,13 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.953,
+        "form": {
+          "winProb": 0.773,
           "pick": "H",
           "correct": false
         },
-        "form": {
-          "winProb": 0.773,
+        "h2h": {
+          "winProb": 0.953,
           "pick": "H",
           "correct": false
         }
@@ -2966,13 +2534,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.2,
+        "form": {
+          "winProb": 0.016,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.016,
+        "h2h": {
+          "winProb": 0.2,
           "pick": "A",
           "correct": true
         }
@@ -3020,15 +2588,15 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.56,
-          "pick": "D",
-          "correct": false
-        },
         "form": {
           "winProb": 0.762,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.56,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -3074,13 +2642,13 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.986,
+        "form": {
+          "winProb": 0.971,
           "pick": "H",
           "correct": false
         },
-        "form": {
-          "winProb": 0.971,
+        "h2h": {
+          "winProb": 0.986,
           "pick": "H",
           "correct": false
         }
@@ -3128,15 +2696,15 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": false
-        },
         "form": {
           "winProb": 0.818,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -3182,15 +2750,15 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.625,
-          "pick": "H",
-          "correct": true
-        },
         "form": {
           "winProb": 0.381,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.625,
+          "pick": "H",
+          "correct": true
         }
       }
     },
@@ -3236,13 +2804,13 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.652,
+        "form": {
+          "winProb": 0.815,
           "pick": "H",
           "correct": false
         },
-        "form": {
-          "winProb": 0.815,
+        "h2h": {
+          "winProb": 0.652,
           "pick": "H",
           "correct": false
         }
@@ -3290,13 +2858,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0,
+        "form": {
+          "winProb": 0.316,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.316,
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": true
         }
@@ -3344,13 +2912,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
+        "form": {
+          "winProb": 0.898,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.898,
+        "h2h": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         }
@@ -3398,13 +2966,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.679,
+        "form": {
+          "winProb": 0.684,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.684,
+        "h2h": {
+          "winProb": 0.679,
           "pick": "H",
           "correct": true
         }
@@ -3452,13 +3020,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
+        "form": {
+          "winProb": 0.964,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.964,
+        "h2h": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         }
@@ -3506,15 +3074,15 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0,
-          "pick": "A",
-          "correct": false
-        },
         "form": {
           "winProb": 0.755,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
         }
       }
     },
@@ -3560,15 +3128,15 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": true
-        },
         "form": {
           "winProb": 0.916,
           "pick": "H",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
         }
       }
     },
@@ -3614,13 +3182,13 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.106,
+        "form": {
+          "winProb": 0.052,
           "pick": "A",
           "correct": false
         },
-        "form": {
-          "winProb": 0.052,
+        "h2h": {
+          "winProb": 0.106,
           "pick": "A",
           "correct": false
         }
@@ -3668,13 +3236,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.636,
+        "form": {
+          "winProb": 0.651,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.651,
+        "h2h": {
+          "winProb": 0.636,
           "pick": "H",
           "correct": true
         }
@@ -3722,13 +3290,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.083,
+        "form": {
+          "winProb": 0.118,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.118,
+        "h2h": {
+          "winProb": 0.083,
           "pick": "A",
           "correct": true
         }
@@ -3776,13 +3344,13 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.956,
+        "form": {
+          "winProb": 0.946,
           "pick": "H",
           "correct": false
         },
-        "form": {
-          "winProb": 0.946,
+        "h2h": {
+          "winProb": 0.956,
           "pick": "H",
           "correct": false
         }
@@ -3830,13 +3398,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.82,
+        "form": {
+          "winProb": 0.982,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.982,
+        "h2h": {
+          "winProb": 0.82,
           "pick": "H",
           "correct": true
         }
@@ -3884,13 +3452,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
+        "form": {
+          "winProb": 0.932,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.932,
+        "h2h": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         }
@@ -3938,13 +3506,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.047,
+        "form": {
+          "winProb": 0.227,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.227,
+        "h2h": {
+          "winProb": 0.047,
           "pick": "A",
           "correct": true
         }
@@ -3992,15 +3560,15 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0,
-          "pick": "A",
-          "correct": false
-        },
         "form": {
           "winProb": 0.895,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
         }
       }
     },
@@ -4046,13 +3614,13 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.75,
+        "form": {
+          "winProb": 0.94,
           "pick": "H",
           "correct": false
         },
-        "form": {
-          "winProb": 0.94,
+        "h2h": {
+          "winProb": 0.75,
           "pick": "H",
           "correct": false
         }
@@ -4100,14 +3668,14 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.25,
-          "pick": "A",
-          "correct": false
-        },
         "form": {
           "winProb": 0.888,
           "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.25,
+          "pick": "A",
           "correct": false
         }
       }
@@ -4154,13 +3722,13 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.996,
+        "form": {
+          "winProb": 0.951,
           "pick": "H",
           "correct": false
         },
-        "form": {
-          "winProb": 0.951,
+        "h2h": {
+          "winProb": 0.996,
           "pick": "H",
           "correct": false
         }
@@ -4208,15 +3776,15 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": true
-        },
         "form": {
           "winProb": 0.188,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
         }
       }
     },
@@ -4262,13 +3830,13 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.625,
+        "form": {
+          "winProb": 0.808,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.808,
+        "h2h": {
+          "winProb": 0.625,
           "pick": "H",
           "correct": true
         }
@@ -4316,14 +3884,14 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.833,
-          "pick": "H",
-          "correct": false
-        },
         "form": {
           "winProb": 0.179,
           "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.833,
+          "pick": "H",
           "correct": false
         }
       }
@@ -4370,13 +3938,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.991,
+        "form": {
+          "winProb": 0.993,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.993,
+        "h2h": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         }
@@ -4424,14 +3992,14 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.207,
-          "pick": "A",
-          "correct": false
-        },
         "form": {
           "winProb": 0.48,
           "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.207,
+          "pick": "A",
           "correct": false
         }
       }
@@ -4478,14 +4046,14 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
-          "correct": false
-        },
         "form": {
           "winProb": 0.077,
           "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
           "correct": false
         }
       }
@@ -4532,15 +4100,15 @@
           "pick": "D",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.667,
-          "pick": "H",
-          "correct": false
-        },
         "form": {
           "winProb": 0.514,
           "pick": "D",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.667,
+          "pick": "H",
+          "correct": false
         }
       }
     },
@@ -4586,13 +4154,13 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0,
+        "form": {
+          "winProb": 0.123,
           "pick": "A",
           "correct": false
         },
-        "form": {
-          "winProb": 0.123,
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": false
         }
@@ -4640,13 +4208,13 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.087,
+        "form": {
+          "winProb": 0.206,
           "pick": "A",
           "correct": true
         },
-        "form": {
-          "winProb": 0.206,
+        "h2h": {
+          "winProb": 0.087,
           "pick": "A",
           "correct": true
         }
@@ -4694,15 +4262,15 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.667,
-          "pick": "H",
-          "correct": true
-        },
         "form": {
           "winProb": 0.275,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.667,
+          "pick": "H",
+          "correct": true
         }
       }
     },
@@ -4748,13 +4316,13 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.895,
+        "form": {
+          "winProb": 0.874,
           "pick": "H",
           "correct": false
         },
-        "form": {
-          "winProb": 0.874,
+        "h2h": {
+          "winProb": 0.895,
           "pick": "H",
           "correct": false
         }
@@ -4802,14 +4370,14 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": false
-        },
         "form": {
           "winProb": 0.384,
           "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
           "correct": false
         }
       }
@@ -4856,13 +4424,13 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.625,
+        "form": {
+          "winProb": 0.936,
           "pick": "H",
           "correct": true
         },
-        "form": {
-          "winProb": 0.936,
+        "h2h": {
+          "winProb": 0.625,
           "pick": "H",
           "correct": true
         }
