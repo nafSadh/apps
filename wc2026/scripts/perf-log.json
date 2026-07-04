@@ -1,445 +1,88 @@
 {
   "asOf": "2026-07-04",
   "version": 54,
-  "played": 89,
+  "played": 81,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 62,
+      "ok": 54,
       "miss": 27,
-      "hitRate": 0.697
+      "hitRate": 0.667
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 59,
-      "miss": 30,
-      "hitRate": 0.663
+      "ok": 52,
+      "miss": 29,
+      "hitRate": 0.642
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 58,
-      "miss": 31,
-      "hitRate": 0.652
+      "ok": 52,
+      "miss": 29,
+      "hitRate": 0.642
     },
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 58,
-      "miss": 31,
-      "hitRate": 0.652
+      "ok": 52,
+      "miss": 29,
+      "hitRate": 0.642
+    },
+    {
+      "key": "analysis",
+      "model": "Analysts & markets",
+      "ok": 51,
+      "miss": 30,
+      "hitRate": 0.63
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 57,
+      "ok": 50,
+      "miss": 31,
+      "hitRate": 0.617
+    },
+    {
+      "key": "wcform",
+      "model": "Tournament form",
+      "ok": 49,
       "miss": 32,
-      "hitRate": 0.64
+      "hitRate": 0.605
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 56,
-      "miss": 33,
-      "hitRate": 0.629
+      "ok": 49,
+      "miss": 32,
+      "hitRate": 0.605
     },
     {
-      "key": "h2h",
-      "model": "Head-to-head (historic)",
-      "ok": 53,
-      "miss": 36,
-      "hitRate": 0.596
+      "key": "h2hwc",
+      "model": "Head-to-head · World Cups",
+      "ok": 47,
+      "miss": 34,
+      "hitRate": 0.58
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 51,
-      "miss": 38,
-      "hitRate": 0.573
+      "ok": 46,
+      "miss": 35,
+      "hitRate": 0.568
+    },
+    {
+      "key": "h2h",
+      "model": "Head-to-head (historic)",
+      "ok": 45,
+      "miss": 36,
+      "hitRate": 0.556
     }
   ],
   "matches": [
-    {
-      "no": 90,
-      "date": "2026-07-04",
-      "stage": "R16",
-      "home": "Canada",
-      "away": "Morocco",
-      "score": [
-        0,
-        3
-      ],
-      "actual": "away win",
-      "models": {
-        "odds": {
-          "winProb": 0.256,
-          "pick": "A",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.243,
-          "pick": "A",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.779,
-          "pick": "H",
-          "correct": false
-        },
-        "squad": {
-          "winProb": 0.256,
-          "pick": "A",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.238,
-          "pick": "A",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.118,
-          "pick": "A",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.125,
-          "pick": "A",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.323,
-          "pick": "A",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 88,
-      "date": "2026-07-03",
-      "stage": "R32",
-      "home": "Australia",
-      "away": "Egypt",
-      "score": [
-        1,
-        1
-      ],
-      "actual": "away win",
-      "models": {
-        "odds": {
-          "winProb": 0.314,
-          "pick": "A",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.519,
-          "pick": "D",
-          "correct": false
-        },
-        "potgoals": {
-          "winProb": 0.486,
-          "pick": "D",
-          "correct": false
-        },
-        "squad": {
-          "winProb": 0.369,
-          "pick": "A",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.438,
-          "pick": "D",
-          "correct": false
-        },
-        "fifa": {
-          "winProb": 0.544,
-          "pick": "D",
-          "correct": false
-        },
-        "h2h": {
-          "winProb": 0.25,
-          "pick": "A",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.507,
-          "pick": "D",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 87,
-      "date": "2026-07-03",
-      "stage": "R32",
-      "home": "Colombia",
-      "away": "Ghana",
-      "score": [
-        1,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.857,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.958,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.887,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.583,
-          "pick": "D",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.933,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.974,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.989,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.981,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 86,
-      "date": "2026-07-03",
-      "stage": "R32",
-      "home": "Argentina",
-      "away": "Cape Verde",
-      "score": [
-        3,
-        2
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.986,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.992,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.98,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.975,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.99,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.995,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.994,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.992,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
-    {
-      "no": 85,
-      "date": "2026-07-02",
-      "stage": "R32",
-      "home": "Switzerland",
-      "away": "Algeria",
-      "score": [
-        2,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.794,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.777,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.848,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.584,
-          "pick": "D",
-          "correct": false
-        },
-        "opta": {
-          "winProb": 0.866,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.693,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.269,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 84,
-      "date": "2026-07-02",
-      "stage": "R32",
-      "home": "Spain",
-      "away": "Austria",
-      "score": [
-        3,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.969,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.967,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.748,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.891,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.989,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.935,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.656,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.394,
-          "pick": "A",
-          "correct": false
-        }
-      }
-    },
-    {
-      "no": 83,
-      "date": "2026-07-02",
-      "stage": "R32",
-      "home": "Portugal",
-      "away": "Croatia",
-      "score": [
-        2,
-        1
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.869,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.74,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.807,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.778,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.793,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.633,
-          "pick": "H",
-          "correct": true
-        },
-        "h2h": {
-          "winProb": 0.8,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.804,
-          "pick": "H",
-          "correct": true
-        }
-      }
-    },
     {
       "no": 82,
       "date": "2026-07-01",
@@ -472,17 +115,27 @@
           "pick": "D",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.626,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.688,
           "pick": "H",
           "correct": true
+        },
+        "wcform": {
+          "winProb": 0.559,
+          "pick": "D",
+          "correct": false
         },
         "fifa": {
           "winProb": 0.646,
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.523,
           "pick": "D",
           "correct": false
@@ -491,60 +144,11 @@
           "winProb": 0.877,
           "pick": "H",
           "correct": true
-        }
-      }
-    },
-    {
-      "no": 81,
-      "date": "2026-07-01",
-      "stage": "R32",
-      "home": "United States",
-      "away": "Bosnia & H.",
-      "score": [
-        2,
-        0
-      ],
-      "actual": "home win",
-      "models": {
-        "odds": {
-          "winProb": 0.904,
-          "pick": "H",
-          "correct": true
-        },
-        "blend": {
-          "winProb": 0.909,
-          "pick": "H",
-          "correct": true
-        },
-        "potgoals": {
-          "winProb": 0.959,
-          "pick": "H",
-          "correct": true
-        },
-        "squad": {
-          "winProb": 0.781,
-          "pick": "H",
-          "correct": true
-        },
-        "opta": {
-          "winProb": 0.894,
-          "pick": "H",
-          "correct": true
-        },
-        "fifa": {
-          "winProb": 0.949,
-          "pick": "H",
-          "correct": true
         },
         "h2h": {
-          "winProb": 0.833,
-          "pick": "H",
-          "correct": true
-        },
-        "form": {
-          "winProb": 0.71,
-          "pick": "H",
-          "correct": true
+          "winProb": 0.523,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -580,8 +184,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.975,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.985,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.97,
           "pick": "H",
           "correct": true
         },
@@ -590,13 +204,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.975,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.888,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.975,
           "pick": "H",
           "correct": true
         }
@@ -634,9 +253,19 @@
           "pick": "A",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.477,
+          "pick": "D",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.425,
           "pick": "D",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.386,
+          "pick": "A",
           "correct": false
         },
         "fifa": {
@@ -644,8 +273,8 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.692,
+        "h2hwc": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         },
@@ -653,6 +282,11 @@
           "winProb": 0.439,
           "pick": "D",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.692,
+          "pick": "H",
+          "correct": true
         }
       }
     },
@@ -688,8 +322,18 @@
           "pick": "D",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.233,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.125,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.193,
           "pick": "A",
           "correct": true
         },
@@ -698,7 +342,7 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.163,
           "pick": "A",
           "correct": true
@@ -707,6 +351,11 @@
           "winProb": 0.69,
           "pick": "H",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.163,
+          "pick": "A",
+          "correct": true
         }
       }
     },
@@ -742,8 +391,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.944,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.959,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.95,
           "pick": "H",
           "correct": true
         },
@@ -752,13 +411,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.63,
+        "h2hwc": {
+          "winProb": 0.943,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.894,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.63,
           "pick": "H",
           "correct": true
         }
@@ -796,8 +460,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.786,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.859,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.663,
           "pick": "H",
           "correct": true
         },
@@ -806,8 +480,8 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.857,
+        "h2hwc": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         },
@@ -815,6 +489,11 @@
           "winProb": 0.193,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.857,
+          "pick": "H",
+          "correct": true
         }
       }
     },
@@ -850,8 +529,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.645,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.641,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.718,
           "pick": "H",
           "correct": false
         },
@@ -860,14 +549,19 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.667,
+        "h2hwc": {
+          "winProb": 1,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.491,
           "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.667,
+          "pick": "H",
           "correct": false
         }
       }
@@ -904,8 +598,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.924,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.969,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.808,
           "pick": "H",
           "correct": false
         },
@@ -914,13 +618,18 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.75,
+        "h2hwc": {
+          "winProb": 1,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.915,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.75,
           "pick": "H",
           "correct": false
         }
@@ -958,8 +667,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.127,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.201,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.091,
           "pick": "A",
           "correct": true
         },
@@ -968,15 +687,20 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.072,
+          "pick": "A",
+          "correct": true
         },
         "form": {
           "winProb": 0.113,
           "pick": "A",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
+          "correct": false
         }
       }
     },
@@ -1012,9 +736,19 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.56,
+          "pick": "D",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.5,
           "pick": "D",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.333,
+          "pick": "A",
           "correct": false
         },
         "fifa": {
@@ -1022,7 +756,7 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.294,
           "pick": "A",
           "correct": false
@@ -1030,6 +764,11 @@
         "form": {
           "winProb": 0.595,
           "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.294,
+          "pick": "A",
           "correct": false
         }
       }
@@ -1066,17 +805,27 @@
           "pick": "A",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.294,
+          "pick": "A",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.25,
           "pick": "A",
           "correct": false
+        },
+        "wcform": {
+          "winProb": 0.542,
+          "pick": "D",
+          "correct": true
         },
         "fifa": {
           "winProb": 0.328,
           "pick": "A",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.55,
           "pick": "D",
           "correct": true
@@ -1085,6 +834,11 @@
           "winProb": 0.226,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.55,
+          "pick": "D",
+          "correct": true
         }
       }
     },
@@ -1120,7 +874,17 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.012,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
+          "winProb": 0.016,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
           "winProb": 0.016,
           "pick": "A",
           "correct": true
@@ -1130,13 +894,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.018,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.005,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.018,
           "pick": "A",
           "correct": true
         }
@@ -1174,23 +943,38 @@
           "pick": "D",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.437,
+          "pick": "D",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.5,
           "pick": "D",
           "correct": true
+        },
+        "wcform": {
+          "winProb": 0.299,
+          "pick": "A",
+          "correct": false
         },
         "fifa": {
           "winProb": 0.432,
           "pick": "D",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0,
           "pick": "A",
           "correct": false
         },
         "form": {
           "winProb": 0.225,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": false
         }
@@ -1228,8 +1012,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.913,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.916,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.97,
           "pick": "H",
           "correct": true
         },
@@ -1238,13 +1032,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.98,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.977,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.98,
           "pick": "H",
           "correct": true
         }
@@ -1282,8 +1081,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.02,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.009,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.048,
           "pick": "A",
           "correct": true
         },
@@ -1292,13 +1101,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.188,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": true
         }
@@ -1336,8 +1150,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.106,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.086,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.077,
           "pick": "A",
           "correct": true
         },
@@ -1346,13 +1170,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.25,
-          "pick": "A",
-          "correct": true
+        "h2hwc": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
         },
         "form": {
           "winProb": 0.15,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.25,
           "pick": "A",
           "correct": true
         }
@@ -1390,23 +1219,38 @@
           "pick": "D",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.447,
+          "pick": "D",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.379,
           "pick": "A",
           "correct": false
+        },
+        "wcform": {
+          "winProb": 0.436,
+          "pick": "D",
+          "correct": true
         },
         "fifa": {
           "winProb": 0.367,
           "pick": "A",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.43,
           "pick": "D",
           "correct": true
         },
         "form": {
           "winProb": 0.559,
+          "pick": "D",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.43,
           "pick": "D",
           "correct": true
         }
@@ -1444,8 +1288,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.023,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.023,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.059,
           "pick": "A",
           "correct": true
         },
@@ -1454,13 +1308,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.06,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.017,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.06,
           "pick": "A",
           "correct": true
         }
@@ -1498,13 +1357,33 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.672,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.838,
           "pick": "H",
           "correct": false
         },
+        "wcform": {
+          "winProb": 0.43,
+          "pick": "D",
+          "correct": true
+        },
         "fifa": {
           "winProb": 0.357,
+          "pick": "A",
+          "correct": false
+        },
+        "h2hwc": {
+          "winProb": 0.399,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.317,
           "pick": "A",
           "correct": false
         },
@@ -1512,11 +1391,6 @@
           "winProb": 0.5,
           "pick": "D",
           "correct": true
-        },
-        "form": {
-          "winProb": 0.317,
-          "pick": "A",
-          "correct": false
         }
       }
     },
@@ -1552,8 +1426,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.942,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.921,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.912,
           "pick": "H",
           "correct": true
         },
@@ -1562,13 +1446,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.926,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.681,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.926,
           "pick": "H",
           "correct": true
         }
@@ -1606,8 +1495,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.152,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.232,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.23,
           "pick": "A",
           "correct": true
         },
@@ -1616,15 +1515,20 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.438,
-          "pick": "D",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.216,
+          "pick": "A",
+          "correct": true
         },
         "form": {
           "winProb": 0.157,
           "pick": "A",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.438,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -1660,8 +1564,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.466,
+          "pick": "D",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.289,
+          "pick": "A",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.354,
           "pick": "A",
           "correct": false
         },
@@ -1670,14 +1584,19 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.3,
+        "h2hwc": {
+          "winProb": 0.369,
           "pick": "A",
           "correct": false
         },
         "form": {
           "winProb": 0.619,
           "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.3,
+          "pick": "A",
           "correct": false
         }
       }
@@ -1714,8 +1633,18 @@
           "pick": "D",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.463,
+          "pick": "D",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.436,
+          "pick": "D",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.451,
           "pick": "D",
           "correct": false
         },
@@ -1724,15 +1653,20 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.652,
+          "pick": "H",
+          "correct": true
         },
         "form": {
           "winProb": 0.92,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -1768,8 +1702,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.05,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.071,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.029,
           "pick": "A",
           "correct": true
         },
@@ -1778,13 +1722,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.333,
+        "h2hwc": {
+          "winProb": 0.036,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.069,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.333,
           "pick": "A",
           "correct": true
         }
@@ -1822,8 +1771,18 @@
           "pick": "A",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.681,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.672,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.807,
           "pick": "H",
           "correct": false
         },
@@ -1832,14 +1791,19 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.375,
-          "pick": "A",
+        "h2hwc": {
+          "winProb": 0.805,
+          "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.936,
           "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.375,
+          "pick": "A",
           "correct": false
         }
       }
@@ -1876,8 +1840,18 @@
           "pick": "A",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.222,
+          "pick": "A",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.236,
+          "pick": "A",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.336,
           "pick": "A",
           "correct": false
         },
@@ -1886,13 +1860,18 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0,
           "pick": "A",
           "correct": false
         },
         "form": {
           "winProb": 0.194,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": false
         }
@@ -1930,8 +1909,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.07,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.162,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.051,
           "pick": "A",
           "correct": true
         },
@@ -1940,13 +1929,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.053,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.031,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.053,
           "pick": "A",
           "correct": true
         }
@@ -1984,8 +1978,18 @@
           "pick": "A",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.167,
+          "pick": "A",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.241,
+          "pick": "A",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.113,
           "pick": "A",
           "correct": false
         },
@@ -1994,13 +1998,18 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.111,
           "pick": "A",
           "correct": false
         },
         "form": {
           "winProb": 0.128,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.111,
           "pick": "A",
           "correct": false
         }
@@ -2038,8 +2047,18 @@
           "pick": "D",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.225,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.197,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.227,
           "pick": "A",
           "correct": true
         },
@@ -2048,14 +2067,19 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.27,
+          "pick": "A",
+          "correct": true
         },
         "form": {
           "winProb": 0.426,
           "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
           "correct": false
         }
       }
@@ -2092,8 +2116,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.727,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.733,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.78,
           "pick": "H",
           "correct": true
         },
@@ -2102,15 +2136,20 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.25,
-          "pick": "A",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.788,
+          "pick": "H",
+          "correct": true
         },
         "form": {
           "winProb": 0.796,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.25,
+          "pick": "A",
+          "correct": false
         }
       }
     },
@@ -2146,8 +2185,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.662,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.62,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.63,
           "pick": "H",
           "correct": true
         },
@@ -2156,13 +2205,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0,
-          "pick": "A",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.631,
+          "pick": "H",
+          "correct": true
         },
         "form": {
           "winProb": 0.309,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": false
         }
@@ -2200,8 +2254,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.972,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.982,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.946,
           "pick": "H",
           "correct": true
         },
@@ -2210,13 +2274,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.941,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.893,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.941,
           "pick": "H",
           "correct": true
         }
@@ -2254,8 +2323,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.082,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.042,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.151,
           "pick": "A",
           "correct": true
         },
@@ -2264,13 +2343,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.1,
+        "h2hwc": {
+          "winProb": 0.125,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.304,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.1,
           "pick": "A",
           "correct": true
         }
@@ -2308,8 +2392,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.908,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.933,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.963,
           "pick": "H",
           "correct": true
         },
@@ -2318,13 +2412,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.964,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.836,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.964,
           "pick": "H",
           "correct": true
         }
@@ -2362,8 +2461,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.968,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.977,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.901,
           "pick": "H",
           "correct": true
         },
@@ -2372,13 +2481,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.9,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.962,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.9,
           "pick": "H",
           "correct": true
         }
@@ -2416,8 +2530,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.091,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.053,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.149,
           "pick": "A",
           "correct": true
         },
@@ -2426,13 +2550,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.15,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.301,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.15,
           "pick": "A",
           "correct": true
         }
@@ -2470,8 +2599,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.981,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.985,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": false
         },
@@ -2480,15 +2619,20 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": true
+        "h2hwc": {
+          "winProb": 0.992,
+          "pick": "H",
+          "correct": false
         },
         "form": {
           "winProb": 0.987,
           "pick": "H",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
         }
       }
     },
@@ -2524,23 +2668,38 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.209,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.5,
           "pick": "D",
           "correct": false
+        },
+        "wcform": {
+          "winProb": 0.34,
+          "pick": "A",
+          "correct": true
         },
         "fifa": {
           "winProb": 0.131,
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.25,
+        "h2hwc": {
+          "winProb": 0.35,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.059,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.25,
           "pick": "A",
           "correct": true
         }
@@ -2578,8 +2737,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.944,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.984,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.914,
           "pick": "H",
           "correct": true
         },
@@ -2588,13 +2757,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.75,
+        "h2hwc": {
+          "winProb": 0.922,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.8,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.75,
           "pick": "H",
           "correct": true
         }
@@ -2632,8 +2806,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.992,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.992,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.987,
           "pick": "H",
           "correct": true
         },
@@ -2642,13 +2826,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.987,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.948,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.987,
           "pick": "H",
           "correct": true
         }
@@ -2686,8 +2875,18 @@
           "pick": "D",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.582,
+          "pick": "D",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.757,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.65,
           "pick": "H",
           "correct": true
         },
@@ -2696,15 +2895,20 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0,
-          "pick": "A",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.619,
+          "pick": "H",
+          "correct": true
         },
         "form": {
           "winProb": 0.615,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
         }
       }
     },
@@ -2740,8 +2944,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.122,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.104,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.233,
           "pick": "A",
           "correct": true
         },
@@ -2750,13 +2964,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.167,
+        "h2hwc": {
+          "winProb": 0.229,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.122,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.167,
           "pick": "A",
           "correct": true
         }
@@ -2794,8 +3013,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.922,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.963,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.751,
           "pick": "H",
           "correct": false
         },
@@ -2804,13 +3033,18 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.755,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.787,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.755,
           "pick": "H",
           "correct": false
         }
@@ -2848,8 +3082,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.991,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.989,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.994,
           "pick": "H",
           "correct": true
         },
@@ -2858,13 +3102,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 1,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.961,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         }
@@ -2902,8 +3151,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.94,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.932,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.95,
           "pick": "H",
           "correct": false
         },
@@ -2912,13 +3171,18 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.953,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.773,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.953,
           "pick": "H",
           "correct": false
         }
@@ -2956,8 +3220,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.119,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.212,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.045,
           "pick": "A",
           "correct": true
         },
@@ -2966,13 +3240,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.2,
+        "h2hwc": {
+          "winProb": 0,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.016,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.2,
           "pick": "A",
           "correct": true
         }
@@ -3010,8 +3289,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.846,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.878,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.825,
           "pick": "H",
           "correct": true
         },
@@ -3020,8 +3309,8 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.56,
+        "h2hwc": {
+          "winProb": 0.5,
           "pick": "D",
           "correct": false
         },
@@ -3029,6 +3318,11 @@
           "winProb": 0.762,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.56,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -3064,8 +3358,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.963,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.941,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.983,
           "pick": "H",
           "correct": false
         },
@@ -3074,13 +3378,18 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.986,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.971,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.986,
           "pick": "H",
           "correct": false
         }
@@ -3118,8 +3427,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.874,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.908,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.836,
           "pick": "H",
           "correct": true
         },
@@ -3128,15 +3447,20 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.857,
+          "pick": "H",
+          "correct": true
         },
         "form": {
           "winProb": 0.818,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
         }
       }
     },
@@ -3172,25 +3496,40 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.774,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.773,
           "pick": "H",
           "correct": true
+        },
+        "wcform": {
+          "winProb": 0.381,
+          "pick": "A",
+          "correct": false
         },
         "fifa": {
           "winProb": 0.72,
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.625,
-          "pick": "H",
-          "correct": true
+        "h2hwc": {
+          "winProb": 0.369,
+          "pick": "A",
+          "correct": false
         },
         "form": {
           "winProb": 0.381,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.625,
+          "pick": "H",
+          "correct": true
         }
       }
     },
@@ -3226,8 +3565,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.771,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.866,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.661,
           "pick": "H",
           "correct": false
         },
@@ -3236,13 +3585,18 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.652,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.815,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.652,
           "pick": "H",
           "correct": false
         }
@@ -3280,23 +3634,38 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.187,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.121,
           "pick": "A",
           "correct": true
+        },
+        "wcform": {
+          "winProb": 0.408,
+          "pick": "D",
+          "correct": false
         },
         "fifa": {
           "winProb": 0.07,
           "pick": "A",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.316,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": true
         }
@@ -3334,8 +3703,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.989,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.994,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.982,
           "pick": "H",
           "correct": true
         },
@@ -3344,13 +3723,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
+        "h2hwc": {
+          "winProb": 0.983,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.898,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         }
@@ -3388,23 +3772,38 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.699,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.693,
           "pick": "H",
           "correct": true
+        },
+        "wcform": {
+          "winProb": 0.593,
+          "pick": "D",
+          "correct": false
         },
         "fifa": {
           "winProb": 0.729,
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.679,
+        "h2hwc": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.684,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.679,
           "pick": "H",
           "correct": true
         }
@@ -3442,8 +3841,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.912,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.916,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.968,
           "pick": "H",
           "correct": true
         },
@@ -3452,13 +3861,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
+        "h2hwc": {
+          "winProb": 0.97,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.964,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         }
@@ -3496,8 +3910,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.884,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.866,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.934,
           "pick": "H",
           "correct": true
         },
@@ -3506,15 +3930,20 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0,
-          "pick": "A",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.936,
+          "pick": "H",
+          "correct": true
         },
         "form": {
           "winProb": 0.755,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
         }
       }
     },
@@ -3550,8 +3979,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.771,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.636,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.81,
           "pick": "H",
           "correct": false
         },
@@ -3560,15 +3999,20 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": true
+        "h2hwc": {
+          "winProb": 0.819,
+          "pick": "H",
+          "correct": false
         },
         "form": {
           "winProb": 0.916,
           "pick": "H",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
         }
       }
     },
@@ -3604,23 +4048,38 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.485,
+          "pick": "D",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.621,
           "pick": "H",
           "correct": true
+        },
+        "wcform": {
+          "winProb": 0.108,
+          "pick": "A",
+          "correct": false
         },
         "fifa": {
           "winProb": 0.121,
           "pick": "A",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.106,
           "pick": "A",
           "correct": false
         },
         "form": {
           "winProb": 0.052,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.106,
           "pick": "A",
           "correct": false
         }
@@ -3658,8 +4117,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.831,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.855,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.728,
           "pick": "H",
           "correct": true
         },
@@ -3668,13 +4137,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.636,
-          "pick": "H",
-          "correct": true
+        "h2hwc": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
         },
         "form": {
           "winProb": 0.651,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.636,
           "pick": "H",
           "correct": true
         }
@@ -3712,8 +4186,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.074,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.067,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.085,
           "pick": "A",
           "correct": true
         },
@@ -3722,13 +4206,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.083,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.118,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.083,
           "pick": "A",
           "correct": true
         }
@@ -3766,8 +4255,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.959,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.977,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.955,
           "pick": "H",
           "correct": false
         },
@@ -3776,13 +4275,18 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.956,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.946,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.956,
           "pick": "H",
           "correct": false
         }
@@ -3820,23 +4324,38 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.83,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.5,
           "pick": "D",
           "correct": false
+        },
+        "wcform": {
+          "winProb": 0.818,
+          "pick": "H",
+          "correct": true
         },
         "fifa": {
           "winProb": 0.897,
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.82,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.982,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.82,
           "pick": "H",
           "correct": true
         }
@@ -3874,8 +4393,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.956,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.984,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.966,
           "pick": "H",
           "correct": true
         },
@@ -3884,13 +4413,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 1,
+        "h2hwc": {
+          "winProb": 0.967,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.932,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         }
@@ -3928,8 +4462,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.042,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.027,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.048,
           "pick": "A",
           "correct": true
         },
@@ -3938,13 +4482,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.047,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.227,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.047,
           "pick": "A",
           "correct": true
         }
@@ -3982,8 +4531,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.886,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.912,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.854,
           "pick": "H",
           "correct": true
         },
@@ -3992,7 +4551,7 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0,
           "pick": "A",
           "correct": false
@@ -4001,6 +4560,11 @@
           "winProb": 0.895,
           "pick": "H",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
         }
       }
     },
@@ -4036,8 +4600,18 @@
           "pick": "D",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.779,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.626,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.834,
           "pick": "H",
           "correct": false
         },
@@ -4046,13 +4620,18 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.75,
+        "h2hwc": {
+          "winProb": 0.835,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.94,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.75,
           "pick": "H",
           "correct": false
         }
@@ -4090,8 +4669,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.852,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.833,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.821,
           "pick": "H",
           "correct": false
         },
@@ -4100,14 +4689,19 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.25,
-          "pick": "A",
+        "h2hwc": {
+          "winProb": 0.823,
+          "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.888,
           "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.25,
+          "pick": "A",
           "correct": false
         }
       }
@@ -4144,8 +4738,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.993,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.993,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.996,
           "pick": "H",
           "correct": false
         },
@@ -4154,13 +4758,18 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.996,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.951,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.996,
           "pick": "H",
           "correct": false
         }
@@ -4198,8 +4807,18 @@
           "pick": "A",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.073,
+          "pick": "A",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.106,
+          "pick": "A",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.063,
           "pick": "A",
           "correct": false
         },
@@ -4208,15 +4827,20 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": true
+        "h2hwc": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
         },
         "form": {
           "winProb": 0.188,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": true
         }
       }
     },
@@ -4252,8 +4876,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.777,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.644,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.825,
           "pick": "H",
           "correct": true
         },
@@ -4262,13 +4896,18 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.625,
+        "h2hwc": {
+          "winProb": 0.825,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.808,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.625,
           "pick": "H",
           "correct": true
         }
@@ -4306,24 +4945,39 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.721,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.778,
           "pick": "H",
           "correct": false
+        },
+        "wcform": {
+          "winProb": 0.577,
+          "pick": "D",
+          "correct": true
         },
         "fifa": {
           "winProb": 0.721,
           "pick": "H",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0.833,
+        "h2hwc": {
+          "winProb": 1,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.179,
           "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.833,
+          "pick": "H",
           "correct": false
         }
       }
@@ -4360,8 +5014,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.989,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.981,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
@@ -4370,13 +5034,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
         "form": {
           "winProb": 0.993,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         }
@@ -4414,8 +5083,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.336,
+          "pick": "A",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.247,
+          "pick": "A",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.208,
           "pick": "A",
           "correct": false
         },
@@ -4424,7 +5103,7 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.207,
           "pick": "A",
           "correct": false
@@ -4432,6 +5111,11 @@
         "form": {
           "winProb": 0.48,
           "pick": "D",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.207,
+          "pick": "A",
           "correct": false
         }
       }
@@ -4468,8 +5152,18 @@
           "pick": "A",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.047,
+          "pick": "A",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.053,
+          "pick": "A",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.018,
           "pick": "A",
           "correct": false
         },
@@ -4478,14 +5172,19 @@
           "pick": "A",
           "correct": false
         },
-        "h2h": {
-          "winProb": 1,
-          "pick": "H",
+        "h2hwc": {
+          "winProb": 0.018,
+          "pick": "A",
           "correct": false
         },
         "form": {
           "winProb": 0.077,
           "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
           "correct": false
         }
       }
@@ -4522,8 +5221,18 @@
           "pick": "H",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.721,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.757,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.778,
           "pick": "H",
           "correct": false
         },
@@ -4532,8 +5241,8 @@
           "pick": "D",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.667,
+        "h2hwc": {
+          "winProb": 1,
           "pick": "H",
           "correct": false
         },
@@ -4541,6 +5250,11 @@
           "winProb": 0.514,
           "pick": "D",
           "correct": true
+        },
+        "h2h": {
+          "winProb": 0.667,
+          "pick": "H",
+          "correct": false
         }
       }
     },
@@ -4576,9 +5290,19 @@
           "pick": "A",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.254,
+          "pick": "A",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.275,
           "pick": "A",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.477,
+          "pick": "D",
           "correct": false
         },
         "fifa": {
@@ -4586,13 +5310,18 @@
           "pick": "D",
           "correct": false
         },
-        "h2h": {
-          "winProb": 0,
-          "pick": "A",
+        "h2hwc": {
+          "winProb": 0.477,
+          "pick": "D",
           "correct": false
         },
         "form": {
           "winProb": 0.123,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0,
           "pick": "A",
           "correct": false
         }
@@ -4630,8 +5359,18 @@
           "pick": "A",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.11,
+          "pick": "A",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.116,
+          "pick": "A",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.087,
           "pick": "A",
           "correct": true
         },
@@ -4640,13 +5379,18 @@
           "pick": "A",
           "correct": true
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.087,
           "pick": "A",
           "correct": true
         },
         "form": {
           "winProb": 0.206,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.087,
           "pick": "A",
           "correct": true
         }
@@ -4684,18 +5428,28 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.797,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.894,
           "pick": "H",
           "correct": true
+        },
+        "wcform": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
         },
         "fifa": {
           "winProb": 0.847,
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.667,
+        "h2hwc": {
+          "winProb": 1,
           "pick": "H",
           "correct": true
         },
@@ -4703,6 +5457,11 @@
           "winProb": 0.275,
           "pick": "A",
           "correct": false
+        },
+        "h2h": {
+          "winProb": 0.667,
+          "pick": "H",
+          "correct": true
         }
       }
     },
@@ -4738,8 +5497,18 @@
           "pick": "D",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.795,
+          "pick": "H",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.799,
+          "pick": "H",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.895,
           "pick": "H",
           "correct": false
         },
@@ -4748,13 +5517,18 @@
           "pick": "H",
           "correct": false
         },
-        "h2h": {
+        "h2hwc": {
           "winProb": 0.895,
           "pick": "H",
           "correct": false
         },
         "form": {
           "winProb": 0.874,
+          "pick": "H",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.895,
           "pick": "H",
           "correct": false
         }
@@ -4792,8 +5566,18 @@
           "pick": "D",
           "correct": false
         },
+        "analysis": {
+          "winProb": 0.598,
+          "pick": "D",
+          "correct": false
+        },
         "opta": {
           "winProb": 0.644,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.64,
           "pick": "H",
           "correct": true
         },
@@ -4802,14 +5586,19 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.5,
-          "pick": "D",
-          "correct": false
+        "h2hwc": {
+          "winProb": 0.64,
+          "pick": "H",
+          "correct": true
         },
         "form": {
           "winProb": 0.384,
           "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
           "correct": false
         }
       }
@@ -4846,8 +5635,18 @@
           "pick": "H",
           "correct": true
         },
+        "analysis": {
+          "winProb": 0.921,
+          "pick": "H",
+          "correct": true
+        },
         "opta": {
           "winProb": 0.877,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.924,
           "pick": "H",
           "correct": true
         },
@@ -4856,13 +5655,18 @@
           "pick": "H",
           "correct": true
         },
-        "h2h": {
-          "winProb": 0.625,
-          "pick": "H",
-          "correct": true
+        "h2hwc": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
         },
         "form": {
           "winProb": 0.936,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.625,
           "pick": "H",
           "correct": true
         }
