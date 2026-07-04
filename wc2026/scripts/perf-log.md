@@ -21,7 +21,7 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Date | # | Match | Result | Odds | Blend | Pot+G | Squad | Opta | FIFA | H2H | Form |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| 2026-07-03 | M88 R32 | Australia – Egypt | 1–1 | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ |
+| 2026-07-03 | M88 R32 | Australia – Egypt | 1–1 (2–4p) | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ |
 | 2026-07-03 | M87 R32 | Colombia – Ghana | 1–0 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-03 | M86 R32 | Argentina – Cape Verde | 3–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-02 | M85 R32 | Switzerland – Algeria | 2–0 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ |
