@@ -389,7 +389,9 @@
     <span class="msel"><label for="method">Model</label>
       <select class="sel" id="method">
         <option value="blend">Balanced blend</option>
+        <option value="analysis">Analysts &amp; markets</option>
         <option value="potgoals">Pot + goals</option>
+        <option value="wcform">Tournament form</option>
         <option value="fifa">FIFA ranking</option>
         <option value="squad">Squad value (€)</option>
         <option value="form">Recent form</option>
@@ -467,7 +469,9 @@
     <span class="msel"><label for="fc-method">Model / score</label>
       <select class="sel" id="fc-method">
         <option value="blend">Balanced blend</option>
+        <option value="analysis">Analysts &amp; markets</option>
         <option value="potgoals">Pot + goals</option>
+        <option value="wcform">Tournament form</option>
         <option value="fifa">FIFA ranking</option>
         <option value="squad">Squad value (€)</option>
         <option value="form">Recent form</option>
@@ -621,7 +625,7 @@ const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to
 
 /* ============ STATE ============ */
 const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"ko", koTeam:"", koModel:"blend", brk2:true, radial:true };
-let STATS={}, PGZ={}, FORMY={}, H2H={}, H2HWC={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
+let STATS={}, PGZ={}, WCFRAW={}, WCFZ={}, FORMY={}, H2H={}, H2HWC={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
 function computeStats(){
@@ -633,10 +637,12 @@ function computeStats(){
 }
 /* ---- rating profiles: code:[fifaPts, elo, outrightOdds(decimal), analyst title %, recent form (newest first)] ---- */
 let RATINGS={MEX:[1687.48,1800,61,1,"WWWDDWWWLDDL"],KOR:[1591.63,1754,351,0.4,"WWLLWWWLDWWW"],RSA:[1428.38,1526,2501,0.1,"WDLDLWLWWWDD"],CZE:[1505.74,1691,501,0.2,"WWDDWWLDDWLW"],CAN:[1559.48,1806,151,0.52,"DWDDWDDLWWDW"],SUI:[1650.06,1865,67,0.9,"DWDLDWDWWWWW"],QAT:[1450.31,1427,1001,0.02,"DLLDLLWDLDDL"],BIH:[1387.22,1571,501,0.1,"DDDDDWWDLWLW"],BRA:[1765.86,1978,11,6.6,"WWWLDWLWLWWD"],MAR:[1755.1,1840,46,1.9,"DWWWDWDWWWDW"],SCO:[1503.34,1794,151,0.2,"WWLLWLWWWDWL"],HAI:[1300,1536,2501,0.004,"LWDLWWLWDDLD"],USA:[1671.23,1780,41,1.2,"LWLLWWWDWLLW"],AUS:[1579.34,1839,601,0.3,"DLWWLLLWWWWW"],PAR:[1505.35,1780,301,0.1,"WLWWLLDWDLWD"],TUR:[1605.73,1849,91,0.9,"WWWWDWWWLWLW"],GER:[1735.77,1939,13,5.1,"WWWWWWWWWLLL"],ECU:[1598.52,1890,121,1.4,"WWDDWDDDWDDD"],CIV:[1540.87,1743,301,0.4,"WWWLWWDWWLWW"],CUW:[1294,1427,2501,0.05,"WLLLDWDWWDLD"],NED:[1753.57,1944,19,3.6,"WLDWWDWWWDWW"],JPN:[1661.58,1910,51,0.9,"WWWWWWDLDWLD"],TUN:[1476.41,1585,501,0.2,"LLDWDDLWWDLD"],SWE:[1509.79,1755,101,0.4,"DLWWDLLLLDWW"],BEL:[1742.24,1879,36,2.4,"WWDWWDWDWWWD"],IRN:[1619.58,1756,1001,0.05,"WWWLDDWLWLDW"],EGY:[1562.37,1711,251,0.4,"LWDWDLWWDWWL"],NZL:[1286,1578,2501,0.02,"LLWLLLDLLLLW"],ESP:[1856,2171,5.5,16.1,"WDDWDWWWWWDW"],URU:[1673.07,1890,67,1.2,"DDLDWWDWWLDL"],KSA:[1423.88,1592,1001,0.1,"DWLLLLWLWWLW"],CPV:[1371.11,1561,1001,0.05,"LWDLDDWDWWDW"],FRA:[1870.7,2063,5,13,"WLWWWWDWWWWL"],SEN:[1684.07,1869,101,1,"DLWWLWWWWDWW"],NOR:[1557.44,1922,31,3.5,"DWDLWWDWWWWW"],IRQ:[1446.28,1592,1501,0.05,"LDWWLLWWWDDW"],ARG:[1889.06,2128,9,10.4,"WWWWWWWLWDWW"],AUT:[1597.4,1857,251,0.1,"WWWDWLWWWWWL"],ALG:[1571.03,1759,301,0.1,"WWDWLWWWWDWW"],JOR:[1387.74,1691,751,0.1,"LLDDLWWWWWLL"],POR:[1767.85,1976,11,7,"WWWDWLDWWWDW"],COL:[1698.35,1998,41,2.1,"WWLLWWDWWWDD"],UZB:[1458.73,1735,2001,0.1,"LLDWDDWLWWDD"],COD:[1474.43,1639,501,0.1,"LDWWLWDWDWWW"],ENG:[1828.02,2042,6.5,11.2,"WWLDWWWWWWLW"],CRO:[1714.87,1933,91,1.6,"WLLWWWWDWWWW"],PAN:[1539.16,1743,751,0.05,"DWLWDLDWWDWD"],GHA:[1347,1509,301,0.1,"DLLLLLWWWDWL"]};
-const METHOD_NAME={blend:"Balanced blend",potgoals:"Pot + goals",fifa:"FIFA ranking",squad:"Squad value",form:"Recent form",h2h:"Head-to-head (historic)",h2hwc:"Head-to-head · World Cups",odds:"Betting market",opta:"Analyst supercomputer",consensus:"Consensus · all 8 models"};
+const METHOD_NAME={blend:"Balanced blend",analysis:"Analysts & markets",potgoals:"Pot + goals",wcform:"Tournament form",fifa:"FIFA ranking",squad:"Squad value",form:"Recent form",h2h:"Head-to-head (historic)",h2hwc:"Head-to-head · World Cups",odds:"Betting market",opta:"Analyst supercomputer",consensus:"Consensus · all 8 models"};
 const EXPLAIN={
   blend:"<b>Balanced blend</b> — the all-round default. Averages the four rating models (FIFA ranking, Elo, betting odds, analyst %) into one composite.",
   potgoals:"<b>Pot + goals</b> — a realistic, results-driven model: seeding pot (the draw's strength tier) plus goals scored and goal difference in this tournament so far. Rewards teams actually performing on the pitch over pedigree.",
+  wcform:"<b>Tournament form</b> — how each team is <b>actually playing at THIS World Cup</b>. Starts from the pre-tournament Elo, then updates it game-by-game from the real results — <b>opponent-adjusted</b> (beating a strong side moves you far more than beating a minnow) and <b>margin-weighted</b> (a rout counts more than a squeaker, with diminishing returns). Early on it barely leaves the seeding; as more games are played it leans on the pitch. Shootouts count as the 120-minute draw. The results-based upgrade to Pot + goals — no seeding-pedigree term.",
+  analysis:"<b>Analysts &amp; markets</b> — the pre-tournament <b>expert &amp; market consensus</b>: an equal-weight, z-scored blend of the <b>FIFA ranking, Elo, betting odds, the analyst supercomputer</b> and <b>squad value</b>. What every number said before a ball was kicked (broader than Balanced blend, which leaves out squad value).",
   fifa:"<b>FIFA ranking</b> — the official FIFA / Coca-Cola World Ranking points (June 2026). The governing body's pecking order.",
   squad:"<b>Squad value</b> — club-level quality of the 26-man squad, with a sub-selector: <b>market value</b> (Transfermarkt total, log-scaled €20m → €1.5bn — a money/transfer-market view), <b>EA FC rating</b> (EA Sports FC 26 team overall — a current-ability view), or <b>combined</b>. Same squads, two different lenses.",
   form:"<b>Recent form</b> — each team's OWN recent results: last 3 / 5 / 7 / 11 matches, or last 1 / 3 / 5 years (win = 3, draw = 1), lightly tempered by overall strength. NOT head-to-head — a team's run regardless of opponent.",
@@ -646,6 +652,22 @@ const EXPLAIN={
   opta:"<b>Analyst (supercomputer)</b> — Opta-style title-win probabilities from tens of thousands of tournament simulations. The model's opinion."
 };
 function potGoalsRaw(){ const o={}; for(const c in T){ const s=STATS[c]||{gf:0,gd:0}; o[c]=(5-pot(c))*12 + s.gf*3 + s.gd*2; } return o; }
+// "Tournament form": pre-tournament Elo, then updated game-by-game through THIS World Cup —
+// opponent-adjusted + margin-weighted (MOV multiplier). Beating a strong side moves you far more
+// than beating a minnow; a rout more than a squeaker (diminishing). Shootouts = the 120-min draw.
+function wcFormRaw(){
+  const elo={}; for(const c in T) elo[c]=(RATINGS[c]&&RATINGS[c][1])||1500;
+  const games=[];
+  for(const f of FIX){ const r=state.res[f.no]; if(r&&f.home&&f.away) games.push([f.home,f.away,r[0],r[1],f.date||""]); }
+  for(const no of KO_ORDER){ if(KOSET.has(no)&&KORES[no]){ const p=koPair(no); if(p) games.push([p[0],p[1],KORES[no][0],KORES[no][1],koISO(no)]); } }
+  games.sort((x,y)=> x[4]<y[4]?-1:x[4]>y[4]?1:0);       // chronological
+  const K=40;
+  for(const g of games){ const h=g[0],a=g[1],hg=g[2],ag=g[3]; if(elo[h]==null||elo[a]==null) continue;
+    const Eh=1/(1+Math.pow(10,-(elo[h]-elo[a])/400)), Sh=hg>ag?1:hg<ag?0:0.5;
+    const mov=Math.log(Math.abs(hg-ag)+1)*(2.2/(0.001*Math.abs(elo[h]-elo[a])+2.2));   // 538-style MOV multiplier
+    const d=K*mov*(Sh-Eh); elo[h]+=d; elo[a]-=d; }
+  return elo;
+}
 function zscores(raw){ const v=Object.values(raw), m=v.reduce((a,b)=>a+b,0)/v.length, sd=Math.sqrt(v.reduce((a,b)=>a+(b-m)*(b-m),0)/v.length)||1, z={}; for(const k in raw) z[k]=(raw[k]-m)/sd; return z; }
 function rRaw(method){ const o={}; for(const c in RATINGS){ const r=RATINGS[c];
   o[c]= method==="fifa"?r[0] : method==="elo"?r[1] : method==="odds"?-Math.log(r[2]||1000) : Math.log((r[3]||0.01)+0.02); } return o; }
@@ -678,6 +700,8 @@ function metricStr(c){ const R=RATINGS[c]||[];
     case "squad": { const v=SQUAD[c]; if(!v||!v.value) return "—"; const eur=`€${v.value>=1000?(v.value/1000).toFixed(2)+"bn":Math.round(v.value)+"m"}`;
       return state.squadWin==="eafc"?`EA FC ${v.eafc||"?"}`:state.squadWin==="both"?`${eur} · FC ${v.eafc||"?"}`:eur; }
     case "potgoals": { const s=STATS[c]||{gf:0,gd:0}; return `pot ${pot(c)} · ${s.gf} GF, ${s.gd>=0?"+":""}${s.gd} GD`; }
+    case "wcform": { const cur=Math.round(WCFRAW[c]||0), pre=Math.round((RATINGS[c]||[])[1]||0), dd=cur-pre; return `WC-form Elo ${cur} <span style="color:var(--mut2)">(${dd>=0?"+":""}${dd} this WC)</span>`; }
+    case "analysis": return `${FPOS[c]?"FIFA #"+FPOS[c]:"FIFA"} · ${(RATINGS[c]||[])[2]} odds`;
     default: return `blend score ${Math.round(strength(c))}/87`;
   }
 }
@@ -687,6 +711,8 @@ function methodStrength(c){
   let z;
   if(state.method==="form") z=0.7*(formZ(state.formWin)[c]||0)+0.3*(Z.elo[c]||0);
   else if(state.method==="potgoals") z=PGZ[c]||0;
+  else if(state.method==="wcform") z=WCFZ[c]||0;
+  else if(state.method==="analysis"){ const sq=(SQZ.value||{})[c]; const v=[Z.fifa[c],Z.elo[c],Z.odds[c],Z.opta[c],sq].filter(x=>x!=null); z=v.length?v.reduce((s,x)=>s+x,0)/v.length:(Z.blend[c]||0); }   // pre-tournament consensus: ratings + markets + squad value
   else if(state.method==="h2h"||state.method==="h2hwc") z=Z.elo[c]||0;
   else if(state.method==="fifa") z=Z.fifa[c]||0;
   else if(state.method==="odds") z=Z.odds[c]||0;
@@ -699,7 +725,7 @@ function methodStrength(c){
 // strength = model + a small current-form nudge (drives the projection/sims).
 // (form & pot+goals already build in tournament results, so they skip the nudge.)
 function strength(c){ let s=methodStrength(c); const st=STATS[c];
-  if(st && state.method!=="form" && state.method!=="potgoals") s+=st.pts*0.45+st.gd*0.28; return s; }
+  if(st && state.method!=="form" && state.method!=="potgoals" && state.method!=="wcform") s+=st.pts*0.45+st.gd*0.28; return s; }
 function groupTable(g){ return GROUP_TEAMS[g].slice().sort((a,b)=>{ const x=STATS[a],y=STATS[b];
   return y.pts-x.pts || y.gd-x.gd || y.gf-x.gf || pot(a)-pot(b) || (nm(a)<nm(b)?-1:1); }); }
 function groupOrder(g){ return state.forced[g] ? state.forced[g] : groupTable(g); }
@@ -727,7 +753,7 @@ function koSeed(c){ if(!c) return ""; const g=grp(c), i=groupOrder(g).indexOf(c)
 function koPair(no){ const p=parts(no); return (p[0]&&p[1])?[p[0],p[1]]:null; }   // resolved [home,away] codes for a bracket slot, or null if TBD
 function validateWins(){ [73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,104,103]
   .forEach(no=>{ const w=state.win[no]; if(w&&!parts(no).includes(w)) delete state.win[no]; }); }
-function recompute(){ STATS=computeStats(); PGZ=zscores(potGoalsRaw()); rebuildThirds(); buildAlloc(); validateWins(); }
+function recompute(){ STATS=computeStats(); PGZ=zscores(potGoalsRaw()); WCFRAW=wcFormRaw(); WCFZ=zscores(WCFRAW); rebuildThirds(); buildAlloc(); validateWins(); }
 function r32MatchOf(code){ for(const no of ORD32){ if(parts(no).includes(code)) return no; } return null; }
 function chain(start){ const out=[start]; let c=start; while(SUCC[c]!==undefined){ c=SUCC[c]; out.push(c);} return out; }
 
