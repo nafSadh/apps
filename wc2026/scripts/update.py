@@ -194,7 +194,7 @@ def build_from_intl(data, path):
     import datetime
     from collections import defaultdict
     cutoff = "2026-06-10"   # WC2026 kicked off 2026-06-11 — exclude the tournament itself
-    h2h, hist, n = {}, defaultdict(list), 0
+    h2h, h2hwc, hist, n = {}, {}, defaultdict(list), 0   # h2hwc = meetings at World Cup finals only
     with open(path, newline="", encoding="utf-8") as fh:
         for row in csv.DictReader(fh):
             d = row.get("date", "")
@@ -210,18 +210,22 @@ def build_from_intl(data, path):
                     hist[code].append((d, "W" if gf > ga else "L" if gf < ga else "D"))
             if not (ht and at and ht != at):
                 continue
-            y = int(d[:4])
+            y = int(d[:4]); is_wc = row.get("tournament") == "FIFA World Cup"
             for a, b, gf, ga in ((ht, at, hs, as_), (at, ht, as_, hs)):
-                rec = h2h.setdefault(a, {}).setdefault(b, {"p": 0, "w": 0, "d": 0, "l": 0, "meetings": []})
-                rec["p"] += 1
-                rec["w"] += int(gf > ga); rec["d"] += int(gf == ga); rec["l"] += int(gf < ga)
-                rec["meetings"].append({"d": d, "y": y, "r": "W" if gf > ga else "L" if gf < ga else "D", "s": f"{gf}-{ga}"})
+                for store, on in ((h2h, True), (h2hwc, is_wc)):
+                    if not on:
+                        continue
+                    rec = store.setdefault(a, {}).setdefault(b, {"p": 0, "w": 0, "d": 0, "l": 0, "meetings": []})
+                    rec["p"] += 1
+                    rec["w"] += int(gf > ga); rec["d"] += int(gf == ga); rec["l"] += int(gf < ga)
+                    rec["meetings"].append({"d": d, "y": y, "r": "W" if gf > ga else "L" if gf < ga else "D", "s": f"{gf}-{ga}"})
             n += 1
-    for a in h2h:
-        for rec in h2h[a].values():
-            rec["meetings"].sort(key=lambda m: m["d"], reverse=True)   # newest first
-            for m in rec["meetings"]:
-                del m["d"]
+    for store in (h2h, h2hwc):
+        for a in store:
+            for rec in store[a].values():
+                rec["meetings"].sort(key=lambda m: m["d"], reverse=True)   # newest first
+                for m in rec["meetings"]:
+                    del m["d"]
     cutd = datetime.date.fromisoformat(cutoff)
     fy = {}
     for code, h in hist.items():
@@ -237,7 +241,7 @@ def build_from_intl(data, path):
         recent = "".join(res for _, res in h[-12:][::-1])   # last 12, newest first
         if recent and code in data.get("ratings", {}):
             data["ratings"][code]["form"] = recent
-    data["h2h"], data["formYears"] = h2h, fy
+    data["h2h"], data["h2hwc"], data["formYears"] = h2h, h2hwc, fy
     print(f"  built h2h from {n} matches between WC teams (<= {cutoff}); {len(h2h)} teams, "
           f"merged {', '.join(f'{k}<-{v}' for k, v in INTL_MERGED.items())}")
 
@@ -374,7 +378,7 @@ def sync_embed(data):
         for b, rec in opps.items():
             m = rec.get("meetings", [])
             h2h_emb[a][b] = ({**rec, "meetings": m[:EMBED_CAP]} if len(m) > EMBED_CAP else rec)
-    embed = {"formYears": data.get("formYears", {}), "h2h": h2h_emb, "squad": data.get("squad", {}),
+    embed = {"formYears": data.get("formYears", {}), "h2h": h2h_emb, "h2hwc": data.get("h2hwc", {}), "squad": data.get("squad", {}),
              "fifaPos": data.get("fifaPos", {}), "sources": data.get("sources", []), "ko": data.get("ko", []),
              "thirdAlloc": data.get("thirdAlloc", {}), "koTimes": data.get("koTimes", [])}
     new = re.sub(r"const\s+EMBED\s*=\s*\{[\s\S]*?\};\s*\napplyData\(EMBED\)",
