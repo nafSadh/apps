@@ -479,7 +479,7 @@
         <option value="h2hwc">Head-to-head — World Cups</option>
         <option value="odds">Betting market</option>
         <option value="opta">Analyst (supercomputer)</option>
-        <option value="consensus">⚖ Consensus — all 8 models</option>
+        <option value="consensus">⚖ Consensus — all 9 models</option>
       </select></span>
     <span class="msel"><label for="fc-cind">Cinderella line</label>
       <select class="sel" id="fc-cind">
@@ -637,7 +637,7 @@ function computeStats(){
 }
 /* ---- rating profiles: code:[fifaPts, elo, outrightOdds(decimal), analyst title %, recent form (newest first)] ---- */
 let RATINGS={MEX:[1687.48,1800,61,1,"WWWDDWWWLDDL"],KOR:[1591.63,1754,351,0.4,"WWLLWWWLDWWW"],RSA:[1428.38,1526,2501,0.1,"WDLDLWLWWWDD"],CZE:[1505.74,1691,501,0.2,"WWDDWWLDDWLW"],CAN:[1559.48,1806,151,0.52,"DWDDWDDLWWDW"],SUI:[1650.06,1865,67,0.9,"DWDLDWDWWWWW"],QAT:[1450.31,1427,1001,0.02,"DLLDLLWDLDDL"],BIH:[1387.22,1571,501,0.1,"DDDDDWWDLWLW"],BRA:[1765.86,1978,11,6.6,"WWWLDWLWLWWD"],MAR:[1755.1,1840,46,1.9,"DWWWDWDWWWDW"],SCO:[1503.34,1794,151,0.2,"WWLLWLWWWDWL"],HAI:[1300,1536,2501,0.004,"LWDLWWLWDDLD"],USA:[1671.23,1780,41,1.2,"LWLLWWWDWLLW"],AUS:[1579.34,1839,601,0.3,"DLWWLLLWWWWW"],PAR:[1505.35,1780,301,0.1,"WLWWLLDWDLWD"],TUR:[1605.73,1849,91,0.9,"WWWWDWWWLWLW"],GER:[1735.77,1939,13,5.1,"WWWWWWWWWLLL"],ECU:[1598.52,1890,121,1.4,"WWDDWDDDWDDD"],CIV:[1540.87,1743,301,0.4,"WWWLWWDWWLWW"],CUW:[1294,1427,2501,0.05,"WLLLDWDWWDLD"],NED:[1753.57,1944,19,3.6,"WLDWWDWWWDWW"],JPN:[1661.58,1910,51,0.9,"WWWWWWDLDWLD"],TUN:[1476.41,1585,501,0.2,"LLDWDDLWWDLD"],SWE:[1509.79,1755,101,0.4,"DLWWDLLLLDWW"],BEL:[1742.24,1879,36,2.4,"WWDWWDWDWWWD"],IRN:[1619.58,1756,1001,0.05,"WWWLDDWLWLDW"],EGY:[1562.37,1711,251,0.4,"LWDWDLWWDWWL"],NZL:[1286,1578,2501,0.02,"LLWLLLDLLLLW"],ESP:[1856,2171,5.5,16.1,"WDDWDWWWWWDW"],URU:[1673.07,1890,67,1.2,"DDLDWWDWWLDL"],KSA:[1423.88,1592,1001,0.1,"DWLLLLWLWWLW"],CPV:[1371.11,1561,1001,0.05,"LWDLDDWDWWDW"],FRA:[1870.7,2063,5,13,"WLWWWWDWWWWL"],SEN:[1684.07,1869,101,1,"DLWWLWWWWDWW"],NOR:[1557.44,1922,31,3.5,"DWDLWWDWWWWW"],IRQ:[1446.28,1592,1501,0.05,"LDWWLLWWWDDW"],ARG:[1889.06,2128,9,10.4,"WWWWWWWLWDWW"],AUT:[1597.4,1857,251,0.1,"WWWDWLWWWWWL"],ALG:[1571.03,1759,301,0.1,"WWDWLWWWWDWW"],JOR:[1387.74,1691,751,0.1,"LLDDLWWWWWLL"],POR:[1767.85,1976,11,7,"WWWDWLDWWWDW"],COL:[1698.35,1998,41,2.1,"WWLLWWDWWWDD"],UZB:[1458.73,1735,2001,0.1,"LLDWDDWLWWDD"],COD:[1474.43,1639,501,0.1,"LDWWLWDWDWWW"],ENG:[1828.02,2042,6.5,11.2,"WWLDWWWWWWLW"],CRO:[1714.87,1933,91,1.6,"WLLWWWWDWWWW"],PAN:[1539.16,1743,751,0.05,"DWLWDLDWWDWD"],GHA:[1347,1509,301,0.1,"DLLLLLWWWDWL"]};
-const METHOD_NAME={blend:"Balanced blend",analysis:"Analysts & markets",potgoals:"Pot + goals",wcform:"Tournament form",fifa:"FIFA ranking",squad:"Squad value",form:"Recent form",h2h:"Head-to-head (historic)",h2hwc:"Head-to-head · World Cups",odds:"Betting market",opta:"Analyst supercomputer",consensus:"Consensus · all 8 models"};
+const METHOD_NAME={blend:"Balanced blend",analysis:"Analysts & markets",potgoals:"Pot + goals",wcform:"Tournament form",fifa:"FIFA ranking",squad:"Squad value",form:"Recent form",h2h:"Head-to-head (historic)",h2hwc:"Head-to-head · World Cups",odds:"Betting market",opta:"Analyst supercomputer",consensus:"Consensus · all 9 models"};
 const EXPLAIN={
   blend:"<b>Balanced blend</b> — the all-round default. Averages the four rating models (FIFA ranking, Elo, betting odds, analyst %) into one composite.",
   potgoals:"<b>Pot + goals</b> — a realistic, results-driven model: seeding pot (the draw's strength tier) plus goals scored and goal difference in this tournament so far. Rewards teams actually performing on the pitch over pedigree.",
@@ -1147,7 +1147,7 @@ function forecastSims(base,n,tally,qc,k){          // mutates globals; caller sa
     if(state.win[104]) tally[state.win[104]].ch++;
   }
 }
-const CONS_METHODS=["blend","fifa","squad","form","h2h","odds","opta","potgoals"];
+const CONS_METHODS=["blend","fifa","squad","form","h2h","odds","opta","potgoals","wcform"];   // the 9-model "All"/Consensus (both in-tournament lenses kept: Pot+goals & Tournament form)
 function runForecast(){
   const N=10000, CHUNK=500;
   const score=state.fcScore||state.method;
@@ -1211,7 +1211,7 @@ function renderForecast(){
   el.innerHTML=h+`</tbody></table>`;
 }
 // ---- model accuracy back-test: how each model would have called the real WC2026 results ----
-const MSHORT={blend:"Blend",analysis:"Anlys",potgoals:"Pot+G",wcform:"T-form",fifa:"FIFA",squad:"Squad",form:"Form",h2h:"H2H",h2hwc:"WC-H2H",odds:"Odds",opta:"Opta"};   // display order for the per-model tables/hover (11); CONS_METHODS stays the curated 8-model "All"/consensus
+const MSHORT={blend:"Blend",analysis:"Anlys",potgoals:"Pot+G",wcform:"T-form",fifa:"FIFA",squad:"Squad",form:"Form",h2h:"H2H",h2hwc:"WC-H2H",odds:"Odds",opta:"Opta"};   // display order for the per-model tables/hover (11); CONS_METHODS stays the curated 9-model "All"/consensus
 function modelProb(a,b){ // pure model win-prob for A over B (no tournament-standings nudge)
   if(state.method==="h2h"){ const t=h2hTally(h2hRec(a,b),"all"); if(t&&t.n>0) return (t.w+0.5*t.d)/t.n; }
   if(state.method==="h2hwc"){ const t=h2hTally(wcRec(a,b),"all"); if(t&&t.n>0) return (t.w+0.5*t.d)/t.n; }
@@ -1359,7 +1359,7 @@ function gameRowPair(f,models,strip,ncol,extra,lead,mid){    // one game -> pred
     const conf=Math.round(Math.max(p,1-p)*100), cls=actual?(pk===actual?'tp-ok':'tp-no'):'', pn=pk==='H'?nm(f.home):pk==='A'?nm(f.away):'toss-up', basis=simBasis(f);
     ex.push(`<div class="gxitem"><span class="gxm">${METHOD_NAME[m]}</span><span class="gxb">${basis}</span><span class="gxp">${pf(f,pk)} ${conf}%</span></div>`);
     return `<td class="${cls}" title="${METHOD_NAME[m]} — ${strip(basis)} → ${pn} ${conf}%">${pf(f,pk)}<span class="tppct">${conf}%</span></td>`; }).join("");
-  CONS_METHODS.forEach(m=>{ const p=pmap[m]; if(p==null) return; psum+=p; votes[p>0.6?"H":p<0.4?"A":"D"]++; });   // "All" = curated 8-model consensus, not the extra display columns
+  CONS_METHODS.forEach(m=>{ const p=pmap[m]; if(p==null) return; psum+=p; votes[p>0.6?"H":p<0.4?"A":"D"]++; });   // "All" = curated 9-model consensus, not the extra display columns
   const cons=Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0], avg=psum/CONS_METHODS.length;
   const cconf=Math.round((cons==='H'?avg:cons==='A'?1-avg:Math.max(avg,1-avg))*100), sc=lk?` <span class="sfsc">${lk[0]}–${lk[1]}</span>`:'';
   const hs=f.hs?`<span class="koseed">${f.hs}</span> `:'', as=f.as?` <span class="koseed">${f.as}</span>`:'';
@@ -1369,8 +1369,8 @@ function gameRowPair(f,models,strip,ncol,extra,lead,mid){    // one game -> pred
     `<tr class="gxtr"${state.gx[f.no]?'':' style="display:none"'}><td colspan="${ncol}" class="gxcell"><div class="gxlist">${ex.join('')}</div></td></tr>`; }
 function toggleGx(el,no){ state.gx[no]=!state.gx[no]; el.classList.toggle('open',state.gx[no]);
   const row=el.closest('tr')&&el.closest('tr').nextElementSibling; if(row&&row.classList.contains('gxtr')) row.style.display=state.gx[no]?'':'none'; }
-function simThead(models,strip,lbl){ return `<thead><tr><th class="tl">${lbl}</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick — the core 8 models (Blend, Pot+G, FIFA, Squad, Form, H2H, Odds, Opta)">All</th></tr></thead>`; }
-function todayPredsTable(day){               // today's matches × all 8 models
+function simThead(models,strip,lbl){ return `<thead><tr><th class="tl">${lbl}</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick — the core 9 models (Blend, Pot+G, T-form, FIFA, Squad, Form, H2H, Odds, Opta)">All</th></tr></thead>`; }
+function todayPredsTable(day){               // today's matches × all display models
   if(!day.length) return '';
   const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
   state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
@@ -1379,7 +1379,7 @@ function todayPredsTable(day){               // today's matches × all 8 models
   Object.assign(state,save);
   const help=`<details class="simhelp"${state.predExp?' open':''} ontoggle="state.predExp=this.open"><summary>How each sim works</summary><div class="simhelp-body">`+
     models.map(m=>`<p>${EXPLAIN[m]}</p>`).join("")+
-    `<p class="mut">Each cell shows the favoured side and that model's win probability (“=” is a toss-up, ≈50%); <b>All</b> is the 8-model consensus. Hover any cell for that model's reasoning, a column header for what the model is, or expand a match above.</p></div></details>`;
+    `<p class="mut">Each cell shows the favoured side and that model's win probability (“=” is a toss-up, ≈50%); <b>All</b> is the 9-model consensus. Hover any cell for that model's reasoning, a column header for what the model is, or expand a match above.</p></div></details>`;
   return `<div class="xscroll">${h}</div>`+help; }   // wrap the wide preds table so it scrolls inside, not the page
 function groupForecast(){                     // every group game's model picks, by group
   const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin};
@@ -1415,7 +1415,7 @@ function koForecast(){                         // top-N most likely matchups per
   const opts=['<option value="">All teams</option>'].concat(Object.keys(RATINGS).sort((a,b)=>nm(a).localeCompare(nm(b))).map(c=>`<option value="${c}"${FT===c?' selected':''}>${nmE(c)}</option>`)).join('');
   const modOpts=models.map(m=>`<option value="${m}"${state.koModel===m?' selected':''}>${METHOD_NAME[m]}</option>`).join('');
   let h=`<div class="kofilter">Model <select onchange="state.koModel=this.value;renderSims()">${modOpts}</select> · Focus team <select onchange="state.koTeam=this.value;renderSims()">${opts}</select>${FT?`<span class="mut"> — ${nm(FT)}'s possible matchups (floor lifted)</span>`:''}</div>`;
-  h+=`<div class="small" style="margin:0 0 12px">The <b>Round of 32 is set</b> — all 16 ties are listed below <b>in kickoff order</b>, each side tagged with its seeding (<b>E1</b> = won Group E, <b>A2</b> = runner-up A, <b>B3</b> = best third out of B) and every model's call (flag = favoured side, % = win probability, “=” a toss-up; <b>All</b> = the 8-model consensus). Expand any row for the per-sim reasoning. Beyond R32 the bracket depends on who advances, so deeper rounds stay <b>probabilistic</b> — from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model, where <b>% sims</b> = how often that exact pairing turns up.</div>`;
+  h+=`<div class="small" style="margin:0 0 12px">The <b>Round of 32 is set</b> — all 16 ties are listed below <b>in kickoff order</b>, each side tagged with its seeding (<b>E1</b> = won Group E, <b>A2</b> = runner-up A, <b>B3</b> = best third out of B) and every model's call (flag = favoured side, % = win probability, “=” a toss-up; <b>All</b> = the 9-model consensus). Expand any row for the per-sim reasoning. Beyond R32 the bracket depends on who advances, so deeper rounds stay <b>probabilistic</b> — from <b>${N.toLocaleString()} Monte-Carlo simulations</b> under the <b>${METHOD_NAME[state.koModel]}</b> model, where <b>% sims</b> = how often that exact pairing turns up.</div>`;
 
   // ===== Round of 32 — set: concrete per-match model predictions, ordered by kickoff, each side seeded =====
   { const MOV={Jun:6,Jul:7}, dval=no=>{ const p=(KMETA[no]?KMETA[no][0]:'').split(' '); return (MOV[p[0]]||0)*100+(+p[1]||0); };
@@ -1423,7 +1423,7 @@ function koForecast(){                         // top-N most likely matchups per
     const r32=FC_R32.filter(no=>{ const p=parts(no); return p[0]&&p[1]&&(!FT||p.includes(FT)); }).sort((a,b)=>dval(a)-dval(b)||a-b);
     h+=`<div class="sfsub">Round of 32 — set <span class="kolksub">— ${FT?`${nm(FT)}'s tie`:`all 16 ties, ${r32.length?'ordered by kickoff':''}`}</span></div>`;
     if(!r32.length){ h+=`<div class="dhint" style="margin:0 0 10px">${FT?`${nm(FT)} didn't reach the Round of 32.`:'Round of 32 not set yet — finish the group stage.'}</div>`; }
-    else { const thR=`<thead><tr><th class="tl">When</th><th class="tl">Match · seeds</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick — the core 8 models (Blend, Pot+G, FIFA, Squad, Form, H2H, Odds, Opta)">All</th></tr></thead>`;
+    else { const thR=`<thead><tr><th class="tl">When</th><th class="tl">Match · seeds</th>`+models.map(m=>`<th title="${strip(EXPLAIN[m])}">${MSHORT[m]}</th>`).join("")+`<th title="consensus pick — the core 9 models (Blend, Pot+G, T-form, FIFA, Squad, Form, H2H, Odds, Opta)">All</th></tr></thead>`;
       const body=r32.map(no=>{ const p=parts(no), km=KMETA[no]||['','','',''];
         return gameRowPair({no,home:p[0],away:p[1],hs:koSeed(p[0]),as:koSeed(p[1])},models,strip,ncolR,'',`${km[0]} <span class="mut">· ${km[2]}</span>`); }).join("");
       h+=`<table class="dtbl tpred sft">`+thR+`<tbody>`+body+`</tbody></table>`; } }
