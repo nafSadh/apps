@@ -1060,7 +1060,7 @@ function winLabel(){ if(state.method==="form") return " · "+(_WL[state.formWin]
   if(state.method==="squad") return " · "+({value:"market value",eafc:"EA FC",both:"combined"}[state.squadWin]||state.squadWin); return ""; }
 function renderFav(){ const top=Object.keys(RATINGS).sort((a,b)=>methodStrength(b)-methodStrength(a)).slice(0,5);
   const lbl=METHOD_NAME[state.method]+winLabel()+(curUpset()>0?` · upset ${curUpset().toFixed(2)}`:" · deterministic");
-  const word=state.method==="h2h"?"strongest (Elo, for ranking)":"favourites";
+  const word=(state.method==="h2h"||state.method==="h2hwc")?"strongest (Elo, for ranking)":"favourites";
   document.getElementById('favline').innerHTML=`<span class="mk">${lbl} —</span> ${word}: `+top.map(c=>`${fl(c)} <b>${nm(c)}</b>`).join(" · "); }
 function renderSources(){ const el=document.getElementById('sources'); if(!el) return;
   const list=SOURCES.length?SOURCES:[{label:"FIFA ranking",url:"https://inside.fifa.com/fifa-world-ranking"},{label:"Elo (eloratings.net)",url:"https://www.eloratings.net"},{label:"Opta / The Analyst",url:"https://theanalyst.com"},{label:"Wikipedia",url:"https://en.wikipedia.org/wiki/2026_FIFA_World_Cup"}];
@@ -1345,10 +1345,10 @@ function renderData(){ const el=document.getElementById("dpanel"); if(!el) retur
   el.innerHTML = state.dtab==="h2h"?h2hTable():state.dtab==="log"?matchLogTable():state.dtab==="form"?formTable():state.dtab==="src"?srcTable():ratingsTable();
   document.querySelectorAll("#dtabs .dtab").forEach(b=>b.classList.toggle("on", b.dataset.tab===state.dtab)); }
 function simBasis(f){               // one-line reasoning for the currently-selected model (state.method)
-  if(state.method==="h2h"){ const r=h2hRec(f.home,f.away), t=h2hTally(r,state.h2hWin);
-    if(t&&t.n>0){ const seq=t.sel?t.sel.map(x=>`${x.r}${x.s?" "+x.s:""}${x.y?" ’"+String(x.y).slice(2):""}`).join(", "):"";
-      return `${t.w}W-${t.d}D-${t.l}L head-to-head${seq?` (${seq})`:""}`; }
-    return `never met → Elo ${(RATINGS[f.home]||[])[1]} v ${(RATINGS[f.away]||[])[1]}`; }
+  if(state.method==="h2h"||state.method==="h2hwc"){ const wc=state.method==="h2hwc", r=(wc?wcRec:h2hRec)(f.home,f.away), t=h2hTally(r,wc?"all":state.h2hWin);
+    if(t&&t.n>0){ const mm=t.sel||(wc?r.meetings:null), seq=mm?mm.map(x=>`${x.r}${x.s?" "+x.s:""}${x.y?" ’"+String(x.y).slice(2):""}`).join(", "):"";
+      return `${t.w}W-${t.d}D-${t.l}L${wc?" at World Cups":" head-to-head"}${seq?` (${seq})`:""}`; }
+    return `never met${wc?" at a WC":""} → Elo ${(RATINGS[f.home]||[])[1]} v ${(RATINGS[f.away]||[])[1]}`; }
   return `${nm(f.home)} ${metricStr(f.home)} · ${nm(f.away)} ${metricStr(f.away)}`; }
 function gameRowPair(f,models,strip,ncol,extra,lead,mid){    // one game -> prediction row + collapsible per-sim breakdown row; lead/mid = optional leading (round) / post-matchup (%) cells
   const pf=(g,pk)=>pk==="H"?fl(g.home):pk==="A"?fl(g.away):'<span class="mut">=</span>';
