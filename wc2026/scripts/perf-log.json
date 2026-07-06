@@ -1,88 +1,157 @@
 {
   "asOf": "2026-07-06",
-  "version": 59,
-  "played": 92,
+  "version": 60,
+  "played": 93,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 64,
+      "ok": 65,
       "miss": 28,
-      "hitRate": 0.696
+      "hitRate": 0.699
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 61,
+      "ok": 62,
       "miss": 31,
-      "hitRate": 0.663
+      "hitRate": 0.667
     },
     {
       "key": "analysis",
       "model": "Analysts & markets",
-      "ok": 60,
+      "ok": 61,
       "miss": 32,
-      "hitRate": 0.652
+      "hitRate": 0.656
     },
     {
       "key": "squad",
       "model": "Squad value",
       "ok": 60,
-      "miss": 32,
-      "hitRate": 0.652
+      "miss": 33,
+      "hitRate": 0.645
+    },
+    {
+      "key": "opta",
+      "model": "Analyst supercomputer",
+      "ok": 60,
+      "miss": 33,
+      "hitRate": 0.645
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
       "ok": 59,
-      "miss": 33,
-      "hitRate": 0.641
-    },
-    {
-      "key": "opta",
-      "model": "Analyst supercomputer",
-      "ok": 59,
-      "miss": 33,
-      "hitRate": 0.641
+      "miss": 34,
+      "hitRate": 0.634
     },
     {
       "key": "wcform",
       "model": "Tournament form",
-      "ok": 58,
+      "ok": 59,
       "miss": 34,
-      "hitRate": 0.63
+      "hitRate": 0.634
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 58,
+      "ok": 59,
       "miss": 34,
-      "hitRate": 0.63
+      "hitRate": 0.634
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
       "ok": 56,
-      "miss": 36,
-      "hitRate": 0.609
+      "miss": 37,
+      "hitRate": 0.602
     },
     {
       "key": "h2hwc",
       "model": "Head-to-head · World Cups",
-      "ok": 55,
+      "ok": 56,
       "miss": 37,
-      "hitRate": 0.598
+      "hitRate": 0.602
     },
     {
       "key": "form",
       "model": "Recent form",
       "ok": 52,
-      "miss": 40,
-      "hitRate": 0.565
+      "miss": 41,
+      "hitRate": 0.559
     }
   ],
   "matches": [
+    {
+      "no": 93,
+      "date": "2026-07-06",
+      "stage": "R16",
+      "home": "Portugal",
+      "away": "Spain",
+      "score": [
+        0,
+        1
+      ],
+      "actual": "away win",
+      "models": {
+        "odds": {
+          "winProb": 0.349,
+          "pick": "A",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.265,
+          "pick": "A",
+          "correct": true
+        },
+        "analysis": {
+          "winProb": 0.296,
+          "pick": "A",
+          "correct": true
+        },
+        "squad": {
+          "winProb": 0.438,
+          "pick": "D",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.318,
+          "pick": "A",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.543,
+          "pick": "D",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.168,
+          "pick": "A",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.287,
+          "pick": "A",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 0.405,
+          "pick": "D",
+          "correct": false
+        },
+        "h2hwc": {
+          "winProb": 0.25,
+          "pick": "A",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.681,
+          "pick": "H",
+          "correct": false
+        }
+      }
+    },
     {
       "no": 92,
       "date": "2026-07-05",
@@ -115,15 +184,15 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.557,
-          "pick": "D",
-          "correct": false
-        },
         "opta": {
           "winProb": 0.1,
           "pick": "A",
           "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.557,
+          "pick": "D",
+          "correct": false
         },
         "wcform": {
           "winProb": 0.145,
@@ -184,13 +253,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.855,
+        "opta": {
+          "winProb": 0.641,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.641,
+        "potgoals": {
+          "winProb": 0.855,
           "pick": "H",
           "correct": false
         },
@@ -253,15 +322,15 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.779,
-          "pick": "H",
-          "correct": false
-        },
         "opta": {
           "winProb": 0.238,
           "pick": "A",
           "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.779,
+          "pick": "H",
+          "correct": false
         },
         "wcform": {
           "winProb": 0.391,
@@ -322,13 +391,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.02,
+        "opta": {
+          "winProb": 0.013,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.013,
+        "potgoals": {
+          "winProb": 0.02,
           "pick": "A",
           "correct": true
         },
@@ -391,13 +460,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.486,
+        "opta": {
+          "winProb": 0.438,
           "pick": "D",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.438,
+        "potgoals": {
+          "winProb": 0.486,
           "pick": "D",
           "correct": false
         },
@@ -460,13 +529,13 @@
           "pick": "D",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.887,
+        "opta": {
+          "winProb": 0.933,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.933,
+        "potgoals": {
+          "winProb": 0.887,
           "pick": "H",
           "correct": true
         },
@@ -529,13 +598,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.98,
+        "opta": {
+          "winProb": 0.99,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.99,
+        "potgoals": {
+          "winProb": 0.98,
           "pick": "H",
           "correct": true
         },
@@ -598,13 +667,13 @@
           "pick": "D",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.848,
+        "opta": {
+          "winProb": 0.866,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.866,
+        "potgoals": {
+          "winProb": 0.848,
           "pick": "H",
           "correct": true
         },
@@ -667,13 +736,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.748,
+        "opta": {
+          "winProb": 0.989,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.989,
+        "potgoals": {
+          "winProb": 0.748,
           "pick": "H",
           "correct": true
         },
@@ -736,13 +805,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.807,
+        "opta": {
+          "winProb": 0.793,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.793,
+        "potgoals": {
+          "winProb": 0.807,
           "pick": "H",
           "correct": true
         },
@@ -805,13 +874,13 @@
           "pick": "D",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.639,
+        "opta": {
+          "winProb": 0.688,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.688,
+        "potgoals": {
+          "winProb": 0.639,
           "pick": "H",
           "correct": true
         },
@@ -874,13 +943,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.959,
+        "opta": {
+          "winProb": 0.894,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.894,
+        "potgoals": {
+          "winProb": 0.959,
           "pick": "H",
           "correct": true
         },
@@ -943,13 +1012,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.94,
+        "opta": {
+          "winProb": 0.985,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.985,
+        "potgoals": {
+          "winProb": 0.94,
           "pick": "H",
           "correct": true
         },
@@ -1012,15 +1081,15 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.887,
-          "pick": "H",
-          "correct": true
-        },
         "opta": {
           "winProb": 0.425,
           "pick": "D",
           "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.887,
+          "pick": "H",
+          "correct": true
         },
         "wcform": {
           "winProb": 0.386,
@@ -1081,13 +1150,13 @@
           "pick": "D",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.361,
+        "opta": {
+          "winProb": 0.125,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.125,
+        "potgoals": {
+          "winProb": 0.361,
           "pick": "A",
           "correct": true
         },
@@ -1150,13 +1219,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.971,
+        "opta": {
+          "winProb": 0.959,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.959,
+        "potgoals": {
+          "winProb": 0.971,
           "pick": "H",
           "correct": true
         },
@@ -1219,13 +1288,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.714,
+        "opta": {
+          "winProb": 0.859,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.859,
+        "potgoals": {
+          "winProb": 0.714,
           "pick": "H",
           "correct": true
         },
@@ -1288,13 +1357,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.848,
+        "opta": {
+          "winProb": 0.641,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.641,
+        "potgoals": {
+          "winProb": 0.848,
           "pick": "H",
           "correct": false
         },
@@ -1357,13 +1426,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.975,
+        "opta": {
+          "winProb": 0.969,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.969,
+        "potgoals": {
+          "winProb": 0.975,
           "pick": "H",
           "correct": false
         },
@@ -1426,13 +1495,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.043,
+        "opta": {
+          "winProb": 0.201,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.201,
+        "potgoals": {
+          "winProb": 0.043,
           "pick": "A",
           "correct": true
         },
@@ -1495,12 +1564,12 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
+        "opta": {
           "winProb": 0.5,
           "pick": "D",
           "correct": false
         },
-        "opta": {
+        "potgoals": {
           "winProb": 0.5,
           "pick": "D",
           "correct": false
@@ -1564,13 +1633,13 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.223,
+        "opta": {
+          "winProb": 0.25,
           "pick": "A",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.25,
+        "potgoals": {
+          "winProb": 0.223,
           "pick": "A",
           "correct": false
         },
@@ -1633,13 +1702,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.029,
+        "opta": {
+          "winProb": 0.016,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.016,
+        "potgoals": {
+          "winProb": 0.029,
           "pick": "A",
           "correct": true
         },
@@ -1702,15 +1771,15 @@
           "pick": "D",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.251,
-          "pick": "A",
-          "correct": false
-        },
         "opta": {
           "winProb": 0.5,
           "pick": "D",
           "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.251,
+          "pick": "A",
+          "correct": false
         },
         "wcform": {
           "winProb": 0.299,
@@ -1771,13 +1840,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.817,
+        "opta": {
+          "winProb": 0.916,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.916,
+        "potgoals": {
+          "winProb": 0.817,
           "pick": "H",
           "correct": true
         },
@@ -1840,13 +1909,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.072,
+        "opta": {
+          "winProb": 0.009,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.009,
+        "potgoals": {
+          "winProb": 0.072,
           "pick": "A",
           "correct": true
         },
@@ -1909,13 +1978,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.207,
+        "opta": {
+          "winProb": 0.086,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.086,
+        "potgoals": {
+          "winProb": 0.207,
           "pick": "A",
           "correct": true
         },
@@ -1978,15 +2047,15 @@
           "pick": "D",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.485,
-          "pick": "D",
-          "correct": true
-        },
         "opta": {
           "winProb": 0.379,
           "pick": "A",
           "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.485,
+          "pick": "D",
+          "correct": true
         },
         "wcform": {
           "winProb": 0.436,
@@ -2047,13 +2116,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.117,
+        "opta": {
+          "winProb": 0.023,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.023,
+        "potgoals": {
+          "winProb": 0.117,
           "pick": "A",
           "correct": true
         },
@@ -2116,15 +2185,15 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.47,
-          "pick": "D",
-          "correct": true
-        },
         "opta": {
           "winProb": 0.838,
           "pick": "H",
           "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.47,
+          "pick": "D",
+          "correct": true
         },
         "wcform": {
           "winProb": 0.43,
@@ -2185,13 +2254,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.899,
+        "opta": {
+          "winProb": 0.921,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.921,
+        "potgoals": {
+          "winProb": 0.899,
           "pick": "H",
           "correct": true
         },
@@ -2254,13 +2323,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.194,
+        "opta": {
+          "winProb": 0.232,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.232,
+        "potgoals": {
+          "winProb": 0.194,
           "pick": "A",
           "correct": true
         },
@@ -2323,13 +2392,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.27,
+        "opta": {
+          "winProb": 0.289,
           "pick": "A",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.289,
+        "potgoals": {
+          "winProb": 0.27,
           "pick": "A",
           "correct": false
         },
@@ -2392,14 +2461,14 @@
           "pick": "D",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.013,
-          "pick": "A",
-          "correct": false
-        },
         "opta": {
           "winProb": 0.436,
           "pick": "D",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.013,
+          "pick": "A",
           "correct": false
         },
         "wcform": {
@@ -2461,13 +2530,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.016,
+        "opta": {
+          "winProb": 0.071,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.071,
+        "potgoals": {
+          "winProb": 0.016,
           "pick": "A",
           "correct": true
         },
@@ -2530,13 +2599,13 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.882,
+        "opta": {
+          "winProb": 0.672,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.672,
+        "potgoals": {
+          "winProb": 0.882,
           "pick": "H",
           "correct": false
         },
@@ -2599,13 +2668,13 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.03,
+        "opta": {
+          "winProb": 0.236,
           "pick": "A",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.236,
+        "potgoals": {
+          "winProb": 0.03,
           "pick": "A",
           "correct": false
         },
@@ -2668,13 +2737,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.154,
+        "opta": {
+          "winProb": 0.162,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.162,
+        "potgoals": {
+          "winProb": 0.154,
           "pick": "A",
           "correct": true
         },
@@ -2737,13 +2806,13 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.232,
+        "opta": {
+          "winProb": 0.241,
           "pick": "A",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.241,
+        "potgoals": {
+          "winProb": 0.232,
           "pick": "A",
           "correct": false
         },
@@ -2806,13 +2875,13 @@
           "pick": "D",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.046,
+        "opta": {
+          "winProb": 0.197,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.197,
+        "potgoals": {
+          "winProb": 0.046,
           "pick": "A",
           "correct": true
         },
@@ -2875,15 +2944,15 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.452,
-          "pick": "D",
-          "correct": false
-        },
         "opta": {
           "winProb": 0.733,
           "pick": "H",
           "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.452,
+          "pick": "D",
+          "correct": false
         },
         "wcform": {
           "winProb": 0.78,
@@ -2944,15 +3013,15 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.176,
-          "pick": "A",
-          "correct": false
-        },
         "opta": {
           "winProb": 0.62,
           "pick": "H",
           "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.176,
+          "pick": "A",
+          "correct": false
         },
         "wcform": {
           "winProb": 0.63,
@@ -3013,13 +3082,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.93,
+        "opta": {
+          "winProb": 0.982,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.982,
+        "potgoals": {
+          "winProb": 0.93,
           "pick": "H",
           "correct": true
         },
@@ -3082,13 +3151,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.071,
+        "opta": {
+          "winProb": 0.042,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.042,
+        "potgoals": {
+          "winProb": 0.071,
           "pick": "A",
           "correct": true
         },
@@ -3151,13 +3220,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.905,
+        "opta": {
+          "winProb": 0.933,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.933,
+        "potgoals": {
+          "winProb": 0.905,
           "pick": "H",
           "correct": true
         },
@@ -3220,13 +3289,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.871,
+        "opta": {
+          "winProb": 0.977,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.977,
+        "potgoals": {
+          "winProb": 0.871,
           "pick": "H",
           "correct": true
         },
@@ -3289,13 +3358,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.251,
+        "opta": {
+          "winProb": 0.053,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.053,
+        "potgoals": {
+          "winProb": 0.251,
           "pick": "A",
           "correct": true
         },
@@ -3358,13 +3427,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.961,
+        "opta": {
+          "winProb": 0.985,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.985,
+        "potgoals": {
+          "winProb": 0.961,
           "pick": "H",
           "correct": false
         },
@@ -3427,15 +3496,15 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.383,
-          "pick": "A",
-          "correct": true
-        },
         "opta": {
           "winProb": 0.5,
           "pick": "D",
           "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.383,
+          "pick": "A",
+          "correct": true
         },
         "wcform": {
           "winProb": 0.34,
@@ -3496,13 +3565,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.724,
+        "opta": {
+          "winProb": 0.984,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.984,
+        "potgoals": {
+          "winProb": 0.724,
           "pick": "H",
           "correct": true
         },
@@ -3565,13 +3634,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.975,
+        "opta": {
+          "winProb": 0.992,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.992,
+        "potgoals": {
+          "winProb": 0.975,
           "pick": "H",
           "correct": true
         },
@@ -3634,13 +3703,13 @@
           "pick": "D",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.621,
+        "opta": {
+          "winProb": 0.757,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.757,
+        "potgoals": {
+          "winProb": 0.621,
           "pick": "H",
           "correct": true
         },
@@ -3703,13 +3772,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.346,
+        "opta": {
+          "winProb": 0.104,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.104,
+        "potgoals": {
+          "winProb": 0.346,
           "pick": "A",
           "correct": true
         },
@@ -3772,13 +3841,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.654,
+        "opta": {
+          "winProb": 0.963,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.963,
+        "potgoals": {
+          "winProb": 0.654,
           "pick": "H",
           "correct": false
         },
@@ -3841,13 +3910,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.82,
+        "opta": {
+          "winProb": 0.989,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.989,
+        "potgoals": {
+          "winProb": 0.82,
           "pick": "H",
           "correct": true
         },
@@ -3910,13 +3979,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.875,
+        "opta": {
+          "winProb": 0.932,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.932,
+        "potgoals": {
+          "winProb": 0.875,
           "pick": "H",
           "correct": false
         },
@@ -3979,13 +4048,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.156,
+        "opta": {
+          "winProb": 0.212,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.212,
+        "potgoals": {
+          "winProb": 0.156,
           "pick": "A",
           "correct": true
         },
@@ -4048,13 +4117,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.809,
+        "opta": {
+          "winProb": 0.878,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.878,
+        "potgoals": {
+          "winProb": 0.809,
           "pick": "H",
           "correct": true
         },
@@ -4117,13 +4186,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.913,
+        "opta": {
+          "winProb": 0.941,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.941,
+        "potgoals": {
+          "winProb": 0.913,
           "pick": "H",
           "correct": false
         },
@@ -4186,13 +4255,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.982,
+        "opta": {
+          "winProb": 0.908,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.908,
+        "potgoals": {
+          "winProb": 0.982,
           "pick": "H",
           "correct": true
         },
@@ -4255,13 +4324,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.828,
+        "opta": {
+          "winProb": 0.773,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.773,
+        "potgoals": {
+          "winProb": 0.828,
           "pick": "H",
           "correct": true
         },
@@ -4324,15 +4393,15 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.265,
-          "pick": "A",
-          "correct": true
-        },
         "opta": {
           "winProb": 0.866,
           "pick": "H",
           "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.265,
+          "pick": "A",
+          "correct": true
         },
         "wcform": {
           "winProb": 0.661,
@@ -4393,13 +4462,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.313,
+        "opta": {
+          "winProb": 0.121,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.121,
+        "potgoals": {
+          "winProb": 0.313,
           "pick": "A",
           "correct": true
         },
@@ -4462,13 +4531,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.965,
+        "opta": {
+          "winProb": 0.994,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.994,
+        "potgoals": {
+          "winProb": 0.965,
           "pick": "H",
           "correct": true
         },
@@ -4531,13 +4600,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.757,
+        "opta": {
+          "winProb": 0.693,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.693,
+        "potgoals": {
+          "winProb": 0.757,
           "pick": "H",
           "correct": true
         },
@@ -4600,13 +4669,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.889,
+        "opta": {
+          "winProb": 0.916,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.916,
+        "potgoals": {
+          "winProb": 0.889,
           "pick": "H",
           "correct": true
         },
@@ -4669,13 +4738,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.893,
+        "opta": {
+          "winProb": 0.866,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.866,
+        "potgoals": {
+          "winProb": 0.893,
           "pick": "H",
           "correct": true
         },
@@ -4738,14 +4807,14 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.351,
-          "pick": "A",
-          "correct": false
-        },
         "opta": {
           "winProb": 0.636,
           "pick": "H",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.351,
+          "pick": "A",
           "correct": false
         },
         "wcform": {
@@ -4807,15 +4876,15 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.26,
-          "pick": "A",
-          "correct": false
-        },
         "opta": {
           "winProb": 0.621,
           "pick": "H",
           "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.26,
+          "pick": "A",
+          "correct": false
         },
         "wcform": {
           "winProb": 0.108,
@@ -4876,13 +4945,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.745,
+        "opta": {
+          "winProb": 0.855,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.855,
+        "potgoals": {
+          "winProb": 0.745,
           "pick": "H",
           "correct": true
         },
@@ -4945,13 +5014,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.254,
+        "opta": {
+          "winProb": 0.067,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.067,
+        "potgoals": {
+          "winProb": 0.254,
           "pick": "A",
           "correct": true
         },
@@ -5014,13 +5083,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.962,
+        "opta": {
+          "winProb": 0.977,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.977,
+        "potgoals": {
+          "winProb": 0.962,
           "pick": "H",
           "correct": false
         },
@@ -5083,15 +5152,15 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.898,
-          "pick": "H",
-          "correct": true
-        },
         "opta": {
           "winProb": 0.5,
           "pick": "D",
           "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.898,
+          "pick": "H",
+          "correct": true
         },
         "wcform": {
           "winProb": 0.818,
@@ -5152,13 +5221,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.904,
+        "opta": {
+          "winProb": 0.984,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.984,
+        "potgoals": {
+          "winProb": 0.904,
           "pick": "H",
           "correct": true
         },
@@ -5221,13 +5290,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.245,
+        "opta": {
+          "winProb": 0.027,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.027,
+        "potgoals": {
+          "winProb": 0.245,
           "pick": "A",
           "correct": true
         },
@@ -5290,13 +5359,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.759,
+        "opta": {
+          "winProb": 0.912,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.912,
+        "potgoals": {
+          "winProb": 0.759,
           "pick": "H",
           "correct": true
         },
@@ -5359,13 +5428,13 @@
           "pick": "D",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.907,
+        "opta": {
+          "winProb": 0.626,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.626,
+        "potgoals": {
+          "winProb": 0.907,
           "pick": "H",
           "correct": false
         },
@@ -5428,13 +5497,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.908,
+        "opta": {
+          "winProb": 0.833,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.833,
+        "potgoals": {
+          "winProb": 0.908,
           "pick": "H",
           "correct": false
         },
@@ -5497,13 +5566,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.969,
+        "opta": {
+          "winProb": 0.993,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.993,
+        "potgoals": {
+          "winProb": 0.969,
           "pick": "H",
           "correct": false
         },
@@ -5566,13 +5635,13 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.242,
+        "opta": {
+          "winProb": 0.106,
           "pick": "A",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.106,
+        "potgoals": {
+          "winProb": 0.242,
           "pick": "A",
           "correct": false
         },
@@ -5635,15 +5704,15 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.244,
-          "pick": "A",
-          "correct": false
-        },
         "opta": {
           "winProb": 0.644,
           "pick": "H",
           "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.244,
+          "pick": "A",
+          "correct": false
         },
         "wcform": {
           "winProb": 0.825,
@@ -5704,13 +5773,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.759,
+        "opta": {
+          "winProb": 0.778,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.778,
+        "potgoals": {
+          "winProb": 0.759,
           "pick": "H",
           "correct": false
         },
@@ -5773,13 +5842,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.979,
+        "opta": {
+          "winProb": 0.981,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.981,
+        "potgoals": {
+          "winProb": 0.979,
           "pick": "H",
           "correct": true
         },
@@ -5842,13 +5911,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.219,
+        "opta": {
+          "winProb": 0.247,
           "pick": "A",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.247,
+        "potgoals": {
+          "winProb": 0.219,
           "pick": "A",
           "correct": false
         },
@@ -5911,13 +5980,13 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.219,
+        "opta": {
+          "winProb": 0.053,
           "pick": "A",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.053,
+        "potgoals": {
+          "winProb": 0.219,
           "pick": "A",
           "correct": false
         },
@@ -5980,13 +6049,13 @@
           "pick": "H",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.783,
+        "opta": {
+          "winProb": 0.757,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.757,
+        "potgoals": {
+          "winProb": 0.783,
           "pick": "H",
           "correct": false
         },
@@ -6049,15 +6118,15 @@
           "pick": "A",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.931,
-          "pick": "H",
-          "correct": true
-        },
         "opta": {
           "winProb": 0.275,
           "pick": "A",
           "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.931,
+          "pick": "H",
+          "correct": true
         },
         "wcform": {
           "winProb": 0.477,
@@ -6118,13 +6187,13 @@
           "pick": "A",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.213,
+        "opta": {
+          "winProb": 0.116,
           "pick": "A",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.116,
+        "potgoals": {
+          "winProb": 0.213,
           "pick": "A",
           "correct": true
         },
@@ -6187,13 +6256,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.94,
+        "opta": {
+          "winProb": 0.894,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.894,
+        "potgoals": {
+          "winProb": 0.94,
           "pick": "H",
           "correct": true
         },
@@ -6256,13 +6325,13 @@
           "pick": "D",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.984,
+        "opta": {
+          "winProb": 0.799,
           "pick": "H",
           "correct": false
         },
-        "opta": {
-          "winProb": 0.799,
+        "potgoals": {
+          "winProb": 0.984,
           "pick": "H",
           "correct": false
         },
@@ -6325,13 +6394,13 @@
           "pick": "D",
           "correct": false
         },
-        "potgoals": {
-          "winProb": 0.941,
+        "opta": {
+          "winProb": 0.644,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.644,
+        "potgoals": {
+          "winProb": 0.941,
           "pick": "H",
           "correct": true
         },
@@ -6394,13 +6463,13 @@
           "pick": "H",
           "correct": true
         },
-        "potgoals": {
-          "winProb": 0.945,
+        "opta": {
+          "winProb": 0.877,
           "pick": "H",
           "correct": true
         },
-        "opta": {
-          "winProb": 0.877,
+        "potgoals": {
+          "winProb": 0.945,
           "pick": "H",
           "correct": true
         },
