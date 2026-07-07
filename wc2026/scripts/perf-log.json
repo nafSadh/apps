@@ -1,88 +1,157 @@
 {
   "asOf": "2026-07-07",
-  "version": 62,
-  "played": 94,
+  "version": 63,
+  "played": 95,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 65,
+      "ok": 66,
       "miss": 29,
-      "hitRate": 0.691
+      "hitRate": 0.695
     },
     {
       "key": "blend",
       "model": "Balanced blend",
-      "ok": 63,
+      "ok": 64,
       "miss": 31,
-      "hitRate": 0.67
+      "hitRate": 0.674
     },
     {
       "key": "analysis",
       "model": "Analysts & markets",
-      "ok": 62,
+      "ok": 63,
       "miss": 32,
-      "hitRate": 0.66
+      "hitRate": 0.663
     },
     {
       "key": "squad",
       "model": "Squad value",
-      "ok": 61,
+      "ok": 62,
       "miss": 33,
-      "hitRate": 0.649
+      "hitRate": 0.653
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
-      "ok": 61,
+      "ok": 62,
       "miss": 33,
-      "hitRate": 0.649
+      "hitRate": 0.653
     },
     {
       "key": "wcform",
       "model": "Tournament form",
-      "ok": 60,
+      "ok": 61,
       "miss": 34,
-      "hitRate": 0.638
+      "hitRate": 0.642
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
-      "ok": 60,
+      "ok": 61,
       "miss": 34,
-      "hitRate": 0.638
+      "hitRate": 0.642
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
-      "ok": 59,
+      "ok": 60,
       "miss": 35,
-      "hitRate": 0.628
+      "hitRate": 0.632
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
-      "ok": 57,
+      "ok": 58,
       "miss": 37,
-      "hitRate": 0.606
+      "hitRate": 0.611
     },
     {
       "key": "h2hwc",
       "model": "Head-to-head · World Cups",
-      "ok": 56,
+      "ok": 57,
       "miss": 38,
-      "hitRate": 0.596
+      "hitRate": 0.6
     },
     {
       "key": "form",
       "model": "Recent form",
-      "ok": 53,
+      "ok": 54,
       "miss": 41,
-      "hitRate": 0.564
+      "hitRate": 0.568
     }
   ],
   "matches": [
+    {
+      "no": 95,
+      "date": "2026-07-07",
+      "stage": "R16",
+      "home": "Argentina",
+      "away": "Egypt",
+      "score": [
+        3,
+        2
+      ],
+      "actual": "home win",
+      "models": {
+        "odds": {
+          "winProb": 0.952,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.964,
+          "pick": "H",
+          "correct": true
+        },
+        "analysis": {
+          "winProb": 0.958,
+          "pick": "H",
+          "correct": true
+        },
+        "squad": {
+          "winProb": 0.927,
+          "pick": "H",
+          "correct": true
+        },
+        "opta": {
+          "winProb": 0.95,
+          "pick": "H",
+          "correct": true
+        },
+        "wcform": {
+          "winProb": 0.974,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.967,
+          "pick": "H",
+          "correct": true
+        },
+        "potgoals": {
+          "winProb": 0.921,
+          "pick": "H",
+          "correct": true
+        },
+        "h2h": {
+          "winProb": 1,
+          "pick": "H",
+          "correct": true
+        },
+        "h2hwc": {
+          "winProb": 0.978,
+          "pick": "H",
+          "correct": true
+        },
+        "form": {
+          "winProb": 0.968,
+          "pick": "H",
+          "correct": true
+        }
+      }
+    },
     {
       "no": 94,
       "date": "2026-07-06",

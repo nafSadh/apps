@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-07** · **94** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-07** · **95** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.
 
@@ -8,22 +8,23 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Betting market | 69% | 65 | 29 |
-| Balanced blend | 67% | 63 | 31 |
-| Analysts & markets | 66% | 62 | 32 |
-| Squad value | 65% | 61 | 33 |
-| Analyst supercomputer | 65% | 61 | 33 |
-| Tournament form | 64% | 60 | 34 |
-| FIFA ranking | 64% | 60 | 34 |
-| Pot + goals | 63% | 59 | 35 |
-| Head-to-head (historic) | 61% | 57 | 37 |
-| Head-to-head · World Cups | 60% | 56 | 38 |
-| Recent form | 56% | 53 | 41 |
+| Betting market | 69% | 66 | 29 |
+| Balanced blend | 67% | 64 | 31 |
+| Analysts & markets | 66% | 63 | 32 |
+| Squad value | 65% | 62 | 33 |
+| Analyst supercomputer | 65% | 62 | 33 |
+| Tournament form | 64% | 61 | 34 |
+| FIFA ranking | 64% | 61 | 34 |
+| Pot + goals | 63% | 60 | 35 |
+| Head-to-head (historic) | 61% | 58 | 37 |
+| Head-to-head · World Cups | 60% | 57 | 38 |
+| Recent form | 57% | 54 | 41 |
 
 ## Per match (latest first)
 
 | Date | # | Match | Result | Odds | Blend | Anlys | Squad | Opta | T-form | FIFA | Pot+G | H2H | WC-H2H | Form |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 2026-07-07 | M95 R16 | Argentina – Egypt | 3–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-06 | M94 R16 | United States – Belgium | 1–4 | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✓ |
 | 2026-07-06 | M93 R16 | Portugal – Spain | 0–1 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ |
 | 2026-07-05 | M92 R16 | Mexico – England | 2–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ |
