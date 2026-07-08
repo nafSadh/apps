@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-07** · **96** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-08** · **96** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.
 
@@ -24,7 +24,7 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Date | # | Match | Result | Odds | Blend | Anlys | Squad | Opta | Pot+G | T-form | FIFA | H2H | WC-H2H | Form |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| 2026-07-07 | M96 R16 | Switzerland – Colombia | 0–0 | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-07-07 | M96 R16 | Switzerland – Colombia | 0–0 (4–3p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-07-07 | M95 R16 | Argentina – Egypt | 3–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-06 | M94 R16 | United States – Belgium | 1–4 | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✓ |
 | 2026-07-06 | M93 R16 | Portugal – Spain | 0–1 | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✗ |
