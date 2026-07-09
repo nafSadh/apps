@@ -1,8 +1,8 @@
 {
   "meta": {
     "tournament": "FIFA World Cup 2026",
-    "version": 61,
-    "asOf": "2026-07-07",
+    "version": 66,
+    "asOf": "2026-07-08",
     "source": "manual",
     "note": "locked = played-match scores {matchNo:[homeGoals,awayGoals]}; ratings per team. teams/fixtures are fixed for the tournament. formYears=per-team 1/3/5y W-D-L; h2h=all-time pairwise record + last 5 meetings (top-16 contenders, symmetric).",
     "h2hAnchors": [
@@ -1536,6 +1536,28 @@
       "a": 4,
       "w": "BEL",
       "status": "FINISHED"
+    },
+    {
+      "stage": "R16",
+      "home": "ARG",
+      "away": "EGY",
+      "h": 3,
+      "a": 2,
+      "w": "ARG",
+      "status": "FINISHED"
+    },
+    {
+      "stage": "R16",
+      "home": "SUI",
+      "away": "COL",
+      "h": 0,
+      "a": 0,
+      "w": "SUI",
+      "status": "FINISHED",
+      "p": [
+        4,
+        3
+      ]
     }
   ],
   "thirdAlloc": {
@@ -1675,9 +1697,19 @@
       "t": "2026-07-09T20:00:00Z"
     },
     {
+      "home": "ESP",
+      "away": "BEL",
+      "t": "2026-07-10T19:00:00Z"
+    },
+    {
       "home": "NOR",
       "away": "ENG",
       "t": "2026-07-11T21:00:00Z"
+    },
+    {
+      "home": "ARG",
+      "away": "SUI",
+      "t": "2026-07-12T01:00:00Z"
     }
   ],
   "ratings": {
