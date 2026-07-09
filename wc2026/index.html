@@ -1029,7 +1029,7 @@ function renderBracket(){
 function toggleRadial(){ state.radial=!state.radial; renderBracket(); }
 function toggleBrk2(){ state.brk2=!state.brk2; renderBracket(); }
 function toggleStackAll(){ state.brkStackAll=!state.brkStackAll; renderBracket(); }   // phone funnel: reveal/hide the completed R32 & R16 above QF→Final
-addEventListener('resize',()=>{ if(state.view==='tournament'&&!state.radial&&brkIsMobile()!==_brkMob) renderBracket(); });   // reflow between funnel ↔ tree when the width crosses the phone breakpoint
+window.addEventListener('resize',()=>{ if(state.view==='tournament'&&!state.radial&&brkIsMobile()!==_brkMob) renderBracket(); });   // reflow between funnel ↔ tree when the width crosses the phone breakpoint (window. prefix: scripts/perf_log.js evals this in Node, where bare addEventListener doesn't exist)
 const cardEl=no=>binner.querySelector(`.match[data-card="${no}"]`);
 function drawConn(){ const ir=binner.getBoundingClientRect(); bsvg.setAttribute('width',binner.offsetWidth); bsvg.setAttribute('height',binner.offsetHeight); let p='';
   function link(a,b,loser){ const fe=cardEl(a),te=cardEl(b); if(!fe||!te)return; const fr=fe.getBoundingClientRect(),tr=te.getBoundingClientRect();
