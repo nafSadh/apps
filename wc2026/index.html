@@ -1705,6 +1705,27 @@ function loadLive(){ fetch('live.json',{cache:'no-store'}).then(r=>r.ok?r.json()
   if(Array.isArray(d.koLive)){ KOLIVE=d.koLive; applyKoLive(); }                            // in-play knockout scores
   renderToday(); }).catch(()=>{}); }
 loadLive(); setInterval(loadLive, 60000);   // live scores refresh every minute (the hourly action publishes live.json)
+/* ---- poster mode: ?shot=<model>.<theme> renders a clean vertical QF→Final funnel card (for social screenshots / reels) ---- */
+(function(){ try{
+  const q=new URLSearchParams(location.search).get('shot'); if(!q) return;
+  const [model,theme]=q.split('.'); if(!METHOD_NAME[model]) return;
+  state.radial=false; state.brkStackAll=false; state.method=model;
+  simulate(); applyTheme(theme==='light'?'light':'dark');
+  const champ=state.win[104], bin=document.querySelector('#bracket .binner.stack'); if(!bin) return;
+  const clone=bin.cloneNode(true); clone.querySelectorAll('.match.third,.third-lbl').forEach(e=>e.remove());
+  const ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;overflow:hidden;z-index:99999;background:var(--bg);padding:22px 17px;display:flex;flex-direction:column;justify-content:center';
+  ov.innerHTML=`<div style="font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);font-weight:600">FIFA World Cup 2026 · Road to the Final</div>`+
+    `<div style="font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-top:5px;line-height:1.05">${METHOD_NAME[model]}</div>`+
+    `<div style="font-size:15px;font-weight:700;color:var(--gold);margin:4px 0 16px">🏆 ${champ?T[champ][1]+' '+nm(champ):'—'}</div>`;
+  const wrap=document.createElement('div'); wrap.className='bracket'; wrap.style.padding='0'; wrap.appendChild(clone); ov.appendChild(wrap);
+  const bn=document.createElement('div');
+  bn.style.cssText='margin-top:10px;text-align:center;padding:14px;border:1px solid var(--gold);border-radius:14px;background:rgba(200,150,40,.10)';
+  bn.innerHTML=`<div style="font-family:var(--mono);font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold)">Champion</div>`+
+    `<div style="font-size:36px;line-height:1;margin:7px 0 3px">${champ?T[champ][1]:''}</div>`+
+    `<div style="font-size:20px;font-weight:800;color:var(--ink)">${champ?nm(champ):'—'}</div>`;
+  ov.appendChild(bn); document.body.appendChild(ov); document.body.style.overflow='hidden';
+}catch(e){} })();
 </script>
 </body>
 </html>
