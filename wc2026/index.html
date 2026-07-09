@@ -186,6 +186,19 @@
   .binner.two .col.rcol .slot .flag{order:1} .binner.two .col.rcol .slot .tick{order:2} .binner.two .col.rcol .slot .nm{order:3;text-align:right} .binner.two .col.rcol .slot .bseed{order:4}
   .binner.two .col:not(.rcol) .match.kin .slot{justify-content:flex-end} .binner.two .col.rcol .match.kin .slot{justify-content:flex-start}
   @media (max-width:1180px){ .binner.two{width:auto;min-width:100%} }   /* below this, scroll rather than crush the cards */
+  /* ---- mobile funnel: rounds stack top→down as full-width readable cards, no sideways scroll ---- */
+  .binner.stack{display:flex;flex-direction:column;gap:0;width:100%;min-width:0;align-items:stretch}
+  .binner.stack > svg.conn{display:none}
+  .binner.stack .col{width:100%;min-width:0;margin:0 0 18px}
+  .binner.stack .col.cfinal{margin-bottom:6px}
+  .binner.stack .col-h{position:static;font-size:11px;letter-spacing:1.4px;padding:8px 0 7px;margin-bottom:9px;box-shadow:0 1px 0 var(--line-hi)}
+  .binner.stack .col-pad{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;height:auto}
+  .binner.stack .col.cfinal .col-pad{grid-template-columns:minmax(0,320px);justify-content:center}
+  .binner.stack .match{margin:0}
+  .binner.stack .slot{font-size:13px;padding:7px 8px}
+  .binner.stack .slot .nm{white-space:normal;line-height:1.25}   /* wrap long names rather than truncating on a narrow card */
+  .binner.stack .m-venue{white-space:normal}
+  .binner.stack .third-lbl{grid-column:1/-1}
   .brkctl{margin:0 0 8px}
   .brkbtn{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;background:var(--card2);border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:5px 11px;cursor:pointer}
   .brkbtn:hover{border-color:var(--acc);color:var(--ink)} .brkbtn.on{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
@@ -427,7 +440,7 @@
   </div>
 
   <h2 class="sec">① Knockout bracket — click winners to advance <span class="cnt">— the road to the MetLife final (group seeds fill in as results lock)</span></h2>
-  <div class="brkctl"><button id="brkviewbtn" class="brkbtn on" onclick="toggleRadial()">▦ Classic bracket</button><button id="brk2btn" class="brkbtn on" style="display:none" onclick="toggleBrk2()">▤ Single column</button></div>
+  <div class="brkctl"><button id="brkviewbtn" class="brkbtn on" onclick="toggleRadial()">▦ Classic bracket</button><button id="brk2btn" class="brkbtn on" style="display:none" onclick="toggleBrk2()">▤ Single column</button><button id="brkstackbtn" class="brkbtn" style="display:none" onclick="toggleStackAll()">＋ Round of 32 · 16</button></div>
   <div class="bracket" id="bracket"></div>
   <div class="mtip" id="mtip"></div>
 
@@ -625,7 +638,7 @@ const TRACK_COLORS=["#38bdf8","#f472b6","#b598ff","#e8c870","#fb7185"];
 const SUCC={}; Object.entries(FEED).forEach(([to,fs])=>fs.forEach(f=>SUCC[f]=+to));
 
 /* ============ STATE ============ */
-const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"ko", koTeam:"", koModel:"blend", brk2:true, radial:true };
+const state={ res:Object.assign({},LOCKED), forced:{}, win:{}, sel:[], alloc:{}, method:"h2h", formWin:"5", h2hWin:"all", squadWin:"value", predicted:false, upset:{}, userset:new Set(), koUser:new Set(), view:"tournament", fc:null, fcScore:"consensus", fcUpset:0, cindTop:8, dtab:"h2h", h2a:"ENG", h2b:"GER", dsort:{col:"elo",asc:false}, logTeam:"all", logAsc:false, predExp:false, gx:{}, stab:"ko", koTeam:"", koModel:"blend", brk2:true, radial:true, brkStackAll:false };
 let STATS={}, PGZ={}, WCFRAW={}, WCFZ={}, FORMY={}, H2H={}, H2HWC={}, SOURCES=[], SQUAD={}, SQZ={}, FPOS={}, LIVE={};
 
 /* ============ ENGINE ============ */
@@ -981,13 +994,26 @@ function simTip(no){
   h+=`<table class="tipt">`+rows.map(r=>{ const pa=Math.round(r.p*100); return `<tr><td>${MSHORT[r.m]}</td><td>${pbar(r.p,ca,cb)}</td><td>${pa}–${100-pa}</td></tr>`; }).join('')+`</table>`;
   return h;
 }
+function brkIsMobile(){ return window.matchMedia('(max-width:640px)').matches; }   // phone → vertical funnel instead of the wide horizontal tree
+let _brkMob=null;
 function renderBracket(){
   const vb=document.getElementById('brkviewbtn'); if(vb) vb.textContent=state.radial?'▦ Classic bracket':'◎ Radial bracket';
   const b2=document.getElementById('brk2btn'); if(b2) b2.style.display=state.radial?'none':'';
+  const bs=document.getElementById('brkstackbtn'); if(bs) bs.style.display='none';   // stack toggle shows only on the phone funnel
   const host=document.getElementById('bracket');
   if(state.radial){ if(binner.parentNode===host) host.removeChild(binner); renderRadial(host); return; }
   if(radialEl&&radialEl.parentNode===host) host.removeChild(radialEl);
   if(binner.parentNode!==host) host.appendChild(binner);
+  const mob=brkIsMobile(); _brkMob=mob;
+  if(mob){   // phone: vertical funnel — QF→Final by default (the live rounds), completed R32/R16 one tap away
+    if(b2) b2.style.display='none';
+    if(bs){ bs.style.display=''; bs.textContent=state.brkStackAll?'－ Hide earlier rounds':'＋ Round of 32 · 16'; bs.classList.toggle('on',state.brkStackAll); }
+    const earlier=state.brkStackAll?colHTML('Round of 32',ORD32)+colHTML('Round of 16',ORD16):'';
+    binner.className='binner stack';
+    binner.innerHTML=earlier+colHTML('Quarter-finals',ORDQF)+colHTML('Semi-finals',ORDSF)+centreCol('');
+    applyTracking();
+    return;
+  }
   let h;
   if(state.brk2){   // two-sided: left half flows in, final in the centre, right half mirrors back out
     h = colHTML('R32',ORD32.slice(0,8))+colHTML('R16',ORD16.slice(0,4))+colHTML('QF',ORDQF.slice(0,2))+colHTML('SF',[101])
@@ -1002,6 +1028,8 @@ function renderBracket(){
 }
 function toggleRadial(){ state.radial=!state.radial; renderBracket(); }
 function toggleBrk2(){ state.brk2=!state.brk2; renderBracket(); }
+function toggleStackAll(){ state.brkStackAll=!state.brkStackAll; renderBracket(); }   // phone funnel: reveal/hide the completed R32 & R16 above QF→Final
+addEventListener('resize',()=>{ if(state.view==='tournament'&&!state.radial&&brkIsMobile()!==_brkMob) renderBracket(); });   // reflow between funnel ↔ tree when the width crosses the phone breakpoint
 const cardEl=no=>binner.querySelector(`.match[data-card="${no}"]`);
 function drawConn(){ const ir=binner.getBoundingClientRect(); bsvg.setAttribute('width',binner.offsetWidth); bsvg.setAttribute('height',binner.offsetHeight); let p='';
   function link(a,b,loser){ const fe=cardEl(a),te=cardEl(b); if(!fe||!te)return; const fr=fe.getBoundingClientRect(),tr=te.getBoundingClientRect();
