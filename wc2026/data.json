@@ -1,7 +1,7 @@
 {
   "meta": {
     "tournament": "FIFA World Cup 2026",
-    "version": 67,
+    "version": 68,
     "asOf": "2026-07-10",
     "source": "manual",
     "note": "locked = played-match scores {matchNo:[homeGoals,awayGoals]}; ratings per team. teams/fixtures are fixed for the tournament. formYears=per-team 1/3/5y W-D-L; h2h=all-time pairwise record + last 5 meetings (top-16 contenders, symmetric).",
@@ -1566,6 +1566,15 @@
       "h": 2,
       "a": 0,
       "w": "FRA",
+      "status": "FINISHED"
+    },
+    {
+      "stage": "QF",
+      "home": "ESP",
+      "away": "BEL",
+      "h": 2,
+      "a": 1,
+      "w": "ESP",
       "status": "FINISHED"
     }
   ],
