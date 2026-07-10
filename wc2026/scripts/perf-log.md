@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-08** · **96** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-10** · **97** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.
 
@@ -8,22 +8,23 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Betting market | 69% | 66 | 30 |
-| Balanced blend | 67% | 64 | 32 |
-| Analysts & markets | 66% | 63 | 33 |
-| Squad value | 65% | 62 | 34 |
-| Analyst supercomputer | 65% | 62 | 34 |
-| Pot + goals | 64% | 61 | 35 |
-| Tournament form | 64% | 61 | 35 |
-| FIFA ranking | 64% | 61 | 35 |
-| Head-to-head (historic) | 60% | 58 | 38 |
-| Head-to-head · World Cups | 59% | 57 | 39 |
-| Recent form | 56% | 54 | 42 |
+| Betting market | 69% | 67 | 30 |
+| Balanced blend | 67% | 65 | 32 |
+| Analysts & markets | 66% | 64 | 33 |
+| Squad value | 65% | 63 | 34 |
+| Analyst supercomputer | 65% | 63 | 34 |
+| Pot + goals | 64% | 62 | 35 |
+| Tournament form | 64% | 62 | 35 |
+| FIFA ranking | 64% | 62 | 35 |
+| Head-to-head (historic) | 61% | 59 | 38 |
+| Head-to-head · World Cups | 60% | 58 | 39 |
+| Recent form | 57% | 55 | 42 |
 
 ## Per match (latest first)
 
 | Date | # | Match | Result | Odds | Blend | Anlys | Squad | Opta | Pot+G | T-form | FIFA | H2H | WC-H2H | Form |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 2026-07-09 | M97 QF | France – Morocco | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-07 | M96 R16 | Switzerland – Colombia | 0–0 (4–3p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-07-07 | M95 R16 | Argentina – Egypt | 3–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-06 | M94 R16 | United States – Belgium | 1–4 | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✓ |
