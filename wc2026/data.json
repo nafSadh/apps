@@ -1,8 +1,8 @@
 {
   "meta": {
     "tournament": "FIFA World Cup 2026",
-    "version": 68,
-    "asOf": "2026-07-10",
+    "version": 69,
+    "asOf": "2026-07-11",
     "source": "manual",
     "note": "locked = played-match scores {matchNo:[homeGoals,awayGoals]}; ratings per team. teams/fixtures are fixed for the tournament. formYears=per-team 1/3/5y W-D-L; h2h=all-time pairwise record + last 5 meetings (top-16 contenders, symmetric).",
     "h2hAnchors": [
@@ -1728,6 +1728,11 @@
       "home": "ARG",
       "away": "SUI",
       "t": "2026-07-12T01:00:00Z"
+    },
+    {
+      "home": "FRA",
+      "away": "ESP",
+      "t": "2026-07-14T19:00:00Z"
     }
   ],
   "ratings": {
