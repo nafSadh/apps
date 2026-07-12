@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-12** · **97** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-12** · **100** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.
 
@@ -8,30 +8,33 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Betting market | 69% | 67 | 30 |
-| Balanced blend | 67% | 65 | 32 |
-| Analysts & markets | 66% | 64 | 33 |
-| Squad value | 65% | 63 | 34 |
-| Analyst supercomputer | 65% | 63 | 34 |
-| Pot + goals | 64% | 62 | 35 |
-| Tournament form | 64% | 62 | 35 |
-| FIFA ranking | 64% | 62 | 35 |
-| Head-to-head (historic) | 61% | 59 | 38 |
-| Head-to-head · World Cups | 60% | 58 | 39 |
-| Recent form | 57% | 55 | 42 |
+| Betting market | 70% | 70 | 30 |
+| Balanced blend | 68% | 68 | 32 |
+| Analysts & markets | 67% | 67 | 33 |
+| Squad value | 66% | 66 | 34 |
+| Analyst supercomputer | 66% | 66 | 34 |
+| Tournament form | 65% | 65 | 35 |
+| FIFA ranking | 65% | 65 | 35 |
+| Pot + goals | 64% | 64 | 36 |
+| Head-to-head (historic) | 62% | 62 | 38 |
+| Head-to-head · World Cups | 61% | 61 | 39 |
+| Recent form | 57% | 57 | 43 |
 
 ## Per match (latest first)
 
-| Date | # | Match | Result | Odds | Blend | Anlys | Squad | Opta | Pot+G | T-form | FIFA | H2H | WC-H2H | Form |
+| Date | # | Match | Result | Odds | Blend | Anlys | Squad | Opta | T-form | FIFA | Pot+G | H2H | WC-H2H | Form |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| 2026-07-10 | M98 QF | Spain – Belgium | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ |
+| 2026-07-11 | M100 QF | Argentina – Switzerland | 3–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 2026-07-11 | M99 QF | Norway – England | 1–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 2026-07-10 | M98 QF | Spain – Belgium | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ |
 | 2026-07-09 | M97 QF | France – Morocco | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-07-07 | M96 R16 | Switzerland – Colombia | 0–0 (4–3p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-07-07 | M96 R16 | Switzerland – Colombia | 0–0 (4–3p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ |
 | 2026-07-07 | M95 R16 | Argentina – Egypt | 3–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-07-06 | M94 R16 | United States – Belgium | 1–4 | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✓ |
-| 2026-07-06 | M93 R16 | Portugal – Spain | 0–1 | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✗ |
+| 2026-07-06 | M94 R16 | United States – Belgium | 1–4 | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✓ |
+| 2026-07-06 | M93 R16 | Portugal – Spain | 0–1 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ |
+| 2026-07-05 | M92 R16 | Mexico – England | 2–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ |
 | 2026-07-05 | M91 R16 | Brazil – Norway | 1–2 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ |
-| 2026-07-04 | M90 R16 | Canada – Morocco | 0–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| 2026-07-04 | M90 R16 | Canada – Morocco | 0–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ |
 | 2026-07-04 | M89 R16 | Paraguay – France | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-03 | M88 R32 | Australia – Egypt | 1–1 (2–4p) | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ |
 | 2026-07-03 | M87 R32 | Colombia – Ghana | 1–0 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -39,26 +42,26 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-07-02 | M85 R32 | Switzerland – Algeria | 2–0 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
 | 2026-07-02 | M84 R32 | Spain – Austria | 3–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ |
 | 2026-07-02 | M83 R32 | Portugal – Croatia | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
-| 2026-07-01 | M82 R32 | Belgium – Senegal | 3–2 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| 2026-07-01 | M82 R32 | Belgium – Senegal | 3–2 | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | 2026-07-01 | M81 R32 | United States – Bosnia & H. | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-07-01 | M80 R32 | England – DR Congo | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-06-30 | M79 R32 | Mexico – Ecuador | 2–0 | ✓ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ |
-| 2026-06-30 | M78 R32 | Ivory Coast – Norway | 1–2 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ |
+| 2026-06-30 | M79 R32 | Mexico – Ecuador | 2–0 | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ |
+| 2026-06-30 | M78 R32 | Ivory Coast – Norway | 1–2 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ |
 | 2026-06-30 | M77 R32 | France – Sweden | 3–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-29 | M76 R32 | Brazil – Japan | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
 | 2026-06-29 | M75 R32 | Netherlands – Morocco | 1–1 (2–3p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-29 | M74 R32 | Germany – Paraguay | 1–1 (3–4p) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-28 | M73 R32 | South Africa – Canada | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ |
 | 2026-06-27 | M72 | DR Congo – Uzbekistan | 3–1 | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| 2026-06-27 | M71 | Colombia – Portugal | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✓ | ✓ | ✗ |
+| 2026-06-27 | M71 | Colombia – Portugal | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ | ✓ | ✗ |
 | 2026-06-27 | M70 | Jordan – Argentina | 1–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-06-27 | M69 | Algeria – Austria | 3–3 (draw) | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ |
+| 2026-06-27 | M69 | Algeria – Austria | 3–3 (draw) | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-27 | M68 | Croatia – Ghana | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-27 | M67 | Panama – England | 0–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-26 | M66 | Uruguay – Spain | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
-| 2026-06-26 | M65 | Cape Verde – Saudi Arabia | 0–0 (draw) | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ |
+| 2026-06-26 | M65 | Cape Verde – Saudi Arabia | 0–0 (draw) | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-26 | M64 | New Zealand – Belgium | 1–5 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-06-26 | M63 | Egypt – Iran | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| 2026-06-26 | M63 | Egypt – Iran | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✓ | ✓ | ✗ | ✗ |
 | 2026-06-26 | M62 | Senegal – Iraq | 5–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-26 | M61 | Norway – France | 1–4 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ |
 | 2026-06-25 | M60 | Paraguay – Australia | 0–0 (draw) | ✗ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
@@ -69,8 +72,8 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-25 | M55 | Curaçao – Ivory Coast | 0–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-24 | M54 | South Africa – South Korea | 1–0 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-24 | M53 | Czechia – Mexico | 0–3 | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ |
-| 2026-06-24 | M52 | Bosnia & H. – Qatar | 3–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✗ | ✓ | ✓ |
-| 2026-06-24 | M51 | Switzerland – Canada | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✗ |
+| 2026-06-24 | M52 | Bosnia & H. – Qatar | 3–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✓ | ✓ |
+| 2026-06-24 | M51 | Switzerland – Canada | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ |
 | 2026-06-24 | M50 | Morocco – Haiti | 4–2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-24 | M49 | Scotland – Brazil | 0–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-23 | M48 | Colombia – DR Congo | 1–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -80,7 +83,7 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-22 | M44 | Jordan – Algeria | 1–2 | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-22 | M43 | Argentina – Austria | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-22 | M42 | France – Iraq | 3–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-06-22 | M41 | Norway – Senegal | 3–2 | ✓ | ✗ | ✗ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ | ✓ |
+| 2026-06-22 | M41 | Norway – Senegal | 3–2 | ✓ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ | ✓ | ✗ | ✓ | ✓ |
 | 2026-06-21 | M40 | New Zealand – Egypt | 1–3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-21 | M39 | Belgium – Iran | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-21 | M38 | Spain – Saudi Arabia | 4–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -89,11 +92,11 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-20 | M35 | Netherlands – Sweden | 5–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | 2026-06-20 | M34 | Ecuador – Curaçao | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-20 | M33 | Germany – Ivory Coast | 2–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ |
-| 2026-06-19 | M32 | United States – Australia | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✗ |
-| 2026-06-19 | M31 | Turkey – Paraguay | 0–1 | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| 2026-06-19 | M30 | Scotland – Morocco | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ |
+| 2026-06-19 | M32 | United States – Australia | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ |
+| 2026-06-19 | M31 | Turkey – Paraguay | 0–1 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ |
+| 2026-06-19 | M30 | Scotland – Morocco | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-19 | M29 | Brazil – Haiti | 3–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-06-18 | M28 | Mexico – South Korea | 1–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ |
+| 2026-06-18 | M28 | Mexico – South Korea | 1–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-18 | M27 | Canada – Qatar | 6–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-18 | M26 | Switzerland – Bosnia & H. | 4–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ |
 | 2026-06-18 | M25 | Czechia – South Africa | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ |
@@ -109,15 +112,15 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 | 2026-06-15 | M15 | Belgium – Egypt | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-15 | M14 | Spain – Cape Verde | 0–0 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-15 | M13 | Saudi Arabia – Uruguay | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ |
-| 2026-06-14 | M12 | Sweden – Tunisia | 5–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ | ✓ | ✓ | ✓ |
-| 2026-06-14 | M11 | Netherlands – Japan | 2–2 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-14 | M12 | Sweden – Tunisia | 5–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ | ✓ | ✓ |
+| 2026-06-14 | M11 | Netherlands – Japan | 2–2 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-14 | M10 | Germany – Curaçao | 7–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 2026-06-14 | M9 | Ivory Coast – Ecuador | 1–0 | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-13 | M8 | Qatar – Switzerland | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| 2026-06-13 | M7 | Brazil – Morocco | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
-| 2026-06-13 | M6 | Australia – Turkey | 2–0 | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| 2026-06-13 | M7 | Brazil – Morocco | 1–1 (draw) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ |
+| 2026-06-13 | M6 | Australia – Turkey | 2–0 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ |
 | 2026-06-13 | M5 | Haiti – Scotland | 0–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| 2026-06-12 | M4 | United States – Paraguay | 4–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ |
+| 2026-06-12 | M4 | United States – Paraguay | 4–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ |
 | 2026-06-12 | M3 | Canada – Bosnia & H. | 1–1 (draw) | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-06-11 | M2 | South Korea – Czechia | 2–1 | ✗ | ✓ | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✗ |
 | 2026-06-11 | M1 | Mexico – South Africa | 2–0 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ |
