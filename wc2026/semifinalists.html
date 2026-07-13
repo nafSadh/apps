@@ -98,6 +98,7 @@
   .lane{stroke:rgba(20,24,29,.14);stroke-width:1}
   .tick{stroke:rgba(20,24,29,.22);stroke-width:1}
   .et{fill:rgba(20,24,29,.045)}
+  .stoppage{fill:rgba(20,24,29,.09);stroke:rgba(20,24,29,.28);stroke-width:1;stroke-dasharray:2 2}
   .goal{cursor:pointer;transition:transform .12s ease}
   .goal circle{transition:r .12s ease}
   .goal:hover circle.dot{r:8}
@@ -165,7 +166,8 @@
     <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#84806F"></circle><circle cx="7" cy="7" r="2" fill="#F7F5F0"></circle></svg> Penalty</span>
     <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="none" stroke="#84806F" stroke-width="1.5" stroke-dasharray="2 2"></circle></svg> Own goal (for)</span>
     <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#14181D"></circle></svg> Goal conceded</span>
-    <span>Shaded band = added time &amp; extra time</span>
+    <span><svg width="20" height="14"><rect x="0" y="2" width="20" height="10" fill="rgba(20,24,29,.045)"></rect></svg> Extra time (AET)</span>
+    <span><svg width="20" height="14"><rect x="0" y="2" width="20" height="10" fill="rgba(20,24,29,.09)" stroke="rgba(20,24,29,.28)" stroke-dasharray="2 2"></rect></svg> Injury time</span>
   </div>
 
   <div id="teams"></div>
@@ -251,8 +253,19 @@ const minLabel = m => `${m}'`;
 function grid(t){
   const H = TOP + ROW * t.matches.length + 8;
   let s = `<svg class="grid" viewBox="0 0 ${W} ${H}" role="img" aria-label="Minute of every ${t.name} goal">`;
-  // extra-time band
-  s += `<rect class="et" x="${x(90)}" y="${TOP-14}" width="${x(124)-x(90)}" height="${ROW*t.matches.length+10}"/>`;
+  // time bands: solid = actual extra time (AET matches only), hatched = injury/stoppage time only
+  t.matches.forEach((mt,i)=>{
+    const bandY = TOP - 14 + ROW*i, bandH = ROW + 2;
+    if(mt.aet){
+      s += `<rect class="et" x="${x(90)}" y="${bandY}" width="${x(124)-x(90)}" height="${bandH}"/>`;
+    } else {
+      const late = mt.goals.concat(mt.conceded||[]).map(g=>g[0]).filter(m=>m>90);
+      if(late.length){
+        const cap = Math.min(106, Math.max(...late) + 3);
+        s += `<rect class="stoppage" x="${x(90)}" y="${bandY}" width="${x(cap)-x(90)}" height="${bandH}"/>`;
+      }
+    }
+  });
   // ticks
   [0,15,30,45,60,75,90,105,120].forEach(m=>{
     const major = (m===0||m===45||m===90||m===120);
