@@ -101,6 +101,7 @@
   .goal{cursor:pointer;transition:transform .12s ease}
   .goal circle{transition:r .12s ease}
   .goal:hover circle.dot{r:8}
+  .goal.conceded circle.dot{opacity:.82}
   .nogoal{font-family:'Archivo',sans-serif;font-size:10px;fill:var(--muted);letter-spacing:.06em}
 
   /* ---------- tooltip ---------- */
@@ -115,8 +116,8 @@
 
   /* ---------- legend + footer ---------- */
   .legend{
-    display:flex;gap:22px;flex-wrap:wrap;margin-top:24px;padding-top:18px;
-    border-top:1px solid var(--hair);
+    display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;padding-bottom:22px;
+    border-bottom:1px solid var(--hair);
     font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
   }
   .legend span{display:flex;align-items:center;gap:7px}
@@ -159,14 +160,15 @@
 
   <div class="rule"></div>
 
-  <div id="teams"></div>
-
   <div class="legend">
     <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#84806F"></circle></svg> Goal</span>
     <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#84806F"></circle><circle cx="7" cy="7" r="2" fill="#F7F5F0"></circle></svg> Penalty</span>
     <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="none" stroke="#84806F" stroke-width="1.5" stroke-dasharray="2 2"></circle></svg> Own goal (for)</span>
+    <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#14181D"></circle></svg> Goal conceded</span>
     <span>Shaded band = added time &amp; extra time</span>
   </div>
+
+  <div id="teams"></div>
 
   <div class="fixtures">
     <div class="fx">
@@ -194,17 +196,17 @@ const TEAMS = [
    matches:[
      {stage:"GRP",opp:"ALG",score:"3–0",goals:[[17,"Messi",""],[60,"Messi",""],[76,"Messi",""]]},
      {stage:"GRP",opp:"AUT",score:"2–0",goals:[[95,"Messi",""],[38,"Messi",""]]},
-     {stage:"GRP",opp:"JOR",score:"3–1",goals:[[19,"Lo Celso",""],[31,"Lautaro Martínez","P"],[80,"Messi",""]]},
-     {stage:"R32",opp:"CPV",score:"3–2",aet:1,goals:[[29,"Messi",""],[92,"L. Martínez",""],[111,"Borges","OG"]]},
-     {stage:"R16",opp:"EGY",score:"3–2",goals:[[79,"Romero",""],[83,"Messi",""],[92,"Enzo Fernández",""]]},
-     {stage:"QF",opp:"SUI",score:"3–1",aet:1,goals:[[10,"Mac Allister",""],[112,"J. Álvarez",""],[121,"Lautaro Martínez",""]]}
+     {stage:"GRP",opp:"JOR",score:"3–1",goals:[[19,"Lo Celso",""],[31,"Lautaro Martínez","P"],[80,"Messi",""]],conceded:[[55,"Mousa Al-Tamari",""]]},
+     {stage:"R32",opp:"CPV",score:"3–2",aet:1,goals:[[29,"Messi",""],[92,"L. Martínez",""],[111,"Borges","OG"]],conceded:[[59,"Deroy Duarte",""],[103,"Sidny Lopes Cabral",""]]},
+     {stage:"R16",opp:"EGY",score:"3–2",goals:[[79,"Romero",""],[83,"Messi",""],[92,"Enzo Fernández",""]],conceded:[[15,"Yasser Ibrahim",""],[67,"Mostafa Zico",""]]},
+     {stage:"QF",opp:"SUI",score:"3–1",aet:1,goals:[[10,"Mac Allister",""],[112,"J. Álvarez",""],[121,"Lautaro Martínez",""]],conceded:[[67,"Dan Ndoye",""]]}
    ]},
   {code:"FRA",name:"France",color:"var(--fra)",hex:"#3C5CC4",goals:16,against:2,
    scorers:[["Mbappé",8],["Dembélé",5],["Barcola",2],["Doué",1]],
    matches:[
-     {stage:"GRP",opp:"SEN",score:"3–1",goals:[[66,"Mbappé",""],[82,"Barcola",""],[96,"Mbappé",""]]},
+     {stage:"GRP",opp:"SEN",score:"3–1",goals:[[66,"Mbappé",""],[82,"Barcola",""],[96,"Mbappé",""]],conceded:[[95,"Ibrahim Mbaye",""]]},
      {stage:"GRP",opp:"IRQ",score:"3–0",goals:[[14,"Mbappé",""],[54,"Mbappé",""],[66,"Dembélé",""]]},
-     {stage:"GRP",opp:"NOR",score:"4–1",goals:[[7,"Dembélé",""],[20,"Dembélé",""],[32,"Dembélé",""],[94,"Doué",""]]},
+     {stage:"GRP",opp:"NOR",score:"4–1",goals:[[7,"Dembélé",""],[20,"Dembélé",""],[32,"Dembélé",""],[94,"Doué",""]],conceded:[[21,"Thelo Aasgaard",""]]},
      {stage:"R32",opp:"SWE",score:"3–0",goals:[[45,"Mbappé",""],[53,"Barcola",""],[74,"Mbappé",""]]},
      {stage:"R16",opp:"PAR",score:"1–0",goals:[[70,"Mbappé","P"]]},
      {stage:"QF",opp:"MAR",score:"2–0",goals:[[60,"Mbappé",""],[66,"Dembélé",""]]}
@@ -212,12 +214,12 @@ const TEAMS = [
   {code:"ENG",name:"England",color:"var(--eng)",hex:"#D8363C",goals:13,against:6,
    scorers:[["Bellingham",6],["Kane",6],["Rashford",1]],
    matches:[
-     {stage:"GRP",opp:"CRO",score:"4–2",goals:[[12,"Kane","P"],[42,"Kane",""],[47,"Bellingham",""],[85,"Rashford",""]]},
+     {stage:"GRP",opp:"CRO",score:"4–2",goals:[[12,"Kane","P"],[42,"Kane",""],[47,"Bellingham",""],[85,"Rashford",""]],conceded:[[36,"Martin Baturina",""],[50,"Petar Musa",""]]},
      {stage:"GRP",opp:"GHA",score:"0–0",goals:[]},
      {stage:"GRP",opp:"PAN",score:"2–0",goals:[[62,"Bellingham",""],[67,"Kane",""]]},
-     {stage:"R32",opp:"COD",score:"2–1",goals:[[75,"Kane",""],[86,"Kane",""]]},
-     {stage:"R16",opp:"MEX",score:"3–2",goals:[[36,"Bellingham",""],[38,"Bellingham",""],[60,"Kane","P"]]},
-     {stage:"QF",opp:"NOR",score:"2–1",aet:1,goals:[[47,"Bellingham",""],[93,"Bellingham",""]]}
+     {stage:"R32",opp:"COD",score:"2–1",goals:[[75,"Kane",""],[86,"Kane",""]],conceded:[[7,"Brian Cipenga",""]]},
+     {stage:"R16",opp:"MEX",score:"3–2",goals:[[36,"Bellingham",""],[38,"Bellingham",""],[60,"Kane","P"]],conceded:[[42,"Julián Quiñones",""],[69,"Raúl Jiménez","P"]]},
+     {stage:"QF",opp:"NOR",score:"2–1",aet:1,goals:[[47,"Bellingham",""],[93,"Bellingham",""]],conceded:[[36,"Andreas Schjelderup",""]]}
    ]},
   {code:"ESP",name:"Spain",color:"var(--esp)",hex:"#E0A22B",goals:11,against:1,
    scorers:[["Oyarzabal",4],["Merino",2],["Baena",1],["Porro",1],["Fabián Ruiz",1],["Yamal",1],["own goal",1]],
@@ -227,7 +229,7 @@ const TEAMS = [
      {stage:"GRP",opp:"URU",score:"1–0",goals:[[42,"Baena",""]]},
      {stage:"R32",opp:"AUT",score:"3–0",goals:[[36,"Oyarzabal",""],[66,"Porro",""],[89,"Oyarzabal",""]]},
      {stage:"R16",opp:"POR",score:"1–0",goals:[[91,"Merino",""]]},
-     {stage:"QF",opp:"BEL",score:"2–1",goals:[[30,"Fabián Ruiz",""],[88,"Merino",""]]}
+     {stage:"QF",opp:"BEL",score:"2–1",goals:[[30,"Fabián Ruiz",""],[88,"Merino",""]],conceded:[[41,"Charles De Ketelaere",""]]}
    ]}
 ];
 
@@ -275,6 +277,13 @@ function grid(t){
         s += `<circle class="dot" cx="${x(m)}" cy="${y+8}" r="5.5" fill="${t.hex}"/>`;
         if(kind==='P') s += `<circle cx="${x(m)}" cy="${y+8}" r="2" fill="#F7F5F0" pointer-events="none"/>`;
       }
+      s += `</g>`;
+    });
+    (mt.conceded||[]).forEach(([m,who,kind])=>{
+      const t2 = `<b>${esc(who)}</b> ${minLabel(m)}${kind==='P'?' <s>(pen)</s>':''} <s>· conceded v ${mt.opp}</s>`;
+      s += `<g class="goal conceded" data-tip="${t2.replace(/"/g,'&quot;')}">`;
+      s += `<circle class="dot" cx="${x(m)}" cy="${y+8}" r="5.5" fill="#14181D"/>`;
+      if(kind==='P') s += `<circle cx="${x(m)}" cy="${y+8}" r="2" fill="#F7F5F0" pointer-events="none"/>`;
       s += `</g>`;
     });
   });
