@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where the goals came from · World Cup 2026 semi-finalists</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#EDEAE2;
+    --card:#F7F5F0;
+    --ink:#14181D;
+    --muted:#84806F;
+    --hair:rgba(20,24,29,.16);
+    --chalk:#FFFFFF;
+    --arg:#5FA8D8; --fra:#3C5CC4; --eng:#D8363C; --esp:#E0A22B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:'Archivo',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding:clamp(20px,4vw,56px) clamp(16px,4vw,48px) 64px;
+    background-image:linear-gradient(to right,rgba(20,24,29,.035) 1px,transparent 1px);
+    background-size:24px 100%;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+
+  /* ---------- masthead ---------- */
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;
+  }
+  .eyebrow b{color:var(--ink);font-weight:600}
+  h1{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(34px,7.2vw,76px);
+    line-height:.92;letter-spacing:-.02em;text-transform:uppercase;
+    margin:14px 0 0;max-width:14ch;
+  }
+  h1 em{font-style:normal;color:var(--muted)}
+  .standfirst{
+    margin-top:16px;max-width:56ch;font-size:clamp(14px,1.6vw,17px);
+    line-height:1.5;color:#3C4149;
+  }
+  .rule{height:3px;background:var(--ink);margin:26px 0 8px}
+
+  /* ---------- team panel ---------- */
+  .team{
+    display:grid;grid-template-columns:230px 1fr;gap:clamp(16px,3vw,36px);
+    padding:26px 0;border-bottom:1px solid var(--hair);align-items:start;
+  }
+  .team:last-of-type{border-bottom:0}
+  .id{position:relative;padding-left:16px}
+  .id::before{
+    content:"";position:absolute;left:0;top:4px;bottom:4px;width:6px;background:var(--c);
+  }
+  .country{
+    font-family:'Archivo Black',sans-serif;font-size:clamp(20px,2.4vw,26px);
+    line-height:1;letter-spacing:-.01em;
+  }
+  .total{
+    font-family:'Archivo Black',sans-serif;font-size:clamp(56px,9vw,84px);
+    line-height:.9;letter-spacing:-.04em;color:var(--c);margin-top:6px;
+    font-variant-numeric:tabular-nums;
+  }
+  .total small{
+    display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px;
+  }
+  .scorers{margin-top:16px;display:flex;flex-direction:column;gap:5px}
+  .sc{
+    display:flex;align-items:baseline;gap:8px;font-size:13px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .sc .n{
+    min-width:18px;text-align:right;font-weight:600;font-variant-numeric:tabular-nums;
+  }
+  .sc .bar{
+    flex:1;height:7px;background:color-mix(in srgb,var(--c) 22%,transparent);
+    position:relative;border-radius:1px;
+  }
+  .sc .bar i{position:absolute;inset:0 auto 0 0;background:var(--c);border-radius:1px}
+  .sc .who{font-family:'Archivo',sans-serif;font-size:12.5px;font-weight:600;min-width:9.5ch}
+  .sc.og{opacity:.55}
+  .sc.og .bar i{background:repeating-linear-gradient(45deg,var(--c),var(--c) 2px,transparent 2px,transparent 4px)}
+
+  /* ---------- minute grid ---------- */
+  .grid-wrap{overflow-x:auto;padding-bottom:2px}
+  svg.grid{display:block;width:100%;min-width:520px;height:auto;overflow:visible}
+  .glabel{font-family:'IBM Plex Mono',monospace;font-size:9px;fill:var(--muted);letter-spacing:.08em}
+  .opp{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;fill:var(--ink)}
+  .oppscore{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:var(--muted)}
+  .stage{font-family:'IBM Plex Mono',monospace;font-size:8.5px;fill:var(--muted);letter-spacing:.1em}
+  .lane{stroke:rgba(20,24,29,.14);stroke-width:1}
+  .tick{stroke:rgba(20,24,29,.22);stroke-width:1}
+  .et{fill:rgba(20,24,29,.045)}
+  .goal{cursor:pointer;transition:transform .12s ease}
+  .goal circle{transition:r .12s ease}
+  .goal:hover circle.dot{r:8}
+  .nogoal{font-family:'Archivo',sans-serif;font-size:10px;fill:var(--muted);letter-spacing:.06em}
+
+  /* ---------- tooltip ---------- */
+  #tip{
+    position:fixed;z-index:20;pointer-events:none;opacity:0;transform:translate(-50%,-140%);
+    background:var(--ink);color:#fff;padding:7px 10px;border-radius:3px;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;white-space:nowrap;
+    transition:opacity .1s ease;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  }
+  #tip b{font-weight:600}
+  #tip s{text-decoration:none;color:#B9BDC4}
+
+  /* ---------- legend + footer ---------- */
+  .legend{
+    display:flex;gap:22px;flex-wrap:wrap;margin-top:24px;padding-top:18px;
+    border-top:1px solid var(--hair);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
+  }
+  .legend span{display:flex;align-items:center;gap:7px}
+  .fixtures{
+    margin-top:44px;border-top:3px solid var(--ink);padding-top:20px;
+    display:grid;grid-template-columns:1fr 1fr;gap:20px;
+  }
+  .fx .when{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .fx .tie{
+    font-family:'Archivo Black',sans-serif;font-size:clamp(17px,2.6vw,26px);
+    text-transform:uppercase;margin-top:6px;line-height:1.05;
+  }
+  .src{
+    margin-top:34px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    color:var(--muted);line-height:1.6;
+  }
+  @media (max-width:760px){
+    .team{grid-template-columns:1fr;gap:18px}
+    .fixtures{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">
+    <span>FIFA World Cup 2026</span><span>·</span><span><b>Semi-finalists</b></span><span>·</span>
+    <span>Group stage → quarter-finals</span>
+  </div>
+
+  <h1>Where the goals<br>came from</h1>
+
+  <p class="standfirst">
+    Every goal the four remaining teams have scored, plotted against the minute it was scored.
+    Argentina lead on volume; Spain have conceded once. Hover any dot for the scorer.
+  </p>
+
+  <div class="rule"></div>
+
+  <div id="teams"></div>
+
+  <div class="legend">
+    <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#84806F"></circle></svg> Goal</span>
+    <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#84806F"></circle><circle cx="7" cy="7" r="2" fill="#F7F5F0"></circle></svg> Penalty</span>
+    <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="none" stroke="#84806F" stroke-width="1.5" stroke-dasharray="2 2"></circle></svg> Own goal (for)</span>
+    <span>Shaded band = added time &amp; extra time</span>
+  </div>
+
+  <div class="fixtures">
+    <div class="fx">
+      <div class="when">Semi-final 1 · Tue 14 July</div>
+      <div class="tie">France <s style="color:#84806F">v</s> Spain</div>
+    </div>
+    <div class="fx">
+      <div class="when">Semi-final 2 · Wed 15 July</div>
+      <div class="tie">England <s style="color:#84806F">v</s> Argentina</div>
+    </div>
+  </div>
+
+  <p class="src">
+    Minutes shown as played, with stoppage-time goals placed past the 45' and 90' marks.<br>
+    Golden Boot: Mbappé 8, Messi 8 (Mbappé ahead on assists), Kane 6, Bellingham 6.
+  </p>
+</div>
+
+<div id="tip"></div>
+
+<script>
+const TEAMS = [
+  {code:"ARG",name:"Argentina",color:"var(--arg)",hex:"#5FA8D8",goals:17,against:6,
+   scorers:[["Messi",8],["Lautaro Martínez",2],["J. Álvarez",1],["Enzo Fernández",1],["Lo Celso",1],["Mac Allister",1],["L. Martínez",1],["Romero",1],["own goal",1]],
+   matches:[
+     {stage:"GRP",opp:"ALG",score:"3–0",goals:[[17,"Messi",""],[60,"Messi",""],[76,"Messi",""]]},
+     {stage:"GRP",opp:"AUT",score:"2–0",goals:[[95,"Messi",""],[38,"Messi",""]]},
+     {stage:"GRP",opp:"JOR",score:"3–1",goals:[[19,"Lo Celso",""],[31,"Lautaro Martínez","P"],[80,"Messi",""]]},
+     {stage:"R32",opp:"CPV",score:"3–2",aet:1,goals:[[29,"Messi",""],[92,"L. Martínez",""],[111,"Borges","OG"]]},
+     {stage:"R16",opp:"EGY",score:"3–2",goals:[[79,"Romero",""],[83,"Messi",""],[92,"Enzo Fernández",""]]},
+     {stage:"QF",opp:"SUI",score:"3–1",aet:1,goals:[[10,"Mac Allister",""],[112,"J. Álvarez",""],[121,"Lautaro Martínez",""]]}
+   ]},
+  {code:"FRA",name:"France",color:"var(--fra)",hex:"#3C5CC4",goals:16,against:2,
+   scorers:[["Mbappé",8],["Dembélé",5],["Barcola",2],["Doué",1]],
+   matches:[
+     {stage:"GRP",opp:"SEN",score:"3–1",goals:[[66,"Mbappé",""],[82,"Barcola",""],[96,"Mbappé",""]]},
+     {stage:"GRP",opp:"IRQ",score:"3–0",goals:[[14,"Mbappé",""],[54,"Mbappé",""],[66,"Dembélé",""]]},
+     {stage:"GRP",opp:"NOR",score:"4–1",goals:[[7,"Dembélé",""],[20,"Dembélé",""],[32,"Dembélé",""],[94,"Doué",""]]},
+     {stage:"R32",opp:"SWE",score:"3–0",goals:[[45,"Mbappé",""],[53,"Barcola",""],[74,"Mbappé",""]]},
+     {stage:"R16",opp:"PAR",score:"1–0",goals:[[70,"Mbappé","P"]]},
+     {stage:"QF",opp:"MAR",score:"2–0",goals:[[60,"Mbappé",""],[66,"Dembélé",""]]}
+   ]},
+  {code:"ENG",name:"England",color:"var(--eng)",hex:"#D8363C",goals:13,against:6,
+   scorers:[["Bellingham",6],["Kane",6],["Rashford",1]],
+   matches:[
+     {stage:"GRP",opp:"CRO",score:"4–2",goals:[[12,"Kane","P"],[42,"Kane",""],[47,"Bellingham",""],[85,"Rashford",""]]},
+     {stage:"GRP",opp:"GHA",score:"0–0",goals:[]},
+     {stage:"GRP",opp:"PAN",score:"2–0",goals:[[62,"Bellingham",""],[67,"Kane",""]]},
+     {stage:"R32",opp:"COD",score:"2–1",goals:[[75,"Kane",""],[86,"Kane",""]]},
+     {stage:"R16",opp:"MEX",score:"3–2",goals:[[36,"Bellingham",""],[38,"Bellingham",""],[60,"Kane","P"]]},
+     {stage:"QF",opp:"NOR",score:"2–1",aet:1,goals:[[47,"Bellingham",""],[93,"Bellingham",""]]}
+   ]},
+  {code:"ESP",name:"Spain",color:"var(--esp)",hex:"#E0A22B",goals:11,against:1,
+   scorers:[["Oyarzabal",4],["Merino",2],["Baena",1],["Porro",1],["Fabián Ruiz",1],["Yamal",1],["own goal",1]],
+   matches:[
+     {stage:"GRP",opp:"CPV",score:"0–0",goals:[]},
+     {stage:"GRP",opp:"KSA",score:"4–0",goals:[[10,"Yamal",""],[21,"Oyarzabal",""],[24,"Oyarzabal",""],[49,"Tambakti","OG"]]},
+     {stage:"GRP",opp:"URU",score:"1–0",goals:[[42,"Baena",""]]},
+     {stage:"R32",opp:"AUT",score:"3–0",goals:[[36,"Oyarzabal",""],[66,"Porro",""],[89,"Oyarzabal",""]]},
+     {stage:"R16",opp:"POR",score:"1–0",goals:[[91,"Merino",""]]},
+     {stage:"QF",opp:"BEL",score:"2–1",goals:[[30,"Fabián Ruiz",""],[88,"Merino",""]]}
+   ]}
+];
+
+const W = 720, L = 78, R = 706, ROW = 30, TOP = 24;
+const x = m => L + (R - L) * (m / 124);
+
+const tip = document.getElementById('tip');
+const showTip = (e, html) => {
+  tip.innerHTML = html;
+  tip.style.left = e.clientX + 'px';
+  tip.style.top = e.clientY + 'px';
+  tip.style.opacity = 1;
+};
+const hideTip = () => tip.style.opacity = 0;
+
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const minLabel = m => `${m}'`;
+
+function grid(t){
+  const H = TOP + ROW * t.matches.length + 8;
+  let s = `<svg class="grid" viewBox="0 0 ${W} ${H}" role="img" aria-label="Minute of every ${t.name} goal">`;
+  // extra-time band
+  s += `<rect class="et" x="${x(90)}" y="${TOP-14}" width="${x(124)-x(90)}" height="${ROW*t.matches.length+10}"/>`;
+  // ticks
+  [0,15,30,45,60,75,90,105,120].forEach(m=>{
+    const major = (m===0||m===45||m===90||m===120);
+    s += `<line class="${major?'tick':'lane'}" x1="${x(m)}" y1="${TOP-14}" x2="${x(m)}" y2="${TOP+ROW*t.matches.length-4}" ${major?'':'stroke-dasharray="1 3"'}/>`;
+    if(major) s += `<text class="glabel" x="${x(m)}" y="${TOP-20}" text-anchor="middle">${m===0?"KO":m+"'"}</text>`;
+  });
+  t.matches.forEach((mt,i)=>{
+    const y = TOP + ROW*i + 8;
+    s += `<line class="lane" x1="${L}" y1="${y+8}" x2="${R}" y2="${y+8}" stroke-dasharray="1 4"/>`;
+    s += `<text class="stage" x="0" y="${y+11}">${mt.stage}</text>`;
+    s += `<text class="opp" x="30" y="${y+11}">${mt.opp}</text>`;
+    s += `<text class="oppscore" x="${L-8}" y="${y+11}" text-anchor="end">${mt.score}${mt.aet?'*':''}</text>`;
+    if(!mt.goals.length){
+      s += `<text class="nogoal" x="${x(58)}" y="${y+11}" text-anchor="middle">no goals</text>`;
+    }
+    mt.goals.forEach(([m,who,kind])=>{
+      const t2 = `<b>${esc(who)}</b> ${minLabel(m)}${kind==='P'?' <s>(pen)</s>':kind==='OG'?' <s>(own goal)</s>':''} <s>· v ${mt.opp}</s>`;
+      s += `<g class="goal" data-tip="${t2.replace(/"/g,'&quot;')}">`;
+      if(kind==='OG'){
+        s += `<circle class="dot" cx="${x(m)}" cy="${y+8}" r="5.5" fill="none" stroke="${t.hex}" stroke-width="1.6" stroke-dasharray="2 2"/>`;
+      } else {
+        s += `<circle class="dot" cx="${x(m)}" cy="${y+8}" r="5.5" fill="${t.hex}"/>`;
+        if(kind==='P') s += `<circle cx="${x(m)}" cy="${y+8}" r="2" fill="#F7F5F0" pointer-events="none"/>`;
+      }
+      s += `</g>`;
+    });
+  });
+  s += `</svg>`;
+  return s;
+}
+
+document.getElementById('teams').innerHTML = TEAMS.map(t=>{
+  const max = Math.max(...t.scorers.map(s=>s[1]));
+  const scorers = t.scorers.map(([who,n])=>`
+    <div class="sc ${who==='own goal'?'og':''}">
+      <span class="n">${n}</span>
+      <span class="who">${who}</span>
+      <span class="bar"><i style="width:${(n/max*100).toFixed(0)}%"></i></span>
+    </div>`).join('');
+  return `<section class="team" style="--c:${t.hex}">
+    <div class="id">
+      <div class="country">${t.name}</div>
+      <div class="total">${t.goals}<small>goals scored · ${t.against} conceded</small></div>
+      <div class="scorers">${scorers}</div>
+    </div>
+    <div class="grid-wrap">${grid(t)}</div>
+  </section>`;
+}).join('');
+
+document.querySelectorAll('.goal').forEach(g=>{
+  g.addEventListener('mousemove', e=>showTip(e, g.dataset.tip));
+  g.addEventListener('mouseleave', hideTip);
+  g.addEventListener('touchstart', e=>showTip(e.touches[0], g.dataset.tip), {passive:true});
+});
+document.addEventListener('touchend', hideTip);
+</script>
+</body>
+</html>
