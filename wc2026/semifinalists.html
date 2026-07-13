@@ -231,7 +231,7 @@ const TEAMS = [
    ]}
 ];
 
-const W = 720, L = 78, R = 706, ROW = 30, TOP = 24;
+const W = 720, L = 78, R = 706, ROW = 30, TOP = 38;
 const x = m => L + (R - L) * (m / 124);
 
 const tip = document.getElementById('tip');
@@ -261,8 +261,8 @@ function grid(t){
     const y = TOP + ROW*i + 8;
     s += `<line class="lane" x1="${L}" y1="${y+8}" x2="${R}" y2="${y+8}" stroke-dasharray="1 4"/>`;
     s += `<text class="stage" x="0" y="${y+11}">${mt.stage}</text>`;
-    s += `<text class="opp" x="30" y="${y+11}">${mt.opp}</text>`;
-    s += `<text class="oppscore" x="${L-8}" y="${y+11}" text-anchor="end">${mt.score}${mt.aet?'*':''}</text>`;
+    s += `<text class="opp" x="22" y="${y+11}">${mt.opp}</text>`;
+    s += `<text class="oppscore" x="${L-6}" y="${y+11}" text-anchor="end">${mt.score}${mt.aet?'*':''}</text>`;
     if(!mt.goals.length){
       s += `<text class="nogoal" x="${x(58)}" y="${y+11}" text-anchor="middle">no goals</text>`;
     }
