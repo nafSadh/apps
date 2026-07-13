@@ -249,8 +249,13 @@ const hideTip = () => tip.style.opacity = 0;
 
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const minLabel = m => `${m}'`;
-// past 90': AET matches count on as real extra-time minutes (92'), non-AET matches show as added time (90+2')
-const fmtMin = (m, aet) => m > 90 ? (aet ? `${m}'` : `90+${m-90}'`) : `${m}'`;
+// past 90': AET matches count on as real extra-time minutes (92'), with their own added time past 120 (120+1');
+// non-AET matches show anything past 90 as added time (90+2')
+const fmtMin = (m, aet) => {
+  if(aet && m > 120) return `120+${m-120}'`;
+  if(m > 90) return aet ? `${m}'` : `90+${m-90}'`;
+  return `${m}'`;
+};
 
 function grid(t){
   const H = TOP + ROW * t.matches.length + 8;
