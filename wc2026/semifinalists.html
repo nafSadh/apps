@@ -249,6 +249,8 @@ const hideTip = () => tip.style.opacity = 0;
 
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const minLabel = m => `${m}'`;
+// past 90': AET matches count on as real extra-time minutes (92'), non-AET matches show as added time (90+2')
+const fmtMin = (m, aet) => m > 90 ? (aet ? `${m}'` : `90+${m-90}'`) : `${m}'`;
 
 function grid(t){
   const H = TOP + ROW * t.matches.length + 8;
@@ -282,7 +284,7 @@ function grid(t){
       s += `<text class="nogoal" x="${x(58)}" y="${y+11}" text-anchor="middle">no goals</text>`;
     }
     mt.goals.forEach(([m,who,kind])=>{
-      const t2 = `<b>${esc(who)}</b> ${minLabel(m)}${kind==='P'?' <s>(pen)</s>':kind==='OG'?' <s>(own goal)</s>':''} <s>· v ${mt.opp}</s>`;
+      const t2 = `<b>${esc(who)}</b> ${fmtMin(m, mt.aet)}${kind==='P'?' <s>(pen)</s>':kind==='OG'?' <s>(own goal)</s>':''} <s>· v ${mt.opp}</s>`;
       s += `<g class="goal" data-tip="${t2.replace(/"/g,'&quot;')}">`;
       if(kind==='OG'){
         s += `<circle class="dot" cx="${x(m)}" cy="${y+8}" r="5.5" fill="none" stroke="${t.hex}" stroke-width="1.6" stroke-dasharray="2 2"/>`;
@@ -293,7 +295,7 @@ function grid(t){
       s += `</g>`;
     });
     (mt.conceded||[]).forEach(([m,who,kind])=>{
-      const t2 = `<b>${esc(who)}</b> ${minLabel(m)}${kind==='P'?' <s>(pen)</s>':''} <s>· conceded v ${mt.opp}</s>`;
+      const t2 = `<b>${esc(who)}</b> ${fmtMin(m, mt.aet)}${kind==='P'?' <s>(pen)</s>':''} <s>· conceded v ${mt.opp}</s>`;
       s += `<g class="goal conceded" data-tip="${t2.replace(/"/g,'&quot;')}">`;
       s += `<circle class="dot" cx="${x(m)}" cy="${y+8}" r="5.5" fill="#14181D"/>`;
       if(kind==='P') s += `<circle cx="${x(m)}" cy="${y+8}" r="2" fill="#F7F5F0" pointer-events="none"/>`;
