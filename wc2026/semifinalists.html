@@ -255,7 +255,7 @@ function grid(t){
   let s = `<svg class="grid" viewBox="0 0 ${W} ${H}" role="img" aria-label="Minute of every ${t.name} goal">`;
   // time bands: solid = actual extra time (AET matches only), hatched = injury/stoppage time only
   t.matches.forEach((mt,i)=>{
-    const bandY = TOP - 14 + ROW*i, bandH = ROW + 2;
+    const bandY = TOP + ROW*i, bandH = ROW;
     if(mt.aet){
       s += `<rect class="et" x="${x(90)}" y="${bandY}" width="${x(124)-x(90)}" height="${bandH}"/>`;
     } else {
