@@ -1,88 +1,157 @@
 {
   "asOf": "2026-07-19",
-  "version": 76,
-  "played": 103,
+  "version": 77,
+  "played": 104,
   "scoring": "pick win >60% / draw 40-60%, vs actual outcome",
   "leaderboard": [
     {
       "key": "odds",
       "model": "Betting market",
-      "ok": 70,
+      "ok": 71,
       "miss": 33,
-      "hitRate": 0.68
+      "hitRate": 0.683
     },
     {
       "key": "blend",
       "model": "Balanced blend",
       "ok": 68,
-      "miss": 35,
-      "hitRate": 0.66
+      "miss": 36,
+      "hitRate": 0.654
     },
     {
       "key": "analysis",
       "model": "Analysts & markets",
       "ok": 67,
-      "miss": 36,
-      "hitRate": 0.65
+      "miss": 37,
+      "hitRate": 0.644
     },
     {
       "key": "wcform",
       "model": "Tournament form",
       "ok": 67,
-      "miss": 36,
-      "hitRate": 0.65
+      "miss": 37,
+      "hitRate": 0.644
+    },
+    {
+      "key": "squad",
+      "model": "Squad value",
+      "ok": 67,
+      "miss": 37,
+      "hitRate": 0.644
     },
     {
       "key": "fifa",
       "model": "FIFA ranking",
       "ok": 66,
-      "miss": 37,
-      "hitRate": 0.641
-    },
-    {
-      "key": "squad",
-      "model": "Squad value",
-      "ok": 66,
-      "miss": 37,
-      "hitRate": 0.641
+      "miss": 38,
+      "hitRate": 0.635
     },
     {
       "key": "opta",
       "model": "Analyst supercomputer",
       "ok": 66,
-      "miss": 37,
-      "hitRate": 0.641
+      "miss": 38,
+      "hitRate": 0.635
     },
     {
       "key": "potgoals",
       "model": "Pot + goals",
       "ok": 65,
-      "miss": 38,
-      "hitRate": 0.631
+      "miss": 39,
+      "hitRate": 0.625
     },
     {
       "key": "h2h",
       "model": "Head-to-head (historic)",
       "ok": 62,
-      "miss": 41,
-      "hitRate": 0.602
+      "miss": 42,
+      "hitRate": 0.596
     },
     {
       "key": "h2hwc",
       "model": "Head-to-head · World Cups",
       "ok": 62,
-      "miss": 41,
-      "hitRate": 0.602
+      "miss": 42,
+      "hitRate": 0.596
     },
     {
       "key": "form",
       "model": "Recent form",
       "ok": 58,
-      "miss": 45,
-      "hitRate": 0.563
+      "miss": 46,
+      "hitRate": 0.558
     }
   ],
   "matches": [
+    {
+      "no": 104,
+      "date": "2026-07-19",
+      "stage": "Final",
+      "home": "Spain",
+      "away": "Argentina",
+      "score": [
+        1,
+        0
+      ],
+      "actual": "home win",
+      "models": {
+        "odds": {
+          "winProb": 0.609,
+          "pick": "H",
+          "correct": true
+        },
+        "blend": {
+          "winProb": 0.556,
+          "pick": "D",
+          "correct": false
+        },
+        "analysis": {
+          "winProb": 0.571,
+          "pick": "D",
+          "correct": false
+        },
+        "wcform": {
+          "winProb": 0.598,
+          "pick": "D",
+          "correct": false
+        },
+        "squad": {
+          "winProb": 0.632,
+          "pick": "H",
+          "correct": true
+        },
+        "fifa": {
+          "winProb": 0.416,
+          "pick": "D",
+          "correct": false
+        },
+        "opta": {
+          "winProb": 0.599,
+          "pick": "D",
+          "correct": false
+        },
+        "potgoals": {
+          "winProb": 0.322,
+          "pick": "A",
+          "correct": false
+        },
+        "h2h": {
+          "winProb": 0.5,
+          "pick": "D",
+          "correct": false
+        },
+        "h2hwc": {
+          "winProb": 0,
+          "pick": "A",
+          "correct": false
+        },
+        "form": {
+          "winProb": 0.14,
+          "pick": "A",
+          "correct": false
+        }
+      }
+    },
     {
       "no": 103,
       "date": "2026-07-18",
@@ -115,14 +184,14 @@
           "pick": "D",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.608,
-          "pick": "H",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.536,
           "pick": "D",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.608,
+          "pick": "H",
           "correct": false
         },
         "opta": {
@@ -184,15 +253,15 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.348,
-          "pick": "A",
-          "correct": true
-        },
         "squad": {
           "winProb": 0.664,
           "pick": "H",
           "correct": false
+        },
+        "fifa": {
+          "winProb": 0.348,
+          "pick": "A",
+          "correct": true
         },
         "opta": {
           "winProb": 0.517,
@@ -253,13 +322,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.538,
+        "squad": {
+          "winProb": 0.572,
           "pick": "D",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.572,
+        "fifa": {
+          "winProb": 0.538,
           "pick": "D",
           "correct": false
         },
@@ -322,13 +391,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.921,
+        "squad": {
+          "winProb": 0.762,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.762,
+        "fifa": {
+          "winProb": 0.921,
           "pick": "H",
           "correct": true
         },
@@ -391,13 +460,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.058,
+        "squad": {
+          "winProb": 0.251,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.251,
+        "fifa": {
+          "winProb": 0.058,
           "pick": "A",
           "correct": true
         },
@@ -460,13 +529,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.764,
+        "squad": {
+          "winProb": 0.741,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.741,
+        "fifa": {
+          "winProb": 0.764,
           "pick": "H",
           "correct": true
         },
@@ -529,13 +598,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.767,
+        "squad": {
+          "winProb": 0.832,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.832,
+        "fifa": {
+          "winProb": 0.767,
           "pick": "H",
           "correct": true
         },
@@ -598,14 +667,14 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.378,
-          "pick": "A",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.531,
           "pick": "D",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.378,
+          "pick": "A",
           "correct": false
         },
         "opta": {
@@ -667,13 +736,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.967,
+        "squad": {
+          "winProb": 0.927,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.927,
+        "fifa": {
+          "winProb": 0.967,
           "pick": "H",
           "correct": true
         },
@@ -736,13 +805,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.325,
+        "squad": {
+          "winProb": 0.387,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.387,
+        "fifa": {
+          "winProb": 0.325,
           "pick": "A",
           "correct": true
         },
@@ -805,15 +874,15 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.287,
-          "pick": "A",
-          "correct": true
-        },
         "squad": {
           "winProb": 0.438,
           "pick": "D",
           "correct": false
+        },
+        "fifa": {
+          "winProb": 0.287,
+          "pick": "A",
+          "correct": true
         },
         "opta": {
           "winProb": 0.318,
@@ -874,13 +943,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.19,
+        "squad": {
+          "winProb": 0.071,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.071,
+        "fifa": {
+          "winProb": 0.19,
           "pick": "A",
           "correct": true
         },
@@ -943,13 +1012,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.895,
+        "squad": {
+          "winProb": 0.644,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.644,
+        "fifa": {
+          "winProb": 0.895,
           "pick": "H",
           "correct": false
         },
@@ -1012,13 +1081,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.118,
+        "squad": {
+          "winProb": 0.256,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.256,
+        "fifa": {
+          "winProb": 0.118,
           "pick": "A",
           "correct": true
         },
@@ -1081,13 +1150,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.023,
+        "squad": {
+          "winProb": 0.047,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.047,
+        "fifa": {
+          "winProb": 0.023,
           "pick": "A",
           "correct": true
         },
@@ -1150,15 +1219,15 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.544,
-          "pick": "D",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.369,
           "pick": "A",
           "correct": true
+        },
+        "fifa": {
+          "winProb": 0.544,
+          "pick": "D",
+          "correct": false
         },
         "opta": {
           "winProb": 0.438,
@@ -1219,15 +1288,15 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.974,
-          "pick": "H",
-          "correct": true
-        },
         "squad": {
           "winProb": 0.583,
           "pick": "D",
           "correct": false
+        },
+        "fifa": {
+          "winProb": 0.974,
+          "pick": "H",
+          "correct": true
         },
         "opta": {
           "winProb": 0.933,
@@ -1288,13 +1357,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.995,
+        "squad": {
+          "winProb": 0.975,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.975,
+        "fifa": {
+          "winProb": 0.995,
           "pick": "H",
           "correct": true
         },
@@ -1357,15 +1426,15 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.693,
-          "pick": "H",
-          "correct": true
-        },
         "squad": {
           "winProb": 0.584,
           "pick": "D",
           "correct": false
+        },
+        "fifa": {
+          "winProb": 0.693,
+          "pick": "H",
+          "correct": true
         },
         "opta": {
           "winProb": 0.866,
@@ -1426,13 +1495,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.935,
+        "squad": {
+          "winProb": 0.891,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.891,
+        "fifa": {
+          "winProb": 0.935,
           "pick": "H",
           "correct": true
         },
@@ -1495,13 +1564,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.633,
+        "squad": {
+          "winProb": 0.778,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.778,
+        "fifa": {
+          "winProb": 0.633,
           "pick": "H",
           "correct": true
         },
@@ -1564,15 +1633,15 @@
           "pick": "D",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.646,
-          "pick": "H",
-          "correct": true
-        },
         "squad": {
           "winProb": 0.544,
           "pick": "D",
           "correct": false
+        },
+        "fifa": {
+          "winProb": 0.646,
+          "pick": "H",
+          "correct": true
         },
         "opta": {
           "winProb": 0.688,
@@ -1633,13 +1702,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.949,
+        "squad": {
+          "winProb": 0.781,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.781,
+        "fifa": {
+          "winProb": 0.949,
           "pick": "H",
           "correct": true
         },
@@ -1702,13 +1771,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.975,
+        "squad": {
+          "winProb": 0.95,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.95,
+        "fifa": {
+          "winProb": 0.975,
           "pick": "H",
           "correct": true
         },
@@ -1771,15 +1840,15 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.714,
-          "pick": "H",
-          "correct": true
-        },
         "squad": {
           "winProb": 0.298,
           "pick": "A",
           "correct": false
+        },
+        "fifa": {
+          "winProb": 0.714,
+          "pick": "H",
+          "correct": true
         },
         "opta": {
           "winProb": 0.425,
@@ -1840,13 +1909,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.457,
+        "squad": {
+          "winProb": 0.46,
           "pick": "D",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.46,
+        "fifa": {
+          "winProb": 0.457,
           "pick": "D",
           "correct": false
         },
@@ -1909,13 +1978,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.976,
+        "squad": {
+          "winProb": 0.849,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.849,
+        "fifa": {
+          "winProb": 0.976,
           "pick": "H",
           "correct": true
         },
@@ -1978,13 +2047,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.745,
+        "squad": {
+          "winProb": 0.834,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.834,
+        "fifa": {
+          "winProb": 0.745,
           "pick": "H",
           "correct": true
         },
@@ -2047,14 +2116,14 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.496,
-          "pick": "D",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.665,
           "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.496,
+          "pick": "D",
           "correct": false
         },
         "opta": {
@@ -2116,13 +2185,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.915,
+        "squad": {
+          "winProb": 0.916,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.916,
+        "fifa": {
+          "winProb": 0.915,
           "pick": "H",
           "correct": false
         },
@@ -2185,13 +2254,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.206,
+        "squad": {
+          "winProb": 0.138,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.138,
+        "fifa": {
+          "winProb": 0.206,
           "pick": "A",
           "correct": true
         },
@@ -2254,15 +2323,15 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.54,
-          "pick": "D",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.665,
           "pick": "H",
           "correct": true
+        },
+        "fifa": {
+          "winProb": 0.54,
+          "pick": "D",
+          "correct": false
         },
         "opta": {
           "winProb": 0.5,
@@ -2323,13 +2392,13 @@
           "pick": "D",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.328,
+        "squad": {
+          "winProb": 0.171,
           "pick": "A",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.171,
+        "fifa": {
+          "winProb": 0.328,
           "pick": "A",
           "correct": false
         },
@@ -2392,13 +2461,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.006,
+        "squad": {
+          "winProb": 0.008,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.008,
+        "fifa": {
+          "winProb": 0.006,
           "pick": "A",
           "correct": true
         },
@@ -2461,13 +2530,13 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.432,
+        "squad": {
+          "winProb": 0.515,
           "pick": "D",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.515,
+        "fifa": {
+          "winProb": 0.432,
           "pick": "D",
           "correct": true
         },
@@ -2530,13 +2599,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.978,
+        "squad": {
+          "winProb": 0.659,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.659,
+        "fifa": {
+          "winProb": 0.978,
           "pick": "H",
           "correct": true
         },
@@ -2599,13 +2668,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.048,
+        "squad": {
+          "winProb": 0.008,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.008,
+        "fifa": {
+          "winProb": 0.048,
           "pick": "A",
           "correct": true
         },
@@ -2668,13 +2737,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.132,
+        "squad": {
+          "winProb": 0.168,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.168,
+        "fifa": {
+          "winProb": 0.132,
           "pick": "A",
           "correct": true
         },
@@ -2737,15 +2806,15 @@
           "pick": "D",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.367,
-          "pick": "A",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.562,
           "pick": "D",
           "correct": true
+        },
+        "fifa": {
+          "winProb": 0.367,
+          "pick": "A",
+          "correct": false
         },
         "opta": {
           "winProb": 0.379,
@@ -2806,13 +2875,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.009,
+        "squad": {
+          "winProb": 0.026,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.026,
+        "fifa": {
+          "winProb": 0.009,
           "pick": "A",
           "correct": true
         },
@@ -2875,14 +2944,14 @@
           "pick": "D",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.357,
-          "pick": "A",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.844,
           "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.357,
+          "pick": "A",
           "correct": false
         },
         "opta": {
@@ -2944,13 +3013,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.921,
+        "squad": {
+          "winProb": 0.983,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.983,
+        "fifa": {
+          "winProb": 0.921,
           "pick": "H",
           "correct": true
         },
@@ -3013,13 +3082,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.038,
+        "squad": {
+          "winProb": 0.224,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.224,
+        "fifa": {
+          "winProb": 0.038,
           "pick": "A",
           "correct": true
         },
@@ -3082,14 +3151,14 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.318,
-          "pick": "A",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.711,
           "pick": "H",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.318,
+          "pick": "A",
           "correct": false
         },
         "opta": {
@@ -3151,14 +3220,14 @@
           "pick": "D",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.337,
-          "pick": "A",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.567,
           "pick": "D",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.337,
+          "pick": "A",
           "correct": false
         },
         "opta": {
@@ -3220,13 +3289,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.054,
+        "squad": {
+          "winProb": 0.042,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.042,
+        "fifa": {
+          "winProb": 0.054,
           "pick": "A",
           "correct": true
         },
@@ -3289,14 +3358,14 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.827,
-          "pick": "H",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.37,
           "pick": "A",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.827,
+          "pick": "H",
           "correct": false
         },
         "opta": {
@@ -3358,13 +3427,13 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.196,
+        "squad": {
+          "winProb": 0.225,
           "pick": "A",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.225,
+        "fifa": {
+          "winProb": 0.196,
           "pick": "A",
           "correct": false
         },
@@ -3427,13 +3496,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.073,
+        "squad": {
+          "winProb": 0.019,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.019,
+        "fifa": {
+          "winProb": 0.073,
           "pick": "A",
           "correct": true
         },
@@ -3496,13 +3565,13 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.157,
+        "squad": {
+          "winProb": 0.204,
           "pick": "A",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.204,
+        "fifa": {
+          "winProb": 0.157,
           "pick": "A",
           "correct": false
         },
@@ -3565,15 +3634,15 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.133,
-          "pick": "A",
-          "correct": true
-        },
         "squad": {
           "winProb": 0.494,
           "pick": "D",
           "correct": false
+        },
+        "fifa": {
+          "winProb": 0.133,
+          "pick": "A",
+          "correct": true
         },
         "opta": {
           "winProb": 0.197,
@@ -3634,15 +3703,15 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.343,
-          "pick": "A",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.932,
           "pick": "H",
           "correct": true
+        },
+        "fifa": {
+          "winProb": 0.343,
+          "pick": "A",
+          "correct": false
         },
         "opta": {
           "winProb": 0.733,
@@ -3703,13 +3772,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.718,
+        "squad": {
+          "winProb": 0.663,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.663,
+        "fifa": {
+          "winProb": 0.718,
           "pick": "H",
           "correct": true
         },
@@ -3772,13 +3841,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.991,
+        "squad": {
+          "winProb": 0.939,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.939,
+        "fifa": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
@@ -3841,13 +3910,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.063,
+        "squad": {
+          "winProb": 0.098,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.098,
+        "fifa": {
+          "winProb": 0.063,
           "pick": "A",
           "correct": true
         },
@@ -3910,13 +3979,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.909,
+        "squad": {
+          "winProb": 0.726,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.726,
+        "fifa": {
+          "winProb": 0.909,
           "pick": "H",
           "correct": true
         },
@@ -3979,13 +4048,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.96,
+        "squad": {
+          "winProb": 0.962,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.962,
+        "fifa": {
+          "winProb": 0.96,
           "pick": "H",
           "correct": true
         },
@@ -4048,13 +4117,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.141,
+        "squad": {
+          "winProb": 0.04,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.04,
+        "fifa": {
+          "winProb": 0.141,
           "pick": "A",
           "correct": true
         },
@@ -4117,13 +4186,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.993,
+        "squad": {
+          "winProb": 0.909,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.909,
+        "fifa": {
+          "winProb": 0.993,
           "pick": "H",
           "correct": false
         },
@@ -4186,13 +4255,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.131,
+        "squad": {
+          "winProb": 0.035,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.035,
+        "fifa": {
+          "winProb": 0.131,
           "pick": "A",
           "correct": true
         },
@@ -4255,13 +4324,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.953,
+        "squad": {
+          "winProb": 0.827,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.827,
+        "fifa": {
+          "winProb": 0.953,
           "pick": "H",
           "correct": true
         },
@@ -4324,13 +4393,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.988,
+        "squad": {
+          "winProb": 0.996,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.996,
+        "fifa": {
+          "winProb": 0.988,
           "pick": "H",
           "correct": true
         },
@@ -4393,14 +4462,14 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.213,
-          "pick": "A",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.568,
           "pick": "D",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.213,
+          "pick": "A",
           "correct": false
         },
         "opta": {
@@ -4462,13 +4531,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.055,
+        "squad": {
+          "winProb": 0.168,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.168,
+        "fifa": {
+          "winProb": 0.055,
           "pick": "A",
           "correct": true
         },
@@ -4531,13 +4600,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.78,
+        "squad": {
+          "winProb": 0.976,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.976,
+        "fifa": {
+          "winProb": 0.78,
           "pick": "H",
           "correct": false
         },
@@ -4600,13 +4669,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.988,
+        "squad": {
+          "winProb": 0.989,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.989,
+        "fifa": {
+          "winProb": 0.988,
           "pick": "H",
           "correct": true
         },
@@ -4669,13 +4738,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.957,
+        "squad": {
+          "winProb": 0.931,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.931,
+        "fifa": {
+          "winProb": 0.957,
           "pick": "H",
           "correct": false
         },
@@ -4738,13 +4807,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.129,
+        "squad": {
+          "winProb": 0.145,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.145,
+        "fifa": {
+          "winProb": 0.129,
           "pick": "A",
           "correct": true
         },
@@ -4807,13 +4876,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.925,
+        "squad": {
+          "winProb": 0.692,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.692,
+        "fifa": {
+          "winProb": 0.925,
           "pick": "H",
           "correct": true
         },
@@ -4876,13 +4945,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.958,
+        "squad": {
+          "winProb": 0.97,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.97,
+        "fifa": {
+          "winProb": 0.958,
           "pick": "H",
           "correct": false
         },
@@ -4945,13 +5014,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.882,
+        "squad": {
+          "winProb": 0.686,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.686,
+        "fifa": {
+          "winProb": 0.882,
           "pick": "H",
           "correct": true
         },
@@ -5014,13 +5083,13 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.72,
+        "squad": {
+          "winProb": 0.891,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.891,
+        "fifa": {
+          "winProb": 0.72,
           "pick": "H",
           "correct": true
         },
@@ -5083,13 +5152,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.738,
+        "squad": {
+          "winProb": 0.814,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.814,
+        "fifa": {
+          "winProb": 0.738,
           "pick": "H",
           "correct": false
         },
@@ -5152,13 +5221,13 @@
           "pick": "D",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.07,
+        "squad": {
+          "winProb": 0.22,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.22,
+        "fifa": {
+          "winProb": 0.07,
           "pick": "A",
           "correct": true
         },
@@ -5221,13 +5290,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.992,
+        "squad": {
+          "winProb": 0.975,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.975,
+        "fifa": {
+          "winProb": 0.992,
           "pick": "H",
           "correct": true
         },
@@ -5290,13 +5359,13 @@
           "pick": "D",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.729,
+        "squad": {
+          "winProb": 0.604,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.604,
+        "fifa": {
+          "winProb": 0.729,
           "pick": "H",
           "correct": true
         },
@@ -5359,13 +5428,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.755,
+        "squad": {
+          "winProb": 0.953,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.953,
+        "fifa": {
+          "winProb": 0.755,
           "pick": "H",
           "correct": true
         },
@@ -5428,13 +5497,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.938,
+        "squad": {
+          "winProb": 0.746,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.746,
+        "fifa": {
+          "winProb": 0.938,
           "pick": "H",
           "correct": true
         },
@@ -5497,13 +5566,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.689,
+        "squad": {
+          "winProb": 0.853,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.853,
+        "fifa": {
+          "winProb": 0.689,
           "pick": "H",
           "correct": false
         },
@@ -5566,15 +5635,15 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.121,
-          "pick": "A",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.925,
           "pick": "H",
           "correct": true
+        },
+        "fifa": {
+          "winProb": 0.121,
+          "pick": "A",
+          "correct": false
         },
         "opta": {
           "winProb": 0.621,
@@ -5635,13 +5704,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.762,
+        "squad": {
+          "winProb": 0.838,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.838,
+        "fifa": {
+          "winProb": 0.762,
           "pick": "H",
           "correct": true
         },
@@ -5704,13 +5773,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.078,
+        "squad": {
+          "winProb": 0.16,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.16,
+        "fifa": {
+          "winProb": 0.078,
           "pick": "A",
           "correct": true
         },
@@ -5773,13 +5842,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.954,
+        "squad": {
+          "winProb": 0.928,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.928,
+        "fifa": {
+          "winProb": 0.954,
           "pick": "H",
           "correct": false
         },
@@ -5842,13 +5911,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.897,
+        "squad": {
+          "winProb": 0.963,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.963,
+        "fifa": {
+          "winProb": 0.897,
           "pick": "H",
           "correct": true
         },
@@ -5911,13 +5980,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.964,
+        "squad": {
+          "winProb": 0.818,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.818,
+        "fifa": {
+          "winProb": 0.964,
           "pick": "H",
           "correct": true
         },
@@ -5980,13 +6049,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.241,
+        "squad": {
+          "winProb": 0.013,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.013,
+        "fifa": {
+          "winProb": 0.241,
           "pick": "A",
           "correct": true
         },
@@ -6049,13 +6118,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.872,
+        "squad": {
+          "winProb": 0.82,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.82,
+        "fifa": {
+          "winProb": 0.872,
           "pick": "H",
           "correct": true
         },
@@ -6118,15 +6187,15 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.969,
-          "pick": "H",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.476,
           "pick": "D",
           "correct": true
+        },
+        "fifa": {
+          "winProb": 0.969,
+          "pick": "H",
+          "correct": false
         },
         "opta": {
           "winProb": 0.626,
@@ -6187,13 +6256,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.865,
+        "squad": {
+          "winProb": 0.884,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.884,
+        "fifa": {
+          "winProb": 0.865,
           "pick": "H",
           "correct": false
         },
@@ -6256,13 +6325,13 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.993,
+        "squad": {
+          "winProb": 0.985,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.985,
+        "fifa": {
+          "winProb": 0.993,
           "pick": "H",
           "correct": false
         },
@@ -6325,13 +6394,13 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.071,
+        "squad": {
+          "winProb": 0.054,
           "pick": "A",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.054,
+        "fifa": {
+          "winProb": 0.071,
           "pick": "A",
           "correct": false
         },
@@ -6394,15 +6463,15 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.585,
-          "pick": "D",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.909,
           "pick": "H",
           "correct": true
+        },
+        "fifa": {
+          "winProb": 0.585,
+          "pick": "D",
+          "correct": false
         },
         "opta": {
           "winProb": 0.644,
@@ -6463,13 +6532,13 @@
           "pick": "D",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.721,
+        "squad": {
+          "winProb": 0.793,
           "pick": "H",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.793,
+        "fifa": {
+          "winProb": 0.721,
           "pick": "H",
           "correct": false
         },
@@ -6532,13 +6601,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.99,
+        "squad": {
+          "winProb": 0.991,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.991,
+        "fifa": {
+          "winProb": 0.99,
           "pick": "H",
           "correct": true
         },
@@ -6601,15 +6670,15 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.356,
-          "pick": "A",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.612,
           "pick": "H",
           "correct": true
+        },
+        "fifa": {
+          "winProb": 0.356,
+          "pick": "A",
+          "correct": false
         },
         "opta": {
           "winProb": 0.247,
@@ -6670,13 +6739,13 @@
           "pick": "A",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.113,
+        "squad": {
+          "winProb": 0.024,
           "pick": "A",
           "correct": false
         },
-        "squad": {
-          "winProb": 0.024,
+        "fifa": {
+          "winProb": 0.113,
           "pick": "A",
           "correct": false
         },
@@ -6739,15 +6808,15 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.528,
-          "pick": "D",
-          "correct": true
-        },
         "squad": {
           "winProb": 0.722,
           "pick": "H",
           "correct": false
+        },
+        "fifa": {
+          "winProb": 0.528,
+          "pick": "D",
+          "correct": true
         },
         "opta": {
           "winProb": 0.757,
@@ -6808,14 +6877,14 @@
           "pick": "D",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.432,
-          "pick": "D",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.085,
           "pick": "A",
+          "correct": false
+        },
+        "fifa": {
+          "winProb": 0.432,
+          "pick": "D",
           "correct": false
         },
         "opta": {
@@ -6877,13 +6946,13 @@
           "pick": "A",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.11,
+        "squad": {
+          "winProb": 0.189,
           "pick": "A",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.189,
+        "fifa": {
+          "winProb": 0.11,
           "pick": "A",
           "correct": true
         },
@@ -6946,13 +7015,13 @@
           "pick": "D",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.847,
+        "squad": {
+          "winProb": 0.77,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.77,
+        "fifa": {
+          "winProb": 0.847,
           "pick": "H",
           "correct": true
         },
@@ -7015,15 +7084,15 @@
           "pick": "H",
           "correct": false
         },
-        "fifa": {
-          "winProb": 0.855,
-          "pick": "H",
-          "correct": false
-        },
         "squad": {
           "winProb": 0.599,
           "pick": "D",
           "correct": true
+        },
+        "fifa": {
+          "winProb": 0.855,
+          "pick": "H",
+          "correct": false
         },
         "opta": {
           "winProb": 0.799,
@@ -7084,15 +7153,15 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.708,
-          "pick": "H",
-          "correct": true
-        },
         "squad": {
           "winProb": 0.402,
           "pick": "D",
           "correct": false
+        },
+        "fifa": {
+          "winProb": 0.708,
+          "pick": "H",
+          "correct": true
         },
         "opta": {
           "winProb": 0.644,
@@ -7153,13 +7222,13 @@
           "pick": "H",
           "correct": true
         },
-        "fifa": {
-          "winProb": 0.935,
+        "squad": {
+          "winProb": 0.856,
           "pick": "H",
           "correct": true
         },
-        "squad": {
-          "winProb": 0.856,
+        "fifa": {
+          "winProb": 0.935,
           "pick": "H",
           "correct": true
         },
