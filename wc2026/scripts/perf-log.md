@@ -1,6 +1,6 @@
 # WC2026 — per-match simulation performance log
 
-_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-16** · **102** played matches._
+_Auto-generated from `data.json` by `scripts/perf_log.js` · as of **2026-07-19** · **103** played matches._
 
 A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (40–60%); ✓ = right outcome, ✗ = wrong. Scored **walk-forward** — each game uses only games played before it, so the in-tournament model (Pot+goals) can't see the result it's predicting.
 
@@ -8,22 +8,23 @@ A model **picks a win** when it favours a side **>60%**, otherwise a **draw** (4
 
 | Model | Hit rate | ✓ | ✗ |
 |---|--:|--:|--:|
-| Betting market | 69% | 70 | 32 |
-| Balanced blend | 67% | 68 | 34 |
-| Analysts & markets | 66% | 67 | 35 |
-| Tournament form | 66% | 67 | 35 |
-| FIFA ranking | 65% | 66 | 36 |
-| Squad value | 65% | 66 | 36 |
-| Analyst supercomputer | 65% | 66 | 36 |
-| Pot + goals | 64% | 65 | 37 |
-| Head-to-head (historic) | 61% | 62 | 40 |
-| Head-to-head · World Cups | 60% | 61 | 41 |
-| Recent form | 57% | 58 | 44 |
+| Betting market | 68% | 70 | 33 |
+| Balanced blend | 66% | 68 | 35 |
+| Analysts & markets | 65% | 67 | 36 |
+| Tournament form | 65% | 67 | 36 |
+| FIFA ranking | 64% | 66 | 37 |
+| Squad value | 64% | 66 | 37 |
+| Analyst supercomputer | 64% | 66 | 37 |
+| Pot + goals | 63% | 65 | 38 |
+| Head-to-head (historic) | 60% | 62 | 41 |
+| Head-to-head · World Cups | 60% | 62 | 41 |
+| Recent form | 56% | 58 | 45 |
 
 ## Per match (latest first)
 
 | Date | # | Match | Result | Odds | Blend | Anlys | T-form | FIFA | Squad | Opta | Pot+G | H2H | WC-H2H | Form |
 |---|---|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 2026-07-18 | M103 3rd | France – England | 4–6 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ |
 | 2026-07-15 | M102 SF | England – Argentina | 1–2 | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
 | 2026-07-14 | M101 SF | France – Spain | 0–2 | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | 2026-07-11 | M100 QF | Argentina – Switzerland | 3–1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
