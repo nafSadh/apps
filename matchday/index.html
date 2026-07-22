@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matchday Pacific — Club Football 2026–27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pitch:#0c3524; --pitch-2:#0f4630; --chalk:#f4f1e4; --night:#0b120e;
+    --epl:#9d8cff; --liga:#ff5a45; --buli:#f0c33c; --l1:#5dd39e; --ucl:#7fd1ff;
+    --muted:rgba(244,241,228,.62); --hair:rgba(244,241,228,.16);
+    --disp:'Saira Condensed',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --hand:'Caveat',cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+  body{
+    font-family:var(--body);color:var(--chalk);background:var(--night);
+    background-image:repeating-linear-gradient(90deg, var(--pitch) 0 120px, var(--pitch-2) 120px 240px);
+    background-attachment:fixed;min-height:100vh;
+  }
+  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% -10%, rgba(244,241,228,.10), transparent 60%), rgba(11,18,14,.82);pointer-events:none;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 20px 48px}
+
+  header{padding:28px 0 6px}
+  .kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+  .kick .hand{font-family:var(--hand);font-size:19px;letter-spacing:.01em;text-transform:none;color:var(--chalk);display:inline-block;transform:rotate(-2deg);vertical-align:-2px;margin-left:2px}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,5.4vw,64px);line-height:1;letter-spacing:.01em;margin:8px 0 6px;white-space:nowrap}
+  h1 .pac{color:transparent;-webkit-text-stroke:1.5px var(--chalk)}
+  .sub{max-width:640px;color:var(--muted);font-size:15px;line-height:1.55}
+  .sub b{color:var(--chalk);font-weight:600}
+  .countdown{display:flex;gap:26px;margin:16px 0 0;padding:12px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);flex-wrap:wrap}
+  .cd{font-family:var(--mono)}
+  .cd .n{font-family:var(--disp);font-weight:800;font-size:40px;line-height:1}
+  .cd .l{font-size:11px;letter-spacing:.12em;color:var(--muted);margin-top:4px}
+  .cd.liga .n{color:var(--liga)} .cd.epl .n{color:var(--epl)}
+
+  section{margin-top:40px}
+  .eyebrow{display:flex;align-items:baseline;gap:14px;margin-bottom:12px}
+  .eyebrow h2{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:.02em}
+  .eyebrow .rule{flex:1;height:1px;background:var(--hair)}
+  .eyebrow .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+
+  .filters{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .filters button{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;background:none;border:1px solid var(--hair);color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer}
+  .filters button:hover{border-color:var(--chalk);color:var(--chalk)}
+  .filters button.on{background:var(--chalk);color:var(--night);border-color:var(--chalk)}
+  .filters button:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .players{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .players .pcard{flex:1 1 232px;max-width:250px}
+  .pcard{position:relative;border:1px solid var(--hair);border-radius:10px;padding:18px 18px 16px;background:rgba(11,18,14,.55);overflow:hidden;transition:transform .15s ease,border-color .15s ease}
+  .pcard:hover{transform:translateY(-3px);border-color:rgba(244,241,228,.4)}
+  .pcard .shirt{position:absolute;bottom:-16px;right:4px;font-family:var(--disp);font-weight:800;font-size:110px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(244,241,228,.14);pointer-events:none;user-select:none}
+  .headshot{position:absolute;top:0;right:0;width:42%;height:140px;object-fit:cover;object-position:top;border-radius:0 10px 0 0;filter:saturate(.85) contrast(1.06);-webkit-mask-image:radial-gradient(130% 125% at 100% 0%, #000 52%, transparent 76%);mask-image:radial-gradient(130% 125% at 100% 0%, #000 52%, transparent 76%);z-index:1}
+  .pcard .lg,.pcard h3,.pcard .club{padding-right:45%}
+  .pcard .lg,.pcard h3,.pcard .club,.pcard .line,.pcard .stat,.pcard .watch{position:relative;z-index:2}
+  .pcard h3,.pcard .lg{text-shadow:0 1px 6px rgba(11,18,14,.85)}
+  .pcard .lg{font-family:var(--mono);font-size:11px;letter-spacing:.04em}
+  .pcard[data-lg="liga"] .lg{color:var(--liga)}
+  .pcard[data-lg="epl"] .lg{color:var(--epl)}
+  .pcard[data-lg="buli"] .lg{color:var(--buli)}
+  .pcard[data-lg="fr1"] .lg{color:var(--ucl)}
+  .pcard h3{font-family:var(--disp);font-weight:700;font-size:24px;line-height:1.15;min-height:2.3em;margin:4px 0 2px;letter-spacing:.01em;display:flex;align-items:flex-end}
+  .pcard h3 a{color:inherit;text-decoration:none}
+  .pcard h3 a:hover{text-decoration:underline}
+  .pcard .club{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .pcard .line{font-size:13.5px;line-height:1.5;min-height:4.5em;color:rgba(244,241,228,.86);margin-bottom:12px}
+  .pcard .stat{font-family:var(--mono);font-size:11.5px;color:var(--muted);border-top:1px dashed var(--hair);padding-top:10px}
+  .pcard .stat b{color:var(--chalk);font-weight:500}
+  .squad-link{display:block;margin-top:12px;width:100%;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;background:none;border:1px solid var(--hair);color:var(--muted);padding:8px 0;border-radius:6px;text-decoration:none;cursor:pointer}
+  .squad-link:hover{border-color:var(--chalk);color:var(--chalk)}
+  .squad-link:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .profile-links{display:flex;gap:6px;margin-top:12px}
+  .profile-links a{flex:1;text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;background:none;border:1px solid var(--hair);color:var(--muted);padding:7px 0;border-radius:6px;text-decoration:none;cursor:pointer}
+  .profile-links a:hover{border-color:var(--chalk);color:var(--chalk)}
+  .profile-links a:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+
+  /* ---------- squad modal ---------- */
+  .squad-modal{position:fixed;inset:0;z-index:50;display:flex;padding:0}
+  .squad-modal[hidden]{display:none}
+  .squad-backdrop{position:absolute;inset:0;background:#0b120e}
+  .squad-panel{position:relative;z-index:1;width:100%;height:100vh;max-height:100vh;overflow-y:auto;background:#0c1a13;border:none;border-radius:0;padding:16px clamp(16px,3vw,40px) 20px;box-shadow:none}
+  .squad-body{display:flex;gap:24px;margin:4px auto 0;align-items:flex-start;max-width:1152px;justify-content:center}
+  .squad-pitch-col{flex:0 1 auto;min-width:0;width:min(820px,calc((100vh - 200px) * 68 / 105))}
+  .pitch.modal-pitch{aspect-ratio:68/105;height:auto;min-height:340px;width:100%;margin:0 auto}
+  @media(max-width:760px){.pitch.modal-pitch{width:100%}}
+  .squad-bench-col{flex:0 0 300px;margin-top:72px}
+  @media(max-width:760px){.day{grid-template-columns:1fr;row-gap:4px}.day .ticks{grid-column:1}.squad-body{flex-direction:column}.squad-pitch-col{width:100%;max-width:100%}.squad-bench-col{flex:1 1 auto;width:100%;margin-top:0}.squad-head{padding:0 40px}}
+  .squad-close{position:absolute;top:16px;right:clamp(16px,3vw,40px);width:38px;height:38px;border-radius:999px;border:1px solid var(--hair);background:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1}
+  .squad-close:hover{color:var(--chalk);border-color:var(--chalk)}
+  .squad-close:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .squad-head{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 2px;min-width:0}
+  .squad-head>div{min-width:0}
+  .squad-roundel{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:16px;flex:none;box-shadow:0 0 0 1px rgba(244,241,228,.25)}
+  .squad-crest{display:none;width:58px;height:58px;object-fit:contain;flex:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
+  .squad-head h3{font-family:var(--disp);font-weight:800;font-size:clamp(24px,3.2vh,38px);line-height:1.05}
+  .squad-sub{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:4px}
+  .squad-local{font-family:var(--body);font-style:italic;font-size:13px;color:var(--muted);margin-top:2px}
+  .squad-depth-label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
+  .squad-depth-hint{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.4}
+  .squad-depth{display:flex;flex-direction:column;gap:8px}
+  .depth-chip{display:flex;align-items:center;gap:10px;width:100%;border:1px solid var(--hair);border-radius:9px;padding:10px 13px;font-family:var(--body);font-size:16px;color:rgba(244,241,228,.85);text-align:left;cursor:pointer;background:none}
+  .depth-chip:hover{border-color:rgba(244,241,228,.4)}
+  .depth-chip:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .depth-chip .pos{font-family:var(--mono);color:var(--muted);font-size:11.5px;letter-spacing:.05em;flex:none;width:26px}
+  .depth-chip.swapped{border-color:var(--ucl);color:var(--chalk);background:rgba(127,209,255,.1)}
+  .depth-photo{display:block;border-radius:50%;object-fit:cover;object-position:top;flex:none;box-shadow:0 0 0 1px rgba(244,241,228,.4);background:#13201a}
+  .squad-kits{margin-top:18px}
+  .squad-kits .kits-src{font-family:var(--mono);color:var(--muted);text-decoration:none}
+  .squad-kits .kits-src:hover{color:var(--chalk)}
+  .kits-row{display:flex;gap:12px;flex-wrap:wrap}
+  .kit{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+  .kit-fig{position:relative;width:100px;height:135px;display:block;background:#fff;border-radius:6px;overflow:hidden}
+  .kit-r{position:absolute;display:block}
+  .kit-r img{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+  .kit-cap{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .kit:hover .kit-cap{color:var(--chalk)}
+
+  .clubs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+  .ccard{border:1px solid var(--hair);border-radius:10px;padding:18px;background:rgba(11,18,14,.55)}
+  .ccard .top{display:flex;align-items:center;gap:10px}
+  .ccard .top .badge{margin-left:auto;text-align:right}
+  .crest{display:none;width:38px;height:38px;object-fit:contain;flex:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+  .roundel{display:flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:12px;letter-spacing:.02em;flex:none;box-shadow:0 0 0 1px rgba(244,241,228,.25)}
+  .ccard h3{font-family:var(--disp);font-weight:800;font-size:23px}
+  .ccard .badge{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);white-space:nowrap}
+  .ccard p{font-size:13.5px;line-height:1.55;min-height:4.7em;color:rgba(244,241,228,.84);margin-top:8px}
+  .mine-star{color:var(--liga);font-size:.7em;vertical-align:middle}
+  .ccard .pool{display:block;margin-top:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+  .clocknote{font-size:13.5px;color:var(--muted);max-width:640px;line-height:1.55;margin-bottom:22px}
+  .clocknote b{color:var(--chalk);font-weight:600}
+  .day{display:grid;grid-template-columns:104px 1fr;column-gap:14px;align-items:center;margin-bottom:10px}
+  .day .dh{display:flex;justify-content:flex-start;align-items:baseline}
+  .day .dh h3{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:.03em;line-height:1.2}
+  .day .ticks{grid-column:2}
+  .day .dh span{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .rail{position:relative;height:64px;border:1px solid var(--hair);border-radius:8px;background:rgba(11,18,14,.5);overflow:hidden}
+  .rail .work{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(255,255,255,.05) 6px 12px);border-left:1px dashed var(--hair);border-right:1px dashed var(--hair)}
+  .rail .work i{position:absolute;top:4px;left:6px;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:rgba(244,241,228,.48)}
+  .slot{position:absolute;height:20px;border-radius:5px;display:flex;flex-direction:row;align-items:center;gap:5px;padding:0 8px;min-width:56px;cursor:default}
+  .slot .t{font-family:var(--mono);font-size:11.5px;font-weight:600;line-height:1;white-space:nowrap}
+  .slot .w{font-size:11px;line-height:1;opacity:.8;white-space:nowrap}
+  .slot .w::before{content:"\00b7";margin-right:5px;opacity:.6}
+  .slot.epl{background:rgba(157,140,255,.22);border:1px solid var(--epl);color:#d9d2ff}
+  .slot.liga{background:rgba(255,90,69,.18);border:1px solid var(--liga);color:#ffc9c1}
+  .slot.buli{background:rgba(240,195,60,.13);border:1px solid rgba(240,195,60,.7);color:#f2e2ae}
+  .slot.l1{background:rgba(93,211,158,.13);border:1px solid rgba(93,211,158,.65);color:#c6ecd9}
+  .slot.ucl{background:rgba(127,209,255,.16);border:1px solid var(--ucl);color:#cdeeff}
+  .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:rgba(244,241,228,.5);margin-top:4px}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
+  .legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;vertical-align:-1px}
+  .legend .l-epl::before{background:var(--epl)} .legend .l-liga::before{background:var(--liga)}
+  .legend .l-buli::before{background:var(--buli)} .legend .l-l1::before{background:var(--l1)} .legend .l-ucl::before{background:var(--ucl)}
+
+  .dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .dcard{border:1px solid var(--hair);border-radius:10px;padding:16px;background:rgba(11,18,14,.55)}
+  .dcard .d{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1}
+  .dcard .d small{font-size:13px;font-family:var(--mono);font-weight:400;letter-spacing:.06em;color:var(--muted);display:block;margin-top:4px;text-transform:none}
+  .dcard p{font-size:13px;color:rgba(244,241,228,.84);margin-top:10px;line-height:1.5}
+  .dcard .ok{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:4px 9px;border-radius:999px}
+  .ok.yes{border:1px solid #7de0a6;color:#7de0a6}
+  .ok.hmm{border:1px solid #ffd479;color:#ffd479}
+
+  .match{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .pitchcard{border:1px solid var(--hair);border-radius:10px;background:rgba(11,18,14,.55);padding:16px}
+  .pitchcard h3{font-family:var(--disp);font-weight:800;font-size:23px}
+  .pitchcard .psub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+  .fteam{display:flex;align-items:center;gap:10px}
+  .fteam .fcrest{flex:none}
+  .fteam .psub{margin-top:0}
+  .pitch{position:relative;margin-top:12px;aspect-ratio:68/105;border:1.5px solid rgba(244,241,228,.4);border-radius:6px;background:repeating-linear-gradient(0deg,#0f4630 0 12.5%,#0c3524 12.5% 25%);overflow:hidden}
+  .pitch::before{content:"";position:absolute;left:50%;top:50%;width:26%;aspect-ratio:1;border:1.5px solid rgba(244,241,228,.3);border-radius:50%;transform:translate(-50%,-50%)}
+  .pitch::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:rgba(244,241,228,.3)}
+  .pbox{position:absolute;left:26%;right:26%;height:13%;border:1.5px solid rgba(244,241,228,.3)}
+  .pbox.t{top:-1.5px;border-top:none}
+  .pbox.b{bottom:-1.5px;border-bottom:none}
+  .chip{position:absolute;transform:translate(-50%,-50%);text-align:center;z-index:2}
+  .chip .f{display:block;font-size:17px;line-height:1.1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+  .chip .n{display:inline-block;margin-top:2px;font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;background:rgba(11,18,14,.85);border:1px solid var(--hair);padding:2px 6px;border-radius:999px;white-space:nowrap}
+  .chip-photo{display:block;margin:0 auto 2px;border-radius:50%;object-fit:cover;object-position:top;box-shadow:0 0 0 1.5px rgba(244,241,228,.5);background:#13201a}
+  #squadPitch .chip .n{font-size:13px;font-weight:600;padding:0;white-space:normal;max-width:130px;line-height:1.25;background:none;border:none;color:var(--chalk);text-shadow:0 1px 3px rgba(6,10,8,.9),0 0 8px rgba(6,10,8,.7)}
+  @media(max-width:760px){.match{grid-template-columns:1fr}.chip .f{font-size:14px}.chip .n{font-size:9.5px;padding:1px 5px}}
+
+  .sortbox{position:relative;margin-left:auto;align-self:center}
+  .sortbox .sort-toggle{display:flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;border-radius:999px;border:1px solid var(--hair);background:none;color:var(--muted);cursor:pointer}
+  .sortbox .sort-toggle:hover{border-color:var(--chalk);color:var(--chalk)}
+  .sortbox .sort-toggle:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .sortbox .sort-toggle[aria-expanded="true"]{border-color:var(--chalk);color:var(--chalk);background:rgba(244,241,228,.08)}
+  .sort-menu{position:absolute;top:calc(100% + 8px);right:0;background:#0e1712;border:1px solid var(--hair);border-radius:8px;padding:5px;display:flex;flex-direction:column;gap:1px;min-width:152px;z-index:20;box-shadow:0 10px 28px rgba(0,0,0,.45)}
+  .sort-menu[hidden]{display:none}
+  .sortbox .sort-menu button{width:100%;font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;text-transform:none;text-align:left;background:none;border:none;border-radius:5px;color:var(--muted);padding:8px 10px;cursor:pointer}
+  .sortbox .sort-menu button:hover{background:rgba(244,241,228,.08);color:var(--chalk)}
+  .sortbox .sort-menu button.on{color:var(--chalk)}
+  .sortbox .sort-menu button.on::before{content:"✓ ";opacity:.8}
+  footer{margin-top:40px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:rgba(244,241,228,.45);line-height:1.7}
+
+  @media(max-width:640px){
+    .countdown{gap:18px}
+    .slot .w{display:none}
+    .slot{min-width:44px;padding:0 5px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kick">Club Football 2026–27 <span class="hand">— US West Coast Viewing Guide</span></div>
+  <h1>Matchday <span class="pac">Pacific</span></h1>
+</header>
+
+<!-- ============ SCHEDULE ============ -->
+<section id="clock">
+  <div class="eyebrow"><h2>Typical Schedule</h2><div class="rule"></div><div class="tag">all times Pacific</div></div>
+  <div class="legend" style="margin:0 0 18px">
+    <span class="l-liga">La Liga · Aug 14 – May 30 · ESPN+</span>
+    <span class="l-epl">Premier League · Aug 22 – May 30 · NBC/Peacock</span>
+    <span class="l-l1">Ligue 1 · Aug 23 – May 29 · beIN Sports</span>
+    <span class="l-buli">Bundesliga · Aug 28 – May 22 · USA Network/Fandango</span>
+    <span class="l-ucl">Champions League · Sep 8 – Jun 5 final · CBS/Paramount+</span>
+  </div>
+
+  <div class="day">
+    <div class="dh"><h3>Saturday</h3></div>
+    <div class="rail" data-day="sat"></div>
+    <div class="ticks"><span>4a</span><span>6a</span><span>8a</span><span>10a</span><span>12p</span><span>2p</span></div>
+  </div>
+
+  <div class="day">
+    <div class="dh"><h3>Sunday</h3></div>
+    <div class="rail" data-day="sun"></div>
+    <div class="ticks"><span>4a</span><span>6a</span><span>8a</span><span>10a</span><span>12p</span><span>2p</span></div>
+  </div>
+
+  <div class="day">
+    <div class="dh"><h3>Tue / Wed · UCL</h3></div>
+    <div class="rail" data-day="mid"></div>
+    <div class="ticks"><span>4a</span><span>6a</span><span>8a</span><span>10a</span><span>12p</span><span>2p</span></div>
+  </div>
+</section>
+
+<!-- ============ CLUBS ============ -->
+<section id="clubs">
+  <div class="eyebrow"><h2>Clubs to Follow</h2><div class="rule"></div><div class="tag">2026–27</div></div>
+  <div class="clubs">
+    <div class="ccard">
+      <div class="top"><img class="crest" src="logos/psg.svg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none'"><span class="roundel" style="background:#004170;color:#fff;box-shadow:0 0 0 2px #da291c">PSG</span><h3>PSG</h3><span class="badge">Ligue 1</span></div>
+      <p>Won the Champions League against Arsenal and the Ligue 1 title, built on a relentless, street-football front three. Dembélé's stage this season.</p>
+      <span class="pool"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-1.5px;margin-right:5px;flex:none"><circle cx="8" cy="5.2" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M2.8 13.4c.9-2.7 2.9-4.1 5.2-4.1s4.3 1.4 5.2 4.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Dembélé, Hakimi, Fabián Ruiz</span>
+      <button class="squad-link" data-club="psg" type="button">Squad ↗</button>
+    </div>
+    <div class="ccard">
+      <div class="top"><img class="crest" src="logos/bayern.svg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none'"><span class="roundel" style="background:radial-gradient(circle,#0f3a8a 0%,#0f3a8a 62%,#dc052d 62%,#dc052d 100%)"></span><h3>Bayern</h3><span class="badge">Bundesliga</span></div>
+      <p>Kane's 61-goal season swept the Bundesliga and Pokal double; the Champions League remains the target. Now adds Saibari, the World Cup's breakout star.</p>
+      <span class="pool"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-1.5px;margin-right:5px;flex:none"><circle cx="8" cy="5.2" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M2.8 13.4c.9-2.7 2.9-4.1 5.2-4.1s4.3 1.4 5.2 4.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Kane, Olise, Saibari, Upamecano</span>
+      <button class="squad-link" data-club="bayern" type="button">Squad ↗</button>
+    </div>
+    <div class="ccard">
+      <div class="top"><img class="crest" src="logos/real-madrid.svg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none'"><span class="roundel" style="background:radial-gradient(circle,transparent 0%,transparent 85%,#f5c518 85%,#f5c518 100%),linear-gradient(135deg,#fdfdfd 0%,#fdfdfd 44%,#0047ab 44%,#0047ab 56%,#fdfdfd 56%,#fdfdfd 100%)"></span><h3>Real Madrid</h3><span class="badge">La Liga</span></div>
+      <p>The deepest squad in the sport — Mbappé, Bellingham and Brahim already in white, Konaté and Cucurella arriving. Trophyless last season, out to prove it was a blip.</p>
+      <span class="pool"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-1.5px;margin-right:5px;flex:none"><circle cx="8" cy="5.2" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M2.8 13.4c.9-2.7 2.9-4.1 5.2-4.1s4.3 1.4 5.2 4.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Mbappé, Bellingham, Brahim, Konaté, Cucurella</span>
+      <button class="squad-link" data-club="real-madrid" type="button">Squad ↗</button>
+    </div>
+    <div class="ccard">
+      <div class="top"><img class="crest" src="logos/man-city.svg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none'"><span class="roundel" style="background:#6cabdd;color:#1c2c5b;box-shadow:0 0 0 2px #6c1d45">MC</span><h3>Man City</h3><span class="badge">EPL</span></div>
+      <p>The Golden Ball winner, the goal machine, and January's Guéhi coup — individual brilliance the rest of the league can't match, built around it.</p>
+      <span class="pool"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-1.5px;margin-right:5px;flex:none"><circle cx="8" cy="5.2" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M2.8 13.4c.9-2.7 2.9-4.1 5.2-4.1s4.3 1.4 5.2 4.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Haaland, Rodri, Guéhi, Gvardiol</span>
+      <button class="squad-link" data-club="man-city" type="button">Squad ↗</button>
+    </div>
+    <div class="ccard">
+      <div class="top"><img class="crest" src="logos/arsenal.svg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none'"><span class="roundel" style="background:#ef0107;color:#fff;box-shadow:0 0 0 2px #c99a3c">ARS</span><h3>Arsenal</h3><span class="badge">EPL</span></div>
+      <p>First Premier League title since 2004, plus a Champions League final in the same season, built on the meanest defense in Europe. Home of Rice and Saka.</p>
+      <span class="pool"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-1.5px;margin-right:5px;flex:none"><circle cx="8" cy="5.2" r="2.6" stroke="currentColor" stroke-width="1.2"/><path d="M2.8 13.4c.9-2.7 2.9-4.1 5.2-4.1s4.3 1.4 5.2 4.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Raya, Saliba, Rice, Saka</span>
+      <button class="squad-link" data-club="arsenal" type="button">Squad ↗</button>
+    </div>
+    <div class="ccard">
+      <div class="top"><img class="crest" src="logos/liverpool.svg" alt="" onload="this.style.display='block';this.nextElementSibling.style.display='none'"><span class="roundel" style="background:#c8102e;color:#fff;box-shadow:0 0 0 2px #f6c945">LFC</span><h3>Liverpool</h3><span class="badge">EPL</span></div>
+      <p>Champions two seasons back, now opening a fresh cycle under new manager Iraola, following Salah's departure as a free agent after nine years at the club.</p>
+      <button class="squad-link" data-club="liverpool" type="button">Squad ↗</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLAYERS ============ -->
+<section id="players">
+  <div class="eyebrow"><h2>Players to Watch</h2><div class="rule"></div>
+    <div class="sortbox">
+      <button id="sortToggle" class="sort-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Sort players" title="Sort players">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 2.5v11M5 2.5L2 5.5M5 2.5l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 13.5v-11M11 13.5l3-3M11 13.5l-3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div id="sortMenu" class="sort-menu" role="menu" hidden>
+        <button role="menuitem" class="on" data-sort="fav">My Favorites</button>
+        <button role="menuitem" data-sort="country">Country</button>
+        <button role="menuitem" data-sort="name">Name</button>
+        <button role="menuitem" data-sort="club">Club</button>
+      </div>
+    </div>
+  </div>
+  <div class="players">
+
+    <article class="pcard" data-lg="liga" data-fav="1" data-country="France" data-club="Real Madrid">
+      <div class="shirt">10</div>
+      <a href="https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Kylian Mbappé — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg/330px-Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg" alt="Kylian Mbappé" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/mbappe.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9" target="_blank" rel="noopener">Kylian<br>Mbappé</a></h3>
+      <div class="club">🇫🇷 France - Striker</div>
+      <p class="line">World Cup Golden Boot with 10 goals, the first player to reach double figures since Gerd Müller in 1970. Also the tournament's all-time leading scorer.</p>
+      <div class="stat"><b>10</b> WC goals · Pichichi <b>25</b> · all-time WC top scorer</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/kylian-mbappe/profil/spieler/342229" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/231388/kylian-mbappe" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="buli" data-fav="4" data-country="England" data-club="Bayern">
+      <div class="shirt">9</div>
+      <a href="https://en.wikipedia.org/wiki/Harry_Kane" target="_blank" rel="noopener" style="display:contents" title="Harry Kane — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Harry_Kane_England_v_Ghana_23_June_2026-219_%28cropped%29.jpg/330px-Harry_Kane_England_v_Ghana_23_June_2026-219_%28cropped%29.jpg" alt="Harry Kane" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/kane.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Harry_Kane" target="_blank" rel="noopener">Harry<br>Kane</a></h3>
+      <div class="club">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Striker</div>
+      <p class="line">Led world football in club goals in 2025–26: 61 for Bayern in a Bundesliga–Pokal double. Added six more at the World Cup before the semifinal exit.</p>
+      <div class="stat"><b>61</b> club goals 25/26 · <b>6</b> at WC26</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Harry_Kane" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/harry-kane/profil/spieler/132098" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/142200/harry-kane" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="epl" data-fav="2" data-country="Norway" data-club="Man City">
+      <div class="shirt">9</div>
+      <a href="https://en.wikipedia.org/wiki/Erling_Haaland" target="_blank" rel="noopener" style="display:contents" title="Erling Haaland — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg/330px-Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg" alt="Erling Haaland" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/haaland.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Erling_Haaland" target="_blank" rel="noopener">Erling<br>Haaland</a></h3>
+      <div class="club">🇳🇴 Norway - Striker</div>
+      <p class="line">Scored seven at the World Cup as Norway eliminated Brazil. Manchester City's No. 9 on a contract through 2034, among the fastest ever to a club century.</p>
+      <div class="stat"><b>7</b> WC goals · City contract to <b>2034</b></div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Erling_Haaland" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/erling-haaland/profil/spieler/418560" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/253989/erling-haaland" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="liga" data-fav="3" data-country="England" data-club="Real Madrid">
+      <div class="shirt">5</div>
+      <a href="https://en.wikipedia.org/wiki/Jude_Bellingham" target="_blank" rel="noopener" style="display:contents" title="Jude Bellingham — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg/330px-Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg" alt="Jude Bellingham" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/bellingham.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jude_Bellingham" target="_blank" rel="noopener">Jude<br>Bellingham</a></h3>
+      <div class="club">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Midfielder</div>
+      <p class="line">Scored seven at the World Cup, an England record for one tournament, as England finished third. Now entering his fourth season at Real Madrid.</p>
+      <div class="stat"><b>7</b> WC goals · England single-WC record</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jude_Bellingham" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/jude-bellingham/profil/spieler/581678" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/291281/jude-bellingham" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="epl" data-fav="13" data-country="Spain" data-club="Man City">
+      <div class="shirt">16</div>
+      <a href="https://en.wikipedia.org/wiki/Rodri_(footballer%2C_born_1996)" target="_blank" rel="noopener" style="display:contents" title="Rodri — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Rodri_France_v_Spain_7.24.26-096_%28cropped%29.jpg/330px-Rodri_France_v_Spain_7.24.26-096_%28cropped%29.jpg" alt="Rodri" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/rodri.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Rodri_(footballer%2C_born_1996)" target="_blank" rel="noopener">Rodri</a></h3>
+      <div class="club">🇪🇸 Spain - Midfielder</div>
+      <p class="line">Golden Ball winner as Spain won the World Cup — started every match and anchored a defense that conceded once all tournament. Back at full fitness.</p>
+      <div class="stat">WC26 <b>Golden Ball</b> · world champion</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rodri_(footballer%2C_born_1996)" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/rodri/profil/spieler/357565" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/231828/rodri" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="buli" data-fav="7" data-country="France" data-club="Bayern">
+      <div class="shirt">17</div>
+      <a href="https://en.wikipedia.org/wiki/Michael_Olise" target="_blank" rel="noopener" style="display:contents" title="Michael Olise — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg/330px-Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg" alt="Michael Olise" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/olise.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Michael_Olise" target="_blank" rel="noopener">Michael<br>Olise</a></h3>
+      <div class="club">🇫🇷 France - Winger</div>
+      <p class="line">First player on record with six open-play assists at one World Cup, equalling the tournament mark. Second season at Bayern after joining from Palace.</p>
+      <div class="stat"><b>6</b> WC assists · equalled the record</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Michael_Olise" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/michael-olise/profil/spieler/566723" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/286831/michael-olise" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="fr1" data-fav="5" data-country="France" data-club="PSG">
+      <div class="shirt">10</div>
+      <a href="https://en.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Ousmane Dembélé — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ousmane_Dembele_France_v_Senegal_16_June_2026-341_%28cropped%29.jpg/330px-Ousmane_Dembele_France_v_Senegal_16_June_2026-341_%28cropped%29.jpg" alt="Ousmane Dembélé" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/dembele.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9" target="_blank" rel="noopener">Ousmane<br>Dembélé</a></h3>
+      <div class="club">🇫🇷 France - Winger</div>
+      <p class="line">Reigning Ballon d'Or holder, having won the Champions League and Ligue 1 with PSG. Scored six World Cup goals alongside Mbappé's ten in attack.</p>
+      <div class="stat">Reigning <b>Ballon d’Or</b> · <b>6</b> WC goals</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/ousmane-dembele/profil/spieler/288230" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/229744/ousmane-dembele" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="liga" data-fav="6" data-country="Spain" data-club="Real Madrid">
+      <div class="shirt">3</div>
+      <a href="https://en.wikipedia.org/wiki/Marc_Cucurella" target="_blank" rel="noopener" style="display:contents" title="Marc Cucurella — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg/330px-Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg" alt="Marc Cucurella" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/cucurella.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Marc_Cucurella" target="_blank" rel="noopener">Marc<br>Cucurella</a></h3>
+      <div class="club">🇪🇸 Spain - Left-back</div>
+      <p class="line">Named in the World Cup team of the tournament: first among left-backs for assists, dribbled past only twice. Joined Real Madrid from Chelsea this summer.</p>
+      <div class="stat">WC team of the tournament · Chelsea → Real</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Marc_Cucurella" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/marc-cucurella/profil/spieler/284857" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/259910/marc-cucurella" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="epl" data-fav="8" data-country="Egypt" data-club="Free agent">
+      <div class="shirt">11</div>
+      <a href="https://en.wikipedia.org/wiki/Mohamed_Salah" target="_blank" rel="noopener" style="display:contents" title="Mohamed Salah — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg/330px-Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg" alt="Mohamed Salah" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/salah.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Free agent</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Mohamed_Salah" target="_blank" rel="noopener">Mohamed<br>Salah</a></h3>
+      <div class="club">🇪🇬 Egypt - Winger</div>
+      <p class="line">Left Liverpool as a free agent when his contract expired at the end of June 2026, ending a nine-year spell. Closing in on a move to Besiktas.</p>
+      <div class="stat">EPL champion <b>24/25</b> · Liverpool since <b>2017</b></div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Mohamed_Salah" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/mohamed-salah/profil/spieler/148455" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/173896/mohamed-salah" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="epl" data-fav="10" data-country="England" data-club="Arsenal">
+      <div class="shirt">41</div>
+      <a href="https://en.wikipedia.org/wiki/Declan_Rice" target="_blank" rel="noopener" style="display:contents" title="Declan Rice — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Declan_Rice_England_v_Ghana_23_June_2026-150.jpg/330px-Declan_Rice_England_v_Ghana_23_June_2026-150.jpg" alt="Declan Rice" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/rice.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Declan_Rice" target="_blank" rel="noopener">Declan<br>Rice</a></h3>
+      <div class="club">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Midfielder</div>
+      <p class="line">Anchored Arsenal's first title since 2004 and their run to the Champions League final in 2025–26. Started for England's third-place World Cup side.</p>
+      <div class="stat">EPL champion <b>25/26</b> · England WC third</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Declan_Rice" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/declan-rice/profil/spieler/357662" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/238262/declan-rice" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="epl" data-fav="11" data-country="England" data-club="Arsenal">
+      <div class="shirt">7</div>
+      <a href="https://en.wikipedia.org/wiki/Bukayo_Saka" target="_blank" rel="noopener" style="display:contents" title="Bukayo Saka — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg/330px-Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg" alt="Bukayo Saka" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/saka.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Bukayo_Saka" target="_blank" rel="noopener">Bukayo<br>Saka</a></h3>
+      <div class="club">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Winger</div>
+      <p class="line">Key winger in Arsenal's 2025–26 Premier League title and Champions League final run. A regular starter for England throughout the World Cup.</p>
+      <div class="stat">EPL champion <b>25/26</b> · England regular</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Bukayo_Saka" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/bukayo-saka/profil/spieler/433177" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/280555/bukayo-saka" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="buli" data-fav="9" data-country="Morocco" data-club="Bayern">
+      <div class="shirt">11</div>
+      <a href="https://en.wikipedia.org/wiki/Ismael_Saibari" target="_blank" rel="noopener" style="display:contents" title="Ismael Saibari — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg/330px-Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg" alt="Ismael Saibari" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/saibari.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ismael_Saibari" target="_blank" rel="noopener">Ismael<br>Saibari</a></h3>
+      <div class="club">🇲🇦 Morocco - Midfielder</div>
+      <p class="line">Scored in all three World Cup group games and struck the tournament's fastest goal, in 69 seconds. Joined Bayern from PSV for around €50m mid-tournament.</p>
+      <div class="stat">Fastest WC26 goal · <b>€50m</b> to Bayern</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ismael_Saibari" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/ismael-saibari/profil/spieler/702869" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/304572/ismael-saibari" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="liga" data-fav="14" data-country="Morocco" data-club="Real Madrid">
+      <div class="shirt">21</div>
+      <a href="https://en.wikipedia.org/wiki/Brahim_D%C3%ADaz" target="_blank" rel="noopener" style="display:contents" title="Brahim Díaz — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg" alt="Brahim Díaz" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/brahim.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Brahim_D%C3%ADaz" target="_blank" rel="noopener">Brahim<br>Díaz</a></h3>
+      <div class="club">🇲🇦 Morocco - Winger</div>
+      <p class="line">Four assists in five World Cup games for quarterfinalists Morocco, twice setting up Saibari's goals. His Real Madrid contract runs through 2027.</p>
+      <div class="stat"><b>4</b> WC assists · Real contract to 2027</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Brahim_D%C3%ADaz" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/brahim-diaz/profil/spieler/314678" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/246532/brahim-diaz" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="liga" data-fav="12" data-country="Spain" data-club="Barcelona">
+      <div class="shirt">10</div>
+      <a href="https://en.wikipedia.org/wiki/Lamine_Yamal" target="_blank" rel="noopener" style="display:contents" title="Lamine Yamal — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lamine_Yamal_France_v_Spain_7.24.26-142.jpg/330px-Lamine_Yamal_France_v_Spain_7.24.26-142.jpg" alt="Lamine Yamal" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/yamal.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Lamine_Yamal" target="_blank" rel="noopener">Lamine<br>Yamal</a></h3>
+      <div class="club">🇪🇸 Spain - Winger</div>
+      <p class="line">World Cup winner with Spain at just 19, following Euro 2024 and back-to-back La Liga titles with Barcelona. Current Ballon d'Or frontrunner.</p>
+      <div class="stat">WC26 winner at <b>19</b> · Ballon d’Or favorite</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Lamine_Yamal" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/lamine-yamal/profil/spieler/937958" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/362150/lamine-yamal" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="epl" data-fav="15" data-country="France" data-club="Arsenal">
+      <div class="shirt">2</div>
+      <a href="https://en.wikipedia.org/wiki/William_Saliba" target="_blank" rel="noopener" style="display:contents" title="William Saliba — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/William_Saliba_France_v_Senegal_16_June_2026-336_%28cropped%29.jpg/330px-William_Saliba_France_v_Senegal_16_June_2026-336_%28cropped%29.jpg" alt="William Saliba" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/saliba.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/William_Saliba" target="_blank" rel="noopener">William<br>Saliba</a></h3>
+      <div class="club">🇫🇷 France - Centre-back</div>
+      <p class="line">Cornerstone of Arsenal's 2025–26 title defense, the meanest in Europe en route to the Champions League final. Started for France at the World Cup.</p>
+      <div class="stat">EPL champion <b>25/26</b> · France WC starter</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/William_Saliba" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/william-saliba/profil/spieler/495666" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/277385/william-saliba" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="fr1" data-fav="16" data-country="Morocco" data-club="PSG">
+      <div class="shirt">2</div>
+      <a href="https://en.wikipedia.org/wiki/Achraf_Hakimi" target="_blank" rel="noopener" style="display:contents" title="Achraf Hakimi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Achraf_Hakimi_Morocco_v_Norway_7_June_2026-32.jpg/330px-Achraf_Hakimi_Morocco_v_Norway_7_June_2026-32.jpg" alt="Achraf Hakimi" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/hakimi.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Achraf_Hakimi" target="_blank" rel="noopener">Achraf<br>Hakimi</a></h3>
+      <div class="club">🇲🇦 Morocco - Right-back</div>
+      <p class="line">Morocco's captain and Africa's reigning Player of the Year, led the Atlas Lions to the World Cup quarterfinals. Champions League winner with PSG in 2025.</p>
+      <div class="stat">Africa POTY · UCL winner <b>2025</b></div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Achraf_Hakimi" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/achraf-hakimi/profil/spieler/398073" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/240233/achraf-hakimi" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+    <article class="pcard" data-lg="fr1" data-fav="17" data-country="Spain" data-club="PSG">
+      <div class="shirt">8</div>
+      <a href="https://en.wikipedia.org/wiki/Fabi%C3%A1n_Ruiz" target="_blank" rel="noopener" style="display:contents" title="Fabián Ruiz — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Fabian_Ruiz_France_v_Spain_7.24.26-110.jpg/330px-Fabian_Ruiz_France_v_Spain_7.24.26-110.jpg" alt="Fabián Ruiz" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/fabian.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Fabi%C3%A1n_Ruiz" target="_blank" rel="noopener">Fabián<br>Ruiz</a></h3>
+      <div class="club">🇪🇸 Spain - Midfielder</div>
+      <p class="line">The only player in the world to win both the Champions League and the World Cup this year, starting both finals — for PSG and for Spain.</p>
+      <div class="stat">UCL + WC26 winner · <b>2026</b></div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Fabi%C3%A1n_Ruiz" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/fabian-ruiz/profil/spieler/350219" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/214596/fabian-ruiz" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+
+
+    <article class="pcard" data-lg="liga" data-fav="18" data-country="Spain" data-club="Athletic Bilbao">
+      <div class="shirt">11</div>
+      <a href="https://en.wikipedia.org/wiki/Nico_Williams" target="_blank" rel="noopener" style="display:contents" title="Nico Williams — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Nico_Williams_France_v_Spain_7.24.26-030.jpg/330px-Nico_Williams_France_v_Spain_7.24.26-030.jpg" alt="Nico Williams" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/nico.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Athletic Bilbao</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Nico_Williams" target="_blank" rel="noopener">Nico<br>Williams</a></h3>
+      <div class="club">🇪🇸 Spain - Winger</div>
+      <p class="line">World Cup winner with Spain, playing the opposite flank from Yamal. Stayed at Athletic Bilbao through the transfer interest that follows him every window.</p>
+      <div class="stat">WC26 winner · Athletic Bilbao</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nico_Williams" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/nico-williams/profil/spieler/709187" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/312146/nico-williams" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ FANTASY SQUADS ============ -->
+<section id="fixture">
+  <div class="eyebrow"><h2>Team XI vs Squad 11</h2><div class="rule"></div><div class="tag">top performers · balanced chemistry</div></div>
+  <p class="clocknote">Top performers from WC2026 and the 2025–26 season, split into two balanced elevens.</p>
+  <div class="match">
+
+    <div class="pitchcard">
+      <div class="fteam"><svg class="fcrest" width="40" height="44" viewBox="0 0 40 44" aria-hidden="true"><path d="M20 2 L37 7 V22 C37 32 30 39 20 42 C10 39 3 32 3 22 V7 Z" fill="rgba(244,241,228,.06)" stroke="#f4f1e4" stroke-width="1.5"/><circle cx="20" cy="36" r="2" fill="#f4f1e4"/><circle cx="11.5" cy="29.5" r="2" fill="#f4f1e4"/><circle cx="20" cy="30.5" r="2" fill="#f4f1e4"/><circle cx="28.5" cy="29.5" r="2" fill="#f4f1e4"/><circle cx="8.5" cy="21" r="2" fill="#f4f1e4"/><circle cx="14" cy="22.5" r="2" fill="#f4f1e4"/><circle cx="20" cy="23.5" r="2" fill="#f4f1e4"/><circle cx="26" cy="22.5" r="2" fill="#f4f1e4"/><circle cx="31.5" cy="21" r="2" fill="#f4f1e4"/><circle cx="14.5" cy="13" r="2.2" fill="#ff5a45"/><circle cx="25.5" cy="13" r="2.2" fill="#ff5a45"/></svg><div><h3>Team XI</h3><div class="psub">3-5-2</div></div></div>
+      <div class="pitch">
+        <div class="pbox t"></div><div class="pbox b"></div>
+        <div class="chip" style="left:50%;top:92%"><a href="https://en.wikipedia.org/wiki/David_Raya" target="_blank" rel="noopener" style="display:contents" title="Raya — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/David_Raya_France_v_Spain_7.24.26-019.jpg/330px-David_Raya_France_v_Spain_7.24.26-019.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇪🇸 Raya</span></div>
+        <div class="chip" style="left:75%;top:79%"><a href="https://en.wikipedia.org/wiki/William_Saliba" target="_blank" rel="noopener" style="display:contents" title="Saliba — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/William_Saliba_France_v_Senegal_16_June_2026-336_%28cropped%29.jpg/330px-William_Saliba_France_v_Senegal_16_June_2026-336_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇫🇷 Saliba</span></div>
+        <div class="chip" style="left:50%;top:82%"><a href="https://en.wikipedia.org/wiki/Marc_Gu%C3%A9hi" target="_blank" rel="noopener" style="display:contents" title="Guéhi — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Marc_Guehi_England_v_Panama_27_June_26-182.jpg/330px-Marc_Guehi_England_v_Panama_27_June_26-182.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Guéhi</span></div>
+        <div class="chip" style="left:25%;top:79%"><a href="https://en.wikipedia.org/wiki/Jo%C5%A1ko_Gvardiol" target="_blank" rel="noopener" style="display:contents" title="Gvardiol — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Josko_Gvardiol_Croatia_v_Portugal_2_July_2026-262.jpg/330px-Josko_Gvardiol_Croatia_v_Portugal_2_July_2026-262.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇭🇷 Gvardiol</span></div>
+        <div class="chip" style="left:89%;top:52%"><a href="https://en.wikipedia.org/wiki/Bukayo_Saka" target="_blank" rel="noopener" style="display:contents" title="Saka — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg/330px-Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Saka</span></div>
+        <div class="chip" style="left:67%;top:56%"><a href="https://en.wikipedia.org/wiki/Declan_Rice" target="_blank" rel="noopener" style="display:contents" title="Rice — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Declan_Rice_England_v_Ghana_23_June_2026-150.jpg/330px-Declan_Rice_England_v_Ghana_23_June_2026-150.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Rice</span></div>
+        <div class="chip" style="left:50%;top:63%"><a href="https://en.wikipedia.org/wiki/Rodri_(footballer%2C_born_1996)" target="_blank" rel="noopener" style="display:contents" title="Rodri — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Rodri_France_v_Spain_7.24.26-096_%28cropped%29.jpg/330px-Rodri_France_v_Spain_7.24.26-096_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇪🇸 Rodri</span></div>
+        <div class="chip" style="left:33%;top:56%"><a href="https://en.wikipedia.org/wiki/Jude_Bellingham" target="_blank" rel="noopener" style="display:contents" title="Bellingham — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg/330px-Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Bellingham</span></div>
+        <div class="chip" style="left:11%;top:52%"><a href="https://en.wikipedia.org/wiki/Th%C3%A9o_Hernandez" target="_blank" rel="noopener" style="display:contents" title="Theo — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Theo_Hernandez_France_v_Norway_26_June_26-122.jpg/330px-Theo_Hernandez_France_v_Norway_26_June_26-122.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇫🇷 Theo</span></div>
+        <div class="chip" style="left:62%;top:20%"><a href="https://en.wikipedia.org/wiki/Erling_Haaland" target="_blank" rel="noopener" style="display:contents" title="Haaland — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg/330px-Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇳🇴 Haaland</span></div>
+        <div class="chip" style="left:38%;top:20%"><a href="https://en.wikipedia.org/wiki/Lamine_Yamal" target="_blank" rel="noopener" style="display:contents" title="Yamal — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lamine_Yamal_France_v_Spain_7.24.26-142.jpg/330px-Lamine_Yamal_France_v_Spain_7.24.26-142.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇪🇸 Yamal</span></div>
+      </div>
+    </div>
+
+    <div class="pitchcard">
+      <div class="fteam"><svg class="fcrest" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17.5" fill="rgba(244,241,228,.06)" stroke="#f4f1e4" stroke-width="1.5"/><circle cx="20" cy="32" r="2" fill="#f4f1e4"/><circle cx="11" cy="26.5" r="2" fill="#f4f1e4"/><circle cx="20" cy="27.5" r="2" fill="#f4f1e4"/><circle cx="29" cy="26.5" r="2" fill="#f4f1e4"/><circle cx="8" cy="18.5" r="2" fill="#f4f1e4"/><circle cx="16" cy="20" r="2" fill="#f4f1e4"/><circle cx="24" cy="20" r="2" fill="#f4f1e4"/><circle cx="32" cy="18.5" r="2" fill="#f4f1e4"/><circle cx="11.5" cy="10.5" r="2.2" fill="#7fd1ff"/><circle cx="20" cy="8.5" r="2.2" fill="#7fd1ff"/><circle cx="28.5" cy="10.5" r="2.2" fill="#7fd1ff"/></svg><div><h3>Squad 11</h3><div class="psub">3-4-3</div></div></div>
+      <div class="pitch">
+        <div class="pbox t"></div><div class="pbox b"></div>
+        <div class="chip" style="left:50%;top:92%"><a href="https://en.wikipedia.org/wiki/Unai_Sim%C3%B3n" target="_blank" rel="noopener" style="display:contents" title="Simón — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Unai_Simon_France_v_Spain_7.24.26-118_%28cropped%29.jpg/330px-Unai_Simon_France_v_Spain_7.24.26-118_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇪🇸 Simón</span></div>
+        <div class="chip" style="left:75%;top:79%"><a href="https://en.wikipedia.org/wiki/Achraf_Hakimi" target="_blank" rel="noopener" style="display:contents" title="Hakimi — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Achraf_Hakimi_Morocco_v_Norway_7_June_2026-32.jpg/330px-Achraf_Hakimi_Morocco_v_Norway_7_June_2026-32.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇲🇦 Hakimi</span></div>
+        <div class="chip" style="left:50%;top:82%"><a href="https://en.wikipedia.org/wiki/Ibrahima_Konat%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Konaté — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ibrahima_Konate_France_v_Senegal_16_June_2026-516_%28cropped%29.jpg/330px-Ibrahima_Konate_France_v_Senegal_16_June_2026-516_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇫🇷 Konaté</span></div>
+        <div class="chip" style="left:25%;top:79%"><a href="https://en.wikipedia.org/wiki/Marc_Cucurella" target="_blank" rel="noopener" style="display:contents" title="Cucurella — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg/330px-Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇪🇸 Cucurella</span></div>
+        <div class="chip" style="left:88%;top:53%"><a href="https://en.wikipedia.org/wiki/Mohamed_Salah" target="_blank" rel="noopener" style="display:contents" title="Salah — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg/330px-Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇪🇬 Salah</span></div>
+        <div class="chip" style="left:64%;top:56%"><a href="https://en.wikipedia.org/wiki/Ismael_Saibari" target="_blank" rel="noopener" style="display:contents" title="Saibari — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg/330px-Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇲🇦 Saibari</span></div>
+        <div class="chip" style="left:36%;top:56%"><a href="https://en.wikipedia.org/wiki/Brahim_D%C3%ADaz" target="_blank" rel="noopener" style="display:contents" title="Brahim — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇲🇦 Brahim</span></div>
+        <div class="chip" style="left:12%;top:53%"><a href="https://en.wikipedia.org/wiki/Michael_Olise" target="_blank" rel="noopener" style="display:contents" title="Olise — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg/330px-Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇫🇷 Olise</span></div>
+        <div class="chip" style="left:78%;top:22%"><a href="https://en.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Dembélé — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ousmane_Dembele_France_v_Senegal_16_June_2026-341_%28cropped%29.jpg/330px-Ousmane_Dembele_France_v_Senegal_16_June_2026-341_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇫🇷 Dembélé</span></div>
+        <div class="chip" style="left:50%;top:16%"><a href="https://en.wikipedia.org/wiki/Harry_Kane" target="_blank" rel="noopener" style="display:contents" title="Kane — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Harry_Kane_England_v_Ghana_23_June_2026-219_%28cropped%29.jpg/330px-Harry_Kane_England_v_Ghana_23_June_2026-219_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Kane</span></div>
+        <div class="chip" style="left:22%;top:22%"><a href="https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Mbappé — photo via Wikimedia Commons (CC BY-SA)"><img class="chip-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg/330px-Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg" alt="" style="width:36px;height:36px" onerror="this.style.display='none'"></a><span class="n">🇫🇷 Mbappé</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ KEY DATES ============ -->
+<section id="dates">
+  <div class="eyebrow"><h2>Circle these</h2><div class="rule"></div><div class="tag">confirmed fixtures &amp; windows</div></div>
+  <div class="dates">
+    <div class="dcard">
+      <div class="d">Aug 14–15 <small>La Liga opening weekend</small></div>
+      <p>Real Madrid open at the Bernabéu vs Real Sociedad — first look at Mourinho's Madrid with Mbappé &amp; Bellingham. Your club's curtain-raiser.</p>
+      <span class="ok yes">Weekend · Watchable</span>
+    </div>
+    <div class="dcard">
+      <div class="d">Aug 21–22 <small>Premier League opening weekend</small></div>
+      <p>Season starts a week late post–World Cup. First Saturday-morning ritual of the year.</p>
+      <span class="ok yes">Weekend · Watchable</span>
+    </div>
+    <div class="dcard">
+      <div class="d">Sep 20 <small>Madrid derby · Metropolitano</small></div>
+      <p>Atlético vs Real Madrid, a Sunday. Mourinho derbies have history.</p>
+      <span class="ok yes">Sunday · Watchable</span>
+    </div>
+    <div class="dcard">
+      <div class="d">Oct 25 <small>El Clásico · Camp Nou</small></div>
+      <p>The champions vs Mbappé's Madrid — a Sunday at the rebuilt Camp Nou. The fixture of the fall, and now personal.</p>
+      <span class="ok yes">Sunday · Watchable</span>
+    </div>
+    <div class="dcard">
+      <div class="d">Apr 4 <small>Madrid derby · Bernabéu</small></div>
+      <p>The return derby, likely with title stakes attached.</p>
+      <span class="ok yes">Weekend · Watchable</span>
+    </div>
+    <div class="dcard">
+      <div class="d">May 9 <small>El Clásico · Bernabéu</small></div>
+      <p>The second Clásico, three weeks from season's end — potentially the title decider, at home.</p>
+      <span class="ok yes">Weekend · Watchable</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COUNTDOWNS ============ -->
+<section id="countdowns">
+  <div class="eyebrow"><h2>Countdowns</h2><div class="rule"></div><div class="tag">live · updates every minute</div></div>
+  <div class="countdown" style="border-top:none;margin-top:0;padding-top:0">
+    <div class="cd liga"><div class="n" id="cd-liga">—</div><div class="l">to La Liga · Aug 14</div></div>
+    <div class="cd epl"><div class="n" id="cd-epl">—</div><div class="l">to Premier League · Aug 22</div></div>
+    <div class="cd"><div class="n" id="cd-clasico">—</div><div class="l">to El Clásico · Oct 25</div></div>
+  </div>
+</section>
+
+<footer>
+  Built for a Bay Area viewer · kickoff windows are typical league slots converted to PT and shift with TV picks &amp; DST · fixture dates per league releases, Jun–Jul 2026 · US broadcasters per current rights deals, Jul 2026.<br>
+  Player photos via Wikipedia/Wikimedia Commons, CC BY-SA — click a photo for its source page and author credit.<br>
+  Club crests via Wikipedia (logos/ folder) — trademarks belong to their clubs; if a crest file is missing, a geometric roundel is shown instead.<br>
+  Kit diagrams in squad views are hotlinked from Wikipedia 2026–27 season articles (CC BY-SA) — each kit links to its source page.
+</footer>
+
+
+<!-- ============ SQUAD MODAL ============ -->
+<div class="squad-modal" id="squadModal" hidden>
+  <div class="squad-backdrop" id="squadBackdrop"></div>
+  <div class="squad-panel" role="dialog" aria-modal="true" aria-labelledby="squadModalTitle">
+    <button class="squad-close" id="squadClose" type="button" aria-label="Close">✕</button>
+    <div class="squad-body">
+      <div class="squad-pitch-col">
+        <div class="squad-head">
+          <img class="squad-crest" id="squadCrest" alt="">
+          <span class="squad-roundel" id="squadRoundel"></span>
+          <div>
+            <h3 id="squadModalTitle"></h3>
+            <div class="squad-local" id="squadLocal" hidden></div>
+            <div class="squad-sub" id="squadSub"></div>
+          </div>
+        </div>
+        <div class="pitch modal-pitch" id="squadPitch"></div>
+      </div>
+      <div class="squad-bench-col">
+        <div class="squad-depth-label">Bench</div>
+        <div class="squad-depth" id="squadDepth"></div>
+        <div class="squad-depth-hint">Tap a name to sub them in</div>
+        <div class="squad-kits" id="squadKits"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ---------- countdowns (live) ----------
+(function(){
+  const targets = {
+    'cd-liga':    new Date('2026-08-14T00:00:00-07:00'),
+    'cd-epl':     new Date('2026-08-22T00:00:00-07:00'),
+    'cd-clasico': new Date('2026-10-25T00:00:00-07:00'),
+  };
+  function fmt(ms){
+    if(ms <= 0) return 'now';
+    const d = Math.floor(ms/864e5);
+    const hrs = Math.floor((ms % 864e5)/36e5);
+    return d + 'd ' + hrs + 'h';
+  }
+  function tick(){
+    const now = Date.now();
+    for(const [id, t] of Object.entries(targets)){
+      const el = document.getElementById(id);
+      if(el) el.textContent = fmt(t - now);
+    }
+  }
+  tick();
+  setInterval(tick, 60000);
+})();
+
+// ---------- player sorter (icon + dropdown menu) ----------
+(function(){
+  const grid = document.querySelector('.players');
+  const toggle = document.getElementById('sortToggle');
+  const menu = document.getElementById('sortMenu');
+  if(!grid || !toggle || !menu) return;
+  const items = menu.querySelectorAll('[data-sort]');
+
+  function openMenu(){ menu.hidden = false; toggle.setAttribute('aria-expanded','true'); }
+  function closeMenu(){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
+
+  toggle.addEventListener('click', e => {
+    e.stopPropagation();
+    menu.hidden ? openMenu() : closeMenu();
+  });
+  document.addEventListener('click', e => { if(!menu.hidden && !menu.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+
+  const keyFor = mode => card => {
+    if(mode === 'fav') return parseInt(card.dataset.fav || '999', 10);
+    if(mode === 'country') return (card.dataset.country || '') + (card.dataset.fav || '');
+    if(mode === 'club') return (card.dataset.club || '') + (card.dataset.fav || '');
+    return card.querySelector('h3').textContent.trim();
+  };
+  items.forEach(b => b.addEventListener('click', () => {
+    items.forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    const key = keyFor(b.dataset.sort);
+    const cards = Array.from(grid.querySelectorAll('.pcard'));
+    cards.sort((a,c) => {
+      const ka = key(a), kc = key(c);
+      if(typeof ka === 'number') return ka - kc;
+      return ka.localeCompare(kc);
+    });
+    cards.forEach(c => grid.appendChild(c));
+    closeMenu();
+  }));
+})();
+
+// ---------- kickoff clock ----------
+// rail spans 4:00–16:00 PT (12 hours); overlapping windows stack into lanes
+(function(){
+  const START=4, END=14, SPAN=END-START;
+  const pct = h => ((h-START)/SPAN*100);
+  const slots = {
+    sat: [
+      {lg:'epl',  t:'4:30a', w:'EPL',          from:4.5,  to:6.5},
+      {lg:'liga', t:'5:00a', w:'La Liga',       from:5,    to:6.4},
+      {lg:'buli', t:'6:30a', w:'Bundesliga',    from:6.5,  to:8.4},
+      {lg:'epl',  t:'7:00a', w:'EPL',            from:7,    to:9},
+      {lg:'epl',  t:'9:30a', w:'EPL',          from:9.5,  to:11.5},
+      {lg:'l1',   t:'8:00a', w:'Ligue 1',      from:8,    to:9.9},
+      {lg:'l1',   t:'12:05p',w:'Ligue 1',      from:12.08,to:13.98},
+      {lg:'liga', t:'to 12p',w:'La Liga',       from:12,   to:14},
+    ],
+    sun: [
+      {lg:'liga', t:'5:00a', w:'La Liga',       from:5,    to:6.4},
+      {lg:'epl',  t:'6:00a', w:'EPL',           from:6,    to:8},
+      {lg:'epl',  t:'8:30a', w:'EPL',                from:8.5,  to:10.5},
+      {lg:'l1',   t:'6:00a', w:'Ligue 1',      from:6,    to:7.9},
+      {lg:'l1',   t:'8:15a', w:'Ligue 1',      from:8.25, to:10.15},
+      {lg:'l1',   t:'11:45a',w:'Ligue 1',      from:11.75,to:13.65},
+      {lg:'liga', t:'to 12p',w:'La Liga',       from:12,   to:14},
+    ],
+    mid: [
+      {lg:'ucl',  t:'9:45a', w:'UCL',           from:9.75, to:11.75},
+      {lg:'ucl',  t:'12:00p',w:'UCL',           from:12,   to:14},
+    ]
+  };
+
+  document.querySelectorAll('.rail').forEach(rail => {
+    const day = rail.dataset.day;
+    if(day === 'mid'){
+      const w = document.createElement('div');
+      w.className='work';
+      w.style.left = pct(9)+'%';
+      w.style.width = (pct(16)-pct(9))+'%';
+      w.innerHTML='<i>Work 9–5</i>';
+      rail.appendChild(w);
+    }
+    const placed = [];
+    let maxLane = 0;
+    const daySlots = (slots[day]||[]).slice().sort((a,b)=>a.from-b.from);
+    daySlots.forEach(s => {
+      let lane = 0;
+      while(placed.some(p => p.lane===lane && s.from < p.to && s.to > p.from)) lane++;
+      placed.push({from:s.from, to:s.to, lane});
+      maxLane = Math.max(maxLane, lane);
+      const el = document.createElement('div');
+      el.className = 'slot '+s.lg;
+      el.style.left = pct(s.from)+'%';
+      el.style.width = Math.max(5,(pct(s.to)-pct(s.from)))+'%';
+      el.style.top = (6 + lane*25)+'px';
+      el.title = s.w+' · kicks off '+s.t+' PT';
+      el.innerHTML = '<span class="t">'+s.t+'</span><span class="w">'+s.w+'</span>';
+      rail.appendChild(el);
+    });
+    rail.style.height = (6 + (maxLane+1)*25 + 5) + 'px';
+  });
+})();
+
+// ---------- full squad modal ----------
+(function(){
+  const FORMATIONS = {
+    '4-3-3':   [{x:50,y:90},{x:85,y:74},{x:62,y:78},{x:38,y:78},{x:15,y:74},{x:70,y:52},{x:50,y:58},{x:30,y:52},{x:80,y:18},{x:50,y:9},{x:20,y:18}],
+    '4-2-3-1': [{x:50,y:90},{x:85,y:74},{x:62,y:78},{x:38,y:78},{x:15,y:74},{x:64,y:56},{x:36,y:56},{x:50,y:32},{x:82,y:16},{x:18,y:16},{x:50,y:7}],
+  };
+
+  function pl(flag,name,photo,page){ return {flag:flag, name:name, photo:photo, page:page}; }
+  function dp(pos,flag,name,slot,photo,page){ return {pos:pos, flag:flag, name:name, slot:slot, photo:photo, page:page}; }
+
+  const squads = {
+    'real-madrid': {
+      name:'Real Madrid', full:'Real Madrid CF', local:'Real Madrid Club de Fútbol', league:'La Liga', manager:'José Mourinho', formation:'4-3-3',
+      roundel:{bg:'radial-gradient(circle,transparent 0%,transparent 85%,#f5c518 85%,#f5c518 100%),linear-gradient(135deg,#fdfdfd 0%,#fdfdfd 44%,#0047ab 44%,#0047ab 56%,#fdfdfd 56%,#fdfdfd 100%)',color:'#00305e',text:''},
+      xi:[pl('🇧🇪','Thibaut Courtois','https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Thibaut_Courtois_at_the_2018_World_Cup_%28cropped%29.jpg/330px-Thibaut_Courtois_at_the_2018_World_Cup_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Thibaut_Courtois'), pl('🏴󠁧󠁢󠁥󠁮󠁧󠁿','Trent Alexander-Arnold','https://upload.wikimedia.org/wikipedia/commons/5/5d/Trent_Alexander-Arnold_2018_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Trent_Alexander-Arnold'), pl('🇪🇸','Dean Huijsen','https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Dean_Huijsen_2024.jpg/330px-Dean_Huijsen_2024.jpg','https://en.wikipedia.org/wiki/Dean_Huijsen'), pl('🇫🇷','Ibrahima Konaté','https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ibrahima_Konate_France_v_Senegal_16_June_2026-516_%28cropped%29.jpg/330px-Ibrahima_Konate_France_v_Senegal_16_June_2026-516_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Ibrahima_Konat%C3%A9'), pl('🇪🇸','Marc Cucurella','https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg/330px-Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Marc_Cucurella'), pl('🇫🇷','Aurélien Tchouaméni','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Aurelien_Tchouameni_France_v_Senegal_16_June_2026-447_%28cropped%29.jpg/330px-Aurelien_Tchouameni_France_v_Senegal_16_June_2026-447_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Aur%C3%A9lien_Tchouam%C3%A9ni'), pl('🇺🇾','Federico Valverde','https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Federico_Valverde_2021_%28cropped%29.jpg/330px-Federico_Valverde_2021_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Federico_Valverde'), pl('🏴󠁧󠁢󠁥󠁮󠁧󠁿','Jude Bellingham','https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg/330px-Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Jude_Bellingham'), pl('🇲🇦','Brahim Díaz','https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Brahim_D%C3%ADaz'), pl('🇫🇷','Kylian Mbappé','https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg/330px-Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9'), pl('🇧🇷','Vinícius Júnior','https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Vin%C3%ADcius_J%C3%BAnior_Brazil_V_Morocco_13_June_2026-207_%28cropped%29.jpg/330px-Vin%C3%ADcius_J%C3%BAnior_Brazil_V_Morocco_13_June_2026-207_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Vin%C3%ADcius_J%C3%BAnior')],
+      depth:[dp('MF','🇫🇷','Eduardo Camavinga',5,'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ofrenda_de_la_Liga_y_la_Champions-13-L.Mill%C3%A1n_%2852109790215%29_%28cropped%29.jpg/330px-Ofrenda_de_la_Liga_y_la_Champions-13-L.Mill%C3%A1n_%2852109790215%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Eduardo_Camavinga'), dp('DF','🇧🇷','Éder Militão',3,'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Eder_Militao_2021.jpg/330px-Eder_Militao_2021.jpg','https://en.wikipedia.org/wiki/%C3%89der_Milit%C3%A3o'), dp('FW','🇧🇷','Rodrygo',8,'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Rodrygo_2023_%28cropped%29.jpg/330px-Rodrygo_2023_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Rodrygo'), dp('DF','🇩🇪','Antonio Rüdiger',2,'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Antonio_Rudiger_Ecuador_v_Germany_25_June_2026-055_%28cropped%29.jpg/330px-Antonio_Rudiger_Ecuador_v_Germany_25_June_2026-055_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Antonio_R%C3%BCdiger'), dp('MF','🇹🇷','Arda Güler',7,'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Arda_G%C3%BCler_2025.jpg/330px-Arda_G%C3%BCler_2025.jpg','https://en.wikipedia.org/wiki/Arda_G%C3%BCler'), dp('FW','🇧🇷','Endrick',9,'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Team_Brazil_at_2026_FIFA_World_Cup_by_YantsImages_%28Endrick%29.jpg/330px-Team_Brazil_at_2026_FIFA_World_Cup_by_YantsImages_%28Endrick%29.jpg','https://en.wikipedia.org/wiki/Endrick'), dp('GK','🇺🇦','Andriy Lunin',0,'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Andriy_Lunin%2C_Real_Madrid%2C_2022.jpg/330px-Andriy_Lunin%2C_Real_Madrid%2C_2022.jpg','https://en.wikipedia.org/wiki/Andriy_Lunin')]
+    },
+    'psg': {
+      name:'PSG', full:'Paris Saint-Germain FC', league:'Ligue 1', manager:'Luis Enrique', formation:'4-3-3',
+      roundel:{bg:'#004170',color:'#fff', ring:'#da291c',text:'PSG'},
+      xi:[pl('🇫🇷','Lucas Chevalier','https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Chevalier_ASSE_losc_2425_%28cropped%29.jpg/330px-Chevalier_ASSE_losc_2425_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Lucas_Chevalier'), pl('🇲🇦','Achraf Hakimi','https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Achraf_Hakimi_Morocco_v_Norway_7_June_2026-32.jpg/330px-Achraf_Hakimi_Morocco_v_Norway_7_June_2026-32.jpg','https://en.wikipedia.org/wiki/Achraf_Hakimi'), pl('🇧🇷','Marquinhos','https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Marquinhos_Brazil_V_Morocco_13_June_2026-153_%28cropped%29.jpg/330px-Marquinhos_Brazil_V_Morocco_13_June_2026-153_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Marquinhos'), pl('🇪🇨','Willian Pacho','https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Willian_Pacho_Cote_D%27Ivoire_v_Ecuador_14_June_2026-115_%28cropped%29.jpg/330px-Willian_Pacho_Cote_D%27Ivoire_v_Ecuador_14_June_2026-115_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Willian_Pacho'), pl('🇵🇹','Nuno Mendes','',''), pl('🇵🇹','Vitinha','https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Vitinha_USMNT_v_Portugal_Mar_31_2026-50_%28cropped%29.jpg/330px-Vitinha_USMNT_v_Portugal_Mar_31_2026-50_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Vitinha'), pl('🇪🇸','Fabián Ruiz','https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Fabian_Ruiz_France_v_Spain_7.24.26-110.jpg/330px-Fabian_Ruiz_France_v_Spain_7.24.26-110.jpg','https://en.wikipedia.org/wiki/Fabi%C3%A1n_Ruiz'), pl('🇵🇹','João Neves','https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Joao_Neves_Croatia_v_Portugal_2_July_2026-102.jpg/330px-Joao_Neves_Croatia_v_Portugal_2_July_2026-102.jpg','https://en.wikipedia.org/wiki/Jo%C3%A3o_Neves'), pl('🇫🇷','Ousmane Dembélé','https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ousmane_Dembele_France_v_Senegal_16_June_2026-341_%28cropped%29.jpg/330px-Ousmane_Dembele_France_v_Senegal_16_June_2026-341_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9'), pl('🇵🇹','Gonçalo Ramos','https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Gon%C3%A7alo_Ramos_USMNT_v_Portugal_Mar_31_2026-32_%28cropped%29.jpg/330px-Gon%C3%A7alo_Ramos_USMNT_v_Portugal_Mar_31_2026-32_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Gon%C3%A7alo_Ramos'), pl('🇬🇪','Khvicha Kvaratskhelia','https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Kvaratskhelia_asse_psg_2425.png/330px-Kvaratskhelia_asse_psg_2425.png','https://en.wikipedia.org/wiki/Khvicha_Kvaratskhelia')],
+      depth:[dp('FW','🇫🇷','Bradley Barcola',10,'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Bradley_Barcola_France_v_Spain_7.24.26-112_%28cropped%29.jpg/330px-Bradley_Barcola_France_v_Spain_7.24.26-112_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Bradley_Barcola'), dp('FW','🇫🇷','Désiré Doué',8,'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Desire_Doue_France_v_Norway_26_June_26-032.jpg/330px-Desire_Doue_France_v_Norway_26_June_26-032.jpg','https://en.wikipedia.org/wiki/D%C3%A9sir%C3%A9_Dou%C3%A9'), dp('MF','🇫🇷','Warren Zaïre-Emery',7,'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Warren_Zaire-Emery_France_v_Senegal_16_June_2026-279.jpg/330px-Warren_Zaire-Emery_France_v_Senegal_16_June_2026-279.jpg','https://en.wikipedia.org/wiki/Warren_Za%C3%AFre-Emery'), dp('FW','🇫🇷','Randal Kolo Muani',9,'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Randal_Kolo_Muani_2020.jpg/330px-Randal_Kolo_Muani_2020.jpg','https://en.wikipedia.org/wiki/Randal_Kolo_Muani'), dp('MF','🇰🇷','Lee Kang-in',6,'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg/330px-Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Lee_Kang-in'), dp('FW','🇪🇸','Marco Asensio',8,'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Marco_Asensio_2018.jpg/330px-Marco_Asensio_2018.jpg','https://en.wikipedia.org/wiki/Marco_Asensio'), dp('GK','🇷🇺','Matvey Safonov',0,'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Safonov_asse_psg_2425.png/330px-Safonov_asse_psg_2425.png','https://en.wikipedia.org/wiki/Matvey_Safonov')]
+    },
+    'bayern': {
+      name:'Bayern', full:'FC Bayern Munich', local:'FC Bayern München', league:'Bundesliga', manager:'Vincent Kompany', formation:'4-2-3-1',
+      roundel:{bg:'radial-gradient(circle,#0f3a8a 0%,#0f3a8a 62%,#dc052d 62%,#dc052d 100%)',color:'#fff',text:''},
+      xi:[pl('🇩🇪','Manuel Neuer','https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Manuel_Neuer_Ecuador_v_Germany_25_June_2026-148.jpg/330px-Manuel_Neuer_Ecuador_v_Germany_25_June_2026-148.jpg','https://en.wikipedia.org/wiki/Manuel_Neuer'), pl('🇦🇹','Konrad Laimer','https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg/330px-2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Konrad_Laimer'), pl('🇫🇷','Dayot Upamecano','https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Dayot_Upamecano_France_v_Senegal_16_June_2026-402_%28cropped%29.jpg/330px-Dayot_Upamecano_France_v_Senegal_16_June_2026-402_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Dayot_Upamecano'), pl('🇩🇪','Jonathan Tah','https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Jonathan_Tah_Ecuador_v_Germany_25_June_2026-116.jpg/330px-Jonathan_Tah_Ecuador_v_Germany_25_June_2026-116.jpg','https://en.wikipedia.org/wiki/Jonathan_Tah'), pl('🇵🇹','Raphaël Guerreiro','https://upload.wikimedia.org/wikipedia/commons/2/22/Rapha%C3%ABl_Guerreiro_WC2022.jpg','https://en.wikipedia.org/wiki/Rapha%C3%ABl_Guerreiro'), pl('🇩🇪','Joshua Kimmich','https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Joshua_Kimmich_Ecuador_v_Germany_25_June_2026-149.jpg/330px-Joshua_Kimmich_Ecuador_v_Germany_25_June_2026-149.jpg','https://en.wikipedia.org/wiki/Joshua_Kimmich'), pl('🇵🇹','João Palhinha','https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Joaopalhinha.jpg/330px-Joaopalhinha.jpg','https://en.wikipedia.org/wiki/Jo%C3%A3o_Palhinha'), pl('🇩🇪','Jamal Musiala','https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jamal_Musiala_Ecuador_v_Germany_25_June_2026-174_%28cropped%29.jpg/330px-Jamal_Musiala_Ecuador_v_Germany_25_June_2026-174_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Jamal_Musiala'), pl('🇫🇷','Michael Olise','https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg/330px-Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Michael_Olise'), pl('🇨🇴','Luis Díaz','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg','https://en.wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer%2C_born_1997)'), pl('🏴󠁧󠁢󠁥󠁮󠁧󠁿','Harry Kane','https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Harry_Kane_England_v_Ghana_23_June_2026-219_%28cropped%29.jpg/330px-Harry_Kane_England_v_Ghana_23_June_2026-219_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Harry_Kane')],
+      depth:[dp('FW','🇲🇦','Ismael Saibari',10,'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg/330px-Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg','https://en.wikipedia.org/wiki/Ismael_Saibari'), dp('MF','🇩🇪','Leon Goretzka',6,'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Leon_Goretzka_Ecuador_v_Germany_25_June_2026-159.jpg/330px-Leon_Goretzka_Ecuador_v_Germany_25_June_2026-159.jpg','https://en.wikipedia.org/wiki/Leon_Goretzka'), dp('FW','🇩🇪','Serge Gnabry',9,'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Serge_Gnabry_WC2022.jpg/330px-Serge_Gnabry_WC2022.jpg','https://en.wikipedia.org/wiki/Serge_Gnabry'), dp('FW','🇩🇪','Lennart Karl',8,'',''), dp('DF','🇰🇷','Kim Min-jae',3,'',''), dp('DF','🇭🇷','Josip Stanišić',1,'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Josip_Stanisic_Croatia_v_Portugal_2_July_2026-022.jpg/330px-Josip_Stanisic_Croatia_v_Portugal_2_July_2026-022.jpg','https://en.wikipedia.org/wiki/Josip_Stani%C5%A1i%C4%87'), dp('GK','🇩🇪','Jonas Urbig',0,'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_14.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_14.jpg','https://en.wikipedia.org/wiki/Jonas_Urbig')]
+    },
+    'man-city': {
+      name:'Man City', full:'Manchester City FC', league:'Premier League', manager:'Enzo Maresca', formation:'4-3-3',
+      roundel:{bg:'#6cabdd',color:'#1c2c5b',ring:'#6c1d45',text:'MC'},
+      xi:[pl('🇮🇹','Gianluigi Donnarumma','https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Norway_Italy_-_June_2025_A_17_%28Gianluigi_Donnarumma%29.jpg/330px-Norway_Italy_-_June_2025_A_17_%28Gianluigi_Donnarumma%29.jpg','https://en.wikipedia.org/wiki/Gianluigi_Donnarumma'), pl('🏴󠁧󠁢󠁥󠁮󠁧󠁿','Rico Lewis','https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/ManCity20240722-027.jpg/330px-ManCity20240722-027.jpg','https://en.wikipedia.org/wiki/Rico_Lewis'), pl('🇵🇹','Rúben Dias','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Diogo_Costa_Ruben_Dias_Croatia_v_Portugal_2_July_2026-181_%28cropped%29.jpg/330px-Diogo_Costa_Ruben_Dias_Croatia_v_Portugal_2_July_2026-181_%28cropped%29.jpg','https://en.wikipedia.org/wiki/R%C3%BAben_Dias'), pl('🏴󠁧󠁢󠁥󠁮󠁧󠁿','Marc Guéhi','https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Marc_Guehi_England_v_Panama_27_June_26-182.jpg/330px-Marc_Guehi_England_v_Panama_27_June_26-182.jpg','https://en.wikipedia.org/wiki/Marc_Gu%C3%A9hi'), pl('🇭🇷','Joško Gvardiol','https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Josko_Gvardiol_Croatia_v_Portugal_2_July_2026-262.jpg/330px-Josko_Gvardiol_Croatia_v_Portugal_2_July_2026-262.jpg','https://en.wikipedia.org/wiki/Jo%C5%A1ko_Gvardiol'), pl('🇪🇸','Rodri','https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Rodri_France_v_Spain_7.24.26-096_%28cropped%29.jpg/330px-Rodri_France_v_Spain_7.24.26-096_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Rodri_(footballer%2C_born_1996)'), pl('🇳🇱','Tijjani Reijnders','https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Reijnders_arriva_in_albergo_%28cropped%29.jpg/330px-Reijnders_arriva_in_albergo_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Tijjani_Reijnders'), pl('🇫🇷','Rayan Cherki','https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Rayan_Cherki_France_v_Norway_26_June_26-114.jpg/330px-Rayan_Cherki_France_v_Norway_26_June_26-114.jpg','https://en.wikipedia.org/wiki/Rayan_Cherki'), pl('🇧🇷','Savinho','https://upload.wikimedia.org/wikipedia/commons/3/3c/Cel_Spellman%2C_John_Stones%2C_Bernardo_Silva_and_Natalie_Pike_at_the_Manchester_City_After_Party%2C_2026_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Savinho'), pl('🇳🇴','Erling Haaland','https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg/330px-Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg','https://en.wikipedia.org/wiki/Erling_Haaland'), pl('🇧🇪','Jeremy Doku','https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-27_%28cropped%29.jpg/330px-J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-27_%28cropped%29.jpg','https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Doku')],
+      depth:[dp('FW','🏴󠁧󠁢󠁥󠁮󠁧󠁿','Phil Foden',7,'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg','https://en.wikipedia.org/wiki/Phil_Foden'), dp('MF','🇭🇷','Mateo Kovačić',5,'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mateo_Kovacic_Croatia_v_Portugal_2_July_2026-132.jpg/330px-Mateo_Kovacic_Croatia_v_Portugal_2_July_2026-132.jpg','https://en.wikipedia.org/wiki/Mateo_Kova%C4%8Di%C4%87'), dp('DF','🇨🇭','Manuel Akanji',2,'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2792_%28Manuel_Akanji%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2792_%28Manuel_Akanji%29.jpg','https://en.wikipedia.org/wiki/Manuel_Akanji'), dp('FW','🇳🇴','Oscar Bobb',8,'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Oscar_Bobb_France_v_Norway_26_June_26-045.jpg/330px-Oscar_Bobb_France_v_Norway_26_June_26-045.jpg','https://en.wikipedia.org/wiki/Oscar_Bobb'), dp('MF','🏴󠁧󠁢󠁥󠁮󠁧󠁿','Nico O\'Reilly',4,'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Nico_O%27Reilly_England_v_Ghana_23_June_2026-043_%28cropped%29.jpg/330px-Nico_O%27Reilly_England_v_Ghana_23_June_2026-043_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Nico_O\'Reilly'), dp('DF','🇳🇱','Nathan Aké',3,'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Nathan_Ak%C3%A9_Fenerbah%C3%A7e_20260717_%285%29_%28cropped%29.jpg/330px-Nathan_Ak%C3%A9_Fenerbah%C3%A7e_20260717_%285%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Nathan_Ak%C3%A9'), dp('GK','🏴󠁧󠁢󠁥󠁮󠁧󠁿','James Trafford',0,'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/James_Trafford_England_v_Ghana_23_June_2026-027.jpg/330px-James_Trafford_England_v_Ghana_23_June_2026-027.jpg','https://en.wikipedia.org/wiki/James_Trafford')]
+    },
+    'arsenal': {
+      name:'Arsenal', full:'Arsenal FC', league:'Premier League', manager:'Mikel Arteta', formation:'4-3-3',
+      roundel:{bg:'#ef0107',color:'#fff',ring:'#c99a3c',text:'ARS'},
+      xi:[pl('🇪🇸','David Raya','https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/David_Raya_France_v_Spain_7.24.26-019.jpg/330px-David_Raya_France_v_Spain_7.24.26-019.jpg','https://en.wikipedia.org/wiki/David_Raya'), pl('🇳🇱','Jurriën Timber','https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/JURRIEN_TIMBER.jpg/330px-JURRIEN_TIMBER.jpg','https://en.wikipedia.org/wiki/Jurri%C3%ABn_Timber'), pl('🇫🇷','William Saliba','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/William_Saliba_France_v_Senegal_16_June_2026-336_%28cropped%29.jpg/330px-William_Saliba_France_v_Senegal_16_June_2026-336_%28cropped%29.jpg','https://en.wikipedia.org/wiki/William_Saliba'), pl('🇧🇷','Gabriel Magalhães','https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Gabriel_Magalhaes_Brazil_V_Morocco_13_June_2026-132_%28cropped%29.jpg/330px-Gabriel_Magalhaes_Brazil_V_Morocco_13_June_2026-132_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Gabriel_Magalh%C3%A3es'), pl('🇮🇹','Riccardo Calafiori','https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2024_Emirates_Cup_-_Riccardo_Calafiori_%282%29_%28cropped%29.jpg/330px-2024_Emirates_Cup_-_Riccardo_Calafiori_%282%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Riccardo_Calafiori'), pl('🏴󠁧󠁢󠁥󠁮󠁧󠁿','Declan Rice','https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Declan_Rice_England_v_Ghana_23_June_2026-150.jpg/330px-Declan_Rice_England_v_Ghana_23_June_2026-150.jpg','https://en.wikipedia.org/wiki/Declan_Rice'), pl('🇪🇸','Martín Zubimendi','https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Mart%C3%ADn_Zubimendi.jpg/330px-Mart%C3%ADn_Zubimendi.jpg','https://en.wikipedia.org/wiki/Mart%C3%ADn_Zubimendi'), pl('🇳🇴','Martin Ødegaard','https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Martin_Odegaard_France_v_Norway_26_June_26-014.jpg/330px-Martin_Odegaard_France_v_Norway_26_June_26-014.jpg','https://en.wikipedia.org/wiki/Martin_%C3%98degaard'), pl('🏴󠁧󠁢󠁥󠁮󠁧󠁿','Bukayo Saka','https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg/330px-Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Bukayo_Saka'), pl('🇸🇪','Viktor Gyökeres','https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Viktor_Gy%C3%B6keres_2026-06-04_1_%28cropped%29.jpg/330px-Viktor_Gy%C3%B6keres_2026-06-04_1_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Viktor_Gy%C3%B6keres'), pl('🏴󠁧󠁢󠁥󠁮󠁧󠁿','Eberechi Eze','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Eberechi_Eze_England_v_Ghana_23_June_2026-039.jpg/330px-Eberechi_Eze_England_v_Ghana_23_June_2026-039.jpg','https://en.wikipedia.org/wiki/Eberechi_Eze')],
+      depth:[dp('DF','🏴󠁧󠁢󠁥󠁮󠁧󠁿','Ben White',1,'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Ben_White_2018.jpg/330px-Ben_White_2018.jpg','https://en.wikipedia.org/wiki/Ben_White_(footballer)'), dp('FW','🇧🇪','Leandro Trossard',10,'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg/330px-RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Leandro_Trossard'), dp('MF','🇪🇸','Mikel Merino',6,'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Mikel_Merino_France_v_Spain_7.24.26-241_%28cropped%29.jpg/330px-Mikel_Merino_France_v_Spain_7.24.26-241_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Mikel_Merino'), dp('FW','🇧🇷','Gabriel Martinelli',10,'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Gabriel_Martinelli_Brazil_V_Morocco_13_June_2026-144.jpg/330px-Gabriel_Martinelli_Brazil_V_Morocco_13_June_2026-144.jpg','https://en.wikipedia.org/wiki/Gabriel_Martinelli'), dp('DF','🇪🇸','Cristhian Mosquera',3,'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/2_Cristhian_Mosquera_%28cropped%29.jpg/330px-2_Cristhian_Mosquera_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Cristhian_Mosquera'), dp('DF','🇪🇨','Piero Hincapié',4,'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Piero_Hincapie_Cote_D%27Ivoire_v_Ecuador_14_June_2026-247_%28cropped%29.jpg/330px-Piero_Hincapie_Cote_D%27Ivoire_v_Ecuador_14_June_2026-247_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Piero_Hincapi%C3%A9'), dp('GK','🇪🇸','Kepa Arrizabalaga',0,'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Kepa_Arrizabalaga_2021_%28cropped%29.jpg/330px-Kepa_Arrizabalaga_2021_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Kepa_Arrizabalaga')]
+    },
+    'liverpool': {
+      name:'Liverpool', full:'Liverpool FC', league:'Premier League', manager:'Andoni Iraola', formation:'4-2-3-1',
+      roundel:{bg:'#c8102e',color:'#fff',ring:'#f6c945',text:'LFC'},
+      xi:[pl('🇧🇷','Alisson Becker','https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Alisson_Becker_Brazil_V_Morocco_13_June_2026-117_%28cropped%29.jpg/330px-Alisson_Becker_Brazil_V_Morocco_13_June_2026-117_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Alisson_Becker'), pl('🇳🇱','Jeremie Frimpong','https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Jeremie_Frimpong_04012026_%283%29_%28cropped%29.jpg/330px-Jeremie_Frimpong_04012026_%283%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Jeremie_Frimpong'), pl('🇳🇱','Virgil van Dijk','https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/20160604_AUT_NED_8876_%28cropped%29.jpg/330px-20160604_AUT_NED_8876_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Virgil_van_Dijk'), pl('🇫🇷','Jérémy Jacquet','https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Jacquet_asse_srfc_2425.png/330px-Jacquet_asse_srfc_2425.png','https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Jacquet'), pl('🇭🇺','Milos Kerkez','https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Milot_Kerkez_%28cropped%29.png/330px-Milot_Kerkez_%28cropped%29.png','https://en.wikipedia.org/wiki/Milos_Kerkez'), pl('🇳🇱','Ryan Gravenberch','https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3342_by_Stepro_%28cropped%29.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3342_by_Stepro_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Ryan_Gravenberch'), pl('🇦🇷','Alexis Mac Allister','https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Alexis_Mac_Allister_Argentina_v_Egypt_7_July_2026-182.jpg/330px-Alexis_Mac_Allister_Argentina_v_Egypt_7_July_2026-182.jpg','https://en.wikipedia.org/wiki/Alexis_Mac_Allister'), pl('🇭🇺','Dominik Szoboszlai','https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Dominik_Szoboszlai_04012026_%281%29.jpg/330px-Dominik_Szoboszlai_04012026_%281%29.jpg','https://en.wikipedia.org/wiki/Dominik_Szoboszlai'), pl('🏴󠁧󠁢󠁥󠁮󠁧󠁿','Rio Ngumoha','https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rio_Ngumoha_04012026_%286%29.jpg/330px-Rio_Ngumoha_04012026_%286%29.jpg','https://en.wikipedia.org/wiki/Rio_Ngumoha'), pl('🇳🇱','Cody Gakpo','https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Cody_Gakpo_06042025_%282%29_%28cropped%29.jpg/330px-Cody_Gakpo_06042025_%282%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Cody_Gakpo'), pl('🇸🇪','Alexander Isak','https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Alexander_Isak_-_Sweden_-_Greece21_%28cropped%29.jpg/330px-Alexander_Isak_-_Sweden_-_Greece21_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Alexander_Isak')],
+      depth:[dp('MF','🏴󠁧󠁢󠁥󠁮󠁧󠁿','Curtis Jones',7,'',''), dp('DF','🏴󠁧󠁢󠁥󠁮󠁧󠁿','Andy Robertson',4,'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Andy_Robertson_Scotland_v_Bolivia_6_June_2026-43.jpg/330px-Andy_Robertson_Scotland_v_Bolivia_6_June_2026-43.jpg','https://en.wikipedia.org/wiki/Andy_Robertson'), dp('FW','🇫🇷','Hugo Ekitike',10,'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Hugo_Ekitike_%28PSG_2023%29_%28cropped2%29.jpg/330px-Hugo_Ekitike_%28PSG_2023%29_%28cropped2%29.jpg','https://en.wikipedia.org/wiki/Hugo_Ekitike'), dp('FW','🇮🇹','Federico Chiesa',9,'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Federico_Chiesa_vs_Zenit_2021-10-20_%28cropped2%29.jpg/330px-Federico_Chiesa_vs_Zenit_2021-10-20_%28cropped2%29.jpg','https://en.wikipedia.org/wiki/Federico_Chiesa'), dp('MF','🇯🇵','Wataru Endo',6,'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Wataru_Endo_at_Iran-Japan_pre-match_conference.jpg/330px-Wataru_Endo_at_Iran-Japan_pre-match_conference.jpg','https://en.wikipedia.org/wiki/Wataru_Endo'), dp('GK','🇬🇪','Giorgi Mamardashvili',0,'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Liverpool_Players_04012026_%285%29_-_Mamardashvili.jpg/330px-Liverpool_Players_04012026_%285%29_-_Mamardashvili.jpg','https://en.wikipedia.org/wiki/Giorgi_Mamardashvili')]
+    },
+  };
+
+
+  const KITS = {"real-madrid":{"page":"https://en.wikipedia.org/wiki/2026–27_Real_Madrid_CF_season","kits":[{"label":"Home","la":{"p":"https://upload.wikimedia.org/wikipedia/commons/9/93/Kit_left_arm_realmadrid2627h.png"},"b":{"p":"https://upload.wikimedia.org/wikipedia/commons/3/34/Kit_body_realmadrid2627h.png"},"ra":{"p":"https://upload.wikimedia.org/wikipedia/commons/5/50/Kit_right_arm_realmadrid2627h.png"},"sh":{"p":"https://upload.wikimedia.org/wikipedia/commons/f/ff/Kit_shorts_realmadrid2627h.png"},"so":{"p":"https://upload.wikimedia.org/wikipedia/commons/6/63/Kit_socks_realmadrid2627hl.png"}}]},"psg":{"page":"https://en.wikipedia.org/wiki/2026–27_Paris_Saint-Germain_FC_season","kits":[{"label":"Home","la":{"c":"#0000CC","p":"https://upload.wikimedia.org/wikipedia/commons/e/e2/Kit_left_arm_psg2627h.png"},"b":{"c":"#0000CC","p":"https://upload.wikimedia.org/wikipedia/commons/f/f2/Kit_body_psg2627h.png"},"ra":{"c":"#0000CC","p":"https://upload.wikimedia.org/wikipedia/commons/a/ae/Kit_right_arm_psg2627h.png"},"sh":{"c":"#0000CC","p":"https://upload.wikimedia.org/wikipedia/commons/e/e5/Kit_shorts_psg2627h.png"},"so":{"c":"#0000CC","p":"https://upload.wikimedia.org/wikipedia/commons/f/f8/Kit_socks_psg2627hl.png"}},{"label":"Away","la":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/1/18/Kit_left_arm_psg2627a.png"},"b":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/9/9f/Kit_body_psg2627a.png"},"ra":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/0/0e/Kit_right_arm_psg2627a.png"},"sh":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/0/0e/Kit_shorts_psg2627a.png"},"so":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/c/c4/Kit_socks_psg2627al.png"}},{"label":"Third","la":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/9/92/Kit_left_arm_psg2526t.png"},"b":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/8/84/Kit_body_psg2526t.png"},"ra":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/a/a7/Kit_right_arm_psg2526t.png"},"sh":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/2/26/Kit_shorts_psg2526t.png"},"so":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/4/48/Kit_socks_psg2526tl.png"}}]},"bayern":{"page":"https://en.wikipedia.org/wiki/2026–27_FC_Bayern_Munich_season","kits":[{"label":"Home","la":{"c":"#FF0000","p":"https://upload.wikimedia.org/wikipedia/commons/a/a9/Kit_left_arm_bayern2627h.png"},"b":{"c":"#FF0000","p":"https://upload.wikimedia.org/wikipedia/commons/0/09/Kit_body_bayern2627h.png"},"ra":{"c":"#FF0000","p":"https://upload.wikimedia.org/wikipedia/commons/a/a5/Kit_right_arm_bayern2627h.png"},"sh":{"c":"#FF0000","p":"https://upload.wikimedia.org/wikipedia/commons/4/41/Kit_shorts_bayern2627h.png"},"so":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/9/93/Kit_socks_redtopl.png"}},{"label":"Away","la":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/5/55/Kit_left_arm_bayern2627a.png"},"b":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/3/3f/Kit_body_bayern2627a.png"},"ra":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/c/c9/Kit_right_arm_bayern2627a.png"},"sh":{"c":"#000F5A","p":"https://upload.wikimedia.org/wikipedia/commons/8/8b/Kit_shorts_bayern2627a.png"},"so":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/d/d7/Kit_socks_bayern2627al.png"}}]},"man-city":{"page":"https://en.wikipedia.org/wiki/2026–27_Manchester_City_F.C._season","kits":[{"label":"Home","la":{"c":"#98C6EB","p":"https://upload.wikimedia.org/wikipedia/commons/c/c3/Kit_left_arm_mancity2627h.png"},"b":{"c":"#98C6EB","p":"https://upload.wikimedia.org/wikipedia/commons/9/91/Kit_body_mancity2627h.png"},"ra":{"c":"#98C6EB","p":"https://upload.wikimedia.org/wikipedia/commons/2/2a/Kit_right_arm_mancity2627h.png"},"sh":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/7/7d/Kit_shorts_mancity2627h.png"},"so":{"c":"#1C214F","p":"https://upload.wikimedia.org/wikipedia/commons/b/b4/Kit_socks_mancity2627hl.png"}}]},"arsenal":{"page":"https://en.wikipedia.org/wiki/2026–27_Arsenal_F.C._season","kits":[{"label":"Home","la":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/5/5e/Kit_left_arm_arsenal2627h.png"},"b":{"c":"#F00000","p":"https://upload.wikimedia.org/wikipedia/commons/4/43/Kit_body_arsenal2627hA.png"},"ra":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/4/45/Kit_right_arm_arsenal2627h.png"},"sh":{"c":"#FFFFFF","p":"https://upload.wikimedia.org/wikipedia/commons/c/c1/Kit_shorts_arsenal2627h.png"},"so":{"c":"#F00000","p":"https://upload.wikimedia.org/wikipedia/commons/8/8a/Kit_socks_arsenal2627hl.png"}}]},"liverpool":{"page":"https://en.wikipedia.org/wiki/2026–27_Liverpool_F.C._season","kits":[{"label":"Home","la":{"p":"https://upload.wikimedia.org/wikipedia/commons/0/00/Kit_left_arm_liverpool2627h.png"},"b":{"p":"https://upload.wikimedia.org/wikipedia/commons/9/9a/Kit_body_liverpool2627h.png"},"ra":{"p":"https://upload.wikimedia.org/wikipedia/commons/6/62/Kit_right_arm_liverpool2627h.png"},"sh":{"p":"https://upload.wikimedia.org/wikipedia/commons/7/74/Kit_shorts_liverpool2627h.png"},"so":{"p":"https://upload.wikimedia.org/wikipedia/commons/2/2c/Kit_socks_liverpool2627hl.png"}}]}};
+  const KIT_GEO = {la:[0,0,31,59], b:[31,0,38,59], ra:[69,0,31,59], sh:[0,59,100,36], so:[0,95,100,40]};
+  const KIT_OUTLINE = {
+    la:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Kit_left_arm.svg/40px-Kit_left_arm.svg.png',
+    b:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kit_body.svg/40px-Kit_body.svg.png',
+    ra:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Kit_right_arm.svg/40px-Kit_right_arm.svg.png',
+    sh:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Kit_shorts.svg/120px-Kit_shorts.svg.png',
+    so:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Kit_socks_long.svg/120px-Kit_socks_long.svg.png'
+  };
+  function kitFigure(kit, page){
+    let layers = '';
+    for (const r of ['la','b','ra','sh','so']){
+      const g = KIT_GEO[r], d = kit[r] || {};
+      layers += '<span class="kit-r" style="left:' + g[0] + 'px;top:' + g[1] + 'px;width:' + g[2] + 'px;height:' + g[3] + 'px' + (d.c ? ';background:' + d.c : '') + '">'
+        + (d.p ? '<img src="' + d.p + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '')
+        + '<img src="' + KIT_OUTLINE[r] + '" alt="" loading="lazy">'
+        + '</span>';
+    }
+    return '<a class="kit" href="' + page + '" target="_blank" rel="noopener" title="' + kit.label + ' kit \u2014 via Wikipedia">'
+      + '<span class="kit-fig">' + layers + '</span><span class="kit-cap">' + kit.label + '</span></a>';
+  }
+
+  const COACH_ICON = '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:-1px;margin-right:4px"><rect x="3" y="2.5" width="10" height="12" rx="1.2" stroke="currentColor" stroke-width="1.1"/><rect x="6" y="1.3" width="4" height="2" rx="0.6" fill="currentColor"/><path d="M5.2 7h5.6M5.2 9.5h5.6M5.2 12h3.2" stroke="currentColor" stroke-width="1"/></svg>';
+
+  const modal = document.getElementById('squadModal');
+  let currentSlug = null;
+  const titleEl = document.getElementById('squadModalTitle');
+  const subEl = document.getElementById('squadSub');
+  const roundelEl = document.getElementById('squadRoundel');
+  const crestEl = document.getElementById('squadCrest');
+  const kitsEl = document.getElementById('squadKits');
+  const pitchEl = document.getElementById('squadPitch');
+  const depthEl = document.getElementById('squadDepth');
+
+  function photoImg(p, size, cls){
+    if(!p.photo) return '';
+    return '<a href="' + p.page + '" target="_blank" rel="noopener" style="display:contents" title="' + p.name + ' \u2014 photo via Wikimedia Commons (CC BY-SA)"><img class="' + cls + '" src="' + p.photo + '" alt="" style="width:' + size + 'px;height:' + size + 'px" onerror="this.style.display=\'none\'"></a>';
+  }
+  function chipInner(p){
+    return photoImg(p, 36, 'chip-photo') + '<span class="n">' + p.flag + ' ' + p.name + '</span>';
+  }
+  function benchInner(entry, display){
+    return '<span class="pos">' + entry.pos + '</span>' + photoImg(display, 30, 'depth-photo') + '<span>' + display.flag + ' ' + display.name + '</span>';
+  }
+
+  function openSquad(slug){
+    const d = squads[slug];
+    if(!d) return;
+    currentSlug = slug;
+    titleEl.textContent = d.full || d.name;
+    const localEl = document.getElementById('squadLocal');
+    localEl.textContent = (d.local && d.local !== d.full) ? d.local : '';
+    localEl.hidden = !localEl.textContent;
+    subEl.innerHTML = d.formation + ' \u00b7 ' + d.league + ' \u00b7 ' + COACH_ICON + d.manager;
+    roundelEl.textContent = d.roundel.text;
+    roundelEl.style.background = d.roundel.bg;
+    roundelEl.style.color = d.roundel.color;
+    roundelEl.style.boxShadow = d.roundel.ring ? ('0 0 0 ' + (d.roundel.ringW || 2) + 'px ' + d.roundel.ring) : '';
+    crestEl.style.display = 'none';
+    roundelEl.style.display = 'flex';
+    crestEl.onload = function(){ crestEl.style.display = 'block'; roundelEl.style.display = 'none'; };
+    crestEl.onerror = function(){ crestEl.style.display = 'none'; };
+    crestEl.src = 'logos/' + slug + '.svg';
+
+    const kd = KITS[slug];
+    kitsEl.innerHTML = (kd && kd.kits.length)
+      ? '<div class="squad-depth-label">Kits \u00b7 <a class="kits-src" href="' + kd.page + '" target="_blank" rel="noopener">Wikipedia \u2197</a></div>'
+        + '<div class="kits-row">' + kd.kits.map(k => kitFigure(k, kd.page)).join('') + '</div>'
+      : '';
+
+    const current = d.xi.map(p => ({flag:p.flag, name:p.name, photo:p.photo, page:p.page}));
+    const coords = FORMATIONS[d.formation];
+
+    pitchEl.innerHTML = '<div class="pbox t"></div><div class="pbox b"></div>';
+    const chipEls = [];
+    current.forEach((p, i) => {
+      const c = coords[i];
+      const chip = document.createElement('div');
+      chip.className = 'chip';
+      chip.style.left = c.x + '%';
+      chip.style.top = c.y + '%';
+      chip.innerHTML = chipInner(p);
+      pitchEl.appendChild(chip);
+      chipEls.push(chip);
+    });
+
+    depthEl.innerHTML = '';
+    d.depth.forEach(entry => {
+      const display = {flag:entry.flag, name:entry.name, photo:entry.photo, page:entry.page};
+      let subbedIn = false;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'depth-chip';
+      btn.innerHTML = benchInner(entry, display);
+      btn.addEventListener('click', () => {
+        const slot = entry.slot;
+        const outgoing = {flag: current[slot].flag, name: current[slot].name, photo: current[slot].photo, page: current[slot].page};
+        current[slot] = {flag: display.flag, name: display.name, photo: display.photo, page: display.page};
+        chipEls[slot].innerHTML = chipInner(current[slot]);
+        display.flag = outgoing.flag; display.name = outgoing.name; display.photo = outgoing.photo; display.page = outgoing.page;
+        subbedIn = !subbedIn;
+        btn.classList.toggle('swapped', subbedIn);
+        btn.innerHTML = benchInner(entry, display);
+      });
+      depthEl.appendChild(btn);
+    });
+
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    if(location.hash !== '#' + slug) location.hash = '#' + slug;
+  }
+  function closeSquad(){
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    currentSlug = null;
+    if(squads[decodeURIComponent(location.hash.slice(1))]) history.replaceState(null, '', location.pathname + location.search);
+  }
+  document.querySelectorAll('.squad-link').forEach(b => b.addEventListener('click', () => openSquad(b.dataset.club)));
+  document.getElementById('squadClose').addEventListener('click', closeSquad);
+  document.getElementById('squadBackdrop').addEventListener('click', closeSquad);
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && !modal.hidden) closeSquad(); });
+  function applyHash(){
+    const slug = decodeURIComponent(location.hash.slice(1));
+    if(squads[slug]){ if(slug !== currentSlug) openSquad(slug); }
+    else if(!modal.hidden) closeSquad();
+  }
+  window.addEventListener('hashchange', applyHash);
+  applyHash();
+})();
+</script>
+</body>
+</html>
