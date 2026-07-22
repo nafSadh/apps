@@ -280,7 +280,7 @@
   #today:empty{display:none}
   .todayhd{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:10px 0 6px;display:flex;align-items:center;gap:7px}
   .todayhd.sub{font-size:9.5px;color:var(--mut2);margin:13px 0 5px}
-  #simspanel,#statspanel,#accpanel,.xscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}   /* wide tables scroll inside their box, never the whole page */
+  #simspanel,#statspanel,#accpanel,#reportpanel,.xscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}   /* wide tables scroll inside their box, never the whole page */
   .todayrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 4px}
   .tcard{font-size:12.5px;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:6px 11px;display:flex;align-items:center;gap:8px;font-family:var(--sans)} .tcard b{color:var(--ink);font-family:var(--mono)}
   .tcard.live{border-color:var(--bad);box-shadow:inset 0 0 0 1px var(--bad)} .tcard.ft{opacity:.7}
@@ -348,6 +348,12 @@
   .acclb{max-width:440px} .num.lead{color:var(--good);font-weight:700}
   .accgrid th{text-align:center} .accgrid td{text-align:center;font-size:15px} .accgrid td.tl,.accgrid th.tl{text-align:left;font-size:13px} .accgrid td:nth-child(1){font-family:var(--mono);font-size:11px;color:var(--mut);white-space:nowrap} .accgrid td:nth-child(3){text-align:left;white-space:nowrap;font-size:12.5px}
   .acc-ok{background:rgba(103,217,155,.10)} .acc-miss{background:rgba(240,118,139,.10)} .acc-push{background:rgba(232,192,106,.08)}
+  .rp-verdict{font-size:12.5px;white-space:nowrap} .rp-hit{color:var(--good);font-weight:700} .rp-part{color:var(--warn)} .rp-miss{color:var(--mut2)}
+  .rp-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+  .rp-list li{font-size:13px;padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+  .rp-list .rp-tag{font-family:var(--mono);font-size:9.5px;color:var(--mut2);text-transform:uppercase;letter-spacing:.5px}
+  .rp-list .rp-pct{color:var(--acc2);font-weight:700}
+  .rp-champ{background:linear-gradient(90deg,rgba(251,191,36,.14),transparent)}
   .fc-progwrap{display:inline-flex;align-items:center;gap:10px} .fc-track{display:inline-block;width:160px;height:7px;background:var(--card2);border:1px solid var(--line);border-radius:5px;overflow:hidden} #fc-bar{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc2),var(--acc));transition:width .1s}
   .fc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin:8px 0 4px;padding:12px 15px;border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;background:var(--card2)}
   .fc-head b{font-family:var(--serif-alt);font-style:italic;font-size:22px;color:var(--ink)} .fc-head .vk{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mut2)} .fc-head .warn{color:var(--warn)}
@@ -395,6 +401,7 @@
     <button class="tnav" data-view="stats"><svg class="ic" viewBox="0 0 16 16"><path d="M3 13.5V8.5M8 13.5V2.5M13 13.5V5.5"/></svg>Stats</button>
     <button class="tnav" data-view="data"><svg class="ic" viewBox="0 0 16 16"><path d="M2.5 13.5h11M4.5 13V8M8 13V3.5M11.5 13V6.5"/></svg>Data &amp; provenance</button>
     <button class="tnav" data-view="acc"><svg class="ic" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><circle cx="8" cy="8" r="2.1"/></svg>Simulation accuracy</button>
+    <button class="tnav" data-view="report"><svg class="ic" viewBox="0 0 16 16"><path d="M4 2h6l2.5 2.5V14H4z"/><path d="M9.5 2v3h3M6 8h4M6 10.5h4M6 6h1.5"/></svg>Final Report</button>
     <a class="tnav lk" href="ml.html"><svg class="ic" viewBox="0 0 16 16"><path d="M6.2 2v4.3L3.3 12a1.4 1.4 0 001.2 2.1h7a1.4 1.4 0 001.2-2.1L9.8 6.3V2M5.4 2h5.2M4.9 10h6.2"/></svg>ML Lab ↗</a>
   </div>
 
@@ -522,6 +529,11 @@
   <div id="accpanel"></div>
   </div><!-- /view-acc -->
 
+  <div id="view-report" style="display:none">
+  <h2 class="sec">Final Report <span class="cnt">— every model's tournament, scored</span></h2>
+  <div id="reportpanel"></div>
+  </div><!-- /view-report -->
+
   <div id="view-stats" style="display:none">
   <h2 class="sec">Tournament stats <span class="cnt">— the numbers behind the games so far (live, real results only)</span></h2>
   <div id="statspanel"></div>
@@ -532,7 +544,7 @@
     <b>Bracket structure &amp; fixtures</b> verified vs Wikipedia / Sky Sports / ESPN (Match 73 = 2A v 2B; Mexico opener vs South Africa; FIFA's interleaved match numbering 1–72).
     <b>Standings</b> use FIFA tiebreakers (points → GD → goals for → seeding/alpha; full head-to-head simplified).
     <b>Best-3rd allocation</b> respects FIFA's rule (no group winner meets a third from its own group), solved live for your 8 qualifiers. Played results locked as of <b>June 19, 2026</b>.
-    <div class="footnav"><a href="#tournament">Tournament</a> · <a href="#forecast">Monte Carlo Forecast</a> · <a href="#data">Data &amp; provenance</a> · <a href="#acc">Simulation accuracy</a> · <a href="#stats">Stats</a> · <a href="ml.html">ML Lab ↗</a></div>
+    <div class="footnav"><a href="#tournament">Tournament</a> · <a href="#forecast">Monte Carlo Forecast</a> · <a href="#data">Data &amp; provenance</a> · <a href="#acc">Simulation accuracy</a> · <a href="#report">Final Report</a> · <a href="#stats">Stats</a> · <a href="ml.html">ML Lab ↗</a></div>
     <div class="footsite"><a href="https://sadh.app" target="_blank" rel="noopener">sadh.app</a> · <a href="https://nafsadh.com" target="_blank" rel="noopener">nafsadh.com</a> · <a href="https://github.com/nafSadh/apps" target="_blank" rel="noopener">source · GitHub</a> · made by nafSadh</div>
   </footer>
 </div>
@@ -1292,6 +1304,77 @@ function renderAcc(){ const el=document.getElementById("accpanel"); if(!el) retu
       order.map(m=>{const c=r.cells[m],pk=c.pick==="H"?nm(r.f.home):c.pick==="A"?nm(r.f.away):"toss-up";return `<td class="acc-${c.res}" title="${METHOD_NAME[m]}: ${Math.round(c.p*100)}% ${nm(r.f.home)} → predicts ${pk}">${ic[c.res]}</td>`;}).join("")+`</tr>`;}).join("")+`</tbody></table>`;
   el.innerHTML=`<div class="small" style="margin-bottom:6px">Leaderboard — hit rate = ✓ ÷ ${rows.length} played games. Predicting a win (&gt;60%) that ends in a draw counts as a miss; knockout ties are scored by who advanced (extra time / penalties included). Each game is scored <b>walk-forward</b> — using only games played before it — so the in-tournament model (Pot+goals) can't see the result it's predicting.</div>`+lb+
     `<div class="small" style="margin:18px 0 6px">Per match — hover any cell for that model's pre-match probability.</div>`+g; }
+function reportChampionCalls(){   // replay each model's own bracket, favourite-always-advances, from the REAL Round-of-32 field — did it call the actual champion?
+  const save={method:state.method,h2hWin:state.h2hWin,formWin:state.formWin,squadWin:state.squadWin,res:state.res};
+  state.h2hWin="all"; state.formWin="5"; state.squadWin="value";
+  state.res=Object.assign({},LOCKED); STATS=computeStats(); PGZ=zscores(potGoalsRaw()); WCFZ=zscores(wcFormRaw(new Set(KOSET)));   // full tournament, retrospective (not walk-forward — this is a "what would each model have picked, knowing the group stage" wrap-up, not a leakage test)
+  const models=Object.keys(MSHORT), out={};
+  models.forEach(m=>{ state.method=m; const w={}; let ok=true;
+    for(const no of KO_ORDER){ if(no===103) continue;
+      const p = no<=88 ? parts(no) : [w[FEED[no][0]], w[FEED[no][1]]];
+      if(!p[0]||!p[1]){ ok=false; break; }
+      w[no] = modelProb(p[0],p[1])>=0.5 ? p[0] : p[1]; }
+    out[m] = ok ? {champion:w[104], final:[w[101],w[102]]} : null; });
+  Object.assign(state,save); recompute();
+  return out;
+}
+function renderReport(){
+  const el=document.getElementById("reportpanel"); if(!el) return;
+  const {rows,tally,models}=backtest(), acc=t=>(t.ok+t.miss)?t.ok/(t.ok+t.miss):0;
+  if(!rows.length){ el.innerHTML='<div class="dhint">No games played yet — the report fills in as results lock, and completes once the champion is decided.</div>'; return; }
+  const order=models.slice().sort((a,b)=>acc(tally[b])-acc(tally[a])), best=Math.max(...order.map(m=>acc(tally[m])));
+
+  let h=`<div class="small" style="margin-bottom:6px">Final scorecard across all <b>${rows.length}</b> played WC2026 games — hit rate = ✓ ÷ games. A model predicts a win when it favours a side &gt;60%, otherwise a draw (40–60%); knockout ties are scored by who advanced. Scored <b>walk-forward</b>: every call uses only games played before it.</div>`;
+  h+=`<table class="dtbl acclb"><thead><tr><th class="tl">Model</th><th>Hit rate</th><th>✓</th><th>✗</th></tr></thead><tbody>`+
+    order.map(m=>{const t=tally[m],a=acc(t);return `<tr><td class="tl">${METHOD_NAME[m]}</td><td class="num ${a===best?'lead':''}">${(a*100).toFixed(0)}%</td><td class="num ok">${t.ok}</td><td class="num miss">${t.miss}</td></tr>`;}).join("")+`</tbody></table>`;
+
+  const STAGES=['Group','R32','R16','QF','Semis+Finals'];
+  const stageOf=r=>!r.ko?'Group':(r.f.round==='SF'||r.f.round==='3rd'||r.f.round==='Final')?'Semis+Finals':r.f.round;
+  const byStage={}; models.forEach(m=>byStage[m]=Object.fromEntries(STAGES.map(s=>[s,{ok:0,miss:0}])));
+  rows.forEach(r=>{ const s=stageOf(r); models.forEach(m=>byStage[m][s][r.cells[m].res]++); });
+  const stageN={}; STAGES.forEach(s=>stageN[s]=rows.filter(r=>stageOf(r)===s).length);
+  h+=`<div class="shdr">&#128202; Accuracy by stage</div>`;
+  h+=`<table class="dtbl"><thead><tr><th class="tl">Model</th>`+STAGES.map(s=>`<th>${s} <span class="mut">(${stageN[s]})</span></th>`).join('')+`</tr></thead><tbody>`+
+    order.map(m=>`<tr><td class="tl">${METHOD_NAME[m]}</td>`+STAGES.map(s=>{const t=byStage[m][s];return `<td class="num">${stageN[s]?(acc(t)*100).toFixed(0)+'%':'—'}</td>`;}).join('')+`</tr>`).join('')+`</tbody></table>`;
+
+  if(KOWIN[104]){
+    const calls=reportChampionCalls(), CHAMP=KOWIN[104], FINALISTS=[KOWIN[101],KOWIN[102]].slice().sort();
+    h+=`<div class="shdr">&#127942; Who called the champion?</div>`;
+    h+=`<div class="dhint" style="padding:0 0 8px">Each model's own bracket, played out favourite-always-advances from the real Round-of-32 field.</div>`;
+    h+=`<table class="dtbl"><thead><tr><th class="tl">Model</th><th class="tl">Predicted final</th><th class="tl">Predicted champion</th><th class="tl">Verdict</th></tr></thead><tbody>`+
+      order.map(m=>{ const c=calls[m]; if(!c) return '';
+        const fin=c.final.map(x=>`${fl(x)} ${nm(x)}`).join(' v ');
+        const exactFinal=c.final.slice().sort().join()===FINALISTS.join();
+        const v = c.champion===CHAMP ? (exactFinal?'<span class="rp-hit">&#127919; exact final &amp; champion</span>':'<span class="rp-hit">&#127942; champion right</span>')
+                : exactFinal ? '<span class="rp-part">&#9680; exact final, wrong winner</span>'
+                : c.final.includes(CHAMP) ? '<span class="rp-part">&#9684; champion in predicted final</span>'
+                : '<span class="rp-miss">&#10005;</span>';
+        const rowCls = c.champion===CHAMP ? ' class="rp-champ"' : '';
+        return `<tr${rowCls}><td class="tl">${METHOD_NAME[m]}</td><td class="tl">${fin}</td><td class="tl">${fl(c.champion)} ${nm(c.champion)}</td><td class="rp-verdict">${v}</td></tr>`; }).join('')+
+      `</tbody></table>`;
+
+    const withCons = rows.map(r=>{
+      let s=0; CONS_METHODS.forEach(m=>s+=r.cells[m].p); const avg=s/CONS_METHODS.length;
+      const pick = avg>0.6?'H':avg<0.4?'A':'D';
+      const conf = pick==='H'?avg:pick==='A'?1-avg:Math.max(avg,1-avg);
+      const missCount = models.filter(m=>r.cells[m].res==='miss').length;
+      return Object.assign({},r,{consConf:conf,consMiss:pick!==r.actual,missCount}); });
+    const gameLi=(r,tag)=>{ const rd=r.ko?`<span class="korb">${KMETA[r.no][3]}</span> `:'<span class="rp-tag">Group</span> ';
+      const pen=r.pens?` <span class="mut">(${r.pens[0]}–${r.pens[1]}p)</span>`:'';
+      return `<li>${rd}${fl(r.f.home)} ${nm(r.f.home)} <b>${r.r[0]}–${r.r[1]}</b>${pen} ${nm(r.f.away)} ${fl(r.f.away)} — ${tag}</li>`; };
+
+    const misses = withCons.filter(r=>r.consMiss).sort((a,b)=>b.consConf-a.consConf).slice(0,6);
+    h+=`<div class="shdr">&#128165; Biggest consensus misses</div><div class="dhint" style="padding:0 0 8px">Games the 8-model consensus was most confident about — and got wrong.</div>`;
+    h+=`<ul class="rp-list">`+misses.map(r=>gameLi(r,`consensus <span class="rp-pct">${Math.round(r.consConf*100)}%</span> the other way, ${r.missCount}/${models.length} models missed`)).join('')+`</ul>`;
+
+    const shocks = withCons.filter(r=>r.missCount>=9).sort((a,b)=>b.missCount-a.missCount||b.consConf-a.consConf);
+    h+=`<div class="shdr">&#9889; Shocks of the tournament</div><div class="dhint" style="padding:0 0 8px">Matches where at least 9 of the ${models.length} models were wrong.</div>`;
+    h+= shocks.length ? `<ul class="rp-list">`+shocks.map(r=>gameLi(r,`<span class="rp-pct">${r.missCount}/${models.length}</span> models wrong`)).join('')+`</ul>` : `<div class="dhint">No result blindsided the whole panel.</div>`;
+  } else {
+    h+=`<div class="dhint" style="margin-top:18px">Champion calls, biggest consensus misses and tournament shocks unlock once the final is decided.</div>`;
+  }
+  el.innerHTML=h;
+}
 function renderStats(){
   const el=document.getElementById("statspanel"); if(!el) return;
   const games=[...LOCKSET].map(no=>({no,f:FIXMAP[no],r:LOCKED[no],ko:false})).filter(x=>x.f&&x.r)
@@ -1666,8 +1749,9 @@ function setView(v){ state.view=v;
   document.getElementById('view-forecast').style.display = v==='forecast'?'':'none';
   document.getElementById('view-sims').style.display = v==='sims'?'':'none';
   document.getElementById('view-stats').style.display = v==='stats'?'':'none';
+  document.getElementById('view-report').style.display = v==='report'?'':'none';
   document.querySelectorAll('#topnav .tnav').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
-  if(v==='data') renderData(); if(v==='acc') renderAcc(); if(v==='forecast') renderForecast(); if(v==='sims') renderSims(); if(v==='stats') renderStats();
+  if(v==='data') renderData(); if(v==='acc') renderAcc(); if(v==='forecast') renderForecast(); if(v==='sims') renderSims(); if(v==='stats') renderStats(); if(v==='report') renderReport();
   syncHash();
   window.scrollTo(0,0); }
 // deep-linkable view + subtab, e.g. #sims/ko, #data/h2h, #tournament
