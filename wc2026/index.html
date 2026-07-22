@@ -1704,7 +1704,7 @@ function loadLive(){ fetch('live.json',{cache:'no-store'}).then(r=>r.ok?r.json()
   if(d.live && typeof d.live==='object') LIVE=d.live;
   if(Array.isArray(d.koLive)){ KOLIVE=d.koLive; applyKoLive(); }                            // in-play knockout scores
   renderToday(); }).catch(()=>{}); }
-loadLive(); setInterval(loadLive, 60000);   // live scores refresh every minute (the hourly action publishes live.json)
+loadLive(); if(!KOWIN[104]) setInterval(loadLive, 60000);   // live scores refresh every minute — until the final is decided, then the tournament (and the polling) is over
 /* ---- poster mode: ?shot=<model>.<theme> renders a clean vertical QF→Final funnel card (for social screenshots / reels) ---- */
 (function(){ try{
   const q=new URLSearchParams(location.search).get('shot'); if(!q) return;

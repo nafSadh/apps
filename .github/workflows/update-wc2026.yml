@@ -7,8 +7,9 @@ name: Update wc2026 data
 
 on:
   workflow_dispatch: {}          # run on demand from the Actions tab
-  schedule:
-    - cron: "17 6 * * *"         # daily 06:17 UTC — adjust/disable outside the tournament
+  # schedule disabled 2026-07-21 — tournament over (Spain champions); re-enable for the next cycle:
+  # schedule:
+  #   - cron: "17 6 * * *"       # daily 06:17 UTC
 
 permissions:
   contents: write

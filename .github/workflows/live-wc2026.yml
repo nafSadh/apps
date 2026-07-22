@@ -8,8 +8,9 @@ name: WC2026 live update
 
 on:
   workflow_dispatch: {}            # run on demand from the Actions tab
-  schedule:
-    - cron: "5 * * * *"            # every hour at :05 (adjust/disable outside the tournament)
+  # schedule disabled 2026-07-21 — tournament over (Spain champions); re-enable for the next cycle:
+  # schedule:
+  #   - cron: "5 * * * *"          # every hour at :05
 
 permissions:
   contents: write
