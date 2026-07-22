@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Players — Matchday Pacific</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pitch:#0c3524; --pitch-2:#0f4630; --chalk:#f4f1e4; --night:#0b120e;
+    --epl:#9d8cff; --liga:#ff5a45; --buli:#f0c33c; --l1:#5dd39e; --ucl:#7fd1ff;
+    --muted:rgba(244,241,228,.62); --hair:rgba(244,241,228,.16);
+    --disp:'Saira Condensed',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --hand:'Caveat',cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+  body{
+    font-family:var(--body);color:var(--chalk);background:var(--night);
+    background-image:
+      repeating-linear-gradient(45deg, transparent 0 2px, rgba(0,0,0,.05) 2px 3px),
+      repeating-linear-gradient(-45deg, transparent 0 3px, rgba(244,241,228,.016) 3px 4px),
+      repeating-linear-gradient(90deg, var(--pitch) 0 120px, var(--pitch-2) 120px 240px);
+    background-attachment:fixed;min-height:100vh;
+  }
+  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% -10%, rgba(244,241,228,.10), transparent 60%), radial-gradient(850px 600px at 90% 88%, rgba(91,110,245,.12), transparent 62%), radial-gradient(650px 480px at 4% 60%, rgba(127,209,255,.09), transparent 60%), rgba(11,18,14,.82);pointer-events:none;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 20px 48px}
+
+  header{padding:28px 0 6px}
+  .kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+  .kick .hand{font-family:var(--hand);font-size:19px;letter-spacing:.01em;text-transform:none;color:var(--chalk);display:inline-block;transform:rotate(-2deg);vertical-align:-2px;margin-left:2px}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,5.4vw,64px);line-height:1;letter-spacing:.01em;margin:8px 0 6px;white-space:nowrap}
+  h1 .pac{color:transparent;-webkit-text-stroke:1.5px var(--chalk)}
+  .sub{max-width:640px;color:var(--muted);font-size:15px;line-height:1.55}
+  .sub b{color:var(--chalk);font-weight:600}
+  .countdown{display:flex;gap:26px;margin:16px 0 0;padding:12px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);flex-wrap:wrap}
+  .cd{font-family:var(--mono)}
+  .cd .n{font-family:var(--disp);font-weight:800;font-size:40px;line-height:1}
+  .cd .l{font-size:11px;letter-spacing:.12em;color:var(--muted);margin-top:4px}
+  .cd.liga .n{color:var(--liga)} .cd.epl .n{color:var(--epl)}
+
+  section{margin-top:40px}
+  .eyebrow{display:flex;align-items:baseline;gap:14px;margin-bottom:12px}
+  .eyebrow h2{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:.02em}
+  .eyebrow .rule{flex:1;height:1px;background:var(--hair)}
+  .eyebrow .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+
+  .filters{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .filters button{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;background:none;border:1px solid var(--hair);color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer}
+  .filters button:hover{border-color:var(--chalk);color:var(--chalk)}
+  .filters button.on{background:var(--chalk);color:var(--night);border-color:var(--chalk)}
+  .filters button:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .players{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .players .pcard{flex:1 1 232px;max-width:250px}
+  .pcard{position:relative;border:1px solid var(--hair);border-radius:10px;padding:18px 18px 16px;background:rgba(12,19,36,.58);overflow:hidden;transition:transform .15s ease,border-color .15s ease}
+  .pcard:hover{transform:translateY(-3px);border-color:rgba(244,241,228,.4)}
+  .pcard .shirt{position:absolute;bottom:-16px;right:4px;font-family:var(--disp);font-weight:800;font-size:110px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(244,241,228,.14);pointer-events:none;user-select:none}
+  .headshot{position:absolute;top:0;right:0;width:42%;height:140px;object-fit:cover;object-position:top;border-radius:0 10px 0 0;filter:saturate(.85) contrast(1.06);-webkit-mask-image:radial-gradient(130% 125% at 100% 0%, #000 52%, transparent 76%);mask-image:radial-gradient(130% 125% at 100% 0%, #000 52%, transparent 76%);z-index:1}
+  .pcard .lg,.pcard h3,.pcard .club{padding-right:45%}
+  .pcard .lg,.pcard h3,.pcard .club,.pcard .line,.pcard .stat,.pcard .watch{position:relative;z-index:2}
+  .pcard h3,.pcard .lg{text-shadow:0 1px 6px rgba(11,18,14,.85)}
+  .pcard .lg{font-family:var(--mono);font-size:11px;letter-spacing:.04em}
+  .pcard[data-lg="liga"] .lg{color:var(--liga)}
+  .pcard[data-lg="epl"] .lg{color:var(--epl)}
+  .pcard[data-lg="buli"] .lg{color:var(--buli)}
+  .pcard[data-lg="fr1"] .lg{color:var(--l1)}
+  .more-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px dashed rgba(244,241,228,.3);border-radius:10px;padding:22px 18px;text-decoration:none;background:none;transition:border-color .15s,transform .15s}
+  .more-card:hover{border-color:var(--chalk);transform:translateY(-2px)}
+  .more-card .stack{display:flex}
+  .more-card .stack img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;box-shadow:0 0 0 2.5px #0d1710;background:#13201a}
+  .more-card .stack img+img{margin-left:-10px}
+  .more-card .stack img.mini-crest{object-fit:contain;background:#f4f1e4;padding:3px}
+  .more-card .more-big{font-family:var(--disp);font-weight:800;font-size:21px;color:var(--chalk)}
+  .more-card .more-sub{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+  .more-card:hover .more-sub{color:var(--chalk)}
+  .players .more-card{flex:1 1 232px;max-width:250px;min-height:230px}
+  .clubs .more-card{grid-column:1/-1;flex-direction:row;gap:16px;padding:13px 18px}
+  .pcard h3{font-family:var(--disp);font-weight:700;font-size:24px;line-height:1.15;min-height:2.3em;margin:4px 0 2px;letter-spacing:.01em;display:flex;align-items:flex-end}
+  .pcard h3 a{color:inherit;text-decoration:none}
+  .pcard h3 a:hover{text-decoration:underline}
+  .pcard .club{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .pcard .line{font-size:13.5px;line-height:1.5;min-height:4.5em;color:rgba(244,241,228,.86);margin-bottom:12px}
+  .pcard .stat{font-family:var(--mono);font-size:11.5px;color:var(--muted);border-top:1px dashed var(--hair);padding-top:10px}
+  .pcard .stat b{color:var(--chalk);font-weight:500}
+  .squad-link{display:block;margin-top:12px;width:100%;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;background:none;border:1px solid var(--hair);color:var(--muted);padding:8px 0;border-radius:6px;text-decoration:none;cursor:pointer}
+  .squad-link:hover{border-color:var(--chalk);color:var(--chalk)}
+  .squad-link:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .profile-links{display:flex;gap:6px;margin-top:12px}
+  .profile-links a{flex:1;text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;background:none;border:1px solid var(--hair);color:var(--muted);padding:7px 0;border-radius:6px;text-decoration:none;cursor:pointer}
+  .profile-links a:hover{border-color:var(--chalk);color:var(--chalk)}
+  .profile-links a:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+
+  /* ---------- squad modal ---------- */
+  .squad-modal{position:fixed;inset:0;z-index:50;display:flex;padding:0}
+  .squad-modal[hidden]{display:none}
+  .squad-backdrop{position:absolute;inset:0;background:#0b120e}
+  .squad-panel{position:relative;z-index:1;width:100%;height:100vh;max-height:100vh;overflow-y:auto;background:#0c1a13;border:none;border-radius:0;padding:16px clamp(16px,3vw,40px) 20px;box-shadow:none}
+  .squad-body{display:flex;gap:24px;margin:4px auto 0;align-items:flex-start;max-width:1152px;justify-content:center}
+  .squad-pitch-col{flex:0 1 auto;min-width:0;width:min(820px,calc((100vh - 200px) * 68 / 105))}
+  .pitch.modal-pitch{aspect-ratio:68/105;height:auto;min-height:340px;width:100%;margin:0 auto}
+  @media(max-width:760px){.pitch.modal-pitch{width:100%}}
+  .squad-bench-col{flex:0 0 300px;margin-top:72px}
+  @media(max-width:760px){.day{grid-template-columns:1fr;row-gap:4px}.day .ticks{grid-column:1}.squad-body{flex-direction:column}.squad-pitch-col{width:100%;max-width:100%}.squad-bench-col{flex:1 1 auto;width:100%;margin-top:0}.squad-head{padding:0 40px}}
+  .squad-close{position:absolute;top:16px;right:clamp(16px,3vw,40px);width:38px;height:38px;border-radius:999px;border:1px solid var(--hair);background:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1}
+  .squad-close:hover{color:var(--chalk);border-color:var(--chalk)}
+  .squad-close:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .squad-head{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 2px;min-width:0}
+  .squad-head>div{min-width:0}
+  .squad-roundel{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:16px;flex:none;box-shadow:0 0 0 1px rgba(244,241,228,.25)}
+  .squad-crest{display:none;width:58px;height:58px;object-fit:contain;flex:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
+  .squad-head h3{font-family:var(--disp);font-weight:800;font-size:clamp(24px,3.2vh,38px);line-height:1.05}
+  .squad-sub{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:4px}
+  .squad-local{font-family:var(--body);font-style:italic;font-size:13px;color:var(--muted);margin-top:2px}
+  .squad-depth-label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
+  .squad-depth-hint{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.4}
+  .squad-depth{display:flex;flex-direction:column;gap:8px}
+  .depth-chip{display:flex;align-items:center;gap:10px;width:100%;border:1px solid var(--hair);border-radius:9px;padding:10px 13px;font-family:var(--body);font-size:16px;color:rgba(244,241,228,.85);text-align:left;cursor:pointer;background:none}
+  .depth-chip:hover{border-color:rgba(244,241,228,.4)}
+  .depth-chip:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .depth-chip .pos{font-family:var(--mono);color:var(--muted);font-size:11.5px;letter-spacing:.05em;flex:none;width:26px}
+  .depth-chip.swapped{border-color:var(--ucl);color:var(--chalk);background:rgba(127,209,255,.1)}
+  .depth-photo{display:block;border-radius:50%;object-fit:cover;object-position:top;flex:none;box-shadow:0 0 0 1px rgba(244,241,228,.4);background:#13201a}
+  .squad-kits{margin-top:18px}
+  .squad-kits .kits-src{font-family:var(--mono);color:var(--muted);text-decoration:none}
+  .squad-kits .kits-src:hover{color:var(--chalk)}
+  .kits-row{display:flex;gap:12px;flex-wrap:wrap}
+  .kit{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+  .kit-fig{position:relative;width:100px;height:135px;display:block;background:#fff;border-radius:6px;overflow:hidden}
+  .kit-r{position:absolute;display:block}
+  .kit-r img{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+  .kit-cap{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .kit:hover .kit-cap{color:var(--chalk)}
+
+  .clubs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+  .ccard{border:1px solid var(--hair);border-radius:10px;padding:18px;background:rgba(12,19,36,.58)}
+  .ccard .top{display:flex;align-items:center;gap:10px}
+  .ccard .top .badge{margin-left:auto;text-align:right}
+  .crest{display:none;width:38px;height:38px;object-fit:contain;flex:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+  .roundel{display:flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:12px;letter-spacing:.02em;flex:none;box-shadow:0 0 0 1px rgba(244,241,228,.25)}
+  .ccard h3{font-family:var(--disp);font-weight:800;font-size:23px}
+  .ccard .badge{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);white-space:nowrap}
+  .ccard p{font-size:13.5px;line-height:1.55;min-height:4.7em;color:rgba(244,241,228,.84);margin-top:8px}
+  .mine-star{color:var(--liga);font-size:.7em;vertical-align:middle}
+  .ccard .pool{display:block;margin-top:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+  .clocknote{font-size:13.5px;color:var(--muted);max-width:640px;line-height:1.55;margin-bottom:22px}
+  .clocknote b{color:var(--chalk);font-weight:600}
+  .day{display:grid;grid-template-columns:104px 1fr;column-gap:14px;align-items:center;margin-bottom:10px}
+  .day .dh{display:flex;justify-content:flex-start;align-items:baseline}
+  .day .dh h3{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:.03em;line-height:1.2}
+  .day .ticks{grid-column:2}
+  .day .dh span{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .rail{position:relative;height:64px;border:1px solid var(--hair);border-radius:8px;background:rgba(11,18,14,.5);overflow:hidden}
+  .rail .work{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(255,255,255,.05) 6px 12px);border-left:1px dashed var(--hair);border-right:1px dashed var(--hair)}
+  .rail .work i{position:absolute;top:4px;left:6px;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:rgba(244,241,228,.48)}
+  .slot{position:absolute;height:20px;border-radius:5px;display:flex;flex-direction:row;align-items:center;gap:5px;padding:0 8px;min-width:56px;cursor:default}
+  .slot .t{font-family:var(--mono);font-size:11.5px;font-weight:600;line-height:1;white-space:nowrap}
+  .slot .w{font-size:11px;line-height:1;opacity:.8;white-space:nowrap}
+  .slot .w::before{content:"\00b7";margin-right:5px;opacity:.6}
+  .slot.epl{background:rgba(157,140,255,.22);border:1px solid var(--epl);color:#d9d2ff}
+  .slot.liga{background:rgba(255,90,69,.18);border:1px solid var(--liga);color:#ffc9c1}
+  .slot.buli{background:rgba(240,195,60,.13);border:1px solid rgba(240,195,60,.7);color:#f2e2ae}
+  .slot.l1{background:rgba(93,211,158,.13);border:1px solid rgba(93,211,158,.65);color:#c6ecd9}
+  .slot.ucl{background:rgba(127,209,255,.16);border:1px solid var(--ucl);color:#cdeeff}
+  .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:rgba(244,241,228,.5);margin-top:4px}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
+  .legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;vertical-align:-1px}
+  .legend .l-epl::before{background:var(--epl)} .legend .l-liga::before{background:var(--liga)}
+  .legend .l-buli::before{background:var(--buli)} .legend .l-l1::before{background:var(--l1)} .legend .l-ucl::before{background:var(--ucl)}
+
+  .dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .dcard{border:1px solid var(--hair);border-radius:10px;padding:16px;background:rgba(12,19,36,.58)}
+  .dcard .d{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1}
+  .dcard .d small{font-size:13px;font-family:var(--mono);font-weight:400;letter-spacing:.06em;color:var(--muted);display:block;margin-top:4px;text-transform:none}
+  .dcard p{font-size:13px;color:rgba(244,241,228,.84);margin-top:10px;line-height:1.5}
+  .dcard .ok{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:4px 9px;border-radius:999px}
+  .ok.yes{border:1px solid #7de0a6;color:#7de0a6}
+  .ok.hmm{border:1px solid #ffd479;color:#ffd479}
+
+  .match{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .pitchcard{border:1px solid var(--hair);border-radius:10px;background:rgba(12,19,36,.58);padding:16px}
+  .pitchcard h3{font-family:var(--disp);font-weight:800;font-size:23px}
+  .pitchcard .psub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+  .fteam{display:flex;align-items:center;gap:10px}
+  .fteam .fcrest{flex:none}
+  .fteam .psub{margin-top:0}
+  .pitch{position:relative;margin-top:12px;aspect-ratio:68/105;border:1.5px solid rgba(244,241,228,.4);border-radius:6px;background:repeating-linear-gradient(0deg,#0f4630 0 12.5%,#0c3524 12.5% 25%);overflow:hidden}
+  .pitch::before{content:"";position:absolute;left:50%;top:50%;width:26%;aspect-ratio:1;border:1.5px solid rgba(244,241,228,.3);border-radius:50%;transform:translate(-50%,-50%)}
+  .pitch::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:rgba(244,241,228,.3)}
+  .pbox{position:absolute;left:26%;right:26%;height:13%;border:1.5px solid rgba(244,241,228,.3)}
+  .pbox.t{top:-1.5px;border-top:none}
+  .pbox.b{bottom:-1.5px;border-bottom:none}
+  .chip{position:absolute;transform:translate(-50%,-50%);text-align:center;z-index:2}
+  .chip .f{display:block;font-size:17px;line-height:1.1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+  .chip .n{display:inline-block;margin-top:2px;font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;background:rgba(11,18,14,.85);border:1px solid var(--hair);padding:2px 6px;border-radius:999px;white-space:nowrap}
+  .chip-photo{display:block;margin:0 auto 2px;border-radius:50%;object-fit:cover;object-position:top;box-shadow:0 0 0 1.5px rgba(244,241,228,.5);background:#13201a}
+  #squadPitch .chip .n{font-size:13px;font-weight:600;padding:0;white-space:normal;max-width:130px;line-height:1.25;background:none;border:none;color:var(--chalk);text-shadow:0 1px 3px rgba(6,10,8,.9),0 0 8px rgba(6,10,8,.7)}
+  @media(max-width:760px){.match{grid-template-columns:1fr}.chip .f{font-size:14px}.chip .n{font-size:9.5px;padding:1px 5px}}
+
+  .sortbox{position:relative;margin-left:auto;align-self:center}
+  .sortbox .sort-toggle{display:flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;border-radius:999px;border:1px solid var(--hair);background:none;color:var(--muted);cursor:pointer}
+  .sortbox .sort-toggle:hover{border-color:var(--chalk);color:var(--chalk)}
+  .sortbox .sort-toggle:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .sortbox .sort-toggle[aria-expanded="true"]{border-color:var(--chalk);color:var(--chalk);background:rgba(244,241,228,.08)}
+  .sort-menu{position:absolute;top:calc(100% + 8px);right:0;background:#0e1712;border:1px solid var(--hair);border-radius:8px;padding:5px;display:flex;flex-direction:column;gap:1px;min-width:152px;z-index:20;box-shadow:0 10px 28px rgba(0,0,0,.45)}
+  .sort-menu[hidden]{display:none}
+  .sortbox .sort-menu button{width:100%;font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;text-transform:none;text-align:left;background:none;border:none;border-radius:5px;color:var(--muted);padding:8px 10px;cursor:pointer}
+  .sortbox .sort-menu button:hover{background:rgba(244,241,228,.08);color:var(--chalk)}
+  .sortbox .sort-menu button.on{color:var(--chalk)}
+  .sortbox .sort-menu button.on::before{content:"✓ ";opacity:.8}
+  footer{margin-top:40px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:rgba(244,241,228,.45);line-height:1.7}
+
+  @media(max-width:640px){
+    .countdown{gap:18px}
+    .slot .w{display:none}
+    .slot{min-width:44px;padding:0 5px}
+  }
+
+  /* page-specific */
+  .kick a{color:inherit;text-decoration:none}
+  .kick a:hover{color:var(--chalk)}
+  .crest.show{display:block}
+  .ccard p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .btnrow{display:flex;gap:8px}
+  .btnrow .squad-link{flex:1}
+  .pcard p.line{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .grouphead{grid-column:1/-1;font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted);margin:14px 0 0}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kick"><a href="./">Matchday Pacific</a> <span class="hand">— Players 2026–27</span></div>
+  <h1>All <span class="pac">Players</span></h1>
+</header>
+
+<section id="players">
+  <div class="eyebrow"><h2>Players to Watch</h2><div class="rule"></div>
+    <div class="sortbox">
+      <button id="sortToggle" class="sort-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Sort players" title="Sort players">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 2.5v11M5 2.5L2 5.5M5 2.5l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 13.5v-11M11 13.5l3-3M11 13.5l-3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div id="sortMenu" class="sort-menu" role="menu" hidden>
+        <button role="menuitem" class="on" data-sort="fav">Featured</button>
+        <button role="menuitem" data-sort="country">Country</button>
+        <button role="menuitem" data-sort="name">Name</button>
+        <button role="menuitem" data-sort="club">Club</button>
+      </div>
+    </div>
+    <div class="tag">156 players</div>
+  </div>
+  <div class="players">
+    <article class="pcard" data-lg="liga" data-fav="1" data-country="France" data-club="Real Madrid">
+      <div class="shirt">10</div>
+      <a href="https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Kylian Mbappé — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg/330px-Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg" alt="Kylian Mbappé" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/mbappe.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9" target="_blank" rel="noopener">Kylian<br>Mbappé</a></h3>
+      <div class="club">28yo · 🇫🇷 France - Striker</div>
+      <p class="line">World Cup Golden Boot with 10 goals, the first player to reach double figures since Gerd Müller in 1970. Also the tournament's all-time leading scorer.</p>
+      <div class="stat"><b>10</b> WC goals · Pichichi <b>25</b> · all-time WC top scorer</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/kylian-mbappe/profil/spieler/342229" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/231388/kylian-mbappe" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="2" data-country="Norway" data-club="Man City">
+      <div class="shirt">9</div>
+      <a href="https://en.wikipedia.org/wiki/Erling_Haaland" target="_blank" rel="noopener" style="display:contents" title="Erling Haaland — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg/330px-Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg" alt="Erling Haaland" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/haaland.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Erling_Haaland" target="_blank" rel="noopener">Erling<br>Haaland</a></h3>
+      <div class="club">26yo · 🇳🇴 Norway - Striker</div>
+      <p class="line">Scored seven at the World Cup as Norway eliminated Brazil. Manchester City's No. 9 on a contract through 2034, among the fastest ever to a club century.</p>
+      <div class="stat"><b>7</b> WC goals · City contract to <b>2034</b></div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Erling_Haaland" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/erling-haaland/profil/spieler/418560" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/253989/erling-haaland" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="3" data-country="England" data-club="Real Madrid">
+      <div class="shirt">5</div>
+      <a href="https://en.wikipedia.org/wiki/Jude_Bellingham" target="_blank" rel="noopener" style="display:contents" title="Jude Bellingham — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg/330px-Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg" alt="Jude Bellingham" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/bellingham.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jude_Bellingham" target="_blank" rel="noopener">Jude<br>Bellingham</a></h3>
+      <div class="club">23yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Midfielder</div>
+      <p class="line">Scored seven at the World Cup, an England record for one tournament, as England finished third. Now entering his fourth season at Real Madrid.</p>
+      <div class="stat"><b>7</b> WC goals · England single-WC record</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jude_Bellingham" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/jude-bellingham/profil/spieler/581678" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/291281/jude-bellingham" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="4" data-country="England" data-club="Bayern">
+      <div class="shirt">9</div>
+      <a href="https://en.wikipedia.org/wiki/Harry_Kane" target="_blank" rel="noopener" style="display:contents" title="Harry Kane — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Harry_Kane_England_v_Ghana_23_June_2026-219_%28cropped%29.jpg/330px-Harry_Kane_England_v_Ghana_23_June_2026-219_%28cropped%29.jpg" alt="Harry Kane" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/kane.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Harry_Kane" target="_blank" rel="noopener">Harry<br>Kane</a></h3>
+      <div class="club">33yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Striker</div>
+      <p class="line">Led world football in club goals in 2025–26: 61 for Bayern in a Bundesliga–Pokal double. Added six more at the World Cup before the semifinal exit.</p>
+      <div class="stat"><b>61</b> club goals 25/26 · <b>6</b> at WC26</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Harry_Kane" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/harry-kane/profil/spieler/132098" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/142200/harry-kane" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="5" data-country="France" data-club="PSG">
+      <div class="shirt">10</div>
+      <a href="https://en.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Ousmane Dembélé — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ousmane_Dembele_France_v_Senegal_16_June_2026-341_%28cropped%29.jpg/330px-Ousmane_Dembele_France_v_Senegal_16_June_2026-341_%28cropped%29.jpg" alt="Ousmane Dembélé" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/dembele.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9" target="_blank" rel="noopener">Ousmane<br>Dembélé</a></h3>
+      <div class="club">29yo · 🇫🇷 France - Winger</div>
+      <p class="line">Reigning Ballon d'Or holder, having won the Champions League and Ligue 1 with PSG. Scored six World Cup goals alongside Mbappé's ten in attack.</p>
+      <div class="stat">Reigning <b>Ballon d’Or</b> · <b>6</b> WC goals</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/ousmane-dembele/profil/spieler/288230" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/229744/ousmane-dembele" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="6" data-country="France" data-club="Bayern">
+      <div class="shirt">17</div>
+      <a href="https://en.wikipedia.org/wiki/Michael_Olise" target="_blank" rel="noopener" style="display:contents" title="Michael Olise — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg/330px-Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg" alt="Michael Olise" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/olise.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Michael_Olise" target="_blank" rel="noopener">Michael<br>Olise</a></h3>
+      <div class="club">25yo · 🇫🇷 France - Winger</div>
+      <p class="line">First player on record with six open-play assists at one World Cup, equalling the tournament mark. Second season at Bayern after joining from Palace.</p>
+      <div class="stat"><b>6</b> WC assists · equalled the record</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Michael_Olise" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/michael-olise/profil/spieler/566723" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/286831/michael-olise" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="7" data-country="England" data-club="Arsenal">
+      <div class="shirt">41</div>
+      <a href="https://en.wikipedia.org/wiki/Declan_Rice" target="_blank" rel="noopener" style="display:contents" title="Declan Rice — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Declan_Rice_England_v_Ghana_23_June_2026-150.jpg/330px-Declan_Rice_England_v_Ghana_23_June_2026-150.jpg" alt="Declan Rice" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/rice.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Declan_Rice" target="_blank" rel="noopener">Declan<br>Rice</a></h3>
+      <div class="club">27yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Midfielder</div>
+      <p class="line">Anchored Arsenal's first title since 2004 and their run to the Champions League final in 2025–26. Started for England's third-place World Cup side.</p>
+      <div class="stat">EPL champion <b>25/26</b> · England WC third</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Declan_Rice" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/declan-rice/profil/spieler/357662" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/238262/declan-rice" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="8" data-country="Egypt" data-club="Free agent">
+      <div class="shirt">11</div>
+      <a href="https://en.wikipedia.org/wiki/Mohamed_Salah" target="_blank" rel="noopener" style="display:contents" title="Mohamed Salah — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg/330px-Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg" alt="Mohamed Salah" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/salah.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Free agent</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Mohamed_Salah" target="_blank" rel="noopener">Mohamed<br>Salah</a></h3>
+      <div class="club">34yo · 🇪🇬 Egypt - Winger</div>
+      <p class="line">Left Liverpool as a free agent when his contract expired at the end of June 2026, ending a nine-year spell. Closing in on a move to Besiktas.</p>
+      <div class="stat">EPL champion <b>24/25</b> · Liverpool since <b>2017</b></div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Mohamed_Salah" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/mohamed-salah/profil/spieler/148455" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/173896/mohamed-salah" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="9" data-country="England" data-club="Arsenal">
+      <div class="shirt">7</div>
+      <a href="https://en.wikipedia.org/wiki/Bukayo_Saka" target="_blank" rel="noopener" style="display:contents" title="Bukayo Saka — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg/330px-Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg" alt="Bukayo Saka" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/saka.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Bukayo_Saka" target="_blank" rel="noopener">Bukayo<br>Saka</a></h3>
+      <div class="club">25yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Winger</div>
+      <p class="line">Key winger in Arsenal's 2025–26 Premier League title and Champions League final run. A regular starter for England throughout the World Cup.</p>
+      <div class="stat">EPL champion <b>25/26</b> · England regular</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Bukayo_Saka" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/bukayo-saka/profil/spieler/433177" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/280555/bukayo-saka" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="10" data-country="Spain" data-club="Real Madrid">
+      <div class="shirt">3</div>
+      <a href="https://en.wikipedia.org/wiki/Marc_Cucurella" target="_blank" rel="noopener" style="display:contents" title="Marc Cucurella — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg/330px-Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg" alt="Marc Cucurella" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/cucurella.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Marc_Cucurella" target="_blank" rel="noopener">Marc<br>Cucurella</a></h3>
+      <div class="club">28yo · 🇪🇸 Spain - Left-back</div>
+      <p class="line">Named in the World Cup team of the tournament: first among left-backs for assists, dribbled past only twice. Joined Real Madrid from Chelsea this summer.</p>
+      <div class="stat">WC team of the tournament · Chelsea → Real</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Marc_Cucurella" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/marc-cucurella/profil/spieler/284857" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/259910/marc-cucurella" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="11" data-country="Morocco" data-club="Bayern">
+      <div class="shirt">11</div>
+      <a href="https://en.wikipedia.org/wiki/Ismael_Saibari" target="_blank" rel="noopener" style="display:contents" title="Ismael Saibari — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg/330px-Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg" alt="Ismael Saibari" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/saibari.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ismael_Saibari" target="_blank" rel="noopener">Ismael<br>Saibari</a></h3>
+      <div class="club">25yo · 🇲🇦 Morocco - Midfielder</div>
+      <p class="line">Scored in all three World Cup group games and struck the tournament's fastest goal, in 69 seconds. Joined Bayern from PSV for around €50m mid-tournament.</p>
+      <div class="stat">Fastest WC26 goal · <b>€50m</b> to Bayern</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ismael_Saibari" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/ismael-saibari/profil/spieler/702869" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/304572/ismael-saibari" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="12" data-country="Spain" data-club="Barcelona">
+      <div class="shirt">10</div>
+      <a href="https://en.wikipedia.org/wiki/Lamine_Yamal" target="_blank" rel="noopener" style="display:contents" title="Lamine Yamal — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lamine_Yamal_France_v_Spain_7.24.26-142.jpg/330px-Lamine_Yamal_France_v_Spain_7.24.26-142.jpg" alt="Lamine Yamal" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/yamal.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Lamine_Yamal" target="_blank" rel="noopener">Lamine<br>Yamal</a></h3>
+      <div class="club">19yo · 🇪🇸 Spain - Winger</div>
+      <p class="line">World Cup winner with Spain at just 19, following Euro 2024 and back-to-back La Liga titles with Barcelona. Current Ballon d'Or frontrunner.</p>
+      <div class="stat">WC26 winner at <b>19</b> · Ballon d’Or favorite</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Lamine_Yamal" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/lamine-yamal/profil/spieler/937958" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/362150/lamine-yamal" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="13" data-country="Spain" data-club="Man City">
+      <div class="shirt">16</div>
+      <a href="https://en.wikipedia.org/wiki/Rodri_(footballer%2C_born_1996)" target="_blank" rel="noopener" style="display:contents" title="Rodri — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Rodri_France_v_Spain_7.24.26-096_%28cropped%29.jpg/330px-Rodri_France_v_Spain_7.24.26-096_%28cropped%29.jpg" alt="Rodri" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/rodri.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Rodri_(footballer%2C_born_1996)" target="_blank" rel="noopener">Rodri</a></h3>
+      <div class="club">30yo · 🇪🇸 Spain - Midfielder</div>
+      <p class="line">Golden Ball winner as Spain won the World Cup — started every match and anchored a defense that conceded once all tournament. Back at full fitness.</p>
+      <div class="stat">WC26 <b>Golden Ball</b> · world champion</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rodri_(footballer%2C_born_1996)" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/rodri/profil/spieler/357565" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/231828/rodri" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="14" data-country="Morocco" data-club="Real Madrid">
+      <div class="shirt">21</div>
+      <a href="https://en.wikipedia.org/wiki/Brahim_D%C3%ADaz" target="_blank" rel="noopener" style="display:contents" title="Brahim Díaz — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg" alt="Brahim Díaz" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/brahim.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Brahim_D%C3%ADaz" target="_blank" rel="noopener">Brahim<br>Díaz</a></h3>
+      <div class="club">27yo · 🇲🇦 Morocco - Winger</div>
+      <p class="line">Four assists in five World Cup games for quarterfinalists Morocco, twice setting up Saibari's goals. His Real Madrid contract runs through 2027.</p>
+      <div class="stat"><b>4</b> WC assists · Real contract to 2027</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Brahim_D%C3%ADaz" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/brahim-diaz/profil/spieler/314678" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/246532/brahim-diaz" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="15" data-country="France" data-club="Arsenal">
+      <div class="shirt">2</div>
+      <a href="https://en.wikipedia.org/wiki/William_Saliba" target="_blank" rel="noopener" style="display:contents" title="William Saliba — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/William_Saliba_France_v_Senegal_16_June_2026-336_%28cropped%29.jpg/330px-William_Saliba_France_v_Senegal_16_June_2026-336_%28cropped%29.jpg" alt="William Saliba" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/saliba.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/William_Saliba" target="_blank" rel="noopener">William<br>Saliba</a></h3>
+      <div class="club">25yo · 🇫🇷 France - Centre-back</div>
+      <p class="line">Cornerstone of Arsenal's 2025–26 title defense, the meanest in Europe en route to the Champions League final. Started for France at the World Cup.</p>
+      <div class="stat">EPL champion <b>25/26</b> · France WC starter</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/William_Saliba" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/william-saliba/profil/spieler/495666" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/277385/william-saliba" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="16" data-country="Morocco" data-club="PSG">
+      <div class="shirt">2</div>
+      <a href="https://en.wikipedia.org/wiki/Achraf_Hakimi" target="_blank" rel="noopener" style="display:contents" title="Achraf Hakimi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Achraf_Hakimi_Morocco_v_Norway_7_June_2026-32.jpg/330px-Achraf_Hakimi_Morocco_v_Norway_7_June_2026-32.jpg" alt="Achraf Hakimi" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/hakimi.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Achraf_Hakimi" target="_blank" rel="noopener">Achraf<br>Hakimi</a></h3>
+      <div class="club">28yo · 🇲🇦 Morocco - Right-back</div>
+      <p class="line">Morocco's captain and Africa's reigning Player of the Year, led the Atlas Lions to the World Cup quarterfinals. Champions League winner with PSG in 2025.</p>
+      <div class="stat">Africa POTY · UCL winner <b>2025</b></div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Achraf_Hakimi" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/achraf-hakimi/profil/spieler/398073" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/240233/achraf-hakimi" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="17" data-country="Spain" data-club="PSG">
+      <div class="shirt">8</div>
+      <a href="https://en.wikipedia.org/wiki/Fabi%C3%A1n_Ruiz" target="_blank" rel="noopener" style="display:contents" title="Fabián Ruiz — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Fabian_Ruiz_France_v_Spain_7.24.26-110.jpg/330px-Fabian_Ruiz_France_v_Spain_7.24.26-110.jpg" alt="Fabián Ruiz" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/fabian.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Fabi%C3%A1n_Ruiz" target="_blank" rel="noopener">Fabián<br>Ruiz</a></h3>
+      <div class="club">30yo · 🇪🇸 Spain - Midfielder</div>
+      <p class="line">The only player in the world to win both the Champions League and the World Cup this year, starting both finals — for PSG and for Spain.</p>
+      <div class="stat">UCL + WC26 winner · <b>2026</b></div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Fabi%C3%A1n_Ruiz" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/fabian-ruiz/profil/spieler/350219" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/214596/fabian-ruiz" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="18" data-country="Spain" data-club="Athletic Bilbao">
+      <div class="shirt">11</div>
+      <a href="https://en.wikipedia.org/wiki/Nico_Williams" target="_blank" rel="noopener" style="display:contents" title="Nico Williams — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Nico_Williams_France_v_Spain_7.24.26-030.jpg/330px-Nico_Williams_France_v_Spain_7.24.26-030.jpg" alt="Nico Williams" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/nico.jpg'}else{this.style.display='none'}"></a>
+      <div class="lg">Athletic Bilbao</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Nico_Williams" target="_blank" rel="noopener">Nico<br>Williams</a></h3>
+      <div class="club">24yo · 🇪🇸 Spain - Winger</div>
+      <p class="line">World Cup winner with Spain, playing the opposite flank from Yamal. Stayed at Athletic Bilbao through the transfer interest that follows him every window.</p>
+      <div class="stat">WC26 winner · Athletic Bilbao</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nico_Williams" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/nico-williams/profil/spieler/709187" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/312146/nico-williams" target="_blank" rel="noopener">ESPN ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="19" data-country="Brazil" data-club="PSG">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Marquinhos" target="_blank" rel="noopener" style="display:contents" title="Marquinhos — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Marquinhos_Brazil_V_Morocco_13_June_2026-153_%28cropped%29.jpg/330px-Marquinhos_Brazil_V_Morocco_13_June_2026-153_%28cropped%29.jpg" alt="Marquinhos" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Marquinhos" target="_blank" rel="noopener">Marquinhos</a></h3>
+      <div class="club">32yo · 🇧🇷 Brazil - Defender</div>
+      <p class="line">He is considered one of the best centre-backs in the world and is one of the most decorated players in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Marquinhos" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="20" data-country="Portugal" data-club="PSG">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Vitinha" target="_blank" rel="noopener" style="display:contents" title="Vitinha — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Vitinha_USMNT_v_Portugal_Mar_31_2026-50_%28cropped%29.jpg/330px-Vitinha_USMNT_v_Portugal_Mar_31_2026-50_%28cropped%29.jpg" alt="Vitinha" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Vitinha" target="_blank" rel="noopener">Vitinha</a></h3>
+      <div class="club">26yo · 🇵🇹 Portugal - Midfielder</div>
+      <p class="line">Considered one of the best midfielders in the world, he is known for his ball control, work rate, and playmaking abilities.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Vitinha" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="21" data-country="Portugal" data-club="PSG">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Jo%C3%A3o_Neves" target="_blank" rel="noopener" style="display:contents" title="João Neves — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Joao_Neves_Croatia_v_Portugal_2_July_2026-102.jpg/330px-Joao_Neves_Croatia_v_Portugal_2_July_2026-102.jpg" alt="João Neves" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jo%C3%A3o_Neves" target="_blank" rel="noopener">João<br>Neves</a></h3>
+      <div class="club">22yo · 🇵🇹 Portugal - Midfielder</div>
+      <p class="line">Primarily a central midfielder, Neves is also able to play as a defensive midfielder and occasionally a right-back. He is regarded as one of the best young players in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jo%C3%A3o_Neves" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="22" data-country="Georgia" data-club="PSG">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Khvicha_Kvaratskhelia" target="_blank" rel="noopener" style="display:contents" title="Khvicha Kvaratskhelia — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Kvaratskhelia_asse_psg_2425.png/330px-Kvaratskhelia_asse_psg_2425.png" alt="Khvicha Kvaratskhelia" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Khvicha_Kvaratskhelia" target="_blank" rel="noopener">Khvicha<br>Kvaratskhelia</a></h3>
+      <div class="club">25yo · 🇬🇪 Georgia - Forward</div>
+      <p class="line">Regarded as one of the best players in the world and as the greatest Georgian player of all time, he is known for his dribbling, agility, and playmaking.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Khvicha_Kvaratskhelia" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="23" data-country="France" data-club="PSG">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/D%C3%A9sir%C3%A9_Dou%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Désiré Doué — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Desire_Doue_France_v_Norway_26_June_26-032.jpg/330px-Desire_Doue_France_v_Norway_26_June_26-032.jpg" alt="Désiré Doué" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/D%C3%A9sir%C3%A9_Dou%C3%A9" target="_blank" rel="noopener">Désiré<br>Doué</a></h3>
+      <div class="club">21yo · 🇫🇷 France - Forward</div>
+      <p class="line">He is considered one of the best young players in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/D%C3%A9sir%C3%A9_Dou%C3%A9" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="24" data-country="France" data-club="PSG">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Bradley_Barcola" target="_blank" rel="noopener" style="display:contents" title="Bradley Barcola — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Bradley_Barcola_France_v_Spain_7.24.26-112_%28cropped%29.jpg/330px-Bradley_Barcola_France_v_Spain_7.24.26-112_%28cropped%29.jpg" alt="Bradley Barcola" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Bradley_Barcola" target="_blank" rel="noopener">Bradley<br>Barcola</a></h3>
+      <div class="club">24yo · 🇫🇷 France - Forward</div>
+      <p class="line">He is known for his speed and dribbling.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Bradley_Barcola" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="25" data-country="France" data-club="PSG">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Lucas_Chevalier" target="_blank" rel="noopener" style="display:contents" title="Lucas Chevalier — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Chevalier_ASSE_losc_2425_%28cropped%29.jpg/330px-Chevalier_ASSE_losc_2425_%28cropped%29.jpg" alt="Lucas Chevalier" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Lucas_Chevalier" target="_blank" rel="noopener">Lucas<br>Chevalier</a></h3>
+      <div class="club">25yo · 🇫🇷 France - Goalkeeper</div>
+      <p class="line">Goalkeeper in PSG&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Lucas_Chevalier" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="26" data-country="Ecuador" data-club="PSG">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Willian_Pacho" target="_blank" rel="noopener" style="display:contents" title="Willian Pacho — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Willian_Pacho_Cote_D%27Ivoire_v_Ecuador_14_June_2026-115_%28cropped%29.jpg/330px-Willian_Pacho_Cote_D%27Ivoire_v_Ecuador_14_June_2026-115_%28cropped%29.jpg" alt="Willian Pacho" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Willian_Pacho" target="_blank" rel="noopener">Willian<br>Pacho</a></h3>
+      <div class="club">25yo · 🇪🇨 Ecuador - Defender</div>
+      <p class="line">Defender in PSG&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Willian_Pacho" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="27" data-country="Portugal" data-club="PSG">
+      <div class="shirt">DF</div>
+      
+      <div class="lg">PSG</div>
+      <h3><a href="" target="_blank" rel="noopener">Nuno<br>Mendes</a></h3>
+      <div class="club">🇵🇹 Portugal - Defender</div>
+      <p class="line">Defender in PSG&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="28" data-country="Portugal" data-club="PSG">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Gon%C3%A7alo_Ramos" target="_blank" rel="noopener" style="display:contents" title="Gonçalo Ramos — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Gon%C3%A7alo_Ramos_USMNT_v_Portugal_Mar_31_2026-32_%28cropped%29.jpg/330px-Gon%C3%A7alo_Ramos_USMNT_v_Portugal_Mar_31_2026-32_%28cropped%29.jpg" alt="Gonçalo Ramos" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Gon%C3%A7alo_Ramos" target="_blank" rel="noopener">Gonçalo<br>Ramos</a></h3>
+      <div class="club">25yo · 🇵🇹 Portugal - Forward</div>
+      <p class="line">Forward in PSG&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gon%C3%A7alo_Ramos" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="29" data-country="Germany" data-club="Bayern">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Manuel_Neuer" target="_blank" rel="noopener" style="display:contents" title="Manuel Neuer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Manuel_Neuer_Ecuador_v_Germany_25_June_2026-148.jpg/330px-Manuel_Neuer_Ecuador_v_Germany_25_June_2026-148.jpg" alt="Manuel Neuer" onerror="this.style.display='none'"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Manuel_Neuer" target="_blank" rel="noopener">Manuel<br>Neuer</a></h3>
+      <div class="club">40yo · 🇩🇪 Germany - Goalkeeper</div>
+      <p class="line">Widely regarded as one of the greatest goalkeepers of all time, Neuer has been described as a &quot;sweeper-keeper&quot; because of his playing style and speed when rushing off his line to anticipate opponents, often going out of the penalty area.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Manuel_Neuer" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="30" data-country="Germany" data-club="Bayern">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Jamal_Musiala" target="_blank" rel="noopener" style="display:contents" title="Jamal Musiala — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jamal_Musiala_Ecuador_v_Germany_25_June_2026-174_%28cropped%29.jpg/330px-Jamal_Musiala_Ecuador_v_Germany_25_June_2026-174_%28cropped%29.jpg" alt="Jamal Musiala" onerror="this.style.display='none'"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jamal_Musiala" target="_blank" rel="noopener">Jamal<br>Musiala</a></h3>
+      <div class="club">23yo · 🇩🇪 Germany - Midfielder</div>
+      <p class="line">Widely regarded as one of the best attacking midfielders in the world, Musiala is known for his dribbling, passing, goal threat, and technical skills.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jamal_Musiala" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="31" data-country="Colombia" data-club="Bayern">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer%2C_born_1997)" target="_blank" rel="noopener" style="display:contents" title="Luis Díaz — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg" alt="Luis Díaz" onerror="this.style.display='none'"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer%2C_born_1997)" target="_blank" rel="noopener">Luis<br>Díaz</a></h3>
+      <div class="club">29yo · 🇨🇴 Colombia - Forward</div>
+      <p class="line">Regarded as one of the best wingers in the world, he is known for his pace, dribbling, and pressing ability.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer%2C_born_1997)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="32" data-country="Germany" data-club="Bayern">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Joshua_Kimmich" target="_blank" rel="noopener" style="display:contents" title="Joshua Kimmich — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Joshua_Kimmich_Ecuador_v_Germany_25_June_2026-149.jpg/330px-Joshua_Kimmich_Ecuador_v_Germany_25_June_2026-149.jpg" alt="Joshua Kimmich" onerror="this.style.display='none'"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Joshua_Kimmich" target="_blank" rel="noopener">Joshua<br>Kimmich</a></h3>
+      <div class="club">31yo · 🇩🇪 Germany - Midfielder</div>
+      <p class="line">Known for his versatility, aggression and playmaking ability, Kimmich has been compared with former Bayern Munich and Germany captain Philipp Lahm.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Joshua_Kimmich" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="33" data-country="Austria" data-club="Bayern">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Konrad_Laimer" target="_blank" rel="noopener" style="display:contents" title="Konrad Laimer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg/330px-2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg" alt="Konrad Laimer" onerror="this.style.display='none'"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Konrad_Laimer" target="_blank" rel="noopener">Konrad<br>Laimer</a></h3>
+      <div class="club">29yo · 🇦🇹 Austria - Defender</div>
+      <p class="line">He was selected as Austrian Footballer of the Year in 2025.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Konrad_Laimer" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="34" data-country="France" data-club="Bayern">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Dayot_Upamecano" target="_blank" rel="noopener" style="display:contents" title="Dayot Upamecano — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Dayot_Upamecano_France_v_Senegal_16_June_2026-402_%28cropped%29.jpg/330px-Dayot_Upamecano_France_v_Senegal_16_June_2026-402_%28cropped%29.jpg" alt="Dayot Upamecano" onerror="this.style.display='none'"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Dayot_Upamecano" target="_blank" rel="noopener">Dayot<br>Upamecano</a></h3>
+      <div class="club">28yo · 🇫🇷 France - Defender</div>
+      <p class="line">Defender in Bayern&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Dayot_Upamecano" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="35" data-country="Germany" data-club="Bayern">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Jonathan_Tah" target="_blank" rel="noopener" style="display:contents" title="Jonathan Tah — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Jonathan_Tah_Ecuador_v_Germany_25_June_2026-116.jpg/330px-Jonathan_Tah_Ecuador_v_Germany_25_June_2026-116.jpg" alt="Jonathan Tah" onerror="this.style.display='none'"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jonathan_Tah" target="_blank" rel="noopener">Jonathan<br>Tah</a></h3>
+      <div class="club">30yo · 🇩🇪 Germany - Defender</div>
+      <p class="line">Defender in Bayern&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jonathan_Tah" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="36" data-country="Portugal" data-club="Bayern">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Rapha%C3%ABl_Guerreiro" target="_blank" rel="noopener" style="display:contents" title="Raphaël Guerreiro — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/2/22/Rapha%C3%ABl_Guerreiro_WC2022.jpg" alt="Raphaël Guerreiro" onerror="this.style.display='none'"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Rapha%C3%ABl_Guerreiro" target="_blank" rel="noopener">Raphaël<br>Guerreiro</a></h3>
+      <div class="club">33yo · 🇵🇹 Portugal - Defender</div>
+      <p class="line">Defender in Bayern&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rapha%C3%ABl_Guerreiro" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="37" data-country="Portugal" data-club="Bayern">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Jo%C3%A3o_Palhinha" target="_blank" rel="noopener" style="display:contents" title="João Palhinha — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Joaopalhinha.jpg/330px-Joaopalhinha.jpg" alt="João Palhinha" onerror="this.style.display='none'"></a>
+      <div class="lg">Bayern</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jo%C3%A3o_Palhinha" target="_blank" rel="noopener">João<br>Palhinha</a></h3>
+      <div class="club">31yo · 🇵🇹 Portugal - Midfielder</div>
+      <p class="line">Midfielder in Bayern&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jo%C3%A3o_Palhinha" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="38" data-country="Belgium" data-club="Real Madrid">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Thibaut_Courtois" target="_blank" rel="noopener" style="display:contents" title="Thibaut Courtois — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Thibaut_Courtois_at_the_2018_World_Cup_%28cropped%29.jpg/330px-Thibaut_Courtois_at_the_2018_World_Cup_%28cropped%29.jpg" alt="Thibaut Courtois" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Thibaut_Courtois" target="_blank" rel="noopener">Thibaut<br>Courtois</a></h3>
+      <div class="club">34yo · 🇧🇪 Belgium - Goalkeeper</div>
+      <p class="line">He is regarded as one of the greatest goalkeepers of all time.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Thibaut_Courtois" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="39" data-country="England" data-club="Real Madrid">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Trent_Alexander-Arnold" target="_blank" rel="noopener" style="display:contents" title="Trent Alexander-Arnold — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Trent_Alexander-Arnold_2018_%28cropped%29.jpg" alt="Trent Alexander-Arnold" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Trent_Alexander-Arnold" target="_blank" rel="noopener">Trent<br>Alexander-Arnold</a></h3>
+      <div class="club">28yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Defender</div>
+      <p class="line">Considered one of the best right-backs in the world, he is known for his range of passing, crossing and assists, as well as his set-piece taking ability. Owing to such capabilities, Alexander-Arnold has also occasionally been deployed as a midfielder for both club and country.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Trent_Alexander-Arnold" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="40" data-country="Uruguay" data-club="Real Madrid">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Federico_Valverde" target="_blank" rel="noopener" style="display:contents" title="Federico Valverde — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Federico_Valverde_2021_%28cropped%29.jpg/330px-Federico_Valverde_2021_%28cropped%29.jpg" alt="Federico Valverde" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Federico_Valverde" target="_blank" rel="noopener">Federico<br>Valverde</a></h3>
+      <div class="club">28yo · 🇺🇾 Uruguay - Midfielder</div>
+      <p class="line">Considered one of the best midfielders in the world, he is known for his versatility, work rate, pace and shooting. Valverde mainly plays as a central midfielder but is also able to play as a right-back.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Federico_Valverde" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="41" data-country="Brazil" data-club="Real Madrid">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Vin%C3%ADcius_J%C3%BAnior" target="_blank" rel="noopener" style="display:contents" title="Vinícius Júnior — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Vin%C3%ADcius_J%C3%BAnior_Brazil_V_Morocco_13_June_2026-207_%28cropped%29.jpg/330px-Vin%C3%ADcius_J%C3%BAnior_Brazil_V_Morocco_13_June_2026-207_%28cropped%29.jpg" alt="Vinícius Júnior" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Vin%C3%ADcius_J%C3%BAnior" target="_blank" rel="noopener">Vinícius<br>Júnior</a></h3>
+      <div class="club">26yo · 🇧🇷 Brazil - Forward</div>
+      <p class="line">Considered one of the best players in the world, he is known for his pace, technique, and dribbling ability.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Vin%C3%ADcius_J%C3%BAnior" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="42" data-country="Turkey" data-club="Real Madrid">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Arda_G%C3%BCler" target="_blank" rel="noopener" style="display:contents" title="Arda Güler — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Arda_G%C3%BCler_2025.jpg/330px-Arda_G%C3%BCler_2025.jpg" alt="Arda Güler" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Arda_G%C3%BCler" target="_blank" rel="noopener">Arda<br>Güler</a></h3>
+      <div class="club">21yo · 🇹🇷 Turkey - Midfielder</div>
+      <p class="line">He is regarded as one of the best young players in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Arda_G%C3%BCler" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="43" data-country="Germany" data-club="Real Madrid">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Antonio_R%C3%BCdiger" target="_blank" rel="noopener" style="display:contents" title="Antonio Rüdiger — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Antonio_Rudiger_Ecuador_v_Germany_25_June_2026-055_%28cropped%29.jpg/330px-Antonio_Rudiger_Ecuador_v_Germany_25_June_2026-055_%28cropped%29.jpg" alt="Antonio Rüdiger" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Antonio_R%C3%BCdiger" target="_blank" rel="noopener">Antonio<br>Rüdiger</a></h3>
+      <div class="club">33yo · 🇩🇪 Germany - Defender</div>
+      <p class="line">He is known for his aggressive playing style, speed, tackling ability and strong aerial presence.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Antonio_R%C3%BCdiger" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="44" data-country="Spain" data-club="Real Madrid">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Dean_Huijsen" target="_blank" rel="noopener" style="display:contents" title="Dean Huijsen — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Dean_Huijsen_2024.jpg/330px-Dean_Huijsen_2024.jpg" alt="Dean Huijsen" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Dean_Huijsen" target="_blank" rel="noopener">Dean<br>Huijsen</a></h3>
+      <div class="club">21yo · 🇪🇸 Spain - Defender</div>
+      <p class="line">Born in the Netherlands, he plays for the Spain national team.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Dean_Huijsen" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="45" data-country="France" data-club="Real Madrid">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Ibrahima_Konat%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Ibrahima Konaté — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ibrahima_Konate_France_v_Senegal_16_June_2026-516_%28cropped%29.jpg/330px-Ibrahima_Konate_France_v_Senegal_16_June_2026-516_%28cropped%29.jpg" alt="Ibrahima Konaté" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ibrahima_Konat%C3%A9" target="_blank" rel="noopener">Ibrahima<br>Konaté</a></h3>
+      <div class="club">27yo · 🇫🇷 France - Defender</div>
+      <p class="line">Defender in Real Madrid&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ibrahima_Konat%C3%A9" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="46" data-country="France" data-club="Real Madrid">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Aur%C3%A9lien_Tchouam%C3%A9ni" target="_blank" rel="noopener" style="display:contents" title="Aurélien Tchouaméni — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Aurelien_Tchouameni_France_v_Senegal_16_June_2026-447_%28cropped%29.jpg/330px-Aurelien_Tchouameni_France_v_Senegal_16_June_2026-447_%28cropped%29.jpg" alt="Aurélien Tchouaméni" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Aur%C3%A9lien_Tchouam%C3%A9ni" target="_blank" rel="noopener">Aurélien<br>Tchouaméni</a></h3>
+      <div class="club">26yo · 🇫🇷 France - Midfielder</div>
+      <p class="line">Midfielder in Real Madrid&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Aur%C3%A9lien_Tchouam%C3%A9ni" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="47" data-country="Brazil" data-club="Real Madrid">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Rodrygo" target="_blank" rel="noopener" style="display:contents" title="Rodrygo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Rodrygo_2023_%28cropped%29.jpg/330px-Rodrygo_2023_%28cropped%29.jpg" alt="Rodrygo" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Rodrygo" target="_blank" rel="noopener">Rodrygo</a></h3>
+      <div class="club">25yo · 🇧🇷 Brazil - Forward</div>
+      <p class="line">Forward in Real Madrid&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rodrygo" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="48" data-country="Italy" data-club="Man City">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Gianluigi_Donnarumma" target="_blank" rel="noopener" style="display:contents" title="Gianluigi Donnarumma — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Norway_Italy_-_June_2025_A_17_%28Gianluigi_Donnarumma%29.jpg/330px-Norway_Italy_-_June_2025_A_17_%28Gianluigi_Donnarumma%29.jpg" alt="Gianluigi Donnarumma" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Gianluigi_Donnarumma" target="_blank" rel="noopener">Gianluigi<br>Donnarumma</a></h3>
+      <div class="club">27yo · 🇮🇹 Italy - Goalkeeper</div>
+      <p class="line">He is widely regarded as one of the best goalkeepers in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gianluigi_Donnarumma" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="49" data-country="Portugal" data-club="Man City">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/R%C3%BAben_Dias" target="_blank" rel="noopener" style="display:contents" title="Rúben Dias — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Diogo_Costa_Ruben_Dias_Croatia_v_Portugal_2_July_2026-181_%28cropped%29.jpg/330px-Diogo_Costa_Ruben_Dias_Croatia_v_Portugal_2_July_2026-181_%28cropped%29.jpg" alt="Rúben Dias" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/R%C3%BAben_Dias" target="_blank" rel="noopener">Rúben<br>Dias</a></h3>
+      <div class="club">29yo · 🇵🇹 Portugal - Defender</div>
+      <p class="line">He is regarded as one of the best centre-backs in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/R%C3%BAben_Dias" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="50" data-country="Croatia" data-club="Man City">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Jo%C5%A1ko_Gvardiol" target="_blank" rel="noopener" style="display:contents" title="Joško Gvardiol — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Josko_Gvardiol_Croatia_v_Portugal_2_July_2026-262.jpg/330px-Josko_Gvardiol_Croatia_v_Portugal_2_July_2026-262.jpg" alt="Joško Gvardiol" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jo%C5%A1ko_Gvardiol" target="_blank" rel="noopener">Joško<br>Gvardiol</a></h3>
+      <div class="club">24yo · 🇭🇷 Croatia - Defender</div>
+      <p class="line">Gvardiol is known for his on-pitch composure, precise passing, and defensive capabilities.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jo%C5%A1ko_Gvardiol" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="51" data-country="Belgium" data-club="Man City">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Doku" target="_blank" rel="noopener" style="display:contents" title="Jeremy Doku — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-27_%28cropped%29.jpg/330px-J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-27_%28cropped%29.jpg" alt="Jeremy Doku" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Doku" target="_blank" rel="noopener">Jeremy<br>Doku</a></h3>
+      <div class="club">24yo · 🇧🇪 Belgium - Forward</div>
+      <p class="line">He is most known for his speed and dribbling ability.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Doku" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="52" data-country="England" data-club="Man City">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Rico_Lewis" target="_blank" rel="noopener" style="display:contents" title="Rico Lewis — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/ManCity20240722-027.jpg/330px-ManCity20240722-027.jpg" alt="Rico Lewis" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Rico_Lewis" target="_blank" rel="noopener">Rico<br>Lewis</a></h3>
+      <div class="club">22yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Defender</div>
+      <p class="line">Defender in Man City&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rico_Lewis" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="53" data-country="England" data-club="Man City">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Marc_Gu%C3%A9hi" target="_blank" rel="noopener" style="display:contents" title="Marc Guéhi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Marc_Guehi_England_v_Panama_27_June_26-182.jpg/330px-Marc_Guehi_England_v_Panama_27_June_26-182.jpg" alt="Marc Guéhi" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Marc_Gu%C3%A9hi" target="_blank" rel="noopener">Marc<br>Guéhi</a></h3>
+      <div class="club">26yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Defender</div>
+      <p class="line">Defender in Man City&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Marc_Gu%C3%A9hi" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="54" data-country="Netherlands" data-club="Man City">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Tijjani_Reijnders" target="_blank" rel="noopener" style="display:contents" title="Tijjani Reijnders — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Reijnders_arriva_in_albergo_%28cropped%29.jpg/330px-Reijnders_arriva_in_albergo_%28cropped%29.jpg" alt="Tijjani Reijnders" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Tijjani_Reijnders" target="_blank" rel="noopener">Tijjani<br>Reijnders</a></h3>
+      <div class="club">28yo · 🇳🇱 Netherlands - Midfielder</div>
+      <p class="line">Midfielder in Man City&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Tijjani_Reijnders" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="55" data-country="France" data-club="Man City">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Rayan_Cherki" target="_blank" rel="noopener" style="display:contents" title="Rayan Cherki — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Rayan_Cherki_France_v_Norway_26_June_26-114.jpg/330px-Rayan_Cherki_France_v_Norway_26_June_26-114.jpg" alt="Rayan Cherki" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Rayan_Cherki" target="_blank" rel="noopener">Rayan<br>Cherki</a></h3>
+      <div class="club">23yo · 🇫🇷 France - Midfielder</div>
+      <p class="line">Midfielder in Man City&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rayan_Cherki" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="56" data-country="Brazil" data-club="Man City">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Savinho" target="_blank" rel="noopener" style="display:contents" title="Savinho — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Cel_Spellman%2C_John_Stones%2C_Bernardo_Silva_and_Natalie_Pike_at_the_Manchester_City_After_Party%2C_2026_%28cropped%29.jpg" alt="Savinho" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Savinho" target="_blank" rel="noopener">Savinho</a></h3>
+      <div class="club">22yo · 🇧🇷 Brazil - Forward</div>
+      <p class="line">Forward in Man City&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Savinho" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="57" data-country="England" data-club="Man City">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Phil_Foden" target="_blank" rel="noopener" style="display:contents" title="Phil Foden — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg" alt="Phil Foden" onerror="this.style.display='none'"></a>
+      <div class="lg">Man City</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Phil_Foden" target="_blank" rel="noopener">Phil<br>Foden</a></h3>
+      <div class="club">26yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Forward</div>
+      <p class="line">Forward in Man City&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Phil_Foden" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="58" data-country="Spain" data-club="Arsenal">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/David_Raya" target="_blank" rel="noopener" style="display:contents" title="David Raya — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/David_Raya_France_v_Spain_7.24.26-019.jpg/330px-David_Raya_France_v_Spain_7.24.26-019.jpg" alt="David Raya" onerror="this.style.display='none'"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/David_Raya" target="_blank" rel="noopener">David<br>Raya</a></h3>
+      <div class="club">31yo · 🇪🇸 Spain - Goalkeeper</div>
+      <p class="line">Known for his consistency, distribution, shot-stopping abilities, and box command, he is widely regarded as one of the best goalkeepers in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/David_Raya" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="59" data-country="Netherlands" data-club="Arsenal">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Jurri%C3%ABn_Timber" target="_blank" rel="noopener" style="display:contents" title="Jurriën Timber — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/JURRIEN_TIMBER.jpg/330px-JURRIEN_TIMBER.jpg" alt="Jurriën Timber" onerror="this.style.display='none'"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jurri%C3%ABn_Timber" target="_blank" rel="noopener">Jurriën<br>Timber</a></h3>
+      <div class="club">25yo · 🇳🇱 Netherlands - Defender</div>
+      <p class="line">Considered one of the best right-backs in the world, he is known for his athleticism, versatility, composure, and ball control.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jurri%C3%ABn_Timber" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="60" data-country="Brazil" data-club="Arsenal">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Gabriel_Magalh%C3%A3es" target="_blank" rel="noopener" style="display:contents" title="Gabriel Magalhães — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Gabriel_Magalhaes_Brazil_V_Morocco_13_June_2026-132_%28cropped%29.jpg/330px-Gabriel_Magalhaes_Brazil_V_Morocco_13_June_2026-132_%28cropped%29.jpg" alt="Gabriel Magalhães" onerror="this.style.display='none'"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Gabriel_Magalh%C3%A3es" target="_blank" rel="noopener">Gabriel<br>Magalhães</a></h3>
+      <div class="club">29yo · 🇧🇷 Brazil - Defender</div>
+      <p class="line">Known for his strength, aggression, tackling, passion and aerial threat, he is regarded as one of the best defenders in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gabriel_Magalh%C3%A3es" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="61" data-country="Italy" data-club="Arsenal">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Riccardo_Calafiori" target="_blank" rel="noopener" style="display:contents" title="Riccardo Calafiori — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2024_Emirates_Cup_-_Riccardo_Calafiori_%282%29_%28cropped%29.jpg/330px-2024_Emirates_Cup_-_Riccardo_Calafiori_%282%29_%28cropped%29.jpg" alt="Riccardo Calafiori" onerror="this.style.display='none'"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Riccardo_Calafiori" target="_blank" rel="noopener">Riccardo<br>Calafiori</a></h3>
+      <div class="club">24yo · 🇮🇹 Italy - Defender</div>
+      <p class="line">He is considered to be one of the best left-backs in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Riccardo_Calafiori" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="62" data-country="Spain" data-club="Arsenal">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Mart%C3%ADn_Zubimendi" target="_blank" rel="noopener" style="display:contents" title="Martín Zubimendi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Mart%C3%ADn_Zubimendi.jpg/330px-Mart%C3%ADn_Zubimendi.jpg" alt="Martín Zubimendi" onerror="this.style.display='none'"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Mart%C3%ADn_Zubimendi" target="_blank" rel="noopener">Martín<br>Zubimendi</a></h3>
+      <div class="club">27yo · 🇪🇸 Spain - Midfielder</div>
+      <p class="line">Midfielder in Arsenal&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Mart%C3%ADn_Zubimendi" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="63" data-country="Norway" data-club="Arsenal">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Martin_%C3%98degaard" target="_blank" rel="noopener" style="display:contents" title="Martin Ødegaard — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Martin_Odegaard_France_v_Norway_26_June_26-014.jpg/330px-Martin_Odegaard_France_v_Norway_26_June_26-014.jpg" alt="Martin Ødegaard" onerror="this.style.display='none'"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Martin_%C3%98degaard" target="_blank" rel="noopener">Martin<br>Ødegaard</a></h3>
+      <div class="club">28yo · 🇳🇴 Norway - Midfielder</div>
+      <p class="line">Midfielder in Arsenal&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Martin_%C3%98degaard" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="64" data-country="Sweden" data-club="Arsenal">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Viktor_Gy%C3%B6keres" target="_blank" rel="noopener" style="display:contents" title="Viktor Gyökeres — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Viktor_Gy%C3%B6keres_2026-06-04_1_%28cropped%29.jpg/330px-Viktor_Gy%C3%B6keres_2026-06-04_1_%28cropped%29.jpg" alt="Viktor Gyökeres" onerror="this.style.display='none'"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Viktor_Gy%C3%B6keres" target="_blank" rel="noopener">Viktor<br>Gyökeres</a></h3>
+      <div class="club">28yo · 🇸🇪 Sweden - Forward</div>
+      <p class="line">Forward in Arsenal&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Viktor_Gy%C3%B6keres" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="65" data-country="England" data-club="Arsenal">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Eberechi_Eze" target="_blank" rel="noopener" style="display:contents" title="Eberechi Eze — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Eberechi_Eze_England_v_Ghana_23_June_2026-039.jpg/330px-Eberechi_Eze_England_v_Ghana_23_June_2026-039.jpg" alt="Eberechi Eze" onerror="this.style.display='none'"></a>
+      <div class="lg">Arsenal</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Eberechi_Eze" target="_blank" rel="noopener">Eberechi<br>Eze</a></h3>
+      <div class="club">28yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Forward</div>
+      <p class="line">Forward in Arsenal&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Eberechi_Eze" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="66" data-country="Brazil" data-club="Liverpool">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Alisson_Becker" target="_blank" rel="noopener" style="display:contents" title="Alisson Becker — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Alisson_Becker_Brazil_V_Morocco_13_June_2026-117_%28cropped%29.jpg/330px-Alisson_Becker_Brazil_V_Morocco_13_June_2026-117_%28cropped%29.jpg" alt="Alisson Becker" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Alisson_Becker" target="_blank" rel="noopener">Alisson<br>Becker</a></h3>
+      <div class="club">34yo · 🇧🇷 Brazil - Goalkeeper</div>
+      <p class="line">He is regarded as one of the best goalkeepers in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alisson_Becker" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="67" data-country="Netherlands" data-club="Liverpool">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Virgil_van_Dijk" target="_blank" rel="noopener" style="display:contents" title="Virgil van Dijk — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/20160604_AUT_NED_8876_%28cropped%29.jpg/330px-20160604_AUT_NED_8876_%28cropped%29.jpg" alt="Virgil van Dijk" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Virgil_van_Dijk" target="_blank" rel="noopener">Virgil<br>van Dijk</a></h3>
+      <div class="club">35yo · 🇳🇱 Netherlands - Defender</div>
+      <p class="line">Widely regarded as one of the best defenders of his generation, and one of the greatest defenders in Premier League history, he is known for his strength, leadership, speed and aerial ability.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Virgil_van_Dijk" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="68" data-country="Argentina" data-club="Liverpool">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Alexis_Mac_Allister" target="_blank" rel="noopener" style="display:contents" title="Alexis Mac Allister — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Alexis_Mac_Allister_Argentina_v_Egypt_7_July_2026-182.jpg/330px-Alexis_Mac_Allister_Argentina_v_Egypt_7_July_2026-182.jpg" alt="Alexis Mac Allister" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Alexis_Mac_Allister" target="_blank" rel="noopener">Alexis<br>Mac Allister</a></h3>
+      <div class="club">28yo · 🇦🇷 Argentina - Midfielder</div>
+      <p class="line">He is regarded as one of the best central midfielders in the world and has been praised for his intelligence, passing range, tactical awareness, and ability to control the tempo of play.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alexis_Mac_Allister" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="69" data-country="Netherlands" data-club="Liverpool">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Jeremie_Frimpong" target="_blank" rel="noopener" style="display:contents" title="Jeremie Frimpong — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Jeremie_Frimpong_04012026_%283%29_%28cropped%29.jpg/330px-Jeremie_Frimpong_04012026_%283%29_%28cropped%29.jpg" alt="Jeremie Frimpong" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jeremie_Frimpong" target="_blank" rel="noopener">Jeremie<br>Frimpong</a></h3>
+      <div class="club">26yo · 🇳🇱 Netherlands - Defender</div>
+      <p class="line">Defender in Liverpool&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jeremie_Frimpong" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="70" data-country="France" data-club="Liverpool">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Jacquet" target="_blank" rel="noopener" style="display:contents" title="Jérémy Jacquet — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Jacquet_asse_srfc_2425.png/330px-Jacquet_asse_srfc_2425.png" alt="Jérémy Jacquet" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Jacquet" target="_blank" rel="noopener">Jérémy<br>Jacquet</a></h3>
+      <div class="club">21yo · 🇫🇷 France - Defender</div>
+      <p class="line">Defender in Liverpool&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Jacquet" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="71" data-country="Hungary" data-club="Liverpool">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Milos_Kerkez" target="_blank" rel="noopener" style="display:contents" title="Milos Kerkez — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Milot_Kerkez_%28cropped%29.png/330px-Milot_Kerkez_%28cropped%29.png" alt="Milos Kerkez" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Milos_Kerkez" target="_blank" rel="noopener">Milos<br>Kerkez</a></h3>
+      <div class="club">23yo · 🇭🇺 Hungary - Defender</div>
+      <p class="line">Born in Serbia, he plays for the Hungary national team.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Milos_Kerkez" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="72" data-country="Netherlands" data-club="Liverpool">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Ryan_Gravenberch" target="_blank" rel="noopener" style="display:contents" title="Ryan Gravenberch — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3342_by_Stepro_%28cropped%29.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3342_by_Stepro_%28cropped%29.jpg" alt="Ryan Gravenberch" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ryan_Gravenberch" target="_blank" rel="noopener">Ryan<br>Gravenberch</a></h3>
+      <div class="club">24yo · 🇳🇱 Netherlands - Midfielder</div>
+      <p class="line">Midfielder in Liverpool&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ryan_Gravenberch" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="73" data-country="Hungary" data-club="Liverpool">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Dominik_Szoboszlai" target="_blank" rel="noopener" style="display:contents" title="Dominik Szoboszlai — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Dominik_Szoboszlai_04012026_%281%29.jpg/330px-Dominik_Szoboszlai_04012026_%281%29.jpg" alt="Dominik Szoboszlai" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Dominik_Szoboszlai" target="_blank" rel="noopener">Dominik<br>Szoboszlai</a></h3>
+      <div class="club">26yo · 🇭🇺 Hungary - Midfielder</div>
+      <p class="line">A versatile player, Szoboszlai can be deployed as a central or attacking midfielder, wide midfielder or right-back.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Dominik_Szoboszlai" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="74" data-country="England" data-club="Liverpool">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Rio_Ngumoha" target="_blank" rel="noopener" style="display:contents" title="Rio Ngumoha — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rio_Ngumoha_04012026_%286%29.jpg/330px-Rio_Ngumoha_04012026_%286%29.jpg" alt="Rio Ngumoha" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Rio_Ngumoha" target="_blank" rel="noopener">Rio<br>Ngumoha</a></h3>
+      <div class="club">18yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Forward</div>
+      <p class="line">Forward in Liverpool&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rio_Ngumoha" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="75" data-country="Netherlands" data-club="Liverpool">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Cody_Gakpo" target="_blank" rel="noopener" style="display:contents" title="Cody Gakpo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Cody_Gakpo_06042025_%282%29_%28cropped%29.jpg/330px-Cody_Gakpo_06042025_%282%29_%28cropped%29.jpg" alt="Cody Gakpo" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Cody_Gakpo" target="_blank" rel="noopener">Cody<br>Gakpo</a></h3>
+      <div class="club">27yo · 🇳🇱 Netherlands - Forward</div>
+      <p class="line">Forward in Liverpool&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Cody_Gakpo" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="76" data-country="Sweden" data-club="Liverpool">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Alexander_Isak" target="_blank" rel="noopener" style="display:contents" title="Alexander Isak — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Alexander_Isak_-_Sweden_-_Greece21_%28cropped%29.jpg/330px-Alexander_Isak_-_Sweden_-_Greece21_%28cropped%29.jpg" alt="Alexander Isak" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Alexander_Isak" target="_blank" rel="noopener">Alexander<br>Isak</a></h3>
+      <div class="club">27yo · 🇸🇪 Sweden - Forward</div>
+      <p class="line">Forward in Liverpool&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alexander_Isak" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="77" data-country="Spain" data-club="Barcelona">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Pedri" target="_blank" rel="noopener" style="display:contents" title="Pedri — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Pedri_France_v_Spain_7.24.26-245.jpg/330px-Pedri_France_v_Spain_7.24.26-245.jpg" alt="Pedri" onerror="this.style.display='none'"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Pedri" target="_blank" rel="noopener">Pedri</a></h3>
+      <div class="club">24yo · 🇪🇸 Spain - Midfielder</div>
+      <p class="line">He is regarded as one of the best midfielders in the world.</p>
+      <div class="stat"><b>23</b> league apps 25/26 · No. 8</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Pedri" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="78" data-country="Brazil" data-club="Barcelona">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Raphinha" target="_blank" rel="noopener" style="display:contents" title="Raphinha — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Raphinha_Brazil_V_Morocco_13_June_2026-133_%28cropped%29.jpg/330px-Raphinha_Brazil_V_Morocco_13_June_2026-133_%28cropped%29.jpg" alt="Raphinha" onerror="this.style.display='none'"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Raphinha" target="_blank" rel="noopener">Raphinha</a></h3>
+      <div class="club">30yo · 🇧🇷 Brazil - Forward</div>
+      <p class="line">Considered one of the best players in the world, he is known for his pace, playmaking, work rate and finishing.</p>
+      <div class="stat"><b>18</b> league apps 25/26 · No. 11</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Raphinha" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="79" data-country="Spain" data-club="Barcelona">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Eric_García_(footballer,_born_2001)" target="_blank" rel="noopener" style="display:contents" title="Eric García — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Eric_Garcia_autographs_2022_%28cropped%29.jpg/330px-Eric_Garcia_autographs_2022_%28cropped%29.jpg" alt="Eric García" onerror="this.style.display='none'"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Eric_García_(footballer,_born_2001)" target="_blank" rel="noopener">Eric<br>García</a></h3>
+      <div class="club">25yo · 🇪🇸 Spain - Defender</div>
+      <p class="line">Primarily a centre-back, he is also capable of playing as a full-back or defensive midfielder.</p>
+      <div class="stat"><b>33</b> league apps 25/26 · No. 24</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Eric_García_(footballer,_born_2001)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="80" data-country="Spain" data-club="Barcelona">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Pau_Cubarsí" target="_blank" rel="noopener" style="display:contents" title="Pau Cubarsí — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Pau_Cubarsi_France_v_Spain_7.24.26-115.jpg/330px-Pau_Cubarsi_France_v_Spain_7.24.26-115.jpg" alt="Pau Cubarsí" onerror="this.style.display='none'"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Pau_Cubarsí" target="_blank" rel="noopener">Pau<br>Cubarsí</a></h3>
+      <div class="club">19yo · 🇪🇸 Spain - Defender</div>
+      <p class="line">In July 2025, Sports Illustrated and ESPN ranked Cubarsí as the sixth-best centre-back in world football.</p>
+      <div class="stat"><b>31</b> league apps 25/26 · No. 5</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Pau_Cubarsí" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="81" data-country="Spain" data-club="Barcelona">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Joan_Garcia" target="_blank" rel="noopener" style="display:contents" title="Joan Garcia — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Joan_Garcia_France_v_Spain_7.24.26-031.jpg/330px-Joan_Garcia_France_v_Spain_7.24.26-031.jpg" alt="Joan Garcia" onerror="this.style.display='none'"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Joan_Garcia" target="_blank" rel="noopener">Joan<br>Garcia</a></h3>
+      <div class="club">25yo · 🇪🇸 Spain - Goalkeeper</div>
+      <p class="line">Goalkeeper in Barcelona&#x27;s 2026–27 squad.</p>
+      <div class="stat"><b>30</b> league apps 25/26 · No. 13</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Joan_Garcia" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="82" data-country="Spain" data-club="Barcelona">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Gerard_Martín_(footballer)" target="_blank" rel="noopener" style="display:contents" title="Gerard Martín — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/5/53/2025_04_26_Final_de_la_Copa_del_Rey_-_54482387776_-_Gerard_Mart%C3%ADn.jpg" alt="Gerard Martín" onerror="this.style.display='none'"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Gerard_Martín_(footballer)" target="_blank" rel="noopener">Gerard<br>Martín</a></h3>
+      <div class="club">24yo · 🇪🇸 Spain - Defender</div>
+      <p class="line">Primarily a left-back, he is also capable of playing as a centre-back.</p>
+      <div class="stat"><b>26</b> league apps 25/26 · No. 18</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gerard_Martín_(footballer)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="83" data-country="France" data-club="Barcelona">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Jules_Koundé" target="_blank" rel="noopener" style="display:contents" title="Jules Koundé — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Jules_Kounde_France_v_Senegal_16_June_2026-449_%28cropped%29.jpg/330px-Jules_Kounde_France_v_Senegal_16_June_2026-449_%28cropped%29.jpg" alt="Jules Koundé" onerror="this.style.display='none'"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jules_Koundé" target="_blank" rel="noopener">Jules<br>Koundé</a></h3>
+      <div class="club">28yo · 🇫🇷 France - Defender</div>
+      <p class="line">Primarily a right-back, he is also capable of playing as a centre-back.</p>
+      <div class="stat"><b>24</b> league apps 25/26 · No. 23</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jules_Koundé" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="84" data-country="Spain" data-club="Barcelona">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Dani_Olmo" target="_blank" rel="noopener" style="display:contents" title="Dani Olmo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Dani_Olmo_France_v_Spain_7.24.26-176_%28cropped%29.jpg/330px-Dani_Olmo_France_v_Spain_7.24.26-176_%28cropped%29.jpg" alt="Dani Olmo" onerror="this.style.display='none'"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Dani_Olmo" target="_blank" rel="noopener">Dani<br>Olmo</a></h3>
+      <div class="club">28yo · 🇪🇸 Spain - Midfielder</div>
+      <p class="line">Midfielder in Barcelona&#x27;s 2026–27 squad.</p>
+      <div class="stat"><b>24</b> league apps 25/26 · No. 20</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Dani_Olmo" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="85" data-country="Spain" data-club="Barcelona">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Ferran_Torres" target="_blank" rel="noopener" style="display:contents" title="Ferran Torres — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Ferran_Torres_France_v_Spain_7.24.26-237_%28cropped%29.jpg/330px-Ferran_Torres_France_v_Spain_7.24.26-237_%28cropped%29.jpg" alt="Ferran Torres" onerror="this.style.display='none'"></a>
+      <div class="lg">Barcelona</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ferran_Torres" target="_blank" rel="noopener">Ferran<br>Torres</a></h3>
+      <div class="club">26yo · 🇪🇸 Spain - Forward</div>
+      <p class="line">Forward in Barcelona&#x27;s 2026–27 squad.</p>
+      <div class="stat"><b>23</b> league apps 25/26 · No. 7</div>
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ferran_Torres" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="86" data-country="United States" data-club="Atlético Madrid">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Johnny_Cardoso" target="_blank" rel="noopener" style="display:contents" title="Johnny Cardoso — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Johnny_Cardoso_USMNT_v_Belgium_Mar_28_2026-115_%28cropped%29.jpg/330px-Johnny_Cardoso_USMNT_v_Belgium_Mar_28_2026-115_%28cropped%29.jpg" alt="Johnny Cardoso" onerror="this.style.display='none'"></a>
+      <div class="lg">Atlético Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Johnny_Cardoso" target="_blank" rel="noopener">Johnny<br>Cardoso</a></h3>
+      <div class="club">25yo · 🇺🇸 United States - Midfielder</div>
+      <p class="line">João Lucas de Souza Cardoso, better known as Johnny Cardoso or Johnny, is an American professional soccer player who plays as a midfielder for La Liga club Atlético Madrid and the United States national team.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Johnny_Cardoso" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="87" data-country="Argentina" data-club="Atlético Madrid">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Julián_Alvarez" target="_blank" rel="noopener" style="display:contents" title="Julián Alvarez — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Julian_Alvarez_Argentina_v_Egypt_7_July_2026-056.jpg/330px-Julian_Alvarez_Argentina_v_Egypt_7_July_2026-056.jpg" alt="Julián Alvarez" onerror="this.style.display='none'"></a>
+      <div class="lg">Atlético Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Julián_Alvarez" target="_blank" rel="noopener">Julián<br>Alvarez</a></h3>
+      <div class="club">26yo · 🇦🇷 Argentina - Forward</div>
+      <p class="line">He is considered as one of the world&#x27;s best strikers and is known for his goalscoring ability, movement, pressing, versatility, and link-up play.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Julián_Alvarez" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="88" data-country="Argentina" data-club="Atlético Madrid">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Juan_Musso" target="_blank" rel="noopener" style="display:contents" title="Juan Musso — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Musso_Udinese.png/330px-Musso_Udinese.png" alt="Juan Musso" onerror="this.style.display='none'"></a>
+      <div class="lg">Atlético Madrid</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Juan_Musso" target="_blank" rel="noopener">Juan<br>Musso</a></h3>
+      <div class="club">32yo · 🇦🇷 Argentina - Goalkeeper</div>
+      <p class="line">Goalkeeper in Atlético Madrid&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Juan_Musso" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="89" data-country="Spain" data-club="Real Betis">
+      <div class="shirt">GK</div>
+      
+      <div class="lg">Real Betis</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Álvaro_Valles" target="_blank" rel="noopener">Álvaro<br>Valles</a></h3>
+      <div class="club">29yo · 🇪🇸 Spain - Goalkeeper</div>
+      <p class="line">Goalkeeper in Real Betis&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Álvaro_Valles" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="90" data-country="Spain" data-club="Real Betis">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Héctor_Bellerín" target="_blank" rel="noopener" style="display:contents" title="Héctor Bellerín — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/1_hector_bellerin_2015.jpg/330px-1_hector_bellerin_2015.jpg" alt="Héctor Bellerín" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Betis</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Héctor_Bellerín" target="_blank" rel="noopener">Héctor<br>Bellerín</a></h3>
+      <div class="club">31yo · 🇪🇸 Spain - Defender</div>
+      <p class="line">Defender in Real Betis&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Héctor_Bellerín" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="liga" data-fav="91" data-country="Spain" data-club="Real Betis">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Diego_Llorente" target="_blank" rel="noopener" style="display:contents" title="Diego Llorente — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Real_Sociedad_-_Red_Bull_Salzburgo_62_%2826433581918%29_%28cropped%29.jpg" alt="Diego Llorente" onerror="this.style.display='none'"></a>
+      <div class="lg">Real Betis</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Diego_Llorente" target="_blank" rel="noopener">Diego<br>Llorente</a></h3>
+      <div class="club">33yo · 🇪🇸 Spain - Defender</div>
+      <p class="line">Defender in Real Betis&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Diego_Llorente" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="92" data-country="Portugal" data-club="Man United">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Bruno_Fernandes" target="_blank" rel="noopener" style="display:contents" title="Bruno Fernandes — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Bruno_Fernandes_USMNT_v_Portugal_Mar_31_2026-27_%28cropped%29.jpg/330px-Bruno_Fernandes_USMNT_v_Portugal_Mar_31_2026-27_%28cropped%29.jpg" alt="Bruno Fernandes" onerror="this.style.display='none'"></a>
+      <div class="lg">Man United</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Bruno_Fernandes" target="_blank" rel="noopener">Bruno<br>Fernandes</a></h3>
+      <div class="club">32yo · 🇵🇹 Portugal - Midfielder</div>
+      <p class="line">He is widely regarded as one of the best attacking midfielders in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Bruno_Fernandes" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="93" data-country="Netherlands" data-club="Man United">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Matthijs_de_Ligt" target="_blank" rel="noopener" style="display:contents" title="Matthijs de Ligt — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/c/c9/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_Matthijs_de_Ligt_%28cropped%29.jpg" alt="Matthijs de Ligt" onerror="this.style.display='none'"></a>
+      <div class="lg">Man United</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Matthijs_de_Ligt" target="_blank" rel="noopener">Matthijs<br>de Ligt</a></h3>
+      <div class="club">27yo · 🇳🇱 Netherlands - Defender</div>
+      <p class="line">He is known for his aggressive tackling, aerial ability, leadership and strength.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Matthijs_de_Ligt" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="94" data-country="Brazil" data-club="Man United">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Andrey_Santos" target="_blank" rel="noopener" style="display:contents" title="Andrey Santos — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Santos_asse_rcsa_2425.jpg/330px-Santos_asse_rcsa_2425.jpg" alt="Andrey Santos" onerror="this.style.display='none'"></a>
+      <div class="lg">Man United</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Andrey_Santos" target="_blank" rel="noopener">Andrey<br>Santos</a></h3>
+      <div class="club">22yo · 🇧🇷 Brazil - Midfielder</div>
+      <p class="line">Operating primarily as a central or defensive midfielder, Santos is known for his work rate, tackling, ball recovery, and ability to make late runs into the penalty area to score goals.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Andrey_Santos" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="95" data-country="England" data-club="Aston Villa">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Ollie_Watkins" target="_blank" rel="noopener" style="display:contents" title="Ollie Watkins — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Ollie_Watkins_England_v_Ghana_23_June_2026-035.jpg/330px-Ollie_Watkins_England_v_Ghana_23_June_2026-035.jpg" alt="Ollie Watkins" onerror="this.style.display='none'"></a>
+      <div class="lg">Aston Villa</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ollie_Watkins" target="_blank" rel="noopener">Ollie<br>Watkins</a></h3>
+      <div class="club">31yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Forward</div>
+      <p class="line">Described as a complete forward, Watkins is known for his finishing ability and work ethic.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ollie_Watkins" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="96" data-country="Australia" data-club="Aston Villa">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Joe_Gauci" target="_blank" rel="noopener" style="display:contents" title="Joe Gauci — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Joe_Gauci_October_2025_%28cropped%29.jpg/330px-Joe_Gauci_October_2025_%28cropped%29.jpg" alt="Joe Gauci" onerror="this.style.display='none'"></a>
+      <div class="lg">Aston Villa</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Joe_Gauci" target="_blank" rel="noopener">Joe<br>Gauci</a></h3>
+      <div class="club">26yo · 🇦🇺 Australia - Goalkeeper</div>
+      <p class="line">Joe Anthony Gauci is an Australian professional soccer player who plays as a goalkeeper for Premier League club Aston Villa and the Australia national team.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Joe_Gauci" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="97" data-country="Poland" data-club="Aston Villa">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Matty_Cash" target="_blank" rel="noopener" style="display:contents" title="Matty Cash — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Matty_Cash_%28cropped%29.jpg/330px-Matty_Cash_%28cropped%29.jpg" alt="Matty Cash" onerror="this.style.display='none'"></a>
+      <div class="lg">Aston Villa</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Matty_Cash" target="_blank" rel="noopener">Matty<br>Cash</a></h3>
+      <div class="club">29yo · 🇵🇱 Poland - Defender</div>
+      <p class="line">Born in England, he plays for the Poland national team.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Matty_Cash" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="98" data-country="England" data-club="Chelsea">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Cole_Palmer" target="_blank" rel="noopener" style="display:contents" title="Cole Palmer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Cole_Palmer_2025_FIFA_Club_World_Cup_Final.jpg" alt="Cole Palmer" onerror="this.style.display='none'"></a>
+      <div class="lg">Chelsea</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Cole_Palmer" target="_blank" rel="noopener">Cole<br>Palmer</a></h3>
+      <div class="club">24yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Midfielder</div>
+      <p class="line">Known for his dribbling and passing ability, he is widely regarded as one of the best attacking midfielders in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Cole_Palmer" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="99" data-country="Spain" data-club="Chelsea">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Robert_Sánchez" target="_blank" rel="noopener" style="display:contents" title="Robert Sánchez — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Robert_S%C3%A1nchez_FIFA_Club_World_Cup_final_extraction.jpg/330px-Robert_S%C3%A1nchez_FIFA_Club_World_Cup_final_extraction.jpg" alt="Robert Sánchez" onerror="this.style.display='none'"></a>
+      <div class="lg">Chelsea</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Robert_Sánchez" target="_blank" rel="noopener">Robert<br>Sánchez</a></h3>
+      <div class="club">29yo · 🇪🇸 Spain - Goalkeeper</div>
+      <p class="line">Goalkeeper in Chelsea&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Robert_Sánchez" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="100" data-country="England" data-club="Chelsea">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Tosin_Adarabioyo" target="_blank" rel="noopener" style="display:contents" title="Tosin Adarabioyo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tosin_Adarabioyo_FIFA_Club_World_Cup_extraction.jpg" alt="Tosin Adarabioyo" onerror="this.style.display='none'"></a>
+      <div class="lg">Chelsea</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Tosin_Adarabioyo" target="_blank" rel="noopener">Tosin<br>Adarabioyo</a></h3>
+      <div class="club">29yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Defender</div>
+      <p class="line">Defender in Chelsea&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Tosin_Adarabioyo" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="101" data-country="Argentina" data-club="Chelsea">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Enzo_Fernández" target="_blank" rel="noopener" style="display:contents" title="Enzo Fernández — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Enzo_Fernandez_Argentina_v_Egypt_7_July_2026-058.jpg/330px-Enzo_Fernandez_Argentina_v_Egypt_7_July_2026-058.jpg" alt="Enzo Fernández" onerror="this.style.display='none'"></a>
+      <div class="lg">Chelsea</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Enzo_Fernández" target="_blank" rel="noopener">Enzo<br>Fernández</a></h3>
+      <div class="club">25yo · 🇦🇷 Argentina - Midfielder</div>
+      <p class="line">Midfielder in Chelsea&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Enzo_Fernández" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="102" data-country="Italy" data-club="Tottenham Hotspur">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Guglielmo_Vicario" target="_blank" rel="noopener" style="display:contents" title="Guglielmo Vicario — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Guglielmo_Vicario.png" alt="Guglielmo Vicario" onerror="this.style.display='none'"></a>
+      <div class="lg">Tottenham Hotspur</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Guglielmo_Vicario" target="_blank" rel="noopener">Guglielmo<br>Vicario</a></h3>
+      <div class="club">30yo · 🇮🇹 Italy - Goalkeeper</div>
+      <p class="line">Goalkeeper in Tottenham Hotspur&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Guglielmo_Vicario" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="103" data-country="Austria" data-club="Tottenham Hotspur">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Kevin_Danso" target="_blank" rel="noopener" style="display:contents" title="Kevin Danso — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Kevin_Danso_ASSE_RCL_2425.jpg/330px-Kevin_Danso_ASSE_RCL_2425.jpg" alt="Kevin Danso" onerror="this.style.display='none'"></a>
+      <div class="lg">Tottenham Hotspur</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Kevin_Danso" target="_blank" rel="noopener">Kevin<br>Danso</a></h3>
+      <div class="club">28yo · 🇦🇹 Austria - Defender</div>
+      <p class="line">Defender in Tottenham Hotspur&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Kevin_Danso" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="104" data-country="Argentina" data-club="Tottenham Hotspur">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Marcos_Senesi" target="_blank" rel="noopener" style="display:contents" title="Marcos Senesi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Marcos_Senesi_Argentina_v_Egypt_7_July_2026-024.jpg/330px-Marcos_Senesi_Argentina_v_Egypt_7_July_2026-024.jpg" alt="Marcos Senesi" onerror="this.style.display='none'"></a>
+      <div class="lg">Tottenham Hotspur</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Marcos_Senesi" target="_blank" rel="noopener">Marcos<br>Senesi</a></h3>
+      <div class="club">29yo · 🇦🇷 Argentina - Defender</div>
+      <p class="line">Defender in Tottenham Hotspur&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Marcos_Senesi" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="105" data-country="England" data-club="Everton">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Jordan_Pickford" target="_blank" rel="noopener" style="display:contents" title="Jordan Pickford — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Jordan_Pickford_England_v_Ghana_23_June_2026-316_%28cropped%29.jpg/330px-Jordan_Pickford_England_v_Ghana_23_June_2026-316_%28cropped%29.jpg" alt="Jordan Pickford" onerror="this.style.display='none'"></a>
+      <div class="lg">Everton</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jordan_Pickford" target="_blank" rel="noopener">Jordan<br>Pickford</a></h3>
+      <div class="club">32yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Goalkeeper</div>
+      <p class="line">Goalkeeper in Everton&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jordan_Pickford" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="106" data-country="Scotland" data-club="Everton">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Nathan_Patterson_(footballer)" target="_blank" rel="noopener" style="display:contents" title="Nathan Patterson — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Nathan_Patterson_Scotland_v_Bolivia_6_June_2026-58.jpg/330px-Nathan_Patterson_Scotland_v_Bolivia_6_June_2026-58.jpg" alt="Nathan Patterson" onerror="this.style.display='none'"></a>
+      <div class="lg">Everton</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Nathan_Patterson_(footballer)" target="_blank" rel="noopener">Nathan<br>Patterson</a></h3>
+      <div class="club">25yo · 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland - Defender</div>
+      <p class="line">Defender in Everton&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nathan_Patterson_(footballer)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="107" data-country="England" data-club="Everton">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Michael_Keane_(footballer,_born_1993)" target="_blank" rel="noopener" style="display:contents" title="Michael Keane — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Michael_Keane_2017.jpg" alt="Michael Keane" onerror="this.style.display='none'"></a>
+      <div class="lg">Everton</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Michael_Keane_(footballer,_born_1993)" target="_blank" rel="noopener">Michael<br>Keane</a></h3>
+      <div class="club">33yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Defender</div>
+      <p class="line">Defender in Everton&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Michael_Keane_(footballer,_born_1993)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="108" data-country="Germany" data-club="Borussia Dortmund">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Nico_Schlotterbeck" target="_blank" rel="noopener" style="display:contents" title="Nico Schlotterbeck — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg" alt="Nico Schlotterbeck" onerror="this.style.display='none'"></a>
+      <div class="lg">Borussia Dortmund</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Nico_Schlotterbeck" target="_blank" rel="noopener">Nico<br>Schlotterbeck</a></h3>
+      <div class="club">27yo · 🇩🇪 Germany - Defender</div>
+      <p class="line">He is known for his build-up play, aerial ability, speed, strength and aggressive tackling.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nico_Schlotterbeck" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="109" data-country="Switzerland" data-club="Borussia Dortmund">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Gregor_Kobel" target="_blank" rel="noopener" style="display:contents" title="Gregor Kobel — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93090.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93090.jpg" alt="Gregor Kobel" onerror="this.style.display='none'"></a>
+      <div class="lg">Borussia Dortmund</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Gregor_Kobel" target="_blank" rel="noopener">Gregor<br>Kobel</a></h3>
+      <div class="club">29yo · 🇨🇭 Switzerland - Goalkeeper</div>
+      <p class="line">Goalkeeper in Borussia Dortmund&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gregor_Kobel" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="110" data-country="Brazil" data-club="Borussia Dortmund">
+      <div class="shirt">DF</div>
+      
+      <div class="lg">Borussia Dortmund</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Yan_Couto" target="_blank" rel="noopener">Yan<br>Couto</a></h3>
+      <div class="club">24yo · 🇧🇷 Brazil - Defender</div>
+      <p class="line">Defender in Borussia Dortmund&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Yan_Couto" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="111" data-country="Hungary" data-club="RB Leipzig">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Péter_Gulácsi" target="_blank" rel="noopener" style="display:contents" title="Péter Gulácsi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3666_by_Stepro.jpg/330px-2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3666_by_Stepro.jpg" alt="Péter Gulácsi" onerror="this.style.display='none'"></a>
+      <div class="lg">RB Leipzig</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Péter_Gulácsi" target="_blank" rel="noopener">Péter<br>Gulácsi</a></h3>
+      <div class="club">36yo · 🇭🇺 Hungary - Goalkeeper</div>
+      <p class="line">Goalkeeper in RB Leipzig&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Péter_Gulácsi" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="112" data-country="France" data-club="RB Leipzig">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Abdoul_Koné" target="_blank" rel="noopener" style="display:contents" title="Abdoul Koné — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Foire_de_chalons_Foot_Reims_1585898_%28cropped%29.jpg/330px-Foire_de_chalons_Foot_Reims_1585898_%28cropped%29.jpg" alt="Abdoul Koné" onerror="this.style.display='none'"></a>
+      <div class="lg">RB Leipzig</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Abdoul_Koné" target="_blank" rel="noopener">Abdoul<br>Koné</a></h3>
+      <div class="club">21yo · 🇫🇷 France - Defender</div>
+      <p class="line">Defender in RB Leipzig&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Abdoul_Koné" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="buli" data-fav="113" data-country="France" data-club="RB Leipzig">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Maxime_Estève" target="_blank" rel="noopener" style="display:contents" title="Maxime Estève — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Maxime_Esteve_2021.jpg/330px-Maxime_Esteve_2021.jpg" alt="Maxime Estève" onerror="this.style.display='none'"></a>
+      <div class="lg">RB Leipzig</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Maxime_Estève" target="_blank" rel="noopener">Maxime<br>Estève</a></h3>
+      <div class="club">24yo · 🇫🇷 France - Defender</div>
+      <p class="line">Defender in RB Leipzig&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Maxime_Estève" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="114" data-country="Italy" data-club="Inter Milan">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Federico_Dimarco" target="_blank" rel="noopener" style="display:contents" title="Federico Dimarco — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Norway_Italy_-_June_2025_A_26_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_26_%28cropped%29.jpg" alt="Federico Dimarco" onerror="this.style.display='none'"></a>
+      <div class="lg">Inter Milan</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Federico_Dimarco" target="_blank" rel="noopener">Federico<br>Dimarco</a></h3>
+      <div class="club">29yo · 🇮🇹 Italy - Defender</div>
+      <p class="line">He is known for his pace, crossing, and threatening goal-scoring presence from outside the box. Dimarco is also considered to be one of the best left backs in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Federico_Dimarco" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="115" data-country="Poland" data-club="Inter Milan">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Piotr_Zieliński" target="_blank" rel="noopener" style="display:contents" title="Piotr Zieliński — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/d/df/Piotr_Zielinski_2018_%28cropped%29.jpg" alt="Piotr Zieliński" onerror="this.style.display='none'"></a>
+      <div class="lg">Inter Milan</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Piotr_Zieliński" target="_blank" rel="noopener">Piotr<br>Zieliński</a></h3>
+      <div class="club">32yo · 🇵🇱 Poland - Midfielder</div>
+      <p class="line">Known for his versatility, precision passing, dribbling and endurance, he is considered one of the greatest Polish footballers of all time.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Piotr_Zieliński" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="116" data-country="Brazil" data-club="Inter Milan">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Carlos_Augusto_(footballer)" target="_blank" rel="noopener" style="display:contents" title="Carlos Augusto — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/FC_Salzburg_gegen_Inter_Mailand_%28UEFA_Championsleague_2023-11-08%29_15.jpg/330px-FC_Salzburg_gegen_Inter_Mailand_%28UEFA_Championsleague_2023-11-08%29_15.jpg" alt="Carlos Augusto" onerror="this.style.display='none'"></a>
+      <div class="lg">Inter Milan</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Carlos_Augusto_(footballer)" target="_blank" rel="noopener">Carlos<br>Augusto</a></h3>
+      <div class="club">27yo · 🇧🇷 Brazil - Defender</div>
+      <p class="line">A versatile defender known for his crossing, he can also operate as a centre-back.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Carlos_Augusto_(footballer)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="117" data-country="Croatia" data-club="Inter Milan">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Petar_Sučić" target="_blank" rel="noopener" style="display:contents" title="Petar Sučić — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Petar_Sucic_Croatia_v_Portugal_2_July_2026-089.jpg/330px-Petar_Sucic_Croatia_v_Portugal_2_July_2026-089.jpg" alt="Petar Sučić" onerror="this.style.display='none'"></a>
+      <div class="lg">Inter Milan</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Petar_Sučić" target="_blank" rel="noopener">Petar<br>Sučić</a></h3>
+      <div class="club">23yo · 🇭🇷 Croatia - Midfielder</div>
+      <p class="line">Sučić is known for his speed, endurance, and work rate, setting multiple records for distance covered and sprinting. In his second season at Inter Milan, they won the 2026 domestic double: the Serie A title and Italian Cup.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Petar_Sučić" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="118" data-country="Italy" data-club="Juventus">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Mattia_Perin" target="_blank" rel="noopener" style="display:contents" title="Mattia Perin — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Mattia_Perin_2016.jpg/330px-Mattia_Perin_2016.jpg" alt="Mattia Perin" onerror="this.style.display='none'"></a>
+      <div class="lg">Juventus</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Mattia_Perin" target="_blank" rel="noopener">Mattia<br>Perin</a></h3>
+      <div class="club">34yo · 🇮🇹 Italy - Goalkeeper</div>
+      <p class="line">Goalkeeper in Juventus&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Mattia_Perin" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="119" data-country="Turkey" data-club="Juventus">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Zeki_Çelik" target="_blank" rel="noopener" style="display:contents" title="Zeki Çelik — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Zeki_%C3%A7elik_2020.jpg/330px-Zeki_%C3%A7elik_2020.jpg" alt="Zeki Çelik" onerror="this.style.display='none'"></a>
+      <div class="lg">Juventus</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Zeki_Çelik" target="_blank" rel="noopener">Zeki<br>Çelik</a></h3>
+      <div class="club">29yo · 🇹🇷 Turkey - Defender</div>
+      <p class="line">Mainly a right-back, he can also be deployed as a centre-back in a back three.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Zeki_Çelik" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="120" data-country="Brazil" data-club="Juventus">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Gleison_Bremer" target="_blank" rel="noopener" style="display:contents" title="Bremer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Bremer_Brazil_V_Morocco_13_June_2026-143_%28cropped%29.jpg/330px-Bremer_Brazil_V_Morocco_13_June_2026-143_%28cropped%29.jpg" alt="Bremer" onerror="this.style.display='none'"></a>
+      <div class="lg">Juventus</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Gleison_Bremer" target="_blank" rel="noopener">Bremer</a></h3>
+      <div class="club">29yo · 🇧🇷 Brazil - Defender</div>
+      <p class="line">Defender in Juventus&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gleison_Bremer" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="121" data-country="Belgium" data-club="Napoli">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Kevin_De_Bruyne" target="_blank" rel="noopener" style="display:contents" title="Kevin De Bruyne — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Kevin_De_Bruyne_USMNT_v_Belgium_Mar_28_2026-64_%28cropped%29.jpg/330px-Kevin_De_Bruyne_USMNT_v_Belgium_Mar_28_2026-64_%28cropped%29.jpg" alt="Kevin De Bruyne" onerror="this.style.display='none'"></a>
+      <div class="lg">Napoli</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Kevin_De_Bruyne" target="_blank" rel="noopener">Kevin<br>De Bruyne</a></h3>
+      <div class="club">35yo · 🇧🇪 Belgium - Midfielder</div>
+      <p class="line">Widely regarded as one of the greatest players of his generation and one of the best players in Premier League history, De Bruyne has been described as a &quot;complete&quot; footballer.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Kevin_De_Bruyne" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="122" data-country="Italy" data-club="Napoli">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Alex_Meret" target="_blank" rel="noopener" style="display:contents" title="Alex Meret — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Alex_Meret_%28cropped%29.jpg/330px-Alex_Meret_%28cropped%29.jpg" alt="Alex Meret" onerror="this.style.display='none'"></a>
+      <div class="lg">Napoli</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Alex_Meret" target="_blank" rel="noopener">Alex<br>Meret</a></h3>
+      <div class="club">29yo · 🇮🇹 Italy - Goalkeeper</div>
+      <p class="line">Goalkeeper in Napoli&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alex_Meret" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="123" data-country="Spain" data-club="Napoli">
+      <div class="shirt">DF</div>
+      
+      <div class="lg">Napoli</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Miguel_Gutiérrez_(footballer,_born_2001)" target="_blank" rel="noopener">Miguel<br>Gutiérrez</a></h3>
+      <div class="club">25yo · 🇪🇸 Spain - Defender</div>
+      <p class="line">Defender in Napoli&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Miguel_Gutiérrez_(footballer,_born_2001)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="124" data-country="Slovakia" data-club="Olympique Lyonnais">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Dominik_Greif" target="_blank" rel="noopener" style="display:contents" title="Dominik Greif — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Zen-Slovan_%281%3B_cropped%29.jpg/330px-Zen-Slovan_%281%3B_cropped%29.jpg" alt="Dominik Greif" onerror="this.style.display='none'"></a>
+      <div class="lg">Olympique Lyonnais</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Dominik_Greif" target="_blank" rel="noopener">Dominik<br>Greif</a></h3>
+      <div class="club">29yo · 🇸🇰 Slovakia - Goalkeeper</div>
+      <p class="line">Goalkeeper in Olympique Lyonnais&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Dominik_Greif" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="125" data-country="Argentina" data-club="Olympique Lyonnais">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Nicolás_Tagliafico" target="_blank" rel="noopener" style="display:contents" title="Nicolás Tagliafico — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Nicolas_Tagliafico_Argentina_v_Egypt_7_July_2026-126_%28cropped%29.jpg/330px-Nicolas_Tagliafico_Argentina_v_Egypt_7_July_2026-126_%28cropped%29.jpg" alt="Nicolás Tagliafico" onerror="this.style.display='none'"></a>
+      <div class="lg">Olympique Lyonnais</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Nicolás_Tagliafico" target="_blank" rel="noopener">Nicolás<br>Tagliafico</a></h3>
+      <div class="club">34yo · 🇦🇷 Argentina - Defender</div>
+      <p class="line">Defender in Olympique Lyonnais&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nicolás_Tagliafico" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="126" data-country="Brazil" data-club="Olympique Lyonnais">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Abner_Vinícius" target="_blank" rel="noopener" style="display:contents" title="Abner — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Vinicius_asse_ol_2425.png/330px-Vinicius_asse_ol_2425.png" alt="Abner" onerror="this.style.display='none'"></a>
+      <div class="lg">Olympique Lyonnais</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Abner_Vinícius" target="_blank" rel="noopener">Abner</a></h3>
+      <div class="club">26yo · 🇧🇷 Brazil - Defender</div>
+      <p class="line">Defender in Olympique Lyonnais&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Abner_Vinícius" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="127" data-country="Argentina" data-club="Olympique de Marseille">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Gerónimo_Rulli" target="_blank" rel="noopener" style="display:contents" title="Gerónimo Rulli — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Rulli_asse_om_2425.png/330px-Rulli_asse_om_2425.png" alt="Gerónimo Rulli" onerror="this.style.display='none'"></a>
+      <div class="lg">Olympique de Marseille</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Gerónimo_Rulli" target="_blank" rel="noopener">Gerónimo<br>Rulli</a></h3>
+      <div class="club">34yo · 🇦🇷 Argentina - Goalkeeper</div>
+      <p class="line">Goalkeeper in Olympique de Marseille&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gerónimo_Rulli" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="128" data-country="England" data-club="Olympique de Marseille">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/CJ_Egan-Riley" target="_blank" rel="noopener" style="display:contents" title="CJ Egan-Riley — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/CJ_Egan-Riley_26042025_%282%29.jpg/330px-CJ_Egan-Riley_26042025_%282%29.jpg" alt="CJ Egan-Riley" onerror="this.style.display='none'"></a>
+      <div class="lg">Olympique de Marseille</div>
+      <h3><a href="https://en.wikipedia.org/wiki/CJ_Egan-Riley" target="_blank" rel="noopener">CJ<br>Egan-Riley</a></h3>
+      <div class="club">23yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Defender</div>
+      <p class="line">A versatile player, he can be deployed as a centre-back, a right-back or a defensive midfielder.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/CJ_Egan-Riley" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="129" data-country="Argentina" data-club="Olympique de Marseille">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Leonardo_Balerdi" target="_blank" rel="noopener" style="display:contents" title="Leonardo Balerdi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Balerdi_asse_om_2425.png/330px-Balerdi_asse_om_2425.png" alt="Leonardo Balerdi" onerror="this.style.display='none'"></a>
+      <div class="lg">Olympique de Marseille</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Leonardo_Balerdi" target="_blank" rel="noopener">Leonardo<br>Balerdi</a></h3>
+      <div class="club">27yo · 🇦🇷 Argentina - Defender</div>
+      <p class="line">Defender in Olympique de Marseille&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Leonardo_Balerdi" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="130" data-country="Portugal" data-club="Sporting CP">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Rui_Silva_(footballer,_born_1994)" target="_blank" rel="noopener" style="display:contents" title="Rui Silva — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Rui_Silva_USMNT_v_Portugal_Mar_31_2026-14_%28cropped%29.jpg/330px-Rui_Silva_USMNT_v_Portugal_Mar_31_2026-14_%28cropped%29.jpg" alt="Rui Silva" onerror="this.style.display='none'"></a>
+      <div class="lg">Sporting CP</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Rui_Silva_(footballer,_born_1994)" target="_blank" rel="noopener">Rui<br>Silva</a></h3>
+      <div class="club">32yo · 🇵🇹 Portugal - Goalkeeper</div>
+      <p class="line">Goalkeeper in Sporting CP&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rui_Silva_(footballer,_born_1994)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="131" data-country="Belgium" data-club="Sporting CP">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Zeno_Debast" target="_blank" rel="noopener" style="display:contents" title="Zeno Debast — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg/330px-Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg" alt="Zeno Debast" onerror="this.style.display='none'"></a>
+      <div class="lg">Sporting CP</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Zeno_Debast" target="_blank" rel="noopener">Zeno<br>Debast</a></h3>
+      <div class="club">23yo · 🇧🇪 Belgium - Defender</div>
+      <p class="line">Defender in Sporting CP&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Zeno_Debast" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="132" data-country="Portugal" data-club="Sporting CP">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Nuno_Santos_(footballer,_born_1995)" target="_blank" rel="noopener" style="display:contents" title="Nuno Santos — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Portrait_-_Nuno_Santos.jpg/330px-Portrait_-_Nuno_Santos.jpg" alt="Nuno Santos" onerror="this.style.display='none'"></a>
+      <div class="lg">Sporting CP</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Nuno_Santos_(footballer,_born_1995)" target="_blank" rel="noopener">Nuno<br>Santos</a></h3>
+      <div class="club">31yo · 🇵🇹 Portugal - Defender</div>
+      <p class="line">Defender in Sporting CP&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nuno_Santos_(footballer,_born_1995)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="133" data-country="Portugal" data-club="Porto">
+      <div class="shirt">GK</div>
+      
+      <div class="lg">Porto</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Cláudio_Ramos_(footballer)" target="_blank" rel="noopener">Cláudio<br>Ramos</a></h3>
+      <div class="club">35yo · 🇵🇹 Portugal - Goalkeeper</div>
+      <p class="line">Goalkeeper in Porto&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Cláudio_Ramos_(footballer)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="134" data-country="Poland" data-club="Porto">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Jakub_Kiwior" target="_blank" rel="noopener" style="display:contents" title="Jakub Kiwior — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/1_Jakub_Kiwior_arsenal_2025_%28cropped%29.jpg/330px-1_Jakub_Kiwior_arsenal_2025_%28cropped%29.jpg" alt="Jakub Kiwior" onerror="this.style.display='none'"></a>
+      <div class="lg">Porto</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jakub_Kiwior" target="_blank" rel="noopener">Jakub<br>Kiwior</a></h3>
+      <div class="club">26yo · 🇵🇱 Poland - Defender</div>
+      <p class="line">Defender in Porto&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jakub_Kiwior" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="135" data-country="Poland" data-club="Porto">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Jan_Bednarek" target="_blank" rel="noopener" style="display:contents" title="Jan Bednarek — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Jan_Bednarek_22122024_%28cropped%29.jpg/330px-Jan_Bednarek_22122024_%28cropped%29.jpg" alt="Jan Bednarek" onerror="this.style.display='none'"></a>
+      <div class="lg">Porto</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jan_Bednarek" target="_blank" rel="noopener">Jan<br>Bednarek</a></h3>
+      <div class="club">30yo · 🇵🇱 Poland - Defender</div>
+      <p class="line">Defender in Porto&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jan_Bednarek" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="136" data-country="Croatia" data-club="PSV">
+      <div class="shirt">MF</div>
+      <a href="https://en.wikipedia.org/wiki/Ivan_Perišić" target="_blank" rel="noopener" style="display:contents" title="Ivan Perišić — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Ivan_Perisic_Croatia_v_Portugal_2_July_2026-033.jpg/330px-Ivan_Perisic_Croatia_v_Portugal_2_July_2026-033.jpg" alt="Ivan Perišić" onerror="this.style.display='none'"></a>
+      <div class="lg">PSV</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ivan_Perišić" target="_blank" rel="noopener">Ivan<br>Perišić</a></h3>
+      <div class="club">37yo · 🇭🇷 Croatia - Midfielder</div>
+      <p class="line">Known for his ambipedality and versatility, he is widely considered one of the greatest Croatian players of all time and one of the greatest players of his generation.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ivan_Perišić" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="137" data-country="United States" data-club="PSV">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Sergiño_Dest" target="_blank" rel="noopener" style="display:contents" title="Sergiño Dest — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Sergino_Dest_Australia_v_USA_19_June_2026-50.jpg/330px-Sergino_Dest_Australia_v_USA_19_June_2026-50.jpg" alt="Sergiño Dest" onerror="this.style.display='none'"></a>
+      <div class="lg">PSV</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Sergiño_Dest" target="_blank" rel="noopener">Sergiño<br>Dest</a></h3>
+      <div class="club">26yo · 🇺🇸 United States - Defender</div>
+      <p class="line">Sergiño Gianni Dest is a professional soccer player who plays as a full-back for Eredivisie club PSV Eindhoven. Born in the Netherlands, he represents the United States national team. He is known for his dribbling, pace, and offensive ability.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Sergiño_Dest" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="138" data-country="Netherlands" data-club="PSV">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Nick_Olij" target="_blank" rel="noopener" style="display:contents" title="Nick Olij — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Sparta_-_Go_Ahead_Eagles_-_53478974060_%28Nick_Olij%29.jpg/330px-Sparta_-_Go_Ahead_Eagles_-_53478974060_%28Nick_Olij%29.jpg" alt="Nick Olij" onerror="this.style.display='none'"></a>
+      <div class="lg">PSV</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Nick_Olij" target="_blank" rel="noopener">Nick<br>Olij</a></h3>
+      <div class="club">31yo · 🇳🇱 Netherlands - Goalkeeper</div>
+      <p class="line">Goalkeeper in PSV&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nick_Olij" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="139" data-country="Netherlands" data-club="Ajax">
+      <div class="shirt">GK</div>
+      
+      <div class="lg">Ajax</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Joeri_Heerkens" target="_blank" rel="noopener">Joeri<br>Heerkens</a></h3>
+      <div class="club">20yo · 🇳🇱 Netherlands - Goalkeeper</div>
+      <p class="line">Born in the Czech Republic, he is a Netherlands and Czech Republic youth international.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Joeri_Heerkens" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="140" data-country="Brazil" data-club="Ajax">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Lucas_Rosa" target="_blank" rel="noopener" style="display:contents" title="Lucas Rosa — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lucas_Rosa.jpg/330px-Lucas_Rosa.jpg" alt="Lucas Rosa" onerror="this.style.display='none'"></a>
+      <div class="lg">Ajax</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Lucas_Rosa" target="_blank" rel="noopener">Lucas<br>Rosa</a></h3>
+      <div class="club">26yo · 🇧🇷 Brazil - Defender</div>
+      <p class="line">Mainly a right-back, he has been deployed as a right wing-back and a left-back on occasion.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Lucas_Rosa" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="141" data-country="Denmark" data-club="Ajax">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Anton_Gaaei" target="_blank" rel="noopener" style="display:contents" title="Anton Gaaei — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Anton_Gaaei_%28cropped%29.jpg/330px-Anton_Gaaei_%28cropped%29.jpg" alt="Anton Gaaei" onerror="this.style.display='none'"></a>
+      <div class="lg">Ajax</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Anton_Gaaei" target="_blank" rel="noopener">Anton<br>Gaaei</a></h3>
+      <div class="club">24yo · 🇩🇰 Denmark - Defender</div>
+      <p class="line">Defender in Ajax&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Anton_Gaaei" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="142" data-country="Switzerland" data-club="Club Brugge">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Yann_Sommer" target="_blank" rel="noopener" style="display:contents" title="Yann Sommer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/FC_Salzburg_gegen_Inter_Mailand_%28Testspiel_2023-08-09%29_69.jpg/330px-FC_Salzburg_gegen_Inter_Mailand_%28Testspiel_2023-08-09%29_69.jpg" alt="Yann Sommer" onerror="this.style.display='none'"></a>
+      <div class="lg">Club Brugge</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Yann_Sommer" target="_blank" rel="noopener">Yann<br>Sommer</a></h3>
+      <div class="club">38yo · 🇨🇭 Switzerland - Goalkeeper</div>
+      <p class="line">He is known for his exceptional reflexes and high agility.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Yann_Sommer" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="143" data-country="Ecuador" data-club="Club Brugge">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Joel_Ordóñez" target="_blank" rel="noopener" style="display:contents" title="Joel Ordóñez — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Joel_Ordonez_Cote_D%27Ivoire_v_Ecuador_14_June_2026-154_%28cropped%29.jpg/330px-Joel_Ordonez_Cote_D%27Ivoire_v_Ecuador_14_June_2026-154_%28cropped%29.jpg" alt="Joel Ordóñez" onerror="this.style.display='none'"></a>
+      <div class="lg">Club Brugge</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Joel_Ordóñez" target="_blank" rel="noopener">Joel<br>Ordóñez</a></h3>
+      <div class="club">22yo · 🇪🇨 Ecuador - Defender</div>
+      <p class="line">Defender in Club Brugge&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Joel_Ordóñez" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="144" data-country="Netherlands" data-club="Club Brugge">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Bjorn_Meijer" target="_blank" rel="noopener" style="display:contents" title="Bjorn Meijer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/FC_Salzburg_gegen_Club_Br%C3%BCgge_%282025-08-06_Championsleague_Qualifikation_Dritte_Runde%29_38_%28Bjorn_Meijer%29.jpg/330px-FC_Salzburg_gegen_Club_Br%C3%BCgge_%282025-08-06_Championsleague_Qualifikation_Dritte_Runde%29_38_%28Bjorn_Meijer%29.jpg" alt="Bjorn Meijer" onerror="this.style.display='none'"></a>
+      <div class="lg">Club Brugge</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Bjorn_Meijer" target="_blank" rel="noopener">Bjorn<br>Meijer</a></h3>
+      <div class="club">23yo · 🇳🇱 Netherlands - Defender</div>
+      <p class="line">Defender in Club Brugge&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Bjorn_Meijer" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="145" data-country="Belgium" data-club="Union SG">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Vic_Chambaere" target="_blank" rel="noopener" style="display:contents" title="Vic Chambaere — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Vic_Chambaere_Union_2025.jpg/330px-Vic_Chambaere_Union_2025.jpg" alt="Vic Chambaere" onerror="this.style.display='none'"></a>
+      <div class="lg">Union SG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Vic_Chambaere" target="_blank" rel="noopener">Vic<br>Chambaere</a></h3>
+      <div class="club">23yo · 🇧🇪 Belgium - Goalkeeper</div>
+      <p class="line">Goalkeeper in Union SG&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Vic_Chambaere" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="146" data-country="Senegal" data-club="Union SG">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Mamadou_Thierno_Barry" target="_blank" rel="noopener" style="display:contents" title="Mamadou Thierno Barry — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Mamadou_Thierno_Barry_Union_2025.jpg/330px-Mamadou_Thierno_Barry_Union_2025.jpg" alt="Mamadou Thierno Barry" onerror="this.style.display='none'"></a>
+      <div class="lg">Union SG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Mamadou_Thierno_Barry" target="_blank" rel="noopener">Mamadou<br>Thierno Barry</a></h3>
+      <div class="club">21yo · 🇸🇳 Senegal - Defender</div>
+      <p class="line">Defender in Union SG&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Mamadou_Thierno_Barry" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="147" data-country="Argentina" data-club="Union SG">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Kevin_Mac_Allister" target="_blank" rel="noopener" style="display:contents" title="Kevin Mac Allister — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Go_Ahead_Eagles_-_Royale_Union_Saint-Gillloise_-_53852891619_%28Kevin_Mac_Allister%29.jpg/330px-Go_Ahead_Eagles_-_Royale_Union_Saint-Gillloise_-_53852891619_%28Kevin_Mac_Allister%29.jpg" alt="Kevin Mac Allister" onerror="this.style.display='none'"></a>
+      <div class="lg">Union SG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Kevin_Mac_Allister" target="_blank" rel="noopener">Kevin<br>Mac Allister</a></h3>
+      <div class="club">29yo · 🇦🇷 Argentina - Defender</div>
+      <p class="line">Defender in Union SG&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Kevin_Mac_Allister" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="148" data-country="Portugal" data-club="Celtic">
+      <div class="shirt">FW</div>
+      <a href="https://en.wikipedia.org/wiki/Jota_(footballer,_born_March_1999)" target="_blank" rel="noopener" style="display:contents" title="Jota — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Jota_2020.png/330px-Jota_2020.png" alt="Jota" onerror="this.style.display='none'"></a>
+      <div class="lg">Celtic</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Jota_(footballer,_born_March_1999)" target="_blank" rel="noopener">Jota</a></h3>
+      <div class="club">27yo · 🇵🇹 Portugal - Forward</div>
+      <p class="line">He is known for his passing and dribbling ability.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jota_(footballer,_born_March_1999)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="149" data-country="Finland" data-club="Celtic">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Viljami_Sinisalo" target="_blank" rel="noopener" style="display:contents" title="Viljami Sinisalo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Viljami_Sinisalo_%282022-06-03%29.jpg/330px-Viljami_Sinisalo_%282022-06-03%29.jpg" alt="Viljami Sinisalo" onerror="this.style.display='none'"></a>
+      <div class="lg">Celtic</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Viljami_Sinisalo" target="_blank" rel="noopener">Viljami<br>Sinisalo</a></h3>
+      <div class="club">25yo · 🇫🇮 Finland - Goalkeeper</div>
+      <p class="line">Goalkeeper in Celtic&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Viljami_Sinisalo" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="150" data-country="Canada" data-club="Celtic">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Alistair_Johnston" target="_blank" rel="noopener" style="display:contents" title="Alistair Johnston — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Alistair_Johnston_Canada_v_Qatar_18_June_2026-038_%28cropped%29.jpg/330px-Alistair_Johnston_Canada_v_Qatar_18_June_2026-038_%28cropped%29.jpg" alt="Alistair Johnston" onerror="this.style.display='none'"></a>
+      <div class="lg">Celtic</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Alistair_Johnston" target="_blank" rel="noopener">Alistair<br>Johnston</a></h3>
+      <div class="club">28yo · 🇨🇦 Canada - Defender</div>
+      <p class="line">Defender in Celtic&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alistair_Johnston" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="151" data-country="Turkey" data-club="Galatasaray">
+      <div class="shirt">GK</div>
+      <a href="https://en.wikipedia.org/wiki/Uğurcan_Çakır" target="_blank" rel="noopener" style="display:contents" title="Uğurcan Çakır — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/U%C4%9Furcan_%C3%87ak%C4%B1r_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png/330px-U%C4%9Furcan_%C3%87ak%C4%B1r_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png" alt="Uğurcan Çakır" onerror="this.style.display='none'"></a>
+      <div class="lg">Galatasaray</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Uğurcan_Çakır" target="_blank" rel="noopener">Uğurcan<br>Çakır</a></h3>
+      <div class="club">30yo · 🇹🇷 Turkey - Goalkeeper</div>
+      <p class="line">Goalkeeper in Galatasaray&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Uğurcan_Çakır" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="152" data-country="Turkey" data-club="Galatasaray">
+      <div class="shirt">DF</div>
+      
+      <div class="lg">Galatasaray</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Metehan_Baltacı" target="_blank" rel="noopener">Metehan<br>Baltacı</a></h3>
+      <div class="club">24yo · 🇹🇷 Turkey - Defender</div>
+      <p class="line">Defender in Galatasaray&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Metehan_Baltacı" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="153" data-country="Senegal" data-club="Galatasaray">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Ismail_Jakobs" target="_blank" rel="noopener" style="display:contents" title="Ismail Jakobs — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Ismail_Jakobs_France_v_Senegal_16_June_2026-237_%28cropped%29.jpg/330px-Ismail_Jakobs_France_v_Senegal_16_June_2026-237_%28cropped%29.jpg" alt="Ismail Jakobs" onerror="this.style.display='none'"></a>
+      <div class="lg">Galatasaray</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Ismail_Jakobs" target="_blank" rel="noopener">Ismail<br>Jakobs</a></h3>
+      <div class="club">27yo · 🇸🇳 Senegal - Defender</div>
+      <p class="line">Born in Germany, he plays for the Senegal national team.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ismail_Jakobs" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="154" data-country="Montenegro" data-club="Olympiacos">
+      <div class="shirt">GK</div>
+      
+      <div class="lg">Olympiacos</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Balša_Popović" target="_blank" rel="noopener">Balša<br>Popović</a></h3>
+      <div class="club">26yo · 🇲🇪 Montenegro - Goalkeeper</div>
+      <p class="line">Goalkeeper in Olympiacos&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Balša_Popović" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="155" data-country="Argentina" data-club="Olympiacos">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Pablo_Maffeo" target="_blank" rel="noopener" style="display:contents" title="Pablo Maffeo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Pablo_maffeo.jpg/330px-Pablo_maffeo.jpg" alt="Pablo Maffeo" onerror="this.style.display='none'"></a>
+      <div class="lg">Olympiacos</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Pablo_Maffeo" target="_blank" rel="noopener">Pablo<br>Maffeo</a></h3>
+      <div class="club">29yo · 🇦🇷 Argentina - Defender</div>
+      <p class="line">Defender in Olympiacos&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Pablo_Maffeo" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="other" data-fav="156" data-country="Argentina" data-club="Olympiacos">
+      <div class="shirt">DF</div>
+      
+      <div class="lg">Olympiacos</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Francisco_Ortega_(footballer,_born_1999)" target="_blank" rel="noopener">Francisco<br>Ortega</a></h3>
+      <div class="club">27yo · 🇦🇷 Argentina - Defender</div>
+      <p class="line">Defender in Olympiacos&#x27;s 2026–27 squad.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Francisco_Ortega_(footballer,_born_1999)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+  </div>
+</section>
+
+<script>
+(function(){
+  const grid = document.querySelector('.players');
+  const toggle = document.getElementById('sortToggle');
+  const menu = document.getElementById('sortMenu');
+  if(!grid || !toggle || !menu) return;
+  const items = menu.querySelectorAll('[data-sort]');
+  function openMenu(){ menu.hidden = false; toggle.setAttribute('aria-expanded','true'); }
+  function closeMenu(){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
+  toggle.addEventListener('click', e => { e.stopPropagation(); menu.hidden ? openMenu() : closeMenu(); });
+  document.addEventListener('click', e => { if(!menu.hidden && !menu.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+  const keyFor = mode => card => {
+    if(mode === 'fav') return parseInt(card.dataset.fav || '999', 10);
+    if(mode === 'country') return (card.dataset.country || '') + String(card.dataset.fav || 999).padStart(3,'0');
+    if(mode === 'club') return (card.dataset.club || '') + String(card.dataset.fav || 999).padStart(3,'0');
+    return card.querySelector('h3').textContent.trim();
+  };
+  function applySort(mode){
+    const key = keyFor(mode);
+    const cards = Array.from(grid.querySelectorAll('.pcard'));
+    cards.sort((a,c) => {
+      const ka = key(a), kc = key(c);
+      if(typeof ka === 'number') return ka - kc;
+      return ka.localeCompare(kc);
+    });
+    cards.forEach(c => grid.appendChild(c));
+  }
+  items.forEach(b => b.addEventListener('click', () => {
+    items.forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    applySort(b.dataset.sort);
+    closeMenu();
+  }));
+  applySort('fav');
+})();
+</script>
+
+<footer>
+  Club and player facts, crests and photos via Wikipedia / Wikimedia Commons (CC BY-SA) — links on each card lead to the source pages.<br>
+  Part of <a href="./" style="color:inherit">Matchday Pacific</a> — Club Football 2026–27, US West Coast viewing guide.
+</footer>
+
+</div>
+</body>
+</html>

@@ -22,10 +22,13 @@
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
   body{
     font-family:var(--body);color:var(--chalk);background:var(--night);
-    background-image:repeating-linear-gradient(90deg, var(--pitch) 0 120px, var(--pitch-2) 120px 240px);
+    background-image:
+      repeating-linear-gradient(45deg, transparent 0 2px, rgba(0,0,0,.05) 2px 3px),
+      repeating-linear-gradient(-45deg, transparent 0 3px, rgba(244,241,228,.016) 3px 4px),
+      repeating-linear-gradient(90deg, var(--pitch) 0 120px, var(--pitch-2) 120px 240px);
     background-attachment:fixed;min-height:100vh;
   }
-  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% -10%, rgba(244,241,228,.10), transparent 60%), rgba(11,18,14,.82);pointer-events:none;z-index:0}
+  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% -10%, rgba(244,241,228,.10), transparent 60%), radial-gradient(850px 600px at 90% 88%, rgba(91,110,245,.12), transparent 62%), radial-gradient(650px 480px at 4% 60%, rgba(127,209,255,.09), transparent 60%), rgba(11,18,14,.82);pointer-events:none;z-index:0}
   .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 20px 48px}
 
   header{padding:28px 0 6px}
@@ -54,7 +57,7 @@
   .filters button:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
   .players{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
   .players .pcard{flex:1 1 232px;max-width:250px}
-  .pcard{position:relative;border:1px solid var(--hair);border-radius:10px;padding:18px 18px 16px;background:rgba(11,18,14,.55);overflow:hidden;transition:transform .15s ease,border-color .15s ease}
+  .pcard{position:relative;border:1px solid var(--hair);border-radius:10px;padding:18px 18px 16px;background:rgba(12,19,36,.58);overflow:hidden;transition:transform .15s ease,border-color .15s ease}
   .pcard:hover{transform:translateY(-3px);border-color:rgba(244,241,228,.4)}
   .pcard .shirt{position:absolute;bottom:-16px;right:4px;font-family:var(--disp);font-weight:800;font-size:110px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(244,241,228,.14);pointer-events:none;user-select:none}
   .headshot{position:absolute;top:0;right:0;width:42%;height:140px;object-fit:cover;object-position:top;border-radius:0 10px 0 0;filter:saturate(.85) contrast(1.06);-webkit-mask-image:radial-gradient(130% 125% at 100% 0%, #000 52%, transparent 76%);mask-image:radial-gradient(130% 125% at 100% 0%, #000 52%, transparent 76%);z-index:1}
@@ -65,7 +68,18 @@
   .pcard[data-lg="liga"] .lg{color:var(--liga)}
   .pcard[data-lg="epl"] .lg{color:var(--epl)}
   .pcard[data-lg="buli"] .lg{color:var(--buli)}
-  .pcard[data-lg="fr1"] .lg{color:var(--ucl)}
+  .pcard[data-lg="fr1"] .lg{color:var(--l1)}
+  .more-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px dashed rgba(244,241,228,.3);border-radius:10px;padding:22px 18px;text-decoration:none;background:none;transition:border-color .15s,transform .15s}
+  .more-card:hover{border-color:var(--chalk);transform:translateY(-2px)}
+  .more-card .stack{display:flex}
+  .more-card .stack img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;box-shadow:0 0 0 2.5px #0d1710;background:#13201a}
+  .more-card .stack img+img{margin-left:-10px}
+  .more-card .stack img.mini-crest{object-fit:contain;background:#f4f1e4;padding:3px}
+  .more-card .more-big{font-family:var(--disp);font-weight:800;font-size:21px;color:var(--chalk)}
+  .more-card .more-sub{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+  .more-card:hover .more-sub{color:var(--chalk)}
+  .players .more-card{flex:1 1 232px;max-width:250px;min-height:230px}
+  .clubs .more-card{grid-column:1/-1;flex-direction:row;gap:16px;padding:13px 18px}
   .pcard h3{font-family:var(--disp);font-weight:700;font-size:24px;line-height:1.15;min-height:2.3em;margin:4px 0 2px;letter-spacing:.01em;display:flex;align-items:flex-end}
   .pcard h3 a{color:inherit;text-decoration:none}
   .pcard h3 a:hover{text-decoration:underline}
@@ -123,7 +137,7 @@
   .kit:hover .kit-cap{color:var(--chalk)}
 
   .clubs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-  .ccard{border:1px solid var(--hair);border-radius:10px;padding:18px;background:rgba(11,18,14,.55)}
+  .ccard{border:1px solid var(--hair);border-radius:10px;padding:18px;background:rgba(12,19,36,.58)}
   .ccard .top{display:flex;align-items:center;gap:10px}
   .ccard .top .badge{margin-left:auto;text-align:right}
   .crest{display:none;width:38px;height:38px;object-fit:contain;flex:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
@@ -160,7 +174,7 @@
   .legend .l-buli::before{background:var(--buli)} .legend .l-l1::before{background:var(--l1)} .legend .l-ucl::before{background:var(--ucl)}
 
   .dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
-  .dcard{border:1px solid var(--hair);border-radius:10px;padding:16px;background:rgba(11,18,14,.55)}
+  .dcard{border:1px solid var(--hair);border-radius:10px;padding:16px;background:rgba(12,19,36,.58)}
   .dcard .d{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1}
   .dcard .d small{font-size:13px;font-family:var(--mono);font-weight:400;letter-spacing:.06em;color:var(--muted);display:block;margin-top:4px;text-transform:none}
   .dcard p{font-size:13px;color:rgba(244,241,228,.84);margin-top:10px;line-height:1.5}
@@ -169,7 +183,7 @@
   .ok.hmm{border:1px solid #ffd479;color:#ffd479}
 
   .match{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .pitchcard{border:1px solid var(--hair);border-radius:10px;background:rgba(11,18,14,.55);padding:16px}
+  .pitchcard{border:1px solid var(--hair);border-radius:10px;background:rgba(12,19,36,.58);padding:16px}
   .pitchcard h3{font-family:var(--disp);font-weight:800;font-size:23px}
   .pitchcard .psub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
   .fteam{display:flex;align-items:center;gap:10px}
@@ -285,6 +299,11 @@
       <p>Champions two seasons back, now opening a fresh cycle under new manager Iraola, following Salah's departure as a free agent after nine years at the club.</p>
       <button class="squad-link" data-club="liverpool" type="button">Squad ↗</button>
     </div>
+    <a class="more-card" href="clubs.html">
+      <span class="stack"><img class="mini-crest" src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/330px-FC_Barcelona_%28crest%29.svg.png" alt="" loading="lazy"><img class="mini-crest" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Atletico_Madrid_Logo_2024.svg/330px-Atletico_Madrid_Logo_2024.svg.png" alt="" loading="lazy"><img class="mini-crest" src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/330px-Manchester_United_FC_crest.svg.png" alt="" loading="lazy"><img class="mini-crest" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/330px-FC_Internazionale_Milano_2021.svg.png" alt="" loading="lazy"><img class="mini-crest" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/330px-Borussia_Dortmund_logo.svg.png" alt="" loading="lazy"></span>
+      <span class="more-big">more clubs</span>
+      <span class="more-sub">Barcelona, Inter, Dortmund, Man United … ↗</span>
+    </a>
   </div>
 </section>
 
@@ -363,7 +382,7 @@
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rodri_(footballer%2C_born_1996)" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/rodri/profil/spieler/357565" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/231828/rodri" target="_blank" rel="noopener">ESPN ↗</a></div>
     </article>
 
-    <article class="pcard" data-lg="buli" data-fav="7" data-country="France" data-club="Bayern">
+    <article class="pcard" data-lg="buli" data-fav="6" data-country="France" data-club="Bayern">
       <div class="shirt">17</div>
       <a href="https://en.wikipedia.org/wiki/Michael_Olise" target="_blank" rel="noopener" style="display:contents" title="Michael Olise — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg/330px-Michael_Olise_France_v_Senegal_16_June_2026-307_%28cropped%29.jpg" alt="Michael Olise" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/olise.jpg'}else{this.style.display='none'}"></a>
       <div class="lg">Bayern</div>
@@ -385,7 +404,7 @@
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/ousmane-dembele/profil/spieler/288230" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/229744/ousmane-dembele" target="_blank" rel="noopener">ESPN ↗</a></div>
     </article>
 
-    <article class="pcard" data-lg="liga" data-fav="6" data-country="Spain" data-club="Real Madrid">
+    <article class="pcard" data-lg="liga" data-fav="10" data-country="Spain" data-club="Real Madrid">
       <div class="shirt">3</div>
       <a href="https://en.wikipedia.org/wiki/Marc_Cucurella" target="_blank" rel="noopener" style="display:contents" title="Marc Cucurella — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg/330px-Marc_Cucurella_France_v_Spain_7.24.26-149_%28cropped%29.jpg" alt="Marc Cucurella" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/cucurella.jpg'}else{this.style.display='none'}"></a>
       <div class="lg">Real Madrid</div>
@@ -407,7 +426,7 @@
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Mohamed_Salah" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/mohamed-salah/profil/spieler/148455" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/173896/mohamed-salah" target="_blank" rel="noopener">ESPN ↗</a></div>
     </article>
 
-    <article class="pcard" data-lg="epl" data-fav="10" data-country="England" data-club="Arsenal">
+    <article class="pcard" data-lg="epl" data-fav="7" data-country="England" data-club="Arsenal">
       <div class="shirt">41</div>
       <a href="https://en.wikipedia.org/wiki/Declan_Rice" target="_blank" rel="noopener" style="display:contents" title="Declan Rice — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Declan_Rice_England_v_Ghana_23_June_2026-150.jpg/330px-Declan_Rice_England_v_Ghana_23_June_2026-150.jpg" alt="Declan Rice" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/rice.jpg'}else{this.style.display='none'}"></a>
       <div class="lg">Arsenal</div>
@@ -418,7 +437,7 @@
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Declan_Rice" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/declan-rice/profil/spieler/357662" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/238262/declan-rice" target="_blank" rel="noopener">ESPN ↗</a></div>
     </article>
 
-    <article class="pcard" data-lg="epl" data-fav="11" data-country="England" data-club="Arsenal">
+    <article class="pcard" data-lg="epl" data-fav="9" data-country="England" data-club="Arsenal">
       <div class="shirt">7</div>
       <a href="https://en.wikipedia.org/wiki/Bukayo_Saka" target="_blank" rel="noopener" style="display:contents" title="Bukayo Saka — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg/330px-Bukayo_Saka_England_v_Panama_27_June_26-108_%28cropped%29.jpg" alt="Bukayo Saka" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/saka.jpg'}else{this.style.display='none'}"></a>
       <div class="lg">Arsenal</div>
@@ -429,7 +448,7 @@
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Bukayo_Saka" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/bukayo-saka/profil/spieler/433177" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/280555/bukayo-saka" target="_blank" rel="noopener">ESPN ↗</a></div>
     </article>
 
-    <article class="pcard" data-lg="buli" data-fav="9" data-country="Morocco" data-club="Bayern">
+    <article class="pcard" data-lg="buli" data-fav="11" data-country="Morocco" data-club="Bayern">
       <div class="shirt">11</div>
       <a href="https://en.wikipedia.org/wiki/Ismael_Saibari" target="_blank" rel="noopener" style="display:contents" title="Ismael Saibari — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg/330px-Ismael_Saibari_Brazil_V_Morocco_13_June_2026-152.jpg" alt="Ismael Saibari" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='photos/saibari.jpg'}else{this.style.display='none'}"></a>
       <div class="lg">Bayern</div>
@@ -506,6 +525,11 @@
       <div class="stat">WC26 winner · Athletic Bilbao</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nico_Williams" target="_blank" rel="noopener">Wiki ↗</a><a href="https://www.transfermarkt.us/nico-williams/profil/spieler/709187" target="_blank" rel="noopener">TM ↗</a><a href="https://www.espn.com/soccer/player/_/id/312146/nico-williams" target="_blank" rel="noopener">ESPN ↗</a></div>
     </article>
+    <a class="more-card" href="players.html">
+      <span class="stack"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jamal_Musiala_Ecuador_v_Germany_25_June_2026-174_%28cropped%29.jpg/330px-Jamal_Musiala_Ecuador_v_Germany_25_June_2026-174_%28cropped%29.jpg" alt="" loading="lazy"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Vin%C3%ADcius_J%C3%BAnior_Brazil_V_Morocco_13_June_2026-207_%28cropped%29.jpg/330px-Vin%C3%ADcius_J%C3%BAnior_Brazil_V_Morocco_13_June_2026-207_%28cropped%29.jpg" alt="" loading="lazy"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg" alt="" loading="lazy"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Martin_Odegaard_France_v_Norway_26_June_26-014.jpg/330px-Martin_Odegaard_France_v_Norway_26_June_26-014.jpg" alt="" loading="lazy"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Alexander_Isak_-_Sweden_-_Greece21_%28cropped%29.jpg/330px-Alexander_Isak_-_Sweden_-_Greece21_%28cropped%29.jpg" alt="" loading="lazy"></span>
+      <span class="more-big">more players</span>
+      <span class="more-sub">full squads of the six clubs ↗</span>
+    </a>
   </div>
 </section>
 
@@ -684,14 +708,12 @@
 
   const keyFor = mode => card => {
     if(mode === 'fav') return parseInt(card.dataset.fav || '999', 10);
-    if(mode === 'country') return (card.dataset.country || '') + (card.dataset.fav || '');
-    if(mode === 'club') return (card.dataset.club || '') + (card.dataset.fav || '');
+    if(mode === 'country') return (card.dataset.country || '') + String(card.dataset.fav || 999).padStart(3,'0');
+    if(mode === 'club') return (card.dataset.club || '') + String(card.dataset.fav || 999).padStart(3,'0');
     return card.querySelector('h3').textContent.trim();
   };
-  items.forEach(b => b.addEventListener('click', () => {
-    items.forEach(x => x.classList.remove('on'));
-    b.classList.add('on');
-    const key = keyFor(b.dataset.sort);
+  function applySort(mode){
+    const key = keyFor(mode);
     const cards = Array.from(grid.querySelectorAll('.pcard'));
     cards.sort((a,c) => {
       const ka = key(a), kc = key(c);
@@ -699,8 +721,16 @@
       return ka.localeCompare(kc);
     });
     cards.forEach(c => grid.appendChild(c));
+    const more = grid.querySelector('.more-card');
+    if(more) grid.appendChild(more);
+  }
+  items.forEach(b => b.addEventListener('click', () => {
+    items.forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    applySort(b.dataset.sort);
     closeMenu();
   }));
+  applySort('fav');
 })();
 
 // ---------- kickoff clock ----------
@@ -935,7 +965,16 @@
   document.querySelectorAll('.squad-link').forEach(b => b.addEventListener('click', () => openSquad(b.dataset.club)));
   document.getElementById('squadClose').addEventListener('click', closeSquad);
   document.getElementById('squadBackdrop').addEventListener('click', closeSquad);
-  document.addEventListener('keydown', e => { if(e.key === 'Escape' && !modal.hidden) closeSquad(); });
+  document.addEventListener('keydown', e => {
+    if(modal.hidden) return;
+    if(e.key === 'Escape') { closeSquad(); return; }
+    if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const order = Array.from(document.querySelectorAll('.squad-link')).map(b => b.dataset.club);
+    const i = order.indexOf(currentSlug);
+    if(i === -1) return;
+    const next = order[(i + (e.key === 'ArrowRight' ? 1 : -1) + order.length) % order.length];
+    openSquad(next);
+  });
   function applyHash(){
     const slug = decodeURIComponent(location.hash.slice(1));
     if(squads[slug]){ if(slug !== currentSlug) openSquad(slug); }
