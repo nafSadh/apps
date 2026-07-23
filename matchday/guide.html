@@ -27,7 +27,7 @@
     --epl:#6a4fe0; --liga:#d8432f; --buli:#2f8f5b; --l1:#1c8a86; --ucl:#1f7fc4; --seriea:#9c7a1f;
     --muted:#7E8270; --hair:rgba(22,27,21,.12); --hair2:rgba(22,27,21,.3);
     --soft:#3B4238; --ghost:rgba(22,27,21,.14); --wash:rgba(22,27,21,.06);
-    --card:rgba(245,250,255,.30); --cardhover:rgba(245,250,255,.48); --popover:#F8F7F0; --hatch:rgba(22,27,21,.04);
+    --card:rgba(245,250,255,.345); --cardhover:rgba(245,250,255,.48); --popover:#F8F7F0; --hatch:rgba(22,27,21,.04);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -47,10 +47,18 @@
   header{padding:28px 0 6px}
   .head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
   .head-actions{display:flex;gap:8px;flex:none}
-  .iconbtn{width:34px;height:34px;border-radius:999px;border:1px solid var(--hair);background:var(--card);color:var(--chalk);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:transform .15s ease,border-color .15s ease,background .15s ease;text-decoration:none;flex:none}
-  .iconbtn:hover{border-color:var(--chalk);background:var(--cardhover);transform:translateY(-2px)}
-  .iconbtn:active{transform:translateY(0)}
+  .iconbtn{width:34px;height:34px;border-radius:999px;border:1px solid var(--hair);background:var(--card);color:var(--chalk);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:border-color .15s ease,background .15s ease;text-decoration:none;flex:none}
+  .iconbtn:hover{border-color:var(--chalk);background:var(--cardhover)}
   .iconbtn:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .iconbtn[data-tip]{position:relative}
+  .iconbtn[data-tip]::after{
+    content:attr(data-tip);position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);
+    background:var(--popover);color:var(--chalk);border:1px solid var(--hair);
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;white-space:nowrap;
+    padding:5px 9px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.25);
+    opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:30;
+  }
+  .iconbtn[data-tip]:hover::after,.iconbtn[data-tip]:focus-visible::after{opacity:1}
   .kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
   .kick a{color:inherit;text-decoration:none}
   .kick a:hover{color:var(--chalk)}
@@ -123,14 +131,15 @@
   .svcard h4{font-family:var(--disp);font-weight:800;font-size:19px}
   .svcard .price{font-family:var(--mono);font-size:11.5px;color:var(--ucl);margin-top:6px;line-height:1.6}
   .svcard ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
-  .svcard li{display:flex;align-items:center;gap:9px;font-size:13px;line-height:1.4;color:var(--soft)}
-  .svcard li small{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto;text-align:right;white-space:nowrap}
+  .svcard li{display:flex;align-items:center;flex-wrap:wrap;gap:4px 9px;font-size:13px;line-height:1.4;color:var(--soft)}
+  .svcard li .what{white-space:nowrap}
+  .svcard li small{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto;text-align:right}
   .svcard a.site{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--ucl);text-decoration:none}
   .svcard a.site:hover{text-decoration:underline}
 
   /* leagues — color-coded left rail, same palette as the rest of the app; grid fills the wide viewport like index.html's .clubs/.players grids */
   .leagues-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px 30px;margin-top:20px}
-  .league{padding-left:16px;border-left:3px solid var(--hair)}
+  .league{padding:16px 18px 16px 20px;border:1px solid var(--hair);border-left:3px solid var(--hair);border-radius:10px;background:var(--card)}
   .league.epl{border-left-color:var(--epl)}
   .league.liga{border-left-color:var(--liga)}
   .league.buli{border-left-color:var(--buli)}
@@ -164,6 +173,39 @@
   .band.g3{border-color:rgba(255,90,69,.45)} .band.g3 .rng{color:var(--liga)}
   @media(max-width:520px){.bands{grid-template-columns:1fr}}
 
+  /* full-table zone map — one cell per final league position, used in the league modals */
+  .tmap{margin-top:9px}
+  .tmap .cells{display:grid;grid-template-columns:repeat(20,1fr);gap:3px}
+  .tmap.n18 .cells{grid-template-columns:repeat(18,1fr)}
+  .tmap .c{min-width:0;display:flex;align-items:center;justify-content:center;padding:7px 0;border:1px solid var(--hair);border-radius:5px;font-family:var(--mono);font-size:10.5px;color:var(--muted);background:var(--wash)}
+  .tmap .z-ucl{border-color:rgba(125,224,166,.7);color:#7de0a6;background:rgba(125,224,166,.09)}
+  .tmap .z-uclq{border-color:rgba(125,224,166,.7);color:#7de0a6;background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(125,224,166,.16) 4px 8px)}
+  .tmap .z-uel{border-color:rgba(255,212,121,.6);color:#ffd479;background:rgba(255,212,121,.08)}
+  .tmap .z-uecl{border-color:rgba(127,209,255,.65);color:var(--ucl);background:rgba(127,209,255,.08)}
+  .tmap .z-ueclq{border-color:rgba(127,209,255,.65);color:var(--ucl);background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(127,209,255,.16) 4px 8px)}
+  .tmap .z-po{border-color:rgba(255,90,69,.5);color:var(--liga);background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(255,90,69,.14) 4px 8px)}
+  .tmap .z-rel{border-color:rgba(255,90,69,.55);color:var(--liga);background:rgba(255,90,69,.1)}
+  .tmap .leg{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:9px;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+  .tmap .leg span{display:inline-flex;align-items:center;gap:6px}
+  .tmap :where(.leg i){width:10px;height:10px;border-radius:3px;border:1px solid var(--hair);background:var(--wash)}
+  @media(max-width:560px){.tmap .cells{grid-template-columns:repeat(10,1fr)}.tmap.n18 .cells{grid-template-columns:repeat(9,1fr)}}
+  html[data-theme="light"] .tmap .z-ucl,html[data-theme="light"] .tmap .z-uclq{color:#217a48;border-color:rgba(33,122,72,.55)}
+  html[data-theme="light"] .tmap .z-uel{color:#8f6b12;border-color:rgba(143,107,18,.5)}
+
+  /* compact fact bullets — square accent markers */
+  .facts{margin-top:10px;padding:0;list-style:none;max-width:760px}
+  .facts li{position:relative;padding:5px 0 5px 18px;font-size:14px;line-height:1.6;color:var(--soft)}
+  .facts li::before{content:"";position:absolute;left:2px;top:13px;width:6px;height:6px;border-radius:2px;background:var(--ucl)}
+  .facts li b{color:var(--chalk);font-weight:600}
+
+  /* style-map table */
+  .stbl-wrap{overflow-x:auto;margin-top:14px}
+  .stbl{width:100%;border-collapse:collapse;font-size:14px;line-height:1.55}
+  .stbl th{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);text-align:left;font-weight:500;padding:8px 16px 8px 0;border-bottom:1px solid var(--hair2)}
+  .stbl td{padding:9px 16px 9px 0;border-bottom:1px dashed var(--hair);color:var(--soft);vertical-align:top}
+  .stbl td.club{color:var(--chalk);font-weight:600;white-space:nowrap}
+  .stbl tr.camp td{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ucl);border-bottom:1px solid var(--hair);padding:16px 0 6px;white-space:nowrap}
+
   .keydates{display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:10px;background:var(--card);overflow:hidden;margin-top:16px;max-width:760px}
   .kd{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 15px;border-top:1px solid var(--hair);font-size:13px;line-height:1.5;color:var(--soft)}
   .kd:first-child{border-top:none}
@@ -172,7 +214,7 @@
 
   /* beyond-europe regions */
   .regions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 30px;margin-top:20px}
-  .region{padding-left:16px;border-left:3px solid var(--hair)}
+  .region{padding:14px 18px 16px 20px;border:1px solid var(--hair);border-left:3px solid var(--hair);border-radius:10px;background:var(--card)}
   .region.east{border-left-color:var(--l1)}
   .region.south{border-left-color:var(--liga)}
   .region h3{font-family:var(--disp);font-weight:800;font-size:18px}
@@ -191,7 +233,7 @@
   .itag.resolved{border:1px solid #7de0a6;color:#7de0a6}
   .itag.new{border:1px solid var(--ucl);color:var(--ucl)}
   .stories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px 30px;margin-top:18px}
-  .story{padding-left:16px;border-left:3px solid var(--hair)}
+  .story{padding:14px 18px 14px 20px;border:1px solid var(--hair);border-left:3px solid var(--hair);border-radius:10px;background:var(--card)}
   .story.pending{border-left-color:#ffd479}
   .story.resolved{border-left-color:#7de0a6}
   .story.new{border-left-color:var(--ucl)}
@@ -219,7 +261,7 @@
   .lm-body p:first-of-type{margin-top:0}
   .lm-body b{color:var(--chalk);font-weight:600}
   .lm-body h4{font-family:var(--disp);font-weight:800;font-size:17px;margin-top:26px;margin-bottom:4px}
-  .lm-body .swiss,.lm-body .keydates{max-width:none}
+  .lm-body .swiss,.lm-body .keydates,.lm-body .facts{max-width:none}
   .lm-body .srclinks{margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);display:flex;gap:16px;flex-wrap:wrap}
   .lm-body .srclinks a{font-family:var(--mono);font-size:11px;color:var(--ucl);text-decoration:none}
   .lm-body .srclinks a:hover{text-decoration:underline}
@@ -289,7 +331,32 @@
       <h1>Viewing <span class="pac">Guide</span></h1>
     </div>
     <div class="head-actions">
-      <button class="iconbtn" id="themeToggle" type="button" title="Toggle light / dark" aria-label="Toggle light or dark theme">◐</button>
+      <a class="iconbtn" href="./" data-tip="Home" aria-label="Home">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M2 7.5 8 2.5l6 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3.5 6.5V13h9V6.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M6.3 13v-3.6h3.4V13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="iconbtn" href="clubs.html" data-tip="Clubs" aria-label="Clubs">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 1.6 13.5 3.4V7.8C13.5 11.2 11.2 13.4 8 14.4 4.8 13.4 2.5 11.2 2.5 7.8V3.4Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="iconbtn" href="players.html" data-tip="Players" aria-label="Players">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="8" cy="5.4" r="2.6" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M2.8 13.6c.9-2.9 2.9-4.4 5.2-4.4s4.3 1.5 5.2 4.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a class="iconbtn" href="cal.html" data-tip="Full calendar" aria-label="Full calendar">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M2 6.5h12" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <button class="iconbtn" id="themeToggle" type="button" data-tip="Toggle theme" aria-label="Toggle light or dark theme">◐</button>
     </div>
   </div>
   <p class="dek">How the five leagues actually differ, how the new Champions League format works, the storylines carrying into August, and when — in Pacific Time — any of it is worth losing sleep over.</p>
@@ -300,7 +367,7 @@
 
 <p class="lede">If your appreciation for the game is rooted in the clinical efficiency, rapid transitions, and intense spatial pressing of the Golden Era of German football (1998–2014), navigating the modern landscape means filtering out the noise and finding the matches worth the early alarm. Modern football pairs elite athletic output with more sophisticated spatial frameworks than ever — positional play, coordinated high pressing, video review at every top flight — and the calendar built around it has changed shape too: a new Champions League format, contract sagas playing out in real time, and a broadcast map split across four different US services.</p>
 
-<p>This page is the reading companion to the <a href="./">schedule rails</a> and the <a href="cal.html">full calendar</a>: what each league actually feels like to watch, how the Champions League's new format works, a few storylines carrying into August, and when to actually tune in.</p>
+<p>This page is the reading companion to the <a href="./">schedule rails</a> and the <a href="cal.html">full calendar</a>: what each league actually feels like to watch, which clubs still play the football described above, how the Champions League's new format works, the derby dates worth circling, and when to actually tune in.</p>
 
 <div class="statpull">
   <div class="sp"><div class="n" style="color:var(--epl)">5</div><div class="l">leagues, five different identities</div></div>
@@ -335,39 +402,39 @@
     <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Paramount_Plus.svg/330px-Paramount_Plus.svg.png" alt="" onerror="this.style.display='none'"><h4>Paramount+</h4></div>
     <div class="price">Essential $8.99/mo ($89.99/yr), with ads<br>Premium $13.99/mo ($139.99/yr), ad-free + Showtime</div>
     <ul>
-      <li><img class="clogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/UEFA_Champions_League_logo_no_text.svg/330px-UEFA_Champions_League_logo_no_text.svg.png" alt="" onerror="this.replaceWith(document.createElement('span'))">Champions League <small>all matches</small></li>
-      <li><img class="clogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/UEFA_Europa_League_logo_%282024_version%29.svg/330px-UEFA_Europa_League_logo_%282024_version%29.svg.png" alt="" onerror="this.replaceWith(document.createElement('span'))">Europa League <small>all matches</small></li>
-      <li><svg class="seriea-mark sm" aria-hidden="true"><use href="#seriea-mark"/></svg>Serie A <small>full coverage</small></li>
-      <li><span class="clogo" style="background:none"></span>Carabao Cup <small>select + finals</small></li>
+      <li><img class="clogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/UEFA_Champions_League_logo_no_text.svg/330px-UEFA_Champions_League_logo_no_text.svg.png" alt="" onerror="this.replaceWith(document.createElement('span'))"><span class="what">Champions League</span><small>all matches</small></li>
+      <li><img class="clogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/UEFA_Europa_League_logo_%282024_version%29.svg/330px-UEFA_Europa_League_logo_%282024_version%29.svg.png" alt="" onerror="this.replaceWith(document.createElement('span'))"><span class="what">Europa League</span><small>all matches</small></li>
+      <li><svg class="seriea-mark sm" aria-hidden="true"><use href="#seriea-mark"/></svg><span class="what">Serie A</span><small>full coverage</small></li>
+      <li><span class="clogo" style="background:none"></span><span class="what">Carabao Cup</span><small>select + finals</small></li>
     </ul>
     <a class="site" href="https://www.paramountplus.com/" target="_blank" rel="noopener">paramountplus.com ↗</a>
   </div>
   <div class="svcard">
     <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/NBCUniversal_Peacock_Logo_%282026%29.svg/330px-NBCUniversal_Peacock_Logo_%282026%29.svg.png" alt="" onerror="this.style.display='none'"><h4>Peacock</h4></div>
     <div class="price">Premium $10.99/mo ($109.99/yr), with ads<br>Premium Plus $16.99/mo ($169.99/yr), ad-free</div>
-    <ul><li><svg class="epl-mark sm" aria-hidden="true"><use href="#epl-mark"/></svg>Premier League <small>full coverage</small></li></ul>
+    <ul><li><svg class="epl-mark sm" aria-hidden="true"><use href="#epl-mark"/></svg><span class="what">Premier League</span><small>full coverage</small></li></ul>
     <a class="site" href="https://www.peacocktv.com/" target="_blank" rel="noopener">peacocktv.com ↗</a>
   </div>
   <div class="svcard">
     <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/ESPN_Plus.svg/330px-ESPN_Plus.svg.png" alt="" onerror="this.style.display='none'"><h4>ESPN+</h4></div>
     <div class="price">Standalone (ESPN Select) ~$12.99/mo<br>Disney Bundle (+Disney+, Hulu) $19.99–$44.99/mo</div>
     <ul>
-      <li><svg class="liga-mark sm" aria-hidden="true"><use href="#liga-mark"/></svg>La Liga <small>all 380 matches</small></li>
-      <li><span class="clogo" style="background:none"></span>FA Cup <small>full coverage</small></li>
-      <li><span class="clogo" style="background:none"></span>Copa del Rey <small>full coverage</small></li>
+      <li><svg class="liga-mark sm" aria-hidden="true"><use href="#liga-mark"/></svg><span class="what">La Liga</span><small>all 380 matches</small></li>
+      <li><span class="clogo" style="background:none"></span><span class="what">FA Cup</span><small>full coverage</small></li>
+      <li><span class="clogo" style="background:none"></span><span class="what">Copa del Rey</span><small>full coverage</small></li>
     </ul>
     <a class="site" href="https://plus.espn.com/" target="_blank" rel="noopener">plus.espn.com ↗</a>
   </div>
   <div class="svcard">
     <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Fanatiz_Logo.png/330px-Fanatiz_Logo.png.png" alt="" onerror="this.style.display='none'"><h4>Fanatiz</h4></div>
     <div class="price">$9.99–$12.99/mo depending on package<br>Also bundled on Sling and Fubo</div>
-    <ul><li><svg class="l1-mark sm" aria-hidden="true"><use href="#l1-mark"/></svg>Ligue 1 <small>PSG and the rest of the division</small></li></ul>
+    <ul><li><svg class="l1-mark sm" aria-hidden="true"><use href="#l1-mark"/></svg><span class="what">Ligue 1</span><small>full coverage</small></li></ul>
     <a class="site" href="https://www.fanatiz.com/" target="_blank" rel="noopener">fanatiz.com ↗</a>
   </div>
   <div class="svcard">
     <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/USA_Network_2020.svg/330px-USA_Network_2020.svg.png" alt="" onerror="this.style.display='none'"><h4>USA Network</h4></div>
     <div class="price">Requires a live-TV package — YouTube TV, Hulu + Live TV, or cable<br>Select matches also free/ad-supported on Fandango at Home</div>
-    <ul><li><svg class="buli-mark sm" aria-hidden="true"><use href="#buli-mark"/></svg>Bundesliga <small>weekly coverage</small></li></ul>
+    <ul><li><svg class="buli-mark sm" aria-hidden="true"><use href="#buli-mark"/></svg><span class="what">Bundesliga</span><small>weekly coverage</small></li></ul>
     <a class="site" href="https://www.usanetwork.com/" target="_blank" rel="noopener">usanetwork.com ↗</a>
   </div>
 </div>
@@ -378,47 +445,73 @@
 <div class="leagues-grid">
 <div class="league epl">
   <h3><svg class="epl-mark" aria-hidden="true"><use href="#epl-mark"/></svg>Premier League</h3>
-  <span class="lstat">20 clubs · 38 games · Aug 22 – May 30 · Peacock</span>
+  <span class="lstat">20 clubs · 38 games each · 380 total · Aug 22 – May 30 · Peacock</span>
   <p>England's top flight is the most physically demanding of the five: fewer stoppages for tactical fouling, relentless transition speed, and a competitive spread that runs deeper into the table than any other league — a mid-table side beating one of the traditional "big six" is a Saturday occurrence, not an upset. It's also the most-watched football product on the planet, which is exactly why it gets its own dedicated US service rather than sharing one.</p>
   <button class="modal-link" type="button" onclick="openLM('epl')">Full breakdown ↗</button>
 </div>
 
 <div class="league liga">
   <h3><svg class="liga-mark" aria-hidden="true"><use href="#liga-mark"/></svg>La Liga</h3>
-  <span class="lstat">20 clubs · 38 games · Aug 14 – May 30 · ESPN+</span>
+  <span class="lstat">20 clubs · 38 games each · 380 total · Aug 14 – May 30 · ESPN+</span>
   <p>Spain rewards technical range over raw pace — patient combination play through tight central areas, games decided by a single moment of control rather than a wall of pressing. Real Madrid and Barcelona have historically split the silverware, but the chase behind them has gotten louder: Atlético's continued spending, and Athletic Bilbao's stubborn Basque-only <a href="clubs.html">cantera policy</a> proving a self-imposed talent restriction can still finish mid-table year after year instead of collapsing into one.</p>
   <button class="modal-link" type="button" onclick="openLM('liga')">Full breakdown ↗</button>
 </div>
 
 <div class="league buli">
   <h3><svg class="buli-mark" aria-hidden="true"><use href="#buli-mark"/></svg>Bundesliga</h3>
-  <span class="lstat">18 clubs · 34 games · Aug 28 – May 22 · USA Network</span>
+  <span class="lstat">18 clubs · 34 games each · 306 total · Aug 28 – May 22 · USA Network</span>
   <p>Germany draws the highest average attendance of any football league on the planet, built on cheap tickets and standing terraces that the league's 50+1 fan-ownership rule protects by design. On the pitch it's the sport's development pipeline right now — Florian Wirtz and Jamal Musiala both came up through it — with Bayern Munich's decade-plus of near-total domestic dominance as the backdrop everyone else is still trying to break.</p>
   <button class="modal-link" type="button" onclick="openLM('buli')">Full breakdown ↗</button>
 </div>
 
 <div class="league seriea">
   <h3><svg class="seriea-mark" aria-hidden="true"><use href="#seriea-mark"/></svg>Serie A</h3>
-  <span class="lstat">20 clubs · 38 games · Paramount+</span>
+  <span class="lstat">20 clubs · 38 games each · 380 total · Aug 23 – May 30 · Paramount+</span>
   <p>Italian football's reputation for defensive rigidity is older than most of its current back lines — Serie A has trended toward higher-scoring, more transitional football over the past decade without fully abandoning the tactical discipline that made catenaccio famous. Inter Milan is the league's one unbroken thread: the only club never relegated since Serie A's founding in 1929, sharing the San Siro with, and regularly separated from, city rival AC Milan.</p>
   <button class="modal-link" type="button" onclick="openLM('seriea')">Full breakdown ↗</button>
 </div>
 
 <div class="league l1">
   <h3><svg class="l1-mark" aria-hidden="true"><use href="#l1-mark"/></svg>Ligue 1</h3>
-  <span class="lstat">18 clubs · 34 games · Fanatiz</span>
+  <span class="lstat">18 clubs · 34 games each · 306 total · Aug 23 – May 29 · Fanatiz</span>
   <p>France's top flight shrank to 18 clubs for 2026–27, and its competitive picture is still built around one financial outlier: PSG's spending has outpaced the rest of the division for over a decade. Its more honest role in world football is as a proving ground — Kylian Mbappé, Ousmane Dembélé, and most of the current PSG academy graduates all broke through in Ligue 1 before the bigger paydays elsewhere.</p>
   <button class="modal-link" type="button" onclick="openLM('l1')">Full breakdown ↗</button>
 </div>
 </div>
 
+<div class="eyebrow"><h2>Where the Pressing Went</h2><div class="rule"></div><div class="tag">clubs by style</div></div>
+<p>The league identities above only get you to the right broadcast. The aesthetic this page opened with — high defensive line, coordinated press, direct vertical transition — lives at specific clubs, and the 2026–27 managerial reshuffle redrew where. The glossary's PPDA line, further down, is the number that separates the first camp from everyone else.</p>
+
+<div class="stbl-wrap">
+<table class="stbl">
+  <thead><tr><th>Club</th><th>Manager</th><th>What to watch</th></tr></thead>
+  <tbody>
+    <tr class="camp"><td colspan="3">The pressing heirs</td></tr>
+    <tr><td class="club">Liverpool</td><td>Iraola, year one</td><td>The press his Bournemouth sides ran as high as anyone in England — with Wirtz's line-breaking passes as the outlet once the ball is won.</td></tr>
+    <tr><td class="club">Bayern</td><td>Kompany</td><td>The highest line of the traditional powers; Musiala's tight-space control between the lines.</td></tr>
+    <tr><td class="club">Athletic Club</td><td>—</td><td>Basque-only cantera, never relegated; Nico Williams forcing the 1v1. After 29th in the UCL phase and 12th at home, a single-competition season sets up the rebound.</td></tr>
+    <tr class="camp"><td colspan="3">The positional school</td></tr>
+    <tr><td class="club">Man City</td><td>Maresca, year one</td><td>The Guardiola lineage he assisted in — slower, control through structured possession rather than chaos.</td></tr>
+    <tr><td class="club">PSG</td><td>Luis Enrique</td><td>Hard counterpress to win the ball back, then positional patience in attack.</td></tr>
+    <tr><td class="club">Arsenal</td><td>Arteta</td><td>Structure plus the set-piece machine; Gyökeres — the closest parallel to Haaland in Europe — attacking the space behind high lines.</td></tr>
+    <tr class="camp"><td colspan="3">The counterweight</td></tr>
+    <tr><td class="club">Real Madrid</td><td>Mourinho</td><td>The anti-pressing watch: deep block, Valverde's engine, Mbappé and Vinícius released into the space high lines leave behind. Madrid vs the first camp = 2026 football vs 2010 pragmatism, live.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="fine">Current squads, predicted XIs, and profile links live on the <a href="clubs.html">clubs</a> and <a href="players.html">players</a> pages.</div>
+
 <div class="eyebrow"><h2><img class="lgo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/UEFA_Champions_League_logo_no_text.svg/330px-UEFA_Champions_League_logo_no_text.svg.png" alt="" onerror="this.style.display='none'">The New Champions League</h2><div class="rule"></div><div class="tag">36-team league phase</div></div>
 <p>UEFA scrapped the four-team group stage after the 2023–24 season. In its place: a single 36-team league phase, where every club plays eight matches — four home, four away — against eight different opponents drawn from four seeding pots, instead of a closed group of three familiar rivals.</p>
 
-<p>The table that results decides everything. Finish in the top eight and you're through to the Round of 16 automatically, seeded. Finish 9th through 24th and you're into a two-legged knockout play-off round for the remaining spots. Finish 25th or worse and the tournament is over — no parachute into the Europa League the way there used to be. Ties are broken, in order, by goal difference, goals scored, away goals scored, total wins, away wins, and finally club coefficient.</p>
+<ul class="facts">
+  <li><b>The table decides everything</b> — top 8 straight to the Round of 16 seeded, 9–24 into a two-legged play-off, 25 or worse out with no Europa League parachute.</li>
+  <li><b>Tiebreakers, in order:</b> goal difference → goals scored → away goals → total wins → away wins → club coefficient.</li>
+</ul>
 
 <div class="swiss">
-  <div class="phase">One <b>36-team table</b> · 8 matches each (4 home / 4 away) · 8 different opponents</div>
+  <div class="phase">One <b>36-team table</b> · 8 matches each (4 home / 4 away) vs 8 different opponents · 144 matches in the phase</div>
   <div class="bands">
     <div class="band g1"><div class="rng">1–8</div><div class="to">Straight to Round of 16, seeded</div></div>
     <div class="band g2"><div class="rng">9–24</div><div class="to">Two-legged play-off round</div></div>
@@ -426,7 +519,9 @@
   </div>
 </div>
 
-<p>In the knockout rounds, away goals no longer matter at all — level on aggregate after 180 minutes goes to 30 minutes of extra time, then penalties if it's still level.</p>
+<ul class="facts">
+  <li><b>Knockouts:</b> away goals abolished — level on aggregate after 180 minutes means 30 of extra time, then penalties.</li>
+</ul>
 
 <details class="fmt-detail" style="max-width:760px">
   <summary>How the pots &amp; draw actually work</summary>
@@ -446,9 +541,12 @@
 </div>
 
 <div class="eyebrow"><h2>Cups &amp; Knockouts</h2><div class="rule"></div><div class="tag">domestic calendar</div></div>
-<p>Beneath the continental competition, the domestic calendar runs on two different logics. The leagues are pure double round-robins — every club plays every other club home and away, and the table alone decides the champion. No play-off, no final.</p>
-
-<p>The cups work the opposite way. The FA Cup, Copa del Rey, and DFB-Pokal are open single-elimination draws across the entire national pyramid, meaning a lower-division amateur side can, in theory, draw a match against Real Madrid. England adds a second knockout competition on top of that, the Carabao Cup — lower-stakes enough that top clubs mostly use it to rotate their squads and give minutes to academy players, at least until the final rounds start to matter.</p>
+<p>Beneath the continental competition, the domestic calendar runs on two different logics:</p>
+<ul class="facts">
+  <li><b>The leagues</b> are pure double round-robins — every club plays every other home and away, and the table alone decides the champion. No play-off, no final.</li>
+  <li><b>FA Cup · Copa del Rey · DFB-Pokal:</b> open single-elimination draws across the entire national pyramid — a lower-division amateur side can, in theory, draw Real Madrid.</li>
+  <li><b>Carabao Cup:</b> England's second knockout — top clubs rotate squads and play academy kids until the late rounds start to matter.</li>
+</ul>
 
 <div class="eyebrow"><h2>Beyond Europe</h2><div class="rule"></div><div class="tag">match character by region</div></div>
 <p>Everything above sits inside UEFA's ecosystem — video review at the top level, strict officiating standards, and broadcast windows built around a US audience with genuine choices. Step outside it and the viewing experience changes by region as much as the football does.</p>
@@ -499,10 +597,44 @@
 <p class="story new"><b>Two of the traditional powers have new managers.</b><span class="itag new">2026–27</span> Mourinho took over at Real Madrid in June 2026, and Maresca replaces Guardiola at Manchester City after his decade in charge — two of the most-watched clubs on this list both enter the season under first-year management.</p>
 </div>
 
-<div class="eyebrow"><h2>Building a Season Around It</h2><div class="rule"></div><div class="tag">all times Pacific</div></div>
-<p>The rhythm of the year splits into four stretches. From September through December, the Champions League's league phase serves up one marquee matchup most matchdays — midweek windows at <span class="ok">9:45a</span> and <span class="ok">12p PT</span>, easy to catch before or after work. Late January compresses into a single afternoon: all 18 remaining fixtures kick off in the same window to settle the top-8 seeds and the 9–24 play-off bracket at once.</p>
+<div class="eyebrow"><h2>Circle These</h2><div class="rule"></div><div class="tag">derby dates · Pacific Time</div></div>
+<p>Derbies are the fixtures where the form book means the least — the safest thing a neutral can block off months in advance. Dates below come from the <a href="cal.html">app's own calendar</a>; every one lands in a weekend morning window PT. This season's subplots:</p>
+<ul class="facts">
+  <li>Mourinho's first Clásico in charge of Madrid since 2013.</li>
+  <li>Maresca inheriting the Manchester derby from the manager he assisted.</li>
+  <li>North London against an Arsenal spine that just signed through the decade.</li>
+</ul>
 
-<p>From February through June the competition tightens into the knockout rounds — two-legged ties except the final, aggregate score decides, extra time and penalties if level. Underneath all of it, the domestic leagues run nearly every weekend from August to May, with kickoffs landing <span class="ok">early morning to midday PT</span> — no midweek commitment required.</p>
+<div class="callout" style="max-width:760px">
+  <h3>Two of each, chronological</h3>
+  <div class="wrow epl"><svg class="epl-mark sm" aria-hidden="true"><use href="#epl-mark"/></svg><span class="what">Manchester derby · United v City</span><span class="svc">Sun Sep 13 · 8:30a</span></div>
+  <div class="wrow liga"><svg class="liga-mark sm" aria-hidden="true"><use href="#liga-mark"/></svg><span class="what">Madrid derby · Atlético v Real Madrid</span><span class="svc">Sun Sep 20 · 7:15a</span></div>
+  <div class="wrow l1"><svg class="l1-mark sm" aria-hidden="true"><use href="#l1-mark"/></svg><span class="what">Le Classique · Marseille v PSG</span><span class="svc">Sun Sep 20 · 11:45a</span></div>
+  <div class="wrow liga"><svg class="liga-mark sm" aria-hidden="true"><use href="#liga-mark"/></svg><span class="what">El Clásico · Barcelona v Real Madrid</span><span class="svc">Sun Oct 25 · 8:15a</span></div>
+  <div class="wrow buli"><svg class="buli-mark sm" aria-hidden="true"><use href="#buli-mark"/></svg><span class="what">Der Klassiker · Bayern v Dortmund</span><span class="svc">Sat Oct 31 · 7:30a</span></div>
+  <div class="wrow epl"><svg class="epl-mark sm" aria-hidden="true"><use href="#epl-mark"/></svg><span class="what">North London derby · Tottenham v Arsenal</span><span class="svc">Sat Dec 5 · 7:00a</span></div>
+  <div class="wrow l1"><svg class="l1-mark sm" aria-hidden="true"><use href="#l1-mark"/></svg><span class="what">Le Classique · PSG v Marseille</span><span class="svc">Sun Feb 7 · 7:00a</span></div>
+  <div class="wrow buli"><svg class="buli-mark sm" aria-hidden="true"><use href="#buli-mark"/></svg><span class="what">Der Klassiker · Dortmund v Bayern</span><span class="svc">Sat Mar 6 · 6:30a</span></div>
+  <div class="wrow epl"><svg class="epl-mark sm" aria-hidden="true"><use href="#epl-mark"/></svg><span class="what">Manchester derby · City v United</span><span class="svc">Sat Mar 20 · 8:00a</span></div>
+  <div class="wrow liga"><svg class="liga-mark sm" aria-hidden="true"><use href="#liga-mark"/></svg><span class="what">Madrid derby · Real Madrid v Atlético</span><span class="svc">Sun Apr 4 · 7:15a</span></div>
+  <div class="wrow epl"><svg class="epl-mark sm" aria-hidden="true"><use href="#epl-mark"/></svg><span class="what">North London derby · Arsenal v Tottenham</span><span class="svc">Sat May 1 · 7:00a</span></div>
+  <div class="wrow liga"><svg class="liga-mark sm" aria-hidden="true"><use href="#liga-mark"/></svg><span class="what">El Clásico · Real Madrid v Barcelona</span><span class="svc">Sun May 9 · 7:15a</span></div>
+</div>
+
+<ul class="facts">
+  <li><b>Sep 20 is a doubleheader Sunday:</b> Madrid derby 7:15a, Le Classique at the Vélodrome 11:45a — a full derby day without leaving the couch.</li>
+  <li><b>May 9 Clásico:</b> three weeks from La Liga's final day — close enough to decide the title outright.</li>
+  <li><b>Missing:</b> Serie A's Derby della Madonnina (Inter–Milan, shared San Siro) — Serie A fixtures aren't in the calendar yet; first date to add once they land.</li>
+</ul>
+
+<div class="eyebrow"><h2>Building a Season Around It</h2><div class="rule"></div><div class="tag">all times Pacific</div></div>
+<p>The rhythm of the year splits into four stretches:</p>
+<div class="keydates">
+  <div class="kd"><div class="kdd">Sep – Dec</div><div>UCL league phase — one marquee tie most matchdays, midweek at <span class="ok">9:45a</span> and <span class="ok">12p PT</span>, easy to catch before or after work</div></div>
+  <div class="kd"><div class="kdd">Late Jan</div><div>Matchday 8 — all 18 remaining fixtures kick off in one simultaneous window, settling the top-8 seeds and the 9–24 play-off bracket at once</div></div>
+  <div class="kd"><div class="kdd">Feb – Jun</div><div>Knockout rounds — two-legged ties except the final, aggregate decides, extra time and penalties if level</div></div>
+  <div class="kd"><div class="kdd">Aug – May</div><div>Domestic leagues nearly every weekend underneath it all, kickoffs <span class="ok">early morning to midday PT</span> — no midweek commitment required</div></div>
+</div>
 
 </article>
 
@@ -519,22 +651,49 @@
     <button class="lm-close" type="button" aria-label="Close">✕</button>
     <div class="lm-body">
       <div class="lm-head"><svg class="epl-mark" aria-hidden="true"><use href="#epl-mark"/></svg><h2>Premier League</h2></div>
-      <div class="lm-sub">England · 20 clubs · 38 games · Aug 22 – May 30 · Peacock</div>
-      <p>England's top flight runs on pace and physicality more than any of the other four: pressing triggers fire higher up the pitch, tactical fouling is whistled tighter than most European leagues, and the gap between mid-table and the traditional "big six" has narrowed to the point where an upset barely counts as one anymore. It is also, by a wide margin, the most-watched football product in the world — the reason it commands its own dedicated US broadcast deal instead of sharing a service with anyone else.</p>
-      <p>The competitive spread traces back to the league's broadcast revenue-sharing model, which distributes a larger share of TV money to bottom-table clubs than most of its European peers — the financial gap between 1st and 20th is narrower here than in La Liga or Ligue 1, and it shows on the pitch nearly every weekend.</p>
+      <div class="lm-sub">England · 20 clubs · 38 games each · 380 total · Aug 22 – May 30 · Peacock</div>
+      <p>England's top flight runs on pace and physicality more than any of the other four.</p>
+      <ul class="facts">
+        <li>Pressing triggers fire higher; tactical fouling is whistled tighter than most of Europe.</li>
+        <li>Deepest competitive spread of the five — mid-table beating a "big six" side barely counts as an upset anymore.</li>
+        <li>The most-watched football product in the world, which is why it commands its own dedicated US service.</li>
+        <li>TV money is shared more evenly than any European peer — the 1st-to-20th financial gap is the narrowest of the five, and it shows nearly every weekend.</li>
+      </ul>
       <h4>Where the table leads</h4>
       <div class="swiss">
-        <div class="phase">20 clubs · <b>38 games</b> · double round-robin · most points wins</div>
-        <div class="bands">
-        <div class="band g1"><div class="rng">1–5</div><div class="to">Champions League (2026–27 · standard is top 4)</div></div>
-        <div class="band g2"><div class="rng">6–8</div><div class="to">Europa League (6–7) · Conference League (8)</div></div>
-        <div class="band g3"><div class="rng">18–20</div><div class="to">Relegated to the Championship</div></div>
+        <div class="phase">20 clubs · <b>38 games each</b> · 380 matches a season · double round-robin · most points wins</div>
+        <div class="tmap">
+        <div class="cells">
+          <div class="c z-ucl">1</div><div class="c z-ucl">2</div><div class="c z-ucl">3</div><div class="c z-ucl">4</div><div class="c z-ucl">5</div>
+          <div class="c z-uel">6</div><div class="c z-uel">7</div>
+          <div class="c z-uecl">8</div>
+          <div class="c">9</div><div class="c">10</div><div class="c">11</div><div class="c">12</div><div class="c">13</div><div class="c">14</div><div class="c">15</div><div class="c">16</div><div class="c">17</div>
+          <div class="c z-rel">18</div><div class="c z-rel">19</div><div class="c z-rel">20</div>
+        </div>
+        <div class="leg">
+          <span><i class="z-ucl"></i>Champions League (2026–27 · standard is top 4)</span>
+          <span><i class="z-uel"></i>Europa League</span>
+          <span><i class="z-uecl"></i>Conference League</span>
+          <span><i class="z-rel"></i>Relegated to the Championship</span>
+        </div>
       </div></div>
-      <p>Five Premier League clubs enter the 2026–27 Champions League — Arsenal, Manchester City, Manchester United, Aston Villa and Liverpool — the top four automatically plus a fifth via England's "European Performance Spot," awarded because England ranked in the top two of the 2025/26 UEFA association coefficients; the standard allocation is four. Bournemouth (6th) and Sunderland (7th) qualified for the Europa League, and Brighton (8th) for the Conference League. Bottom three finishers (18th–20th) drop straight to the Championship — there is no relegation play-off in England.</p>
+      <ul class="facts">
+        <li><b>Champions League (5):</b> Arsenal, Man City, Man United, Aston Villa, Liverpool — top four plus England's "European Performance Spot" for a top-two 2025/26 coefficient rank; standard allocation is four.</li>
+        <li><b>Europa:</b> Bournemouth (6th), Sunderland (7th) · <b>Conference:</b> Brighton (8th).</li>
+        <li><b>Down:</b> 18th–20th straight to the Championship — no relegation play-off in England.</li>
+        <li><b>Up:</b> Championship top two + the Wembley play-off winner — the "richest single match in football," worth £200m+ in guaranteed revenue.</li>
+      </ul>
       <details class="fmt-detail">
         <summary>Tiebreakers &amp; the festive fixtures</summary>
         <div class="dbody">Level on points, clubs are ranked by goal difference, then total goals scored, then points earned in the two head-to-head meetings, then away goals in those same two matches. If a title, European place, or relegation spot is still undecided after all of that, the league schedules a one-off playoff at a neutral venue. England is also the outlier on scheduling: unlike the rest of the big five, the Premier League runs straight through the holidays with no winter break — Boxing Day fixtures date back to 1888, though broadcast demands have trimmed the traditional full Boxing Day slate down to a single primetime match in recent seasons.</div>
       </details>
+      <h4>The weekly rhythm, Pacific Time</h4>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Saturdays</div><div>4:30a early kickoff · 7:00a main slate · 9:30a late game</div></div>
+        <div class="kd"><div class="kdd">Sundays</div><div>6:00a and 8:30a windows</div></div>
+        <div class="kd"><div class="kdd">Midweek</div><div>occasional full rounds, kicking off around 12:00p</div></div>
+      </div>
+      <h4>Season dates</h4>
       <div class="keydates">
         <div class="kd"><div class="kdd">Aug 22</div><div>Opening weekend</div></div>
         <div class="kd"><div class="kdd">Dec 26</div><div>Festive fixtures (Boxing Day)</div></div>
@@ -555,22 +714,48 @@
     <button class="lm-close" type="button" aria-label="Close">✕</button>
     <div class="lm-body">
       <div class="lm-head"><svg class="liga-mark" aria-hidden="true"><use href="#liga-mark"/></svg><h2>La Liga</h2></div>
-      <div class="lm-sub">Spain · 20 clubs · 38 games · Aug 14 – May 30 · ESPN+</div>
-      <p>Spain rewards technical range over raw pace — patient combination play through tight central areas, quick give-and-go sequences designed to manufacture a half-yard of space rather than run through a defense. Real Madrid and Barcelona have historically split the silverware between them, but the chase behind them has gotten louder in recent seasons.</p>
-      <p>Atlético Madrid's continued spending keeps a third club in true title contention most years, and Athletic Bilbao's stubborn Basque-only cantera policy — fielding only players born or developed in the Basque Country — has become one of the league's most-watched subplots: proof that a self-imposed talent restriction can still finish mid-table year after year instead of collapsing into one.</p>
+      <div class="lm-sub">Spain · 20 clubs · 38 games each · 380 total · Aug 14 – May 30 · ESPN+</div>
+      <p>Spain rewards technical range over raw pace.</p>
+      <ul class="facts">
+        <li>Patient combination play through tight central areas — a half-yard manufactured, not a defense run through.</li>
+        <li>Real Madrid and Barcelona have historically split the silverware; the chase behind them is louder now.</li>
+        <li>Atlético's spending keeps a third club in genuine title contention most years.</li>
+        <li>Athletic Bilbao's Basque-only cantera — fielding only players born or developed in the Basque Country — still finishes mid-table year after year; the league's best subplot.</li>
+      </ul>
       <h4>Where the table leads</h4>
       <div class="swiss">
-        <div class="phase">20 clubs · <b>38 games</b> · double round-robin · most points wins</div>
-        <div class="bands">
-        <div class="band g1"><div class="rng">1–5</div><div class="to">Champions League (2026–27 · standard is top 4)</div></div>
-        <div class="band g2"><div class="rng">6–7</div><div class="to">Europa League (6th + Copa del Rey winner) · Conference League (7)</div></div>
-        <div class="band g3"><div class="rng">18–20</div><div class="to">Relegated to Segunda División</div></div>
+        <div class="phase">20 clubs · <b>38 games each</b> · 380 matches a season · double round-robin · most points wins</div>
+        <div class="tmap">
+        <div class="cells">
+          <div class="c z-ucl">1</div><div class="c z-ucl">2</div><div class="c z-ucl">3</div><div class="c z-ucl">4</div><div class="c z-ucl">5</div>
+          <div class="c z-uel">6</div>
+          <div class="c z-uecl">7</div>
+          <div class="c">8</div><div class="c">9</div><div class="c">10</div><div class="c">11</div><div class="c">12</div><div class="c">13</div><div class="c">14</div><div class="c">15</div><div class="c">16</div><div class="c">17</div>
+          <div class="c z-rel">18</div><div class="c z-rel">19</div><div class="c z-rel">20</div>
+        </div>
+        <div class="leg">
+          <span><i class="z-ucl"></i>Champions League (2026–27 · standard is top 4)</span>
+          <span><i class="z-uel"></i>Europa League (+ Copa del Rey winner)</span>
+          <span><i class="z-uecl"></i>Conference League</span>
+          <span><i class="z-rel"></i>Relegated to Segunda División</span>
+        </div>
       </div></div>
-      <p>Five La Liga clubs enter the 2026–27 Champions League: the top four automatically, plus a fifth via Spain's own European Performance Spot, claimed by Real Betis for their 5th-place finish. Celta Vigo (6th) and Copa del Rey winners Real Sociedad qualify for the Europa League, and Getafe (7th) for the Conference League. Bottom three finishers drop to Segunda División — no play-off.</p>
+      <ul class="facts">
+        <li><b>Champions League (5):</b> top four + Real Betis (5th) via Spain's own European Performance Spot.</li>
+        <li><b>Europa:</b> Celta Vigo (6th) + Copa del Rey winners Real Sociedad · <b>Conference:</b> Getafe (7th).</li>
+        <li><b>Down:</b> 18th–20th to Segunda División — no play-off.</li>
+        <li><b>Up:</b> Segunda's top two + the winner of a two-legged play-off bracket among 3rd–6th.</li>
+      </ul>
       <details class="fmt-detail">
         <summary>Tiebreakers &amp; the Clásico</summary>
         <div class="dbody">La Liga breaks level points differently from the Premier League: head-to-head record between the tied clubs is checked before overall goal difference, not after — the reverse of England's order. If it's still level for a position that matters, a one-off tie-break match at a neutral stadium decides it. The season's marquee fixture is unchanged regardless of the table: Real Madrid host Barcelona (or vice versa) twice, penciled for Oct 25 and May 9 this cycle.</div>
       </details>
+      <h4>The weekly rhythm, Pacific Time</h4>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Saturdays</div><div>kickoffs staggered from 5:00a through 12:00p</div></div>
+        <div class="kd"><div class="kdd">Sundays</div><div>same spread — the 12:00p PT slot is Spain's 9:00p prime-time game</div></div>
+      </div>
+      <h4>Season dates</h4>
       <div class="keydates">
         <div class="kd"><div class="kdd">Aug 14</div><div>Opening weekend</div></div>
         <div class="kd"><div class="kdd">Oct 25</div><div>Clásico I</div></div>
@@ -592,22 +777,50 @@
     <button class="lm-close" type="button" aria-label="Close">✕</button>
     <div class="lm-body">
       <div class="lm-head"><svg class="buli-mark" aria-hidden="true"><use href="#buli-mark"/></svg><h2>Bundesliga</h2></div>
-      <div class="lm-sub">Germany · 18 clubs · 34 games · Aug 28 – May 22 · USA Network</div>
-      <p>Germany draws the highest average attendance of any football league on the planet, built on cheap tickets and standing terraces that the league's 50+1 fan-ownership rule protects by design — no outside investor can hold a controlling stake in a Bundesliga club the way they can elsewhere in Europe.</p>
-      <p>On the pitch it's the sport's development pipeline right now: Florian Wirtz and Jamal Musiala both came up through Bundesliga academies before their moves, and the league's structural bias toward giving young players real minutes is a big part of why. Bayern Munich's decade-plus of near-total domestic dominance is the backdrop everyone else is still trying to break — Bayer Leverkusen's 2023–24 unbeaten title remains the only real interruption this decade.</p>
+      <div class="lm-sub">Germany · 18 clubs · 34 games each · 306 total · Aug 28 – May 22 · USA Network</div>
+      <p>The best-attended football league on the planet, by design.</p>
+      <ul class="facts">
+        <li>Cheap tickets and standing terraces, protected by the 50+1 rule — no outside investor can hold a controlling stake in a Bundesliga club.</li>
+        <li>The sport's development pipeline: Wirtz and Musiala both came up through its academies, and young players get real minutes structurally, not as a favor.</li>
+        <li>Bayern's decade-plus of near-total dominance is the backdrop — Leverkusen's 2023–24 unbeaten title remains the only real interruption.</li>
+      </ul>
       <h4>Where the table leads</h4>
       <div class="swiss">
-        <div class="phase">18 clubs · <b>34 games</b> · double round-robin · most points wins</div>
-        <div class="bands">
-        <div class="band g1"><div class="rng">1–4</div><div class="to">Champions League</div></div>
-        <div class="band g2"><div class="rng">5–7</div><div class="to">Europa League (5–6) · Conference League play-off (7)</div></div>
-        <div class="band g3"><div class="rng">16–18</div><div class="to">16th: relegation play-off · 17–18: relegated</div></div>
+        <div class="phase">18 clubs · <b>34 games each</b> · 306 matches a season · double round-robin · most points wins</div>
+        <div class="tmap n18">
+        <div class="cells">
+          <div class="c z-ucl">1</div><div class="c z-ucl">2</div><div class="c z-ucl">3</div><div class="c z-ucl">4</div>
+          <div class="c z-uel">5</div><div class="c z-uel">6</div>
+          <div class="c z-ueclq">7</div>
+          <div class="c">8</div><div class="c">9</div><div class="c">10</div><div class="c">11</div><div class="c">12</div><div class="c">13</div><div class="c">14</div><div class="c">15</div>
+          <div class="c z-po">16</div>
+          <div class="c z-rel">17</div><div class="c z-rel">18</div>
+        </div>
+        <div class="leg">
+          <span><i class="z-ucl"></i>Champions League</span>
+          <span><i class="z-uel"></i>Europa League</span>
+          <span><i class="z-ueclq"></i>Conference League play-off</span>
+          <span><i class="z-po"></i>Relegation play-off vs 2. Bundesliga's 3rd</span>
+          <span><i class="z-rel"></i>Relegated to 2. Bundesliga</span>
+        </div>
       </div></div>
-      <p>Bayern Munich, Borussia Dortmund, RB Leipzig and VfB Stuttgart hold the four direct Champions League spots for 2026–27. Hoffenheim (5th) and Bayer Leverkusen (6th) qualify for the Europa League, and Freiburg (7th) enters Conference League play-offs. At the other end, the bottom two (17th, 18th) drop automatically; 16th place enters a two-legged relegation play-off against 2. Bundesliga's third-place finisher, decided on aggregate with extra time and penalties if still level.</p>
+      <ul class="facts">
+        <li><b>Champions League (4):</b> Bayern, Dortmund, RB Leipzig, Stuttgart.</li>
+        <li><b>Europa:</b> Hoffenheim (5th), Leverkusen (6th) · <b>Conference play-off:</b> Freiburg (7th).</li>
+        <li><b>Down:</b> 17th–18th automatic; 16th plays a two-legged relegation play-off vs 2. Bundesliga's 3rd — aggregate, extra time and penalties if level.</li>
+        <li><b>Up:</b> 2. Bundesliga's top two automatically, plus its 3rd-place club if it wins that play-off.</li>
+      </ul>
       <details class="fmt-detail">
         <summary>The Winterpause</summary>
         <div class="dbody">Germany is the only one of the five with a genuine multi-week mid-season shutdown — roughly three to four weeks, typically mid/late December into early January, built around winter weather and a training-camp tradition rather than TV scheduling. It's the direct opposite of the Premier League's approach, which runs straight through the holidays with no break at all.</div>
       </details>
+      <h4>The weekly rhythm, Pacific Time</h4>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Fridays</div><div>one opener at 11:30a (8:30p in Germany)</div></div>
+        <div class="kd"><div class="kdd">Saturdays</div><div>the 6:30a block — most of the round kicks off together (3:30p in Germany), the closest thing Europe has to a single shared matchday hour</div></div>
+        <div class="kd"><div class="kdd">Sundays</div><div>occasional single fixture</div></div>
+      </div>
+      <h4>Season dates</h4>
       <div class="keydates">
         <div class="kd"><div class="kdd">Aug 28</div><div>Opening weekend</div></div>
         <div class="kd"><div class="kdd">Late Dec – early Jan</div><div>Winterpause</div></div>
@@ -629,22 +842,48 @@
     <button class="lm-close" type="button" aria-label="Close">✕</button>
     <div class="lm-body">
       <div class="lm-head"><svg class="seriea-mark" aria-hidden="true"><use href="#seriea-mark"/></svg><h2>Serie A</h2></div>
-      <div class="lm-sub">Italy · 20 clubs · 38 games · Paramount+</div>
-      <p>Italian football's reputation for defensive rigidity is older than most of its current back lines. Catenaccio — literally "door-bolt" — defined the league for decades: a deep defensive line, a sweeper mopping up behind it, matches won by a single disciplined goal. Serie A has trended toward higher-scoring, more transitional football over the past decade without fully abandoning that tactical discipline; it still asks more of its center-backs, positionally, than any other of the big five.</p>
-      <p>Inter Milan is the league's one unbroken thread: the only club never relegated since Serie A's founding in 1929, sharing the San Siro with, and regularly separated from, city rival AC Milan in one of football's oldest derbies. Napoli's 2022–23 and 2024–25 titles broke a run of Juventus/Inter/Milan dominance that had held for most of the 21st century.</p>
+      <div class="lm-sub">Italy · 20 clubs · 38 games each · 380 total · Aug 23 – May 30 · Paramount+</div>
+      <p>Italian football's defensive reputation is older than most of its current back lines.</p>
+      <ul class="facts">
+        <li>Catenaccio — literally "door-bolt" — defined it for decades: deep line, a sweeper behind it, matches won by a single disciplined goal.</li>
+        <li>A decade of drift toward higher-scoring, transitional football — but it still asks more of its center-backs, positionally, than any of the big five.</li>
+        <li>Inter: the only club never relegated since the league's 1929 founding, sharing the San Siro with city rival AC Milan.</li>
+        <li>Napoli's 2022–23 and 2024–25 titles broke the Juventus/Inter/Milan grip that held for most of the 21st century.</li>
+      </ul>
       <h4>Where the table leads</h4>
       <div class="swiss">
-        <div class="phase">20 clubs · <b>38 games</b> · double round-robin · most points wins</div>
-        <div class="bands">
-        <div class="band g1"><div class="rng">1–4</div><div class="to">Champions League</div></div>
-        <div class="band g2"><div class="rng">5–7</div><div class="to">Europa League (5th + Coppa winner) · Conference League (6/7)</div></div>
-        <div class="band g3"><div class="rng">18–20</div><div class="to">Relegated to Serie B</div></div>
+        <div class="phase">20 clubs · <b>38 games each</b> · 380 matches a season · double round-robin · most points wins</div>
+        <div class="tmap">
+        <div class="cells">
+          <div class="c z-ucl">1</div><div class="c z-ucl">2</div><div class="c z-ucl">3</div><div class="c z-ucl">4</div>
+          <div class="c z-uel">5</div>
+          <div class="c z-uecl">6</div>
+          <div class="c">7</div><div class="c">8</div><div class="c">9</div><div class="c">10</div><div class="c">11</div><div class="c">12</div><div class="c">13</div><div class="c">14</div><div class="c">15</div><div class="c">16</div><div class="c">17</div>
+          <div class="c z-rel">18</div><div class="c z-rel">19</div><div class="c z-rel">20</div>
+        </div>
+        <div class="leg">
+          <span><i class="z-ucl"></i>Champions League</span>
+          <span><i class="z-uel"></i>Europa League (+ Coppa Italia winner)</span>
+          <span><i class="z-uecl"></i>Conference League (shifts to 7th if the Coppa winner overlaps)</span>
+          <span><i class="z-rel"></i>Relegated to Serie B</span>
+        </div>
       </div></div>
-      <p>Italy's top four qualify directly for the Champions League. The Europa League spot goes to 5th place and the Coppa Italia winner — if the same club holds both, the spare Europa spot rolls down to 6th, and the Conference League place shifts to 7th instead of 6th. Bottom three finishers drop to Serie B — no play-off.</p>
+      <ul class="facts">
+        <li><b>Champions League (4):</b> top four, direct.</li>
+        <li><b>Europa:</b> 5th + the Coppa Italia winner — an overlap rolls the spare spot to 6th · <b>Conference:</b> 6th (or 7th after a roll-down).</li>
+        <li><b>Down:</b> 18th–20th to Serie B — no play-off.</li>
+        <li><b>Up:</b> Serie B's top two + a play-off bracket winner from the clubs behind them.</li>
+      </ul>
       <details class="fmt-detail">
         <summary>Tiebreakers &amp; catenaccio's legacy</summary>
         <div class="dbody">Serie A resolves level points through head-to-head points first, then head-to-head goal difference, then overall goal difference, then total goals scored. A playoff at a neutral venue only gets scheduled if the title, a European place, or relegation is directly on the line after all of that — for anything else, a tied position is broken by drawing lots.</div>
       </details>
+      <h4>The weekly rhythm, Pacific Time</h4>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Sat – Mon</div><div>typical windows spread 3:30a to 11:45a — the 12:30p Sunday lunch game in Italy is the 3:30a slot, the 8:45p night match lands at 11:45a</div></div>
+        <div class="kd"><div class="kdd">Note</div><div>Serie A fixtures aren't loaded into the app's calendar yet — windows above are the league's standard slots</div></div>
+      </div>
+      <h4>Season dates</h4>
       <div class="keydates">
         <div class="kd"><div class="kdd">Aug 23</div><div>Opening weekend</div></div>
         <div class="kd"><div class="kdd">May 30</div><div>Final day</div></div>
@@ -664,22 +903,51 @@
     <button class="lm-close" type="button" aria-label="Close">✕</button>
     <div class="lm-body">
       <div class="lm-head"><svg class="l1-mark" aria-hidden="true"><use href="#l1-mark"/></svg><h2>Ligue 1</h2></div>
-      <div class="lm-sub">France · 18 clubs · 34 games · Fanatiz</div>
-      <p>France's top flight shrank to 18 clubs for 2026–27, and its competitive picture is still built around one financial outlier: PSG's spending has outpaced the rest of the division for over a decade, funded by backing that none of its domestic rivals can match.</p>
-      <p>Its more honest role in world football is as a proving ground rather than a destination league — Kylian Mbappé, Ousmane Dembélé, and most of the current PSG academy graduates all broke through in Ligue 1 before the bigger paydays elsewhere, and that talent-export pipeline is arguably the league's biggest ongoing export, ahead of PSG's own trophies.</p>
+      <div class="lm-sub">France · 18 clubs · 34 games each · 306 total · Aug 23 – May 29 · Fanatiz</div>
+      <p>France's top flight shrank to 18 clubs for 2026–27; the competitive picture is still built around one financial outlier.</p>
+      <ul class="facts">
+        <li>PSG's spending has outpaced the rest of the division for over a decade, on backing no domestic rival can match.</li>
+        <li>The league's honest role is proving ground, not destination — Mbappé, Dembélé, and most of PSG's academy graduates broke through here before the bigger paydays.</li>
+        <li>That talent-export pipeline is arguably the league's biggest product, ahead of PSG's own trophies.</li>
+      </ul>
       <h4>Where the table leads</h4>
       <div class="swiss">
-        <div class="phase">18 clubs · <b>34 games</b> · double round-robin · most points wins</div>
-        <div class="bands">
-        <div class="band g1"><div class="rng">1–3</div><div class="to">Champions League direct (4th → Q3 qualifying)</div></div>
-        <div class="band g2"><div class="rng">5–6</div><div class="to">Europa League (2 places) · Conference League</div></div>
-        <div class="band g3"><div class="rng">16–18</div><div class="to">16th: relegation play-off · 17–18: relegated</div></div>
+        <div class="phase">18 clubs · <b>34 games each</b> · 306 matches a season · double round-robin · most points wins</div>
+        <div class="tmap n18">
+        <div class="cells">
+          <div class="c z-ucl">1</div><div class="c z-ucl">2</div><div class="c z-ucl">3</div>
+          <div class="c z-uclq">4</div>
+          <div class="c z-uel">5</div><div class="c z-uel">6</div>
+          <div class="c z-uecl">7</div>
+          <div class="c">8</div><div class="c">9</div><div class="c">10</div><div class="c">11</div><div class="c">12</div><div class="c">13</div><div class="c">14</div><div class="c">15</div>
+          <div class="c z-po">16</div>
+          <div class="c z-rel">17</div><div class="c z-rel">18</div>
+        </div>
+        <div class="leg">
+          <span><i class="z-ucl"></i>Champions League</span>
+          <span><i class="z-uclq"></i>Champions League Q3 qualifying</span>
+          <span><i class="z-uel"></i>Europa League</span>
+          <span><i class="z-uecl"></i>Conference League</span>
+          <span><i class="z-po"></i>Relegation play-off vs Ligue 2 bracket winner</span>
+          <span><i class="z-rel"></i>Relegated to Ligue 2</span>
+        </div>
       </div></div>
-      <p>France's top three qualify directly for the Champions League, with 4th place entering the competition's third qualifying round instead. As one of UEFA's top-12 ranked associations, France holds two automatic Europa League places, with further Conference League places lower in the table. At the other end, the bottom two (17th, 18th) drop automatically; 16th enters a two-legged relegation play-off against the winner of a three-way Ligue 2 play-off among that division's 3rd, 4th and 5th-place finishers.</p>
+      <ul class="facts">
+        <li><b>Champions League:</b> top three direct; 4th enters the third qualifying round.</li>
+        <li><b>Europa:</b> two automatic places (5th–6th) · <b>Conference:</b> lower in the table.</li>
+        <li><b>Down:</b> 17th–18th automatic; 16th plays a two-legged play-off vs the winner of Ligue 2's three-way bracket (3rd–5th).</li>
+        <li><b>Up:</b> Ligue 2's top two, plus that bracket winner if it takes the play-off — full mechanics in the disclosure below.</li>
+      </ul>
       <details class="fmt-detail">
         <summary>How the relegation math actually plays out</summary>
         <div class="dbody">The Ligue 2 side of the bracket runs first: 5th-place hosts 4th-place in a one-off match, and the winner then travels to face 3rd-place in a second one-off match. Only the winner of that second match goes on to face Ligue 1's 16th-place club, over two legs — first leg at the Ligue 2 side's ground, return leg at the Ligue 1 club's. Extra time and penalties settle it if the aggregate score is still level after both legs.</div>
       </details>
+      <h4>The weekly rhythm, Pacific Time</h4>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Saturdays</div><div>8:00a · 12:05p — the 12:05p slot is France's 9:05p prime-time game</div></div>
+        <div class="kd"><div class="kdd">Sundays</div><div>6:00a · 8:15a · 11:45a — the 11:45a window is Ligue 1's marquee slot, where Le Classique lands</div></div>
+      </div>
+      <h4>Season dates</h4>
       <div class="keydates">
         <div class="kd"><div class="kdd">Aug 22–23</div><div>Opening weekend</div></div>
         <div class="kd"><div class="kdd">May 29</div><div>Final day — the Multiplex, all matches simultaneous</div></div>
