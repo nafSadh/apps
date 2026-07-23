@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>try{var t=localStorage.getItem('mdcal-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viewing Guide — Matchday Pacific</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --disp:'Saira Condensed',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --hand:'Caveat',cursive;
+  }
+  html[data-theme="dark"]{
+    --pitch:#0c3524; --pitch-2:#0f4630; --chalk:#f4f1e4; --night:#0b120e;
+    --epl:#9d8cff; --liga:#ff5a45; --buli:#5dd39e; --l1:#5ce1e6; --ucl:#7fd1ff; --seriea:#e6b45c;
+    --muted:rgba(244,241,228,.62); --hair:rgba(244,241,228,.16); --hair2:rgba(244,241,228,.3);
+    --soft:rgba(244,241,228,.85); --ghost:rgba(244,241,228,.14); --wash:rgba(244,241,228,.08);
+    --card:rgba(12,19,36,.58); --cardhover:rgba(12,19,36,.75); --popover:#0e1712; --hatch:rgba(255,255,255,.05);
+  }
+  html[data-theme="light"]{
+    --pitch:#F4F3E9; --pitch-2:#ECF0E1; --chalk:#161B15; --night:#F2F1E7;
+    --epl:#6a4fe0; --liga:#d8432f; --buli:#2f8f5b; --l1:#1c8a86; --ucl:#1f7fc4; --seriea:#9c7a1f;
+    --muted:#7E8270; --hair:rgba(22,27,21,.12); --hair2:rgba(22,27,21,.3);
+    --soft:#3B4238; --ghost:rgba(22,27,21,.14); --wash:rgba(22,27,21,.06);
+    --card:rgba(245,250,255,.30); --cardhover:rgba(245,250,255,.48); --popover:#F8F7F0; --hatch:rgba(22,27,21,.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+  body{
+    font-family:var(--body);color:var(--chalk);background:var(--night);
+    background-image:
+      repeating-linear-gradient(45deg, transparent 0 2px, rgba(0,0,0,.05) 2px 3px),
+      repeating-linear-gradient(-45deg, transparent 0 3px, rgba(244,241,228,.016) 3px 4px),
+      repeating-linear-gradient(90deg, var(--pitch) 0 120px, var(--pitch-2) 120px 240px);
+    background-attachment:fixed;min-height:100vh;
+  }
+  html[data-theme="dark"] body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% -10%, rgba(244,241,228,.10), transparent 60%), radial-gradient(850px 600px at 90% 88%, rgba(91,110,245,.12), transparent 62%), radial-gradient(650px 480px at 4% 60%, rgba(127,209,255,.09), transparent 60%), rgba(11,18,14,.82);pointer-events:none;z-index:0}
+  html[data-theme="light"] body::before{content:"";position:fixed;inset:0;background:radial-gradient(850px 560px at 92% 4%, rgba(70,150,235,.09), transparent 62%), radial-gradient(700px 520px at 6% 78%, rgba(90,160,240,.07), transparent 60%), radial-gradient(600px 420px at 55% 96%, rgba(110,175,245,.05), transparent 58%);pointer-events:none;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 20px 56px}
+
+  header{padding:28px 0 6px}
+  .head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+  .head-actions{display:flex;gap:8px;flex:none}
+  .iconbtn{width:34px;height:34px;border-radius:999px;border:1px solid var(--hair);background:var(--card);color:var(--chalk);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:transform .15s ease,border-color .15s ease,background .15s ease;text-decoration:none;flex:none}
+  .iconbtn:hover{border-color:var(--chalk);background:var(--cardhover);transform:translateY(-2px)}
+  .iconbtn:active{transform:translateY(0)}
+  .iconbtn:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+  .kick a{color:inherit;text-decoration:none}
+  .kick a:hover{color:var(--chalk)}
+  .kick .hand{font-family:var(--hand);font-size:19px;letter-spacing:.01em;color:var(--chalk);display:inline-block;transform:rotate(-2deg);vertical-align:-2px;margin-left:2px}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,5.4vw,64px);line-height:1;letter-spacing:.01em;margin:8px 0 6px}
+  h1 .pac{color:transparent;-webkit-text-stroke:1.5px var(--chalk)}
+  .dek{max-width:700px;color:var(--soft);font-size:16px;line-height:1.55;margin-top:2px}
+  .meta{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px solid var(--hair)}
+
+  /* ---------- article shell ---------- */
+  article{max-width:1060px;margin-top:8px}
+
+  /* eyebrow section headers — same signature as the rest of the site */
+  .eyebrow{display:flex;align-items:center;gap:14px;margin-top:46px;margin-bottom:16px}
+  article>.eyebrow:first-child{margin-top:34px}
+  .eyebrow h2{font-family:var(--disp);font-weight:800;font-size:27px;letter-spacing:.02em;display:flex;align-items:center}
+  .eyebrow .rule{flex:1;height:1px;background:var(--hair)}
+  .eyebrow .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+
+  /* narrative prose stays at a readable measure even though the article shell is full-width — same pattern index.html uses for .sub */
+  article>p{font-size:15.5px;line-height:1.75;color:var(--soft);margin-top:14px;max-width:720px}
+  article>p:first-of-type{margin-top:0}
+  article b{color:var(--chalk);font-weight:600}
+  article a{color:var(--ucl)}
+  .lede{font-size:17px;line-height:1.7;color:var(--chalk)}
+
+  /* competition logos — La Liga/Ligue 1/UCL are verified public domain on Commons; Premier League/Bundesliga/Serie A are Wikipedia non-free (fair-use-only there) but used here for identification on a personal, non-commercial project */
+  .lgo-img{width:42px;height:42px;object-fit:contain;flex:none;margin-right:10px;background:#f4f1e4;border-radius:50%;padding:0;box-sizing:border-box;box-shadow:0 0 0 1px rgba(244,241,228,.25)}
+  /* original mark — lion head on a shield, drawn from scratch for the Premier League slot (generic heraldic motif, not a copy of any club/league's specific logo) */
+  .epl-mark{width:56px;height:42px;flex:none;margin-right:10px}
+  .epl-mark.sm{width:35px;height:26px;margin-right:0}
+  .buli-mark{width:42px;height:42px;flex:none;margin-right:10px}
+  .buli-mark.sm{width:26px;height:26px;margin-right:0}
+  .l1-mark{width:27px;height:42px;flex:none;margin-right:10px}
+  .l1-mark.sm{width:17px;height:26px;margin-right:0}
+  .liga-mark{width:45px;height:42px;flex:none;margin-right:10px}
+  .liga-mark.sm{width:28px;height:26px;margin-right:0}
+  .seriea-mark{width:33px;height:42px;flex:none;margin-right:10px}
+  .seriea-mark.sm{width:20px;height:26px;margin-right:0}
+
+  /* stat-pull strips — span the full width, spaced out */
+  .statpull{display:flex;gap:34px;flex-wrap:wrap;justify-content:space-between;margin:22px 0 26px;padding:18px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);max-width:820px}
+  .statpull .sp{font-family:var(--mono)}
+  .statpull .sp .n{font-family:var(--disp);font-weight:800;font-size:38px;line-height:1}
+  .statpull .sp .l{font-size:10.5px;letter-spacing:.08em;color:var(--muted);margin-top:5px;max-width:160px;line-height:1.35}
+
+  /* view toggle */
+  .viewtoggle{display:flex;gap:8px;margin:16px 0 0}
+  .viewtoggle button{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;background:none;border:1px solid var(--hair);color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer}
+  .viewtoggle button:hover{border-color:var(--chalk);color:var(--chalk)}
+  .viewtoggle button.on{background:var(--chalk);color:var(--night);border-color:var(--chalk)}
+
+  /* callout / sidebar box — "by competition" view */
+  .callout{border:1px solid var(--hair);border-top:3px solid var(--ucl);border-radius:10px;padding:16px 20px;background:var(--card);margin-top:14px;max-width:720px}
+  .callout h3{font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:.03em;color:var(--muted)}
+  .wrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px dashed var(--hair);font-size:13.5px}
+  .wrow:first-of-type{border-top:none;margin-top:10px}
+  .wrow .dot{flex:none;width:8px;height:8px;border-radius:2px;background:var(--dot,var(--chalk));align-self:center}
+  .wrow.ucl{--dot:var(--ucl)} .wrow.epl{--dot:var(--epl)} .wrow.liga{--dot:var(--liga)} .wrow.buli{--dot:var(--buli)} .wrow.l1{--dot:var(--l1)} .wrow.cup{--dot:rgba(244,241,228,.55)}
+  .clogo{width:26px;height:26px;object-fit:contain;flex:none;background:#f4f1e4;border-radius:50%;padding:0;box-sizing:border-box}
+  .wrow .what{color:var(--soft)}
+  .wrow .svc{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;white-space:nowrap}
+  .callout .fine{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:12px;line-height:1.5}
+
+  /* "by service" view — service cards with bundling/pricing detail */
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:14px}
+  .svcard{border:1px solid var(--hair);border-radius:10px;padding:16px 18px;background:var(--card)}
+  .svcard .sh{display:flex;align-items:center;gap:10px}
+  .svcard .slogo{height:28px;max-width:140px;object-fit:contain;object-position:left center;flex:none;background:#f4f1e4;padding:5px 9px;border-radius:6px;box-sizing:content-box}
+  .svcard h4{font-family:var(--disp);font-weight:800;font-size:19px}
+  .svcard .price{font-family:var(--mono);font-size:11.5px;color:var(--ucl);margin-top:6px;line-height:1.6}
+  .svcard ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .svcard li{display:flex;align-items:center;gap:9px;font-size:13px;line-height:1.4;color:var(--soft)}
+  .svcard li small{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto;text-align:right;white-space:nowrap}
+  .svcard a.site{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--ucl);text-decoration:none}
+  .svcard a.site:hover{text-decoration:underline}
+
+  /* leagues — color-coded left rail, same palette as the rest of the app; grid fills the wide viewport like index.html's .clubs/.players grids */
+  .leagues-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px 30px;margin-top:20px}
+  .league{padding-left:16px;border-left:3px solid var(--hair)}
+  .league.epl{border-left-color:var(--epl)}
+  .league.liga{border-left-color:var(--liga)}
+  .league.buli{border-left-color:var(--buli)}
+  .league.seriea{border-left-color:var(--seriea)}
+  .league.l1{border-left-color:var(--l1)}
+  .league h3{font-family:var(--disp);font-weight:800;font-size:20px;display:flex;align-items:center}
+  .league .lstat{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);display:block;margin-top:3px;margin-left:42px}
+  .league p{font-size:15px;line-height:1.7;color:var(--soft);margin-top:8px}
+
+  /* progressive-disclosure detail panels — used for league format/qualification + sources */
+  details.fmt-detail{margin-top:10px}
+  details.fmt-detail summary{cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ucl);list-style:none;display:flex;align-items:center;gap:6px;user-select:none}
+  details.fmt-detail summary::-webkit-details-marker{display:none}
+  details.fmt-detail summary::before{content:"▸";display:inline-block;transition:transform .15s ease;font-size:10px}
+  details.fmt-detail[open] summary::before{transform:rotate(90deg)}
+  details.fmt-detail .dbody{margin-top:9px;font-size:13.5px;line-height:1.65;color:var(--soft);padding-left:14px;border-left:2px solid var(--hair)}
+  details.fmt-detail .srclinks{margin-top:10px;padding-left:14px;display:flex;gap:14px;flex-wrap:wrap}
+  details.fmt-detail .srclinks a{font-family:var(--mono);font-size:10.5px;color:var(--ucl);text-decoration:none}
+  details.fmt-detail .srclinks a:hover{text-decoration:underline}
+
+  /* swiss model diagram, embedded */
+  .swiss{border:1px solid var(--hair);border-radius:10px;padding:16px 18px;background:var(--card);margin-top:18px;max-width:760px}
+  .swiss .phase{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--chalk);border:1px solid var(--hair);border-radius:8px;padding:10px 13px;background:var(--wash);text-align:center}
+  .swiss .phase b{color:var(--ucl);font-weight:500}
+  .bands{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:9px}
+  .band{border-radius:8px;padding:10px 11px;border:1px solid var(--hair)}
+  .band .rng{font-family:var(--disp);font-weight:800;font-size:20px;line-height:1}
+  .band .to{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.4}
+  .band.g1{border-color:rgba(125,224,166,.55)} .band.g1 .rng{color:#7de0a6}
+  .band.g2{border-color:rgba(255,212,121,.55)} .band.g2 .rng{color:#ffd479}
+  .band.g3{border-color:rgba(255,90,69,.45)} .band.g3 .rng{color:var(--liga)}
+  @media(max-width:520px){.bands{grid-template-columns:1fr}}
+
+  .keydates{display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:10px;background:var(--card);overflow:hidden;margin-top:16px;max-width:760px}
+  .kd{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 15px;border-top:1px solid var(--hair);font-size:13px;line-height:1.5;color:var(--soft)}
+  .kd:first-child{border-top:none}
+  .kd .kdd{font-family:var(--mono);font-size:11.5px;color:var(--ucl);letter-spacing:.03em}
+  @media(max-width:520px){.kd{grid-template-columns:1fr;gap:2px}}
+
+  /* beyond-europe regions */
+  .regions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 30px;margin-top:20px}
+  .region{padding-left:16px;border-left:3px solid var(--hair)}
+  .region.east{border-left-color:var(--l1)}
+  .region.south{border-left-color:var(--liga)}
+  .region h3{font-family:var(--disp);font-weight:800;font-size:18px}
+  .region p{font-size:15px;line-height:1.7;color:var(--soft);margin-top:6px}
+
+  /* glossary — 2-up on wide viewports */
+  .glossary{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 32px;margin-top:16px;border-top:1px solid var(--hair)}
+  .gterm{padding:12px 0;border-bottom:1px dashed var(--hair)}
+  .gterm dt{font-family:var(--mono);font-size:12.5px;color:var(--ucl);letter-spacing:.03em}
+  .gterm dt small{color:var(--muted);font-weight:400;margin-left:6px}
+  .gterm dd{font-size:14px;line-height:1.6;color:var(--soft);margin-top:4px}
+
+  /* storylines — status-colored left rail */
+  .itag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.05em;padding:2px 8px;border-radius:999px;vertical-align:1px;margin-left:6px;white-space:nowrap}
+  .itag.pending{border:1px solid #ffd479;color:#ffd479}
+  .itag.resolved{border:1px solid #7de0a6;color:#7de0a6}
+  .itag.new{border:1px solid var(--ucl);color:var(--ucl)}
+  .stories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px 30px;margin-top:18px}
+  .story{padding-left:16px;border-left:3px solid var(--hair)}
+  .story.pending{border-left-color:#ffd479}
+  .story.resolved{border-left-color:#7de0a6}
+  .story.new{border-left-color:var(--ucl)}
+
+  .ok{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;padding:2px 7px;border-radius:6px;border:1px solid var(--ucl);color:var(--ucl);white-space:nowrap}
+
+  footer{margin-top:48px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7;max-width:760px}
+  footer a{color:inherit}
+
+  /* league deep-dive modal — same shell convention as the squad modal on index.html */
+  .modal-link{margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ucl);background:none;border:none;padding:0;cursor:pointer;text-decoration:none;display:inline-block}
+  .modal-link:hover{text-decoration:underline}
+  .league-modal{position:fixed;inset:0;z-index:50;display:flex;padding:0}
+  .league-modal[hidden]{display:none}
+  .lm-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+  .lm-panel{position:relative;z-index:1;width:100%;height:100vh;max-height:100vh;overflow-y:auto;background:var(--night);padding:20px clamp(16px,4vw,56px) 60px}
+  .lm-close{position:fixed;top:16px;right:clamp(16px,3vw,40px);width:38px;height:38px;border-radius:999px;border:1px solid var(--hair);background:var(--card);color:var(--muted);cursor:pointer;font-size:16px;line-height:1;z-index:2}
+  .lm-close:hover{color:var(--chalk);border-color:var(--chalk)}
+  .lm-close:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .lm-body{max-width:760px;margin:44px auto 0}
+  .lm-head{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+  .lm-head h2{font-family:var(--disp);font-weight:800;font-size:34px}
+  .lm-sub{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:22px}
+  .lm-body p{font-size:15px;line-height:1.75;color:var(--soft);margin-top:14px}
+  .lm-body p:first-of-type{margin-top:0}
+  .lm-body b{color:var(--chalk);font-weight:600}
+  .lm-body h4{font-family:var(--disp);font-weight:800;font-size:17px;margin-top:26px;margin-bottom:4px}
+  .lm-body .swiss,.lm-body .keydates{max-width:none}
+  .lm-body .srclinks{margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);display:flex;gap:16px;flex-wrap:wrap}
+  .lm-body .srclinks a{font-family:var(--mono);font-size:11px;color:var(--ucl);text-decoration:none}
+  .lm-body .srclinks a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="epl-mark" viewBox="0 0 800 600.7">
+    <!-- lion-face artwork: user-provided, AI-generated original illustration (logos/lionface-2.svg) -->
+    <g fill="var(--epl)"><path d="M432.62,459.57c-3.89,4.28-8.03,8.36-11.61,12.88-8.42,10.62-12.34,23.25-15.39,36.2-2.72,11.51-5.29,23.07-11.09,33.57-4.22,7.64-9.46,14.38-17.13,19.7,.37-1,.52-1.61,.8-2.16,4.57-8.89,4.57-18,1.56-27.36-2.94-9.13-7.57-17.35-13.02-25.17-7.49-10.76-13.87-22.08-17.55-34.78-4.73-16.33-3.39-32.4,2.22-48.22,2.09-5.89,4.61-11.62,6.94-17.42,.28-.69,.54-1.38,.61-2.18-9.58,8.19-17.09,17.79-20.82,29.99-4.49,14.66-6.2,29.62-4.88,44.91,.46,5.34,1.02,10.68,1.61,16.74-2.23-3.62-4.39-6.57-5.98-9.8-3.9-7.94-7.92-15.86-11.19-24.07-5.22-13.09-2.86-25.26,5.85-36.27,2.27-2.87,4.49-5.79,6.6-8.77,3.11-4.4,3.94-9.28,2.78-15.19-7.38,13.08-15.15,25.18-24.44,36.29,1.26-5.98,2.72-11.88,1.55-18.71-1.7,.91-3.19,1.48-4.42,2.4-8,5.99-11.75,14.45-13.58,23.94-.58,2.98-.81,6.03-1.26,9.45-7.56-4.79-10.92-12.31-14.13-20.43-4.05,9.71-4.73,19.48-4.42,30.02-7.85-7.44-12.64-15.86-15.05-25.82-4.44,8.97-3.86,18.29-2,27.77-8.6-12.29-14.86-25.36-14.08-40.88l-.73-.15c-.5,2.55-1.21,5.09-1.45,7.67-.25,2.75-.06,5.54-.06,8.51-6.16-11.88-9.19-24.26-7.41-37.66-7.68,1.52-9.2,6.19-5.47,16.8-4.88-5.49-8.01-11.22-6.07-18.29,.72-2.61,2.68-5,4.49-7.14,1.33-1.57,1.79-2.88,.78-4.62-1.31-2.25-2.54-4.56-4.03-6.69-4.24-6.05-8.6-12.02-13.13-18.32-10.86,5.14-21.14,11.78-30.39,20.06,7.64-10.33,17.36-18.25,28.74-24.47-1.82-4.43-3.59-8.72-5.45-13.25-14.38,6.77-27.69,14.99-39.41,25.66l-.53-.6c5.38-4.99,10.47-10.36,16.22-14.88,6.55-5.15,13.63-9.63,20.6-14.22,1.48-.97,1.75-1.84,1.39-3.36-1.42-6-2.99-11.98-4.12-18.04-1.36-7.27-1.14-14.52,1.1-21.69,3.15-10.08,7.33-19.7,12.24-29.04,1.98-3.77,3.78-7.64,5.51-11.54,2.04-4.58,2.12-9.42,.54-14.05-5.78-16.93-1.86-32.39,6.73-47.22,.39-.68,.76-1.37,1.12-2.06,.07-.14,.04-.33,.05-.5-5.61-1.67-9.81-.36-13.33,4.15-3.67,4.7-5.52,10.21-7,15.87-.22,.83-.42,1.67-.82,2.47-2.34-10.91-1.77-21.49,3.31-31.64,1.9-3.8,5.38-4.93,9.09-5.84,2.99-.73,3.21-1.09,1.65-3.8-2.57-4.48-5.57-8.64-11.38-8.86-5.08-.2-8.57,2.8-11.08,6.76-5.26,8.31-5.17,17.28-2.6,26.42,.34,1.22,.83,2.41,1.04,3.66-7.16-8.85-8.25-18.87-5.09-29.44,2.55-8.52,7.08-15.5,16.69-17.73,1.82-11.87,5.89-22.85,16.89-29.36,11.28-6.67,22.46-3.44,33.36,2.02,.21-1.3,.44-2.39,.57-3.5,.86-7.58,5.22-12.28,12.14-14.93,2.84-1.09,5.64-2.3,8.49-3.36,6.98-2.6,13.38-6.15,19.32-10.71,19.98-15.33,42.7-24.57,67.17-29.82,17.03-3.65,34.25-5.3,51.65-4.7,16.5,.57,32.7,3.02,48.39,8.33,.65,.22,1.28,.47,1.94,.98-34.87-8.6-67.73-2.67-99.92,13.56,1.03,0,1.38,.05,1.7-.01,.33-.07,.64-.26,.97-.37,19.41-6.73,39.37-9.8,59.87-8.25,31.19,2.37,56.34,16.02,75.17,41.15,1.36,1.82,3.17,3.5,5.12,4.64,18.28,10.68,35.68,22.51,50.19,38.14,11.51,12.4,21.37,25.94,27.86,41.71,.23,.55,.44,1.1,.53,1.83-16.85-26.4-40.22-42.49-71.78-45.75,20.64,10.23,38.36,24.24,53.36,41.6,14.88,17.23,27.38,35.92,33.48,58.26-8.73-10.45-18.08-20.04-31.46-25.65,.38,.9,.52,1.35,.75,1.73,15.29,26.16,25.77,54.13,31.05,83.95,7.09,40,3.93,78.94-13.45,116.13-9.45,20.21-22.7,37.69-39.05,52.86-12.44,11.54-26,21.57-40.45,30.43-.72,.44-1.47,.83-2.49,.85,2.23-1.61,4.47-3.23,6.7-4.84,21.71-15.73,40.12-34.52,53.69-57.82,14.09-24.18,20.87-50.19,19.43-78.17-1.19-23.18-7.27-45.25-15.9-66.68-1.59-3.94-3.27-7.83-5.42-11.6,.14,.57,.25,1.16,.43,1.72,4.59,14.46,7.96,29.19,9.45,44.3,2.86,29.06-2.55,56.65-14.85,83.02-6.77,14.51-18.61,34.41-25.76,43.15,1.72-8.74,3.89-17.68,5.14-26.75,1.26-9.13,2.16-18.38,2.19-27.58,.04-9.29-.62-18.67-1.99-27.86-1.35-9.08-3.56-18.09-6.13-26.92-2.58-8.88-6.05-17.5-9.13-26.24l-.77,.24c.25,1.05,.46,2.1,.76,3.13,5.1,17.91,8.22,36.13,8.51,54.78,.43,27.81-7.46,53.2-22.61,76.43-12.61,19.33-28.6,35.56-46.22,50.25-19.22,16.01-40.08,29.49-62.88,39.87-.53,.24-1.06,.49-1.74,.59,30.75-24.64,53.13-54.97,63.87-93.29-19.29,14.15-36.99,29.58-43.29,54.51-1.45-5.4,.63-20.93,3.97-33.43,2.9-10.85,6.7-21.35,11.84-31.36-.28-.26-.56-.52-.84-.78Zm-80.51-124.41c-.12-.61-.03-1.55-.39-1.76-3.03-1.84-6.11-3.6-9.23-5.29-2.44-1.32-5.08-2.32-7.38-3.84-1.07-.71-2.12-2.3-2.16-3.53-.07-2.42-1.22-2.56-3.11-2.59-19.15-.22-38.08,2.02-56.96,4.97-5.77,.9-11.53,1.87-17.66,2.86,5.18-4.53,16.62-10.66,23.43-12.54,13.69-3.77,27.44-2.71,41.17-.28,4.3,.76,8.54,1.88,13.07,2.9-.31-12.01-5.74-21.43-13.03-30.07,16.41,10.62,29.61,24.05,38.12,42.71,1.37-4.24,2.77-7.79,3.66-11.47,1.86-7.67,1.16-15.46,.3-23.17-1-8.96-.42-17.15,6.2-24.34,3.93-4.27,6.34-9.84,7.12-15.75,1.71-12.89-2.5-24.2-9.91-34.47-2.44-3.38-5.54-6.29-7.94-9.7-1.1-1.57-1.88-3.88-1.7-5.75,.58-6.14,1.66-12.23,2.58-18.49,.24,.59,.52,1.1,.66,1.65,2.75,11.04,7.91,20.86,14.42,30.17,6.58,9.4,12.51,19.24,18.71,28.91,.45,.7,.71,1.51,1.06,2.27-2.5-2.19-4.58-4.53-6.69-6.85-2.03-2.23-4.09-4.44-6.14-6.66,7.17,15.32,13.3,30.86,16.68,47.41-.82-1.1-1.38-2.4-2.27-3.4-2.11-2.39-4.08-5.04-6.65-6.83-2.97-2.07-5.83-.32-5.41,3.22,.61,5.15,1.69,10.26,2.84,15.33,.99,4.35,2.35,8.62,3.55,12.92-1.13-.59-1.64-1.49-2.31-2.24-2.89-3.23-5.67-6.59-8.81-9.56-1.77-1.67-4.25-1.57-6.3-.11-2.03,1.45-2.36,3.58-1.58,5.85,.45,1.31,1.09,2.56,1.66,3.82,1.7,3.71,3.8,7.3,5.05,11.15,5.51,16.93,5.01,34.2,1.75,51.4-1.74,9.17-4.49,18.14-6.71,26.87,13.08-17.27,23.77-36.32,30.76-57.4,7.01-21.17,10.21-42.87,8.98-65.85,10.85,8.7,16.95,19.85,21.65,32,.14-.5,.19-.94,.14-1.37-2.09-16.13-5.69-31.83-13.05-46.48-5.17-10.28-12.93-17.58-23.95-21.25-.43-.14-.82-.41-1.23-.62,6.4,.72,12.34,2.79,18.07,5.52,13,6.19,22.68,15.82,29.49,28.51-.04-.93-.23-1.75-.55-2.53-6.54-15.84-16.4-29.24-29.67-40.11-8.6-7.04-18.71-11.31-28.77-15.67-5.06-2.19-10.18-4.25-15.27-6.37,9.97-1.66,19.84-.63,29.76-.23-4.95-3.19-10.01-6.06-14.92-9.17-2.78-1.76-5.48-3.73-7.89-5.96-3.18-2.94-2.63-4.78,1.51-6.29,.9-.33,1.83-.54,2.74-.84,2.64-.87,5.35-1.57,7.9-2.65,8.67-3.67,14.62-13.04,13.98-22.05-.44,.52-.75,.89-1.07,1.25-8.9,10.15-19.75,15.48-33.51,13.48-1.51-.22-2.95-.96-4.58-1.51l13.68-14.55-.49-.96c-6.99,.54-14,.95-20.97,1.66-4.76,.49-9.46,1.46-14.2,2.1-4.84,.66-7.18-2.35-5.32-6.87,.66-1.59,1.52-3.16,2.58-4.52,2.44-3.14,5.06-6.15,7.86-9.53-.99,.24-1.74,.31-2.39,.59-4.3,1.85-8.74,3.46-12.85,5.69-7.34,3.98-14.2,8.92-21.73,12.44-14.69,6.85-26.46,16.92-36.03,29.83-4.07,5.5-8.33,10.86-13,16.91,4.19-12.73,7.7-24.74,2.02-36.85-5.41,4.1-10.33,8.12-15.55,11.7-9.32,6.39-15.29,15.01-17.22,26.06-1.23,7.03-3.92,13.08-8.62,18.35-.8,.9-1.39,1.98-2.31,3.31,3.11-1.45,5.62-2.9,8.31-3.82,4.94-1.68,9.15,.37,10.28,5.43,.73,3.3,.74,6.95,.2,10.29-.79,4.83-4.72,6.43-9.02,4-1.38-.78-2.59-2.05-3.58-3.33-2.31-2.98-2.52-6.46-1.48-10.72-2.77,3.15-3.65,6.22-3.16,9.49,1.07,7.15,2.41,14.27,3.78,22.24,5.69-11.74,14.74-19.58,24.33-25.74-8.31,10.72-17.29,21.83-25.73,33.33-8.49,11.57-16.24,23.66-22.57,36.59,9.8,5.7,18.23,6.09,28.3,1.96,4.3-1.76,8.85-3.16,13.41-3.93,3.36-.57,6.96,.47,10.41,.2,5.56-.44,10.58-2.41,13.56-7.54,1.38-2.38,3.24-2.45,5.32-1.74,2.16,.74,3.31,2.56,2.73,4.74-.69,2.56-1.59,5.18-2.98,7.42-3.44,5.54-8.68,9.2-14.15,12.53-4.8,2.91-9.27,6.19-12.49,10.92-7.94,11.66-4.48,28.6,8.05,36.75,15.94,10.37,33.26,16.31,52.62,13.85,4.16-.53,8.22-1.83,12.32-2.77l-.07-1.11c-9.31-1.5-18.62-3-27.93-4.49,2.71-1.16,5.48-2.15,8.33-2.5,8.27-1.01,16.23,1.14,24.22,2.83,.77,.16,1.87,.4,2.35,.02,2.97-2.34,5.81-4.84,9.12-7.66-11.23-2.28-21.95-3.4-32.74-3.37-10.74,.03-21.47,.63-32.44,.99,.89-.46,1.61-.87,2.37-1.21,19.99-8.89,40.41-8.83,60.89-2.3,4.47,1.43,7.14,1.19,9.95-2.59,3.68-4.94,7.85-9.51,11.81-14.24h-.02Zm70.68-12.5l-.76,.18c-.06,.21-.18,.42-.19,.63-.22,8.41-2.17,16.44-6.13,23.81-5.34,9.96-10.9,19.82-16.71,29.51-9.71,16.2-19.59,32.29-27.07,49.69-2.77,6.44-5.25,13-7.87,19.5l.44,.21c5.08-3.75,10.16-7.5,15.81-11.68-4.32,15.56-6.17,30.63-4.11,46.09,2.03,15.26,6.29,29.76,13.49,43.38,.2-.73,.26-1.41,.19-2.08-.97-8.69-1.12-17.38,.01-26.08,1.79-13.71,6.26-26.35,14.56-37.53,7.12-9.6,16.41-16.79,26.03-23.62,9.79-6.95,18.91-14.58,25.7-24.67,8.92-13.25,12.02-28.2,12.74-43.79,.3-6.54,.05-13.1,.05-19.65,12.88,34.02,8.63,67.24-4.56,100.31,.61-.55,1.08-.89,1.44-1.32,7.22-8.61,14.92-16.87,21.56-25.91,20.33-27.69,29.68-58.41,23.99-92.9-2.59-15.68-7.97-30.22-17.65-43-.84-1.11-1.78-2.15-2.71-3.18-.92-1.02-1.89-2-2.84-3,3.63,12.27-.04,22.58-7.63,31.82-3.64,4.43-7.69,8.55-11.78,12.59-6.32,6.25-12.93,12.22-19.22,18.5-3.33,3.32-6.17,7.12-7.46,11.8-1.32,4.81,.74,8.13,5.69,8.8,2.23,.3,4.53,.05,7.17,.05-.79,1.07-1.25,1.8-1.81,2.44-6.15,7.02-12.39,13.94-18.44,21.04-8.53,10.01-17.27,19.88-25.28,30.3-10.62,13.81-17.67,29.45-21.59,46.56-.3-1.18-.33-2.35-.3-3.51,.6-18.69,5.56-35.98,16.28-51.51,5.59-8.1,10.95-16.35,16.26-24.63,8.47-13.21,10.7-27.62,7.45-42.83-1.18-5.53-3.15-10.89-4.76-16.33Zm52.58-146.56c-4.39,2.27-8.29,3.86-11.71,6.15-6.38,4.28-6.37,10.58,.06,14.73,3.24,2.09,6.9,3.75,10.6,4.89,13.61,4.2,27.29,8.15,40.97,12.09,13.77,3.96,25.25,11.37,34.73,22.12,8.91,10.1,16.83,20.89,23.65,32.48,1.87,3.17,3.66,6.38,5.48,9.57,.18-.69,.1-1.29-.11-1.82-4.06-10.15-7.66-20.51-12.29-30.4-11.92-25.46-28.01-47.91-49.85-65.92-16.5-13.61-34.78-21.74-57.51-17.76,1.05-.67,1.44-.97,1.87-1.19,10.03-4.96,20.57-8.42,31.58-10.37,8.21-1.46,16.43-1.98,24.56,.57,1.93,.6,3.8,1.37,5.7,2.06-19.39-15.95-69.14-28.56-93.51-23.78,1.23,.3,2.04,.51,2.87,.71,4.47,1.06,9.01,1.9,13.4,3.23,4.62,1.4,6.51,4.15,6.3,8.99-.14,3.1-.54,6.26-1.37,9.25-2.68,9.67-7.95,17.87-15.35,25.19,13.38,1.63,26.35,.17,39.94-.78Zm-34.14,152.41c2.64-4.15,5.4-8.33,8.02-12.61,9.36-15.25,17.62-30.99,22.05-48.5,4.1-16.22,2.84-31.66-6.57-45.85-13.09-19.72-31.59-31.5-54.62-36.28-3.9-.81-7.94-.91-11.92-1.34,52.13,37.3,60.95,86.86,43.04,144.57Zm-119.02,51.64c-7.22,5.82-14.67,9.12-23.43,9.24-8.31,.12-15.91-2.5-23.47-5.44-7.55-2.94-15.24-4.52-23.43-4.17-12.58,.54-16.23,10.66-15.58,18.73,.48,6.02,3.12,11.17,6.45,16.03,2.99,4.36,5.29,8.98,6.14,14.25,.27,1.69,.48,3.39,.79,5.67,2.7-3.34,5.02-6.25,7.4-9.12,2.39-2.88,4.8-5.74,7.25-8.57,.99-1.14,1.94-1.06,2.58,.4,.38,.87,.91,1.74,1.03,2.65,.46,3.47,.78,6.96,1.15,10.4,.28-.33,.79-.88,1.25-1.47,1.97-2.55,3.84-5.19,5.93-7.63,1.69-1.97,2.94-1.9,4.4,.22,1.16,1.68,1.98,3.6,3.07,5.62,1.27-.66,2.6-1.27,3.84-2.02,6.45-3.9,11.62-9.11,15.76-15.39,2.28-3.46,4.16-3.56,6.56-.16,1.66,2.35,2.86,5.04,4.48,7.95,7.28-11.4,8.56-23.76,7.82-37.21Zm177.28-118.9c-2.33-.94-4.21-1.87-6.18-2.44-2.09-.61-4.65-1.23-6.04,.84-1.48,2.2,.59,4.02,2.09,5.29,4.51,3.83,9,7.74,13.88,11.04,21.51,14.54,36.53,34.1,45.64,58.28,3.8,10.08,6.27,20.53,7.91,31.2,.19-1.06,.17-2.1,.2-3.14,.38-14.88-1.21-29.58-4.25-44.12-6.25-29.89-17.78-57.27-38.63-80.09-10.16-11.12-21.93-20.1-35.94-25.93-1.12-.47-2.25-.92-3.39-1.32-1.12-.4-2.26-.72-3.4-1.08,7.3,6.99,13.19,14.83,17.97,23.51,4.78,8.69,8.4,17.8,10.15,27.96Zm-11.49-147.07c-1.54-.85-2.93-1.69-4.38-2.42-30.38-15.07-62.36-20.84-96.02-16.14-29.15,4.07-54.1,16.81-74.97,37.5-3.67,3.64-7.04,7.58-10.55,11.39,1.48-.19,2.59-.81,3.69-1.43,15.71-8.77,32.12-15.77,49.84-19.4,4.68-.96,6.8,.17,7.75,4.86,.66,3.23,.65,6.6,.94,10.05,.36-.33,.72-.67,1.1-.99,4.57-3.9,8.89-8.14,13.75-11.63,26.28-18.84,55.71-22.18,86.69-16.87,7.39,1.27,14.65,3.34,22.15,5.09ZM215.51,362.7v1.1c1.38,.35,2.75,.69,4.13,1.04-.26,7.28,5.19,11.27,9.49,16.44,1.72-5.2,3.4-9.84,4.8-14.57,4.41-14.92-3.24-32.55-15.93-39.06-2.42-1.24-4.57-3.19-6.52-5.13-4.8-4.77-9.42-9.73-14.57-15.09,.33,3.85,.3,7.19,.97,10.38,1.39,6.68,.87,14.41,8.68,17.68v4.02c3.97,.26,7.78-2.03,11.79,.08-3.76,2.74-8.44,3.47-11.63,7.33,2.39-.22,4.31-.4,6.88-.63-.86,.95-1.19,1.44-1.64,1.78-2.16,1.63-2.5,3.59-1.21,5.91,.25,.45,.46,.95,.58,1.45,.68,2.73,2.43,3.3,5.07,2.99,2.65-.31,5.36-.07,8.05-.07l.05,.68-8.99,3.67Zm204.08-186.6c14.67-1.18,21.63-19.46,16.16-30.85-4.22-8.79-11.15-14.94-19.78-18.96-11.37-5.29-22.56,.14-25.96,12.17-2.66,9.4-5.57,18.65-13.45,25.83,.82-.14,1.16-.15,1.47-.26,7.61-2.57,12.55-7.91,15.55-15.16,1.03-2.48,1.7-5.1,2.65-7.62,1.4-3.75,3.37-5.09,7.36-4.88,6.75,.36,12.32,3.35,17.16,7.9,6.25,5.88,8.07,12.96,4.9,20.9-1.55,3.88-4.05,7.39-6.05,10.94Zm-203.63-15.82l.31,.08c.13,1.47,.22,2.96,.4,4.42,.8,6.53,5.83,12.79,11.21,14.15,2.08,.53,3.11,.23,2.96-2.26-.28-4.81,.8-8.75,6.39-10.09,2.51-.6,2.66-2.29,.5-3.84-1.9-1.35-4.03-2.39-6.08-3.52-2.6-1.42-3.32-3.37-1.57-5.74,1.03-1.39,2.6-2.62,4.19-3.29,3.5-1.46,6.83-.29,9.42,2.09,4.34,4,9,3.77,14.09,2.06,1.82-.61,2.34-1.55,1.29-3.01-2.15-3-4.01-6.46-6.82-8.7-10.37-8.28-28.16-8.68-34.27,8.26-1.08,2.98-1.38,6.24-2.04,9.37Zm63.77-46.23c-1.45,2.14-2.81,3.82-3.82,5.68-3.45,6.35-4.56,13.34-4.75,20.41-.25,9.33-.06,18.67-.06,28,0,.62,0,1.24,0,1.86,13.09-30.18,27.53-59.19,53.13-81-1.55,.59-3.01,1.3-4.41,2.11-15.6,8.99-28.51,20.82-38.14,36.13-.5,.79-1.48,1.28-2.24,1.91-.38-.97-1.14-1.97-1.07-2.91,.29-3.87,.82-7.72,1.34-12.2Zm-50.06,109.37c-.13,.32-.49,1.01-.72,1.75-.8,2.53,.02,6.04,1.94,7.02,.79,.4,2.38,.19,3.04-.38,.57-.49,.8-2.22,.37-2.85-1.34-1.98-3.06-3.71-4.63-5.54Z"/><path d="M266.54,245.74c2.81-.52,5.1-.88,7.35-1.37,3.31-.72,3.62-1.15,3.44-4.62-.33-6.17,1.6-11.47,6.02-15.82,.25-.24,.52-.47,.8-.67,.11-.08,.28-.07,.65-.16-1.88,4.35-2.17,8.72-.53,13.02,.5,1.32,1.71,3.11,2.8,3.27,1.15,.17,3.04-1.05,3.74-2.19,1.9-3.09,3.32-6.47,4.98-9.71,2.76-5.4,5.16-11.04,8.45-16.1,3.46-5.3,9.03-7.19,15.3-6.51,6.05,.66,12.07,1.55,18.11,2.32,4.07,.52,7.84,.19,10.24-3.94-.63,4.37-3.26,7.17-6.86,9-2.38,1.21-5.05,1.82-7.52,2.86-.83,.35-1.94,1.05-2.11,1.78-2.08,8.78-8.14,13.2-16.4,15.32-1.09,.28-2.21,.47-3.31,.73-10.47,2.56-16.5,11.79-15.27,22.56,.98,8.62,5.5,15.04,11.51,20.75,.88,.84,1.77,1.68,2.65,2.52,.05,.05,.06,.15,.21,.57-3.61-.29-6.56-1.69-8.92-4.09-2.87-2.92-5.47-6.09-8.19-9.15-7.2-8.09-15.44-14.82-25.39-19.3-.46-.21-.87-.54-1.74-1.09Zm49.84-32.89c-.65,2.84-.86,5.3-1.8,7.44-1.04,2.37-3.01,2.46-4.76,.53-1.05-1.16-1.85-2.55-2.87-3.97-1.58,5.38,1.17,10.03,6.03,10.59,5.74,.66,11.24-4.81,10.49-10.53-.1-.75-.6-1.81-1.2-2.06-2.03-.87-4.19-1.44-5.89-1.99Z"/><path d="M352.13,335.16c-6.01,.04-12.01,.18-18.02,.1-17.18-.22-34.31,.44-51.4,2.12-7.35,.72-14.73,1.21-22.77,1.85,1.07-.83,1.62-1.3,2.2-1.71,13.09-9.28,27.8-12.07,43.55-11.28,15.47,.77,30.45,3.86,45.12,8.66,.41,.13,.85,.18,1.28,.26,.01,0,.03,0,.03,0Z"/><path d="M310.69,171.15c-4.09,5.12-4.72,10.81-4.35,17.1,.53,8.79-2.09,16.85-7.9,23.67-.83,.97-1.9,1.74-3.52,3.2-1.04-5.42-2.41-10.18-2.79-15.02-1.18-15.16,2.78-21.55,16.71-28.08,.62-.29,1.23-.58,1.84-.87Z"/><path d="M237.12,215.54c-8.1-8.63-7.44-24.41,7.62-31.81-7.69,9.53-7.06,20.61-7.62,31.81Z"/><path d="M277.7,262.93c-1.9,6.02-3.88,12.3-5.82,18.44-4.37,.79-9.24,1.68-14.11,2.56,1.47-1.28,3.22-2.67,4.8-4.24,1.55-1.55,3.27-3.1,4.29-4.99,2.55-4.71,6.09-8.42,10.36-11.52,.3-.22,.68-.34,.48-.24Z"/></g>
+  </symbol>
+  <symbol id="seriea-mark" viewBox="330.17 332 1649.97 2125.25">
+    <!-- user-provided Serie A mark (logos/serie-a-mark.svg) -->
+    <defs>
+      <linearGradient id="seriea-grad-1" x1="-169.16" y1="3947.43" x2="-159.53" y2="3947.43" gradientTransform="translate(12056.11 263819.36) scale(66.33 -66.33)" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#31ecff"/>
+        <stop offset=".57" stop-color="#0373ff"/>
+        <stop offset=".81" stop-color="#0373ff"/>
+        <stop offset="1" stop-color="#0373ff"/>
+      </linearGradient>
+      <linearGradient id="seriea-grad-2" x1="-189.53" y1="3967.83" x2="-179.89" y2="3967.83" gradientTransform="translate(-654485.66 -203499.37) rotate(110) scale(172.96 -172.96)" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#31ecff"/>
+        <stop offset=".56" stop-color="#0373ff"/>
+        <stop offset=".8" stop-color="#0373ff"/>
+        <stop offset="1" stop-color="#0373ff"/>
+      </linearGradient>
+    </defs>
+    <path fill="#00a445" d="M330.17,2332.98h549.98v124.27H330.17v-124.27Z"/>
+    <path fill="#e3e3e2" d="M880.18,2332.98h549.98v124.27h-549.98v-124.27Z"/>
+    <path fill="#db052c" d="M1430.16,2332.98h549.98v124.27h-549.98v-124.27Z"/>
+    <path fill="#1a1659" d="M835.6,1722.49l319.55-843.84,137.98,364.37h-174.2l-118.8,313.75h411.83l62.75,165.72h-639.1Z"/>
+    <path fill="#1a1659" d="M1155.15,2245.28l824.98-522.79h-505.43l-319.55,522.79ZM1155.15,2245.28l-824.98-522.79h505.43l319.55,522.79Z"/>
+    <path fill="url(#seriea-grad-1)" d="M835.52,1722.49l319.63,522.8,319.55-522.8h-639.18Z"/>
+    <path fill="url(#seriea-grad-2)" d="M927.29,332L330.17,1722.51h505.43l319.55-843.86,137.98,364.37h-174.18l-118.82,313.77h411.82l62.75,165.72h505.43L1383.01,332h-455.72Z"/>
+  </symbol>
+  <symbol id="liga-mark" viewBox="0 0 263.23 245.96">
+    <!-- user-provided La Liga mark (logos/laliga-mark.svg) -->
+    <g transform="translate(-0.774713,247.000000) scale(0.1,-0.1)" fill="#ff4b44" stroke="none">
+      <path d="M745 2453 c-12 -16 -122 -172 -319 -458 -31 -44 -126 -181 -212 -305 -179 -259 -190 -278 -202 -355 -11 -71 1 -132 39 -196 46 -79 202 -269 220 -269 9 0 68 26 130 58 63 33 240 124 394 203 l280 144 -255 5 c-140 3 -255 8 -255 12 0 7 116 176 195 283 20 28 97 136 170 240 181 259 378 537 418 590 17 24 32 49 32 54 0 8 -98 11 -310 11 -283 0 -311 -2 -325 -17z"/>
+      <path d="M1849 2323 c-149 -215 -368 -524 -563 -796 -94 -131 -180 -253 -191 -270 -11 -18 -107 -156 -213 -307 -107 -151 -206 -300 -220 -330 -18 -41 -25 -73 -26 -126 -1 -109 31 -164 260 -441 l35 -43 327 167 c180 92 387 196 460 232 72 36 132 69 132 73 0 4 -130 8 -290 8 -159 0 -290 4 -290 8 0 9 65 104 175 257 71 98 591 838 703 1000 113 162 242 345 365 516 70 97 127 181 127 188 0 8 -95 11 -344 11 l-344 0 -103 -147z"/>
+    </g>
+  </symbol>
+  <symbol id="l1-mark" viewBox="876.2 0 1610.85 2529.71">
+    <!-- user-provided "L1" mark (logos/ligue1-mark.svg) -->
+    <polygon fill="#085eff" points="1207.19 344.27 2487.05 0 1945.82 1966.76 1622.84 1966.76 2035.76 444.71 1765.84 516.32 1281.71 2226.15 2006.09 2226.15 1920.08 2529.71 876.2 2529.71 1402.27 662.3 1093.79 662.3 1207.19 344.27"/>
+  </symbol>
+  <symbol id="buli-mark" viewBox="0 0 64 64">
+    <!-- original placeholder: a boot touching a ball, generic sports pictogram, not a copy of any club/league mark -->
+    <path d="M6,46 C4,46 3,44 4,42 L10,29 C11,26 14,24 17,24 C21,24 24,27 24,31 L24,40 L34,40 C37,40 39,42 39,45 C39,48 37,50 34,50 L11,50 C9,50 6,49 6,46 Z" fill="#d7263d"/>
+    <circle cx="46" cy="40" r="13" fill="#f4f1e4"/>
+    <g fill="none" stroke="#d7263d" stroke-width="1.4" stroke-linejoin="round">
+      <path d="M46,31 L50,34 L48.5,39 L43.5,39 L42,34 Z" fill="#d7263d"/>
+      <path d="M46,31 L46,27"/>
+      <path d="M50,34 L54,32"/>
+      <path d="M48.5,39 L51,44"/>
+      <path d="M43.5,39 L41,44"/>
+      <path d="M42,34 L38,32"/>
+    </g>
+  </symbol>
+</svg>
+<div class="wrap">
+
+<header>
+  <div class="head-row">
+    <div>
+      <div class="kick"><a href="./">Matchday Pacific</a> <span class="hand">— Viewing Guide 2026–27</span></div>
+      <h1>Viewing <span class="pac">Guide</span></h1>
+    </div>
+    <div class="head-actions">
+      <button class="iconbtn" id="themeToggle" type="button" title="Toggle light / dark" aria-label="Toggle light or dark theme">◐</button>
+    </div>
+  </div>
+  <p class="dek">How the five leagues actually differ, how the new Champions League format works, the storylines carrying into August, and when — in Pacific Time — any of it is worth losing sleep over.</p>
+  <div class="meta">Season preview · Pacific Time · ~10 min read · updated Jul 2026</div>
+</header>
+
+<article>
+
+<p class="lede">If your appreciation for the game is rooted in the clinical efficiency, rapid transitions, and intense spatial pressing of the Golden Era of German football (1998–2014), navigating the modern landscape means filtering out the noise and finding the matches worth the early alarm. Modern football pairs elite athletic output with more sophisticated spatial frameworks than ever — positional play, coordinated high pressing, video review at every top flight — and the calendar built around it has changed shape too: a new Champions League format, contract sagas playing out in real time, and a broadcast map split across four different US services.</p>
+
+<p>This page is the reading companion to the <a href="./">schedule rails</a> and the <a href="cal.html">full calendar</a>: what each league actually feels like to watch, how the Champions League's new format works, a few storylines carrying into August, and when to actually tune in.</p>
+
+<div class="statpull">
+  <div class="sp"><div class="n" style="color:var(--epl)">5</div><div class="l">leagues, five different identities</div></div>
+  <div class="sp"><div class="n" style="color:var(--ucl)">36</div><div class="l">clubs sharing one Champions League table</div></div>
+  <div class="sp"><div class="n" style="color:var(--liga)">4</div><div class="l">US streaming services to cover all of it</div></div>
+</div>
+
+<div class="eyebrow" id="watch"><h2>How to Watch</h2><div class="rule"></div><div class="tag">quick reference</div></div>
+
+<div class="viewtoggle">
+  <button id="vtComp" class="on" onclick="watchView('comp')" type="button">By Competition</button>
+  <button id="vtServ" onclick="watchView('serv')" type="button">By Service</button>
+</div>
+
+<div id="watchByComp" class="callout">
+  <h3>What airs where</h3>
+  <div class="wrow ucl"><img class="clogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/UEFA_Champions_League_logo_no_text.svg/330px-UEFA_Champions_League_logo_no_text.svg.png" alt="" onerror="this.replaceWith(document.createElement('span'))"><span class="what">Champions League</span><span class="svc">Paramount+</span></div>
+  <div class="wrow ucl"><img class="clogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/UEFA_Europa_League_logo_%282024_version%29.svg/330px-UEFA_Europa_League_logo_%282024_version%29.svg.png" alt="" onerror="this.replaceWith(document.createElement('span'))"><span class="what">Europa League</span><span class="svc">Paramount+</span></div>
+  <div class="wrow epl"><svg class="epl-mark sm" aria-hidden="true"><use href="#epl-mark"/></svg><span class="what">Premier League</span><span class="svc">Peacock</span></div>
+  <div class="wrow liga"><svg class="liga-mark sm" aria-hidden="true"><use href="#liga-mark"/></svg><span class="what">La Liga</span><span class="svc">ESPN+</span></div>
+  <div class="wrow cup"><span class="dot"></span><span class="what">FA Cup</span><span class="svc">ESPN+</span></div>
+  <div class="wrow cup"><span class="dot"></span><span class="what">Copa del Rey</span><span class="svc">ESPN+</span></div>
+  <div class="wrow ucl"><svg class="seriea-mark sm" aria-hidden="true"><use href="#seriea-mark"/></svg><span class="what">Serie A</span><span class="svc">Paramount+</span></div>
+  <div class="wrow cup"><span class="dot"></span><span class="what">Carabao Cup <small style="font-family:var(--mono);color:var(--muted)">(select)</small></span><span class="svc">Paramount+</span></div>
+  <div class="wrow buli"><svg class="buli-mark sm" aria-hidden="true"><use href="#buli-mark"/></svg><span class="what">Bundesliga</span><span class="svc">USA Network</span></div>
+  <div class="wrow l1"><svg class="l1-mark sm" aria-hidden="true"><use href="#l1-mark"/></svg><span class="what">Ligue 1</span><span class="svc">Fanatiz / Sling / Fubo</span></div>
+  <div class="fine">PSG's Champions League nights air on Paramount+, separate from their Ligue 1 rights on Fanatiz. US rights current as of Jul 2026 — verify before subscribing.</div>
+</div>
+
+<div id="watchByServ" class="svc-grid" style="display:none;max-width:820px">
+  <div class="svcard">
+    <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Paramount_Plus.svg/330px-Paramount_Plus.svg.png" alt="" onerror="this.style.display='none'"><h4>Paramount+</h4></div>
+    <div class="price">Essential $8.99/mo ($89.99/yr), with ads<br>Premium $13.99/mo ($139.99/yr), ad-free + Showtime</div>
+    <ul>
+      <li><img class="clogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/UEFA_Champions_League_logo_no_text.svg/330px-UEFA_Champions_League_logo_no_text.svg.png" alt="" onerror="this.replaceWith(document.createElement('span'))">Champions League <small>all matches</small></li>
+      <li><img class="clogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/UEFA_Europa_League_logo_%282024_version%29.svg/330px-UEFA_Europa_League_logo_%282024_version%29.svg.png" alt="" onerror="this.replaceWith(document.createElement('span'))">Europa League <small>all matches</small></li>
+      <li><svg class="seriea-mark sm" aria-hidden="true"><use href="#seriea-mark"/></svg>Serie A <small>full coverage</small></li>
+      <li><span class="clogo" style="background:none"></span>Carabao Cup <small>select + finals</small></li>
+    </ul>
+    <a class="site" href="https://www.paramountplus.com/" target="_blank" rel="noopener">paramountplus.com ↗</a>
+  </div>
+  <div class="svcard">
+    <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/NBCUniversal_Peacock_Logo_%282026%29.svg/330px-NBCUniversal_Peacock_Logo_%282026%29.svg.png" alt="" onerror="this.style.display='none'"><h4>Peacock</h4></div>
+    <div class="price">Premium $10.99/mo ($109.99/yr), with ads<br>Premium Plus $16.99/mo ($169.99/yr), ad-free</div>
+    <ul><li><svg class="epl-mark sm" aria-hidden="true"><use href="#epl-mark"/></svg>Premier League <small>full coverage</small></li></ul>
+    <a class="site" href="https://www.peacocktv.com/" target="_blank" rel="noopener">peacocktv.com ↗</a>
+  </div>
+  <div class="svcard">
+    <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/ESPN_Plus.svg/330px-ESPN_Plus.svg.png" alt="" onerror="this.style.display='none'"><h4>ESPN+</h4></div>
+    <div class="price">Standalone (ESPN Select) ~$12.99/mo<br>Disney Bundle (+Disney+, Hulu) $19.99–$44.99/mo</div>
+    <ul>
+      <li><svg class="liga-mark sm" aria-hidden="true"><use href="#liga-mark"/></svg>La Liga <small>all 380 matches</small></li>
+      <li><span class="clogo" style="background:none"></span>FA Cup <small>full coverage</small></li>
+      <li><span class="clogo" style="background:none"></span>Copa del Rey <small>full coverage</small></li>
+    </ul>
+    <a class="site" href="https://plus.espn.com/" target="_blank" rel="noopener">plus.espn.com ↗</a>
+  </div>
+  <div class="svcard">
+    <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Fanatiz_Logo.png/330px-Fanatiz_Logo.png.png" alt="" onerror="this.style.display='none'"><h4>Fanatiz</h4></div>
+    <div class="price">$9.99–$12.99/mo depending on package<br>Also bundled on Sling and Fubo</div>
+    <ul><li><svg class="l1-mark sm" aria-hidden="true"><use href="#l1-mark"/></svg>Ligue 1 <small>PSG and the rest of the division</small></li></ul>
+    <a class="site" href="https://www.fanatiz.com/" target="_blank" rel="noopener">fanatiz.com ↗</a>
+  </div>
+  <div class="svcard">
+    <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/USA_Network_2020.svg/330px-USA_Network_2020.svg.png" alt="" onerror="this.style.display='none'"><h4>USA Network</h4></div>
+    <div class="price">Requires a live-TV package — YouTube TV, Hulu + Live TV, or cable<br>Select matches also free/ad-supported on Fandango at Home</div>
+    <ul><li><svg class="buli-mark sm" aria-hidden="true"><use href="#buli-mark"/></svg>Bundesliga <small>weekly coverage</small></li></ul>
+    <a class="site" href="https://www.usanetwork.com/" target="_blank" rel="noopener">usanetwork.com ↗</a>
+  </div>
+</div>
+
+<div class="eyebrow"><h2>The Leagues</h2><div class="rule"></div><div class="tag">five identities</div></div>
+<p>Same format on paper — 34 to 38 games, most points wins, no playoff — but each league rewards a different kind of football, promotes and relegates differently, and feeds a different number of clubs into Europe. That's the actual reason to pick one over another on a given weekend.</p>
+
+<div class="leagues-grid">
+<div class="league epl">
+  <h3><svg class="epl-mark" aria-hidden="true"><use href="#epl-mark"/></svg>Premier League</h3>
+  <span class="lstat">20 clubs · 38 games · Aug 22 – May 30 · Peacock</span>
+  <p>England's top flight is the most physically demanding of the five: fewer stoppages for tactical fouling, relentless transition speed, and a competitive spread that runs deeper into the table than any other league — a mid-table side beating one of the traditional "big six" is a Saturday occurrence, not an upset. It's also the most-watched football product on the planet, which is exactly why it gets its own dedicated US service rather than sharing one.</p>
+  <button class="modal-link" type="button" onclick="openLM('epl')">Full breakdown ↗</button>
+</div>
+
+<div class="league liga">
+  <h3><svg class="liga-mark" aria-hidden="true"><use href="#liga-mark"/></svg>La Liga</h3>
+  <span class="lstat">20 clubs · 38 games · Aug 14 – May 30 · ESPN+</span>
+  <p>Spain rewards technical range over raw pace — patient combination play through tight central areas, games decided by a single moment of control rather than a wall of pressing. Real Madrid and Barcelona have historically split the silverware, but the chase behind them has gotten louder: Atlético's continued spending, and Athletic Bilbao's stubborn Basque-only <a href="clubs.html">cantera policy</a> proving a self-imposed talent restriction can still finish mid-table year after year instead of collapsing into one.</p>
+  <button class="modal-link" type="button" onclick="openLM('liga')">Full breakdown ↗</button>
+</div>
+
+<div class="league buli">
+  <h3><svg class="buli-mark" aria-hidden="true"><use href="#buli-mark"/></svg>Bundesliga</h3>
+  <span class="lstat">18 clubs · 34 games · Aug 28 – May 22 · USA Network</span>
+  <p>Germany draws the highest average attendance of any football league on the planet, built on cheap tickets and standing terraces that the league's 50+1 fan-ownership rule protects by design. On the pitch it's the sport's development pipeline right now — Florian Wirtz and Jamal Musiala both came up through it — with Bayern Munich's decade-plus of near-total domestic dominance as the backdrop everyone else is still trying to break.</p>
+  <button class="modal-link" type="button" onclick="openLM('buli')">Full breakdown ↗</button>
+</div>
+
+<div class="league seriea">
+  <h3><svg class="seriea-mark" aria-hidden="true"><use href="#seriea-mark"/></svg>Serie A</h3>
+  <span class="lstat">20 clubs · 38 games · Paramount+</span>
+  <p>Italian football's reputation for defensive rigidity is older than most of its current back lines — Serie A has trended toward higher-scoring, more transitional football over the past decade without fully abandoning the tactical discipline that made catenaccio famous. Inter Milan is the league's one unbroken thread: the only club never relegated since Serie A's founding in 1929, sharing the San Siro with, and regularly separated from, city rival AC Milan.</p>
+  <button class="modal-link" type="button" onclick="openLM('seriea')">Full breakdown ↗</button>
+</div>
+
+<div class="league l1">
+  <h3><svg class="l1-mark" aria-hidden="true"><use href="#l1-mark"/></svg>Ligue 1</h3>
+  <span class="lstat">18 clubs · 34 games · Fanatiz</span>
+  <p>France's top flight shrank to 18 clubs for 2026–27, and its competitive picture is still built around one financial outlier: PSG's spending has outpaced the rest of the division for over a decade. Its more honest role in world football is as a proving ground — Kylian Mbappé, Ousmane Dembélé, and most of the current PSG academy graduates all broke through in Ligue 1 before the bigger paydays elsewhere.</p>
+  <button class="modal-link" type="button" onclick="openLM('l1')">Full breakdown ↗</button>
+</div>
+</div>
+
+<div class="eyebrow"><h2><img class="lgo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/UEFA_Champions_League_logo_no_text.svg/330px-UEFA_Champions_League_logo_no_text.svg.png" alt="" onerror="this.style.display='none'">The New Champions League</h2><div class="rule"></div><div class="tag">36-team league phase</div></div>
+<p>UEFA scrapped the four-team group stage after the 2023–24 season. In its place: a single 36-team league phase, where every club plays eight matches — four home, four away — against eight different opponents drawn from four seeding pots, instead of a closed group of three familiar rivals.</p>
+
+<p>The table that results decides everything. Finish in the top eight and you're through to the Round of 16 automatically, seeded. Finish 9th through 24th and you're into a two-legged knockout play-off round for the remaining spots. Finish 25th or worse and the tournament is over — no parachute into the Europa League the way there used to be. Ties are broken, in order, by goal difference, goals scored, away goals scored, total wins, away wins, and finally club coefficient.</p>
+
+<div class="swiss">
+  <div class="phase">One <b>36-team table</b> · 8 matches each (4 home / 4 away) · 8 different opponents</div>
+  <div class="bands">
+    <div class="band g1"><div class="rng">1–8</div><div class="to">Straight to Round of 16, seeded</div></div>
+    <div class="band g2"><div class="rng">9–24</div><div class="to">Two-legged play-off round</div></div>
+    <div class="band g3"><div class="rng">25–36</div><div class="to">Eliminated, no drop-down</div></div>
+  </div>
+</div>
+
+<p>In the knockout rounds, away goals no longer matter at all — level on aggregate after 180 minutes goes to 30 minutes of extra time, then penalties if it's still level.</p>
+
+<details class="fmt-detail" style="max-width:760px">
+  <summary>How the pots &amp; draw actually work</summary>
+  <div class="dbody">The 36 clubs are split into four pots of nine by UEFA club coefficient — largely a five-year record of European results. Each club is drawn against two opponents from each of the four pots (one at home, one away), for eight matches total, with a country-protection rule barring two clubs from the same association from meeting in the league phase. UEFA's software runs the whole draw in about 30 minutes at its Nyon headquarters — the old balls-in-bowls ceremony is gone, replaced by a sequence of pre-calculated pairings shown on screen. The 2026–27 final is set for Saturday, June 5, 2027, at Atlético Madrid's Estadio Metropolitano — its second Champions League final, after hosting the 2019 decider.</div>
+  <div class="srclinks">
+    <a href="https://www.uefa.com/uefachampionsleague/" target="_blank" rel="noopener">UEFA official site ↗</a>
+    <a href="https://en.wikipedia.org/wiki/2026%E2%80%9327_UEFA_Champions_League" target="_blank" rel="noopener">2026–27 season, Wikipedia ↗</a>
+    <a href="https://fbref.com/en/comps/8/Champions-League-Stats" target="_blank" rel="noopener">Stats (FBref) ↗</a>
+  </div>
+</details>
+
+<div class="keydates">
+  <div class="kd"><div class="kdd">Aug 25–26</div><div>Play-off round concludes — final 7 league-phase spots filled</div></div>
+  <div class="kd"><div class="kdd">Aug 27</div><div>League phase draw</div></div>
+  <div class="kd"><div class="kdd">Aug 29</div><div>Fixture calendar and kickoff times released by UEFA</div></div>
+  <div class="kd"><div class="kdd">Sep 8–10</div><div>Matchday 1</div></div>
+</div>
+
+<div class="eyebrow"><h2>Cups &amp; Knockouts</h2><div class="rule"></div><div class="tag">domestic calendar</div></div>
+<p>Beneath the continental competition, the domestic calendar runs on two different logics. The leagues are pure double round-robins — every club plays every other club home and away, and the table alone decides the champion. No play-off, no final.</p>
+
+<p>The cups work the opposite way. The FA Cup, Copa del Rey, and DFB-Pokal are open single-elimination draws across the entire national pyramid, meaning a lower-division amateur side can, in theory, draw a match against Real Madrid. England adds a second knockout competition on top of that, the Carabao Cup — lower-stakes enough that top clubs mostly use it to rotate their squads and give minutes to academy players, at least until the final rounds start to matter.</p>
+
+<div class="eyebrow"><h2>Beyond Europe</h2><div class="rule"></div><div class="tag">match character by region</div></div>
+<p>Everything above sits inside UEFA's ecosystem — video review at the top level, strict officiating standards, and broadcast windows built around a US audience with genuine choices. Step outside it and the viewing experience changes by region as much as the football does.</p>
+
+<div class="regions-grid">
+<div class="region east">
+  <h3>AFC Champions League Elite</h3>
+  <p>The closest thing to a UEFA-style product in Asia: an expanding 32-team field from 2026–27, split into East and West regions, with Japan's J-League and South Korea's K League supplying most of the East's entrants. It has a reputation — deserved, by most accounts — for disciplined, high-tempo, technical football with comparatively few disciplinary stoppages.</p>
+</div>
+
+<div class="region south">
+  <h3>Copa Libertadores</h3>
+  <p>CONMEBOL's flagship runs on a different rhythm entirely. Time-wasting, provocation, and open hostility toward away teams and officials show up far more often than in equivalent UEFA fixtures — a genuinely different in-stadium atmosphere, worth knowing about before tuning in expecting the same conduct as a Tuesday night in the Champions League.</p>
+</div>
+</div>
+
+<div class="eyebrow"><h2>Reading a Match</h2><div class="rule"></div><div class="tag">a short glossary</div></div>
+<p>A handful of numbers now travel with almost every match broadcast. None of them replace watching the game, but they're useful shorthand for what happened once the final whistle blows.</p>
+
+<dl class="glossary">
+  <div class="gterm"><dt>xG <small>expected goals</small></dt><dd>Probability that each shot scores, given its position and situation, summed per team. Separates good chance creation from good finishing.</dd></div>
+  <div class="gterm"><dt>PSxG <small>post-shot xG</small></dt><dd>Re-scores each on-target shot after it's struck, factoring placement and power. PSxG faced minus goals conceded is a cleaner read on a goalkeeper's shot-stopping than save percentage.</dd></div>
+  <div class="gterm"><dt>PPDA <small>passes per defensive action</small></dt><dd>Opponent passes allowed per defensive action in their own build-up. Lower means a more aggressive press; a number that climbs across 90 minutes is often the first sign of fatigue.</dd></div>
+  <div class="gterm"><dt>Field tilt</dt><dd>Each team's share of possession played in the attacking third. Captures territorial dominance that a flat possession percentage hides.</dd></div>
+  <div class="gterm"><dt>Goal timing</dt><dd>Goal frequency by 15-minute window. Late-window spikes track fatigue, substitutions, and stoppage-time pushes.</dd></div>
+  <div class="gterm"><dt>Forecast models</dt><dd>Tournament outcomes simulated thousands of times from Elo ratings, UEFA coefficients, and xG trends, then benchmarked against prediction markets and betting odds — the method behind the <a href="../wc2026/">WC2026 final report</a>.</dd></div>
+</dl>
+
+<div class="eyebrow"><h2>Storylines to Watch</h2><div class="rule"></div><div class="tag">2026–27 · verified Jul 2026</div></div>
+
+<div class="statpull">
+  <div class="sp"><div class="n" style="color:#ffd479">115</div><div class="l">charges still awaiting a verdict</div></div>
+  <div class="sp"><div class="n" style="color:var(--ucl)">16</div><div class="l">years old, the Premier League's youngest scorer ever</div></div>
+  <div class="sp"><div class="n" style="color:var(--liga)">€30m</div><div class="l">Vinícius Jr.'s reported ask, still unresolved</div></div>
+</div>
+
+<div class="stories-grid">
+<p class="story pending"><b>Manchester City's verdict still hasn't landed.</b><span class="itag pending">Pending</span> The independent commission's hearing into 115 alleged Premier League financial-rule breaches between 2009 and 2018 concluded back in December 2024, and the sport has been waiting on a verdict ever since. Reported sanctions on the table range from a heavy points deduction to outright expulsion.</p>
+
+<p class="story pending"><b>Vinícius Jr. and Real Madrid are still negotiating.</b><span class="itag pending">Talks scheduled</span> His contract runs through 2027 regardless, but a salary standoff — he's said to want roughly €30m a year, Madrid has offered closer to €20m — pushed formal renewal talks to late July 2026, after the World Cup. Nothing's signed yet.</p>
+
+<p class="story resolved"><b>Arsenal locked down its spine.</b><span class="itag resolved">Resolved</span> Both Saka and Saliba signed long-term extensions in 2026, keeping the core of Arteta's squad together well into the next decade.</p>
+
+<p class="story new"><b>A 16-year-old is having the breakout of the season.</b><span class="itag new">Breakout</span> Max Dowman became the Premier League's youngest-ever goalscorer with a stoppage-time solo goal against Everton on March 14, 2026 — off a single league start — and picked up a PFA Young Player of the Year nomination on the strength of it.</p>
+
+<p class="story resolved"><b>Salah's decade at Anfield is over.</b><span class="itag resolved">Resolved</span> His contract was mutually terminated at the end of June 2026; he's reported to be closing in on a move to Beşiktaş as a free agent.</p>
+
+<p class="story new"><b>Two of the traditional powers have new managers.</b><span class="itag new">2026–27</span> Mourinho took over at Real Madrid in June 2026, and Maresca replaces Guardiola at Manchester City after his decade in charge — two of the most-watched clubs on this list both enter the season under first-year management.</p>
+</div>
+
+<div class="eyebrow"><h2>Building a Season Around It</h2><div class="rule"></div><div class="tag">all times Pacific</div></div>
+<p>The rhythm of the year splits into four stretches. From September through December, the Champions League's league phase serves up one marquee matchup most matchdays — midweek windows at <span class="ok">9:45a</span> and <span class="ok">12p PT</span>, easy to catch before or after work. Late January compresses into a single afternoon: all 18 remaining fixtures kick off in the same window to settle the top-8 seeds and the 9–24 play-off bracket at once.</p>
+
+<p>From February through June the competition tightens into the knockout rounds — two-legged ties except the final, aggregate score decides, extra time and penalties if level. Underneath all of it, the domestic leagues run nearly every weekend from August to May, with kickoffs landing <span class="ok">early morning to midday PT</span> — no midweek commitment required.</p>
+
+</article>
+
+<footer>
+  Broadcast rights and subscription prices are US market, current as of July 2026, and can change between seasons — verify before subscribing.<br>
+  Part of <a href="./">sadh.app/matchday</a> · schedule rails and countdowns on the main page · <a href="cal.html">full calendar</a> · <a href="clubs.html">clubs</a> · <a href="players.html">players</a>
+</footer>
+
+</div>
+
+<div class="league-modal" id="lm-epl" hidden>
+  <div class="lm-backdrop"></div>
+  <div class="lm-panel" role="dialog" aria-modal="true">
+    <button class="lm-close" type="button" aria-label="Close">✕</button>
+    <div class="lm-body">
+      <div class="lm-head"><svg class="epl-mark" aria-hidden="true"><use href="#epl-mark"/></svg><h2>Premier League</h2></div>
+      <div class="lm-sub">England · 20 clubs · 38 games · Aug 22 – May 30 · Peacock</div>
+      <p>England's top flight runs on pace and physicality more than any of the other four: pressing triggers fire higher up the pitch, tactical fouling is whistled tighter than most European leagues, and the gap between mid-table and the traditional "big six" has narrowed to the point where an upset barely counts as one anymore. It is also, by a wide margin, the most-watched football product in the world — the reason it commands its own dedicated US broadcast deal instead of sharing a service with anyone else.</p>
+      <p>The competitive spread traces back to the league's broadcast revenue-sharing model, which distributes a larger share of TV money to bottom-table clubs than most of its European peers — the financial gap between 1st and 20th is narrower here than in La Liga or Ligue 1, and it shows on the pitch nearly every weekend.</p>
+      <h4>Where the table leads</h4>
+      <div class="swiss">
+        <div class="phase">20 clubs · <b>38 games</b> · double round-robin · most points wins</div>
+        <div class="bands">
+        <div class="band g1"><div class="rng">1–5</div><div class="to">Champions League (2026–27 · standard is top 4)</div></div>
+        <div class="band g2"><div class="rng">6–8</div><div class="to">Europa League (6–7) · Conference League (8)</div></div>
+        <div class="band g3"><div class="rng">18–20</div><div class="to">Relegated to the Championship</div></div>
+      </div></div>
+      <p>Five Premier League clubs enter the 2026–27 Champions League — Arsenal, Manchester City, Manchester United, Aston Villa and Liverpool — the top four automatically plus a fifth via England's "European Performance Spot," awarded because England ranked in the top two of the 2025/26 UEFA association coefficients; the standard allocation is four. Bournemouth (6th) and Sunderland (7th) qualified for the Europa League, and Brighton (8th) for the Conference League. Bottom three finishers (18th–20th) drop straight to the Championship — there is no relegation play-off in England.</p>
+      <details class="fmt-detail">
+        <summary>Tiebreakers &amp; the festive fixtures</summary>
+        <div class="dbody">Level on points, clubs are ranked by goal difference, then total goals scored, then points earned in the two head-to-head meetings, then away goals in those same two matches. If a title, European place, or relegation spot is still undecided after all of that, the league schedules a one-off playoff at a neutral venue. England is also the outlier on scheduling: unlike the rest of the big five, the Premier League runs straight through the holidays with no winter break — Boxing Day fixtures date back to 1888, though broadcast demands have trimmed the traditional full Boxing Day slate down to a single primetime match in recent seasons.</div>
+      </details>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Aug 22</div><div>Opening weekend</div></div>
+        <div class="kd"><div class="kdd">Dec 26</div><div>Festive fixtures (Boxing Day)</div></div>
+        <div class="kd"><div class="kdd">May 30</div><div>Final day — all matches kick off simultaneously</div></div>
+      </div>
+      <div class="srclinks">
+        <a href="https://www.premierleague.com/" target="_blank" rel="noopener">Official site ↗</a>
+        <a href="https://en.wikipedia.org/wiki/Premier_League" target="_blank" rel="noopener">Wikipedia ↗</a>
+        <a href="https://fbref.com/en/comps/9/Premier-League-Stats" target="_blank" rel="noopener">Stats (FBref) ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="league-modal" id="lm-liga" hidden>
+  <div class="lm-backdrop"></div>
+  <div class="lm-panel" role="dialog" aria-modal="true">
+    <button class="lm-close" type="button" aria-label="Close">✕</button>
+    <div class="lm-body">
+      <div class="lm-head"><svg class="liga-mark" aria-hidden="true"><use href="#liga-mark"/></svg><h2>La Liga</h2></div>
+      <div class="lm-sub">Spain · 20 clubs · 38 games · Aug 14 – May 30 · ESPN+</div>
+      <p>Spain rewards technical range over raw pace — patient combination play through tight central areas, quick give-and-go sequences designed to manufacture a half-yard of space rather than run through a defense. Real Madrid and Barcelona have historically split the silverware between them, but the chase behind them has gotten louder in recent seasons.</p>
+      <p>Atlético Madrid's continued spending keeps a third club in true title contention most years, and Athletic Bilbao's stubborn Basque-only cantera policy — fielding only players born or developed in the Basque Country — has become one of the league's most-watched subplots: proof that a self-imposed talent restriction can still finish mid-table year after year instead of collapsing into one.</p>
+      <h4>Where the table leads</h4>
+      <div class="swiss">
+        <div class="phase">20 clubs · <b>38 games</b> · double round-robin · most points wins</div>
+        <div class="bands">
+        <div class="band g1"><div class="rng">1–5</div><div class="to">Champions League (2026–27 · standard is top 4)</div></div>
+        <div class="band g2"><div class="rng">6–7</div><div class="to">Europa League (6th + Copa del Rey winner) · Conference League (7)</div></div>
+        <div class="band g3"><div class="rng">18–20</div><div class="to">Relegated to Segunda División</div></div>
+      </div></div>
+      <p>Five La Liga clubs enter the 2026–27 Champions League: the top four automatically, plus a fifth via Spain's own European Performance Spot, claimed by Real Betis for their 5th-place finish. Celta Vigo (6th) and Copa del Rey winners Real Sociedad qualify for the Europa League, and Getafe (7th) for the Conference League. Bottom three finishers drop to Segunda División — no play-off.</p>
+      <details class="fmt-detail">
+        <summary>Tiebreakers &amp; the Clásico</summary>
+        <div class="dbody">La Liga breaks level points differently from the Premier League: head-to-head record between the tied clubs is checked before overall goal difference, not after — the reverse of England's order. If it's still level for a position that matters, a one-off tie-break match at a neutral stadium decides it. The season's marquee fixture is unchanged regardless of the table: Real Madrid host Barcelona (or vice versa) twice, penciled for Oct 25 and May 9 this cycle.</div>
+      </details>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Aug 14</div><div>Opening weekend</div></div>
+        <div class="kd"><div class="kdd">Oct 25</div><div>Clásico I</div></div>
+        <div class="kd"><div class="kdd">May 9</div><div>Clásico II</div></div>
+        <div class="kd"><div class="kdd">May 30</div><div>Final day</div></div>
+      </div>
+      <div class="srclinks">
+        <a href="https://www.laliga.com/en-GB" target="_blank" rel="noopener">Official site ↗</a>
+        <a href="https://en.wikipedia.org/wiki/La_Liga" target="_blank" rel="noopener">Wikipedia ↗</a>
+        <a href="https://fbref.com/en/comps/12/La-Liga-Stats" target="_blank" rel="noopener">Stats (FBref) ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="league-modal" id="lm-buli" hidden>
+  <div class="lm-backdrop"></div>
+  <div class="lm-panel" role="dialog" aria-modal="true">
+    <button class="lm-close" type="button" aria-label="Close">✕</button>
+    <div class="lm-body">
+      <div class="lm-head"><svg class="buli-mark" aria-hidden="true"><use href="#buli-mark"/></svg><h2>Bundesliga</h2></div>
+      <div class="lm-sub">Germany · 18 clubs · 34 games · Aug 28 – May 22 · USA Network</div>
+      <p>Germany draws the highest average attendance of any football league on the planet, built on cheap tickets and standing terraces that the league's 50+1 fan-ownership rule protects by design — no outside investor can hold a controlling stake in a Bundesliga club the way they can elsewhere in Europe.</p>
+      <p>On the pitch it's the sport's development pipeline right now: Florian Wirtz and Jamal Musiala both came up through Bundesliga academies before their moves, and the league's structural bias toward giving young players real minutes is a big part of why. Bayern Munich's decade-plus of near-total domestic dominance is the backdrop everyone else is still trying to break — Bayer Leverkusen's 2023–24 unbeaten title remains the only real interruption this decade.</p>
+      <h4>Where the table leads</h4>
+      <div class="swiss">
+        <div class="phase">18 clubs · <b>34 games</b> · double round-robin · most points wins</div>
+        <div class="bands">
+        <div class="band g1"><div class="rng">1–4</div><div class="to">Champions League</div></div>
+        <div class="band g2"><div class="rng">5–7</div><div class="to">Europa League (5–6) · Conference League play-off (7)</div></div>
+        <div class="band g3"><div class="rng">16–18</div><div class="to">16th: relegation play-off · 17–18: relegated</div></div>
+      </div></div>
+      <p>Bayern Munich, Borussia Dortmund, RB Leipzig and VfB Stuttgart hold the four direct Champions League spots for 2026–27. Hoffenheim (5th) and Bayer Leverkusen (6th) qualify for the Europa League, and Freiburg (7th) enters Conference League play-offs. At the other end, the bottom two (17th, 18th) drop automatically; 16th place enters a two-legged relegation play-off against 2. Bundesliga's third-place finisher, decided on aggregate with extra time and penalties if still level.</p>
+      <details class="fmt-detail">
+        <summary>The Winterpause</summary>
+        <div class="dbody">Germany is the only one of the five with a genuine multi-week mid-season shutdown — roughly three to four weeks, typically mid/late December into early January, built around winter weather and a training-camp tradition rather than TV scheduling. It's the direct opposite of the Premier League's approach, which runs straight through the holidays with no break at all.</div>
+      </details>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Aug 28</div><div>Opening weekend</div></div>
+        <div class="kd"><div class="kdd">Late Dec – early Jan</div><div>Winterpause</div></div>
+        <div class="kd"><div class="kdd">May 22</div><div>Final day</div></div>
+        <div class="kd"><div class="kdd">May 28 &amp; Jun 1</div><div>Relegation play-off, both legs</div></div>
+      </div>
+      <div class="srclinks">
+        <a href="https://www.bundesliga.com/en/bundesliga" target="_blank" rel="noopener">Official site ↗</a>
+        <a href="https://en.wikipedia.org/wiki/Bundesliga" target="_blank" rel="noopener">Wikipedia ↗</a>
+        <a href="https://fbref.com/en/comps/20/Bundesliga-Stats" target="_blank" rel="noopener">Stats (FBref) ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="league-modal" id="lm-seriea" hidden>
+  <div class="lm-backdrop"></div>
+  <div class="lm-panel" role="dialog" aria-modal="true">
+    <button class="lm-close" type="button" aria-label="Close">✕</button>
+    <div class="lm-body">
+      <div class="lm-head"><svg class="seriea-mark" aria-hidden="true"><use href="#seriea-mark"/></svg><h2>Serie A</h2></div>
+      <div class="lm-sub">Italy · 20 clubs · 38 games · Paramount+</div>
+      <p>Italian football's reputation for defensive rigidity is older than most of its current back lines. Catenaccio — literally "door-bolt" — defined the league for decades: a deep defensive line, a sweeper mopping up behind it, matches won by a single disciplined goal. Serie A has trended toward higher-scoring, more transitional football over the past decade without fully abandoning that tactical discipline; it still asks more of its center-backs, positionally, than any other of the big five.</p>
+      <p>Inter Milan is the league's one unbroken thread: the only club never relegated since Serie A's founding in 1929, sharing the San Siro with, and regularly separated from, city rival AC Milan in one of football's oldest derbies. Napoli's 2022–23 and 2024–25 titles broke a run of Juventus/Inter/Milan dominance that had held for most of the 21st century.</p>
+      <h4>Where the table leads</h4>
+      <div class="swiss">
+        <div class="phase">20 clubs · <b>38 games</b> · double round-robin · most points wins</div>
+        <div class="bands">
+        <div class="band g1"><div class="rng">1–4</div><div class="to">Champions League</div></div>
+        <div class="band g2"><div class="rng">5–7</div><div class="to">Europa League (5th + Coppa winner) · Conference League (6/7)</div></div>
+        <div class="band g3"><div class="rng">18–20</div><div class="to">Relegated to Serie B</div></div>
+      </div></div>
+      <p>Italy's top four qualify directly for the Champions League. The Europa League spot goes to 5th place and the Coppa Italia winner — if the same club holds both, the spare Europa spot rolls down to 6th, and the Conference League place shifts to 7th instead of 6th. Bottom three finishers drop to Serie B — no play-off.</p>
+      <details class="fmt-detail">
+        <summary>Tiebreakers &amp; catenaccio's legacy</summary>
+        <div class="dbody">Serie A resolves level points through head-to-head points first, then head-to-head goal difference, then overall goal difference, then total goals scored. A playoff at a neutral venue only gets scheduled if the title, a European place, or relegation is directly on the line after all of that — for anything else, a tied position is broken by drawing lots.</div>
+      </details>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Aug 23</div><div>Opening weekend</div></div>
+        <div class="kd"><div class="kdd">May 30</div><div>Final day</div></div>
+      </div>
+      <div class="srclinks">
+        <a href="https://www.legaseriea.it/en" target="_blank" rel="noopener">Official site ↗</a>
+        <a href="https://en.wikipedia.org/wiki/Serie_A" target="_blank" rel="noopener">Wikipedia ↗</a>
+        <a href="https://fbref.com/en/comps/11/Serie-A-Stats" target="_blank" rel="noopener">Stats (FBref) ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="league-modal" id="lm-l1" hidden>
+  <div class="lm-backdrop"></div>
+  <div class="lm-panel" role="dialog" aria-modal="true">
+    <button class="lm-close" type="button" aria-label="Close">✕</button>
+    <div class="lm-body">
+      <div class="lm-head"><svg class="l1-mark" aria-hidden="true"><use href="#l1-mark"/></svg><h2>Ligue 1</h2></div>
+      <div class="lm-sub">France · 18 clubs · 34 games · Fanatiz</div>
+      <p>France's top flight shrank to 18 clubs for 2026–27, and its competitive picture is still built around one financial outlier: PSG's spending has outpaced the rest of the division for over a decade, funded by backing that none of its domestic rivals can match.</p>
+      <p>Its more honest role in world football is as a proving ground rather than a destination league — Kylian Mbappé, Ousmane Dembélé, and most of the current PSG academy graduates all broke through in Ligue 1 before the bigger paydays elsewhere, and that talent-export pipeline is arguably the league's biggest ongoing export, ahead of PSG's own trophies.</p>
+      <h4>Where the table leads</h4>
+      <div class="swiss">
+        <div class="phase">18 clubs · <b>34 games</b> · double round-robin · most points wins</div>
+        <div class="bands">
+        <div class="band g1"><div class="rng">1–3</div><div class="to">Champions League direct (4th → Q3 qualifying)</div></div>
+        <div class="band g2"><div class="rng">5–6</div><div class="to">Europa League (2 places) · Conference League</div></div>
+        <div class="band g3"><div class="rng">16–18</div><div class="to">16th: relegation play-off · 17–18: relegated</div></div>
+      </div></div>
+      <p>France's top three qualify directly for the Champions League, with 4th place entering the competition's third qualifying round instead. As one of UEFA's top-12 ranked associations, France holds two automatic Europa League places, with further Conference League places lower in the table. At the other end, the bottom two (17th, 18th) drop automatically; 16th enters a two-legged relegation play-off against the winner of a three-way Ligue 2 play-off among that division's 3rd, 4th and 5th-place finishers.</p>
+      <details class="fmt-detail">
+        <summary>How the relegation math actually plays out</summary>
+        <div class="dbody">The Ligue 2 side of the bracket runs first: 5th-place hosts 4th-place in a one-off match, and the winner then travels to face 3rd-place in a second one-off match. Only the winner of that second match goes on to face Ligue 1's 16th-place club, over two legs — first leg at the Ligue 2 side's ground, return leg at the Ligue 1 club's. Extra time and penalties settle it if the aggregate score is still level after both legs.</div>
+      </details>
+      <div class="keydates">
+        <div class="kd"><div class="kdd">Aug 22–23</div><div>Opening weekend</div></div>
+        <div class="kd"><div class="kdd">May 29</div><div>Final day — the Multiplex, all matches simultaneous</div></div>
+      </div>
+      <div class="srclinks">
+        <a href="https://www.ligue1.com/en" target="_blank" rel="noopener">Official site ↗</a>
+        <a href="https://en.wikipedia.org/wiki/Ligue_1" target="_blank" rel="noopener">Wikipedia ↗</a>
+        <a href="https://fbref.com/en/comps/13/Ligue-1-Stats" target="_blank" rel="noopener">Stats (FBref) ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function watchView(v){
+  document.getElementById('watchByComp').style.display = v==='comp' ? '' : 'none';
+  document.getElementById('watchByServ').style.display = v==='serv' ? '' : 'none';
+  document.getElementById('vtComp').classList.toggle('on', v==='comp');
+  document.getElementById('vtServ').classList.toggle('on', v==='serv');
+}
+
+document.getElementById('themeToggle').addEventListener('click',()=>{
+  const next = document.documentElement.dataset.theme==='dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  try{ localStorage.setItem('mdcal-theme', next); }catch(e){}
+});
+
+// ---------- league deep-dive modal ----------
+function openLM(slug){
+  const m = document.getElementById('lm-' + slug);
+  if(!m) return;
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeLM(){
+  document.querySelectorAll('.league-modal').forEach(m => m.hidden = true);
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.league-modal .lm-backdrop, .league-modal .lm-close').forEach(el => el.addEventListener('click', closeLM));
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLM(); });
+</script>
+</body>
+</html>

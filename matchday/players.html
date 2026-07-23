@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
+<script>try{var t=localStorage.getItem('mdcal-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Players — Matchday Pacific</title>
@@ -9,13 +10,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --pitch:#0c3524; --pitch-2:#0f4630; --chalk:#f4f1e4; --night:#0b120e;
-    --epl:#9d8cff; --liga:#ff5a45; --buli:#f0c33c; --l1:#5dd39e; --ucl:#7fd1ff;
-    --muted:rgba(244,241,228,.62); --hair:rgba(244,241,228,.16);
     --disp:'Saira Condensed',system-ui,sans-serif;
     --body:'Inter',system-ui,sans-serif;
     --mono:'IBM Plex Mono',monospace;
     --hand:'Caveat',cursive;
+  }
+  html[data-theme="dark"]{
+    --pitch:#0c3524; --pitch-2:#0f4630; --chalk:#f4f1e4; --night:#0b120e;
+    --epl:#9d8cff; --liga:#ff5a45; --buli:#5dd39e; --l1:#5ce1e6; --ucl:#7fd1ff;
+    --muted:rgba(244,241,228,.62); --hair:rgba(244,241,228,.16); --hair2:rgba(244,241,228,.3);
+    --soft:rgba(244,241,228,.85); --ghost:rgba(244,241,228,.14); --wash:rgba(244,241,228,.08);
+    --card:rgba(12,19,36,.58); --cardhover:rgba(12,19,36,.75); --popover:#0e1712; --hatch:rgba(255,255,255,.05);
+  }
+  html[data-theme="light"]{
+    --pitch:#F4F3E9; --pitch-2:#ECF0E1; --chalk:#161B15; --night:#F2F1E7;
+    --epl:#6a4fe0; --liga:#d8432f; --buli:#2f8f5b; --l1:#1c8a86; --ucl:#1f7fc4;
+    --muted:#7E8270; --hair:rgba(22,27,21,.12); --hair2:rgba(22,27,21,.3);
+    --soft:#3B4238; --ghost:rgba(22,27,21,.14); --wash:rgba(22,27,21,.06);
+    --card:rgba(245,250,255,.345); --cardhover:rgba(245,250,255,.48); --popover:#F8F7F0; --hatch:rgba(22,27,21,.04);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -28,10 +40,25 @@
       repeating-linear-gradient(90deg, var(--pitch) 0 120px, var(--pitch-2) 120px 240px);
     background-attachment:fixed;min-height:100vh;
   }
-  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% -10%, rgba(244,241,228,.10), transparent 60%), radial-gradient(850px 600px at 90% 88%, rgba(91,110,245,.12), transparent 62%), radial-gradient(650px 480px at 4% 60%, rgba(127,209,255,.09), transparent 60%), rgba(11,18,14,.82);pointer-events:none;z-index:0}
+  html[data-theme="dark"] body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% -10%, rgba(244,241,228,.10), transparent 60%), radial-gradient(850px 600px at 90% 88%, rgba(91,110,245,.12), transparent 62%), radial-gradient(650px 480px at 4% 60%, rgba(127,209,255,.09), transparent 60%), rgba(11,18,14,.82);pointer-events:none;z-index:0}
+  html[data-theme="light"] body::before{content:"";position:fixed;inset:0;background:radial-gradient(850px 560px at 92% 4%, rgba(70,150,235,.09), transparent 62%), radial-gradient(700px 520px at 6% 78%, rgba(90,160,240,.07), transparent 60%), radial-gradient(600px 420px at 55% 96%, rgba(110,175,245,.05), transparent 58%);pointer-events:none;z-index:0}
   .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 20px 48px}
 
   header{padding:28px 0 6px}
+  .head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+  .head-actions{display:flex;gap:8px;flex:none}
+  .iconbtn{width:34px;height:34px;border-radius:999px;border:1px solid var(--hair);background:var(--card);color:var(--chalk);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:border-color .15s ease,background .15s ease;text-decoration:none;flex:none}
+  .iconbtn:hover{border-color:var(--chalk);background:var(--cardhover)}
+  .iconbtn:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .iconbtn[data-tip]{position:relative}
+  .iconbtn[data-tip]::after{
+    content:attr(data-tip);position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);
+    background:var(--popover);color:var(--chalk);border:1px solid var(--hair);
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;white-space:nowrap;
+    padding:5px 9px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.25);
+    opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:30;
+  }
+  .iconbtn[data-tip]:hover::after,.iconbtn[data-tip]:focus-visible::after{opacity:1}
   .kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
   .kick .hand{font-family:var(--hand);font-size:19px;letter-spacing:.01em;text-transform:none;color:var(--chalk);display:inline-block;transform:rotate(-2deg);vertical-align:-2px;margin-left:2px}
   h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,5.4vw,64px);line-height:1;letter-spacing:.01em;margin:8px 0 6px;white-space:nowrap}
@@ -57,9 +84,9 @@
   .filters button:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
   .players{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
   .players .pcard{flex:1 1 232px;max-width:250px}
-  .pcard{position:relative;border:1px solid var(--hair);border-radius:10px;padding:18px 18px 16px;background:rgba(12,19,36,.58);overflow:hidden;transition:transform .15s ease,border-color .15s ease}
-  .pcard:hover{transform:translateY(-3px);border-color:rgba(244,241,228,.4)}
-  .pcard .shirt{position:absolute;bottom:-16px;right:4px;font-family:var(--disp);font-weight:800;font-size:110px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(244,241,228,.14);pointer-events:none;user-select:none}
+  .pcard{position:relative;border:1px solid var(--hair);border-radius:10px;padding:18px 18px 16px;background:var(--card);overflow:hidden;transition:transform .15s ease,border-color .15s ease}
+  .pcard:hover{transform:translateY(-3px);border-color:var(--hair2)}
+  .pcard .shirt{position:absolute;bottom:-16px;right:4px;font-family:var(--disp);font-weight:800;font-size:110px;line-height:1;color:transparent;-webkit-text-stroke:1px var(--ghost);pointer-events:none;user-select:none}
   .headshot{position:absolute;top:0;right:0;width:42%;height:140px;object-fit:cover;object-position:top;border-radius:0 10px 0 0;filter:saturate(.85) contrast(1.06);-webkit-mask-image:radial-gradient(130% 125% at 100% 0%, #000 52%, transparent 76%);mask-image:radial-gradient(130% 125% at 100% 0%, #000 52%, transparent 76%);z-index:1}
   .pcard .lg,.pcard h3,.pcard .club{padding-right:45%}
   .pcard .lg,.pcard h3,.pcard .club,.pcard .line,.pcard .stat,.pcard .watch{position:relative;z-index:2}
@@ -69,7 +96,7 @@
   .pcard[data-lg="epl"] .lg{color:var(--epl)}
   .pcard[data-lg="buli"] .lg{color:var(--buli)}
   .pcard[data-lg="fr1"] .lg{color:var(--l1)}
-  .more-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px dashed rgba(244,241,228,.3);border-radius:10px;padding:22px 18px;text-decoration:none;background:none;transition:border-color .15s,transform .15s}
+  .more-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px dashed var(--hair2);border-radius:10px;padding:22px 18px;text-decoration:none;background:none;transition:border-color .15s,transform .15s}
   .more-card:hover{border-color:var(--chalk);transform:translateY(-2px)}
   .more-card .stack{display:flex}
   .more-card .stack img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;box-shadow:0 0 0 2.5px #0d1710;background:#13201a}
@@ -84,7 +111,7 @@
   .pcard h3 a{color:inherit;text-decoration:none}
   .pcard h3 a:hover{text-decoration:underline}
   .pcard .club{font-size:13px;color:var(--muted);margin-bottom:12px}
-  .pcard .line{font-size:13.5px;line-height:1.5;min-height:4.5em;color:rgba(244,241,228,.86);margin-bottom:12px}
+  .pcard .line{font-size:13.5px;line-height:1.5;min-height:4.5em;color:var(--soft);margin-bottom:12px}
   .pcard .stat{font-family:var(--mono);font-size:11.5px;color:var(--muted);border-top:1px dashed var(--hair);padding-top:10px}
   .pcard .stat b{color:var(--chalk);font-weight:500}
   .squad-link{display:block;margin-top:12px;width:100%;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;background:none;border:1px solid var(--hair);color:var(--muted);padding:8px 0;border-radius:6px;text-decoration:none;cursor:pointer}
@@ -96,7 +123,7 @@
   .profile-links a:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
 
   /* ---------- squad modal ---------- */
-  .squad-modal{position:fixed;inset:0;z-index:50;display:flex;padding:0}
+  .squad-modal{--chalk:#f4f1e4;--muted:rgba(244,241,228,.62);--hair:rgba(244,241,228,.16);color:var(--chalk);position:fixed;inset:0;z-index:50;display:flex;padding:0}
   .squad-modal[hidden]{display:none}
   .squad-backdrop{position:absolute;inset:0;background:#0b120e}
   .squad-panel{position:relative;z-index:1;width:100%;height:100vh;max-height:100vh;overflow-y:auto;background:#0c1a13;border:none;border-radius:0;padding:16px clamp(16px,3vw,40px) 20px;box-shadow:none}
@@ -137,14 +164,14 @@
   .kit:hover .kit-cap{color:var(--chalk)}
 
   .clubs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-  .ccard{border:1px solid var(--hair);border-radius:10px;padding:18px;background:rgba(12,19,36,.58)}
+  .ccard{border:1px solid var(--hair);border-radius:10px;padding:18px;background:var(--card)}
   .ccard .top{display:flex;align-items:center;gap:10px}
   .ccard .top .badge{margin-left:auto;text-align:right}
   .crest{display:none;width:38px;height:38px;object-fit:contain;flex:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
   .roundel{display:flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:12px;letter-spacing:.02em;flex:none;box-shadow:0 0 0 1px rgba(244,241,228,.25)}
   .ccard h3{font-family:var(--disp);font-weight:800;font-size:23px}
   .ccard .badge{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);white-space:nowrap}
-  .ccard p{font-size:13.5px;line-height:1.55;min-height:4.7em;color:rgba(244,241,228,.84);margin-top:8px}
+  .ccard p{font-size:13.5px;line-height:1.55;min-height:4.7em;color:var(--soft);margin-top:8px}
   .mine-star{color:var(--liga);font-size:.7em;vertical-align:middle}
   .ccard .pool{display:block;margin-top:10px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
 
@@ -155,41 +182,41 @@
   .day .dh h3{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:.03em;line-height:1.2}
   .day .ticks{grid-column:2}
   .day .dh span{font-family:var(--mono);font-size:11px;color:var(--muted)}
-  .rail{position:relative;height:64px;border:1px solid var(--hair);border-radius:8px;background:rgba(11,18,14,.5);overflow:hidden}
-  .rail .work{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(255,255,255,.05) 6px 12px);border-left:1px dashed var(--hair);border-right:1px dashed var(--hair)}
-  .rail .work i{position:absolute;top:4px;left:6px;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:rgba(244,241,228,.48)}
+  .rail{position:relative;height:64px;border:1px solid var(--hair);border-radius:8px;background:var(--card);overflow:hidden}
+  .rail .work{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(45deg,transparent 0 6px,var(--hatch) 6px 12px);border-left:1px dashed var(--hair);border-right:1px dashed var(--hair)}
+  .rail .work i{position:absolute;top:4px;left:6px;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted)}
   .slot{position:absolute;height:20px;border-radius:5px;display:flex;flex-direction:row;align-items:center;gap:5px;padding:0 8px;min-width:56px;cursor:default}
   .slot .t{font-family:var(--mono);font-size:11.5px;font-weight:600;line-height:1;white-space:nowrap}
   .slot .w{font-size:11px;line-height:1;opacity:.8;white-space:nowrap}
   .slot .w::before{content:"\00b7";margin-right:5px;opacity:.6}
-  .slot.epl{background:rgba(157,140,255,.22);border:1px solid var(--epl);color:#d9d2ff}
-  .slot.liga{background:rgba(255,90,69,.18);border:1px solid var(--liga);color:#ffc9c1}
-  .slot.buli{background:rgba(240,195,60,.13);border:1px solid rgba(240,195,60,.7);color:#f2e2ae}
-  .slot.l1{background:rgba(93,211,158,.13);border:1px solid rgba(93,211,158,.65);color:#c6ecd9}
-  .slot.ucl{background:rgba(127,209,255,.16);border:1px solid var(--ucl);color:#cdeeff}
-  .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:rgba(244,241,228,.5);margin-top:4px}
+  .slot.epl{background:rgba(157,140,255,.22);border:1px solid var(--epl);color:var(--epl)}
+  .slot.liga{background:rgba(255,90,69,.18);border:1px solid var(--liga);color:var(--liga)}
+  .slot.buli{background:rgba(93,211,158,.13);border:1px solid rgba(93,211,158,.65);color:var(--buli)}
+  .slot.l1{background:rgba(92,225,230,.13);border:1px solid rgba(92,225,230,.6);color:var(--l1)}
+  .slot.ucl{background:rgba(127,209,255,.16);border:1px solid var(--ucl);color:var(--ucl)}
+  .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px}
   .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
   .legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;vertical-align:-1px}
   .legend .l-epl::before{background:var(--epl)} .legend .l-liga::before{background:var(--liga)}
   .legend .l-buli::before{background:var(--buli)} .legend .l-l1::before{background:var(--l1)} .legend .l-ucl::before{background:var(--ucl)}
 
   .dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
-  .dcard{border:1px solid var(--hair);border-radius:10px;padding:16px;background:rgba(12,19,36,.58)}
+  .dcard{border:1px solid var(--hair);border-radius:10px;padding:16px;background:var(--card)}
   .dcard .d{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1}
   .dcard .d small{font-size:13px;font-family:var(--mono);font-weight:400;letter-spacing:.06em;color:var(--muted);display:block;margin-top:4px;text-transform:none}
-  .dcard p{font-size:13px;color:rgba(244,241,228,.84);margin-top:10px;line-height:1.5}
+  .dcard p{font-size:13px;color:var(--soft);margin-top:10px;line-height:1.5}
   .dcard .ok{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:4px 9px;border-radius:999px}
   .ok.yes{border:1px solid #7de0a6;color:#7de0a6}
   .ok.hmm{border:1px solid #ffd479;color:#ffd479}
 
   .match{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .pitchcard{border:1px solid var(--hair);border-radius:10px;background:rgba(12,19,36,.58);padding:16px}
+  .pitchcard{border:1px solid var(--hair);border-radius:10px;background:var(--card);padding:16px}
   .pitchcard h3{font-family:var(--disp);font-weight:800;font-size:23px}
   .pitchcard .psub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
   .fteam{display:flex;align-items:center;gap:10px}
   .fteam .fcrest{flex:none}
   .fteam .psub{margin-top:0}
-  .pitch{position:relative;margin-top:12px;aspect-ratio:68/105;border:1.5px solid rgba(244,241,228,.4);border-radius:6px;background:repeating-linear-gradient(0deg,#0f4630 0 12.5%,#0c3524 12.5% 25%);overflow:hidden}
+  .pitch{--chalk:#f4f1e4;--hair:rgba(244,241,228,.16);--muted:rgba(244,241,228,.62);color:var(--chalk);position:relative;margin-top:12px;aspect-ratio:68/105;border:1.5px solid rgba(244,241,228,.4);border-radius:6px;background:repeating-linear-gradient(0deg,#0f4630 0 12.5%,#0c3524 12.5% 25%);overflow:hidden}
   .pitch::before{content:"";position:absolute;left:50%;top:50%;width:26%;aspect-ratio:1;border:1.5px solid rgba(244,241,228,.3);border-radius:50%;transform:translate(-50%,-50%)}
   .pitch::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:rgba(244,241,228,.3)}
   .pbox{position:absolute;left:26%;right:26%;height:13%;border:1.5px solid rgba(244,241,228,.3)}
@@ -206,14 +233,14 @@
   .sortbox .sort-toggle{display:flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;border-radius:999px;border:1px solid var(--hair);background:none;color:var(--muted);cursor:pointer}
   .sortbox .sort-toggle:hover{border-color:var(--chalk);color:var(--chalk)}
   .sortbox .sort-toggle:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
-  .sortbox .sort-toggle[aria-expanded="true"]{border-color:var(--chalk);color:var(--chalk);background:rgba(244,241,228,.08)}
-  .sort-menu{position:absolute;top:calc(100% + 8px);right:0;background:#0e1712;border:1px solid var(--hair);border-radius:8px;padding:5px;display:flex;flex-direction:column;gap:1px;min-width:152px;z-index:20;box-shadow:0 10px 28px rgba(0,0,0,.45)}
+  .sortbox .sort-toggle[aria-expanded="true"]{border-color:var(--chalk);color:var(--chalk);background:var(--wash)}
+  .sort-menu{position:absolute;top:calc(100% + 8px);right:0;background:var(--popover);border:1px solid var(--hair);border-radius:8px;padding:5px;display:flex;flex-direction:column;gap:1px;min-width:152px;z-index:20;box-shadow:0 10px 28px rgba(0,0,0,.45)}
   .sort-menu[hidden]{display:none}
   .sortbox .sort-menu button{width:100%;font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;text-transform:none;text-align:left;background:none;border:none;border-radius:5px;color:var(--muted);padding:8px 10px;cursor:pointer}
-  .sortbox .sort-menu button:hover{background:rgba(244,241,228,.08);color:var(--chalk)}
+  .sortbox .sort-menu button:hover{background:var(--wash);color:var(--chalk)}
   .sortbox .sort-menu button.on{color:var(--chalk)}
   .sortbox .sort-menu button.on::before{content:"✓ ";opacity:.8}
-  footer{margin-top:40px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:rgba(244,241,228,.45);line-height:1.7}
+  footer{margin-top:40px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}
 
   @media(max-width:640px){
     .countdown{gap:18px}
@@ -237,12 +264,44 @@
 <div class="wrap">
 
 <header>
-  <div class="kick"><a href="./">Matchday Pacific</a> <span class="hand">— Players 2026–27</span></div>
-  <h1>All <span class="pac">Players</span></h1>
+  <div class="head-row">
+    <div>
+      <div class="kick"><a href="./">Matchday Pacific</a> <span class="hand">— Players 2026–27</span></div>
+      <h1>Players</h1>
+    </div>
+    <div class="head-actions">
+      <a class="iconbtn" href="./" data-tip="Home" aria-label="Home">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M2 7.5 8 2.5l6 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3.5 6.5V13h9V6.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M6.3 13v-3.6h3.4V13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="iconbtn" href="clubs.html" data-tip="Clubs" aria-label="Clubs">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 1.6 13.5 3.4V7.8C13.5 11.2 11.2 13.4 8 14.4 4.8 13.4 2.5 11.2 2.5 7.8V3.4Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="iconbtn" href="guide.html" data-tip="Viewing guide" aria-label="Viewing guide">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 3.2C6.5 2.3 4.7 2 3 2.3v9.6c1.7-.3 3.5 0 5 .9 1.5-.9 3.3-1.2 5-.9V2.3c-1.7-.3-3.5 0-5 .9Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M8 3.2v9.6" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+      </a>
+      <a class="iconbtn" href="cal.html" data-tip="Full calendar" aria-label="Full calendar">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M2 6.5h12" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <button class="iconbtn" id="themeToggle" type="button" data-tip="Toggle theme" aria-label="Toggle light or dark theme">◐</button>
+    </div>
+  </div>
 </header>
 
 <section id="players">
-  <div class="eyebrow"><h2>Players to Watch</h2><div class="rule"></div>
+  <div class="eyebrow"><div class="rule"></div>
     <div class="sortbox">
       <button id="sortToggle" class="sort-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Sort players" title="Sort players">
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -451,6 +510,16 @@
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Marquinhos" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
     <article class="pcard" data-lg="fr1" data-fav="20" data-country="Portugal" data-club="PSG">
+      <div class="shirt">DF</div>
+      <a href="https://en.wikipedia.org/wiki/Nuno_Mendes_(footballer,_born_2002)" target="_blank" rel="noopener" style="display:contents" title="Nuno Mendes — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Nuno_Mendes_Croatia_v_Portugal_2_July_2026-135_%28cropped%29.jpg/330px-Nuno_Mendes_Croatia_v_Portugal_2_July_2026-135_%28cropped%29.jpg" alt="Nuno Mendes" onerror="this.style.display='none'"></a>
+      <div class="lg">PSG</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Nuno_Mendes_(footballer,_born_2002)" target="_blank" rel="noopener">Nuno<br>Mendes</a></h3>
+      <div class="club">24yo · 🇵🇹 Portugal - Defender</div>
+      <p class="line">He is widely regarded as one of the best left-backs in the world.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nuno_Mendes_(footballer,_born_2002)" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="fr1" data-fav="21" data-country="Portugal" data-club="PSG">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Vitinha" target="_blank" rel="noopener" style="display:contents" title="Vitinha — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Vitinha_USMNT_v_Portugal_Mar_31_2026-50_%28cropped%29.jpg/330px-Vitinha_USMNT_v_Portugal_Mar_31_2026-50_%28cropped%29.jpg" alt="Vitinha" onerror="this.style.display='none'"></a>
       <div class="lg">PSG</div>
@@ -460,7 +529,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Vitinha" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="21" data-country="Portugal" data-club="PSG">
+    <article class="pcard" data-lg="fr1" data-fav="22" data-country="Portugal" data-club="PSG">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Jo%C3%A3o_Neves" target="_blank" rel="noopener" style="display:contents" title="João Neves — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Joao_Neves_Croatia_v_Portugal_2_July_2026-102.jpg/330px-Joao_Neves_Croatia_v_Portugal_2_July_2026-102.jpg" alt="João Neves" onerror="this.style.display='none'"></a>
       <div class="lg">PSG</div>
@@ -470,7 +539,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jo%C3%A3o_Neves" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="22" data-country="Georgia" data-club="PSG">
+    <article class="pcard" data-lg="fr1" data-fav="23" data-country="Georgia" data-club="PSG">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Khvicha_Kvaratskhelia" target="_blank" rel="noopener" style="display:contents" title="Khvicha Kvaratskhelia — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Kvaratskhelia_asse_psg_2425.png/330px-Kvaratskhelia_asse_psg_2425.png" alt="Khvicha Kvaratskhelia" onerror="this.style.display='none'"></a>
       <div class="lg">PSG</div>
@@ -480,7 +549,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Khvicha_Kvaratskhelia" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="23" data-country="France" data-club="PSG">
+    <article class="pcard" data-lg="fr1" data-fav="24" data-country="France" data-club="PSG">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/D%C3%A9sir%C3%A9_Dou%C3%A9" target="_blank" rel="noopener" style="display:contents" title="Désiré Doué — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Desire_Doue_France_v_Norway_26_June_26-032.jpg/330px-Desire_Doue_France_v_Norway_26_June_26-032.jpg" alt="Désiré Doué" onerror="this.style.display='none'"></a>
       <div class="lg">PSG</div>
@@ -490,7 +559,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/D%C3%A9sir%C3%A9_Dou%C3%A9" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="24" data-country="France" data-club="PSG">
+    <article class="pcard" data-lg="fr1" data-fav="25" data-country="France" data-club="PSG">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Bradley_Barcola" target="_blank" rel="noopener" style="display:contents" title="Bradley Barcola — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Bradley_Barcola_France_v_Spain_7.24.26-112_%28cropped%29.jpg/330px-Bradley_Barcola_France_v_Spain_7.24.26-112_%28cropped%29.jpg" alt="Bradley Barcola" onerror="this.style.display='none'"></a>
       <div class="lg">PSG</div>
@@ -500,7 +569,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Bradley_Barcola" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="25" data-country="France" data-club="PSG">
+    <article class="pcard" data-lg="fr1" data-fav="26" data-country="France" data-club="PSG">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Lucas_Chevalier" target="_blank" rel="noopener" style="display:contents" title="Lucas Chevalier — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Chevalier_ASSE_losc_2425_%28cropped%29.jpg/330px-Chevalier_ASSE_losc_2425_%28cropped%29.jpg" alt="Lucas Chevalier" onerror="this.style.display='none'"></a>
       <div class="lg">PSG</div>
@@ -510,7 +579,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Lucas_Chevalier" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="26" data-country="Ecuador" data-club="PSG">
+    <article class="pcard" data-lg="fr1" data-fav="27" data-country="Ecuador" data-club="PSG">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Willian_Pacho" target="_blank" rel="noopener" style="display:contents" title="Willian Pacho — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Willian_Pacho_Cote_D%27Ivoire_v_Ecuador_14_June_2026-115_%28cropped%29.jpg/330px-Willian_Pacho_Cote_D%27Ivoire_v_Ecuador_14_June_2026-115_%28cropped%29.jpg" alt="Willian Pacho" onerror="this.style.display='none'"></a>
       <div class="lg">PSG</div>
@@ -519,16 +588,6 @@
       <p class="line">Defender in PSG&#x27;s 2026–27 squad.</p>
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Willian_Pacho" target="_blank" rel="noopener">Wiki ↗</a></div>
-    </article>
-    <article class="pcard" data-lg="fr1" data-fav="27" data-country="Portugal" data-club="PSG">
-      <div class="shirt">DF</div>
-      
-      <div class="lg">PSG</div>
-      <h3><a href="" target="_blank" rel="noopener">Nuno<br>Mendes</a></h3>
-      <div class="club">🇵🇹 Portugal - Defender</div>
-      <p class="line">Defender in PSG&#x27;s 2026–27 squad.</p>
-      
-      <div class="profile-links"><a href="" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
     <article class="pcard" data-lg="fr1" data-fav="28" data-country="Portugal" data-club="PSG">
       <div class="shirt">FW</div>
@@ -556,7 +615,7 @@
       <div class="lg">Bayern</div>
       <h3><a href="https://en.wikipedia.org/wiki/Jamal_Musiala" target="_blank" rel="noopener">Jamal<br>Musiala</a></h3>
       <div class="club">23yo · 🇩🇪 Germany - Midfielder</div>
-      <p class="line">Widely regarded as one of the best attacking midfielders in the world, Musiala is known for his dribbling, passing, goal threat, and technical skills.</p>
+      <p class="line">Creative playmaker with exceptional tight-space ball control; breaks low-block defenses with quick micro-dribbles inside the penalty area.</p>
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jamal_Musiala" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
@@ -656,7 +715,7 @@
       <div class="lg">Real Madrid</div>
       <h3><a href="https://en.wikipedia.org/wiki/Federico_Valverde" target="_blank" rel="noopener">Federico<br>Valverde</a></h3>
       <div class="club">28yo · 🇺🇾 Uruguay - Midfielder</div>
-      <p class="line">Considered one of the best midfielders in the world, he is known for his versatility, work rate, pace and shooting. Valverde mainly plays as a central midfielder but is also able to play as a right-back.</p>
+      <p class="line">Box-to-box engine: relentless work rate, transition speed, long-range shooting and defensive recovery runs. Also covers right-back when needed.</p>
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Federico_Valverde" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
@@ -896,7 +955,7 @@
       <div class="lg">Arsenal</div>
       <h3><a href="https://en.wikipedia.org/wiki/Viktor_Gy%C3%B6keres" target="_blank" rel="noopener">Viktor<br>Gyökeres</a></h3>
       <div class="club">28yo · 🇸🇪 Sweden - Forward</div>
-      <p class="line">Forward in Arsenal&#x27;s 2026–27 squad.</p>
+      <p class="line">Power striker built on physical duels, aggressive channel running and clinical box finishing; attacks the space behind high defensive lines.</p>
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Viktor_Gy%C3%B6keres" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
@@ -910,7 +969,17 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Eberechi_Eze" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="66" data-country="Brazil" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="66" data-country="Germany" data-club="Liverpool">
+      <div class="shirt">7</div>
+      <a href="https://en.wikipedia.org/wiki/Florian_Wirtz" target="_blank" rel="noopener" style="display:contents" title="Florian Wirtz — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Florian_Wirtz_Ecuador_v_Germany_25_June_2026-181_(cropped).jpg/330px-Florian_Wirtz_Ecuador_v_Germany_25_June_2026-181_(cropped).jpg" alt="Florian Wirtz" onerror="this.style.display='none'"></a>
+      <div class="lg">Liverpool</div>
+      <h3><a href="https://en.wikipedia.org/wiki/Florian_Wirtz" target="_blank" rel="noopener">Florian<br>Wirtz</a></h3>
+      <div class="club">23yo · 🇩🇪 Germany - Attacking midfielder</div>
+      <p class="line">Vertical playmaker with rapid decision-making in transition; delivers line-breaking passes under heavy pressure. Wears No. 7 for Liverpool.</p>
+      
+      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Florian_Wirtz" target="_blank" rel="noopener">Wiki ↗</a></div>
+    </article>
+    <article class="pcard" data-lg="epl" data-fav="67" data-country="Brazil" data-club="Liverpool">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Alisson_Becker" target="_blank" rel="noopener" style="display:contents" title="Alisson Becker — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Alisson_Becker_Brazil_V_Morocco_13_June_2026-117_%28cropped%29.jpg/330px-Alisson_Becker_Brazil_V_Morocco_13_June_2026-117_%28cropped%29.jpg" alt="Alisson Becker" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -920,7 +989,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alisson_Becker" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="67" data-country="Netherlands" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="68" data-country="Netherlands" data-club="Liverpool">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Virgil_van_Dijk" target="_blank" rel="noopener" style="display:contents" title="Virgil van Dijk — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/20160604_AUT_NED_8876_%28cropped%29.jpg/330px-20160604_AUT_NED_8876_%28cropped%29.jpg" alt="Virgil van Dijk" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -930,7 +999,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Virgil_van_Dijk" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="68" data-country="Argentina" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="69" data-country="Argentina" data-club="Liverpool">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Alexis_Mac_Allister" target="_blank" rel="noopener" style="display:contents" title="Alexis Mac Allister — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Alexis_Mac_Allister_Argentina_v_Egypt_7_July_2026-182.jpg/330px-Alexis_Mac_Allister_Argentina_v_Egypt_7_July_2026-182.jpg" alt="Alexis Mac Allister" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -940,7 +1009,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alexis_Mac_Allister" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="69" data-country="Netherlands" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="70" data-country="Netherlands" data-club="Liverpool">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Jeremie_Frimpong" target="_blank" rel="noopener" style="display:contents" title="Jeremie Frimpong — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Jeremie_Frimpong_04012026_%283%29_%28cropped%29.jpg/330px-Jeremie_Frimpong_04012026_%283%29_%28cropped%29.jpg" alt="Jeremie Frimpong" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -950,7 +1019,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jeremie_Frimpong" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="70" data-country="France" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="71" data-country="France" data-club="Liverpool">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Jacquet" target="_blank" rel="noopener" style="display:contents" title="Jérémy Jacquet — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Jacquet_asse_srfc_2425.png/330px-Jacquet_asse_srfc_2425.png" alt="Jérémy Jacquet" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -960,7 +1029,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Jacquet" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="71" data-country="Hungary" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="72" data-country="Hungary" data-club="Liverpool">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Milos_Kerkez" target="_blank" rel="noopener" style="display:contents" title="Milos Kerkez — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Milot_Kerkez_%28cropped%29.png/330px-Milot_Kerkez_%28cropped%29.png" alt="Milos Kerkez" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -970,7 +1039,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Milos_Kerkez" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="72" data-country="Netherlands" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="73" data-country="Netherlands" data-club="Liverpool">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Ryan_Gravenberch" target="_blank" rel="noopener" style="display:contents" title="Ryan Gravenberch — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3342_by_Stepro_%28cropped%29.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3342_by_Stepro_%28cropped%29.jpg" alt="Ryan Gravenberch" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -980,7 +1049,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ryan_Gravenberch" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="73" data-country="Hungary" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="74" data-country="Hungary" data-club="Liverpool">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Dominik_Szoboszlai" target="_blank" rel="noopener" style="display:contents" title="Dominik Szoboszlai — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Dominik_Szoboszlai_04012026_%281%29.jpg/330px-Dominik_Szoboszlai_04012026_%281%29.jpg" alt="Dominik Szoboszlai" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -990,7 +1059,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Dominik_Szoboszlai" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="74" data-country="England" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="75" data-country="England" data-club="Liverpool">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Rio_Ngumoha" target="_blank" rel="noopener" style="display:contents" title="Rio Ngumoha — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rio_Ngumoha_04012026_%286%29.jpg/330px-Rio_Ngumoha_04012026_%286%29.jpg" alt="Rio Ngumoha" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -1000,7 +1069,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rio_Ngumoha" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="75" data-country="Netherlands" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="76" data-country="Netherlands" data-club="Liverpool">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Cody_Gakpo" target="_blank" rel="noopener" style="display:contents" title="Cody Gakpo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Cody_Gakpo_06042025_%282%29_%28cropped%29.jpg/330px-Cody_Gakpo_06042025_%282%29_%28cropped%29.jpg" alt="Cody Gakpo" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -1010,7 +1079,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Cody_Gakpo" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="76" data-country="Sweden" data-club="Liverpool">
+    <article class="pcard" data-lg="epl" data-fav="77" data-country="Sweden" data-club="Liverpool">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Alexander_Isak" target="_blank" rel="noopener" style="display:contents" title="Alexander Isak — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Alexander_Isak_-_Sweden_-_Greece21_%28cropped%29.jpg/330px-Alexander_Isak_-_Sweden_-_Greece21_%28cropped%29.jpg" alt="Alexander Isak" onerror="this.style.display='none'"></a>
       <div class="lg">Liverpool</div>
@@ -1020,7 +1089,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alexander_Isak" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="77" data-country="Spain" data-club="Barcelona">
+    <article class="pcard" data-lg="liga" data-fav="78" data-country="Spain" data-club="Barcelona">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Pedri" target="_blank" rel="noopener" style="display:contents" title="Pedri — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Pedri_France_v_Spain_7.24.26-245.jpg/330px-Pedri_France_v_Spain_7.24.26-245.jpg" alt="Pedri" onerror="this.style.display='none'"></a>
       <div class="lg">Barcelona</div>
@@ -1030,7 +1099,7 @@
       <div class="stat"><b>23</b> league apps 25/26 · No. 8</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Pedri" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="78" data-country="Brazil" data-club="Barcelona">
+    <article class="pcard" data-lg="liga" data-fav="79" data-country="Brazil" data-club="Barcelona">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Raphinha" target="_blank" rel="noopener" style="display:contents" title="Raphinha — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Raphinha_Brazil_V_Morocco_13_June_2026-133_%28cropped%29.jpg/330px-Raphinha_Brazil_V_Morocco_13_June_2026-133_%28cropped%29.jpg" alt="Raphinha" onerror="this.style.display='none'"></a>
       <div class="lg">Barcelona</div>
@@ -1040,7 +1109,7 @@
       <div class="stat"><b>18</b> league apps 25/26 · No. 11</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Raphinha" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="79" data-country="Spain" data-club="Barcelona">
+    <article class="pcard" data-lg="liga" data-fav="80" data-country="Spain" data-club="Barcelona">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Eric_García_(footballer,_born_2001)" target="_blank" rel="noopener" style="display:contents" title="Eric García — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Eric_Garcia_autographs_2022_%28cropped%29.jpg/330px-Eric_Garcia_autographs_2022_%28cropped%29.jpg" alt="Eric García" onerror="this.style.display='none'"></a>
       <div class="lg">Barcelona</div>
@@ -1050,7 +1119,7 @@
       <div class="stat"><b>33</b> league apps 25/26 · No. 24</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Eric_García_(footballer,_born_2001)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="80" data-country="Spain" data-club="Barcelona">
+    <article class="pcard" data-lg="liga" data-fav="81" data-country="Spain" data-club="Barcelona">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Pau_Cubarsí" target="_blank" rel="noopener" style="display:contents" title="Pau Cubarsí — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Pau_Cubarsi_France_v_Spain_7.24.26-115.jpg/330px-Pau_Cubarsi_France_v_Spain_7.24.26-115.jpg" alt="Pau Cubarsí" onerror="this.style.display='none'"></a>
       <div class="lg">Barcelona</div>
@@ -1060,7 +1129,7 @@
       <div class="stat"><b>31</b> league apps 25/26 · No. 5</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Pau_Cubarsí" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="81" data-country="Spain" data-club="Barcelona">
+    <article class="pcard" data-lg="liga" data-fav="82" data-country="Spain" data-club="Barcelona">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Joan_Garcia" target="_blank" rel="noopener" style="display:contents" title="Joan Garcia — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Joan_Garcia_France_v_Spain_7.24.26-031.jpg/330px-Joan_Garcia_France_v_Spain_7.24.26-031.jpg" alt="Joan Garcia" onerror="this.style.display='none'"></a>
       <div class="lg">Barcelona</div>
@@ -1070,7 +1139,7 @@
       <div class="stat"><b>30</b> league apps 25/26 · No. 13</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Joan_Garcia" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="82" data-country="Spain" data-club="Barcelona">
+    <article class="pcard" data-lg="liga" data-fav="83" data-country="Spain" data-club="Barcelona">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Gerard_Martín_(footballer)" target="_blank" rel="noopener" style="display:contents" title="Gerard Martín — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/5/53/2025_04_26_Final_de_la_Copa_del_Rey_-_54482387776_-_Gerard_Mart%C3%ADn.jpg" alt="Gerard Martín" onerror="this.style.display='none'"></a>
       <div class="lg">Barcelona</div>
@@ -1080,7 +1149,7 @@
       <div class="stat"><b>26</b> league apps 25/26 · No. 18</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gerard_Martín_(footballer)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="83" data-country="France" data-club="Barcelona">
+    <article class="pcard" data-lg="liga" data-fav="84" data-country="France" data-club="Barcelona">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Jules_Koundé" target="_blank" rel="noopener" style="display:contents" title="Jules Koundé — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Jules_Kounde_France_v_Senegal_16_June_2026-449_%28cropped%29.jpg/330px-Jules_Kounde_France_v_Senegal_16_June_2026-449_%28cropped%29.jpg" alt="Jules Koundé" onerror="this.style.display='none'"></a>
       <div class="lg">Barcelona</div>
@@ -1090,7 +1159,7 @@
       <div class="stat"><b>24</b> league apps 25/26 · No. 23</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jules_Koundé" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="84" data-country="Spain" data-club="Barcelona">
+    <article class="pcard" data-lg="liga" data-fav="85" data-country="Spain" data-club="Barcelona">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Dani_Olmo" target="_blank" rel="noopener" style="display:contents" title="Dani Olmo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Dani_Olmo_France_v_Spain_7.24.26-176_%28cropped%29.jpg/330px-Dani_Olmo_France_v_Spain_7.24.26-176_%28cropped%29.jpg" alt="Dani Olmo" onerror="this.style.display='none'"></a>
       <div class="lg">Barcelona</div>
@@ -1100,7 +1169,7 @@
       <div class="stat"><b>24</b> league apps 25/26 · No. 20</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Dani_Olmo" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="85" data-country="Spain" data-club="Barcelona">
+    <article class="pcard" data-lg="liga" data-fav="86" data-country="Spain" data-club="Barcelona">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Ferran_Torres" target="_blank" rel="noopener" style="display:contents" title="Ferran Torres — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Ferran_Torres_France_v_Spain_7.24.26-237_%28cropped%29.jpg/330px-Ferran_Torres_France_v_Spain_7.24.26-237_%28cropped%29.jpg" alt="Ferran Torres" onerror="this.style.display='none'"></a>
       <div class="lg">Barcelona</div>
@@ -1110,7 +1179,7 @@
       <div class="stat"><b>23</b> league apps 25/26 · No. 7</div>
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ferran_Torres" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="86" data-country="United States" data-club="Atlético Madrid">
+    <article class="pcard" data-lg="liga" data-fav="87" data-country="United States" data-club="Atlético Madrid">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Johnny_Cardoso" target="_blank" rel="noopener" style="display:contents" title="Johnny Cardoso — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Johnny_Cardoso_USMNT_v_Belgium_Mar_28_2026-115_%28cropped%29.jpg/330px-Johnny_Cardoso_USMNT_v_Belgium_Mar_28_2026-115_%28cropped%29.jpg" alt="Johnny Cardoso" onerror="this.style.display='none'"></a>
       <div class="lg">Atlético Madrid</div>
@@ -1120,7 +1189,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Johnny_Cardoso" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="87" data-country="Argentina" data-club="Atlético Madrid">
+    <article class="pcard" data-lg="liga" data-fav="88" data-country="Argentina" data-club="Atlético Madrid">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Julián_Alvarez" target="_blank" rel="noopener" style="display:contents" title="Julián Alvarez — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Julian_Alvarez_Argentina_v_Egypt_7_July_2026-056.jpg/330px-Julian_Alvarez_Argentina_v_Egypt_7_July_2026-056.jpg" alt="Julián Alvarez" onerror="this.style.display='none'"></a>
       <div class="lg">Atlético Madrid</div>
@@ -1130,7 +1199,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Julián_Alvarez" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="88" data-country="Argentina" data-club="Atlético Madrid">
+    <article class="pcard" data-lg="liga" data-fav="89" data-country="Argentina" data-club="Atlético Madrid">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Juan_Musso" target="_blank" rel="noopener" style="display:contents" title="Juan Musso — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Musso_Udinese.png/330px-Musso_Udinese.png" alt="Juan Musso" onerror="this.style.display='none'"></a>
       <div class="lg">Atlético Madrid</div>
@@ -1140,7 +1209,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Juan_Musso" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="89" data-country="Spain" data-club="Real Betis">
+    <article class="pcard" data-lg="liga" data-fav="90" data-country="Spain" data-club="Real Betis">
       <div class="shirt">GK</div>
       
       <div class="lg">Real Betis</div>
@@ -1150,7 +1219,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Álvaro_Valles" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="90" data-country="Spain" data-club="Real Betis">
+    <article class="pcard" data-lg="liga" data-fav="91" data-country="Spain" data-club="Real Betis">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Héctor_Bellerín" target="_blank" rel="noopener" style="display:contents" title="Héctor Bellerín — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/1_hector_bellerin_2015.jpg/330px-1_hector_bellerin_2015.jpg" alt="Héctor Bellerín" onerror="this.style.display='none'"></a>
       <div class="lg">Real Betis</div>
@@ -1160,7 +1229,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Héctor_Bellerín" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="liga" data-fav="91" data-country="Spain" data-club="Real Betis">
+    <article class="pcard" data-lg="liga" data-fav="92" data-country="Spain" data-club="Real Betis">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Diego_Llorente" target="_blank" rel="noopener" style="display:contents" title="Diego Llorente — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Real_Sociedad_-_Red_Bull_Salzburgo_62_%2826433581918%29_%28cropped%29.jpg" alt="Diego Llorente" onerror="this.style.display='none'"></a>
       <div class="lg">Real Betis</div>
@@ -1170,7 +1239,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Diego_Llorente" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="92" data-country="Portugal" data-club="Man United">
+    <article class="pcard" data-lg="epl" data-fav="93" data-country="Portugal" data-club="Man United">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Bruno_Fernandes" target="_blank" rel="noopener" style="display:contents" title="Bruno Fernandes — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Bruno_Fernandes_USMNT_v_Portugal_Mar_31_2026-27_%28cropped%29.jpg/330px-Bruno_Fernandes_USMNT_v_Portugal_Mar_31_2026-27_%28cropped%29.jpg" alt="Bruno Fernandes" onerror="this.style.display='none'"></a>
       <div class="lg">Man United</div>
@@ -1180,7 +1249,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Bruno_Fernandes" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="93" data-country="Netherlands" data-club="Man United">
+    <article class="pcard" data-lg="epl" data-fav="94" data-country="Netherlands" data-club="Man United">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Matthijs_de_Ligt" target="_blank" rel="noopener" style="display:contents" title="Matthijs de Ligt — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/c/c9/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_Matthijs_de_Ligt_%28cropped%29.jpg" alt="Matthijs de Ligt" onerror="this.style.display='none'"></a>
       <div class="lg">Man United</div>
@@ -1190,7 +1259,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Matthijs_de_Ligt" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="94" data-country="Brazil" data-club="Man United">
+    <article class="pcard" data-lg="epl" data-fav="95" data-country="Brazil" data-club="Man United">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Andrey_Santos" target="_blank" rel="noopener" style="display:contents" title="Andrey Santos — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Santos_asse_rcsa_2425.jpg/330px-Santos_asse_rcsa_2425.jpg" alt="Andrey Santos" onerror="this.style.display='none'"></a>
       <div class="lg">Man United</div>
@@ -1200,7 +1269,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Andrey_Santos" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="95" data-country="England" data-club="Aston Villa">
+    <article class="pcard" data-lg="epl" data-fav="96" data-country="England" data-club="Aston Villa">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Ollie_Watkins" target="_blank" rel="noopener" style="display:contents" title="Ollie Watkins — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Ollie_Watkins_England_v_Ghana_23_June_2026-035.jpg/330px-Ollie_Watkins_England_v_Ghana_23_June_2026-035.jpg" alt="Ollie Watkins" onerror="this.style.display='none'"></a>
       <div class="lg">Aston Villa</div>
@@ -1210,7 +1279,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ollie_Watkins" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="96" data-country="Australia" data-club="Aston Villa">
+    <article class="pcard" data-lg="epl" data-fav="97" data-country="Australia" data-club="Aston Villa">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Joe_Gauci" target="_blank" rel="noopener" style="display:contents" title="Joe Gauci — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Joe_Gauci_October_2025_%28cropped%29.jpg/330px-Joe_Gauci_October_2025_%28cropped%29.jpg" alt="Joe Gauci" onerror="this.style.display='none'"></a>
       <div class="lg">Aston Villa</div>
@@ -1220,7 +1289,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Joe_Gauci" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="97" data-country="Poland" data-club="Aston Villa">
+    <article class="pcard" data-lg="epl" data-fav="98" data-country="Poland" data-club="Aston Villa">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Matty_Cash" target="_blank" rel="noopener" style="display:contents" title="Matty Cash — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Matty_Cash_%28cropped%29.jpg/330px-Matty_Cash_%28cropped%29.jpg" alt="Matty Cash" onerror="this.style.display='none'"></a>
       <div class="lg">Aston Villa</div>
@@ -1230,7 +1299,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Matty_Cash" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="98" data-country="England" data-club="Chelsea">
+    <article class="pcard" data-lg="epl" data-fav="99" data-country="England" data-club="Chelsea">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Cole_Palmer" target="_blank" rel="noopener" style="display:contents" title="Cole Palmer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Cole_Palmer_2025_FIFA_Club_World_Cup_Final.jpg" alt="Cole Palmer" onerror="this.style.display='none'"></a>
       <div class="lg">Chelsea</div>
@@ -1240,7 +1309,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Cole_Palmer" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="99" data-country="Spain" data-club="Chelsea">
+    <article class="pcard" data-lg="epl" data-fav="100" data-country="Spain" data-club="Chelsea">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Robert_Sánchez" target="_blank" rel="noopener" style="display:contents" title="Robert Sánchez — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Robert_S%C3%A1nchez_FIFA_Club_World_Cup_final_extraction.jpg/330px-Robert_S%C3%A1nchez_FIFA_Club_World_Cup_final_extraction.jpg" alt="Robert Sánchez" onerror="this.style.display='none'"></a>
       <div class="lg">Chelsea</div>
@@ -1250,17 +1319,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Robert_Sánchez" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="100" data-country="England" data-club="Chelsea">
-      <div class="shirt">DF</div>
-      <a href="https://en.wikipedia.org/wiki/Tosin_Adarabioyo" target="_blank" rel="noopener" style="display:contents" title="Tosin Adarabioyo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tosin_Adarabioyo_FIFA_Club_World_Cup_extraction.jpg" alt="Tosin Adarabioyo" onerror="this.style.display='none'"></a>
-      <div class="lg">Chelsea</div>
-      <h3><a href="https://en.wikipedia.org/wiki/Tosin_Adarabioyo" target="_blank" rel="noopener">Tosin<br>Adarabioyo</a></h3>
-      <div class="club">29yo · 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England - Defender</div>
-      <p class="line">Defender in Chelsea&#x27;s 2026–27 squad.</p>
-      
-      <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Tosin_Adarabioyo" target="_blank" rel="noopener">Wiki ↗</a></div>
-    </article>
-    <article class="pcard" data-lg="epl" data-fav="101" data-country="Argentina" data-club="Chelsea">
+    <article class="pcard" data-lg="epl" data-fav="102" data-country="Argentina" data-club="Chelsea">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Enzo_Fernández" target="_blank" rel="noopener" style="display:contents" title="Enzo Fernández — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Enzo_Fernandez_Argentina_v_Egypt_7_July_2026-058.jpg/330px-Enzo_Fernandez_Argentina_v_Egypt_7_July_2026-058.jpg" alt="Enzo Fernández" onerror="this.style.display='none'"></a>
       <div class="lg">Chelsea</div>
@@ -1270,7 +1329,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Enzo_Fernández" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="102" data-country="Italy" data-club="Tottenham Hotspur">
+    <article class="pcard" data-lg="epl" data-fav="103" data-country="Italy" data-club="Tottenham Hotspur">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Guglielmo_Vicario" target="_blank" rel="noopener" style="display:contents" title="Guglielmo Vicario — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Guglielmo_Vicario.png" alt="Guglielmo Vicario" onerror="this.style.display='none'"></a>
       <div class="lg">Tottenham Hotspur</div>
@@ -1280,7 +1339,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Guglielmo_Vicario" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="103" data-country="Austria" data-club="Tottenham Hotspur">
+    <article class="pcard" data-lg="epl" data-fav="104" data-country="Austria" data-club="Tottenham Hotspur">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Kevin_Danso" target="_blank" rel="noopener" style="display:contents" title="Kevin Danso — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Kevin_Danso_ASSE_RCL_2425.jpg/330px-Kevin_Danso_ASSE_RCL_2425.jpg" alt="Kevin Danso" onerror="this.style.display='none'"></a>
       <div class="lg">Tottenham Hotspur</div>
@@ -1290,7 +1349,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Kevin_Danso" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="104" data-country="Argentina" data-club="Tottenham Hotspur">
+    <article class="pcard" data-lg="epl" data-fav="105" data-country="Argentina" data-club="Tottenham Hotspur">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Marcos_Senesi" target="_blank" rel="noopener" style="display:contents" title="Marcos Senesi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Marcos_Senesi_Argentina_v_Egypt_7_July_2026-024.jpg/330px-Marcos_Senesi_Argentina_v_Egypt_7_July_2026-024.jpg" alt="Marcos Senesi" onerror="this.style.display='none'"></a>
       <div class="lg">Tottenham Hotspur</div>
@@ -1300,7 +1359,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Marcos_Senesi" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="105" data-country="England" data-club="Everton">
+    <article class="pcard" data-lg="epl" data-fav="106" data-country="England" data-club="Everton">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Jordan_Pickford" target="_blank" rel="noopener" style="display:contents" title="Jordan Pickford — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Jordan_Pickford_England_v_Ghana_23_June_2026-316_%28cropped%29.jpg/330px-Jordan_Pickford_England_v_Ghana_23_June_2026-316_%28cropped%29.jpg" alt="Jordan Pickford" onerror="this.style.display='none'"></a>
       <div class="lg">Everton</div>
@@ -1310,7 +1369,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jordan_Pickford" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="106" data-country="Scotland" data-club="Everton">
+    <article class="pcard" data-lg="epl" data-fav="107" data-country="Scotland" data-club="Everton">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Nathan_Patterson_(footballer)" target="_blank" rel="noopener" style="display:contents" title="Nathan Patterson — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Nathan_Patterson_Scotland_v_Bolivia_6_June_2026-58.jpg/330px-Nathan_Patterson_Scotland_v_Bolivia_6_June_2026-58.jpg" alt="Nathan Patterson" onerror="this.style.display='none'"></a>
       <div class="lg">Everton</div>
@@ -1320,7 +1379,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nathan_Patterson_(footballer)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="epl" data-fav="107" data-country="England" data-club="Everton">
+    <article class="pcard" data-lg="epl" data-fav="108" data-country="England" data-club="Everton">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Michael_Keane_(footballer,_born_1993)" target="_blank" rel="noopener" style="display:contents" title="Michael Keane — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Michael_Keane_2017.jpg" alt="Michael Keane" onerror="this.style.display='none'"></a>
       <div class="lg">Everton</div>
@@ -1330,7 +1389,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Michael_Keane_(footballer,_born_1993)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="buli" data-fav="108" data-country="Germany" data-club="Borussia Dortmund">
+    <article class="pcard" data-lg="buli" data-fav="109" data-country="Germany" data-club="Borussia Dortmund">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Nico_Schlotterbeck" target="_blank" rel="noopener" style="display:contents" title="Nico Schlotterbeck — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg" alt="Nico Schlotterbeck" onerror="this.style.display='none'"></a>
       <div class="lg">Borussia Dortmund</div>
@@ -1340,7 +1399,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nico_Schlotterbeck" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="buli" data-fav="109" data-country="Switzerland" data-club="Borussia Dortmund">
+    <article class="pcard" data-lg="buli" data-fav="110" data-country="Switzerland" data-club="Borussia Dortmund">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Gregor_Kobel" target="_blank" rel="noopener" style="display:contents" title="Gregor Kobel — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93090.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93090.jpg" alt="Gregor Kobel" onerror="this.style.display='none'"></a>
       <div class="lg">Borussia Dortmund</div>
@@ -1350,7 +1409,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gregor_Kobel" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="buli" data-fav="110" data-country="Brazil" data-club="Borussia Dortmund">
+    <article class="pcard" data-lg="buli" data-fav="111" data-country="Brazil" data-club="Borussia Dortmund">
       <div class="shirt">DF</div>
       
       <div class="lg">Borussia Dortmund</div>
@@ -1360,7 +1419,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Yan_Couto" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="buli" data-fav="111" data-country="Hungary" data-club="RB Leipzig">
+    <article class="pcard" data-lg="buli" data-fav="112" data-country="Hungary" data-club="RB Leipzig">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Péter_Gulácsi" target="_blank" rel="noopener" style="display:contents" title="Péter Gulácsi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3666_by_Stepro.jpg/330px-2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3666_by_Stepro.jpg" alt="Péter Gulácsi" onerror="this.style.display='none'"></a>
       <div class="lg">RB Leipzig</div>
@@ -1370,7 +1429,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Péter_Gulácsi" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="buli" data-fav="112" data-country="France" data-club="RB Leipzig">
+    <article class="pcard" data-lg="buli" data-fav="113" data-country="France" data-club="RB Leipzig">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Abdoul_Koné" target="_blank" rel="noopener" style="display:contents" title="Abdoul Koné — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Foire_de_chalons_Foot_Reims_1585898_%28cropped%29.jpg/330px-Foire_de_chalons_Foot_Reims_1585898_%28cropped%29.jpg" alt="Abdoul Koné" onerror="this.style.display='none'"></a>
       <div class="lg">RB Leipzig</div>
@@ -1380,7 +1439,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Abdoul_Koné" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="buli" data-fav="113" data-country="France" data-club="RB Leipzig">
+    <article class="pcard" data-lg="buli" data-fav="114" data-country="France" data-club="RB Leipzig">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Maxime_Estève" target="_blank" rel="noopener" style="display:contents" title="Maxime Estève — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Maxime_Esteve_2021.jpg/330px-Maxime_Esteve_2021.jpg" alt="Maxime Estève" onerror="this.style.display='none'"></a>
       <div class="lg">RB Leipzig</div>
@@ -1390,7 +1449,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Maxime_Estève" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="114" data-country="Italy" data-club="Inter Milan">
+    <article class="pcard" data-lg="other" data-fav="115" data-country="Italy" data-club="Inter Milan">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Federico_Dimarco" target="_blank" rel="noopener" style="display:contents" title="Federico Dimarco — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Norway_Italy_-_June_2025_A_26_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_26_%28cropped%29.jpg" alt="Federico Dimarco" onerror="this.style.display='none'"></a>
       <div class="lg">Inter Milan</div>
@@ -1400,7 +1459,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Federico_Dimarco" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="115" data-country="Poland" data-club="Inter Milan">
+    <article class="pcard" data-lg="other" data-fav="116" data-country="Poland" data-club="Inter Milan">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Piotr_Zieliński" target="_blank" rel="noopener" style="display:contents" title="Piotr Zieliński — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/d/df/Piotr_Zielinski_2018_%28cropped%29.jpg" alt="Piotr Zieliński" onerror="this.style.display='none'"></a>
       <div class="lg">Inter Milan</div>
@@ -1410,7 +1469,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Piotr_Zieliński" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="116" data-country="Brazil" data-club="Inter Milan">
+    <article class="pcard" data-lg="other" data-fav="117" data-country="Brazil" data-club="Inter Milan">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Carlos_Augusto_(footballer)" target="_blank" rel="noopener" style="display:contents" title="Carlos Augusto — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/FC_Salzburg_gegen_Inter_Mailand_%28UEFA_Championsleague_2023-11-08%29_15.jpg/330px-FC_Salzburg_gegen_Inter_Mailand_%28UEFA_Championsleague_2023-11-08%29_15.jpg" alt="Carlos Augusto" onerror="this.style.display='none'"></a>
       <div class="lg">Inter Milan</div>
@@ -1420,7 +1479,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Carlos_Augusto_(footballer)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="117" data-country="Croatia" data-club="Inter Milan">
+    <article class="pcard" data-lg="other" data-fav="118" data-country="Croatia" data-club="Inter Milan">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Petar_Sučić" target="_blank" rel="noopener" style="display:contents" title="Petar Sučić — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Petar_Sucic_Croatia_v_Portugal_2_July_2026-089.jpg/330px-Petar_Sucic_Croatia_v_Portugal_2_July_2026-089.jpg" alt="Petar Sučić" onerror="this.style.display='none'"></a>
       <div class="lg">Inter Milan</div>
@@ -1430,7 +1489,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Petar_Sučić" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="118" data-country="Italy" data-club="Juventus">
+    <article class="pcard" data-lg="other" data-fav="119" data-country="Italy" data-club="Juventus">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Mattia_Perin" target="_blank" rel="noopener" style="display:contents" title="Mattia Perin — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Mattia_Perin_2016.jpg/330px-Mattia_Perin_2016.jpg" alt="Mattia Perin" onerror="this.style.display='none'"></a>
       <div class="lg">Juventus</div>
@@ -1440,7 +1499,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Mattia_Perin" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="119" data-country="Turkey" data-club="Juventus">
+    <article class="pcard" data-lg="other" data-fav="120" data-country="Turkey" data-club="Juventus">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Zeki_Çelik" target="_blank" rel="noopener" style="display:contents" title="Zeki Çelik — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Zeki_%C3%A7elik_2020.jpg/330px-Zeki_%C3%A7elik_2020.jpg" alt="Zeki Çelik" onerror="this.style.display='none'"></a>
       <div class="lg">Juventus</div>
@@ -1450,7 +1509,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Zeki_Çelik" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="120" data-country="Brazil" data-club="Juventus">
+    <article class="pcard" data-lg="other" data-fav="121" data-country="Brazil" data-club="Juventus">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Gleison_Bremer" target="_blank" rel="noopener" style="display:contents" title="Bremer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Bremer_Brazil_V_Morocco_13_June_2026-143_%28cropped%29.jpg/330px-Bremer_Brazil_V_Morocco_13_June_2026-143_%28cropped%29.jpg" alt="Bremer" onerror="this.style.display='none'"></a>
       <div class="lg">Juventus</div>
@@ -1460,7 +1519,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gleison_Bremer" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="121" data-country="Belgium" data-club="Napoli">
+    <article class="pcard" data-lg="other" data-fav="122" data-country="Belgium" data-club="Napoli">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Kevin_De_Bruyne" target="_blank" rel="noopener" style="display:contents" title="Kevin De Bruyne — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Kevin_De_Bruyne_USMNT_v_Belgium_Mar_28_2026-64_%28cropped%29.jpg/330px-Kevin_De_Bruyne_USMNT_v_Belgium_Mar_28_2026-64_%28cropped%29.jpg" alt="Kevin De Bruyne" onerror="this.style.display='none'"></a>
       <div class="lg">Napoli</div>
@@ -1470,7 +1529,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Kevin_De_Bruyne" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="122" data-country="Italy" data-club="Napoli">
+    <article class="pcard" data-lg="other" data-fav="123" data-country="Italy" data-club="Napoli">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Alex_Meret" target="_blank" rel="noopener" style="display:contents" title="Alex Meret — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Alex_Meret_%28cropped%29.jpg/330px-Alex_Meret_%28cropped%29.jpg" alt="Alex Meret" onerror="this.style.display='none'"></a>
       <div class="lg">Napoli</div>
@@ -1480,7 +1539,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alex_Meret" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="123" data-country="Spain" data-club="Napoli">
+    <article class="pcard" data-lg="other" data-fav="124" data-country="Spain" data-club="Napoli">
       <div class="shirt">DF</div>
       
       <div class="lg">Napoli</div>
@@ -1490,7 +1549,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Miguel_Gutiérrez_(footballer,_born_2001)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="124" data-country="Slovakia" data-club="Olympique Lyonnais">
+    <article class="pcard" data-lg="fr1" data-fav="125" data-country="Slovakia" data-club="Olympique Lyonnais">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Dominik_Greif" target="_blank" rel="noopener" style="display:contents" title="Dominik Greif — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Zen-Slovan_%281%3B_cropped%29.jpg/330px-Zen-Slovan_%281%3B_cropped%29.jpg" alt="Dominik Greif" onerror="this.style.display='none'"></a>
       <div class="lg">Olympique Lyonnais</div>
@@ -1500,7 +1559,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Dominik_Greif" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="125" data-country="Argentina" data-club="Olympique Lyonnais">
+    <article class="pcard" data-lg="fr1" data-fav="126" data-country="Argentina" data-club="Olympique Lyonnais">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Nicolás_Tagliafico" target="_blank" rel="noopener" style="display:contents" title="Nicolás Tagliafico — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Nicolas_Tagliafico_Argentina_v_Egypt_7_July_2026-126_%28cropped%29.jpg/330px-Nicolas_Tagliafico_Argentina_v_Egypt_7_July_2026-126_%28cropped%29.jpg" alt="Nicolás Tagliafico" onerror="this.style.display='none'"></a>
       <div class="lg">Olympique Lyonnais</div>
@@ -1510,7 +1569,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nicolás_Tagliafico" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="126" data-country="Brazil" data-club="Olympique Lyonnais">
+    <article class="pcard" data-lg="fr1" data-fav="127" data-country="Brazil" data-club="Olympique Lyonnais">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Abner_Vinícius" target="_blank" rel="noopener" style="display:contents" title="Abner — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Vinicius_asse_ol_2425.png/330px-Vinicius_asse_ol_2425.png" alt="Abner" onerror="this.style.display='none'"></a>
       <div class="lg">Olympique Lyonnais</div>
@@ -1520,7 +1579,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Abner_Vinícius" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="127" data-country="Argentina" data-club="Olympique de Marseille">
+    <article class="pcard" data-lg="fr1" data-fav="128" data-country="Argentina" data-club="Olympique de Marseille">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Gerónimo_Rulli" target="_blank" rel="noopener" style="display:contents" title="Gerónimo Rulli — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Rulli_asse_om_2425.png/330px-Rulli_asse_om_2425.png" alt="Gerónimo Rulli" onerror="this.style.display='none'"></a>
       <div class="lg">Olympique de Marseille</div>
@@ -1530,7 +1589,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Gerónimo_Rulli" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="128" data-country="England" data-club="Olympique de Marseille">
+    <article class="pcard" data-lg="fr1" data-fav="129" data-country="England" data-club="Olympique de Marseille">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/CJ_Egan-Riley" target="_blank" rel="noopener" style="display:contents" title="CJ Egan-Riley — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/CJ_Egan-Riley_26042025_%282%29.jpg/330px-CJ_Egan-Riley_26042025_%282%29.jpg" alt="CJ Egan-Riley" onerror="this.style.display='none'"></a>
       <div class="lg">Olympique de Marseille</div>
@@ -1540,7 +1599,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/CJ_Egan-Riley" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="fr1" data-fav="129" data-country="Argentina" data-club="Olympique de Marseille">
+    <article class="pcard" data-lg="fr1" data-fav="130" data-country="Argentina" data-club="Olympique de Marseille">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Leonardo_Balerdi" target="_blank" rel="noopener" style="display:contents" title="Leonardo Balerdi — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Balerdi_asse_om_2425.png/330px-Balerdi_asse_om_2425.png" alt="Leonardo Balerdi" onerror="this.style.display='none'"></a>
       <div class="lg">Olympique de Marseille</div>
@@ -1550,7 +1609,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Leonardo_Balerdi" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="130" data-country="Portugal" data-club="Sporting CP">
+    <article class="pcard" data-lg="other" data-fav="131" data-country="Portugal" data-club="Sporting CP">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Rui_Silva_(footballer,_born_1994)" target="_blank" rel="noopener" style="display:contents" title="Rui Silva — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Rui_Silva_USMNT_v_Portugal_Mar_31_2026-14_%28cropped%29.jpg/330px-Rui_Silva_USMNT_v_Portugal_Mar_31_2026-14_%28cropped%29.jpg" alt="Rui Silva" onerror="this.style.display='none'"></a>
       <div class="lg">Sporting CP</div>
@@ -1560,7 +1619,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Rui_Silva_(footballer,_born_1994)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="131" data-country="Belgium" data-club="Sporting CP">
+    <article class="pcard" data-lg="other" data-fav="132" data-country="Belgium" data-club="Sporting CP">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Zeno_Debast" target="_blank" rel="noopener" style="display:contents" title="Zeno Debast — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg/330px-Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg" alt="Zeno Debast" onerror="this.style.display='none'"></a>
       <div class="lg">Sporting CP</div>
@@ -1570,7 +1629,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Zeno_Debast" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="132" data-country="Portugal" data-club="Sporting CP">
+    <article class="pcard" data-lg="other" data-fav="133" data-country="Portugal" data-club="Sporting CP">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Nuno_Santos_(footballer,_born_1995)" target="_blank" rel="noopener" style="display:contents" title="Nuno Santos — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Portrait_-_Nuno_Santos.jpg/330px-Portrait_-_Nuno_Santos.jpg" alt="Nuno Santos" onerror="this.style.display='none'"></a>
       <div class="lg">Sporting CP</div>
@@ -1580,7 +1639,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nuno_Santos_(footballer,_born_1995)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="133" data-country="Portugal" data-club="Porto">
+    <article class="pcard" data-lg="other" data-fav="134" data-country="Portugal" data-club="Porto">
       <div class="shirt">GK</div>
       
       <div class="lg">Porto</div>
@@ -1590,7 +1649,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Cláudio_Ramos_(footballer)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="134" data-country="Poland" data-club="Porto">
+    <article class="pcard" data-lg="other" data-fav="135" data-country="Poland" data-club="Porto">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Jakub_Kiwior" target="_blank" rel="noopener" style="display:contents" title="Jakub Kiwior — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/1_Jakub_Kiwior_arsenal_2025_%28cropped%29.jpg/330px-1_Jakub_Kiwior_arsenal_2025_%28cropped%29.jpg" alt="Jakub Kiwior" onerror="this.style.display='none'"></a>
       <div class="lg">Porto</div>
@@ -1600,7 +1659,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jakub_Kiwior" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="135" data-country="Poland" data-club="Porto">
+    <article class="pcard" data-lg="other" data-fav="136" data-country="Poland" data-club="Porto">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Jan_Bednarek" target="_blank" rel="noopener" style="display:contents" title="Jan Bednarek — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Jan_Bednarek_22122024_%28cropped%29.jpg/330px-Jan_Bednarek_22122024_%28cropped%29.jpg" alt="Jan Bednarek" onerror="this.style.display='none'"></a>
       <div class="lg">Porto</div>
@@ -1610,7 +1669,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jan_Bednarek" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="136" data-country="Croatia" data-club="PSV">
+    <article class="pcard" data-lg="other" data-fav="137" data-country="Croatia" data-club="PSV">
       <div class="shirt">MF</div>
       <a href="https://en.wikipedia.org/wiki/Ivan_Perišić" target="_blank" rel="noopener" style="display:contents" title="Ivan Perišić — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Ivan_Perisic_Croatia_v_Portugal_2_July_2026-033.jpg/330px-Ivan_Perisic_Croatia_v_Portugal_2_July_2026-033.jpg" alt="Ivan Perišić" onerror="this.style.display='none'"></a>
       <div class="lg">PSV</div>
@@ -1620,7 +1679,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ivan_Perišić" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="137" data-country="United States" data-club="PSV">
+    <article class="pcard" data-lg="other" data-fav="138" data-country="United States" data-club="PSV">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Sergiño_Dest" target="_blank" rel="noopener" style="display:contents" title="Sergiño Dest — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Sergino_Dest_Australia_v_USA_19_June_2026-50.jpg/330px-Sergino_Dest_Australia_v_USA_19_June_2026-50.jpg" alt="Sergiño Dest" onerror="this.style.display='none'"></a>
       <div class="lg">PSV</div>
@@ -1630,7 +1689,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Sergiño_Dest" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="138" data-country="Netherlands" data-club="PSV">
+    <article class="pcard" data-lg="other" data-fav="139" data-country="Netherlands" data-club="PSV">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Nick_Olij" target="_blank" rel="noopener" style="display:contents" title="Nick Olij — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Sparta_-_Go_Ahead_Eagles_-_53478974060_%28Nick_Olij%29.jpg/330px-Sparta_-_Go_Ahead_Eagles_-_53478974060_%28Nick_Olij%29.jpg" alt="Nick Olij" onerror="this.style.display='none'"></a>
       <div class="lg">PSV</div>
@@ -1640,7 +1699,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Nick_Olij" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="139" data-country="Netherlands" data-club="Ajax">
+    <article class="pcard" data-lg="other" data-fav="140" data-country="Netherlands" data-club="Ajax">
       <div class="shirt">GK</div>
       
       <div class="lg">Ajax</div>
@@ -1650,7 +1709,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Joeri_Heerkens" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="140" data-country="Brazil" data-club="Ajax">
+    <article class="pcard" data-lg="other" data-fav="141" data-country="Brazil" data-club="Ajax">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Lucas_Rosa" target="_blank" rel="noopener" style="display:contents" title="Lucas Rosa — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lucas_Rosa.jpg/330px-Lucas_Rosa.jpg" alt="Lucas Rosa" onerror="this.style.display='none'"></a>
       <div class="lg">Ajax</div>
@@ -1660,7 +1719,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Lucas_Rosa" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="141" data-country="Denmark" data-club="Ajax">
+    <article class="pcard" data-lg="other" data-fav="142" data-country="Denmark" data-club="Ajax">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Anton_Gaaei" target="_blank" rel="noopener" style="display:contents" title="Anton Gaaei — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Anton_Gaaei_%28cropped%29.jpg/330px-Anton_Gaaei_%28cropped%29.jpg" alt="Anton Gaaei" onerror="this.style.display='none'"></a>
       <div class="lg">Ajax</div>
@@ -1670,7 +1729,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Anton_Gaaei" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="142" data-country="Switzerland" data-club="Club Brugge">
+    <article class="pcard" data-lg="other" data-fav="143" data-country="Switzerland" data-club="Club Brugge">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Yann_Sommer" target="_blank" rel="noopener" style="display:contents" title="Yann Sommer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/FC_Salzburg_gegen_Inter_Mailand_%28Testspiel_2023-08-09%29_69.jpg/330px-FC_Salzburg_gegen_Inter_Mailand_%28Testspiel_2023-08-09%29_69.jpg" alt="Yann Sommer" onerror="this.style.display='none'"></a>
       <div class="lg">Club Brugge</div>
@@ -1680,7 +1739,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Yann_Sommer" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="143" data-country="Ecuador" data-club="Club Brugge">
+    <article class="pcard" data-lg="other" data-fav="144" data-country="Ecuador" data-club="Club Brugge">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Joel_Ordóñez" target="_blank" rel="noopener" style="display:contents" title="Joel Ordóñez — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Joel_Ordonez_Cote_D%27Ivoire_v_Ecuador_14_June_2026-154_%28cropped%29.jpg/330px-Joel_Ordonez_Cote_D%27Ivoire_v_Ecuador_14_June_2026-154_%28cropped%29.jpg" alt="Joel Ordóñez" onerror="this.style.display='none'"></a>
       <div class="lg">Club Brugge</div>
@@ -1690,7 +1749,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Joel_Ordóñez" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="144" data-country="Netherlands" data-club="Club Brugge">
+    <article class="pcard" data-lg="other" data-fav="145" data-country="Netherlands" data-club="Club Brugge">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Bjorn_Meijer" target="_blank" rel="noopener" style="display:contents" title="Bjorn Meijer — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/FC_Salzburg_gegen_Club_Br%C3%BCgge_%282025-08-06_Championsleague_Qualifikation_Dritte_Runde%29_38_%28Bjorn_Meijer%29.jpg/330px-FC_Salzburg_gegen_Club_Br%C3%BCgge_%282025-08-06_Championsleague_Qualifikation_Dritte_Runde%29_38_%28Bjorn_Meijer%29.jpg" alt="Bjorn Meijer" onerror="this.style.display='none'"></a>
       <div class="lg">Club Brugge</div>
@@ -1700,7 +1759,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Bjorn_Meijer" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="145" data-country="Belgium" data-club="Union SG">
+    <article class="pcard" data-lg="other" data-fav="146" data-country="Belgium" data-club="Union SG">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Vic_Chambaere" target="_blank" rel="noopener" style="display:contents" title="Vic Chambaere — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Vic_Chambaere_Union_2025.jpg/330px-Vic_Chambaere_Union_2025.jpg" alt="Vic Chambaere" onerror="this.style.display='none'"></a>
       <div class="lg">Union SG</div>
@@ -1710,7 +1769,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Vic_Chambaere" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="146" data-country="Senegal" data-club="Union SG">
+    <article class="pcard" data-lg="other" data-fav="147" data-country="Senegal" data-club="Union SG">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Mamadou_Thierno_Barry" target="_blank" rel="noopener" style="display:contents" title="Mamadou Thierno Barry — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Mamadou_Thierno_Barry_Union_2025.jpg/330px-Mamadou_Thierno_Barry_Union_2025.jpg" alt="Mamadou Thierno Barry" onerror="this.style.display='none'"></a>
       <div class="lg">Union SG</div>
@@ -1720,7 +1779,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Mamadou_Thierno_Barry" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="147" data-country="Argentina" data-club="Union SG">
+    <article class="pcard" data-lg="other" data-fav="148" data-country="Argentina" data-club="Union SG">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Kevin_Mac_Allister" target="_blank" rel="noopener" style="display:contents" title="Kevin Mac Allister — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Go_Ahead_Eagles_-_Royale_Union_Saint-Gillloise_-_53852891619_%28Kevin_Mac_Allister%29.jpg/330px-Go_Ahead_Eagles_-_Royale_Union_Saint-Gillloise_-_53852891619_%28Kevin_Mac_Allister%29.jpg" alt="Kevin Mac Allister" onerror="this.style.display='none'"></a>
       <div class="lg">Union SG</div>
@@ -1730,7 +1789,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Kevin_Mac_Allister" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="148" data-country="Portugal" data-club="Celtic">
+    <article class="pcard" data-lg="other" data-fav="149" data-country="Portugal" data-club="Celtic">
       <div class="shirt">FW</div>
       <a href="https://en.wikipedia.org/wiki/Jota_(footballer,_born_March_1999)" target="_blank" rel="noopener" style="display:contents" title="Jota — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Jota_2020.png/330px-Jota_2020.png" alt="Jota" onerror="this.style.display='none'"></a>
       <div class="lg">Celtic</div>
@@ -1740,7 +1799,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Jota_(footballer,_born_March_1999)" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="149" data-country="Finland" data-club="Celtic">
+    <article class="pcard" data-lg="other" data-fav="150" data-country="Finland" data-club="Celtic">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Viljami_Sinisalo" target="_blank" rel="noopener" style="display:contents" title="Viljami Sinisalo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Viljami_Sinisalo_%282022-06-03%29.jpg/330px-Viljami_Sinisalo_%282022-06-03%29.jpg" alt="Viljami Sinisalo" onerror="this.style.display='none'"></a>
       <div class="lg">Celtic</div>
@@ -1750,7 +1809,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Viljami_Sinisalo" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="150" data-country="Canada" data-club="Celtic">
+    <article class="pcard" data-lg="other" data-fav="151" data-country="Canada" data-club="Celtic">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Alistair_Johnston" target="_blank" rel="noopener" style="display:contents" title="Alistair Johnston — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Alistair_Johnston_Canada_v_Qatar_18_June_2026-038_%28cropped%29.jpg/330px-Alistair_Johnston_Canada_v_Qatar_18_June_2026-038_%28cropped%29.jpg" alt="Alistair Johnston" onerror="this.style.display='none'"></a>
       <div class="lg">Celtic</div>
@@ -1760,7 +1819,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Alistair_Johnston" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="151" data-country="Turkey" data-club="Galatasaray">
+    <article class="pcard" data-lg="other" data-fav="152" data-country="Turkey" data-club="Galatasaray">
       <div class="shirt">GK</div>
       <a href="https://en.wikipedia.org/wiki/Uğurcan_Çakır" target="_blank" rel="noopener" style="display:contents" title="Uğurcan Çakır — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/U%C4%9Furcan_%C3%87ak%C4%B1r_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png/330px-U%C4%9Furcan_%C3%87ak%C4%B1r_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png" alt="Uğurcan Çakır" onerror="this.style.display='none'"></a>
       <div class="lg">Galatasaray</div>
@@ -1770,7 +1829,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Uğurcan_Çakır" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="152" data-country="Turkey" data-club="Galatasaray">
+    <article class="pcard" data-lg="other" data-fav="153" data-country="Turkey" data-club="Galatasaray">
       <div class="shirt">DF</div>
       
       <div class="lg">Galatasaray</div>
@@ -1780,7 +1839,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Metehan_Baltacı" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="153" data-country="Senegal" data-club="Galatasaray">
+    <article class="pcard" data-lg="other" data-fav="154" data-country="Senegal" data-club="Galatasaray">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Ismail_Jakobs" target="_blank" rel="noopener" style="display:contents" title="Ismail Jakobs — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Ismail_Jakobs_France_v_Senegal_16_June_2026-237_%28cropped%29.jpg/330px-Ismail_Jakobs_France_v_Senegal_16_June_2026-237_%28cropped%29.jpg" alt="Ismail Jakobs" onerror="this.style.display='none'"></a>
       <div class="lg">Galatasaray</div>
@@ -1790,7 +1849,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Ismail_Jakobs" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="154" data-country="Montenegro" data-club="Olympiacos">
+    <article class="pcard" data-lg="other" data-fav="155" data-country="Montenegro" data-club="Olympiacos">
       <div class="shirt">GK</div>
       
       <div class="lg">Olympiacos</div>
@@ -1800,7 +1859,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Balša_Popović" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="155" data-country="Argentina" data-club="Olympiacos">
+    <article class="pcard" data-lg="other" data-fav="156" data-country="Argentina" data-club="Olympiacos">
       <div class="shirt">DF</div>
       <a href="https://en.wikipedia.org/wiki/Pablo_Maffeo" target="_blank" rel="noopener" style="display:contents" title="Pablo Maffeo — photo via Wikimedia Commons (CC BY-SA)"><img class="headshot" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Pablo_maffeo.jpg/330px-Pablo_maffeo.jpg" alt="Pablo Maffeo" onerror="this.style.display='none'"></a>
       <div class="lg">Olympiacos</div>
@@ -1810,7 +1869,7 @@
       
       <div class="profile-links"><a href="https://en.wikipedia.org/wiki/Pablo_Maffeo" target="_blank" rel="noopener">Wiki ↗</a></div>
     </article>
-    <article class="pcard" data-lg="other" data-fav="156" data-country="Argentina" data-club="Olympiacos">
+    <article class="pcard" data-lg="other" data-fav="157" data-country="Argentina" data-club="Olympiacos">
       <div class="shirt">DF</div>
       
       <div class="lg">Olympiacos</div>
@@ -1859,6 +1918,12 @@
   }));
   applySort('fav');
 })();
+// ---------- theme toggle ----------
+document.getElementById('themeToggle').addEventListener('click',()=>{
+  const next = document.documentElement.dataset.theme==='dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  try{ localStorage.setItem('mdcal-theme', next); }catch(e){}
+});
 </script>
 
 <footer>

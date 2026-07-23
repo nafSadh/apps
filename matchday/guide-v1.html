@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viewing Guide — Matchday Pacific (v1, card layout — reference only)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pitch:#0c3524; --pitch-2:#0f4630; --chalk:#f4f1e4; --night:#0b120e;
+    --epl:#9d8cff; --liga:#ff5a45; --buli:#f0c33c; --l1:#5dd39e; --ucl:#7fd1ff;
+    --muted:rgba(244,241,228,.62); --hair:rgba(244,241,228,.16);
+    --disp:'Saira Condensed',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --hand:'Caveat',cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+  body{
+    font-family:var(--body);color:var(--chalk);background:var(--night);
+    background-image:
+      repeating-linear-gradient(45deg, transparent 0 2px, rgba(0,0,0,.05) 2px 3px),
+      repeating-linear-gradient(-45deg, transparent 0 3px, rgba(244,241,228,.016) 3px 4px),
+      repeating-linear-gradient(90deg, var(--pitch) 0 120px, var(--pitch-2) 120px 240px);
+    background-attachment:fixed;min-height:100vh;
+  }
+  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% -10%, rgba(244,241,228,.10), transparent 60%), radial-gradient(850px 600px at 90% 88%, rgba(91,110,245,.12), transparent 62%), radial-gradient(650px 480px at 4% 60%, rgba(127,209,255,.09), transparent 60%), rgba(11,18,14,.82);pointer-events:none;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 20px 48px}
+
+  header{padding:28px 0 6px}
+  .kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+  .kick a{color:inherit;text-decoration:none}
+  .kick a:hover{color:var(--chalk)}
+  .kick .hand{font-family:var(--hand);font-size:19px;letter-spacing:.01em;color:var(--chalk);display:inline-block;transform:rotate(-2deg);vertical-align:-2px;margin-left:2px}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,5.4vw,64px);line-height:1;letter-spacing:.01em;margin:8px 0 6px;white-space:nowrap}
+  h1 .pac{color:transparent;-webkit-text-stroke:1.5px var(--chalk)}
+  .sub{max-width:640px;color:var(--muted);font-size:15px;line-height:1.55}
+  .sub b{color:var(--chalk);font-weight:600}
+
+  section{margin-top:40px}
+  .eyebrow{display:flex;align-items:baseline;gap:14px;margin-bottom:12px}
+  .eyebrow h2{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:.02em}
+  .eyebrow .rule{flex:1;height:1px;background:var(--hair)}
+  .eyebrow .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .svc{border:1px solid var(--hair);border-radius:10px;padding:18px;background:rgba(12,19,36,.58)}
+  .svc h3{font-family:var(--disp);font-weight:800;font-size:23px}
+  .svc .note{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:2px}
+  .svc ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .svc li{display:flex;align-items:baseline;gap:9px;font-size:13.5px;line-height:1.4;color:rgba(244,241,228,.86)}
+  .svc li::before{content:"";flex:none;width:9px;height:9px;border-radius:2px;background:var(--dot,var(--chalk));align-self:center}
+  .svc li.ucl{--dot:var(--ucl)} .svc li.epl{--dot:var(--epl)} .svc li.liga{--dot:var(--liga)}
+  .svc li.buli{--dot:var(--buli)} .svc li.l1{--dot:var(--l1)} .svc li.cup{--dot:rgba(244,241,228,.55)}
+  .svc li small{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto;text-align:right;white-space:nowrap}
+
+  .swiss{border:1px solid var(--hair);border-radius:10px;padding:18px;background:rgba(12,19,36,.58)}
+  .swiss .phase{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--chalk);border:1px solid var(--hair);border-radius:8px;padding:12px 14px;background:rgba(11,18,14,.5);text-align:center}
+  .swiss .phase b{color:var(--ucl);font-weight:500}
+  .bands{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+  .band{border-radius:8px;padding:12px 13px;border:1px solid var(--hair)}
+  .band .rng{font-family:var(--disp);font-weight:800;font-size:24px;line-height:1}
+  .band .to{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.45}
+  .band.g1{border-color:rgba(125,224,166,.55)} .band.g1 .rng{color:#7de0a6}
+  .band.g2{border-color:rgba(255,212,121,.55)} .band.g2 .rng{color:#ffd479}
+  .band.g3{border-color:rgba(255,90,69,.45)} .band.g3 .rng{color:var(--liga)}
+  .tiebreak{font-family:var(--mono);font-size:11.5px;color:var(--muted);border-top:1px dashed var(--hair);margin-top:14px;padding-top:12px;line-height:1.7}
+  .tiebreak b{color:var(--chalk);font-weight:500}
+  @media(max-width:640px){.bands{grid-template-columns:1fr}}
+
+  .formats{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .fmt{border:1px solid var(--hair);border-radius:10px;padding:18px;background:rgba(12,19,36,.58)}
+  .fmt h3{font-family:var(--disp);font-weight:800;font-size:21px}
+  .fmt .ex{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);margin-top:2px}
+  .fmt p{font-size:13.5px;line-height:1.55;color:rgba(244,241,228,.84);margin-top:10px}
+
+  .plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .dcard{border:1px solid var(--hair);border-radius:10px;padding:16px;background:rgba(12,19,36,.58)}
+  .dcard .d{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1}
+  .dcard .d small{font-size:13px;font-family:var(--mono);font-weight:400;letter-spacing:.06em;color:var(--muted);display:block;margin-top:4px}
+  .dcard p{font-size:13px;color:rgba(244,241,228,.84);margin-top:10px;line-height:1.5}
+  .dcard .ok{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:4px 9px;border-radius:999px;border:1px solid var(--ucl);color:var(--ucl)}
+
+  .clocknote{font-size:13.5px;color:var(--muted);max-width:680px;line-height:1.55;margin-bottom:18px}
+  .clocknote b{color:var(--chalk);font-weight:600}
+
+  .keydates{display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:10px;background:rgba(12,19,36,.58);overflow:hidden}
+  .kd{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:12px 16px;border-top:1px solid var(--hair);font-size:13.5px;line-height:1.5;color:rgba(244,241,228,.86)}
+  .kd:first-child{border-top:none}
+  .kd .kdd{font-family:var(--mono);font-size:12px;color:var(--ucl);letter-spacing:.03em}
+  @media(max-width:640px){.kd{grid-template-columns:1fr;gap:2px}}
+
+  footer{margin-top:40px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:rgba(244,241,228,.45);line-height:1.7}
+  footer a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kick"><a href="./">Matchday Pacific</a> <span class="hand">— Viewing Guide 2026–27</span></div>
+  <h1>Viewing <span class="pac">Guide</span></h1>
+  <p class="sub">Where each competition streams in the US, how the tournament formats work, and a season plan in <b>Pacific Time</b>. Kickoff windows live on the <a href="./" style="color:inherit">schedule rails</a> and the <a href="cal.html" style="color:inherit">full calendar</a>.</p>
+</header>
+
+<section id="watch">
+  <div class="eyebrow"><h2>Where to Watch</h2><div class="rule"></div><div class="tag">US streaming · rights as of Jul 2026</div></div>
+  <div class="services">
+    <div class="svc">
+      <h3>Paramount+</h3>
+      <div class="note">English-language coverage</div>
+      <ul>
+        <li class="ucl">Champions League <small>all matches</small></li>
+        <li class="ucl">Europa League <small>all matches</small></li>
+        <li class="cup">Serie A <small>full coverage</small></li>
+        <li class="cup">Carabao Cup <small>select + finals</small></li>
+      </ul>
+    </div>
+    <div class="svc">
+      <h3>Peacock</h3>
+      <div class="note">Live + on-demand</div>
+      <ul>
+        <li class="epl">Premier League <small>full coverage</small></li>
+      </ul>
+    </div>
+    <div class="svc">
+      <h3>ESPN+</h3>
+      <div class="note">English &amp; Spanish feeds</div>
+      <ul>
+        <li class="liga">La Liga <small>all 380 matches</small></li>
+        <li class="cup">FA Cup <small>full coverage</small></li>
+        <li class="cup">Copa del Rey <small>full coverage</small></li>
+      </ul>
+    </div>
+    <div class="svc">
+      <h3>beIN Sports</h3>
+      <div class="note">via Fanatiz ~$12.99/mo · Sling · Fubo</div>
+      <ul>
+        <li class="l1">Ligue 1 <small>PSG domestic</small></li>
+        <li class="ucl">PSG in UCL <small>→ Paramount+</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="swiss">
+  <div class="eyebrow"><h2>Champions League Format</h2><div class="rule"></div><div class="tag">36-team league phase</div></div>
+  <div class="swiss">
+    <div class="phase">One <b>36-team league table</b> · each club plays 8 matches (4 home / 4 away) against 8 different opponents</div>
+    <div class="bands">
+      <div class="band g1">
+        <div class="rng">1–8</div>
+        <div class="to">Direct to Round of 16, seeded</div>
+      </div>
+      <div class="band g2">
+        <div class="rng">9–24</div>
+        <div class="to">Knockout play-off round, two legs</div>
+      </div>
+      <div class="band g3">
+        <div class="rng">25–36</div>
+        <div class="to">Eliminated · no Europa League drop-down</div>
+      </div>
+    </div>
+    <div class="tiebreak">
+      <b>Tiebreakers, in order:</b> goal difference → goals scored → away goals scored → total wins → away wins → club coefficient<br>
+      <b>Knockout ties:</b> no away-goals rule — level on aggregate after 180 min goes to 30 min extra time, then penalties
+    </div>
+  </div>
+
+  <div style="margin-top:14px" class="keydates">
+    <div class="kd"><div class="kdd">Aug 25–26</div><div>Play-off round concludes — final 7 league-phase spots filled</div></div>
+    <div class="kd"><div class="kdd">Aug 27</div><div>League phase draw</div></div>
+    <div class="kd"><div class="kdd">Aug 29</div><div>Fixture calendar and kickoff times released by UEFA</div></div>
+    <div class="kd"><div class="kdd">Sep 8–10</div><div>Matchday 1</div></div>
+  </div>
+</section>
+
+<section id="formats">
+  <div class="eyebrow"><h2>League vs Cup</h2><div class="rule"></div><div class="tag">competition structures</div></div>
+  <div class="formats">
+    <div class="fmt">
+      <h3>Domestic leagues</h3>
+      <div class="ex">EPL · La Liga · Serie A · Ligue 1 (Bundesliga: 34)</div>
+      <p>Double round-robin — every club plays every other home and away, 38 games (34 in Germany's 18-team league). Most points wins the title outright; no playoff.</p>
+    </div>
+    <div class="fmt">
+      <h3>Domestic cups</h3>
+      <div class="ex">FA Cup · Copa del Rey · DFB-Pokal</div>
+      <p>Single-elimination knockouts with open draws across all divisions of the national pyramid — lower-league clubs can draw the giants.</p>
+    </div>
+    <div class="fmt">
+      <h3>Secondary cup</h3>
+      <div class="ex">Carabao Cup (England)</div>
+      <p>England-only second knockout cup. Top-tier clubs typically rotate squads here and give minutes to young academy prospects.</p>
+    </div>
+  </div>
+</section>
+
+<section id="metrics">
+  <div class="eyebrow"><h2>Reading a Match</h2><div class="rule"></div><div class="tag">match metrics</div></div>
+  <div class="formats">
+    <div class="fmt">
+      <h3>Expected goals</h3>
+      <div class="ex">xG</div>
+      <p>Probability that each shot scores, given its position and situation, summed per team. Measures chance quality — separates creating good chances from finishing them.</p>
+    </div>
+    <div class="fmt">
+      <h3>Post-shot xG</h3>
+      <div class="ex">PSxG</div>
+      <p>Re-scores each on-target shot after it is struck, factoring placement and power. PSxG faced minus goals conceded measures a goalkeeper's shot-stopping.</p>
+    </div>
+    <div class="fmt">
+      <h3>Pressing intensity</h3>
+      <div class="ex">PPDA</div>
+      <p>Opponent passes allowed per defensive action during their build-up. Lower numbers mean a more aggressive press; rising numbers late can signal fatigue.</p>
+    </div>
+    <div class="fmt">
+      <h3>Field tilt</h3>
+      <div class="ex">final-third share</div>
+      <p>Each team's share of possession played in the attacking third. Captures territorial dominance that raw possession percentage hides.</p>
+    </div>
+    <div class="fmt">
+      <h3>Goal timing</h3>
+      <div class="ex">goals by time block</div>
+      <p>Goal frequency per 15-minute window. Late-window spikes track fatigue, substitutions, and game-state pushes such as stoppage-time surges.</p>
+    </div>
+    <div class="fmt">
+      <h3>Forecasts</h3>
+      <div class="ex">10,000-run simulation</div>
+      <p>Tournament outcomes modeled by simulating the remaining draw thousands of times from Elo ratings, UEFA coefficients and xG trends — the method behind the <a href="../wc2026/" style="color:inherit">WC2026 final report</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="eyebrow"><h2>Season Plan</h2><div class="rule"></div><div class="tag">all times Pacific</div></div>
+  <p class="clocknote">Standard Champions League kickoff is <b>12:00p PT</b> (early window <b>9:45a PT</b>). Weekend league windows run early morning through midday — see the schedule rails on the main page.</p>
+  <div class="plan">
+    <div class="dcard">
+      <div class="d">Sep – Dec<small>UCL league phase · MD 1–7</small></div>
+      <p>One marquee matchup per matchday — each club plays 8 different opponents, so most matchdays have at least one heavyweight pairing.</p>
+      <div class="ok">Tue/Wed · 9:45a &amp; 12p</div>
+    </div>
+    <div class="dcard">
+      <div class="d">Late Jan<small>UCL matchday 8</small></div>
+      <p>All 18 matches kick off simultaneously to settle the top-8 seeds and the 9–24 play-off bracket in one window.</p>
+      <div class="ok">One simultaneous window</div>
+    </div>
+    <div class="dcard">
+      <div class="d">Feb – Jun<small>UCL knockouts</small></div>
+      <p>Play-off round through the final — every tie is two-legged except the final, aggregate score decides, no away-goals rule.</p>
+      <div class="ok">Tue/Wed · midday</div>
+    </div>
+    <div class="dcard">
+      <div class="d">Aug – May<small>league weekends</small></div>
+      <p>EPL, La Liga, and Bundesliga run most weekends August through May — early-morning to midday PT slots, no midweek commitment required.</p>
+      <div class="ok">Sat/Sun mornings</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Broadcast rights are US market, current as of July 2026, and can change between seasons — verify before subscribing.<br>
+  Part of <a href="./">sadh.app/matchday</a> · schedule rails and countdowns on the main page · <a href="cal.html">full calendar</a> · <a href="clubs.html">clubs</a> · <a href="players.html">players</a>
+</footer>
+
+</div>
+</body>
+</html>

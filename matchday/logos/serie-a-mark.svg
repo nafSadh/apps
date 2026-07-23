@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="330.17 332 1649.97 2125.25">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e3e3e2;
+      }
+
+      .cls-2 {
+        fill: url(#Dégradé_sans_nom_2);
+      }
+
+      .cls-3 {
+        fill: #db052c;
+      }
+
+      .cls-4 {
+        fill: #00a445;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-6 {
+        fill: url(#Dégradé_sans_nom);
+      }
+
+      .cls-7 {
+        fill: #1a1659;
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom" data-name="Dégradé sans nom" x1="-169.16" y1="3947.43" x2="-159.53" y2="3947.43" gradientTransform="translate(12056.11 263819.36) scale(66.33 -66.33)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#31ecff"/>
+      <stop offset=".57" stop-color="#0373ff"/>
+      <stop offset=".81" stop-color="#0373ff"/>
+      <stop offset="1" stop-color="#0373ff"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_2" data-name="Dégradé sans nom 2" x1="-189.53" y1="3967.83" x2="-179.89" y2="3967.83" gradientTransform="translate(-654485.66 -203499.37) rotate(110) scale(172.96 -172.96)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#31ecff"/>
+      <stop offset=".56" stop-color="#0373ff"/>
+      <stop offset=".8" stop-color="#0373ff"/>
+      <stop offset="1" stop-color="#0373ff"/>
+    </linearGradient>
+  </defs>
+  <g id="Calque_1-2" data-name="Calque 1">
+    <g>
+      <g>
+        <g>
+          <path class="cls-4" d="M330.17,2332.98h549.98v124.27H330.17v-124.27Z"/>
+          <path class="cls-1" d="M880.18,2332.98h549.98v124.27h-549.98v-124.27Z"/>
+          <path class="cls-3" d="M1430.16,2332.98h549.98v124.27h-549.98v-124.27Z"/>
+          <path class="cls-7" d="M835.6,1722.49l319.55-843.84,137.98,364.37h-174.2l-118.8,313.75h411.83l62.75,165.72h-639.1Z"/>
+          <path class="cls-7" d="M1155.15,2245.28l824.98-522.79h-505.43l-319.55,522.79ZM1155.15,2245.28l-824.98-522.79h505.43l319.55,522.79Z"/>
+        </g>
+        <path class="cls-6" d="M835.52,1722.49l319.63,522.8,319.55-522.8h-639.18Z"/>
+        <path class="cls-2" d="M927.29,332L330.17,1722.51h505.43l319.55-843.86,137.98,364.37h-174.18l-118.82,313.77h411.82l62.75,165.72h505.43L1383.01,332h-455.72Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

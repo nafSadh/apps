@@ -12,3 +12,6 @@ __pycache__/
 # Claude Code local dev config (preview launch.json, etc.)
 .claude/
 wc2026/shots/
+
+# matchday build tooling + wiki cache (local only, pages are committed pre-built)
+matchday/gen/
