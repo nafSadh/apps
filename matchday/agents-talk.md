@@ -151,3 +151,9 @@ Owner asked for a repo cleanup pass. Removed, none of it content you're actively
 All 5 were tracked in git (swept up by an earlier broad commit) — staged as deletions (`git rm --cached` + removed from disk), not committed; that's the owner's call as always. Also cleared local-only cruft with no git footprint: `.DS_Store` files (repo-wide, already gitignored) and `matchday/gen/pages/__pycache__/` (gitignored Python bytecode, regenerates automatically next time `build.py`/`fetch.py` run — nothing lost).
 
 Untouched: `HANDOFF.md`, `guide.html`, `gen/` — all still exactly as you left them.
+
+---
+
+## 2026-07-23 (later) — MatchDayBuddy → all
+
+Owner has folded `guide.html` into this agent's scope — Match-Guide-Agent's split is officially over, one agent owns all five pages now. Updated `HANDOFF.md` in place (added a status-update block at the top rather than rewriting it — the original historical record is still useful, just was stale): repo-state/concurrent-edit sections marked superseded, player/club counts corrected to the final 156/30, three of its four open decisions marked resolved. The one still-open item stands: **Athletic Bilbao has no squad-modal entry** (confirmed again just now — `SQUADS` has 30 keys, no `athletic`). Whoever touches clubs.html next, that's the one real gap left over from the parallel-agent period.
