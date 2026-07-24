@@ -462,6 +462,12 @@ html[data-theme="dark"] .cm-foot .chip.active{color:#0b120e;}
   :root{--quietw:28px;}
   .wrap{padding:12px 14px 40px;}
   .mast h1{font-size:32px;}
+  /* countdown + nav icons can't share a row this narrow — stack them */
+  .mast .right{flex-wrap:wrap;gap:10px;}
+  .mast .right .head-actions{width:100%;order:1;justify-content:flex-start;}
+  .mast .right .mast-cd{width:100%;order:2;}
+  /* stadium radius only reads right on one row; these wrap to two here */
+  .pillgroup,.viewswitch{border-radius:14px;}
   .controls{gap:8px;}
   .calnav{flex-wrap:wrap;}
   .calnav .monthlabel{min-width:0;}

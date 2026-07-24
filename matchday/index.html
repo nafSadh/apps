@@ -260,6 +260,26 @@
     .slot .w{display:none}
     .slot{min-width:44px;padding:0 5px}
   }
+
+  /* ---------- mobile ---------- */
+  @media(max-width:760px){
+    .day{grid-template-columns:1fr;row-gap:4px}
+    .day .ticks{grid-column:1}
+  }
+  @media(max-width:640px){
+    .head-row{flex-wrap:wrap;align-items:flex-start}
+    .head-actions{width:100%;justify-content:flex-start}
+    h1{white-space:normal}
+    .eyebrow{flex-wrap:wrap;gap:8px 12px}
+    .eyebrow .rule{min-width:24px}
+    .players .pcard{max-width:none}
+    /* 36px rail leaves no clear band for the label — hatch alone carries it here */
+    .rail .work i{display:none}
+    /* needs the #id to outrank the desktop pitch-label rule, or names collide across the back line */
+    #squadPitch .chip .n{font-size:11px;max-width:86px;line-height:1.2}
+    #squadPitch .chip .f{font-size:14px}
+  }
+
 </style>
 </head>
 <body>

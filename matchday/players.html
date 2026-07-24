@@ -259,6 +259,26 @@
   .pcard p.line{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
   .grouphead{grid-column:1/-1;font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted);margin:14px 0 0}
 
+
+  /* ---------- mobile ---------- */
+  @media(max-width:760px){
+    .day{grid-template-columns:1fr;row-gap:4px}
+    .day .ticks{grid-column:1}
+  }
+  @media(max-width:640px){
+    .head-row{flex-wrap:wrap;align-items:flex-start}
+    .head-actions{width:100%;justify-content:flex-start}
+    h1{white-space:normal}
+    .eyebrow{flex-wrap:wrap;gap:8px 12px}
+    .eyebrow .rule{min-width:24px}
+    .players .pcard{max-width:none}
+    /* 36px rail leaves no clear band for the label — hatch alone carries it here */
+    .rail .work i{display:none}
+    /* needs the #id to outrank the desktop pitch-label rule, or names collide across the back line */
+    #squadPitch .chip .n{font-size:11px;max-width:86px;line-height:1.2}
+    #squadPitch .chip .f{font-size:14px}
+  }
+
 </style>
 </head>
 <body>
