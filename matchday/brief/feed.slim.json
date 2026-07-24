@@ -1,12 +1,12 @@
 {
- "fetched": "2026-07-24T22:50:39+00:00",
+ "fetched": "2026-07-24T22:58:45+00:00",
  "counts": {
-  "raw": 337,
-  "deduped": 325,
+  "raw": 327,
+  "deduped": 315,
   "byTier": {
    "1": 44,
    "2": 151,
-   "3": 130
+   "3": 120
   }
  },
  "slimByTier": {
@@ -14,7 +14,12 @@
   "2": 35,
   "3": 30
  },
- "errors": [],
+ "errors": [
+  {
+   "source": "Transfermarkt",
+   "error": "ParseError: no element found: line 1, column 0"
+  }
+ ],
  "items": [
   {
    "source": "BBC Gossip",
@@ -315,7 +320,7 @@
    "kind": "rumour",
    "title": "Why there's no need to panic in Arsenal's summer of evolution not revolution",
    "link": "https://www.skysports.com/football/news/11095/13566029/arsenals-transfer-plans-analysed-gunners-miss-out-on-morgan-rogers-in-summer-of-evolution-not-revolution",
-   "published": "2026-07-22T23:08:00+00:00",
+   "published": "2026-07-22T16:08:00+00:00",
    "watch": [
     "Arsenal",
     "Paris Saint-Germain"
@@ -342,11 +347,33 @@
    "kind": "rumour",
    "title": "Why do Chelsea want to sign Lacroix from Palace?",
    "link": "https://www.skysports.com/football/news/11095/13557656/maxence-lacroix-to-chelsea-crystal-palace-defender-is-quick-excels-when-one-on-one-and-is-a-leader-now-too",
-   "published": "2026-07-23T17:30:00+00:00",
+   "published": "2026-07-23T10:30:00+00:00",
    "watch": [
     "Chelsea"
    ],
    "summary": "Chelsea have not paid a transfer fee for a player aged 26 or over since the summer of 2022 with the ill-fated acquisitions of Raheem Sterling and Kalidou Koulibaly. But Crystal Palace’s Maxence Lacroix is a player worth "
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Transfer Centre LIVE! Guimaraes, Lacroix, Stones latest",
+   "link": "https://www.skysports.com/football/live-blog/11095/12476234/transfer-centre-live-football-transfer-news-updates-and-rumours",
+   "published": "2026-07-24T09:00:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Chelsea agree deal with Palace for Lacroix",
+   "link": "https://www.skysports.com/football/news/11095/13565648/maxence-lacroix-transfer-news-chelsea-agree-deal-to-sign-france-defender-from-crystal-palace",
+   "published": "2026-07-24T09:20:00+00:00",
+   "watch": [
+    "Chelsea"
+   ],
+   "summary": "Chelsea have agreed a deal with Crystal Palace to sign Maxence Lacroix."
   },
   {
    "source": "BBC Gossip",
@@ -367,31 +394,9 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Transfer Centre LIVE! Guimaraes, Lacroix, Stones latest",
-   "link": "https://www.skysports.com/football/live-blog/11095/12476234/transfer-centre-live-football-transfer-news-updates-and-rumours",
-   "published": "2026-07-24T16:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Chelsea agree deal with Palace for Lacroix",
-   "link": "https://www.skysports.com/football/news/11095/13565648/maxence-lacroix-transfer-news-chelsea-agree-deal-to-sign-france-defender-from-crystal-palace",
-   "published": "2026-07-24T16:20:00+00:00",
-   "watch": [
-    "Chelsea"
-   ],
-   "summary": "Chelsea have agreed a deal with Crystal Palace to sign Maxence Lacroix."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
    "title": "'I'll walk away!' Klopp sends warning to critics after Germany appointment",
    "link": "https://www.skysports.com/football/news/11095/13566544/jurgen-klopp-germany-appoint-former-liverpool-boss-as-new-head-coach-to-replace-julian-nagelsmann",
-   "published": "2026-07-24T17:00:00+00:00",
+   "published": "2026-07-24T10:00:00+00:00",
    "watch": [],
    "summary": "Jurgen Klopp has warned he will walk away from his new job as Germany's head coach if the German media don't \"leave my family in peace\"."
   },
@@ -401,7 +406,7 @@
    "kind": "rumour",
    "title": "Pirlo set for Italy role as Guardiola rejects chance to become head coach",
    "link": "https://www.skysports.com/football/news/11095/13566556/pep-guardiola-turns-down-chance-to-replace-gennaro-gattuso-as-italy-head-coach-sky-in-italy",
-   "published": "2026-07-24T17:30:00+00:00",
+   "published": "2026-07-24T10:30:00+00:00",
    "watch": [],
    "summary": "Pep Guardiola has turned down the chance to take the Italy head coach job, according to Sky in Italy, with Andrea Pirlo closing in on the role."
   },
@@ -411,7 +416,7 @@
    "kind": "rumour",
    "title": "'Huge potential for growth' - Newcastle sign Bamba",
    "link": "https://www.skysports.com/football/news/11095/13566552/aladji-bamba-transfer-news-newcastle-complete-35-5m-signing-of-midfielder-from-monaco",
-   "published": "2026-07-24T17:30:00+00:00",
+   "published": "2026-07-24T10:30:00+00:00",
    "watch": [],
    "summary": "Newcastle have completed the signing of midfielder Aladji Bamba from Monaco."
   },
@@ -421,7 +426,7 @@
    "kind": "rumour",
    "title": "Scott: The 'scrawny-looking kid' turned complete midfielder wanted by the elite",
    "link": "https://www.skysports.com/football/news/11095/13566546/alex-scott-how-bournemouth-midfielder-wanted-by-arsenal-chelsea-and-man-utd-flourished-under-andoni-iraola",
-   "published": "2026-07-24T19:00:00+00:00",
+   "published": "2026-07-24T12:00:00+00:00",
    "watch": [
     "Arsenal",
     "Chelsea",
@@ -437,7 +442,7 @@
    "kind": "rumour",
    "title": "Man City latest: 'Real Madrid working on deal to sign Rodri'",
    "link": "https://www.skysports.com/football/live-blog/11095/13025499/man-city-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-07-24T20:25:00+00:00",
+   "published": "2026-07-24T13:25:00+00:00",
    "watch": [
     "Man City",
     "Real Madrid"
@@ -450,29 +455,11 @@
    "kind": "rumour",
    "title": "Arsenal latest: Gunners still in contact with Hamburg over Vieira deal",
    "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-07-24T20:35:00+00:00",
+   "published": "2026-07-24T13:35:00+00:00",
    "watch": [
     "Arsenal"
    ],
    "summary": ""
-  },
-  {
-   "source": "BBC Gossip",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Real Madrid confident of signing Rodri - Saturday's gossip",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cdx7qq6nkddo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-07-24T20:37:28+00:00",
-   "watch": [
-    "Arsenal",
-    "Atletico",
-    "Man City",
-    "Real Madrid"
-   ],
-   "also": [
-    "BBC Sport"
-   ],
-   "summary": "Real Madrid are confident they will sign Rodri from Man City, Arsenal eye player-plus-cash deal for Atletico striker Julian Alvarez, while Roma are keen on Fulham winger Oscar Bobb, plus more."
   },
   {
    "source": "Sky Transfers",
@@ -480,7 +467,7 @@
    "kind": "rumour",
    "title": "Brighton latest: Pre-season plans thrown off by G7 helicopter landings",
    "link": "https://www.skysports.com/football/live-blog/11095/13279295/brighton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-07-24T21:00:00+00:00",
+   "published": "2026-07-24T14:00:00+00:00",
    "watch": [],
    "summary": ""
   },
@@ -490,7 +477,7 @@
    "kind": "rumour",
    "title": "Replacing Pep, Chelsea, Rodri and Grealish - Maresca's best bits",
    "link": "https://www.skysports.com/watch/video/13566651/manchester-city-enzo-marescas-best-bits-from-first-news-conference",
-   "published": "2026-07-24T21:40:00+00:00",
+   "published": "2026-07-24T14:40:00+00:00",
    "watch": [
     "Chelsea",
     "Manchester City"
@@ -506,7 +493,7 @@
    "kind": "rumour",
    "title": "Chelsea latest: Lacroix set for medical as Chalobah interest grows",
    "link": "https://www.skysports.com/football/live-blog/11095/13025497/chelsea-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-07-24T22:30:00+00:00",
+   "published": "2026-07-24T15:30:00+00:00",
    "watch": [
     "Chelsea",
     "Inter"
@@ -519,7 +506,7 @@
    "kind": "rumour",
    "title": "Liverpool takeover Q&A: Could Bezos buy stake at Anfield?",
    "link": "https://www.skysports.com/football/news/11095/13566630/liverpool-key-questions-answered-as-jeff-bezos-and-amit-bhatia-line-up-bid-for-strategic-minority-stake-in-club",
-   "published": "2026-07-24T22:30:00+00:00",
+   "published": "2026-07-24T15:30:00+00:00",
    "watch": [
     "Liverpool"
    ],
@@ -534,7 +521,7 @@
    "kind": "rumour",
    "title": "Why Alex Scott is one of the Premier League's MOST WANTED midfielders",
    "link": "https://www.skysports.com/watch/video/13566685/alex-scott-why-the-bournemouth-midfielder-is-wanted-by-so-many-premier-league-clubs",
-   "published": "2026-07-24T22:59:00+00:00",
+   "published": "2026-07-24T15:59:00+00:00",
    "watch": [],
    "summary": "Sky Sports' Peter Smith explains why so many clubs are after Bournemouth's Alex Scott."
   },
@@ -544,8 +531,20 @@
    "kind": "rumour",
    "title": "Premier League pre-season: Gannon-Doak scores in big win for Bournemouth",
    "link": "https://www.skysports.com/football/live-blog/11095/13564293/premier-league-pre-season-friendlies-2026-latest-news-goals-and-highlights",
-   "published": "2026-07-25T01:00:00+00:00",
+   "published": "2026-07-24T18:00:00+00:00",
    "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Hull City latest: Japanese international Morita signs",
+   "link": "https://www.skysports.com/football/live-blog/11095/13548674/hull-city-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+   "published": "2026-07-24T18:00:00+00:00",
+   "watch": [
+    "Inter"
+   ],
    "summary": ""
   },
   {
