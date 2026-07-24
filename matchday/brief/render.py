@@ -14,8 +14,9 @@ from zoneinfo import ZoneInfo
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent                      # matchday/
-FEED = HERE / "feed.json"
-CURATE = HERE / "curate.json"           # optional: {"lead": "...", "drop": [titles], "pin": [titles]}
+FEED = HERE / "feed.json"               # full haul, written by fetch.py (local only)
+SLIM = HERE / "feed.slim.json"          # committed copy — what the writer job sees
+CURATE = HERE / "curate.json"           # written by the brief-writer job, see below
 OUT = ROOT / "brief.html"
 PT = ZoneInfo("America/Los_Angeles")
 
@@ -71,9 +72,10 @@ def section(title, tag, items, note=None):
 
 
 def main():
-    if not FEED.exists():
-        sys.exit("feed.json missing — run fetch.py first")
-    blob = json.loads(FEED.read_text(encoding="utf-8"))
+    src = FEED if FEED.exists() else SLIM      # writer job only has the slim copy
+    if not src.exists():
+        sys.exit("no feed.json or feed.slim.json — run fetch.py first")
+    blob = json.loads(src.read_text(encoding="utf-8"))
     items = blob["items"]
 
     cur = json.loads(CURATE.read_text(encoding="utf-8")) if CURATE.exists() else {}
@@ -94,8 +96,16 @@ def main():
     errnote = (f'<div class="ferr">{len(errs)} feed(s) failed this run: '
                + esc(", ".join(e["source"] for e in errs)) + "</div>") if errs else ""
 
-    lead = cur.get("lead", "")
-    leadhtml = f'<p class="lede">{esc(lead)}</p>\n' if lead else ""
+    paras = cur.get("paragraphs") or ([cur["lead"]] if cur.get("lead") else [])
+    if paras:
+        head = f'<h2 class="dh">{esc(cur["headline"])}</h2>' if cur.get("headline") else ""
+        body = "".join(f"<p>{esc(p)}</p>" for p in paras)
+        stamp = esc((cur.get("written") or "")[:16].replace("T", " "))
+        by = (f'<div class="dby">written {stamp}Z from the feed below · not independently verified</div>'
+              if stamp else "")
+        leadhtml = f'<div class="digest">{head}{body}{by}</div>\n'
+    else:
+        leadhtml = ""
 
     page = f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -111,7 +121,11 @@ def main():
 {shell_css()}  .eyebrow .tag{{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}}
   .kick a{{color:inherit;text-decoration:none}}
   .kick a:hover{{color:var(--chalk)}}
-  .lede{{font-size:16px;line-height:1.7;color:var(--chalk);max-width:720px;margin-bottom:18px}}
+  .digest{{border:1px solid var(--hair);border-left:3px solid var(--ucl);border-radius:10px;background:var(--card);padding:18px 22px;margin-bottom:26px;max-width:760px}}
+  .digest .dh{{font-family:var(--disp);font-weight:800;font-size:20px;line-height:1.25;margin:0 0 8px}}
+  .digest p{{font-size:15px;line-height:1.7;color:var(--soft);margin:0 0 10px}}
+  .digest p:last-of-type{{margin-bottom:0}}
+  .dby{{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--muted);margin-top:12px;padding-top:10px;border-top:1px solid var(--hair)}}
   .meta{{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;margin-top:6px}}
   .snote{{font-family:var(--mono);font-size:11px;color:var(--muted);margin:-4px 0 12px;letter-spacing:.03em}}
   .blist{{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:10px}}

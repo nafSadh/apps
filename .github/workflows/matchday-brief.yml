@@ -1,0 +1,82 @@
+name: Matchday daily brief
+
+# Daily: pull the football firehose (8 RSS feeds — BBC gossip/sport, Sky, Guardian,
+# Opta Analyst, FourFourTwo, Transfermarkt), rebuild matchday/brief.html, and commit +
+# push so GitHub Pages serves it. Runs here rather than in a cloud agent because that
+# environment's egress proxy 403s every news domain at CONNECT; GitHub runners don't.
+#
+# fetch.py exits non-zero if fewer than 5 of 8 feeds answer or the haul is under 60
+# deduped items, which fails the job before render — a stale brief beats a thin one.
+
+on:
+  workflow_dispatch: {}            # run on demand from the Actions tab
+  schedule:
+    - cron: "0 14 * * *"           # 14:00 UTC = 7am PDT (6am once PST starts — shift to 15 then)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: matchday-brief
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch feeds
+        working-directory: matchday/brief
+        run: python3 fetch.py
+
+      - name: Render brief.html
+        working-directory: matchday/brief
+        run: python3 render.py
+
+      - name: Sanity-check the page
+        run: |
+          page=matchday/brief.html
+          test -s "$page" || { echo "::error::$page missing or empty"; exit 1; }
+          bytes=$(wc -c < "$page")
+          [ "$bytes" -gt 8000 ] || { echo "::error::$page only ${bytes}B — suspiciously small"; exit 1; }
+          for want in "Rumour Mill" "Around the Grounds" "Worth Reading"; do
+            grep -q "$want" "$page" || { echo "::error::missing section: $want"; exit 1; }
+          done
+          # The renderer builds the page with f-strings, so a brace bug would leak template
+          # syntax. Check the <body> only — CSS legitimately contains }} where a rule and its
+          # @media block close together, and the stylesheet is substituted in wholesale anyway.
+          python3 - "$page" <<'EOF'
+          import re, sys
+          s = open(sys.argv[1], encoding="utf-8").read()
+          body = s[s.index("<body>"):]
+          leaks = re.findall(r"\{\{|\}\}", body)
+          exprs = re.findall(r"\{(?:esc|nav|now|len|blob|section|shell_css)\b[^}]{0,24}\}", s)
+          if leaks or exprs:
+              sys.exit(f"::error::template syntax leaked into the page: {leaks[:3]} {exprs[:3]}")
+          print("no template leak")
+          EOF
+          echo "ok — ${bytes}B, all sections present"
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name  "matchday-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # feed.slim.json is committed too: the writer job runs where outbound
+          # fetches are blocked, so the repo is how it receives the feed.
+          git add matchday/brief.html matchday/brief/feed.slim.json
+          # gate on STAGED changes so an untracked artifact can't trigger an empty commit (exit 1)
+          if git diff --cached --quiet; then
+            echo "Brief unchanged."; exit 0
+          fi
+          git commit -m "brief: feed refresh $(date -u +%F)"
+          for i in 1 2 3; do
+            if git push; then echo "pushed."; exit 0; fi
+            echo "push rejected — rebasing onto origin/${GITHUB_REF_NAME} (attempt $i)…"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          done
+          echo "::error::push still failing after 3 attempts"; exit 1

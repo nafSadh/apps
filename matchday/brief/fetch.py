@@ -4,7 +4,7 @@
 Deliberately dumb: fetch, parse, tag, dedupe. No judgement about what matters —
 that happens downstream, where claims can be checked before anything is published.
 
-    python3 fetch.py            -> gen/brief/feed.json
+    python3 fetch.py            -> brief/feed.json
     python3 fetch.py --print    -> also dump a readable digest to stdout
 """
 import json, re, sys, html, urllib.request, urllib.error
@@ -14,8 +14,12 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE / "feed.json"
+OUT  = HERE / "feed.json"        # full, local only
+SLIM = HERE / "feed.slim.json"   # committed: input for the brief writer
 UA = "Mozilla/5.0 (compatible; matchday-brief/1.0; +https://sadh.app/matchday)"
+
+MIN_FEEDS = 5      # of 8 — below this the haul is too thin to trust
+MIN_ITEMS = 60     # deduped
 
 # tier: 1 = attributed rumour digest, 2 = news/confirmation, 3 = analysis
 FEEDS = [
@@ -124,9 +128,32 @@ def main():
         "items": deduped,
     }
     OUT.write_text(json.dumps(blob, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    # A trimmed copy IS committed: it is what the brief writer reads, since that job
+    # runs where outbound fetches are blocked. Full feed stays local — 190KB of churn
+    # a day is not worth keeping in history.
+    slim = {
+        "fetched": blob["fetched"], "counts": blob["counts"],
+        "errors": [{"source": e["source"], "error": e["error"][:120]} for e in errors],
+        "items": [{k: v for k, v in e.items() if k in
+                   ("source", "tier", "kind", "title", "link", "watch", "also", "published")}
+                  | {"summary": e["summary"][:220]}
+                  for e in deduped[:90]],
+    }
+    SLIM.write_text(json.dumps(slim, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"\n{len(deduped)} unique of {len(items)} raw -> {OUT}", file=sys.stderr)
+    print(f"{len(slim['items'])} slimmed for the writer -> {SLIM}", file=sys.stderr)
     if errors:
         print(f"{len(errors)} feed(s) FAILED — see errors[] in the json", file=sys.stderr)
+
+    # Exit non-zero on a bad haul so a scheduled runner stops before rendering a
+    # thin page. A couple of flaky feeds is normal; a majority failing means
+    # egress is blocked or the URLs have rotted, and stale beats wrong here.
+    ok = len(FEEDS) - len(errors)
+    if ok < MIN_FEEDS or len(deduped) < MIN_ITEMS:
+        print(f"ABORT: {ok}/{len(FEEDS)} feeds ok (need {MIN_FEEDS}), "
+              f"{len(deduped)} items (need {MIN_ITEMS}) — not enough to publish", file=sys.stderr)
+        return 1
 
     if "--print" in sys.argv:
         for e in deduped[:40]:
@@ -136,4 +163,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)
