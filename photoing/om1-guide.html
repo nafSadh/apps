@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seeing with the OM-1 — A Visual Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deepest: #0a0a0f;
+  --bg-dark: #10101a;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --text-primary: #e8e6e1;
+  --text-dim: #6b6a7a;
+  --accent-coral: #ff6b3d;
+  --accent-teal: #4ecdc4;
+  --accent-gold: #ffe66d;
+  --accent-purple: #a78bfa;
+  --accent-pink: #f472b6;
+  --accent-2: var(--accent-teal);
+  --glow-coral: rgba(255, 107, 61, 0.3);
+  --glow-teal: rgba(78, 205, 196, 0.3);
+  --border-card: 1px solid rgba(255, 255, 255, 0.06);
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 6rem;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg-deepest);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+}
+/* ---------- Hero ---------- */
+.hero { height: 100vh; height: 100svh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(78,205,196,0.08) 0%, rgba(255,107,61,0.04) 40%, transparent 100%);
+  pointer-events: none; z-index: 1;
+}
+.hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 2rem; }
+.hero-kicker {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--accent-coral); display: block; margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s ease-out;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif; font-size: clamp(3rem, 8vw, 6.2rem); font-weight: 700; line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-2) 50%, var(--accent-2) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: fadeUp 0.8s ease-out 0.1s both, shimmer 3s ease-in-out 1s infinite;
+}
+.hero-sub { font-size: 1.1rem; max-width: 540px; margin: 0 auto; color: var(--text-dim); animation: fadeUp 0.8s ease-out 0.2s both; }
+.hero-sub em { color: var(--accent-2); font-style: italic; font-weight: 500; }
+.scroll-cue {
+  position: absolute; bottom: 3rem; left: 0; right: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem; color: var(--text-dim); z-index: 2; animation: fadeUp 0.8s ease-out 0.4s both;
+  cursor: pointer;
+}
+.scroll-cue .arrow { color: var(--accent-coral); animation: bounce 2s ease-in-out infinite; }
+/* ---------- Sections ---------- */
+.section {
+  max-width: 1100px; margin: 0 auto; padding: var(--spacing-xl) var(--spacing-md);
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.section.visible { opacity: 1; transform: translateY(0); }
+.section-number {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent-coral); display: block; margin-bottom: 1rem;
+}
+.section h2 { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 2rem; color: var(--text-primary); }
+.section p { font-size: 1.05rem; max-width: 640px; color: var(--text-dim); margin-bottom: 2rem; line-height: 1.8; }
+.section p strong { color: var(--text-primary); font-weight: 600; }
+.section p em { color: var(--accent-2); }
+.key-idea {
+  border-left: 3px solid var(--accent-coral); background: var(--bg-card);
+  padding: 1.25rem 1.5rem; border-radius: 0 8px 8px 0; max-width: 640px; margin-bottom: 2rem;
+}
+.key-idea .kicker {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--accent-coral); margin-bottom: 0.5rem;
+}
+.key-idea p { margin-bottom: 0; color: var(--text-primary); font-size: 1rem; }
+/* ---------- SVG stage ---------- */
+.svg-stage {
+  width: 100%; border-radius: 16px; background: var(--bg-card); border: var(--border-card);
+  padding: 2rem; margin: 2rem 0; display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1rem;
+}
+.svg-stage svg { width: 100%; height: auto; display: block; max-width: 100%; }
+.svg-stage img.fig { width: 100%; height: auto; display: block; border-radius: 10px; }
+.recipe-card img.recipe-photo { width: 100%; height: 220px; object-fit: cover; object-position: center 62%; display: block; }
+.scene-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.scene-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
+.scene-card:hover { transform: translateY(-3px); border-color: var(--accent-teal); }
+img.scene-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
+.scene-body { padding: 1rem 1.2rem 1.3rem; }
+.scene-body h3 { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-2); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
+.scene-body h3 img.medal { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; }
+.scene-body p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 0; max-width: none; }
+.scene-body p strong { color: var(--text-primary); }
+.deck-cover { max-width: 400px; margin: 2rem auto 0.5rem; }
+.deck-cover img { border-radius: 12px; border: var(--border-card); }
+@media (max-width: 540px) { .scene-grid { grid-template-columns: 1fr; } }
+#explodedToggle { cursor: pointer; }
+#section-exposure .photo-grid .photo-card img { height: 300px; }
+.lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(14,11,6,0.93); display: flex; align-items: center; justify-content: center; }
+.lightbox[hidden] { display: none; }
+.lightbox img { max-width: min(92vw, 1080px); max-height: 86vh; border-radius: 10px; box-shadow: 0 24px 80px rgba(0,0,0,0.55); }
+.lb-btn { position: fixed; background: none; border: none; color: #f4f3ee; cursor: pointer; opacity: 0.7; font-family: 'JetBrains Mono', monospace; transition: opacity 0.2s ease; z-index: 61; }
+.lb-btn:hover { opacity: 1; }
+.lb-prev, .lb-next { top: 50%; transform: translateY(-50%); font-size: 3rem; padding: 1.5rem 1rem; }
+.lb-prev { left: 6px; } .lb-next { right: 6px; }
+.lb-close { top: 12px; right: 16px; font-size: 2rem; padding: 0.5rem 1rem; }
+.lb-cap { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #d8d0bd; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; display: flex; gap: 1.2rem; }
+.stage-caption {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-dim); text-align: center;
+}
+.flow-line { stroke-dasharray: 800; stroke-dashoffset: 800; animation: flowRight 3s ease-in-out infinite; }
+.pulse-node { animation: pulse 2s ease-in-out infinite; }
+.grain-dot { animation: matrixFade 2.2s ease-in-out infinite; }
+/* ---------- Step nav ---------- */
+.step-nav { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 0.5rem; justify-content: center; }
+.step-btn {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px; background: transparent; color: var(--text-dim); cursor: pointer;
+  transition: all 0.3s ease;
+}
+.step-btn:hover { border-color: var(--accent-coral); color: var(--accent-coral); }
+.step-btn.active { background: var(--accent-coral); color: var(--bg-deepest); border-color: var(--accent-coral); }
+/* ---------- Arch cards ---------- */
+.arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+.arch-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; padding: 1.5rem; transition: all 0.4s ease; }
+.arch-card:hover { border-color: var(--accent-teal); transform: translateY(-4px); box-shadow: 0 0 30px var(--glow-teal); }
+.arch-card h3 {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent-2); margin-bottom: 0.75rem;
+}
+.arch-card p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 0; max-width: none; }
+.arch-card p strong { color: var(--text-primary); }
+/* ---------- Recipe cards ---------- */
+.recipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
+.recipe-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
+.recipe-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); box-shadow: 0 0 30px rgba(255,230,109,0.15); }
+.recipe-card svg { width: 100%; height: auto; display: block; }
+.recipe-body { padding: 1.1rem 1.25rem 1.4rem; }
+.recipe-body h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+.recipe-use {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent-coral); margin-bottom: 0.8rem;
+}
+.recipe-settings { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); line-height: 1.9; }
+.recipe-settings b { color: var(--accent-2); font-weight: 600; }
+/* ---------- Composition grid ---------- */
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+.comp-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
+.comp-card:hover { transform: translateY(-4px); border-color: var(--accent-purple); box-shadow: 0 0 26px rgba(167,139,250,0.18); }
+.comp-card svg { width: 100%; height: auto; display: block; }
+.comp-body { padding: 0.85rem 1rem 1.1rem; }
+.comp-name { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--accent-2); margin-bottom: 0.35rem; }
+.comp-tip { font-size: 0.85rem; color: var(--text-dim); line-height: 1.55; }
+/* ---------- Real photo grid ---------- */
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.photo-card {
+  display: block; background: var(--bg-card); border: var(--border-card); border-radius: 12px;
+  overflow: hidden; text-decoration: none; color: inherit; transition: all 0.4s ease;
+}
+.photo-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); box-shadow: 0 0 30px rgba(255,230,109,0.15); }
+.photo-card img { width: 100%; height: 210px; object-fit: cover; display: block; background: rgba(255,255,255,0.04); }
+.photo-cap { padding: 0.9rem 1.1rem 1.1rem; }
+.photo-tag {
+  display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--accent-coral); margin-bottom: 0.4rem;
+}
+.photo-credit { display: block; font-size: 0.85rem; color: var(--text-dim); }
+/* ---------- Reading list ---------- */
+.reading-list {
+  max-width: 1100px; margin: 0 auto; padding: var(--spacing-xl) var(--spacing-md);
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.reading-list.visible { opacity: 1; transform: translateY(0); }
+.tier { margin-bottom: 3rem; }
+.tier-header { margin-bottom: 1.5rem; }
+.tier-badge {
+  display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 0.12em; padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: 600;
+}
+.tier-1-badge { background: var(--accent-coral); color: var(--bg-deepest); }
+.tier-2-badge { background: var(--accent-teal); color: var(--bg-deepest); }
+.tier-3-badge { background: var(--accent-purple); color: var(--bg-deepest); }
+.resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.resource-card {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 1rem;
+  background: var(--bg-card); border: var(--border-card); border-left: 3px solid var(--accent-coral);
+  border-radius: 8px; padding: 1.25rem; align-items: start; transition: all 0.3s ease;
+  text-decoration: none; color: inherit;
+}
+.resource-card:hover { transform: translateX(4px); border-left-color: var(--accent-teal); box-shadow: -6px 0 20px var(--glow-teal); }
+.resource-icon { font-size: 1.5rem; text-align: center; flex-shrink: 0; }
+.resource-body h4 {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-primary); margin-bottom: 0.4rem;
+}
+.resource-body .author {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim);
+  margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.resource-body p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 0; }
+.resource-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-dim); padding: 0.4rem 0.6rem;
+  background: rgba(255,255,255,0.05); border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+}
+.suggested-path {
+  margin-top: 2rem; padding: 2rem; background: var(--bg-card);
+  border-top: 2px solid; border-image: linear-gradient(90deg, var(--accent-coral), var(--accent-teal)) 1;
+  border-radius: 8px;
+}
+.suggested-path h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; margin-bottom: 1.5rem; }
+.path-steps { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.path-step {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 0.6rem 1.2rem; background: rgba(78,205,196,0.1);
+  border: 1px solid rgba(78,205,196,0.3); border-radius: 6px; color: var(--accent-teal);
+}
+/* ---------- Footer ---------- */
+.page-footer {
+  max-width: 1100px; margin: 0 auto; padding: var(--spacing-xl) var(--spacing-md);
+  border-top: 1px solid rgba(255,255,255,0.06); text-align: center;
+}
+.page-footer p { font-family: 'Fraunces', serif; font-style: italic; color: var(--text-dim); max-width: 600px; margin: 0 auto; }
+.page-footer em { color: var(--accent-coral); }
+.page-footer strong { color: var(--text-primary); font-weight: 600; font-style: normal; }
+/* ---------- Animations ---------- */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shimmer { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+@keyframes flowRight { from { stroke-dashoffset: 800; } to { stroke-dashoffset: 0; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+@keyframes matrixFade { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.8; } }
+/* ---------- Accessibility ---------- */
+.step-btn:focus-visible, .photo-card:focus-visible, .resource-card:focus-visible, .scroll-cue:focus-visible {
+  outline: 2px solid var(--accent-2); outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .section, .reading-list { opacity: 1; transform: none; }
+}
+/* ---------- Responsive ---------- */
+@media (max-width: 700px) {
+  .arch-grid { grid-template-columns: 1fr; }
+  .resource-grid { grid-template-columns: repeat(2, 1fr); }
+  .svg-stage { padding: 1rem; }
+}
+@media (max-width: 600px) {
+  .section { padding: var(--spacing-lg) var(--spacing-sm); }
+  .hero { padding: 2rem; }
+  .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+  .hero-sub { font-size: 1rem; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .path-steps { flex-direction: column; gap: 0.5rem; }
+  .path-steps svg { display: none; }
+  .page-footer { padding: var(--spacing-lg) var(--spacing-sm); }
+  .page-footer p { font-size: 0.95rem; }
+}
+@media (max-width: 500px) {
+  .hero-kicker { font-size: 0.65rem; }
+  .section-number { font-size: 0.65rem; }
+  .step-nav { gap: 0.5rem; }
+  .step-btn { padding: 0.5rem 0.9rem; font-size: 0.65rem; }
+  .resource-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<style id="paper-theme">
+/* ============ PAPER & CHROME — sadh.ink x X100VI ============ */
+:root {
+  --paper: #f4f3ee; --paper-hi: #fafaf5; --paper-cool: #eeefe9;
+  --ink: #1a1208; --ink-soft: #3d2a16; --dim-paper: #8a7a56;
+  --azure: #2a6bb8; --azure-deep: #1a3e68; --red-pen: #b8422a;
+  --line: rgba(26,18,8,.14);
+  --bg-deepest: var(--paper); --bg-dark: var(--paper-cool);
+  --bg-card: #fbfaf6;
+  --text-primary: var(--ink); --text-dim: var(--dim-paper);
+  --accent-coral: var(--red-pen); --accent-teal: var(--azure);
+  --accent-gold: #b8912a; --accent-purple: var(--azure-deep); --accent-pink: #b8422a;
+  --accent-2: var(--azure);
+  --glow-coral: rgba(184,66,42,.14); --glow-teal: rgba(42,107,184,.14);
+  --border-card: 1px solid var(--line);
+  --finder: #eeefe9; --finder-line: rgba(26,18,8,.32);
+}
+body { background: var(--paper); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; }
+/* paper grain + warm/cool ambient, straight from sadh.ink */
+body::before { content:''; position: fixed; inset: 0; pointer-events: none; opacity: .05; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply; }
+body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: linear-gradient(180deg, rgba(250,245,230,.55) 0%, rgba(244,243,238,0) 40%, rgba(238,239,233,.35) 100%); }
+.hero, .section, .reading-list, .page-footer { position: relative; z-index: 1; }
+/* ---- Hero ---- */
+.hero::before { background: radial-gradient(circle at 30% 20%, rgba(220,180,120,.20) 0%, rgba(42,107,184,.05) 45%, transparent 100%); }
+.hero-kicker { color: var(--red-pen); font-weight: 600; }
+.hero h1 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+  letter-spacing: -.03em; font-variation-settings: "opsz" 144;
+  background: linear-gradient(120deg, var(--ink) 0%, var(--ink) 55%, var(--azure) 80%, var(--ink) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { color: var(--ink-soft); }
+.hero-sub em { color: var(--azure); }
+.scroll-cue { color: var(--dim-paper); }
+.scroll-cue .arrow { color: var(--red-pen); }
+/* chrome top plate */
+.top-plate { display: flex; align-items: center; justify-content: center; gap: 14px;
+  margin: 0 auto 2.2rem; padding: 10px 22px; max-width: 380px; border-radius: 8px;
+  background: linear-gradient(180deg, #f4f4f1 0%, #dcdcd7 42%, #c8c8c3 58%, #ececea 100%);
+  border: 1px solid #b9b9b4; box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 2px 8px rgba(26,18,8,.12); }
+.tp-text { font-family: 'JetBrains Mono', monospace; font-size: .78rem; letter-spacing: .5em;
+  margin-right: -.5em; color: #63635e; text-shadow: 0 1px 0 rgba(255,255,255,.85); font-weight: 600; }
+.tp-dot { width: 11px; height: 11px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #d9634b, #a52d18 70%);
+  box-shadow: 0 1px 2px rgba(26,18,8,.35), 0 1px 0 rgba(255,255,255,.7); }
+.tp-knurl { width: 42px; height: 12px; border-radius: 2px; opacity: .55;
+  background: repeating-linear-gradient(90deg, #8f8f8a 0 1.5px, transparent 1.5px 4px); }
+/* ---- Sections ---- */
+.section-number { color: var(--red-pen); font-weight: 600; }
+.section h2 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+  font-variation-settings: "opsz" 100; color: var(--ink); letter-spacing: -.02em; }
+.section p { color: var(--ink-soft); }
+.section p strong { color: var(--ink); }
+.section p em { color: var(--azure); font-style: italic; }
+.key-idea { border-left: 3px solid var(--red-pen); background: var(--paper-hi);
+  box-shadow: 0 1px 4px rgba(26,18,8,.06); }
+.key-idea .kicker { color: var(--red-pen); }
+.key-idea p { color: var(--ink-soft); }
+/* ---- The viewfinder stages: dark panels on paper, OVF corner brackets ---- */
+.svg-stage { background: var(--finder); border: 1px solid var(--line); border-radius: 14px;
+  position: relative; box-shadow: 0 8px 26px rgba(26,18,8,.10), 0 1px 4px rgba(26,18,8,.06); }
+.svg-stage::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .75; border-radius: 14px;
+  background:
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat left 13px top 13px / 22px 2px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat left 13px top 13px / 2px 22px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat right 13px top 13px / 22px 2px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat right 13px top 13px / 2px 22px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat left 13px bottom 13px / 22px 2px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat left 13px bottom 13px / 2px 22px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat right 13px bottom 13px / 22px 2px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat right 13px bottom 13px / 2px 22px; }
+.svg-stage .stage-caption { color: var(--dim-paper); }
+.svg-stage .step-btn { border: 1px solid var(--line); color: var(--dim-paper); background: transparent; }
+.svg-stage .step-btn:hover { border-color: var(--ink); color: var(--ink); }
+.svg-stage .step-btn.active { background: var(--ink); color: var(--paper-hi); border-color: var(--ink); }
+/* ---- Cards on paper ---- */
+.arch-card { background: var(--paper-hi); border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(26,18,8,.05); }
+.arch-card:hover { border-color: var(--azure); box-shadow: 0 6px 22px rgba(42,107,184,.14); }
+.arch-card h3 { color: var(--azure); }
+.arch-card p { color: var(--ink-soft); }
+.arch-card p strong { color: var(--ink); }
+.recipe-card, .comp-card { background: var(--paper-hi); border: 1px solid var(--line); box-shadow: 0 1px 5px rgba(26,18,8,.07); }
+.recipe-card svg, .comp-card svg, .recipe-card img.recipe-photo { display: block; padding: 8px 8px 0; background: var(--paper-hi); box-sizing: border-box; border-bottom: 1px solid var(--line); }
+.recipe-card:hover { border-color: var(--accent-gold); box-shadow: 0 8px 26px rgba(184,145,42,.18); }
+.comp-card:hover { border-color: var(--azure-deep); box-shadow: 0 8px 26px rgba(26,62,104,.16); }
+.recipe-body h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--ink); }
+.recipe-use { color: var(--red-pen); }
+.recipe-settings { color: var(--dim-paper); }
+.recipe-settings b { color: var(--azure); }
+.comp-name { color: var(--azure); }
+.comp-tip { color: var(--ink-soft); }
+/* ---- Real frames as mounted prints ---- */
+.photo-card { background: #fff; border: 1px solid var(--line); box-shadow: 0 2px 10px rgba(26,18,8,.1); }
+.photo-card img { padding: 10px 10px 0; background: #fff; box-sizing: border-box; }
+.photo-card:hover { border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(26,18,8,.18); }
+.photo-tag { color: var(--red-pen); }
+.photo-credit { color: var(--dim-paper); }
+/* ---- Reading list ---- */
+.tier-1-badge { background: var(--red-pen); color: var(--paper-hi); }
+.tier-2-badge { background: var(--azure); color: var(--paper-hi); }
+.tier-3-badge { background: var(--azure-deep); color: var(--paper-hi); }
+.resource-card { background: var(--paper-hi); border: 1px solid var(--line); border-left: 3px solid var(--red-pen); }
+.resource-card:hover { border-left-color: var(--azure); box-shadow: -6px 0 20px rgba(42,107,184,.14); }
+.resource-body h4 { color: var(--ink); }
+.resource-body .author { color: var(--dim-paper); }
+.resource-body p { color: var(--ink-soft); }
+.resource-tag { background: rgba(26,18,8,.05); color: var(--dim-paper); }
+.suggested-path { background: var(--paper-hi); border-image: linear-gradient(90deg, var(--red-pen), var(--azure)) 1; }
+.suggested-path h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; }
+.path-step { background: rgba(42,107,184,.08); border: 1px solid rgba(42,107,184,.3); color: var(--azure); }
+/* ---- Footer ---- */
+.page-footer { border-top: 1px solid var(--line); }
+.page-footer p { font-family: 'Fraunces', serif; color: var(--dim-paper); }
+.page-footer em { color: var(--red-pen); }
+.page-footer strong { color: var(--ink); font-style: normal; }
+@media (max-width: 600px) { .top-plate { max-width: 300px; gap: 10px; } .tp-knurl { width: 26px; } }
+</style>
+</head>
+<body>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="top-plate">
+      <span class="tp-knurl"></span>
+      <span class="tp-text">OM-1</span>
+      <span class="tp-dot" title="record"></span>
+      <span class="tp-knurl"></span>
+    </div>
+    <span class="hero-kicker">Visual Field Guide · OM SYSTEM OM-1</span>
+    <h1>Seeing with the OM-1</h1>
+    <p class="hero-sub">Half the sensor, twice the reach. How a <em>stacked 20MP</em> Micro Four Thirds heart, <em>Spot HI/SH metering</em>, a <em>computational darkroom</em> and <em>IP53 sealing</em> add up to the camera that goes where the weather is bad and the subjects are far.</p>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll to explore</span>
+    <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 2v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= 01 FORMAT ================= -->
+<section class="section" id="section-01">
+  <div class="section-header">
+    <span class="section-number">01 — The Format</span>
+    <h2>Half the Frame, Twice the Reach</h2>
+  </div>
+  <p>Micro Four Thirds is a <strong>17.3 × 13&#8202;mm</strong> sensor — half the diagonal of full frame, a <strong>2× crop</strong>, native <strong>4:3</strong>. Equivalence cuts both ways, and the OM-1 chose its side deliberately: every millimeter of glass <em>frames</em> like twice its length, depth of field runs about <strong>two stops deeper</strong> at the same f-number, and the whole system shrinks to something you actually carry up the mountain. Tap a lens and read the trade.</p>
+  <div class="svg-stage">
+    <div class="step-nav" id="lensNav">
+      <button class="step-btn active" data-lens="k1240">12–40 f/2.8</button>
+      <button class="step-btn" data-lens="k25">25 f/1.2</button>
+      <button class="step-btn" data-lens="k40150">40–150 f/2.8</button>
+      <button class="step-btn" data-lens="k100400">100–400</button>
+    </div>
+    <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive Micro Four Thirds equivalence explorer">
+      <text x="450" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8a7a56" letter-spacing="1.5">SAME LENS MARKINGS — DIFFERENT WORLD ON THE OTHER SIDE</text>
+      <!-- sensor comparison -->
+      <text x="190" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">THE SENSOR, TO SCALE</text>
+      <rect x="118" y="88" width="144" height="96" rx="4" fill="none" stroke="#8a7a56" stroke-dasharray="4 3"/>
+      <text x="190" y="200" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56">FULL FRAME 36×24</text>
+      <rect x="155" y="102" width="69" height="52" rx="3" fill="rgba(42,107,184,0.14)" stroke="#2a6bb8" stroke-width="2"/>
+      <text x="190" y="132" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#2a6bb8">MFT 17.3×13</text>
+      <text x="190" y="228" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1208">quarter the area · half the diagonal</text>
+      <text x="190" y="246" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1208">2× the framing from every lens</text>
+      <!-- dynamic readout -->
+      <text id="lensName" x="620" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="24" fill="#1a1208">M.Zuiko 12–40mm f/2.8 PRO</text>
+      <text id="lensEquiv" x="620" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#2a6bb8" font-weight="600">frames like 24–80mm · f/5.6-deep focus</text>
+      <text id="lensUse" x="620" y="138" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#8a7a56">the everyday zoom — reportage wide to short tele, weather-sealed</text>
+      <!-- reach bar -->
+      <text x="620" y="188" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1">FULL-FRAME-EQUIVALENT REACH</text>
+      <line x1="400" y1="220" x2="840" y2="220" stroke="#8a7a56" stroke-width="1.5"/>
+      <g font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56" text-anchor="middle">
+        <text x="400" y="244">24</text><text x="487" y="244">50</text><text x="573" y="244">100</text>
+        <text x="660" y="244">200</text><text x="747" y="244">400</text><text x="840" y="244">800</text>
+      </g>
+      <rect id="reachBar" x="400" y="212" width="150" height="16" rx="8" fill="rgba(42,107,184,0.35)" stroke="#2a6bb8"/>
+      <text id="reachNote" x="620" y="290" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">Wide to portrait in one ring — the walking-around trinity opener</text>
+    </svg>
+    <div class="stage-caption">Equivalence, honestly: framing and depth scale by 2× · exposure math (f-stop, shutter, ISO) stays exactly what the dials say</div>
+  </div>
+  <div class="key-idea">
+    <div class="kicker">The bargain, stated plainly</div>
+    <p><strong>You traded shallow focus and two stops of high-ISO ceiling for reach, depth, speed and weather.</strong> The OM-1 wins where subjects are far, light is workable, and conditions are hostile — birds, trails, storms, travel. Fight that identity and the camera feels small; lean into it and nothing else comes close per gram.</p>
+  </div>
+  <p><strong>And the frame is squarer.</strong> Native <strong>4:3</strong> is closer to classic print ratios than 3:2, and it rewires imported instincts: verticals lose the gangly headroom that makes 3:2 portraits feel stretched, central subjects and symmetry sit comfortably instead of fighting a rule-of-thirds reflex, and stacked horizontal bands — compressed ridgelines, layered haze at 600mm-e — hold without widescreen dead space. Crop to 3:2 later if a screen demands it; compose to the frame you actually have.</p>
+  <p><strong>The stacked heart.</strong> The 20MP sensor is <strong>stacked BSI</strong> — readout electronics layered behind the photosites — and it reads out fast enough to change the camera's manners: an electronic shutter to <strong>1/32000</strong> with minimal rolling distortion, a <strong>blackout-free</strong> 120fps finder, silent <strong>50fps bursts with continuous AF</strong>, and the pre-press time machine of §06. Speed, not resolution, is this sensor's argument.</p>
+  <!-- RENDER SLOT: exploded OM-1 cutaway -->
+  <!-- RENDER SLOT: stacked sensor cutaway -->
+</section>
+
+<!-- ================= 02 CONTROLS ================= -->
+<section class="section" id="section-02">
+  <div class="section-header">
+    <span class="section-number">02 — Controls</span>
+    <h2>A Cockpit, Banked by Mission</h2>
+  </div>
+  <p>Where the X100VI hides its modes in dials, the OM-1 is a working cockpit: <strong>PASM dial, two command dials, an Fn lever</strong> that re-arms what those dials do, and more buttons than you should use. The grammar that matters: <em>front dial exposure-adjust, rear dial the priority you're driving, lever position 2 for the alternates</em> — then stop touching things.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>C1–C4: The Real Mode Dial</h3>
+      <p>Custom modes store <strong>the whole camera</strong> — drive, AF, subject detect, IS, button maps. Bank missions, not settings: <strong>C1 birds</strong> (S 1/2500 · SH2 · bird detect), <strong>C2 landscape</strong> (A f/5.6 · ISO 200 · tripod HHHR), <strong>C3 macro</strong> (stacking armed), <strong>C4 night</strong> (Starry Sky AF). Recall beats remembering — every time.</p>
+    </div>
+    <div class="arch-card">
+      <h3>The Fn Lever Doubles Everything</h3>
+      <p>Position 1: dials run exposure. Position 2: the same dials run <strong>ISO and white balance</strong> (or whatever you assign). One thumb-flick, four controls, zero menus. Some shooters instead bind it to <strong>AF-mode swap</strong> — S-AF hiking, C-AF+detect the instant something moves.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Three Buttons Worth Remapping</h3>
+      <p><strong>AF-ON</strong> for back-button focus (half-press freed for metering), <strong>ISO</strong> where your thumb rests, and one button for <strong>subject-detect toggle</strong>. The OM menu is deep — the cockpit exists so you never revisit it in the field (§11).</p>
+    </div>
+    <div class="arch-card">
+      <h3>Honest Dial Advice</h3>
+      <p>You will live in <strong>A</strong> (static subjects), <strong>S</strong> (anything that moves), <strong>M + Auto-ISO</strong> (locked look, drifting light — EC still works, §03), and the <strong>C banks</strong>. The art-filter positions are for other people. B mode hides the computational gems: Live Composite and Live Time (§05).</p>
+    </div>
+  </div>
+  <!-- RENDER SLOT: official/press top-plate photo when sourced -->
+</section>
+
+<!-- ================= 03 METERING ================= -->
+<section class="section" id="section-metering">
+  <div class="section-header">
+    <span class="section-number">03 — Metering</span>
+    <h2>Declare the Tone: Spot HI &amp; Spot SH</h2>
+  </div>
+  <p>Every meter assumes the world averages to <strong>18% gray</strong> — and drags whatever it reads toward that gray. The OM-1 carries the standard trio (324-area <strong>Digital ESP</strong>, center-weighted, 2% spot) plus two modes almost nobody else ships: <strong>Spot HI</strong> and <strong>Spot SH</strong>. They let you meter a tone <em>and declare what it is</em> — "this is white," "this is black" — killing the exposure-compensation arithmetic in one gesture. Tap the modes on the egret.</p>
+  <div class="svg-stage">
+    <div class="step-nav" id="meterNav">
+      <button class="step-btn active" data-om="esp">ESP</button>
+      <button class="step-btn" data-om="spot">Spot</button>
+      <button class="step-btn" data-om="hi">Spot HI</button>
+      <button class="step-btn" data-om="sh">Spot SH</button>
+    </div>
+    <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive OM-1 metering mode simulator: white egret on dark water">
+      <defs><clipPath id="omScene"><rect x="30" y="52" width="360" height="250" rx="10"/></clipPath></defs>
+      <text x="450" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8a7a56" letter-spacing="1.5">ONE WHITE BIRD, DARK WATER — FOUR WAYS TO METER IT</text>
+      <!-- scene -->
+      <g clip-path="url(#omScene)">
+        <rect x="30" y="52" width="360" height="250" fill="#1d2b26"/>
+        <ellipse cx="120" cy="290" rx="150" ry="40" fill="#141f1b"/>
+        <ellipse cx="330" cy="300" rx="180" ry="46" fill="#16211d"/>
+        <g stroke="#2c3f37" stroke-width="2"><line x1="60" y1="80" x2="52" y2="180"/><line x1="76" y1="70" x2="70" y2="176"/><line x1="90" y1="84" x2="86" y2="182"/></g>
+        <ellipse cx="238" cy="220" rx="52" ry="30" fill="#f2f2ea"/>
+        <path d="M 262 200 Q 288 168 272 140 Q 262 122 246 132 Q 252 118 240 116" fill="none" stroke="#f2f2ea" stroke-width="13" stroke-linecap="round"/>
+        <circle cx="238" cy="114" r="10" fill="#f2f2ea"/>
+        <path d="M 246 112 L 268 118 L 246 121 Z" fill="#c9a03a"/>
+        <ellipse cx="240" cy="262" rx="58" ry="10" fill="#0e1714" opacity="0.7"/>
+      </g>
+      <rect x="30" y="52" width="360" height="250" rx="10" fill="none" stroke="#8a7a56" opacity="0.4"/>
+      <!-- overlays -->
+      <g id="ovEsp"><g fill="none" stroke="#4ecdc4" opacity="0.55">
+        <rect x="50" y="70" width="66" height="44" rx="3"/><rect x="122" y="70" width="66" height="44" rx="3"/><rect x="194" y="70" width="66" height="44" rx="3"/><rect x="266" y="70" width="66" height="44" rx="3"/>
+        <rect x="50" y="122" width="66" height="44" rx="3"/><rect x="122" y="122" width="66" height="44" rx="3"/><rect x="194" y="122" width="66" height="44" rx="3"/><rect x="266" y="122" width="66" height="44" rx="3"/>
+        <rect x="50" y="174" width="66" height="44" rx="3"/><rect x="122" y="174" width="66" height="44" rx="3"/><rect x="194" y="174" width="66" height="44" rx="3"/><rect x="266" y="174" width="66" height="44" rx="3"/>
+      </g></g>
+      <g id="ovSpot" style="display:none"><circle cx="238" cy="200" r="17" fill="none" stroke="#ff6b3d" stroke-width="2.5"/><circle cx="238" cy="200" r="27" fill="none" stroke="#ff6b3d" opacity="0.4"/></g>
+      <g id="ovHi" style="display:none"><circle cx="238" cy="200" r="17" fill="none" stroke="#ffe66d" stroke-width="2.5"/><path d="M 238 168 L 231 178 L 245 178 Z" fill="#ffe66d"/><circle cx="238" cy="200" r="27" fill="none" stroke="#ffe66d" opacity="0.4"/></g>
+      <g id="ovSh" style="display:none"><circle cx="72" cy="150" r="17" fill="none" stroke="#a78bfa" stroke-width="2.5"/><path d="M 72 190 L 65 180 L 79 180 Z" fill="#a78bfa"/><circle cx="72" cy="150" r="27" fill="none" stroke="#a78bfa" opacity="0.4"/></g>
+      <!-- readout -->
+      <text x="650" y="86" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1">HOW THE BIRD RENDERS</text>
+      <rect id="birdPatch" x="600" y="100" width="100" height="64" rx="8" fill="#f0f0e8" stroke="rgba(26,18,8,0.25)"/>
+      <text id="omVerdict1" x="650" y="204" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">Zones vote, AI weighs the scene —</text>
+      <text id="omVerdict2" x="650" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">usually right, occasionally surprised.</text>
+      <text x="650" y="266" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1.5">YOUR MOVE</text>
+      <text id="omMove" x="650" y="290" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#4ecdc4">trust it · watch the blinkies</text>
+      <text id="omNote" x="450" y="342" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">ESP pattern-matches 324 zones against a scene library — smart, but it doesn&#8217;t know the bird is the picture</text>
+    </svg>
+    <div class="stage-caption">Set SPOT METERING to track the AF target in the custom menu — HI/SH then measure exactly what you&#8217;re focused on</div>
+  </div>
+  <div class="key-idea">
+    <div class="kicker">Why this matters</div>
+    <p><strong>Spot HI replaces "+1⅔ and hope."</strong> On the X100VI you spot-meter a white and dial compensation from memory (its §03); here you press one button and the camera <em>places</em> the tone. Egrets, snowfields, black bears, stage light — the two hardest metering days become the two easiest. EVF shows the result live; the histogram settles arguments.</p>
+  </div>
+</section>
+
+<!-- ================= 04 AUTOFOCUS ================= -->
+<section class="section" id="section-af">
+  <div class="section-header">
+    <span class="section-number">04 — Autofocus</span>
+    <h2>A Thousand Crosses and a Bird Brain</h2>
+  </div>
+  <p>Every one of the OM-1&#8217;s <strong>1,053 phase points is cross-type</strong> — each pixel split four ways (<em>quad-pixel AF</em>), reading focus on horizontal <em>and</em> vertical detail across the whole frame. On top sits TruePic X subject detection: <strong>birds, mammals, motorsport, aircraft, trains</strong>, plus human face and eye. The practical consequence: you stop steering AF points and start composing while the camera holds the eye.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>The Working Combo</h3>
+      <p><strong>C-AF + subject detect + a mid-size target zone.</strong> Let detection find the eye inside your zone rather than using full-auto area (which loves the wrong bird). Old-style C-AF+TR tracking is superseded — leave it off. Detection survives brief occlusion: hold the zone, keep panning.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Back-Button, Two Speeds</h3>
+      <p><strong>AF-ON for C-AF</strong>, shutter half-press disabled for focus (§11): thumb drives focus, finger drives timing. Add the <strong>AF limiter</strong> for long glass — fencing off the near range kills 90% of hunting on busy backgrounds.</p>
+    </div>
+    <div class="arch-card">
+      <h3>C-AF Temperament</h3>
+      <p><strong>Sensitivity −1 or −2</strong> for birds against branches (stick with the subject through clutter), <strong>+1/+2</strong> for erratic motorsport lines. Center-start ON for takeoffs. These two menus <em>are</em> the AF system — everything else is inherited defaults.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Low Light &amp; Stars</h3>
+      <p>Cross-type points hold to about <strong>−8 EV</strong> with fast glass — dusk wildlife stays sticky. And when the sky itself is the subject, <strong>Starry Sky AF</strong> (§05) focuses on actual stars — no more infinity-mark guessing on a cold tripod.</p>
+    </div>
+  </div>
+  <!-- RENDER SLOT: quad-pixel AF cutaway -->
+</section>
+
+<!-- ================= 05 COMPUTATIONAL ================= -->
+<section class="section" id="section-comp">
+  <div class="section-header">
+    <span class="section-number">05 — The Computational Darkroom</span>
+    <h2>Filters You Can&#8217;t Screw On</h2>
+  </div>
+  <p>This is the OM-1&#8217;s leaf-shutter moment — the section its rivals can&#8217;t follow. The stacked sensor and TruePic X turn tripod-and-filter rituals into <strong>menu items that preview live in the finder</strong>. Six of them earn permanent space in your muscle memory:</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>Live ND · ND2–ND64</h3>
+      <p>Frame-averaging that <strong>synthesizes up to 6 stops</strong> of neutral density — silky water at noon, no glass on the lens, <strong>the blur previewed live</strong> before you commit. Ceiling: it extends shutter time, it can&#8217;t freeze; and specular suns still prefer real glass. Waterfall recipe in §10.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Live Composite</h3>
+      <p>One base exposure, then the sensor adds <strong>only new light</strong> — star trails draw themselves across the EVF while the city stays unblown. Fireworks, light painting, lightning. Hours of accumulation without touching the base ambient: the mode that looks like cheating.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Handheld High Res · 50MP</h3>
+      <p>Sensor-shift stacks eight frames into a <strong>50MP file, no tripod</strong> (80MP with one). IBIS supplies the micro-jitter. Needs a mostly-still scene — architecture, landscapes in calm air. The 2× system suddenly prints like medium format on a good day.</p>
+    </div>
+    <div class="arch-card">
+      <h3>In-Body Focus Stacking</h3>
+      <p>Up to <strong>15 frames merged in camera</strong> (999 raw frames via bracketing) with compatible lenses — macro depth without software. f/4–5.6 per slice beats f/11 diffraction. The 60mm and 90mm macros were designed around this (§09).</p>
+    </div>
+    <div class="arch-card">
+      <h3>Starry Sky AF</h3>
+      <p>An AF mode that <strong>focuses on stars</strong> — actual astrometry, Speed or Accuracy flavors. Wide-open primes land pin-sharp Milky Way frames in seconds. Pair with Live Composite for trails, or 8–15s singles for the core (§12).</p>
+    </div>
+    <div class="arch-card">
+      <h3>Live Time &amp; Bulb</h3>
+      <p>Long exposures that <strong>develop before your eyes</strong> — the EVF updates mid-exposure so you end it when the frame is done, not when the math said. The B position on the dial hides all three Live modes; visit it on purpose.</p>
+    </div>
+  </div>
+  <!-- RENDER SLOT: Live Composite accumulation illustration -->
+  <!-- RENDER SLOT: Live ND frame-averaging illustration -->
+</section>
+
+<!-- ================= 06 SPEED ================= -->
+<section class="section" id="section-speed">
+  <div class="section-header">
+    <span class="section-number">06 — Speed</span>
+    <h2>The Moment Before You Pressed</h2>
+  </div>
+  <p><strong>ProCapture is the honest cheat:</strong> half-press and the camera silently rolls a buffer; full-press keeps up to <strong>70 frames from before your reflexes fired</strong>. The kingfisher already left — you have the takeoff anyway. With <strong>SH2 at 50fps with C-AF</strong> (25fps with any lens) and a 120fps blackout-free finder, the OM-1&#8217;s speed story is simple: the decisive moment stops being a reflex test.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>ProCap Discipline</h3>
+      <p>Set <strong>pre-shutter frames to ~35</strong> and a frame limit — unlimited 50fps ProCap fills cards and buries keepers. Half-press <em>early</em> and breathe; the buffer is your patience. Best on perched-to-flight, splashes, bat-on-ball.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Which Burst When</h3>
+      <p><strong>SH2 50fps</strong>: needs the fast PRO lenses, C-AF live. <strong>SH2 25fps</strong>: any lens, still silent. <strong>Mech 10fps</strong>: flicker-proof under bad gym light. The e-shutter&#8217;s stacked readout means banding and rolling skew are rare — silent is the default here, not the compromise.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Buffer &amp; Cards</h3>
+      <p>50fps eats ~90 raws in under two seconds; a <strong>V90 UHS-II in slot 1</strong> keeps the pipe open (slot 2 UHS-II too, use it as overflow, not mirror, on burst days). Cull on the camera ruthlessly — star ratings survive into Lightroom.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Blackout-Free Means Panning</h3>
+      <p>The 120fps EVF never blinks during bursts — you <em>watch</em> the bird through the sequence instead of reconstructing it. That, not the frame rate, is what raises the keeper count: tracking is a vision problem before it&#8217;s an AF problem.</p>
+    </div>
+  </div>
+  <!-- RENDER SLOT: ProCapture time-buffer illustration -->
+</section>
+
+<!-- ================= 07 STABILIZATION ================= -->
+<section class="section" id="section-ibis">
+  <div class="section-header">
+    <span class="section-number">07 — Stabilization</span>
+    <h2>Seconds, Handheld</h2>
+  </div>
+  <p>The OM-1&#8217;s IBIS is rated <strong>7 stops</strong>, and <strong>8 with Sync-IS lenses</strong> (12-100 f/4, 300 f/4, 150-400) where body and lens stabilizers steer together. In practice that reads as: <strong>2–4 second handheld exposures land</strong>, waterfalls go silky without a tripod, and the 600mm-e end of a zoom holds steady enough to compose like a normal lens. It cannot freeze subjects — the physics disclaimer never changes.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>The Handheld-Seconds Kit</h3>
+      <p>Elbows in, strap tensioned, exhale, <strong>3-frame burst</strong> — the middle frame wins. Start at 1s and work up; 4s is real with Sync-IS and a wall to lean on. IBIS + Live ND (§05) is the tripod you didn&#8217;t pack.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Long-Lens Steadiness</h3>
+      <p>At 600–800mm-e the finder itself is stabilized — <strong>compose first, then half-press</strong> and let IS settle a beat before the burst. Brace the lens foot, not the body. IS-Priority in menus if you value viewfinder calm over the last half-stop.</p>
+    </div>
+    <div class="arch-card">
+      <h3>When to Turn It Off</h3>
+      <p>Rigid tripod + long exposure: IBIS <strong>auto-detects</strong> and stands down, but Live Composite marathons deserve a manual OFF. Panning: leave IS on — the OM-1 detects the sweep and drops the horizontal axis on its own.</p>
+    </div>
+    <div class="arch-card">
+      <h3>What 8 Stops Buys Daily</h3>
+      <p>Base-ISO dusk streets, sharp 1/4s forest interiors (§12), museum interiors at ISO 400 instead of 6400 — the deep-DOF sensor plus impossible shutter speeds is how MFT climbs back two low-light stops it gave away on paper.</p>
+    </div>
+  </div>
+  <!-- RENDER SLOT: Sync-IS body+lens cooperation cutaway -->
+</section>
+
+<!-- ================= 08 WEATHER ================= -->
+<section class="section" id="section-weather">
+  <div class="section-header">
+    <span class="section-number">08 — Weather</span>
+    <h2>Built for the Bad Days</h2>
+  </div>
+  <p>The OM-1 is rated <strong>IP53 with a sealed lens</strong> — a real ingress-protection certification, not marketing "resistance" — and <strong>freezeproof to −10°C</strong>. This is the camera you keep shooting while others bag theirs: storm light, spray, dust, snow. The photographs nobody else stayed out for are the entire dividend.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>Rain Ritual</h3>
+      <p>Sealed body + sealed lens = <strong>shoot through it</strong>; wipe with a cloth, shade the front element with your hand or hood. The one rule: <strong>no lens swaps in falling water</strong> — change under a jacket or not at all. Dry the gasket lines at night, cap off.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Cold Ritual</h3>
+      <p>Cold kills batteries, not cameras: <strong>spares warm in an inner pocket</strong>, swap fast. Exhale away from the EVF. −10°C is the rating; below it the camera usually keeps going after the shooter quits.</p>
+    </div>
+    <div class="arch-card">
+      <h3>The Transition Kill-Zone</h3>
+      <p>Condensation happens going <strong>cold → warm</strong>: bag the camera <em>outside</em>, let it reach room temperature sealed. Same in reverse for tropical humidity. The weather sealing protects from water, not from dew forming inside a cold lens.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Coast &amp; Dust</h3>
+      <p>Salt spray: fine while shooting, but <strong>fresh-water-damp wipe the same evening</strong> — salt crystals abrade seals over months. Dust: the sensor shake + sealed body make the OM-1 the sanest choice for deserts and volcanic grit.</p>
+    </div>
+  </div>
+  <!-- RENDER SLOT: weather-sealing gasket cutaway -->
+</section>
+
+<!-- ================= 09 GLASS ================= -->
+<section class="section" id="section-glass">
+  <div class="section-header">
+    <span class="section-number">09 — Glass</span>
+    <h2>The Lens Map, by Mission</h2>
+  </div>
+  <p>Buy lenses by mission, not focal length — and read every number twice (framing ×2, depth two stops deeper). The system&#8217;s crown jewels are its <strong>weather-sealed PRO zooms</strong> and two macros with no full-frame equal per gram:</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>Everyday · 12-40 f/2.8 PRO</h3>
+      <p><strong>24–80mm-e</strong>, sealed, close-focusing, clutch MF. The default first lens — reportage to environmental portrait, and its 0.3× near-macro moments surprise people. II version = same optics, better coatings.</p>
+    </div>
+    <div class="arch-card">
+      <h3>One-Lens Travel · 12-100 f/4</h3>
+      <p><strong>24–200mm-e with Sync-IS</strong> — the 8-stop partner (§07). The single-lens trip answered: city wides to compressed ridgelines, handheld seconds at dusk. f/4 on MFT is deep — embrace it, this is the sunny-trip lens.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Reach · 100-400 or 300 f/4</h3>
+      <p><strong>200–800mm-e zoom</strong> for flexibility, or the <strong>600mm-e f/4 prime</strong> with Sync-IS for serious birds. Add MC-14/MC-20 teleconverters and the prime hits 1200mm-e handheld — the sentence that sells the whole system.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Macro · 60 f/2.8 or 90 f/3.5</h3>
+      <p>The 90mm PRO does <strong>2× native — 4× equivalent</strong> — sealed, Sync-IS, stacking-native (§05). Nothing in full frame touches this working envelope handheld. The 60mm is the light, older, still-excellent path in.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Fast Primes · 17 / 25 / 45</h3>
+      <p>The f/1.2 PRO trio renders genuinely shallow (f/2.4-e depth) with pro AF speed; the <strong>f/1.8 trio</strong> gives 80% of it at a third the weight and price. 45/1.8 is the sleeper portrait lens of the entire format.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Wide · 8-25 f/4 PRO</h3>
+      <p><strong>16–50mm-e</strong> in one sealed ring — landscape and architecture without the filter-thread drama of the 7-14. Pairs with HHHR (§05) for files that print far beyond what 20MP suggests.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10 TECHNIQUES ================= -->
+<section class="section" id="section-tech">
+  <div class="section-header">
+    <span class="section-number">10 — Techniques</span>
+    <h2>Field Recipes</h2>
+  </div>
+  <p>Six repeatable recipes that string the previous sections together — set them up once as C-modes (§02) and the field work becomes pointing and patience.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>Bird-in-Flight Ladder</h3>
+      <p><strong>S 1/2500 · wide open · Auto-ISO cap 6400 · C-AF −1 · bird detect · SH2 25/50</strong>. Background before bird: reposition until sky or water sits behind the flight line. Track through the EVF with both eyes open; burst on the wingbeat rhythm.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Waterfall Without a Tripod</h3>
+      <p><strong>Live ND32–64 (§05) · f/5.6 · ISO 200 · IBIS braced (§07)</strong>. Preview the silk live, anchor on rocks, fire a clean 1/250 frame too — the pair often composites best. Polarizer still owns the wet-rock glare.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Macro Stack, Field Grade</h3>
+      <p><strong>f/4–5.6 · stack 8–12 · flash + diffuser</strong> — flash freezes what wind moves, stacking buys the depth f/11 would have smeared with diffraction. ProCap the moments between gusts. Focus on the near eye; let the stack walk backward.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Milky Way, Fast</h3>
+      <p><strong>12mm f/2 (or 8-25 wide) · 15s · ISO 3200 · Starry Sky AF (§05) · IBIS off, tripod</strong>. Shoot the core, then flip to Live Composite and let trails draw for the second image the same night. −10°C rating means the camera outlasts your toes (§08).</p>
+    </div>
+    <div class="arch-card">
+      <h3>The 800mm-e Discipline</h3>
+      <p>Long glass magnifies technique: <strong>1/(2× equivalent) shutter unless braced</strong>, IS settle-beat before bursts, AF limiter fencing the near field (§04), and heat shimmer as the real ceiling — distance work belongs to cold mornings.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Exposing MFT Files</h3>
+      <p>Protect highlights; the shadows lift cleanly for two stops. In hard light bias <strong>−⅓ EV</strong>, or better: <strong>Spot HI the brightest thing that must hold detail (§03)</strong>. At ISO 6400+ expose generously — underexposed MFT is where the format&#8217;s critics live.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 SETUP ================= -->
+<section class="section" id="section-setup">
+  <div class="section-header">
+    <span class="section-number">11 — Setup</span>
+    <h2>Deep Menu, Shallow Field Life</h2>
+  </div>
+  <p>The OM menu is famously deep. The strategy is the same minimalism as its rangefinder sibling: <strong>one honest afternoon of setup, four C-banks, then never open the menu outdoors again.</strong></p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>Once, in the Menus</h3>
+      <p><strong>Back-button AF</strong> (AF-ON, half-press focus OFF) · <strong>spot metering linked to AF target</strong> (§03) · release priority OFF in S-AF (sharp beats fast) · EVF 120fps · e-shutter default · RAW+JPEG to slot 1 V90.</p>
+    </div>
+    <div class="arch-card">
+      <h3>The Four Banks (§02)</h3>
+      <p><strong>C1 birds · C2 landscape · C3 macro · C4 night.</strong> Save from a fully-configured state, and re-save the bank the moment you improve a recipe — stale banks are how C-modes die. Name them in-menu so future-you trusts them.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Power &amp; Cards</h3>
+      <p><strong>BLX-1 ≈ 500 frames</strong> (thousands on burst days) — two spares for a full wild day, warm pocket in winter (§08). <strong>USB-C PD charges in-camera</strong>: the power bank that tops your phone tops the camera at lunch.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Gems in the Depths</h3>
+      <p><strong>OI.Share</strong> app pulls JPEGs and GPS logs · <strong>focus peaking + magnify</strong> on the clutch lenses · <strong>anti-flicker scan</strong> for gym light · <strong>custom self-timer</strong> (e.g. 3 frames, 2s apart) as a poor-man&#8217;s intervalometer · in-camera <strong>raw develop</strong> for field edits.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12 MISSIONS ================= -->
+<section class="section" id="section-scenes">
+  <div class="section-header">
+    <span class="section-number">12 — Field Missions</span>
+    <h2>Twelve Days Out</h2>
+  </div>
+  <p>Twelve days this camera was built for — each one a bank you can save (§02) and a reason the format exists. Baselines assume the §11 setup; the notes name only what changes: settings, the metering move (§03), and the thing nobody tells you until you have stood there.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>Birds in Flight</h3>
+      <p><strong>C1: S 1/2500 · wide open · ISO auto-6400 · bird detect · SH2</strong>. ProCapture armed for takeoffs (§06). White birds: <strong>Spot HI the plumage (§03)</strong>. Craft: pick the perch-to-perch line and wait at the second perch.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Wildlife · Mammals</h3>
+      <p><strong>A f/4–5.6 · min 1/500 · animal detect · silent shutter</strong>. Forest shade: Spot SH the dark fur, let it be dark (§03). Craft: low and patient beats close and fast; the second look back is the photograph.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Macro &amp; Small Worlds</h3>
+      <p><strong>C3: 60/90 macro · f/5.6 · stack 8–12 (§05) · flash + diffuser</strong>. Wind is the enemy — ProCap the lull (§06). Craft: eye-level with the subject, background a full meter behind it.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Waterfalls &amp; Silk</h3>
+      <p><strong>Live ND32–64 · f/5.6 · ISO 200 · braced (§07)</strong>. The EVF previews the silk — stop when texture just dissolves (§05). Craft: anchor sharp rocks in the foreground; wet stone loves a polarizer.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Night Sky</h3>
+      <p><strong>C4: 15s · f/2 · ISO 3200 · Starry Sky AF · tripod, IBIS off</strong>. Then Live Composite for trails — watch them draw (§05). Craft: foreground first while blue hour lasts; the sky composites over it.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Grand Landscape</h3>
+      <p><strong>C2: f/5.6–8 · ISO 200 · tripod HHHR 80MP (§05)</strong> — diffraction bites past f/8 on MFT, stop down with intent. Snow: <strong>Spot HI the snowfield (§03)</strong> — winter&#8217;s hardest exposure made trivial.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Forest, Dim &amp; Green</h3>
+      <p><strong>f/4 · ISO 800 · IBIS to 1/4s for statics (§07)</strong>. Streams blur free, handheld. Meter: Spot SH the deep hollows — keep the gloom (§03). Craft: shoot into the fog, not across it.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Rain &amp; Storm</h3>
+      <p>The OM-1&#8217;s home fixture (§08): <strong>keep shooting, wipe, never swap lenses in the wet</strong>. Dark skies read bright to ESP — <strong>−⅓ to −⅔ EV</strong>. Craft: backlit rain streaks at 1/60 against dark buildings.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Snow &amp; Ice</h3>
+      <p><strong>Spot HI the snow (§03)</strong> — no +1⅔ arithmetic here. Batteries warm, spares rotated (§08); freezeproof means the camera quits after you do. Craft: overcast snow is a giant softbox — save portraits for it.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Action &amp; Sports</h3>
+      <p><strong>S 1/1600 · C-AF +1 · sport/vehicle detect · SH2 50 (§06)</strong>. Mech shutter under flickery gym light (§11 anti-flicker). Craft: pre-focus the apex — corner exit, bar clearance — and let ProCap own the instant.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Travel, One Lens</h3>
+      <p><strong>12-100 f/4 (§09) · A mode · Auto-ISO</strong> — 24–200-e with 8-stop Sync-IS is the entire kit (§07). Craft: city C-bank by day, handheld-seconds C-bank after dark; the tripod stays home on purpose.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Golden Hour, Long</h3>
+      <p><strong>300–800mm-e at the low sun (§09)</strong>: compressed ridgelines, rim-lit wildlife, layered haze. <strong>Spot HI the rim light (§03)</strong>, let everything else fall. Craft: shimmer rises with the sun — the first twenty minutes are the shoot.</p>
+    </div>
+  </div>
+  <!-- FIELD DECK: 12 scene-card renders + cover slot here, lightbox-ready, when generated -->
+</section>
+
+<!-- ================= RESOURCES ================= -->
+<section class="reading-list">
+  <div class="section-header">
+    <span class="section-number">Resources</span>
+    <h2>Study, Then Go Get Rained On</h2>
+  </div>
+  <div class="tier tier-1">
+    <div class="tier-header"><span class="tier-badge tier-1-badge">Essential</span></div>
+    <div class="resource-grid">
+      <a class="resource-card" href="https://www.omsystem.com" target="_blank" rel="noopener">
+        <div class="resource-icon">🏔️</div>
+        <div class="resource-body">
+          <h4>OM SYSTEM Official</h4>
+          <p class="author">Manuals · firmware · Learn hub</p>
+          <p>The full manual is genuinely worth reading for this camera — half the computational modes hide behind names you&#8217;d never guess. Keep firmware current; AF brains improve by update.</p>
+        </div>
+        <div class="resource-tag">site</div>
+      </a>
+      <a class="resource-card" href="https://robinwong.blogspot.com" target="_blank" rel="noopener">
+        <div class="resource-icon">🎥</div>
+        <div class="resource-body">
+          <h4>Robin Wong</h4>
+          <p class="author">Ex-Olympus · KL street &amp; macro</p>
+          <p>The system&#8217;s great teacher — setup guides, honest technique videos, and shutter-therapy street work that shows what the format does in real hands.</p>
+        </div>
+        <div class="resource-tag">blog + video</div>
+      </a>
+    </div>
+  </div>
+  <div class="tier tier-2">
+    <div class="tier-header"><span class="tier-badge tier-2-badge">Craft</span></div>
+    <div class="resource-grid">
+      <a class="resource-card" href="https://www.sulasula.com/en/" target="_blank" rel="noopener">
+        <div class="resource-icon">🦜</div>
+        <div class="resource-body">
+          <h4>Petr Bambousek</h4>
+          <p class="author">Tropical wildlife · macro · MFT</p>
+          <p>Proof at the highest level — award-grade wildlife and macro on this exact system, with generous write-ups on stacking and field technique.</p>
+        </div>
+        <div class="resource-tag">portfolio</div>
+      </a>
+      <a class="resource-card" href="https://www.mu-43.com" target="_blank" rel="noopener">
+        <div class="resource-icon">🧰</div>
+        <div class="resource-body">
+          <h4>mu-43 Forum</h4>
+          <p class="author">The format&#8217;s living archive</p>
+          <p>Two decades of lens threads, settings debates and sample galleries. Search before asking — someone already tested it in 2016, and again on the OM-1.</p>
+        </div>
+        <div class="resource-tag">community</div>
+      </a>
+      <a class="resource-card" href="https://www.reddit.com/r/OMSYSTEM/" target="_blank" rel="noopener">
+        <div class="resource-icon">📸</div>
+        <div class="resource-body">
+          <h4>r/OMSYSTEM</h4>
+          <p class="author">Reddit · daily field reports</p>
+          <p>Active and practical — C-mode recipes, bird AF settings arguments, firmware notes, and a steady stream of proof the weather sealing is real.</p>
+        </div>
+        <div class="resource-tag">community</div>
+      </a>
+    </div>
+  </div>
+  <div class="suggested-path">
+    <h3>Suggested Path</h3>
+    <div class="path-steps">
+      <div class="path-step">Bank the four C-modes</div>
+      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#ff6b3d" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#ff6b3d"/></svg>
+      <div class="path-step">One computational mode / week</div>
+      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#ff6b3d" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#ff6b3d"/></svg>
+      <div class="path-step">ProCap a takeoff</div>
+      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#ff6b3d" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#ff6b3d"/></svg>
+      <div class="path-step">Go out in the rain</div>
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <p><em>"If your pictures aren't good enough, you're not close enough."</em> — <strong>Robert Capa</strong>. The OM-1's answer: get closer, <em>and</em> bring 800mm-equivalent for when you can't.</p>
+</footer>
+
+<script>
+// Scroll-triggered reveals
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
+document.querySelectorAll('.section, .reading-list').forEach(el => observer.observe(el));
+
+// Scroll cue
+document.querySelector('.scroll-cue').addEventListener('click', () => {
+  document.getElementById('section-01').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Equivalence explorer
+const lensStates = {
+  k1240: { name: 'M.Zuiko 12\u201340mm f/2.8 PRO', equiv: 'frames like 24\u201380mm \u00b7 f/5.6-deep focus',
+    use: 'the everyday zoom \u2014 reportage wide to short tele, weather-sealed', lo: 24, hi: 80,
+    note: 'Wide to portrait in one ring \u2014 the walking-around opener' },
+  k25: { name: 'M.Zuiko 25mm f/1.2 PRO', equiv: 'frames like 50mm \u00b7 f/2.4-ish depth \u2014 real pop',
+    use: 'low light and portraits \u2014 the format\u2019s shallow-focus argument', lo: 50, hi: 50,
+    note: 'The nifty-fifty, armored: sealed, fast, feathered bokeh' },
+  k40150: { name: 'M.Zuiko 40\u2013150mm f/2.8 PRO', equiv: 'frames like 80\u2013300mm \u00b7 constant f/2.8',
+    use: 'action, events, close wildlife \u2014 takes both teleconverters', lo: 80, hi: 300,
+    note: 'A 300mm-e f/2.8 you can hold in one hand \u2014 nothing else does this' },
+  k100400: { name: 'M.Zuiko 100\u2013400mm f/5\u20136.3', equiv: 'frames like 200\u2013800mm \u00b7 deep and far',
+    use: 'birds, the moon, distant ridgelines \u2014 handheld with IBIS (\u00a707)', lo: 200, hi: 800,
+    note: '800mm-e in a daypack \u2014 the sentence that sells the system' }
+};
+function reachX(mm) {
+  const l = Math.log2(mm), lmin = Math.log2(24), lmax = Math.log2(800);
+  return 400 + (l - lmin) / (lmax - lmin) * 440;
+}
+function setLens(key) {
+  const s = lensStates[key];
+  document.getElementById('lensName').textContent = s.name;
+  document.getElementById('lensEquiv').textContent = s.equiv;
+  document.getElementById('lensUse').textContent = s.use;
+  const x1 = reachX(s.lo), x2 = Math.max(reachX(s.hi), x1 + 14);
+  const bar = document.getElementById('reachBar');
+  bar.setAttribute('x', x1 - 7);
+  bar.setAttribute('width', (x2 - x1) + 14);
+  document.getElementById('reachNote').textContent = s.note;
+}
+
+// OM metering simulator
+const omStates = {
+  esp: { patch: '#f0f0e8', ov: 'ovEsp',
+    v1: 'Zones vote, AI weighs the scene \u2014', v2: 'usually right, occasionally surprised.',
+    move: 'trust it \u00b7 watch the blinkies', moveColor: '#4ecdc4',
+    note: 'ESP pattern-matches 324 zones against a scene library \u2014 smart, but it doesn\u2019t know the bird is the picture' },
+  spot: { patch: '#9a9a90', ov: 'ovSpot',
+    v1: '2% reading dragged to middle gray \u2014', v2: 'a dingy, underexposed egret.',
+    move: '+1\u2154 EC from memory \u2014 the old way', moveColor: '#ff6b3d',
+    note: 'Classic spot is honest and literal: it makes whatever it reads gray \u2014 whites included (the X100VI\u2019s daily reality)' },
+  hi: { patch: '#f6f6ee', ov: 'ovHi',
+    v1: 'You told it: this is WHITE \u2014', v2: 'placed high with feather detail intact.',
+    move: 'no arithmetic \u00b7 shoot', moveColor: '#4ecdc4',
+    note: 'Spot HI places the reading at white-with-detail \u2014 egrets, snow, bright sails: metered in one press' },
+  sh: { patch: '#f2f2ea', ov: 'ovSh',
+    v1: 'Reeds pinned to true black \u2014', v2: 'mood kept; the bird falls where it falls.',
+    move: 'declare the shadow \u00b7 protect the dark', moveColor: '#a78bfa',
+    note: 'Spot SH is the mirror trick: meter a shadow and keep it a shadow \u2014 stage light, black fur, low-key work' }
+};
+function setOmMeter(key) {
+  const s = omStates[key];
+  ['ovEsp','ovSpot','ovHi','ovSh'].forEach(id => {
+    document.getElementById(id).style.display = (id === s.ov) ? '' : 'none';
+  });
+  document.getElementById('birdPatch').setAttribute('fill', s.patch);
+  document.getElementById('omVerdict1').textContent = s.v1;
+  document.getElementById('omVerdict2').textContent = s.v2;
+  const mv = document.getElementById('omMove');
+  mv.textContent = s.move;
+  mv.setAttribute('fill', s.moveColor);
+  document.getElementById('omNote').textContent = s.note;
+}
+
+// Scoped step-nav groups
+document.querySelectorAll('.step-nav').forEach(nav => {
+  nav.querySelectorAll('.step-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      nav.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      const d = e.currentTarget.dataset;
+      if (d.lens) setLens(d.lens);
+      if (d.om) setOmMeter(d.om);
+    });
+  });
+});
+setLens('k1240');
+setOmMeter('esp');
+</script>
+</body>
+</html>

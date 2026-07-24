@@ -15,3 +15,6 @@ wc2026/shots/
 
 # matchday build tooling + wiki cache (local only, pages are committed pre-built)
 matchday/gen/
+
+# daily brief: scripts are tracked, the fetched firehose is not
+matchday/brief/feed.json

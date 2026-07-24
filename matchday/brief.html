@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>try{var t=localStorage.getItem('mdcal-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Brief — Matchday Pacific</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --disp:'Saira Condensed',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --hand:'Caveat',cursive;
+  }
+  html[data-theme="dark"]{
+    --pitch:#0c3524; --pitch-2:#0f4630; --chalk:#f4f1e4; --night:#0b120e;
+    --epl:#9d8cff; --liga:#ff5a45; --buli:#5dd39e; --l1:#5ce1e6; --ucl:#7fd1ff;
+    --muted:rgba(244,241,228,.62); --hair:rgba(244,241,228,.16); --hair2:rgba(244,241,228,.3);
+    --soft:rgba(244,241,228,.85); --ghost:rgba(244,241,228,.14); --wash:rgba(244,241,228,.08);
+    --card:rgba(12,19,36,.58); --cardhover:rgba(12,19,36,.75); --popover:#0e1712; --hatch:rgba(255,255,255,.05);
+  }
+  html[data-theme="light"]{
+    --pitch:#F4F3E9; --pitch-2:#ECF0E1; --chalk:#161B15; --night:#F2F1E7;
+    --epl:#6a4fe0; --liga:#d8432f; --buli:#2f8f5b; --l1:#1c8a86; --ucl:#1f7fc4;
+    --muted:#7E8270; --hair:rgba(22,27,21,.12); --hair2:rgba(22,27,21,.3);
+    --soft:#3B4238; --ghost:rgba(22,27,21,.14); --wash:rgba(22,27,21,.06);
+    --card:rgba(245,250,255,.345); --cardhover:rgba(245,250,255,.48); --popover:#F8F7F0; --hatch:rgba(22,27,21,.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+  body{
+    font-family:var(--body);color:var(--chalk);background:var(--night);
+    background-image:
+      repeating-linear-gradient(45deg, transparent 0 2px, rgba(0,0,0,.05) 2px 3px),
+      repeating-linear-gradient(-45deg, transparent 0 3px, rgba(244,241,228,.016) 3px 4px),
+      repeating-linear-gradient(90deg, var(--pitch) 0 120px, var(--pitch-2) 120px 240px);
+    background-attachment:fixed;min-height:100vh;
+  }
+  html[data-theme="dark"] body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% -10%, rgba(244,241,228,.10), transparent 60%), radial-gradient(850px 600px at 90% 88%, rgba(91,110,245,.12), transparent 62%), radial-gradient(650px 480px at 4% 60%, rgba(127,209,255,.09), transparent 60%), rgba(11,18,14,.82);pointer-events:none;z-index:0}
+  html[data-theme="light"] body::before{content:"";position:fixed;inset:0;background:radial-gradient(850px 560px at 92% 4%, rgba(70,150,235,.09), transparent 62%), radial-gradient(700px 520px at 6% 78%, rgba(90,160,240,.07), transparent 60%), radial-gradient(600px 420px at 55% 96%, rgba(110,175,245,.05), transparent 58%);pointer-events:none;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 20px 48px}
+
+  header{padding:28px 0 6px}
+  .head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+  .head-actions{display:flex;gap:8px;flex:none}
+  .iconbtn{width:34px;height:34px;border-radius:999px;border:1px solid var(--hair);background:var(--card);color:var(--chalk);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:border-color .15s ease,background .15s ease;text-decoration:none;flex:none}
+  .iconbtn:hover{border-color:var(--chalk);background:var(--cardhover)}
+  .iconbtn:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  .iconbtn[data-tip]{position:relative}
+  .iconbtn[data-tip]::after{
+    content:attr(data-tip);position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);
+    background:var(--popover);color:var(--chalk);border:1px solid var(--hair);
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;white-space:nowrap;
+    padding:5px 9px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.25);
+    opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:30;
+  }
+  .iconbtn[data-tip]:hover::after,.iconbtn[data-tip]:focus-visible::after{opacity:1}
+  .kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+  .kick .hand{font-family:var(--hand);font-size:19px;letter-spacing:.01em;text-transform:none;color:var(--chalk);display:inline-block;transform:rotate(-2deg);vertical-align:-2px;margin-left:2px}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,5.4vw,64px);line-height:1;letter-spacing:.01em;margin:8px 0 6px;white-space:nowrap}
+  h1 .pac{color:transparent;-webkit-text-stroke:1.5px var(--chalk)}
+  .sub{max-width:640px;color:var(--muted);font-size:15px;line-height:1.55}
+  .sub b{color:var(--chalk);font-weight:600}
+  .countdown{display:flex;gap:26px;margin:16px 0 0;padding:12px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);flex-wrap:wrap}
+  .cd{font-family:var(--mono)}
+  .cd .n{font-family:var(--disp);font-weight:800;font-size:40px;line-height:1}
+  .cd .l{font-size:11px;letter-spacing:.12em;color:var(--muted);margin-top:4px}
+  .cd.liga .n{color:var(--liga)} .cd.epl .n{color:var(--epl)}
+
+  section{margin-top:40px}
+  .eyebrow{display:flex;align-items:baseline;gap:14px;margin-bottom:12px}
+  .eyebrow h2{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:.02em}
+  .eyebrow .rule{flex:1;height:1px;background:var(--hair)}
+  .eyebrow .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+  .kick a{color:inherit;text-decoration:none}
+  .kick a:hover{color:var(--chalk)}
+  .lede{font-size:16px;line-height:1.7;color:var(--chalk);max-width:720px;margin-bottom:18px}
+  .meta{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;margin-top:6px}
+  .snote{font-family:var(--mono);font-size:11px;color:var(--muted);margin:-4px 0 12px;letter-spacing:.03em}
+  .blist{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:10px}
+  .bitem{border:1px solid var(--hair);border-radius:10px;padding:13px 16px;background:var(--card)}
+  .bitem:hover{border-color:var(--hair2)}
+  .bt{font-family:var(--body);font-weight:600;font-size:15px;line-height:1.4;color:var(--chalk);text-decoration:none}
+  .bt:hover{text-decoration:underline}
+  .bs{font-size:13.5px;line-height:1.6;color:var(--soft);margin:5px 0 0}
+  .bmeta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em}
+  .src{color:var(--muted);text-transform:uppercase}
+  .corr{color:var(--ucl);border:1px solid var(--hair);border-radius:999px;padding:1px 6px}
+  .wtag{color:var(--soft);background:var(--wash);border-radius:999px;padding:1px 8px}
+  .ferr{font-family:var(--mono);font-size:11px;color:var(--l1);border:1px solid var(--hair);border-radius:8px;padding:8px 12px;margin-bottom:16px}
+  footer{margin-top:40px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}
+  @media(max-width:640px){
+    .head-row{flex-wrap:wrap;align-items:flex-start}
+    .head-actions{width:100%;justify-content:flex-start}
+    h1{white-space:normal}
+    .eyebrow{flex-wrap:wrap;gap:8px 12px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="head-row">
+    <div>
+      <div class="kick"><a href="index.html">Matchday Pacific</a> <span class="hand">— Daily Brief</span></div>
+      <h1>Daily <span class="pac">Brief</span></h1>
+    </div>
+    <div class="head-actions">
+      <a class="iconbtn" href="index.html" data-tip="Home" aria-label="Home">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7.5 8 2.5l6 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 6.5V13h9V6.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.3 13v-3.6h3.4V13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="iconbtn" href="clubs.html" data-tip="Clubs" aria-label="Clubs">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 1.6 13.5 3.4V7.8C13.5 11.2 11.2 13.4 8 14.4 4.8 13.4 2.5 11.2 2.5 7.8V3.4Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="iconbtn" href="players.html" data-tip="Players" aria-label="Players">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="5.4" r="2.6" stroke="currentColor" stroke-width="1.3"/><path d="M2.8 13.6c.9-2.9 2.9-4.4 5.2-4.4s4.3 1.5 5.2 4.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </a>
+      <a class="iconbtn" href="guide.html" data-tip="Viewing guide" aria-label="Viewing guide">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 3.2C6.5 2.3 4.7 2 3 2.3v9.6c1.7-.3 3.5 0 5 .9 1.5-.9 3.3-1.2 5-.9V2.3c-1.7-.3-3.5 0-5 .9Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M8 3.2v9.6" stroke="currentColor" stroke-width="1.2"/></svg>
+      </a>
+      <a class="iconbtn" href="cal.html" data-tip="Full calendar" aria-label="Full calendar">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 6.5h12" stroke="currentColor" stroke-width="1.3"/><path d="M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </a>
+      <button class="iconbtn" id="themeToggle" type="button" data-tip="Toggle theme" aria-label="Toggle light or dark theme">◐</button>
+    </div>
+  </div>
+  <p class="sub">What the transfer desks and analysts are saying today — every line attributed to the outlet that ran it, nothing here confirmed by this page.</p>
+  <div class="meta">Friday, July 24, 2026 · 324 items from 8 feeds · pulled 2026-07-24 21:50Z</div>
+</header>
+
+<section>
+<div class="eyebrow"><h2>Rumour Mill</h2><div class="rule"></div><div class="tag">attributed · unconfirmed</div></div>
+<p class="snote">Reports, not facts. ×N marks a story carried by more than one outlet.</p><ul class="blist">
+    <li class="bitem">
+      <a class="bt" href="https://www.skysports.com/football/news/11095/13566546/alex-scott-how-bournemouth-midfielder-wanted-by-arsenal-chelsea-and-man-utd-flourished-under-andoni-iraola" target="_blank" rel="noopener">Scott: The &#x27;scrawny-looking kid&#x27; turned complete midfielder wanted by the elite</a>
+      <p class='bs'>Across the seven games in which Bournemouth took points off Arsenal, Manchester City, Manchester United, Liverpool and Chelsea last season, it is telling that Alex Scott was nearly ever-pres</p>
+      <div class="bmeta"><span class="src">Sky Transfers, Sky Sports</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Arsenal</span><span class="wtag">Chelsea</span><span class="wtag">Liverpool</span><span class="wtag">Manchester City</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cn8nypvz22no?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Tottenham confident of Savinho signing - Sunday&#x27;s gossip</a>
+      <p class='bs'>Tottenham are hopeful of signing Savinho from Manchester City, Real Madrid cool their interest in Rodri, AC Milan are keeping tabs on Phil Foden, plus more.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Inter</span><span class="wtag">Manchester City</span><span class="wtag">Milan</span><span class="wtag">Real Madrid</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cdx7qq6nkddo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Real Madrid confident of signing Rodri - Saturday&#x27;s gossip</a>
+      <p class='bs'>Real Madrid are confident they will sign Rodri from Man City, Arsenal eye player-plus-cash deal for Atletico striker Julian Alvarez, while Roma are keen on Fulham winger Oscar Bobb, plus mor</p>
+      <div class="bmeta"><span class="src">BBC Gossip, BBC Sport</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Arsenal</span><span class="wtag">Atletico</span><span class="wtag">Man City</span><span class="wtag">Real Madrid</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/czx59xrgnppo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Liverpool open to Van Dijk offers - Saturday&#x27;s gossip</a>
+      <p class='bs'>Virgil van Dijk&#x27;s Liverpool future appears a little uncertain with the club prepared to listen to offers for him, Fulham keen on West Ham winger Crysencio Summerville while Inter Milan want </p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Chelsea</span><span class="wtag">Inter</span><span class="wtag">Liverpool</span><span class="wtag">Milan</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c3eykl8751vo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Rashford dilemma for Man Utd - Thursday&#x27;s gossip</a>
+      <p class='bs'>Manchester United are in a quandary over Marcus Rashford&#x27;s future, Arsenal and Tottenham eye Antonio Nusa, Barcelona shortlist Bournemouth&#x27;s Eli Junior Kroupi, plus more.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Barcelona</span><span class="wtag">Manchester United</span><span class="wtag">Tottenham</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cz6vz91n7e5o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Spurs make offer for Kolo Muani - Friday gossip</a>
+      <p class='bs'>Tottenham make an offer for Randal Kolo Muani but Juventus remain favourites to sign the forward, Arsenal are ready to finalise a deal for Christos Tzolis, Marcus Rashford&#x27;s future at Barcel</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Barcelona</span><span class="wtag">Juventus</span><span class="wtag">Tottenham</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cvgx4rvz57vo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Inter interested in Spence - Friday&#x27;s gossip</a>
+      <p class='bs'>Inter Milan work on deals for Djed Spence and Cristian Romero, Liverpool lead the race for Kaishu Sano, Arsenal show interest in Ezri Konsa, plus more.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Inter</span><span class="wtag">Liverpool</span><span class="wtag">Milan</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cedjnz7wxy6o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Man Utd handed Tchouameni boost - Friday&#x27;s gossip</a>
+      <p class='bs'>Real Madrid open to selling Aurelien Tchouameni to Manchester United, Arsenal eye John Stones and Ezri Konsa, Chelsea favourites for Kerim Alajbegovic, Yan Diomande back on radar of Premier </p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Chelsea</span><span class="wtag">Manchester United</span><span class="wtag">Real Madrid</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c0ey2rrvld4o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Premier League quartet want Scott - Sunday&#x27;s gossip</a>
+      <p class='bs'>Bournemouth&#x27;s Alex Scott wanted by Premier League quartet, Arsenal agree to sell Leandro Trossard, Manchester United&#x27;s Kobbie Mainoo on Real Madrid&#x27;s radar, plus more.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Manchester United</span><span class="wtag">Real Madrid</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c3wyy0evxn2o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Tottenham to bid for Kroupi - Tuesday gossip</a>
+      <p class='bs'>Tottenham to target Bournemouth&#x27;s Kroupi, Atletico Madrid a possible home for Salah, Wan-Bissaka a potential White replacement for Arsenal, plus more.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Atletico</span><span class="wtag">Tottenham</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c8e2n47j0j5o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Rogers is Arsenal&#x27;s main target - Wednesday&#x27;s gossip</a>
+      <p class='bs'>Arsenal make Morgan Rogers their main target, Liverpool interested in Mexico teenager and Everton eye England defender Spence.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Inter</span><span class="wtag">Liverpool</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cy06rnjzxkyo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Salah demands put Saudi switch in doubt - Saturday&#x27;s gossip</a>
+      <p class='bs'>Mohamed Salah&#x27;s financial demands putting off Saudi clubs, Bayern Munich rebuff Real Madrid move for Michael Olise, Barcelona agree to sign Karim Adeyemi, plus more.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Barcelona</span><span class="wtag">Bayern</span><span class="wtag">Real Madrid</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cd0m9p5zd7lo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Man Utd and Liverpool want Gomes - Sunday&#x27;s gossip</a>
+      <p class='bs'>Manchester United and Liverpool make Joao Gomes contact, Chelsea open talks over Jonathan Rowe, an MLS side are looking to sign Mohamed Salah, plus more.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Chelsea</span><span class="wtag">Liverpool</span><span class="wtag">Manchester United</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c0mym8xvedlo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Gyokeres part of Alvarez offer - Wednesday&#x27;s gossip</a>
+      <p class='bs'>Viktor Gyokeres may be used as a makeweight to bring Julian Alvarez to Arsenal, Liverpool have made contract with Paris St-Germain over a transfer for Bradley Barcola, while Tottenham captai</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Liverpool</span><span class="wtag">Tottenham</span></div>
+    </li>
+</ul>
+
+<div class="eyebrow"><h2>Around the Grounds</h2><div class="rule"></div><div class="tag">news</div></div>
+<ul class="blist">
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/may/25/story-of-2025-26-premier-league-season-in-100-photos" target="_blank" rel="noopener">The story of the Premier League 2025-26 season in 100 photos</a>
+      <p class='bs'>A century of our favourite images from the season including wild celebrations, protesting fans and goalmouth scramblesReigning champions Liverpool left it late to beat Bournemouth 4-2 on the</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Arsenal</span><span class="wtag">Liverpool</span><span class="wtag">Manchester City</span><span class="wtag">Tottenham</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/may/26/premier-league-2025-26-season-review-predictions-reality-liverpool-chelsea-brentford-sunderland" target="_blank" rel="noopener">Premier League 2025-26 season review: our predictions v reality</a>
+      <p class='bs'>We picked Liverpool as champions, Chelsea as challengers and tipped Brentford and Sunderland to go down. Oh dearWhat we predicted: Mikel Arteta vowed this would be a “big summer” after finis</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Arsenal</span><span class="wtag">Chelsea</span><span class="wtag">Liverpool</span><span class="wtag">Sporting</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/jul/23/from-popp-to-diani-10-womens-transfers-you-may-have-missed-during-the-mens-world-cup" target="_blank" rel="noopener">From Popp to Diani: 10 women’s transfers you may have missed during the men’s World Cup</a>
+      <p class='bs'>Sam Kerr’s and Alexia Putellas’s moves were hard to miss but these transfers may have escaped your attentionThere were a host of big women’s football transfers which were hard to miss across</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Arsenal</span><span class="wtag">Barcelona</span><span class="wtag">Chelsea</span><span class="wtag">Manchester City</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/jul/23/arsenal-sign-greece-forward-christos-tzolis-from-club-brugge-for-34m" target="_blank" rel="noopener">Arsenal sign Greece forward Christos Tzolis from Club Brugge for £34m</a>
+      <p class='bs'>Tzolis joins Hincapié and Meslier among arrivals‘⁠It’s absolutely amazing to sign for such a big ​club’Arsenal have completed the £34m signing of Christos Tzolis from Club Brugge. The Greece</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Arsenal</span><span class="wtag">Chelsea</span><span class="wtag">Inter</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cly5d2n2879o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Kane set for talks with Bayern Munich over new deal</a>
+      <p class='bs'>Harry Kane is set to begin talks over a new Bayern Munich contract, with Barcelona and various Saudi Arabian clubs reportedly interested in the England captain.</p>
+      <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Barcelona</span><span class="wtag">Bayern</span><span class="wtag">Inter</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/jul/22/putellas-batlle-leon-barcelona-women-latest-summer-exodus" target="_blank" rel="noopener">Putellas, Batlle and León are gone: what will be left of Barcelona after latest exodus?</a>
+      <p class='bs'>The European champions’ squad is falling apart … because of the men’s team’s struggles with financial fair playThe joy of lifting all four trophies in 2025-26 has been short-lived for Barcel</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Ajax</span><span class="wtag">Barcelona</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/clyl7eve9ddo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Leeds in talks to sign Man City keeper Trafford</a>
+      <p class='bs'>Leeds United are in discussions with Manchester City to sign goalkeeper James Trafford.</p>
+      <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Man City</span><span class="wtag">Manchester City</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/jul/23/paolo-maldini-italy-pep-guardiola-carlo-ancelotti-world-cup-new-manager" target="_blank" rel="noopener">Maldini confirms crisis-hit Italy have held talks with Guardiola and Ancelotti</a>
+      <p class='bs'>Italy have failed to qualify for last three World CupsGuardiola is out of work while Ancelotti is still with BrazilThe Italian football federation (FIGC) has talked to Pep Guardiola, the for</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Manchester City</span><span class="wtag">PSG</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/jul/23/elliot-anderson-manchester-city-116m-nottingham-forest-transfer-premier-league" target="_blank" rel="noopener">Elliot Anderson lauds City as ‘kings of Manchester’ after £116m Forest transfer</a>
+      <p class='bs'>‘They’re winners, relentless, a team I want to be part of’Midfielder hails De Bruyne as a childhood inspirationElliot Anderson has called Manchester City the “kings of Manchester” after comp</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Chelsea</span><span class="wtag">Manchester City</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c1eyjvzeg8qo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Anderson&#x27;s journey to England star and Man City record signing</a>
+      <p class='bs'>Elliot Anderson was a key part of England&#x27;s World Cup side and is now Manchester City&#x27;s record signing.</p>
+      <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Man City</span><span class="wtag">Manchester City</span></div>
+    </li>
+</ul>
+
+<div class="eyebrow"><h2>Worth Reading</h2><div class="rule"></div><div class="tag">analysis</div></div>
+<ul class="blist">
+    <li class="bitem">
+      <a class="bt" href="https://www.fourfourtwo.com/person/player/alex-scott-rejects-bournemouth-contract-amid-interest-from-arsenal-chelsea-and-manchester-united" target="_blank" rel="noopener">Alex Scott rejects Bournemouth contract amid interest from Arsenal, Chelsea and Manchester United: report</a>
+      <p class='bs'>Alex Scott has alerted several Premier League big-hitters after turning down a new deal at Bournemouth</p>
+      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Arsenal</span><span class="wtag">Chelsea</span><span class="wtag">Inter</span><span class="wtag">Manchester United</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.fourfourtwo.com/person/italian-football-federation-holds-talks-with-pep-guardiola-about-becoming-national-team-head-coach-report" target="_blank" rel="noopener">Italian Football Federation holds talks with Pep Guardiola about becoming national team head coach: report</a>
+      <p class='bs'>The former Manchester City coach is reportedly open to taking on an international role</p>
+      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Inter</span><span class="wtag">Manchester City</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.fourfourtwo.com/team/liverpool-enter-race-for-spain-world-cup-hero-report" target="_blank" rel="noopener">Liverpool enter race for Spain World Cup hero: report</a>
+      <p class='bs'>Liverpool are interested in the World Cup-winning forward after his heroics in New Jersey</p>
+      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Inter</span><span class="wtag">Liverpool</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.fourfourtwo.com/team/arsenal-hold-talks-over-world-cup-winner-as-release-clause-revealed-report" target="_blank" rel="noopener">Arsenal hold talks over World Cup winner as release clause revealed: report</a>
+      <p class='bs'>Arsenal have revived their interest in the Spain winger, who played a starring role in the World Cup final</p>
+      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Arsenal</span><span class="wtag">Inter</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.fourfourtwo.com/transfer/liverpool-make-their-first-move-in-psg-transfer-battle-but-gbp34-million-bid-was-rejected-report" target="_blank" rel="noopener">Liverpool make their first move in PSG transfer battle as £34 million bid is rejected: report</a>
+      <p class='bs'>Liverpool are eager to add a winger after the departure of Mohamed Salah</p>
+      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Liverpool</span><span class="wtag">PSG</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.fourfourtwo.com/transfer/long-serving-arsenal-attacker-emerges-as-surprise-pawn-in-tottenham-transfer-report" target="_blank" rel="noopener">Long-serving Arsenal attacker emerges as surprise pawn in Tottenham transfer: report</a>
+      <p class='bs'>Arsenal could do bitter rivals Tottenham Hotspur a favour, as they look to land their dream attacker</p>
+      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Arsenal</span><span class="wtag">Tottenham</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.fourfourtwo.com/person/coaches-managers/manchester-city-coach-to-be-appointed-in-international-role-with-jurgen-klopp-reunion-on-the-cards" target="_blank" rel="noopener">Manchester City coach to be appointed in international role, with Jurgen Klopp reunion on the cards: report</a>
+      <p class='bs'>Jurgen Klopp is set to welcome a familiar face to his coaching setup in the German national side</p>
+      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Inter</span><span class="wtag">Manchester City</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.fourfourtwo.com/transfer/manchester-united-reach-agreement-with-france-international-to-become-next-signing-report" target="_blank" rel="noopener">Manchester United reach agreement with France international to become next signing: report</a>
+      <p class='bs'>Manchester United are on the cusp of completing their next move of the transfer window</p>
+      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Inter</span><span class="wtag">Manchester United</span></div>
+    </li>
+</ul>
+
+</section>
+
+<footer>
+  Aggregated from BBC Gossip, BBC Sport, FourFourTwo, Guardian, Opta Analyst, Sky Sports, Sky Transfers, Transfermarkt. Headlines and links belong to their publishers; follow the link for the full story.<br>
+  Transfer rumours are wrong more often than they are right — treat everything above as reported, not settled.<br>
+  Part of <a href="index.html" style="color:inherit">Matchday Pacific</a> · <a href="guide.html" style="color:inherit">viewing guide</a> · <a href="cal.html" style="color:inherit">calendar</a>
+</footer>
+
+</div>
+<script>
+document.getElementById('themeToggle').addEventListener('click',function(){
+  var next=document.documentElement.dataset.theme==='dark'?'light':'dark';
+  document.documentElement.dataset.theme=next;
+  try{localStorage.setItem('mdcal-theme',next);}catch(e){}
+});
+</script>
+</body>
+</html>
