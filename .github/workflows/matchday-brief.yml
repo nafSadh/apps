@@ -44,8 +44,13 @@ jobs:
           test -s "$page" || { echo "::error::$page missing or empty"; exit 1; }
           bytes=$(wc -c < "$page")
           [ "$bytes" -gt 8000 ] || { echo "::error::$page only ${bytes}B — suspiciously small"; exit 1; }
-          for want in "Rumour Mill" "Around the Grounds" "Worth Reading"; do
-            grep -q "$want" "$page" || { echo "::error::missing section: $want"; exit 1; }
+          # Rumour Mill is the one section that must exist — if the tier-1 feeds gave
+          # nothing, the run is not worth publishing. The other two are legitimately
+          # omitted when their tier is empty (render.py drops empty sections), so warn
+          # rather than fail: a quiet analysis day should not block the whole brief.
+          grep -q "Rumour Mill" "$page" || { echo "::error::no Rumour Mill section — feed is unusable"; exit 1; }
+          for want in "Around the Grounds" "Worth Reading"; do
+            grep -q "$want" "$page" || echo "::warning::section absent today: $want (no items of that tier)"
           done
           # The renderer builds the page with f-strings, so a brace bug would leak template
           # syntax. Check the <body> only — CSS legitimately contains }} where a rule and its

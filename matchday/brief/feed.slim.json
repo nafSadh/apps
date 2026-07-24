@@ -1,20 +1,20 @@
 {
- "fetched": "2026-07-24T22:24:24+00:00",
+ "fetched": "2026-07-24T22:50:39+00:00",
  "counts": {
-  "raw": 327,
-  "deduped": 315,
+  "raw": 337,
+  "deduped": 325,
   "byTier": {
    "1": 44,
    "2": 151,
-   "3": 120
+   "3": 130
   }
  },
- "errors": [
-  {
-   "source": "Transfermarkt",
-   "error": "ParseError: no element found: line 1, column 0"
-  }
- ],
+ "slimByTier": {
+  "1": 40,
+  "2": 35,
+  "3": 30
+ },
+ "errors": [],
  "items": [
   {
    "source": "BBC Gossip",
@@ -315,7 +315,7 @@
    "kind": "rumour",
    "title": "Why there's no need to panic in Arsenal's summer of evolution not revolution",
    "link": "https://www.skysports.com/football/news/11095/13566029/arsenals-transfer-plans-analysed-gunners-miss-out-on-morgan-rogers-in-summer-of-evolution-not-revolution",
-   "published": "2026-07-22T16:08:00+00:00",
+   "published": "2026-07-22T23:08:00+00:00",
    "watch": [
     "Arsenal",
     "Paris Saint-Germain"
@@ -342,33 +342,11 @@
    "kind": "rumour",
    "title": "Why do Chelsea want to sign Lacroix from Palace?",
    "link": "https://www.skysports.com/football/news/11095/13557656/maxence-lacroix-to-chelsea-crystal-palace-defender-is-quick-excels-when-one-on-one-and-is-a-leader-now-too",
-   "published": "2026-07-23T10:30:00+00:00",
+   "published": "2026-07-23T17:30:00+00:00",
    "watch": [
     "Chelsea"
    ],
    "summary": "Chelsea have not paid a transfer fee for a player aged 26 or over since the summer of 2022 with the ill-fated acquisitions of Raheem Sterling and Kalidou Koulibaly. But Crystal Palace’s Maxence Lacroix is a player worth "
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Transfer Centre LIVE! Guimaraes, Lacroix, Stones latest",
-   "link": "https://www.skysports.com/football/live-blog/11095/12476234/transfer-centre-live-football-transfer-news-updates-and-rumours",
-   "published": "2026-07-24T09:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Chelsea agree deal with Palace for Lacroix",
-   "link": "https://www.skysports.com/football/news/11095/13565648/maxence-lacroix-transfer-news-chelsea-agree-deal-to-sign-france-defender-from-crystal-palace",
-   "published": "2026-07-24T09:20:00+00:00",
-   "watch": [
-    "Chelsea"
-   ],
-   "summary": "Chelsea have agreed a deal with Crystal Palace to sign Maxence Lacroix."
   },
   {
    "source": "BBC Gossip",
@@ -389,9 +367,31 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
+   "title": "Transfer Centre LIVE! Guimaraes, Lacroix, Stones latest",
+   "link": "https://www.skysports.com/football/live-blog/11095/12476234/transfer-centre-live-football-transfer-news-updates-and-rumours",
+   "published": "2026-07-24T16:00:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Chelsea agree deal with Palace for Lacroix",
+   "link": "https://www.skysports.com/football/news/11095/13565648/maxence-lacroix-transfer-news-chelsea-agree-deal-to-sign-france-defender-from-crystal-palace",
+   "published": "2026-07-24T16:20:00+00:00",
+   "watch": [
+    "Chelsea"
+   ],
+   "summary": "Chelsea have agreed a deal with Crystal Palace to sign Maxence Lacroix."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
    "title": "'I'll walk away!' Klopp sends warning to critics after Germany appointment",
    "link": "https://www.skysports.com/football/news/11095/13566544/jurgen-klopp-germany-appoint-former-liverpool-boss-as-new-head-coach-to-replace-julian-nagelsmann",
-   "published": "2026-07-24T10:00:00+00:00",
+   "published": "2026-07-24T17:00:00+00:00",
    "watch": [],
    "summary": "Jurgen Klopp has warned he will walk away from his new job as Germany's head coach if the German media don't \"leave my family in peace\"."
   },
@@ -401,7 +401,7 @@
    "kind": "rumour",
    "title": "Pirlo set for Italy role as Guardiola rejects chance to become head coach",
    "link": "https://www.skysports.com/football/news/11095/13566556/pep-guardiola-turns-down-chance-to-replace-gennaro-gattuso-as-italy-head-coach-sky-in-italy",
-   "published": "2026-07-24T10:30:00+00:00",
+   "published": "2026-07-24T17:30:00+00:00",
    "watch": [],
    "summary": "Pep Guardiola has turned down the chance to take the Italy head coach job, according to Sky in Italy, with Andrea Pirlo closing in on the role."
   },
@@ -411,7 +411,7 @@
    "kind": "rumour",
    "title": "'Huge potential for growth' - Newcastle sign Bamba",
    "link": "https://www.skysports.com/football/news/11095/13566552/aladji-bamba-transfer-news-newcastle-complete-35-5m-signing-of-midfielder-from-monaco",
-   "published": "2026-07-24T10:30:00+00:00",
+   "published": "2026-07-24T17:30:00+00:00",
    "watch": [],
    "summary": "Newcastle have completed the signing of midfielder Aladji Bamba from Monaco."
   },
@@ -421,7 +421,7 @@
    "kind": "rumour",
    "title": "Scott: The 'scrawny-looking kid' turned complete midfielder wanted by the elite",
    "link": "https://www.skysports.com/football/news/11095/13566546/alex-scott-how-bournemouth-midfielder-wanted-by-arsenal-chelsea-and-man-utd-flourished-under-andoni-iraola",
-   "published": "2026-07-24T12:00:00+00:00",
+   "published": "2026-07-24T19:00:00+00:00",
    "watch": [
     "Arsenal",
     "Chelsea",
@@ -437,7 +437,7 @@
    "kind": "rumour",
    "title": "Man City latest: 'Real Madrid working on deal to sign Rodri'",
    "link": "https://www.skysports.com/football/live-blog/11095/13025499/man-city-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-07-24T13:25:00+00:00",
+   "published": "2026-07-24T20:25:00+00:00",
    "watch": [
     "Man City",
     "Real Madrid"
@@ -450,109 +450,11 @@
    "kind": "rumour",
    "title": "Arsenal latest: Gunners still in contact with Hamburg over Vieira deal",
    "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-07-24T13:35:00+00:00",
+   "published": "2026-07-24T20:35:00+00:00",
    "watch": [
     "Arsenal"
    ],
    "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Brighton latest: Pre-season plans thrown off by G7 helicopter landings",
-   "link": "https://www.skysports.com/football/live-blog/11095/13279295/brighton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-07-24T14:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Replacing Pep, Chelsea, Rodri and Grealish - Maresca's best bits",
-   "link": "https://www.skysports.com/watch/video/13566651/manchester-city-enzo-marescas-best-bits-from-first-news-conference",
-   "published": "2026-07-24T14:40:00+00:00",
-   "watch": [
-    "Chelsea",
-    "Manchester City"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Watch the best bits from Enzo Maresca's first news conference as Manchester City manager."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Chelsea latest: Lacroix set for medical as Chalobah interest grows",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025497/chelsea-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-07-24T15:30:00+00:00",
-   "watch": [
-    "Chelsea",
-    "Inter"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Liverpool takeover Q&A: Could Bezos buy stake at Anfield?",
-   "link": "https://www.skysports.com/football/news/11095/13566630/liverpool-key-questions-answered-as-jeff-bezos-and-amit-bhatia-line-up-bid-for-strategic-minority-stake-in-club",
-   "published": "2026-07-24T15:30:00+00:00",
-   "watch": [
-    "Liverpool"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Liverpool's owners Fenway Sports Group are in talks with a consortium fronted by Amit Bhatia over the sale of a minority stake in the club."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Why Alex Scott is one of the Premier League's MOST WANTED midfielders",
-   "link": "https://www.skysports.com/watch/video/13566685/alex-scott-why-the-bournemouth-midfielder-is-wanted-by-so-many-premier-league-clubs",
-   "published": "2026-07-24T15:59:00+00:00",
-   "watch": [],
-   "summary": "Sky Sports' Peter Smith explains why so many clubs are after Bournemouth's Alex Scott."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Premier League pre-season: Gannon-Doak scores in big win for Bournemouth",
-   "link": "https://www.skysports.com/football/live-blog/11095/13564293/premier-league-pre-season-friendlies-2026-latest-news-goals-and-highlights",
-   "published": "2026-07-24T18:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Hull City latest: Japanese international Morita signs",
-   "link": "https://www.skysports.com/football/live-blog/11095/13548674/hull-city-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-07-24T18:00:00+00:00",
-   "watch": [
-    "Inter"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Shining starlets, but no JJ Gabriel - five-star United impress in pre-season win",
-   "link": "https://www.skysports.com/football/news/11095/13566755/rosenborg-0-5-man-utd-what-we-learned-after-michael-carricks-side-picked-up-first-win-of-2026-27-pre-season",
-   "published": "2026-07-24T20:07:00+00:00",
-   "watch": [
-    "Manchester United"
-   ],
-   "summary": "Manchester United picked up their first win of pre-season in impressive fashion in a 5-0 victory over Norwegian side Rosenborg."
   },
   {
    "source": "BBC Gossip",
@@ -576,29 +478,75 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Papers: Premier League clubs plotting Watkins bid",
-   "link": "https://www.skysports.com/football/news/11095/13566763/paper-talk-manchester-united-and-arsenal-plotting-ollie-watkins-bid",
-   "published": "2026-07-24T22:00:00+00:00",
+   "title": "Brighton latest: Pre-season plans thrown off by G7 helicopter landings",
+   "link": "https://www.skysports.com/football/live-blog/11095/13279295/brighton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+   "published": "2026-07-24T21:00:00+00:00",
    "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "The top stories and transfer rumours from Saturday's newspapers..."
+   "summary": ""
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Maresca's Man City vow: I am not a 'copy and paste' coach",
-   "link": "https://www.skysports.com/football/news/11095/13566644/enzo-maresca-insists-he-is-not-a-copy-and-paste-coach-after-taking-over-from-pep-guardiola-at-man-city",
-   "published": "2026-07-24T22:30:00+00:00",
+   "title": "Replacing Pep, Chelsea, Rodri and Grealish - Maresca's best bits",
+   "link": "https://www.skysports.com/watch/video/13566651/manchester-city-enzo-marescas-best-bits-from-first-news-conference",
+   "published": "2026-07-24T21:40:00+00:00",
    "watch": [
-    "Man City"
+    "Chelsea",
+    "Manchester City"
    ],
    "also": [
     "Sky Sports"
    ],
-   "summary": "Enzo Maresca has vowed not to be a \"copy and paste\" coach in his first press conference since succeeding Pep Guardiola as Man City manager."
+   "summary": "Watch the best bits from Enzo Maresca's first news conference as Manchester City manager."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Chelsea latest: Lacroix set for medical as Chalobah interest grows",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025497/chelsea-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-07-24T22:30:00+00:00",
+   "watch": [
+    "Chelsea",
+    "Inter"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Liverpool takeover Q&A: Could Bezos buy stake at Anfield?",
+   "link": "https://www.skysports.com/football/news/11095/13566630/liverpool-key-questions-answered-as-jeff-bezos-and-amit-bhatia-line-up-bid-for-strategic-minority-stake-in-club",
+   "published": "2026-07-24T22:30:00+00:00",
+   "watch": [
+    "Liverpool"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Liverpool's owners Fenway Sports Group are in talks with a consortium fronted by Amit Bhatia over the sale of a minority stake in the club."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Why Alex Scott is one of the Premier League's MOST WANTED midfielders",
+   "link": "https://www.skysports.com/watch/video/13566685/alex-scott-why-the-bournemouth-midfielder-is-wanted-by-so-many-premier-league-clubs",
+   "published": "2026-07-24T22:59:00+00:00",
+   "watch": [],
+   "summary": "Sky Sports' Peter Smith explains why so many clubs are after Bournemouth's Alex Scott."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Premier League pre-season: Gannon-Doak scores in big win for Bournemouth",
+   "link": "https://www.skysports.com/football/live-blog/11095/13564293/premier-league-pre-season-friendlies-2026-latest-news-goals-and-highlights",
+   "published": "2026-07-25T01:00:00+00:00",
+   "watch": [],
+   "summary": ""
   },
   {
    "source": "Guardian",
@@ -983,114 +931,312 @@
    "summary": "Ever since France midfielder Alain Giresse struck the World Cup’s first shootout penalty in 1982, a total of 342 players have stepped up to face the goalkeeper for the most nerve wracking test in football. We take a look"
   },
   {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Have the top four teams ever made up the World Cup semi-finalists before? | The Knowledge",
-   "link": "https://www.theguardian.com/football/2026/jul/15/world-cup-semi-final-rankings-scores-messi-ronaldo",
-   "published": "2026-07-15T07:00:48+00:00",
-   "watch": [],
-   "summary": "Plus: back-to-back heavy wins and defeats, and an unsurprising challenger to a Lionel Messi recordMail us with your all of your questions and answers“The top four teams in the Fifa rankings are also the four semi-finalis"
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "France vs Spain: The 2026 World Cup’s Best Attack Meets Its Best Defence",
+   "link": "https://theanalyst.com/articles/france-spain-world-cup-semi-final-2026-attack-vs-defence",
+   "published": "2026-07-13T18:36:43+00:00",
+   "watch": [
+    "Inter"
+   ],
+   "summary": "Tuesday's World Cup semi-final presents an interesting proposition as a star-studded France attack will be tasked with breaking down a resolute Spain defence. The post France vs Spain: The 2026 World Cup’s Best Attack Me"
   },
   {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "How are London City Lionesses able to embark on such a transfer spree?",
-   "link": "https://www.theguardian.com/football/2026/jul/15/london-city-lionesses-transfers-wsl-michele-kang",
-   "published": "2026-07-15T11:30:53+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "France vs Spain Prediction: World Cup 2026 Match Preview",
+   "link": "https://theanalyst.com/articles/france-vs-spain-prediction-world-cup-2026-match-preview",
+   "published": "2026-07-14T08:09:22+00:00",
    "watch": [],
-   "summary": "Many are in awe of the investment that Michele Kang is making into the women’s game. Others, though, are baffledThere is one team whose transfer activity this summer has captured everyone’s attention. London City Lioness"
+   "summary": "Can Les Bleus reach a third straight World Cup final or will the European champions beat them for a third straight time? We look ahead to this semi-final clash with our France vs Spain prediction and preview. The post Fr"
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Who has been eliminated from the World Cup?",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c74y970len4o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-07-16T07:29:15+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Injustice, Red Cards and a Police Escort: Revealing the Data Behind England vs Argentina World Cup Rivalry",
+   "link": "https://theanalyst.com/articles/england-vs-argentina-rivalry-stats-world-cup-beckham-maradona-owen-controversy",
+   "published": "2026-07-14T12:02:39+00:00",
    "watch": [],
-   "summary": "BBC Sport's Ask Me Anything team lists the full set of nations who have been eliminated from the 2026 World Cup so far"
+   "summary": "Given Opta has detailed data on the World Cup going back to 1966, we can reveal insights from historical meetings between England and Argentina that only fuel the rivalry further. The post Injustice, Red Cards and a Poli"
   },
   {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "MLS return storylines: Berhalter’s future, Son’s goal drought and what’s next for Messi?",
-   "link": "https://www.theguardian.com/football/2026/jul/16/mls-return-storylines-messi-son-berhalter",
-   "published": "2026-07-16T10:00:35+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "30 FCS Defensive Standouts Named to 2026 Buck Buchanan Award Preseason Watch List",
+   "link": "https://theanalyst.com/articles/buck-buchanan-award-fcs-football-defensive-player-preseason-watch-list-2026",
+   "published": "2026-07-14T13:35:06+00:00",
    "watch": [],
-   "summary": "The league is back in play after a six-week pause for the World Cup. We spotlight seven players to watch after their stints with their national teamsThe 2026 MLS season resumes Thursday, cleverly holding its return on th"
+   "summary": "The Buck Buchanan Award honors FCS college football's defensive player of the year. Thirty players are named to the preseason watch list. The post 30 FCS Defensive Standouts Named to 2026 Buck Buchanan Award Preseason Wa"
   },
   {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Canberra United’s A-League Women future secured as date set for Men’s team entry",
-   "link": "https://www.theguardian.com/football/2026/jul/17/canberra-united-a-league-women-club-football-new-owner",
-   "published": "2026-07-17T00:00:22+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Walter Payton Award’s 40th Anniversary Kicks Off With Preseason Watch List",
+   "link": "https://theanalyst.com/articles/walter-payton-award-fcs-football-offensive-player-preseason-watch-list-2026",
+   "published": "2026-07-14T13:35:39+00:00",
    "watch": [],
-   "summary": "Australian Sports Group takes over licence from Capital FootballNew owner has option to introduce ALM side for the 2028/29 seasonThe future of Canberra United has been secured, with a new owner found for the two-time A-L"
+   "summary": "The Walter Payton Award honors FCS college football's offensive player of the year. Thirty players are named to the preseason watch list. The post Walter Payton Award’s 40th Anniversary Kicks Off With Preseason Watch Lis"
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Does World Cup third place play-off count towards Golden Boot?",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cn8nl41xr59o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-07-17T10:54:10+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "The Open Championship Predictions: FRACAS Likes Scheffler, But Who Else?",
+   "link": "https://theanalyst.com/articles/the-open-championship-predictions-2026",
+   "published": "2026-07-14T18:10:05+00:00",
    "watch": [],
-   "summary": "BBC Sport's Ask Me Anything team looks into the history of World Cup Golden Boot winners and the third-place play-off"
+   "summary": "Scottie Scheffler is favored at the Open Championship, but our FRACAS projection model identifies plenty of contenders at Royal Birkdale. The post The Open Championship Predictions: FRACAS Likes Scheffler, But Who Else? "
   },
   {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Tuchel would rather put down the English game than admit to his own cowardice | Jonathan Liew",
-   "link": "https://www.theguardian.com/football/2026/jul/18/thomas-tuchel-england-dna-world-cup-football",
-   "published": "2026-07-18T07:00:51+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "2026 World Cup Golden Boot Race: Lionel Messi, Kylian Mbappé, Harry Kane and the Stars in Contention",
+   "link": "https://theanalyst.com/articles/2026-world-cup-golden-boot-race-goals",
+   "published": "2026-07-14T19:38:37+00:00",
    "watch": [],
-   "summary": "England’s coach said ball possession is not in the team’s DNA – it’s an opinion that should disqualify him from the jobHow we talked. On late-night news shows, disembodied heads above a rolling yellow banner. On planes a"
+   "summary": "Who will win the Golden Boot for the 2026 FIFA World Cup? Here, we track the leading contenders as the goals fly in. The post 2026 World Cup Golden Boot Race: Lionel Messi, Kylian Mbappé, Harry Kane and the Stars in Cont"
   },
   {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "‘Where did they go?’: homeless people feel force of America’s brutality in World Cup clean-up",
-   "link": "https://www.theguardian.com/football/2026/jul/18/where-did-they-go-homeless-people-feel-force-of-americas-brutality-in-world-cup-clean-up",
-   "published": "2026-07-18T15:15:43+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "France 0-2 Spain Stats: Oyarzabal and Porro Send European Champions to World Cup Final",
+   "link": "https://theanalyst.com/articles/france-vs-spain-stats-world-cup-semi-final",
+   "published": "2026-07-14T21:26:54+00:00",
    "watch": [],
-   "summary": "Fifa says football brings the world together but the unhoused in Atlanta feel targeted and completely excluded from the tournament“A lot of our community has been pushed out by the World Cup. We’re not just dollar signs,"
+   "summary": "Spain were in total control against France in the World Cup semi-final, effectively stifling Les Bleus' attack to book a place in the final. The post France 0-2 Spain Stats: Oyarzabal and Porro Send European Champions to"
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Brilliant first half, turbulent second - Tuchel",
-   "link": "https://www.bbc.co.uk/sport/football/videos/c1j1djgkg98o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-07-19T00:13:13+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Spain’s Off-Ball Intensity Crushes Hype of France Attack En Route to World Cup Final",
+   "link": "https://theanalyst.com/articles/spains-intensity-crushes-hype-france-attack-world-cup-stats",
+   "published": "2026-07-14T22:19:03+00:00",
    "watch": [],
-   "summary": "England manager praises his players as England beat France 6-4 for third place in the 2026 World Cup."
+   "summary": "France were outfought and outthought in Tuesday's World Cup semi-final, as Spain booked their place in the final to face England or Argentina. The post Spain’s Off-Ball Intensity Crushes Hype of France Attack En Route to"
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "England beat France in 10-goal thriller to win third-place play-off",
-   "link": "https://www.bbc.co.uk/sport/football/videos/cm2gn7v4jljo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-07-19T01:12:34+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "England vs Argentina Prediction: World Cup 2026 Match Preview",
+   "link": "https://theanalyst.com/articles/england-vs-argentina-prediction-world-cup-2026-match-preview",
+   "published": "2026-07-15T08:05:41+00:00",
    "watch": [],
-   "summary": "Bukayo Saka scores a hat-trick as England beat France 6-4 in a thriller to record their best men's World Cup finish since 1966."
+   "summary": "England and Argentina will renew their rivalry in a mouth-watering 2026 World Cup semi-final at Atlanta Stadium. Look ahead to Wednesday's game with our England vs Argentina prediction and preview. The post England vs Ar"
   },
   {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Masters of time and space, Spain’s dominance comes from deep-rooted principles | Emma Hayes",
-   "link": "https://www.theguardian.com/football/2026/jul/19/masters-of-time-and-space-spains-dominance-comes-from-deep-rooted-principles",
-   "published": "2026-07-19T07:00:20+00:00",
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Can England Win the World Cup With Such Extreme Reliance on Harry Kane and Jude Bellingham?",
+   "link": "https://theanalyst.com/articles/harry-kane-jude-bellingham-england-reliance-world-cup-stats",
+   "published": "2026-07-15T08:08:08+00:00",
    "watch": [],
-   "summary": "Spain’s brilliance isn’t just about Rodri or Lamine Yamal – it’s all about the collective culture developed over many yearsWe talk about individuals too much in English football. Football is about the collective. Spain’s"
+   "summary": "Between them, Jude Bellingham and Harry Kane have scored 12 of England's 13 goals in 2026. No team has ever relied so heavily on two players at a World Cup, but history tells us that may not be a bad thing. The post Can "
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "England Team vs Argentina: Four Selection Dilemmas for Thomas Tuchel",
+   "link": "https://theanalyst.com/articles/england-team-vs-argentina-selection-dilemmas-thomas-tuchel",
+   "published": "2026-07-15T08:30:35+00:00",
+   "watch": [],
+   "summary": "Who should Thomas Tuchel select for England when they face Argentina in Wednesday's World Cup semi-final? Here are four big decisions he'll need to make. The post England Team vs Argentina: Four Selection Dilemmas for Th"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "From ‘Egotistical Losers’ to ‘Pure Mentality’: How England Overcame Their Major Tournament Troubles",
+   "link": "https://theanalyst.com/articles/england-world-cup-euros-tournament-troubles",
+   "published": "2026-07-15T09:48:57+00:00",
+   "watch": [],
+   "summary": "England have reached four semi-finals at major tournaments in the last eight years. That doubles their all-time total. How have the Three Lions been able to push through what seemed to be a mental barrier? The post From "
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Press High, Exploit the Flanks and More: Four Ways England Can Exploit Argentina’s Weaknesses",
+   "link": "https://theanalyst.com/articles/england-vs-argentina-world-cup-2026-weaknesses-tactics-to-exploit",
+   "published": "2026-07-15T11:21:36+00:00",
+   "watch": [],
+   "summary": "England have reached the semi-finals of the FIFA World Cup for the second time in the last three tournaments. Standing between them and a place in the final are the reigning champions, Argentina. The post Press High, Exp"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Youri Tielemans Could Be Man Utd’s Smartest Post-Ferguson Signing",
+   "link": "https://theanalyst.com/articles/man-utd-youri-tielemans-transfer-no-brainer-stats",
+   "published": "2026-07-15T14:12:26+00:00",
+   "watch": [
+    "Manchester United"
+   ],
+   "summary": "Youri Tielemans signed for Manchester United on Monday for a reported £35 million. So much points to it being a very shrewd investment. The post Youri Tielemans Could Be Man Utd’s Smartest Post-Ferguson Signing appeared "
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "MLB Managers With the Most Wins All Time",
+   "link": "https://theanalyst.com/articles/mlb-manager-all-time-wins",
+   "published": "2026-07-15T19:31:19+00:00",
+   "watch": [],
+   "summary": "They have different styles, but the MLB managers with the most wins all time are similar with the bottom line found in the standings. The post MLB Managers With the Most Wins All Time appeared first on Opta Analyst."
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "The Most Saves in a Season and Career in MLB History",
+   "link": "https://theanalyst.com/articles/most-saves-in-a-season-postseason-and-career-in-mlb-history",
+   "published": "2026-07-15T19:32:05+00:00",
+   "watch": [],
+   "summary": "Jerome Holtzman couldn’t have had any idea what he started when he invented the save. Although people were unofficially crediting relievers with saves prior to Holtzman publicizing it, he was the one who came up with the"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "England 1-2 Argentina Stats: Another Late Comeback From Defending Champions Sets up World Cup Final Against Spain",
+   "link": "https://theanalyst.com/articles/england-vs-argentina-stats-world-cup-2026",
+   "published": "2026-07-15T21:36:21+00:00",
+   "watch": [],
+   "summary": "Argentina showed their trademark grit and determination to get through to another World Cup final. Re-live this semi-final with our England vs Argentina stats page. The post England 1-2 Argentina Stats: Another Late Come"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Argentina’s Powers of Recovery Send them to Another World Cup Final",
+   "link": "https://theanalyst.com/articles/argentina-powers-of-recovery-world-cup-final",
+   "published": "2026-07-15T22:36:14+00:00",
+   "watch": [],
+   "summary": "The defending world champions have made it to the final, despite looking close to elimination multiple times during this World Cup. The post Argentina’s Powers of Recovery Send them to Another World Cup Final appeared fi"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Interactive: What Does It Take to Score a Goal in a World Cup Final?",
+   "link": "https://theanalyst.com/articles/world-cup-final-goals-what-does-it-take-to-score",
+   "published": "2026-07-16T10:59:46+00:00",
+   "watch": [
+    "Inter"
+   ],
+   "summary": "We look back at every goal scored in a men’s World Cup final to see what it takes to score in football's biggest game. The post Interactive: What Does It Take to Score a Goal in a World Cup Final? appeared first on Opta "
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "How England Threw Away Their World Cup Dream",
+   "link": "https://theanalyst.com/articles/how-england-threw-away-their-world-cup-dream",
+   "published": "2026-07-16T12:24:48+00:00",
+   "watch": [],
+   "summary": "Once again at a major tournament, England took the lead against quality opposition and failed to keep hold of it. This is how they fell short in familiar fashion. The post How England Threw Away Their World Cup Dream app"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Style Without Enough Substance: Progress Desperately Needed at UNC Under Belichick, Colorado Under Prime",
+   "link": "https://theanalyst.com/articles/bill-belichick-deion-sanders-college-football-progress-needed-at-unc-colorado",
+   "published": "2026-07-16T15:00:25+00:00",
+   "watch": [],
+   "summary": "With North Carolina under Bill Belichick and Colorado under Deion Sanders, anything less than 2026 progress could lead to their departures. The post Style Without Enough Substance: Progress Desperately Needed at UNC Unde"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "France vs England Prediction: World Cup 2026 Match Preview",
+   "link": "https://theanalyst.com/articles/france-vs-england-prediction-world-cup-2026-match-preview",
+   "published": "2026-07-17T08:14:42+00:00",
+   "watch": [],
+   "summary": "Didier Deschamps bids adieu as France and England face off in the 2026 FIFA World Cup third place play-off. The post France vs England Prediction: World Cup 2026 Match Preview appeared first on Opta Analyst."
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "2026 World Cup Bracket: Opta Supercomputer Knockout-Stage Predictions",
+   "link": "https://theanalyst.com/articles/2026-world-cup-bracket-opta-supercomputer",
+   "published": "2026-07-17T14:55:17+00:00",
+   "watch": [],
+   "summary": "Use our 2026 FIFA World Cup bracket to look back on the knockout stages and get the latest Opta supercomputer predictions for the final. The post 2026 World Cup Bracket: Opta Supercomputer Knockout-Stage Predictions appe"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "The ‘Real Rodri’ Returns Just in Time For World Cup Final Date With Lionel Messi",
+   "link": "https://theanalyst.com/articles/real-rodri-is-back-spain-world-cup-2026-stats",
+   "published": "2026-07-18T09:11:17+00:00",
+   "watch": [],
+   "summary": "It was no secret that Rodri didn't return to his best in 2025-26 after a lengthy injury absence. But after exercising restraint and patience, he has led Spain to a second World Cup final. The post The ‘Real Rodri’ Return"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Goals, Set-Piece Ability, and Versatility: What Christos Tzolis Would Bring to Arsenal",
+   "link": "https://theanalyst.com/articles/christos-tzolis-arsenal-stats-perfect-leandro-trossard-replacement",
+   "published": "2026-07-18T09:36:59+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": "According to reports, Club Brugge's Christos Tzolis seems set to join Premier League champions Arsenal next season. What would he bring to the club? The post Goals, Set-Piece Ability, and Versatility: What Christos Tzoli"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Are England Better Off With or Without Thomas Tuchel?",
+   "link": "https://theanalyst.com/articles/england-thomas-tuchel-stats-world-cup-2026-keep-sack",
+   "published": "2026-07-18T09:37:07+00:00",
+   "watch": [],
+   "summary": "After a disastrous ending to an otherwise largely positive 2026 World Cup campaign, should England stick with Thomas Tuchel or make a change? The post Are England Better Off With or Without Thomas Tuchel? appeared first "
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "The Last Dance That Refused to End: Lionel Messi’s World Cup Masterclass",
+   "link": "https://theanalyst.com/articles/lionel-messi-greatest-player-of-all-time-debate-settled-world-cup-2026",
+   "published": "2026-07-18T09:37:07+00:00",
+   "watch": [],
+   "summary": "Lionel Messi didn’t need the 2026 World Cup to prove his brilliance, but he’s cemented his position as the greatest footballer ever nonetheless. The post The Last Dance That Refused to End: Lionel Messi’s World Cup Maste"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Spain vs Argentina: Six Key Subplots That Could Decide 2026 World Cup Final",
+   "link": "https://theanalyst.com/articles/spain-argentina-world-cup-final-2026-subplots",
+   "published": "2026-07-18T09:37:09+00:00",
+   "watch": [],
+   "summary": "Spain vs Argentina is sure to be a tasty end to the 2026 FIFA World Cup. We take a look at six key talking points that could make this game special. The post Spain vs Argentina: Six Key Subplots That Could Decide 2026 Wo"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "The World Cup Third-Place Play-Off: Is It the Weirdest Game in Football?",
+   "link": "https://theanalyst.com/articles/world-cup-third-place-play-off-stats",
+   "published": "2026-07-18T09:37:16+00:00",
+   "watch": [],
+   "summary": "France will play England in the 2026 World Cup third-place play-off on Saturday. We look back on what is a bit of a strange fixture at the tournament. The post The World Cup Third-Place Play-Off: Is It the Weirdest Game "
   }
  ]
 }

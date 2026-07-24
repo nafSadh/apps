@@ -132,13 +132,25 @@ def main():
     # A trimmed copy IS committed: it is what the brief writer reads, since that job
     # runs where outbound fetches are blocked. Full feed stays local — 190KB of churn
     # a day is not worth keeping in history.
+    # Quota per tier, NOT a flat head of the list. deduped is sorted tier-ascending,
+    # so a plain [:90] fills up on rumour+news and the writer never sees an analysis
+    # piece — which is exactly what happened on the first run.
+    QUOTA = {1: 40, 2: 35, 3: 30}
+    picked, taken = [], {1: 0, 2: 0, 3: 0}
+    for e in deduped:
+        t = e["tier"]
+        if taken[t] < QUOTA[t]:
+            picked.append(e)
+            taken[t] += 1
+
     slim = {
         "fetched": blob["fetched"], "counts": blob["counts"],
+        "slimByTier": taken,
         "errors": [{"source": e["source"], "error": e["error"][:120]} for e in errors],
         "items": [{k: v for k, v in e.items() if k in
                    ("source", "tier", "kind", "title", "link", "watch", "also", "published")}
                   | {"summary": e["summary"][:220]}
-                  for e in deduped[:90]],
+                  for e in picked],
     }
     SLIM.write_text(json.dumps(slim, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"\n{len(deduped)} unique of {len(items)} raw -> {OUT}", file=sys.stderr)
