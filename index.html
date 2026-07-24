@@ -12,33 +12,67 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0b0e18; --card:#0f1322; --card2:#151b30; --ink:#eef1fa; --mut:#8490aa; --mut2:#546080;
+    --bg:#0b0e18; --card:#0f1322; --ink:#eef1fa; --mut:#8490aa; --mut2:#546080;
     --line:#1c2440; --acc:#9b7aed; --acc2:#b598ff; --cyan:#4ee8d0; --rose:#e88aa0; --amber:#e8c870;
     --serif:'Fraunces',Georgia,serif; --sans:'Jost',-apple-system,sans-serif; --mono:'IBM Plex Mono',monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--mut);font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh;position:relative;overflow-x:hidden}
+  body{background:var(--bg);color:var(--mut);font-family:var(--sans);-webkit-font-smoothing:antialiased;
+    min-height:100vh;position:relative;overflow-x:hidden}
   body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     background:
       radial-gradient(ellipse 75% 60% at 14% 16%, color-mix(in srgb,var(--cyan),transparent 88%), transparent 64%),
       radial-gradient(ellipse 70% 58% at 86% 26%, color-mix(in srgb,var(--rose),transparent 90%), transparent 66%),
       radial-gradient(ellipse 78% 66% at 78% 90%, color-mix(in srgb,var(--amber),transparent 92%), transparent 68%),
       radial-gradient(ellipse 64% 56% at 24% 76%, color-mix(in srgb,var(--acc),transparent 87%), transparent 62%);}
-  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:72px 22px 90px}
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:clamp(56px,10vh,86px) 22px 90px}
+
   .brand{font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--mut2);margin-bottom:18px}
-  h1{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(40px,8vw,68px);letter-spacing:-.02em;color:var(--ink);line-height:1;margin-bottom:14px}
+  h1{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(40px,8vw,68px);
+    letter-spacing:-.02em;color:var(--ink);line-height:1;margin-bottom:14px}
   h1 .dot{color:var(--acc)}
-  .lede{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--mut);max-width:520px;line-height:1.5;margin-bottom:44px}
-  .apps{display:grid;gap:14px}
-  a.app{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .18s,transform .18s,box-shadow .18s}
-  a.app:hover{border-color:var(--acc);transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.35)}
-  .app-top{display:flex;align-items:center;gap:14px;margin-bottom:8px}
-  .app-emoji{font-size:30px;line-height:1}
-  .app-name{font-family:var(--serif);font-style:italic;font-weight:500;font-size:26px;color:var(--ink)}
-  .app-slug{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--mut2);text-transform:uppercase}
-  .app-desc{font-size:14px;color:var(--mut);line-height:1.55;max-width:560px}
-  footer{margin-top:60px;font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--mut2)}
+  .lede{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--mut);max-width:520px;
+    line-height:1.5;margin-bottom:52px}
+
+  .group{margin-bottom:44px}
+  .group-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+  .group-name{font-family:var(--mono);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--mut2)}
+  .group-rule{flex:1;height:1px;background:var(--line)}
+  .group-count{font-family:var(--mono);font-size:11px;color:var(--mut2)}
+
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:12px}
+  a.app{--c:var(--acc);display:flex;flex-direction:column;text-decoration:none;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:20px 22px 18px;
+    transition:border-color .2s,transform .2s,box-shadow .2s}
+  a.app:hover{border-color:var(--c);transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.4)}
+  a.app:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+  a.app.feature{grid-column:1/-1;flex-direction:row;align-items:flex-start;gap:20px;padding:22px}
+  .app-emoji{font-size:26px;line-height:1;margin-bottom:12px}
+  .app.feature .app-emoji{font-size:34px;margin:2px 0 0;flex-shrink:0}
+  .app.feature>span:last-child{display:flex;flex-direction:column}
+  .app-top{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .app-name{font-family:var(--serif);font-style:italic;font-weight:500;font-size:22px;color:var(--ink);line-height:1.15}
+  .app.feature .app-name{font-size:26px}
+  .app-slug{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:1.4px;color:var(--mut2);
+    text-transform:uppercase;white-space:nowrap}
+  .app-desc{font-size:14px;color:var(--mut);line-height:1.55}
+  .app-more{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--mut2);
+    background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:5px;padding:4px 7px}
+  .stack{display:flex;flex-direction:column}
+  .stack .app{flex:1}
+  .sub{align-self:flex-start;margin-top:8px;padding:2px 0;font-family:var(--mono);font-size:11px;letter-spacing:1px;
+    text-transform:uppercase;color:var(--mut2);text-decoration:none;border-bottom:1px solid transparent}
+  .sub:hover{color:var(--acc2);border-bottom-color:var(--acc)}
+  .sub:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;
+    letter-spacing:1.4px;text-transform:uppercase;color:var(--mut2);display:flex;justify-content:space-between;
+    gap:14px;flex-wrap:wrap}
   footer a{color:var(--acc2);text-decoration:none}
+  footer a:hover{color:var(--ink)}
+  @media (max-width:560px){ a.app.feature{flex-direction:column;align-items:flex-start;gap:12px} }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -46,57 +80,58 @@
     <div class="brand">sadh<span style="color:var(--acc)">.app</span></div>
     <h1>Small web apps<span class="dot">.</span></h1>
     <p class="lede">Self-contained experiments — built to load fast and run entirely in your browser.</p>
-    <div class="apps">
-      <a class="app" href="/photoing/om1-guide.html">
-        <div class="app-top">
-          <span class="app-emoji">🦅</span>
-          <span class="app-name">Seeing with the OM-1</span>
-          <span class="app-slug">/photoing</span>
-        </div>
-        <div class="app-desc">A visual field guide to the OM SYSTEM OM-1 — an interactive equivalence explorer and a Spot HI/SH metering simulator, the computational darkroom (Live ND, Live Composite, handheld 50MP), ProCapture, IP53 weather craft, a mission-based lens map and twelve days out.</div>
-      </a>
-      <a class="app" href="/photoing/x100vi-guide.html">
-        <div class="app-top">
+
+    <section class="group">
+      <div class="group-head">
+        <span class="group-name">Photography</span><span class="group-rule"></span><span class="group-count">01</span>
+      </div>
+      <div class="apps">
+        <a class="app feature" href="/photoing/" style="--c:var(--amber)">
           <span class="app-emoji">📷</span>
-          <span class="app-name">Seeing with the X100VI</span>
-          <span class="app-slug">/photoing</span>
+          <span>
+            <span class="app-top">
+              <span class="app-name">Photoing</span>
+              <span class="app-slug">/photoing</span>
+            </span>
+            <span class="app-desc">Visual field guides to the cameras I shoot with — interactive simulators, cutaway diagrams of the mechanisms inside, and craft notes that admit what doesn't work.</span>
+            <span class="app-more">
+              <span class="chip">Fujifilm X100VI</span><span class="chip">OM System OM-1</span><span class="chip">2 guides</span>
+            </span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="group">
+      <div class="group-head">
+        <span class="group-name">Football</span><span class="group-rule"></span><span class="group-count">03</span>
+      </div>
+      <div class="apps">
+        <div class="stack">
+          <a class="app" href="/wc2026/" style="--c:var(--cyan)">
+            <span class="app-emoji">🏆</span>
+            <span class="app-top"><span class="app-name">World Cup 2026</span><span class="app-slug">/wc2026</span></span>
+            <span class="app-desc">An interactive bracket simulator — edit group results and project the knockouts across ranking, Elo, market and form models, with the upset dial in your hands.</span>
+          </a>
+          <a class="sub" href="/wc2026/semifinalists.html">Semifinalist goal trends →</a>
         </div>
-        <div class="app-desc">A visual field guide to the Fujifilm X100VI — interactive simulators for aperture, exposure and metering, cutaways of the leaf shutter, ND and hybrid finder, film-recipe cards, a twelve-scene field deck, and the honest craft notes to go with them.</div>
-      </a>
-      <a class="app" href="/pantheon-cup/">
-        <div class="app-top">
+        <a class="app" href="/pantheon-cup/" style="--c:var(--rose)">
           <span class="app-emoji">🏛️</span>
-          <span class="app-name">Pantheon Cup</span>
-          <span class="app-slug">/pantheon-cup</span>
-        </div>
-        <div class="app-desc">Gods, monsters, heroes and one mortal genius — stripped of every power and made to play actual football. Sixteen teams, four groups, one trophy: settle the groups, sweat the knockouts, and find out who can really play when the magic is gone.</div>
-      </a>
-      <a class="app" href="/matchday/">
-        <div class="app-top">
+          <span class="app-top"><span class="app-name">Pantheon Cup</span><span class="app-slug">/pantheon-cup</span></span>
+          <span class="app-desc">Gods, monsters and heroes stripped of every power and made to play actual football. Sixteen teams, four groups, one trophy.</span>
+        </a>
+        <a class="app" href="/matchday/" style="--c:var(--acc2)">
           <span class="app-emoji">📺</span>
-          <span class="app-name">Matchday Pacific</span>
-          <span class="app-slug">/matchday</span>
-        </div>
-        <div class="app-desc">A US West Coast viewing guide for European club football, 2026–27 — typical Pacific Time kickoff windows, six clubs with predicted squads, eighteen players to watch, key dates and live countdowns to the new season.</div>
-      </a>
-      <a class="app" href="/wc2026/">
-        <div class="app-top">
-          <span class="app-emoji">🏆</span>
-          <span class="app-name">World Cup 2026</span>
-          <span class="app-slug">/wc2026</span>
-        </div>
-        <div class="app-desc">An interactive 2026 World Cup bracket simulator — edit group results, project the knockout rounds across FIFA-ranking, Elo, betting-market and recent-form models, track each team's path to the final, and dial up the chance of upsets.</div>
-      </a>
-      <a class="app" href="/wc2026/semifinalists.html">
-        <div class="app-top">
-          <span class="app-emoji">⚽️</span>
-          <span class="app-name">World Cup 2026 - Semifinalists</span>
-          <span class="app-slug">/wc2026/semifinalists</span>
-        </div>
-        <div class="app-desc">Goal trends of semifinalists</div>
-      </a>
-    </div>
-    <footer>by <a href="https://nafsadh.com">nafSadh</a></footer>
+          <span class="app-top"><span class="app-name">Matchday Pacific</span><span class="app-slug">/matchday</span></span>
+          <span class="app-desc">A US West Coast viewing guide to European club football, 2026–27 — kickoff windows, six clubs, players to watch and live countdowns.</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>Everything here runs client-side</span>
+      <span>by <a href="https://nafsadh.com">nafSadh</a></span>
+    </footer>
   </div>
 </body>
 </html>
