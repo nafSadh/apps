@@ -79,7 +79,7 @@
   .eyebrow .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
 
   /* narrative prose stays at a readable measure even though the article shell is full-width — same pattern index.html uses for .sub */
-  article>p{font-size:15.5px;line-height:1.75;color:var(--soft);margin-top:14px;max-width:720px}
+  article>p,.standfirst>p{font-size:15.5px;line-height:1.75;color:var(--soft);margin-top:14px;max-width:720px}
   article>p:first-of-type{margin-top:0}
   article b{color:var(--chalk);font-weight:600}
   article a{color:var(--ucl)}
@@ -269,6 +269,44 @@
   .lm-body .srclinks a{font-family:var(--mono);font-size:11px;color:var(--ucl);text-decoration:none}
   .lm-body .srclinks a:hover{text-decoration:underline}
 
+  /* ---------- desktop layout ----------
+     Blocks were capped at 720/760/820/1020, so the right edge stepped four ways
+     down the page. Now the article is a two-track grid: each section's intro
+     paragraph is a standfirst in the narrow track with its content alongside. */
+  @media(min-width:1000px){
+    /* Magazine standfirst: each section's intro paragraph sits in a narrow left
+       column with the section's content beside it. Replaces columns:2 on the
+       paragraphs themselves, which split a 4-line block into 2+2 mid-thought. */
+    article{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);column-gap:46px;align-items:start}
+    article>*{grid-column:2}
+    article>.eyebrow{grid-column:1/-1}
+    /* .standfirst groups the intro with the rules that explain it, so both travel
+       to the left column as one unit and the diagram keeps the right to itself */
+    article>.eyebrow+p,article>.eyebrow+.standfirst{grid-column:1;max-width:none;margin-top:18px}
+    .standfirst>p{max-width:none;margin-top:0}
+    .standfirst>ul.facts{margin-top:14px;max-width:none}
+    /* opening matter and anything genuinely wide keeps the full measure */
+    article>.lede,article>.lede+p,article>figure.illo,article>.statpull,
+    article>.viewtoggle,article>#watchByComp,article>#watchByServ,
+    article>.stories-grid{grid-column:1/-1}
+    /* five detailed league cards need three tracks; in the 654px content column
+       they fall to one. This section keeps its intro above rather than beside. */
+    article>.leagues-grid,article>p:has(+.leagues-grid){grid-column:1/-1}
+    /* everything else in the column was capped at 720/760/820, so the right edge
+       stepped four different ways down the page — square them all to the header */
+    .callout,.swiss,.keydates,.facts,.fmt-detail,.statpull{max-width:none}
+    /* facts lists now sit in the 654px content column, so one track reads better
+       than two — bullets have bold lead-ins and cramp badly at ~40 characters */
+    ul.facts{max-width:none}
+    /* each wrow is a short name plus a right-aligned service, so full width just
+       opened a void between them — pair them up in two columns instead */
+    #watchByComp{columns:2;column-gap:46px}
+    #watchByComp h3,#watchByComp .fine{column-span:all}
+    #watchByComp .wrow{break-inside:avoid}
+    /* 250px tracks would fit four across and strand a fifth card alone on row two */
+    .svc-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  }
+
   /* ---------- mobile ---------- */
   @media(max-width:640px){
     .head-row{flex-wrap:wrap;align-items:flex-start}
@@ -411,7 +449,7 @@
   <div class="fine">PSG's Champions League nights air on Paramount+, separate from their Ligue 1 rights on Fanatiz. US rights current as of Jul 2026 — verify before subscribing.</div>
 </div>
 
-<div id="watchByServ" class="svc-grid" style="display:none;max-width:820px">
+<div id="watchByServ" class="svc-grid" style="display:none">
   <div class="svcard">
     <div class="sh"><img class="slogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Paramount_Plus.svg/330px-Paramount_Plus.svg.png" alt="" onerror="this.style.display='none'"><h4>Paramount+</h4></div>
     <div class="price">Essential $8.99/mo ($89.99/yr), with ads<br>Premium $13.99/mo ($139.99/yr), ad-free + Showtime</div>
@@ -517,12 +555,14 @@
 <div class="fine">Current squads, predicted XIs, and profile links live on the <a href="clubs.html">clubs</a> and <a href="players.html">players</a> pages.</div>
 
 <div class="eyebrow"><h2><img class="lgo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/UEFA_Champions_League_logo_no_text.svg/330px-UEFA_Champions_League_logo_no_text.svg.png" alt="" onerror="this.style.display='none'">The New Champions League</h2><div class="rule"></div><div class="tag">36-team league phase</div></div>
+<div class="standfirst">
 <p>UEFA scrapped the four-team group stage after the 2023–24 season. In its place: a single 36-team league phase, where every club plays eight matches — four home, four away — against eight different opponents drawn from four seeding pots, instead of a closed group of three familiar rivals.</p>
 
 <ul class="facts">
   <li><b>The table decides everything</b> — top 8 straight to the Round of 16 seeded, 9–24 into a two-legged play-off, 25 or worse out with no Europa League parachute.</li>
   <li><b>Tiebreakers, in order:</b> goal difference → goals scored → away goals → total wins → away wins → club coefficient.</li>
 </ul>
+</div>
 
 <div class="swiss">
   <div class="phase">One <b>36-team table</b> · 8 matches each (4 home / 4 away) vs 8 different opponents · 144 matches in the phase</div>
@@ -537,7 +577,7 @@
   <li><b>Knockouts:</b> away goals abolished — level on aggregate after 180 minutes means 30 of extra time, then penalties.</li>
 </ul>
 
-<details class="fmt-detail" style="max-width:760px">
+<details class="fmt-detail">
   <summary>How the pots &amp; draw actually work</summary>
   <div class="dbody">The 36 clubs are split into four pots of nine by UEFA club coefficient — largely a five-year record of European results. Each club is drawn against two opponents from each of the four pots (one at home, one away), for eight matches total, with a country-protection rule barring two clubs from the same association from meeting in the league phase. UEFA's software runs the whole draw in about 30 minutes at its Nyon headquarters — the old balls-in-bowls ceremony is gone, replaced by a sequence of pre-calculated pairings shown on screen. The 2026–27 final is set for Saturday, June 5, 2027, at Atlético Madrid's Estadio Metropolitano — its second Champions League final, after hosting the 2019 decider.</div>
   <div class="srclinks">
@@ -612,14 +652,16 @@
 </div>
 
 <div class="eyebrow"><h2>Circle These</h2><div class="rule"></div><div class="tag">derby dates · Pacific Time</div></div>
+<div class="standfirst">
 <p>Derbies are the fixtures where the form book means the least — the safest thing a neutral can block off months in advance. Dates below come from the <a href="cal.html">app's own calendar</a>; every one lands in a weekend morning window PT. This season's subplots:</p>
 <ul class="facts">
   <li>Mourinho's first Clásico in charge of Madrid since 2013.</li>
   <li>Maresca inheriting the Manchester derby from the manager he assisted.</li>
   <li>North London against an Arsenal spine that just signed through the decade.</li>
 </ul>
+</div>
 
-<div class="callout" style="max-width:760px">
+<div class="callout">
   <h3>Two of each, chronological</h3>
   <div class="wrow epl"><svg class="epl-mark sm" aria-hidden="true"><use href="#epl-mark"/></svg><span class="what">Manchester derby · United v City</span><span class="svc">Sun Sep 13 · 8:30a</span></div>
   <div class="wrow liga"><svg class="liga-mark sm" aria-hidden="true"><use href="#liga-mark"/></svg><span class="what">Madrid derby · Atlético v Real Madrid</span><span class="svc">Sun Sep 20 · 7:15a</span></div>
