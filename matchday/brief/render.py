@@ -55,10 +55,15 @@ def item_html(e):
     link = esc(e.get("link") or "#")
     summ = e.get("summary", "")
     summ = re.sub(r"\s+", " ", summ)[:190]
+    # built outside the f-string: quotes/backslashes inside an f-string expression
+    # need Python 3.12+, and the runners this has to survive are not all on 3.12
+    blurb = '<p class="bs">' + esc(summ) + "</p>" if summ else ""
+    title = esc(e["title"])
+    srclist = esc(", ".join(srcs))
     return (f'    <li class="bitem">\n'
-            f'      <a class="bt" href="{link}" target="_blank" rel="noopener">{esc(e["title"])}</a>\n'
-            f'      {"<p class=\'bs\'>" + esc(summ) + "</p>" if summ else ""}\n'
-            f'      <div class="bmeta"><span class="src">{esc(", ".join(srcs))}</span>{corr}{tags}</div>\n'
+            f'      <a class="bt" href="{link}" target="_blank" rel="noopener">{title}</a>\n'
+            f'      {blurb}\n'
+            f'      <div class="bmeta"><span class="src">{srclist}</span>{corr}{tags}</div>\n'
             f'    </li>')
 
 
