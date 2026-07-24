@@ -98,6 +98,24 @@ body {
 }
 .svg-stage svg { width: 100%; height: auto; display: block; max-width: 100%; }
 .svg-stage img.fig { width: 100%; height: auto; display: block; border-radius: 10px; }
+.mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.mission-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
+.mission-card:hover { transform: translateY(-3px); border-color: var(--accent-teal); }
+img.mission-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
+.mission-body { padding: 1rem 1.2rem 1.3rem; }
+.mission-body h3 { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-2); margin-bottom: 0.6rem; }
+.mission-body p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 0; max-width: none; }
+.mission-body p strong { color: var(--text-primary); }
+@media (max-width: 540px) { .mission-grid { grid-template-columns: 1fr; } }
+.lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(14,11,6,0.93); display: flex; align-items: center; justify-content: center; }
+.lightbox[hidden] { display: none; }
+.lightbox img { max-width: min(92vw, 1080px); max-height: 86vh; border-radius: 10px; box-shadow: 0 24px 80px rgba(0,0,0,0.55); }
+.lb-btn { position: fixed; background: none; border: none; color: #f4f3ee; cursor: pointer; opacity: 0.7; font-family: 'JetBrains Mono', monospace; transition: opacity 0.2s ease; z-index: 61; }
+.lb-btn:hover { opacity: 1; }
+.lb-prev, .lb-next { top: 50%; transform: translateY(-50%); font-size: 3rem; padding: 1.5rem 1rem; }
+.lb-prev { left: 6px; } .lb-next { right: 6px; }
+.lb-close { top: 12px; right: 16px; font-size: 2rem; padding: 0.5rem 1rem; }
+.lb-cap { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #d8d0bd; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; display: flex; gap: 1.2rem; }
 .recipe-card img.recipe-photo { width: 100%; height: 220px; object-fit: cover; object-position: center 62%; display: block; }
 .scene-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
 .scene-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
@@ -472,8 +490,15 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
   </div>
   <p><strong>And the frame is squarer.</strong> Native <strong>4:3</strong> is closer to classic print ratios than 3:2, and it rewires imported instincts: verticals lose the gangly headroom that makes 3:2 portraits feel stretched, central subjects and symmetry sit comfortably instead of fighting a rule-of-thirds reflex, and stacked horizontal bands — compressed ridgelines, layered haze at 600mm-e — hold without widescreen dead space. Crop to 3:2 later if a screen demands it; compose to the frame you actually have.</p>
   <p><strong>The stacked heart.</strong> The 20MP sensor is <strong>stacked BSI</strong> — readout electronics layered behind the photosites — and it reads out fast enough to change the camera's manners: an electronic shutter to <strong>1/32000</strong> with minimal rolling distortion, a <strong>blackout-free</strong> 120fps finder, silent <strong>50fps bursts with continuous AF</strong>, and the pre-press time machine of §06. Speed, not resolution, is this sensor's argument.</p>
-  <!-- RENDER SLOT: exploded OM-1 cutaway -->
-  <!-- RENDER SLOT: stacked sensor cutaway -->
+  <div class="svg-stage">
+    <img class="fig" src="img/om-exploded.jpg" alt="Rendered exploded view of a weather-sealed mirrorless camera: lens elements, aperture iris, sensor on a five-axis stabilizer cage, processor boards and green gaskets" loading="lazy">
+    <div class="stage-caption">The OM-1, unstacked — glass, iris, the sensor riding its five-axis cage, twin processing boards, and green gasket lines at every seam · rendered cutaway (Gemini), component order stylized</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/om-stacked-sensor.jpg" alt="Rendered cutaway of a stacked back-illuminated sensor: microlens layer, photodiode layer, and readout circuitry layer with a wide data stream flowing out" loading="lazy">
+    <div class="stage-caption">Why it is fast, not big — microlenses, photodiodes, and a whole floor of readout circuitry bonded beneath, dumping data sideways at speed · rendered cutaway (Gemini)</div>
+  </div>
+
 </section>
 
 <!-- ================= 02 CONTROLS ================= -->
@@ -585,7 +610,11 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <p>Cross-type points hold to about <strong>−8 EV</strong> with fast glass — dusk wildlife stays sticky. And when the sky itself is the subject, <strong>Starry Sky AF</strong> (§05) focuses on actual stars — no more infinity-mark guessing on a cold tripod.</p>
     </div>
   </div>
-  <!-- RENDER SLOT: quad-pixel AF cutaway -->
+  <div class="svg-stage">
+    <img class="fig" src="img/om-quad-pixel-af.jpg" alt="Rendered cutaway of quad-pixel autofocus: one microlens over four photodiode quadrants with light split four ways and horizontal and vertical waveform pairs aligning" loading="lazy">
+    <div class="stage-caption">Quad-pixel AF — one microlens, four quadrants: horizontal <em>and</em> vertical detail read at once, which is what &#8220;all 1,053 points are cross-type&#8221; actually means · rendered cutaway (Gemini)</div>
+  </div>
+
 </section>
 
 <!-- ================= 05 COMPUTATIONAL ================= -->
@@ -621,8 +650,15 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <p>Long exposures that <strong>develop before your eyes</strong> — the EVF updates mid-exposure so you end it when the frame is done, not when the math said. The B position on the dial hides all three Live modes; visit it on purpose.</p>
     </div>
   </div>
-  <!-- RENDER SLOT: Live Composite accumulation illustration -->
-  <!-- RENDER SLOT: Live ND frame-averaging illustration -->
+  <div class="svg-stage">
+    <img class="fig" src="img/om-live-composite.jpg" alt="Rendered illustration of Live Composite: five stacked night frames where star trails grow longer in each while the city skyline stays identically exposed" loading="lazy">
+    <div class="stage-caption">Live Composite, frame by frame — only <em>new</em> light is added, so trails grow while the skyline holds the exposure it had in frame one · rendered illustration (Gemini)</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/om-live-nd.jpg" alt="Rendered illustration of Live ND: six sequential waterfall frames averaged into a single silky long-exposure result previewed on the camera screen" loading="lazy">
+    <div class="stage-caption">Live ND, demystified — a burst of ordinary frames averaged into one silky exposure, previewed live before you commit · rendered illustration (Gemini)</div>
+  </div>
+
 </section>
 
 <!-- ================= 06 SPEED ================= -->
@@ -650,7 +686,11 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <p>The 120fps EVF never blinks during bursts — you <em>watch</em> the bird through the sequence instead of reconstructing it. That, not the frame rate, is what raises the keeper count: tracking is a vision problem before it&#8217;s an AF problem.</p>
     </div>
   </div>
-  <!-- RENDER SLOT: ProCapture time-buffer illustration -->
+  <div class="svg-stage">
+    <img class="fig" src="img/om-procapture.jpg" alt="Rendered illustration of ProCapture: a film strip of a kingfisher launching, with frames before the shutter press highlighted as kept and older frames fading away" loading="lazy">
+    <div class="stage-caption">ProCapture — the shutter press marks the <em>end</em> of the kept frames, not the start: the takeoff you reacted to was already recorded · rendered illustration (Gemini)</div>
+  </div>
+
 </section>
 
 <!-- ================= 07 STABILIZATION ================= -->
@@ -678,7 +718,11 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <p>Base-ISO dusk streets, sharp 1/4s forest interiors (§12), museum interiors at ISO 400 instead of 6400 — the deep-DOF sensor plus impossible shutter speeds is how MFT climbs back two low-light stops it gave away on paper.</p>
     </div>
   </div>
-  <!-- RENDER SLOT: Sync-IS body+lens cooperation cutaway -->
+  <div class="svg-stage">
+    <img class="fig" src="img/om-sync-is.jpg" alt="Rendered cutaway of Sync-IS: a camera body with a floating stabilized sensor and a telephoto lens with its own stabilized element, linked by a communication line" loading="lazy">
+    <div class="stage-caption">Sync-IS — body cage and lens element steering as one system, which is where the 7th and 8th stops come from · rendered cutaway (Gemini)</div>
+  </div>
+
 </section>
 
 <!-- ================= 08 WEATHER ================= -->
@@ -706,7 +750,11 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <p>Salt spray: fine while shooting, but <strong>fresh-water-damp wipe the same evening</strong> — salt crystals abrade seals over months. Dust: the sensor shake + sealed body make the OM-1 the sanest choice for deserts and volcanic grit.</p>
     </div>
   </div>
-  <!-- RENDER SLOT: weather-sealing gasket cutaway -->
+  <div class="svg-stage">
+    <img class="fig" src="img/om-weather-seal.jpg" alt="Rendered isometric cutaway showing green rubber gaskets compressed at the lens mount, card door and battery door while rain and dust are deflected outside" loading="lazy">
+    <div class="stage-caption">What IP53 looks like from inside — continuous gasket lines at every seam, mount to card door, deflecting rain and dust before they find a path · rendered cutaway (Gemini)</div>
+  </div>
+
 </section>
 
 <!-- ================= 09 GLASS ================= -->
@@ -813,11 +861,17 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
     <h2>Twelve Days Out</h2>
   </div>
   <p>Twelve days this camera was built for — each one a bank you can save (§02) and a reason the format exists. Baselines assume the §11 setup; the notes name only what changes: settings, the metering move (§03), and the thing nobody tells you until you have stood there.</p>
-  <div class="arch-grid">
-    <div class="arch-card">
-      <h3>Birds in Flight</h3>
-      <p><strong>C1: S 1/2500 · wide open · ISO auto-6400 · bird detect · SH2</strong>. ProCapture armed for takeoffs (§06). White birds: <strong>Spot HI the plumage (§03)</strong>. Craft: pick the perch-to-perch line and wait at the second perch.</p>
+  <div class="mission-grid">
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-01.jpg" data-lb="1" data-title="Birds in Flight" alt="Field card infographic: Birds in Flight — settings band, takeoff diagram with ProCapture buffer strip and Spot HI on white plumage" loading="lazy">
+      <div class="mission-body">
+        <h3>Birds in Flight</h3>
+        <p><strong>C1: S 1/2500 · wide open · ISO auto-6400 · bird detect · SH2</strong>. ProCapture armed for takeoffs (§06). White birds: <strong>Spot HI the plumage (§03)</strong>. Craft: pick the perch-to-perch line and wait at the second perch.</p>
+      </div>
     </div>
+  </div>
+  <p>The other eleven days, as notes until their cards are drawn:</p>
+  <div class="arch-grid">
     <div class="arch-card">
       <h3>Wildlife · Mammals</h3>
       <p><strong>A f/4–5.6 · min 1/500 · animal detect · silent shutter</strong>. Forest shade: Spot SH the dark fur, let it be dark (§03). Craft: low and patient beats close and fast; the second look back is the photograph.</p>
@@ -941,6 +995,14 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
   </div>
 </section>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Mission card viewer" hidden>
+  <button class="lb-btn lb-close" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev" aria-label="Previous card">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" aria-label="Next card">›</button>
+  <div class="lb-cap"><span id="lbTitle"></span><span id="lbCount"></span></div>
+</div>
+
 <footer class="page-footer">
   <p><em>"If your pictures aren't good enough, you're not close enough."</em> — <strong>Robert Capa</strong>. The OM-1's answer: get closer, <em>and</em> bring 800mm-equivalent for when you can't.</p>
 </footer>
@@ -1037,6 +1099,37 @@ document.querySelectorAll('.step-nav').forEach(nav => {
 });
 setLens('k1240');
 setOmMeter('esp');
+
+// Mission-deck lightbox
+const lbEls = [...document.querySelectorAll('img[data-lb]')].sort((a, b) => a.dataset.lb - b.dataset.lb);
+if (lbEls.length) {
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbCount = document.getElementById('lbCount');
+  let lbIdx = 0;
+  const lbShow = (i) => {
+    lbIdx = (i + lbEls.length) % lbEls.length;
+    const el = lbEls[lbIdx];
+    lbImg.src = el.src; lbImg.alt = el.alt;
+    lbTitle.textContent = el.dataset.title || '';
+    lbCount.textContent = (lbIdx + 1) + ' / ' + lbEls.length;
+  };
+  const lbClose = () => { lb.hidden = true; document.body.style.overflow = ''; };
+  lbEls.forEach((el, i) => el.addEventListener('click', () => {
+    lbShow(i); lb.hidden = false; document.body.style.overflow = 'hidden';
+  }));
+  document.querySelector('.lb-prev').addEventListener('click', () => lbShow(lbIdx - 1));
+  document.querySelector('.lb-next').addEventListener('click', () => lbShow(lbIdx + 1));
+  document.querySelector('.lb-close').addEventListener('click', lbClose);
+  lb.addEventListener('click', (e) => { if (e.target === lb) lbClose(); });
+  document.addEventListener('keydown', (e) => {
+    if (lb.hidden) return;
+    if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
+    else if (e.key === 'ArrowLeft') lbShow(lbIdx - 1);
+    else if (e.key === 'Escape') lbClose();
+  });
+}
 </script>
 </body>
 </html>
