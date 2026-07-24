@@ -12,12 +12,12 @@
   --bg-deepest: #0a0a0f;
   --bg-dark: #10101a;
   --bg-card: rgba(255, 255, 255, 0.03);
-  --text-primary: #e8e6e1;
+  --text-primary: #e7eaef;
   --text-dim: #6b6a7a;
-  --accent-coral: #ff6b3d;
-  --accent-teal: #4ecdc4;
-  --accent-gold: #ffe66d;
-  --accent-purple: #a78bfa;
+  --accent-coral: #a8462a;
+  --accent-teal: #2b7fa8;
+  --accent-gold: #c8a83f;
+  --accent-purple: #123a5c;
   --accent-pink: #f472b6;
   --accent-2: var(--accent-teal);
   --glow-coral: rgba(255, 107, 61, 0.3);
@@ -40,7 +40,7 @@ body {
 .hero { height: 100vh; height: 100svh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 .hero::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(78,205,196,0.08) 0%, rgba(255,107,61,0.04) 40%, transparent 100%);
+  background: radial-gradient(circle at 30% 20%, rgba(43,127,168,0.08) 0%, rgba(168,70,42,0.04) 40%, transparent 100%);
   pointer-events: none; z-index: 1;
 }
 .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 2rem; }
@@ -106,16 +106,18 @@ img.mission-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
 .mission-body h3 { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-2); margin-bottom: 0.6rem; }
 .mission-body p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 0; max-width: none; }
 .mission-body p strong { color: var(--text-primary); }
+.deck-cover { max-width: 400px; margin: 2rem auto 0.5rem; }
+.deck-cover img { border-radius: 12px; border: var(--border-card); }
 @media (max-width: 540px) { .mission-grid { grid-template-columns: 1fr; } }
 .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(14,11,6,0.93); display: flex; align-items: center; justify-content: center; }
 .lightbox[hidden] { display: none; }
 .lightbox img { max-width: min(92vw, 1080px); max-height: 86vh; border-radius: 10px; box-shadow: 0 24px 80px rgba(0,0,0,0.55); }
-.lb-btn { position: fixed; background: none; border: none; color: #f4f3ee; cursor: pointer; opacity: 0.7; font-family: 'JetBrains Mono', monospace; transition: opacity 0.2s ease; z-index: 61; }
+.lb-btn { position: fixed; background: none; border: none; color: #f2f1ec; cursor: pointer; opacity: 0.7; font-family: 'JetBrains Mono', monospace; transition: opacity 0.2s ease; z-index: 61; }
 .lb-btn:hover { opacity: 1; }
 .lb-prev, .lb-next { top: 50%; transform: translateY(-50%); font-size: 3rem; padding: 1.5rem 1rem; }
 .lb-prev { left: 6px; } .lb-next { right: 6px; }
 .lb-close { top: 12px; right: 16px; font-size: 2rem; padding: 0.5rem 1rem; }
-.lb-cap { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #d8d0bd; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; display: flex; gap: 1.2rem; }
+.lb-cap { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #d3d0c8; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; display: flex; gap: 1.2rem; }
 .recipe-card img.recipe-photo { width: 100%; height: 220px; object-fit: cover; object-position: center 62%; display: block; }
 .scene-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
 .scene-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
@@ -134,12 +136,12 @@ img.scene-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
 .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(14,11,6,0.93); display: flex; align-items: center; justify-content: center; }
 .lightbox[hidden] { display: none; }
 .lightbox img { max-width: min(92vw, 1080px); max-height: 86vh; border-radius: 10px; box-shadow: 0 24px 80px rgba(0,0,0,0.55); }
-.lb-btn { position: fixed; background: none; border: none; color: #f4f3ee; cursor: pointer; opacity: 0.7; font-family: 'JetBrains Mono', monospace; transition: opacity 0.2s ease; z-index: 61; }
+.lb-btn { position: fixed; background: none; border: none; color: #f2f1ec; cursor: pointer; opacity: 0.7; font-family: 'JetBrains Mono', monospace; transition: opacity 0.2s ease; z-index: 61; }
 .lb-btn:hover { opacity: 1; }
 .lb-prev, .lb-next { top: 50%; transform: translateY(-50%); font-size: 3rem; padding: 1.5rem 1rem; }
 .lb-prev { left: 6px; } .lb-next { right: 6px; }
 .lb-close { top: 12px; right: 16px; font-size: 2rem; padding: 0.5rem 1rem; }
-.lb-cap { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #d8d0bd; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; display: flex; gap: 1.2rem; }
+.lb-cap { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #d3d0c8; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; display: flex; gap: 1.2rem; }
 .stage-caption {
   font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--text-dim); text-align: center;
@@ -170,7 +172,7 @@ img.scene-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
 /* ---------- Recipe cards ---------- */
 .recipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
 .recipe-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
-.recipe-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); box-shadow: 0 0 30px rgba(255,230,109,0.15); }
+.recipe-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); box-shadow: 0 0 30px rgba(200,168,63,0.15); }
 .recipe-card svg { width: 100%; height: auto; display: block; }
 .recipe-body { padding: 1.1rem 1.25rem 1.4rem; }
 .recipe-body h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.25rem; }
@@ -183,7 +185,7 @@ img.scene-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
 /* ---------- Composition grid ---------- */
 .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
 .comp-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
-.comp-card:hover { transform: translateY(-4px); border-color: var(--accent-purple); box-shadow: 0 0 26px rgba(167,139,250,0.18); }
+.comp-card:hover { transform: translateY(-4px); border-color: var(--accent-purple); box-shadow: 0 0 26px rgba(18,58,92,0.18); }
 .comp-card svg { width: 100%; height: auto; display: block; }
 .comp-body { padding: 0.85rem 1rem 1.1rem; }
 .comp-name { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--accent-2); margin-bottom: 0.35rem; }
@@ -194,7 +196,7 @@ img.scene-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
   display: block; background: var(--bg-card); border: var(--border-card); border-radius: 12px;
   overflow: hidden; text-decoration: none; color: inherit; transition: all 0.4s ease;
 }
-.photo-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); box-shadow: 0 0 30px rgba(255,230,109,0.15); }
+.photo-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); box-shadow: 0 0 30px rgba(200,168,63,0.15); }
 .photo-card img { width: 100%; height: 210px; object-fit: cover; display: block; background: rgba(255,255,255,0.04); }
 .photo-cap { padding: 0.9rem 1.1rem 1.1rem; }
 .photo-tag {
@@ -250,8 +252,8 @@ img.scene-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
 .path-steps { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .path-step {
   font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-transform: uppercase;
-  letter-spacing: 0.08em; padding: 0.6rem 1.2rem; background: rgba(78,205,196,0.1);
-  border: 1px solid rgba(78,205,196,0.3); border-radius: 6px; color: var(--accent-teal);
+  letter-spacing: 0.08em; padding: 0.6rem 1.2rem; background: rgba(43,127,168,0.1);
+  border: 1px solid rgba(43,127,168,0.3); border-radius: 6px; color: var(--accent-teal);
 }
 /* ---------- Footer ---------- */
 .page-footer {
@@ -303,33 +305,33 @@ img.scene-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
 </style>
 
 <style id="paper-theme">
-/* ============ PAPER & CHROME — sadh.ink x X100VI ============ */
+/* ============ FIELD NOTEBOOK — sadh.ink x OM-1 ============ */
 :root {
-  --paper: #f4f3ee; --paper-hi: #fafaf5; --paper-cool: #eeefe9;
-  --ink: #1a1208; --ink-soft: #3d2a16; --dim-paper: #8a7a56;
-  --azure: #2a6bb8; --azure-deep: #1a3e68; --red-pen: #b8422a;
-  --line: rgba(26,18,8,.14);
+  --paper: #f2f1ea; --paper-hi: #f9f7f1; --paper-cool: #f6f1e6;
+  --ink: #171b21; --ink-soft: #333a44; --dim-paper: #6a7280;
+  --azure: #1f6a99; --azure-deep: #123a5c; --red-pen: #a8462a;
+  --line: rgba(23,27,33,.14);
   --bg-deepest: var(--paper); --bg-dark: var(--paper-cool);
-  --bg-card: #fbfaf6;
+  --bg-card: #f9f6ee;
   --text-primary: var(--ink); --text-dim: var(--dim-paper);
-  --accent-coral: var(--red-pen); --accent-teal: var(--azure);
-  --accent-gold: #b8912a; --accent-purple: var(--azure-deep); --accent-pink: #b8422a;
-  --accent-2: var(--azure);
-  --glow-coral: rgba(184,66,42,.14); --glow-teal: rgba(42,107,184,.14);
+  --accent-coral: var(--azure); --accent-teal: var(--azure-deep);
+  --accent-gold: #a3862c; --accent-purple: var(--azure-deep); --accent-pink: #a8462a;
+  --accent-2: var(--azure-deep);
+  --glow-coral: rgba(31,106,153,.16); --glow-teal: rgba(18,58,92,.14);
   --border-card: 1px solid var(--line);
-  --finder: #eeefe9; --finder-line: rgba(26,18,8,.32);
+  --finder: #f6f1e6; --finder-line: rgba(23,27,33,.28);
 }
 body { background: var(--paper); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; }
 /* paper grain + warm/cool ambient, straight from sadh.ink */
 body::before { content:''; position: fixed; inset: 0; pointer-events: none; opacity: .05; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0.8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode: multiply; }
 body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background: linear-gradient(180deg, rgba(250,245,230,.55) 0%, rgba(244,243,238,0) 40%, rgba(238,239,233,.35) 100%); }
+  background: linear-gradient(180deg, rgba(248,246,240,.50) 0%, rgba(242,241,234,0) 40%, rgba(236,234,226,.36) 100%); }
 .hero, .section, .reading-list, .page-footer { position: relative; z-index: 1; }
 /* ---- Hero ---- */
-.hero::before { background: radial-gradient(circle at 30% 20%, rgba(220,180,120,.20) 0%, rgba(42,107,184,.05) 45%, transparent 100%); }
-.hero-kicker { color: var(--red-pen); font-weight: 600; }
+.hero::before { background: radial-gradient(circle at 30% 20%, rgba(150,175,205,.22) 0%, rgba(31,106,153,.05) 45%, transparent 100%); }
+.hero-kicker { color: var(--azure); font-weight: 600; }
 .hero h1 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
   letter-spacing: -.03em; font-variation-settings: "opsz" 144;
   background: linear-gradient(120deg, var(--ink) 0%, var(--ink) 55%, var(--azure) 80%, var(--ink) 100%);
@@ -338,33 +340,21 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
 .hero-sub { color: var(--ink-soft); }
 .hero-sub em { color: var(--azure); }
 .scroll-cue { color: var(--dim-paper); }
-.scroll-cue .arrow { color: var(--red-pen); }
-/* chrome top plate */
-.top-plate { display: flex; align-items: center; justify-content: center; gap: 14px;
-  margin: 0 auto 2.2rem; padding: 10px 22px; max-width: 380px; border-radius: 8px;
-  background: linear-gradient(180deg, #f4f4f1 0%, #dcdcd7 42%, #c8c8c3 58%, #ececea 100%);
-  border: 1px solid #b9b9b4; box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 2px 8px rgba(26,18,8,.12); }
-.tp-text { font-family: 'JetBrains Mono', monospace; font-size: .78rem; letter-spacing: .5em;
-  margin-right: -.5em; color: #63635e; text-shadow: 0 1px 0 rgba(255,255,255,.85); font-weight: 600; }
-.tp-dot { width: 11px; height: 11px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #d9634b, #a52d18 70%);
-  box-shadow: 0 1px 2px rgba(26,18,8,.35), 0 1px 0 rgba(255,255,255,.7); }
-.tp-knurl { width: 42px; height: 12px; border-radius: 2px; opacity: .55;
-  background: repeating-linear-gradient(90deg, #8f8f8a 0 1.5px, transparent 1.5px 4px); }
+.scroll-cue .arrow { color: var(--azure); }
 /* ---- Sections ---- */
-.section-number { color: var(--red-pen); font-weight: 600; }
+.section-number { color: var(--azure); font-weight: 600; }
 .section h2 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
   font-variation-settings: "opsz" 100; color: var(--ink); letter-spacing: -.02em; }
 .section p { color: var(--ink-soft); }
 .section p strong { color: var(--ink); }
 .section p em { color: var(--azure); font-style: italic; }
-.key-idea { border-left: 3px solid var(--red-pen); background: var(--paper-hi);
-  box-shadow: 0 1px 4px rgba(26,18,8,.06); }
-.key-idea .kicker { color: var(--red-pen); }
+.key-idea { border-left: 3px solid var(--azure); background: var(--paper-hi);
+  box-shadow: 0 1px 4px rgba(23,27,33,.06); }
+.key-idea .kicker { color: var(--azure); }
 .key-idea p { color: var(--ink-soft); }
 /* ---- The viewfinder stages: dark panels on paper, OVF corner brackets ---- */
 .svg-stage { background: var(--finder); border: 1px solid var(--line); border-radius: 14px;
-  position: relative; box-shadow: 0 8px 26px rgba(26,18,8,.10), 0 1px 4px rgba(26,18,8,.06); }
+  position: relative; box-shadow: 0 8px 26px rgba(23,27,33,.10), 0 1px 4px rgba(23,27,33,.06); }
 .svg-stage::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .75; border-radius: 14px;
   background:
     linear-gradient(var(--finder-line),var(--finder-line)) no-repeat left 13px top 13px / 22px 2px,
@@ -380,58 +370,108 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
 .svg-stage .step-btn:hover { border-color: var(--ink); color: var(--ink); }
 .svg-stage .step-btn.active { background: var(--ink); color: var(--paper-hi); border-color: var(--ink); }
 /* ---- Cards on paper ---- */
-.arch-card { background: var(--paper-hi); border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(26,18,8,.05); }
-.arch-card:hover { border-color: var(--azure); box-shadow: 0 6px 22px rgba(42,107,184,.14); }
+.arch-card { background: var(--paper-hi); border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(23,27,33,.05); }
+.arch-card:hover { border-color: var(--azure); box-shadow: 0 6px 22px rgba(31,106,153,.14); }
 .arch-card h3 { color: var(--azure); }
 .arch-card p { color: var(--ink-soft); }
 .arch-card p strong { color: var(--ink); }
-.recipe-card, .comp-card { background: var(--paper-hi); border: 1px solid var(--line); box-shadow: 0 1px 5px rgba(26,18,8,.07); }
+.recipe-card, .comp-card { background: var(--paper-hi); border: 1px solid var(--line); box-shadow: 0 1px 5px rgba(23,27,33,.07); }
 .recipe-card svg, .comp-card svg, .recipe-card img.recipe-photo { display: block; padding: 8px 8px 0; background: var(--paper-hi); box-sizing: border-box; border-bottom: 1px solid var(--line); }
-.recipe-card:hover { border-color: var(--accent-gold); box-shadow: 0 8px 26px rgba(184,145,42,.18); }
-.comp-card:hover { border-color: var(--azure-deep); box-shadow: 0 8px 26px rgba(26,62,104,.16); }
+.recipe-card:hover { border-color: var(--accent-gold); box-shadow: 0 8px 26px rgba(163,134,44,.18); }
+.comp-card:hover { border-color: var(--azure-deep); box-shadow: 0 8px 26px rgba(18,58,92,.16); }
 .recipe-body h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--ink); }
-.recipe-use { color: var(--red-pen); }
+.recipe-use { color: var(--azure); }
 .recipe-settings { color: var(--dim-paper); }
 .recipe-settings b { color: var(--azure); }
 .comp-name { color: var(--azure); }
 .comp-tip { color: var(--ink-soft); }
 /* ---- Real frames as mounted prints ---- */
-.photo-card { background: #fff; border: 1px solid var(--line); box-shadow: 0 2px 10px rgba(26,18,8,.1); }
+.photo-card { background: #fff; border: 1px solid var(--line); box-shadow: 0 2px 10px rgba(23,27,33,.1); }
 .photo-card img { padding: 10px 10px 0; background: #fff; box-sizing: border-box; }
-.photo-card:hover { border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(26,18,8,.18); }
-.photo-tag { color: var(--red-pen); }
+.photo-card:hover { border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(23,27,33,.18); }
+.photo-tag { color: var(--azure); }
 .photo-credit { color: var(--dim-paper); }
 /* ---- Reading list ---- */
-.tier-1-badge { background: var(--red-pen); color: var(--paper-hi); }
+.tier-1-badge { background: var(--azure); color: var(--paper-hi); }
 .tier-2-badge { background: var(--azure); color: var(--paper-hi); }
 .tier-3-badge { background: var(--azure-deep); color: var(--paper-hi); }
-.resource-card { background: var(--paper-hi); border: 1px solid var(--line); border-left: 3px solid var(--red-pen); }
-.resource-card:hover { border-left-color: var(--azure); box-shadow: -6px 0 20px rgba(42,107,184,.14); }
+.resource-card { background: var(--paper-hi); border: 1px solid var(--line); border-left: 3px solid var(--azure); }
+.resource-card:hover { border-left-color: var(--azure); box-shadow: -6px 0 20px rgba(31,106,153,.14); }
 .resource-body h4 { color: var(--ink); }
 .resource-body .author { color: var(--dim-paper); }
 .resource-body p { color: var(--ink-soft); }
-.resource-tag { background: rgba(26,18,8,.05); color: var(--dim-paper); }
-.suggested-path { background: var(--paper-hi); border-image: linear-gradient(90deg, var(--red-pen), var(--azure)) 1; }
+.resource-tag { background: rgba(23,27,33,.05); color: var(--dim-paper); }
+.suggested-path { background: var(--paper-hi); border-image: linear-gradient(90deg, var(--azure), var(--azure-deep)) 1; }
 .suggested-path h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; }
-.path-step { background: rgba(42,107,184,.08); border: 1px solid rgba(42,107,184,.3); color: var(--azure); }
+.path-step { background: rgba(31,106,153,.08); border: 1px solid rgba(31,106,153,.3); color: var(--azure); }
 /* ---- Footer ---- */
 .page-footer { border-top: 1px solid var(--line); }
 .page-footer p { font-family: 'Fraunces', serif; color: var(--dim-paper); }
 .page-footer em { color: var(--red-pen); }
 .page-footer strong { color: var(--ink); font-style: normal; }
-@media (max-width: 600px) { .top-plate { max-width: 300px; gap: 10px; } .tp-knurl { width: 26px; } }
+
+.section, .reading-list { scroll-margin-top: 64px; }
+/* ---- Sticky top bar ---- */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; gap: 1rem; height: 46px;
+  padding: 0 clamp(1rem, 4vw, 2.2rem);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(12px); backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-100%); opacity: 0;
+  transition: transform .32s ease, opacity .32s ease;
+}
+.topbar.show { transform: none; opacity: 1; }
+.tb-mark {
+  font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .18em;
+  text-transform: uppercase; font-weight: 600; color: var(--ink);
+  background: none; border: none; padding: 0; cursor: pointer;
+}
+.tb-mark:hover { color: var(--accent-coral); }
+.tb-jump {
+  margin-left: auto; display: flex; align-items: center; gap: .5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: .68rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--dim-paper);
+  background: none; border: none; padding: .3rem .1rem; cursor: pointer; max-width: 62vw;
+}
+.tb-jump:hover { color: var(--ink); }
+.tb-jump .chev { transition: transform .25s ease; font-size: .6rem; }
+.tb-jump[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.tb-jump .label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tb-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0;
+  background: var(--accent-coral); transition: width .1s linear; }
+.tb-menu {
+  position: fixed; top: 46px; right: clamp(1rem, 4vw, 2.2rem); z-index: 51;
+  background: var(--paper-hi); border: 1px solid var(--line); border-radius: 10px;
+  padding: .4rem; min-width: 250px; max-height: 72vh; overflow-y: auto;
+  box-shadow: 0 12px 34px rgba(0,0,0,.14); display: none; flex-direction: column;
+}
+.tb-menu.open { display: flex; }
+.tb-menu a {
+  font-family: 'JetBrains Mono', monospace; font-size: .7rem; letter-spacing: .04em;
+  color: var(--ink-soft); text-decoration: none; padding: .5rem .7rem; border-radius: 6px;
+  display: flex; gap: .6rem; align-items: baseline;
+}
+.tb-menu a:hover { background: var(--paper-cool); color: var(--accent-coral); }
+.tb-menu a.here { color: var(--accent-coral); font-weight: 600; }
+.tb-menu a .n { color: var(--dim-paper); flex-shrink: 0; min-width: 1.6em; }
+.tb-menu a.here .n { color: var(--accent-coral); }
+@media (max-width: 560px) { .tb-jump .label { display: none; } .tb-menu { min-width: 210px; } }
 </style>
 </head>
 <body>
+<div class="topbar" id="topbar">
+  <button class="tb-mark" id="tbTop" title="Back to top">OM-1</button>
+  <button class="tb-jump" id="tbJump" aria-expanded="false" aria-controls="tbMenu">
+    <span class="label" id="tbLabel"></span><span class="chev">▼</span>
+  </button>
+  <div class="tb-progress" id="tbProgress"></div>
+</div>
+<nav class="tb-menu" id="tbMenu" aria-label="Sections"></nav>
 <!-- ================= HERO ================= -->
 <section class="hero">
   <div class="hero-content">
-    <div class="top-plate">
-      <span class="tp-knurl"></span>
-      <span class="tp-text">OM-1</span>
-      <span class="tp-dot" title="record"></span>
-      <span class="tp-knurl"></span>
-    </div>
     <span class="hero-kicker">Visual Field Guide · OM SYSTEM OM-1</span>
     <h1>Seeing with the OM-1</h1>
     <p class="hero-sub">Half the sensor, twice the reach. How a <em>stacked 20MP</em> Micro Four Thirds heart, <em>Spot HI/SH metering</em>, a <em>computational darkroom</em> and <em>IP53 sealing</em> add up to the camera that goes where the weather is bad and the subjects are far.</p>
@@ -459,34 +499,80 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <button class="step-btn" data-lens="k100400">100–400</button>
     </div>
     <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive Micro Four Thirds equivalence explorer">
-      <text x="450" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8a7a56" letter-spacing="1.5">SAME LENS MARKINGS — DIFFERENT WORLD ON THE OTHER SIDE</text>
+      <text x="450" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6a7280" letter-spacing="1.5">SAME LENS MARKINGS — DIFFERENT WORLD ON THE OTHER SIDE</text>
       <!-- sensor comparison -->
-      <text x="190" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">THE SENSOR, TO SCALE</text>
-      <rect x="118" y="88" width="144" height="96" rx="4" fill="none" stroke="#8a7a56" stroke-dasharray="4 3"/>
-      <text x="190" y="200" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56">FULL FRAME 36×24</text>
-      <rect x="155" y="102" width="69" height="52" rx="3" fill="rgba(42,107,184,0.14)" stroke="#2a6bb8" stroke-width="2"/>
-      <text x="190" y="132" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#2a6bb8">MFT 17.3×13</text>
-      <text x="190" y="228" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1208">quarter the area · half the diagonal</text>
-      <text x="190" y="246" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1208">2× the framing from every lens</text>
+      <text x="190" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280">THE SENSOR, TO SCALE</text>
+      <rect x="118" y="88" width="144" height="96" rx="4" fill="none" stroke="#6a7280" stroke-dasharray="4 3"/>
+      <text x="190" y="200" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6a7280">FULL FRAME 36×24</text>
+      <rect x="155" y="102" width="69" height="52" rx="3" fill="rgba(31,106,153,0.14)" stroke="#1f6a99" stroke-width="2"/>
+      <text x="190" y="132" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1f6a99">MFT 17.3×13</text>
+      <text x="190" y="228" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#171b21">quarter the area · half the diagonal</text>
+      <text x="190" y="246" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#171b21">2× the framing from every lens</text>
       <!-- dynamic readout -->
-      <text id="lensName" x="620" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="24" fill="#1a1208">M.Zuiko 12–40mm f/2.8 PRO</text>
-      <text id="lensEquiv" x="620" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#2a6bb8" font-weight="600">frames like 24–80mm · f/5.6-deep focus</text>
-      <text id="lensUse" x="620" y="138" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#8a7a56">the everyday zoom — reportage wide to short tele, weather-sealed</text>
+      <text id="lensName" x="620" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="24" fill="#171b21">M.Zuiko 12–40mm f/2.8 PRO</text>
+      <text id="lensEquiv" x="620" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#1f6a99" font-weight="600">frames like 24–80mm · f/5.6-deep focus</text>
+      <text id="lensUse" x="620" y="138" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#6a7280">the everyday zoom — reportage wide to short tele, weather-sealed</text>
       <!-- reach bar -->
-      <text x="620" y="188" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1">FULL-FRAME-EQUIVALENT REACH</text>
-      <line x1="400" y1="220" x2="840" y2="220" stroke="#8a7a56" stroke-width="1.5"/>
-      <g font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56" text-anchor="middle">
+      <text x="620" y="188" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280" letter-spacing="1">FULL-FRAME-EQUIVALENT REACH</text>
+      <line x1="400" y1="220" x2="840" y2="220" stroke="#6a7280" stroke-width="1.5"/>
+      <g font-family="JetBrains Mono, monospace" font-size="9" fill="#6a7280" text-anchor="middle">
         <text x="400" y="244">24</text><text x="487" y="244">50</text><text x="573" y="244">100</text>
         <text x="660" y="244">200</text><text x="747" y="244">400</text><text x="840" y="244">800</text>
       </g>
-      <rect id="reachBar" x="400" y="212" width="150" height="16" rx="8" fill="rgba(42,107,184,0.35)" stroke="#2a6bb8"/>
-      <text id="reachNote" x="620" y="290" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">Wide to portrait in one ring — the walking-around trinity opener</text>
+      <rect id="reachBar" x="400" y="212" width="150" height="16" rx="8" fill="rgba(31,106,153,0.35)" stroke="#1f6a99"/>
+      <text id="reachNote" x="620" y="290" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">Wide to portrait in one ring — the walking-around trinity opener</text>
     </svg>
     <div class="stage-caption">Equivalence, honestly: framing and depth scale by 2× · exposure math (f-stop, shutter, ISO) stays exactly what the dials say</div>
   </div>
   <div class="key-idea">
     <div class="kicker">The bargain, stated plainly</div>
     <p><strong>You traded shallow focus and two stops of high-ISO ceiling for reach, depth, speed and weather.</strong> The OM-1 wins where subjects are far, light is workable, and conditions are hostile — birds, trails, storms, travel. Fight that identity and the camera feels small; lean into it and nothing else comes close per gram.</p>
+  </div>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" aria-label="Equivalence ladder: the same photograph on Micro Four Thirds versus full frame">
+      <text x="450" y="28" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6a7280" letter-spacing="1.5">THE SAME PHOTOGRAPH, TWO WAYS — IDENTICAL FRAMING, DEPTH, MOTION AND NOISE</text>
+      <rect x="150" y="46" width="300" height="30" rx="6" fill="rgba(31,106,153,0.14)" stroke="#1f6a99"/>
+      <text x="300" y="66" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#1f6a99" font-weight="600">OM-1 · MICRO FOUR THIRDS</text>
+      <rect x="500" y="46" width="300" height="30" rx="6" fill="rgba(23,27,33,0.06)" stroke="#6a7280"/>
+      <text x="650" y="66" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#171b21" font-weight="600">FULL FRAME EQUIVALENT</text>
+      <g font-family="JetBrains Mono, monospace" font-size="12">
+        <text x="138" y="108" text-anchor="end" font-size="10" fill="#6a7280">FRAMING</text>
+        <text x="300" y="108" text-anchor="middle" fill="#171b21">300mm</text>
+        <text x="475" y="108" text-anchor="middle" fill="#6a7280">=</text>
+        <text x="650" y="108" text-anchor="middle" fill="#171b21">600mm</text>
+        <text x="138" y="140" text-anchor="end" font-size="10" fill="#6a7280">DEPTH OF FIELD</text>
+        <text x="300" y="140" text-anchor="middle" fill="#171b21">f/4</text>
+        <text x="475" y="140" text-anchor="middle" fill="#6a7280">=</text>
+        <text x="650" y="140" text-anchor="middle" fill="#171b21">f/8</text>
+        <text x="138" y="172" text-anchor="end" font-size="10" fill="#6a7280">MOTION</text>
+        <text x="300" y="172" text-anchor="middle" fill="#171b21">1/1000</text>
+        <text x="475" y="172" text-anchor="middle" fill="#6a7280">=</text>
+        <text x="650" y="172" text-anchor="middle" fill="#171b21">1/1000</text>
+        <text x="138" y="204" text-anchor="end" font-size="10" fill="#6a7280">ISO TO MATCH</text>
+        <text x="300" y="204" text-anchor="middle" fill="#171b21">1600</text>
+        <text x="475" y="204" text-anchor="middle" fill="#6a7280">=</text>
+        <text x="650" y="204" text-anchor="middle" fill="#171b21">6400</text>
+        <text x="766" y="204" font-size="9" fill="#6a7280">two stops up</text>
+        <text x="138" y="236" text-anchor="end" font-size="10" fill="#6a7280">RESULTING NOISE</text>
+        <text x="300" y="236" text-anchor="middle" fill="#a3862c">similar</text>
+        <text x="475" y="236" text-anchor="middle" fill="#6a7280">=</text>
+        <text x="650" y="236" text-anchor="middle" fill="#a3862c">similar</text>
+      </g>
+      <line x1="150" y1="256" x2="800" y2="256" stroke="#6a7280" opacity="0.4"/>
+      <g font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">
+        <text x="138" y="292" text-anchor="end" font-size="10" font-weight="400" fill="#6a7280">WHAT YOU CARRY</text>
+        <text x="300" y="292" text-anchor="middle" fill="#1f6a99">≈ 1.3 kg</text>
+        <text x="475" y="292" text-anchor="middle" fill="#a8462a">vs</text>
+        <text x="650" y="292" text-anchor="middle" fill="#171b21">≈ 3.9 kg</text>
+        <text x="138" y="324" text-anchor="end" font-size="10" font-weight="400" fill="#6a7280">HANDHELDABLE</text>
+        <text x="300" y="324" text-anchor="middle" fill="#1f6a99">yes, all day</text>
+        <text x="475" y="324" text-anchor="middle" fill="#a8462a">vs</text>
+        <text x="650" y="324" text-anchor="middle" fill="#171b21">tripod or monopod</text>
+      </g>
+      <text x="450" y="368" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">Equivalence is real — and it cuts <tspan font-style="italic">both</tspan> ways: the images match, the shoulder bags do not</text>
+      <text x="450" y="390" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280">M.ZUIKO 300mm f/4 + OM-1 VERSUS A 600mm f/4-CLASS PRIME + FULL-FRAME BODY</text>
+    </svg>
+    <div class="stage-caption">The honest version of the argument: full frame wins on paper at equal ISO — but to make <em>this exact photograph</em> it must climb two stops anyway, and the advantage cancels</div>
   </div>
   <p><strong>And the frame is squarer.</strong> Native <strong>4:3</strong> is closer to classic print ratios than 3:2, and it rewires imported instincts: verticals lose the gangly headroom that makes 3:2 portraits feel stretched, central subjects and symmetry sit comfortably instead of fighting a rule-of-thirds reflex, and stacked horizontal bands — compressed ridgelines, layered haze at 600mm-e — hold without widescreen dead space. Crop to 3:2 later if a screen demands it; compose to the frame you actually have.</p>
   <p><strong>The stacked heart.</strong> The 20MP sensor is <strong>stacked BSI</strong> — readout electronics layered behind the photosites — and it reads out fast enough to change the camera's manners: an electronic shutter to <strong>1/32000</strong> with minimal rolling distortion, a <strong>blackout-free</strong> 120fps finder, silent <strong>50fps bursts with continuous AF</strong>, and the pre-press time machine of §06. Speed, not resolution, is this sensor's argument.</p>
@@ -526,6 +612,55 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <p>You will live in <strong>A</strong> (static subjects), <strong>S</strong> (anything that moves), <strong>M + Auto-ISO</strong> (locked look, drifting light — EC still works, §03), and the <strong>C banks</strong>. The art-filter positions are for other people. B mode hides the computational gems: Live Composite and Live Time (§05).</p>
     </div>
   </div>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" aria-label="What each custom mode bank holds">
+      <text x="450" y="28" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6a7280" letter-spacing="1.5">FOUR BANKS — EACH STORES THE WHOLE CAMERA, NOT A SETTING</text>
+      <g font-family="JetBrains Mono, monospace">
+        <rect x="26" y="52" width="196" height="210" rx="10" fill="rgba(168,70,42,0.08)" stroke="#a8462a" stroke-width="2"/>
+        <circle cx="124" cy="88" r="20" fill="none" stroke="#a8462a" stroke-width="2"/>
+        <text x="124" y="94" text-anchor="middle" font-size="15" fill="#a8462a" font-weight="600">C1</text>
+        <text x="124" y="128" text-anchor="middle" font-size="12" fill="#171b21" font-weight="600">BIRDS</text>
+        <g font-size="10" fill="#6a7280"><text x="124" y="152" text-anchor="middle">S · 1/2500</text>
+        <text x="124" y="170" text-anchor="middle">C-AF −1 · bird detect</text>
+        <text x="124" y="188" text-anchor="middle">SH2 · ProCap on</text>
+        <text x="124" y="206" text-anchor="middle">AF limiter far</text>
+        <text x="124" y="224" text-anchor="middle">Auto-ISO 6400</text>
+        <text x="124" y="246" text-anchor="middle" fill="#a8462a">§04 · §06</text></g>
+        <rect x="238" y="52" width="196" height="210" rx="10" fill="rgba(31,106,153,0.08)" stroke="#1f6a99" stroke-width="2"/>
+        <circle cx="336" cy="88" r="20" fill="none" stroke="#1f6a99" stroke-width="2"/>
+        <text x="336" y="94" text-anchor="middle" font-size="15" fill="#1f6a99" font-weight="600">C2</text>
+        <text x="336" y="128" text-anchor="middle" font-size="12" fill="#171b21" font-weight="600">LANDSCAPE</text>
+        <g font-size="10" fill="#6a7280"><text x="336" y="152" text-anchor="middle">A · f/5.6–8</text>
+        <text x="336" y="170" text-anchor="middle">ISO 200 · S-AF</text>
+        <text x="336" y="188" text-anchor="middle">High Res armed</text>
+        <text x="336" y="206" text-anchor="middle">2s timer · level on</text>
+        <text x="336" y="224" text-anchor="middle">IS auto</text>
+        <text x="336" y="246" text-anchor="middle" fill="#1f6a99">§05 · §07</text></g>
+        <rect x="450" y="52" width="196" height="210" rx="10" fill="rgba(163,134,44,0.10)" stroke="#a3862c" stroke-width="2"/>
+        <circle cx="548" cy="88" r="20" fill="none" stroke="#a3862c" stroke-width="2"/>
+        <text x="548" y="94" text-anchor="middle" font-size="15" fill="#a3862c" font-weight="600">C3</text>
+        <text x="548" y="128" text-anchor="middle" font-size="12" fill="#171b21" font-weight="600">MACRO</text>
+        <g font-size="10" fill="#6a7280"><text x="548" y="152" text-anchor="middle">M · f/5.6 · 1/200</text>
+        <text x="548" y="170" text-anchor="middle">focus stack 8–12</text>
+        <text x="548" y="188" text-anchor="middle">flash on · MF assist</text>
+        <text x="548" y="206" text-anchor="middle">peaking + magnify</text>
+        <text x="548" y="224" text-anchor="middle">ISO 400</text>
+        <text x="548" y="246" text-anchor="middle" fill="#a3862c">§05 · §09</text></g>
+        <rect x="662" y="52" width="196" height="210" rx="10" fill="rgba(18,58,92,0.10)" stroke="#123a5c" stroke-width="2"/>
+        <circle cx="760" cy="88" r="20" fill="none" stroke="#123a5c" stroke-width="2"/>
+        <text x="760" y="94" text-anchor="middle" font-size="15" fill="#123a5c" font-weight="600">C4</text>
+        <text x="760" y="128" text-anchor="middle" font-size="12" fill="#171b21" font-weight="600">NIGHT</text>
+        <g font-size="10" fill="#6a7280"><text x="760" y="152" text-anchor="middle">M · 15s · f/2</text>
+        <text x="760" y="170" text-anchor="middle">ISO 3200 · IS off</text>
+        <text x="760" y="188" text-anchor="middle">Starry Sky AF</text>
+        <text x="760" y="206" text-anchor="middle">Live Comp ready</text>
+        <text x="760" y="224" text-anchor="middle">RAW only</text>
+        <text x="760" y="246" text-anchor="middle" fill="#123a5c">§05 · §11</text></g>
+      </g>
+      <text x="450" y="288" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">Re-save the bank the moment you improve a recipe — a stale C-mode is worse than none</text>
+    </svg>
+    <div class="stage-caption">Save from a fully configured camera: drive mode, AF behaviour, detection, IS, even button maps travel with the bank</div>
+  </div>
   <!-- RENDER SLOT: official/press top-plate photo when sourced -->
 </section>
 
@@ -545,37 +680,37 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
     </div>
     <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive OM-1 metering mode simulator: white egret on dark water">
       <defs><clipPath id="omScene"><rect x="30" y="52" width="360" height="250" rx="10"/></clipPath></defs>
-      <text x="450" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8a7a56" letter-spacing="1.5">ONE WHITE BIRD, DARK WATER — FOUR WAYS TO METER IT</text>
+      <text x="450" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6a7280" letter-spacing="1.5">ONE WHITE BIRD, DARK WATER — FOUR WAYS TO METER IT</text>
       <!-- scene -->
       <g clip-path="url(#omScene)">
         <rect x="30" y="52" width="360" height="250" fill="#1d2b26"/>
         <ellipse cx="120" cy="290" rx="150" ry="40" fill="#141f1b"/>
         <ellipse cx="330" cy="300" rx="180" ry="46" fill="#16211d"/>
         <g stroke="#2c3f37" stroke-width="2"><line x1="60" y1="80" x2="52" y2="180"/><line x1="76" y1="70" x2="70" y2="176"/><line x1="90" y1="84" x2="86" y2="182"/></g>
-        <ellipse cx="238" cy="220" rx="52" ry="30" fill="#f2f2ea"/>
-        <path d="M 262 200 Q 288 168 272 140 Q 262 122 246 132 Q 252 118 240 116" fill="none" stroke="#f2f2ea" stroke-width="13" stroke-linecap="round"/>
-        <circle cx="238" cy="114" r="10" fill="#f2f2ea"/>
+        <ellipse cx="238" cy="220" rx="52" ry="30" fill="#f5f4ef"/>
+        <path d="M 262 200 Q 288 168 272 140 Q 262 122 246 132 Q 252 118 240 116" fill="none" stroke="#f5f4ef" stroke-width="13" stroke-linecap="round"/>
+        <circle cx="238" cy="114" r="10" fill="#f5f4ef"/>
         <path d="M 246 112 L 268 118 L 246 121 Z" fill="#c9a03a"/>
         <ellipse cx="240" cy="262" rx="58" ry="10" fill="#0e1714" opacity="0.7"/>
       </g>
-      <rect x="30" y="52" width="360" height="250" rx="10" fill="none" stroke="#8a7a56" opacity="0.4"/>
+      <rect x="30" y="52" width="360" height="250" rx="10" fill="none" stroke="#6a7280" opacity="0.4"/>
       <!-- overlays -->
-      <g id="ovEsp"><g fill="none" stroke="#4ecdc4" opacity="0.55">
+      <g id="ovEsp"><g fill="none" stroke="#2b7fa8" opacity="0.55">
         <rect x="50" y="70" width="66" height="44" rx="3"/><rect x="122" y="70" width="66" height="44" rx="3"/><rect x="194" y="70" width="66" height="44" rx="3"/><rect x="266" y="70" width="66" height="44" rx="3"/>
         <rect x="50" y="122" width="66" height="44" rx="3"/><rect x="122" y="122" width="66" height="44" rx="3"/><rect x="194" y="122" width="66" height="44" rx="3"/><rect x="266" y="122" width="66" height="44" rx="3"/>
         <rect x="50" y="174" width="66" height="44" rx="3"/><rect x="122" y="174" width="66" height="44" rx="3"/><rect x="194" y="174" width="66" height="44" rx="3"/><rect x="266" y="174" width="66" height="44" rx="3"/>
       </g></g>
-      <g id="ovSpot" style="display:none"><circle cx="238" cy="200" r="17" fill="none" stroke="#ff6b3d" stroke-width="2.5"/><circle cx="238" cy="200" r="27" fill="none" stroke="#ff6b3d" opacity="0.4"/></g>
-      <g id="ovHi" style="display:none"><circle cx="238" cy="200" r="17" fill="none" stroke="#ffe66d" stroke-width="2.5"/><path d="M 238 168 L 231 178 L 245 178 Z" fill="#ffe66d"/><circle cx="238" cy="200" r="27" fill="none" stroke="#ffe66d" opacity="0.4"/></g>
-      <g id="ovSh" style="display:none"><circle cx="72" cy="150" r="17" fill="none" stroke="#a78bfa" stroke-width="2.5"/><path d="M 72 190 L 65 180 L 79 180 Z" fill="#a78bfa"/><circle cx="72" cy="150" r="27" fill="none" stroke="#a78bfa" opacity="0.4"/></g>
+      <g id="ovSpot" style="display:none"><circle cx="238" cy="200" r="17" fill="none" stroke="#a8462a" stroke-width="2.5"/><circle cx="238" cy="200" r="27" fill="none" stroke="#a8462a" opacity="0.4"/></g>
+      <g id="ovHi" style="display:none"><circle cx="238" cy="200" r="17" fill="none" stroke="#c8a83f" stroke-width="2.5"/><path d="M 238 168 L 231 178 L 245 178 Z" fill="#c8a83f"/><circle cx="238" cy="200" r="27" fill="none" stroke="#c8a83f" opacity="0.4"/></g>
+      <g id="ovSh" style="display:none"><circle cx="72" cy="150" r="17" fill="none" stroke="#123a5c" stroke-width="2.5"/><path d="M 72 190 L 65 180 L 79 180 Z" fill="#123a5c"/><circle cx="72" cy="150" r="27" fill="none" stroke="#123a5c" opacity="0.4"/></g>
       <!-- readout -->
-      <text x="650" y="86" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1">HOW THE BIRD RENDERS</text>
-      <rect id="birdPatch" x="600" y="100" width="100" height="64" rx="8" fill="#f0f0e8" stroke="rgba(26,18,8,0.25)"/>
-      <text id="omVerdict1" x="650" y="204" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">Zones vote, AI weighs the scene —</text>
-      <text id="omVerdict2" x="650" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">usually right, occasionally surprised.</text>
-      <text x="650" y="266" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1.5">YOUR MOVE</text>
-      <text id="omMove" x="650" y="290" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#4ecdc4">trust it · watch the blinkies</text>
-      <text id="omNote" x="450" y="342" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">ESP pattern-matches 324 zones against a scene library — smart, but it doesn&#8217;t know the bird is the picture</text>
+      <text x="650" y="86" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280" letter-spacing="1">HOW THE BIRD RENDERS</text>
+      <rect id="birdPatch" x="600" y="100" width="100" height="64" rx="8" fill="#f2f1ec" stroke="rgba(23,27,33,0.25)"/>
+      <text id="omVerdict1" x="650" y="204" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">Zones vote, AI weighs the scene —</text>
+      <text id="omVerdict2" x="650" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">usually right, occasionally surprised.</text>
+      <text x="650" y="266" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280" letter-spacing="1.5">YOUR MOVE</text>
+      <text id="omMove" x="650" y="290" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#2b7fa8">trust it · watch the blinkies</text>
+      <text id="omNote" x="450" y="342" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">ESP pattern-matches 324 zones against a scene library — smart, but it doesn&#8217;t know the bird is the picture</text>
     </svg>
     <div class="stage-caption">Set SPOT METERING to track the AF target in the custom menu — HI/SH then measure exactly what you&#8217;re focused on</div>
   </div>
@@ -609,6 +744,48 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <h3>Low Light &amp; Stars</h3>
       <p>Cross-type points hold to about <strong>−8 EV</strong> with fast glass — dusk wildlife stays sticky. And when the sky itself is the subject, <strong>Starry Sky AF</strong> (§05) focuses on actual stars — no more infinity-mark guessing on a cold tripod.</p>
     </div>
+  </div>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" aria-label="Autofocus decision tree: choosing AF mode, sensitivity and burst">
+      <text x="450" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6a7280" letter-spacing="1.5">TWO QUESTIONS DECIDE EVERY AF SETTING YOU NEED</text>
+      <g font-family="JetBrains Mono, monospace">
+        <rect x="330" y="46" width="240" height="42" rx="21" fill="rgba(23,27,33,0.05)" stroke="#171b21" stroke-width="1.5"/>
+        <text x="450" y="72" text-anchor="middle" font-size="12" fill="#171b21">Is the subject moving?</text>
+        <path d="M 330 67 L 190 67 L 190 118" fill="none" stroke="#6a7280" stroke-width="1.5"/>
+        <text x="258" y="60" text-anchor="middle" font-size="10" fill="#6a7280">NO</text>
+        <rect x="70" y="118" width="240" height="76" rx="10" fill="rgba(31,106,153,0.10)" stroke="#1f6a99" stroke-width="1.5"/>
+        <text x="190" y="144" text-anchor="middle" font-size="12" fill="#1f6a99" font-weight="600">S-AF · single point</text>
+        <g font-size="10" fill="#6a7280">
+          <text x="190" y="164" text-anchor="middle">release priority OFF</text>
+          <text x="190" y="182" text-anchor="middle">focus beats frame rate</text>
+        </g>
+        <path d="M 570 67 L 690 67 L 690 118" fill="none" stroke="#6a7280" stroke-width="1.5"/>
+        <text x="630" y="60" text-anchor="middle" font-size="10" fill="#6a7280">YES</text>
+        <rect x="556" y="118" width="278" height="42" rx="21" fill="rgba(23,27,33,0.05)" stroke="#171b21" stroke-width="1.5"/>
+        <text x="695" y="144" text-anchor="middle" font-size="12" fill="#171b21">Is the background cluttered?</text>
+        <path d="M 620 160 L 500 160 L 500 214" fill="none" stroke="#6a7280" stroke-width="1.5"/>
+        <text x="536" y="182" text-anchor="middle" font-size="10" fill="#6a7280">YES · branches</text>
+        <rect x="360" y="214" width="280" height="94" rx="10" fill="rgba(168,70,42,0.10)" stroke="#a8462a" stroke-width="1.5"/>
+        <text x="500" y="240" text-anchor="middle" font-size="12" fill="#a8462a" font-weight="600">C-AF sensitivity −1 / −2</text>
+        <g font-size="10" fill="#6a7280">
+          <text x="500" y="260" text-anchor="middle">subject detect ON · zone target</text>
+          <text x="500" y="278" text-anchor="middle">AF limiter fences the near field</text>
+          <text x="500" y="296" text-anchor="middle">stays locked through the clutter</text>
+        </g>
+        <path d="M 780 160 L 780 214" fill="none" stroke="#6a7280" stroke-width="1.5"/>
+        <text x="800" y="186" text-anchor="middle" font-size="10" fill="#6a7280">NO · sky</text>
+        <rect x="670" y="214" width="200" height="94" rx="10" fill="rgba(163,134,44,0.12)" stroke="#a3862c" stroke-width="1.5"/>
+        <text x="770" y="240" text-anchor="middle" font-size="12" fill="#a3862c" font-weight="600">erratic? → +1 / +2</text>
+        <g font-size="10" fill="#6a7280">
+          <text x="770" y="260" text-anchor="middle">steady flight → 0</text>
+          <text x="770" y="278" text-anchor="middle">SH2 50fps · C-AF live</text>
+          <text x="770" y="296" text-anchor="middle">centre-start ON</text>
+        </g>
+      </g>
+      <text x="450" y="344" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">Leave old C-AF+TR tracking off — detection inside a zone target has superseded it</text>
+      <text x="450" y="366" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280">SENSITIVITY LIVES IN THE AF CUSTOM MENU — THE ONLY AF DIAL WORTH REVISITING</text>
+    </svg>
+    <div class="stage-caption">Negative sensitivity = stubborn (holds your subject through obstructions) · positive = eager (jumps to whatever enters the target)</div>
   </div>
   <div class="svg-stage">
     <img class="fig" src="img/om-quad-pixel-af.jpg" alt="Rendered cutaway of quad-pixel autofocus: one microlens over four photodiode quadrants with light split four ways and horizontal and vertical waveform pairs aligning" loading="lazy">
@@ -717,6 +894,38 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <h3>What 8 Stops Buys Daily</h3>
       <p>Base-ISO dusk streets, sharp 1/4s forest interiors (§12), museum interiors at ISO 400 instead of 6400 — the deep-DOF sensor plus impossible shutter speeds is how MFT climbs back two low-light stops it gave away on paper.</p>
     </div>
+  </div>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" aria-label="What stabilization fixes and what it cannot: camera shake versus subject motion">
+      <text x="450" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6a7280" letter-spacing="1.5">EIGHT STOPS SOLVES YOUR SHAKE — IT DOES NOTHING ABOUT THEIRS</text>
+      <line x1="80" y1="196" x2="840" y2="196" stroke="#6a7280" stroke-width="1.5"/>
+      <g font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280" text-anchor="middle">
+        <text x="120" y="218">4s</text><text x="240" y="218">1s</text><text x="360" y="218">1/15</text>
+        <text x="480" y="218">1/60</text><text x="600" y="218">1/125</text><text x="720" y="218">1/500</text><text x="826" y="218">1/2000</text>
+      </g>
+      <g stroke="#6a7280" stroke-width="1" opacity="0.5">
+        <line x1="120" y1="190" x2="120" y2="202"/><line x1="240" y1="190" x2="240" y2="202"/><line x1="360" y1="190" x2="360" y2="202"/>
+        <line x1="480" y1="190" x2="480" y2="202"/><line x1="600" y1="190" x2="600" y2="202"/><line x1="720" y1="190" x2="720" y2="202"/>
+      </g>
+      <rect x="90" y="96" width="510" height="34" rx="17" fill="rgba(31,106,153,0.20)" stroke="#1f6a99"/>
+      <text x="345" y="118" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#1f6a99" font-weight="600">IBIS RESCUES THIS RANGE — STATIC SUBJECTS ONLY</text>
+      <text x="90" y="86" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280">CAMERA SHAKE</text>
+      <rect x="480" y="140" width="360" height="34" rx="17" fill="rgba(168,70,42,0.16)" stroke="#a8462a"/>
+      <text x="660" y="162" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#a8462a" font-weight="600">ONLY SHUTTER SPEED FREEZES SUBJECTS</text>
+      <text x="840" y="130" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280">SUBJECT MOTION</text>
+      <line x1="480" y1="90" x2="480" y2="196" stroke="#171b21" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="480" y="80" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#171b21">THEY OVERLAP HERE</text>
+      <g font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280" text-anchor="middle">
+        <text x="180" y="256">waterfalls · night city</text>
+        <text x="180" y="272" fill="#1f6a99">IBIS territory</text>
+        <text x="480" y="256">walking people · leaves</text>
+        <text x="480" y="272" fill="#171b21">judgement call</text>
+        <text x="740" y="256">birds · sport · splashes</text>
+        <text x="740" y="272" fill="#a8462a">shutter territory</text>
+      </g>
+      <text x="450" y="306" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">The rule that survives every scene: <tspan font-weight="600">stabilise the camera, out-run the subject</tspan></text>
+    </svg>
+    <div class="stage-caption">A 4-second handheld frame and a blurred bird are the same photograph to IBIS — it never sees the subject move</div>
   </div>
   <div class="svg-stage">
     <img class="fig" src="img/om-sync-is.jpg" alt="Rendered cutaway of Sync-IS: a camera body with a floating stabilized sensor and a telephoto lens with its own stabilized element, linked by a communication line" loading="lazy">
@@ -861,63 +1070,95 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
     <h2>Twelve Days Out</h2>
   </div>
   <p>Twelve days this camera was built for — each one a bank you can save (§02) and a reason the format exists. Baselines assume the §11 setup; the notes name only what changes: settings, the metering move (§03), and the thing nobody tells you until you have stood there.</p>
+  <div class="deck-cover">
+    <img class="mission-fig" src="img/om-mission-00.jpg" data-lb="0" data-title="Field Deck — Cover" alt="Field deck cover card: Seeing with the OM-1, twelve mission icons around a top-down camera illustration" loading="lazy">
+  </div>
   <div class="mission-grid">
     <div class="mission-card">
-      <img class="mission-fig" src="img/om-mission-01.jpg" data-lb="1" data-title="Birds in Flight" alt="Field card infographic: Birds in Flight — settings band, takeoff diagram with ProCapture buffer strip and Spot HI on white plumage" loading="lazy">
+      <img class="mission-fig" src="img/om-mission-01.jpg" data-lb="1" data-title="Birds in Flight" alt="Field card infographic: Birds in Flight" loading="lazy">
       <div class="mission-body">
         <h3>Birds in Flight</h3>
         <p><strong>C1: S 1/2500 · wide open · ISO auto-6400 · bird detect · SH2</strong>. ProCapture armed for takeoffs (§06). White birds: <strong>Spot HI the plumage (§03)</strong>. Craft: pick the perch-to-perch line and wait at the second perch.</p>
       </div>
     </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-02.jpg" data-lb="2" data-title="Wildlife · Mammals" alt="Field card infographic: Wildlife · Mammals" loading="lazy">
+      <div class="mission-body">
+        <h3>Wildlife · Mammals</h3>
+        <p><strong>A f/4–5.6 · min 1/500 · animal detect · silent shutter</strong>. Forest shade: Spot SH the dark fur, let it be dark (§03). Craft: low and patient beats close and fast; the second look back is the photograph.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-03.jpg" data-lb="3" data-title="Macro & Small Worlds" alt="Field card infographic: Macro & Small Worlds" loading="lazy">
+      <div class="mission-body">
+        <h3>Macro &amp; Small Worlds</h3>
+        <p><strong>C3: 60/90 macro · f/5.6 · stack 8–12 (§05) · flash + diffuser</strong>. Wind is the enemy — ProCap the lull (§06). Craft: eye-level with the subject, background a full meter behind it.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-04.jpg" data-lb="4" data-title="Waterfalls & Silk" alt="Field card infographic: Waterfalls & Silk" loading="lazy">
+      <div class="mission-body">
+        <h3>Waterfalls &amp; Silk</h3>
+        <p><strong>Live ND32–64 · f/5.6 · ISO 200 · braced (§07)</strong>. The EVF previews the silk — stop when texture just dissolves (§05). Craft: anchor sharp rocks in the foreground; wet stone loves a polarizer.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-05.jpg" data-lb="5" data-title="Night Sky" alt="Field card infographic: Night Sky" loading="lazy">
+      <div class="mission-body">
+        <h3>Night Sky</h3>
+        <p><strong>C4: 15s · f/2 · ISO 3200 · Starry Sky AF · tripod, IBIS off</strong>. Then Live Composite for trails — watch them draw (§05). Craft: foreground first while blue hour lasts; the sky composites over it.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-06.jpg" data-lb="6" data-title="Grand Landscape" alt="Field card infographic: Grand Landscape" loading="lazy">
+      <div class="mission-body">
+        <h3>Grand Landscape</h3>
+        <p><strong>C2: f/5.6–8 · ISO 200 · tripod HHHR 80MP (§05)</strong> — diffraction bites past f/8 on MFT, stop down with intent. Snow: <strong>Spot HI the snowfield (§03)</strong> — winter&#8217;s hardest exposure made trivial.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-07.jpg" data-lb="7" data-title="Forest, Dim & Green" alt="Field card infographic: Forest, Dim & Green" loading="lazy">
+      <div class="mission-body">
+        <h3>Forest, Dim &amp; Green</h3>
+        <p><strong>f/4 · ISO 800 · IBIS to 1/4s for statics (§07)</strong>. Streams blur free, handheld. Meter: Spot SH the deep hollows — keep the gloom (§03). Craft: shoot into the fog, not across it.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-08.jpg" data-lb="8" data-title="Rain & Storm" alt="Field card infographic: Rain & Storm" loading="lazy">
+      <div class="mission-body">
+        <h3>Rain &amp; Storm</h3>
+        <p>The OM-1&#8217;s home fixture (§08): <strong>keep shooting, wipe, never swap lenses in the wet</strong>. Dark skies read bright to ESP — <strong>−⅓ to −⅔ EV</strong>. Craft: backlit rain streaks at 1/60 against dark buildings.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-09.jpg" data-lb="9" data-title="Snow & Ice" alt="Field card infographic: Snow & Ice" loading="lazy">
+      <div class="mission-body">
+        <h3>Snow &amp; Ice</h3>
+        <p><strong>Spot HI the snow (§03)</strong> — no +1⅔ arithmetic here. Batteries warm, spares rotated (§08); freezeproof means the camera quits after you do. Craft: overcast snow is a giant softbox — save portraits for it.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-10.jpg" data-lb="10" data-title="Action & Sports" alt="Field card infographic: Action & Sports" loading="lazy">
+      <div class="mission-body">
+        <h3>Action &amp; Sports</h3>
+        <p><strong>S 1/1600 · C-AF +1 · sport/vehicle detect · SH2 50 (§06)</strong>. Mech shutter under flickery gym light (§11 anti-flicker). Craft: pre-focus the apex — corner exit, bar clearance — and let ProCap own the instant.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-11.jpg" data-lb="11" data-title="Travel, One Lens" alt="Field card infographic: Travel, One Lens" loading="lazy">
+      <div class="mission-body">
+        <h3>Travel, One Lens</h3>
+        <p><strong>12-100 f/4 (§09) · A mode · Auto-ISO</strong> — 24–200-e with 8-stop Sync-IS is the entire kit (§07). Craft: city C-bank by day, handheld-seconds C-bank after dark; the tripod stays home on purpose.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <img class="mission-fig" src="img/om-mission-12.jpg" data-lb="12" data-title="Golden Hour, Long" alt="Field card infographic: Golden Hour, Long" loading="lazy">
+      <div class="mission-body">
+        <h3>Golden Hour, Long</h3>
+        <p><strong>300–800mm-e at the low sun (§09)</strong>: compressed ridgelines, rim-lit wildlife, layered haze. <strong>Spot HI the rim light (§03)</strong>, let everything else fall. Craft: shimmer rises with the sun — the first twenty minutes are the shoot.</p>
+      </div>
+    </div>
   </div>
-  <p>The other eleven days, as notes until their cards are drawn:</p>
-  <div class="arch-grid">
-    <div class="arch-card">
-      <h3>Wildlife · Mammals</h3>
-      <p><strong>A f/4–5.6 · min 1/500 · animal detect · silent shutter</strong>. Forest shade: Spot SH the dark fur, let it be dark (§03). Craft: low and patient beats close and fast; the second look back is the photograph.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Macro &amp; Small Worlds</h3>
-      <p><strong>C3: 60/90 macro · f/5.6 · stack 8–12 (§05) · flash + diffuser</strong>. Wind is the enemy — ProCap the lull (§06). Craft: eye-level with the subject, background a full meter behind it.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Waterfalls &amp; Silk</h3>
-      <p><strong>Live ND32–64 · f/5.6 · ISO 200 · braced (§07)</strong>. The EVF previews the silk — stop when texture just dissolves (§05). Craft: anchor sharp rocks in the foreground; wet stone loves a polarizer.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Night Sky</h3>
-      <p><strong>C4: 15s · f/2 · ISO 3200 · Starry Sky AF · tripod, IBIS off</strong>. Then Live Composite for trails — watch them draw (§05). Craft: foreground first while blue hour lasts; the sky composites over it.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Grand Landscape</h3>
-      <p><strong>C2: f/5.6–8 · ISO 200 · tripod HHHR 80MP (§05)</strong> — diffraction bites past f/8 on MFT, stop down with intent. Snow: <strong>Spot HI the snowfield (§03)</strong> — winter&#8217;s hardest exposure made trivial.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Forest, Dim &amp; Green</h3>
-      <p><strong>f/4 · ISO 800 · IBIS to 1/4s for statics (§07)</strong>. Streams blur free, handheld. Meter: Spot SH the deep hollows — keep the gloom (§03). Craft: shoot into the fog, not across it.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Rain &amp; Storm</h3>
-      <p>The OM-1&#8217;s home fixture (§08): <strong>keep shooting, wipe, never swap lenses in the wet</strong>. Dark skies read bright to ESP — <strong>−⅓ to −⅔ EV</strong>. Craft: backlit rain streaks at 1/60 against dark buildings.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Snow &amp; Ice</h3>
-      <p><strong>Spot HI the snow (§03)</strong> — no +1⅔ arithmetic here. Batteries warm, spares rotated (§08); freezeproof means the camera quits after you do. Craft: overcast snow is a giant softbox — save portraits for it.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Action &amp; Sports</h3>
-      <p><strong>S 1/1600 · C-AF +1 · sport/vehicle detect · SH2 50 (§06)</strong>. Mech shutter under flickery gym light (§11 anti-flicker). Craft: pre-focus the apex — corner exit, bar clearance — and let ProCap own the instant.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Travel, One Lens</h3>
-      <p><strong>12-100 f/4 (§09) · A mode · Auto-ISO</strong> — 24–200-e with 8-stop Sync-IS is the entire kit (§07). Craft: city C-bank by day, handheld-seconds C-bank after dark; the tripod stays home on purpose.</p>
-    </div>
-    <div class="arch-card">
-      <h3>Golden Hour, Long</h3>
-      <p><strong>300–800mm-e at the low sun (§09)</strong>: compressed ridgelines, rim-lit wildlife, layered haze. <strong>Spot HI the rim light (§03)</strong>, let everything else fall. Craft: shimmer rises with the sun — the first twenty minutes are the shoot.</p>
-    </div>
-  </div>
-  <!-- FIELD DECK: 12 scene-card renders + cover slot here, lightbox-ready, when generated -->
 </section>
 
 <!-- ================= RESOURCES ================= -->
@@ -985,11 +1226,11 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
     <h3>Suggested Path</h3>
     <div class="path-steps">
       <div class="path-step">Bank the four C-modes</div>
-      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#ff6b3d" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#ff6b3d"/></svg>
+      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#a8462a" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#a8462a"/></svg>
       <div class="path-step">One computational mode / week</div>
-      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#ff6b3d" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#ff6b3d"/></svg>
+      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#a8462a" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#a8462a"/></svg>
       <div class="path-step">ProCap a takeoff</div>
-      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#ff6b3d" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#ff6b3d"/></svg>
+      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#a8462a" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#a8462a"/></svg>
       <div class="path-step">Go out in the rain</div>
     </div>
   </div>
@@ -1054,21 +1295,21 @@ function setLens(key) {
 
 // OM metering simulator
 const omStates = {
-  esp: { patch: '#f0f0e8', ov: 'ovEsp',
+  esp: { patch: '#f2f1ec', ov: 'ovEsp',
     v1: 'Zones vote, AI weighs the scene \u2014', v2: 'usually right, occasionally surprised.',
-    move: 'trust it \u00b7 watch the blinkies', moveColor: '#4ecdc4',
+    move: 'trust it \u00b7 watch the blinkies', moveColor: '#2b7fa8',
     note: 'ESP pattern-matches 324 zones against a scene library \u2014 smart, but it doesn\u2019t know the bird is the picture' },
   spot: { patch: '#9a9a90', ov: 'ovSpot',
     v1: '2% reading dragged to middle gray \u2014', v2: 'a dingy, underexposed egret.',
-    move: '+1\u2154 EC from memory \u2014 the old way', moveColor: '#ff6b3d',
+    move: '+1\u2154 EC from memory \u2014 the old way', moveColor: '#a8462a',
     note: 'Classic spot is honest and literal: it makes whatever it reads gray \u2014 whites included (the X100VI\u2019s daily reality)' },
-  hi: { patch: '#f6f6ee', ov: 'ovHi',
+  hi: { patch: '#f5f6f9', ov: 'ovHi',
     v1: 'You told it: this is WHITE \u2014', v2: 'placed high with feather detail intact.',
-    move: 'no arithmetic \u00b7 shoot', moveColor: '#4ecdc4',
+    move: 'no arithmetic \u00b7 shoot', moveColor: '#2b7fa8',
     note: 'Spot HI places the reading at white-with-detail \u2014 egrets, snow, bright sails: metered in one press' },
-  sh: { patch: '#f2f2ea', ov: 'ovSh',
+  sh: { patch: '#f5f4ef', ov: 'ovSh',
     v1: 'Reeds pinned to true black \u2014', v2: 'mood kept; the bird falls where it falls.',
-    move: 'declare the shadow \u00b7 protect the dark', moveColor: '#a78bfa',
+    move: 'declare the shadow \u00b7 protect the dark', moveColor: '#123a5c',
     note: 'Spot SH is the mirror trick: meter a shadow and keep it a shadow \u2014 stage light, black fur, low-key work' }
 };
 function setOmMeter(key) {
@@ -1130,6 +1371,61 @@ if (lbEls.length) {
     else if (e.key === 'Escape') lbClose();
   });
 }
+
+// Sticky top bar: progress, current section, jump menu
+(() => {
+  const bar = document.getElementById('topbar');
+  const label = document.getElementById('tbLabel');
+  const prog = document.getElementById('tbProgress');
+  const menu = document.getElementById('tbMenu');
+  const jump = document.getElementById('tbJump');
+  const secs = [...document.querySelectorAll('.section, .reading-list')];
+  secs.forEach((el, i) => { if (!el.id) el.id = 'sec-auto-' + i; });
+
+  const meta = secs.map(el => {
+    const num = (el.querySelector('.section-number') || {}).textContent || '';
+    const h2 = (el.querySelector('h2') || {}).textContent || '';
+    const parts = num.split('—');
+    return { el, n: parts[0].trim(), name: (parts[1] || h2).trim(), h2 };
+  });
+
+  menu.innerHTML = meta.map(m =>
+    `<a href="#${m.el.id}" data-id="${m.el.id}"><span class="n">${m.n}</span><span>${m.name}</span></a>`
+  ).join('');
+
+  const setCurrent = (i) => {
+    label.textContent = meta[i] ? `${meta[i].n} · ${meta[i].name}` : '';
+    menu.querySelectorAll('a').forEach((a, j) => a.classList.toggle('here', j === i));
+  };
+
+  const onScroll = () => {
+    const y = window.scrollY;
+    const hero = document.querySelector('.hero');
+    bar.classList.toggle('show', y > (hero ? hero.offsetHeight - 80 : 400));
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + '%';
+    let cur = -1;
+    for (let i = 0; i < meta.length; i++) {
+      if (meta[i].el.getBoundingClientRect().top <= 120) cur = i;
+    }
+    if (cur !== onScroll.last) { setCurrent(cur); onScroll.last = cur; }
+  };
+  onScroll.last = -2;
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const closeMenu = () => { menu.classList.remove('open'); jump.setAttribute('aria-expanded', 'false'); };
+  jump.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = menu.classList.toggle('open');
+    jump.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.addEventListener('click', (e) => { if (e.target.closest('a')) closeMenu(); });
+  document.addEventListener('click', (e) => { if (!menu.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  document.getElementById('tbTop').addEventListener('click', () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
 </script>
 </body>
 </html>

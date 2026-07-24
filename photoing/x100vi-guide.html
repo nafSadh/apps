@@ -321,18 +321,6 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
 .hero-sub em { color: var(--azure); }
 .scroll-cue { color: var(--dim-paper); }
 .scroll-cue .arrow { color: var(--red-pen); }
-/* chrome top plate */
-.top-plate { display: flex; align-items: center; justify-content: center; gap: 14px;
-  margin: 0 auto 2.2rem; padding: 10px 22px; max-width: 380px; border-radius: 8px;
-  background: linear-gradient(180deg, #f4f4f1 0%, #dcdcd7 42%, #c8c8c3 58%, #ececea 100%);
-  border: 1px solid #b9b9b4; box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 2px 8px rgba(26,18,8,.12); }
-.tp-text { font-family: 'JetBrains Mono', monospace; font-size: .78rem; letter-spacing: .5em;
-  margin-right: -.5em; color: #63635e; text-shadow: 0 1px 0 rgba(255,255,255,.85); font-weight: 600; }
-.tp-dot { width: 11px; height: 11px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #d9634b, #a52d18 70%);
-  box-shadow: 0 1px 2px rgba(26,18,8,.35), 0 1px 0 rgba(255,255,255,.7); }
-.tp-knurl { width: 42px; height: 12px; border-radius: 2px; opacity: .55;
-  background: repeating-linear-gradient(90deg, #8f8f8a 0 1.5px, transparent 1.5px 4px); }
 /* ---- Sections ---- */
 .section-number { color: var(--red-pen); font-weight: 600; }
 .section h2 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
@@ -401,19 +389,69 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
 .page-footer p { font-family: 'Fraunces', serif; color: var(--dim-paper); }
 .page-footer em { color: var(--red-pen); }
 .page-footer strong { color: var(--ink); font-style: normal; }
-@media (max-width: 600px) { .top-plate { max-width: 300px; gap: 10px; } .tp-knurl { width: 26px; } }
+
+.section, .reading-list { scroll-margin-top: 64px; }
+/* ---- Sticky top bar ---- */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; gap: 1rem; height: 46px;
+  padding: 0 clamp(1rem, 4vw, 2.2rem);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(12px); backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-100%); opacity: 0;
+  transition: transform .32s ease, opacity .32s ease;
+}
+.topbar.show { transform: none; opacity: 1; }
+.tb-mark {
+  font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .18em;
+  text-transform: uppercase; font-weight: 600; color: var(--ink);
+  background: none; border: none; padding: 0; cursor: pointer;
+}
+.tb-mark:hover { color: var(--accent-coral); }
+.tb-jump {
+  margin-left: auto; display: flex; align-items: center; gap: .5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: .68rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--dim-paper);
+  background: none; border: none; padding: .3rem .1rem; cursor: pointer; max-width: 62vw;
+}
+.tb-jump:hover { color: var(--ink); }
+.tb-jump .chev { transition: transform .25s ease; font-size: .6rem; }
+.tb-jump[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.tb-jump .label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tb-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0;
+  background: var(--accent-coral); transition: width .1s linear; }
+.tb-menu {
+  position: fixed; top: 46px; right: clamp(1rem, 4vw, 2.2rem); z-index: 51;
+  background: var(--paper-hi); border: 1px solid var(--line); border-radius: 10px;
+  padding: .4rem; min-width: 250px; max-height: 72vh; overflow-y: auto;
+  box-shadow: 0 12px 34px rgba(0,0,0,.14); display: none; flex-direction: column;
+}
+.tb-menu.open { display: flex; }
+.tb-menu a {
+  font-family: 'JetBrains Mono', monospace; font-size: .7rem; letter-spacing: .04em;
+  color: var(--ink-soft); text-decoration: none; padding: .5rem .7rem; border-radius: 6px;
+  display: flex; gap: .6rem; align-items: baseline;
+}
+.tb-menu a:hover { background: var(--paper-cool); color: var(--accent-coral); }
+.tb-menu a.here { color: var(--accent-coral); font-weight: 600; }
+.tb-menu a .n { color: var(--dim-paper); flex-shrink: 0; min-width: 1.6em; }
+.tb-menu a.here .n { color: var(--accent-coral); }
+@media (max-width: 560px) { .tb-jump .label { display: none; } .tb-menu { min-width: 210px; } }
 </style>
 </head>
 <body>
+<div class="topbar" id="topbar">
+  <button class="tb-mark" id="tbTop" title="Back to top">X100VI</button>
+  <button class="tb-jump" id="tbJump" aria-expanded="false" aria-controls="tbMenu">
+    <span class="label" id="tbLabel"></span><span class="chev">▼</span>
+  </button>
+  <div class="tb-progress" id="tbProgress"></div>
+</div>
+<nav class="tb-menu" id="tbMenu" aria-label="Sections"></nav>
 <!-- ================= HERO ================= -->
 <section class="hero">
   <div class="hero-content">
-    <div class="top-plate">
-      <span class="tp-knurl"></span>
-      <span class="tp-text">X100VI</span>
-      <span class="tp-dot" title="shutter"></span>
-      <span class="tp-knurl"></span>
-    </div>
     <span class="hero-kicker">Visual Field Guide · Fujifilm X100VI</span>
     <h1>Seeing with the X100VI</h1>
     <p class="hero-sub">One lens, one frame, endless light. How the <em>23mm f/2</em>, the <em>leaf shutter</em>, the <em>built-in ND</em> and <em>film recipes</em> add up to stunning photographs.</p>
@@ -2120,6 +2158,61 @@ if (exFig) exFig.addEventListener('click', () => {
   exFig.setAttribute('src', exFig.dataset.altSrc);
   exFig.dataset.altSrc = t;
 });
+
+// Sticky top bar: progress, current section, jump menu
+(() => {
+  const bar = document.getElementById('topbar');
+  const label = document.getElementById('tbLabel');
+  const prog = document.getElementById('tbProgress');
+  const menu = document.getElementById('tbMenu');
+  const jump = document.getElementById('tbJump');
+  const secs = [...document.querySelectorAll('.section, .reading-list')];
+  secs.forEach((el, i) => { if (!el.id) el.id = 'sec-auto-' + i; });
+
+  const meta = secs.map(el => {
+    const num = (el.querySelector('.section-number') || {}).textContent || '';
+    const h2 = (el.querySelector('h2') || {}).textContent || '';
+    const parts = num.split('—');
+    return { el, n: parts[0].trim(), name: (parts[1] || h2).trim(), h2 };
+  });
+
+  menu.innerHTML = meta.map(m =>
+    `<a href="#${m.el.id}" data-id="${m.el.id}"><span class="n">${m.n}</span><span>${m.name}</span></a>`
+  ).join('');
+
+  const setCurrent = (i) => {
+    label.textContent = meta[i] ? `${meta[i].n} · ${meta[i].name}` : '';
+    menu.querySelectorAll('a').forEach((a, j) => a.classList.toggle('here', j === i));
+  };
+
+  const onScroll = () => {
+    const y = window.scrollY;
+    const hero = document.querySelector('.hero');
+    bar.classList.toggle('show', y > (hero ? hero.offsetHeight - 80 : 400));
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + '%';
+    let cur = -1;
+    for (let i = 0; i < meta.length; i++) {
+      if (meta[i].el.getBoundingClientRect().top <= 120) cur = i;
+    }
+    if (cur !== onScroll.last) { setCurrent(cur); onScroll.last = cur; }
+  };
+  onScroll.last = -2;
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const closeMenu = () => { menu.classList.remove('open'); jump.setAttribute('aria-expanded', 'false'); };
+  jump.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = menu.classList.toggle('open');
+    jump.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.addEventListener('click', (e) => { if (e.target.closest('a')) closeMenu(); });
+  document.addEventListener('click', (e) => { if (!menu.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  document.getElementById('tbTop').addEventListener('click', () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
 </script>
 </body>
 </html>
