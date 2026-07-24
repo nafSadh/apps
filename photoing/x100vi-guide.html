@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seeing with the X100VI — A Visual Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deepest: #0a0a0f;
+  --bg-dark: #10101a;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --text-primary: #e8e6e1;
+  --text-dim: #6b6a7a;
+  --accent-coral: #ff6b3d;
+  --accent-teal: #4ecdc4;
+  --accent-gold: #ffe66d;
+  --accent-purple: #a78bfa;
+  --accent-pink: #f472b6;
+  --accent-2: var(--accent-teal);
+  --glow-coral: rgba(255, 107, 61, 0.3);
+  --glow-teal: rgba(78, 205, 196, 0.3);
+  --border-card: 1px solid rgba(255, 255, 255, 0.06);
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 6rem;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg-deepest);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+}
+/* ---------- Hero ---------- */
+.hero { height: 100vh; height: 100svh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(78,205,196,0.08) 0%, rgba(255,107,61,0.04) 40%, transparent 100%);
+  pointer-events: none; z-index: 1;
+}
+.hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 2rem; }
+.hero-kicker {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--accent-coral); display: block; margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s ease-out;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif; font-size: clamp(3rem, 8vw, 6.2rem); font-weight: 700; line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-2) 50%, var(--accent-2) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: fadeUp 0.8s ease-out 0.1s both, shimmer 3s ease-in-out 1s infinite;
+}
+.hero-sub { font-size: 1.1rem; max-width: 540px; margin: 0 auto; color: var(--text-dim); animation: fadeUp 0.8s ease-out 0.2s both; }
+.hero-sub em { color: var(--accent-2); font-style: italic; font-weight: 500; }
+.scroll-cue {
+  position: absolute; bottom: 3rem; left: 0; right: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem; color: var(--text-dim); z-index: 2; animation: fadeUp 0.8s ease-out 0.4s both;
+  cursor: pointer;
+}
+.scroll-cue .arrow { color: var(--accent-coral); animation: bounce 2s ease-in-out infinite; }
+/* ---------- Sections ---------- */
+.section {
+  max-width: 1100px; margin: 0 auto; padding: var(--spacing-xl) var(--spacing-md);
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.section.visible { opacity: 1; transform: translateY(0); }
+.section-number {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent-coral); display: block; margin-bottom: 1rem;
+}
+.section h2 { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 2rem; color: var(--text-primary); }
+.section p { font-size: 1.05rem; max-width: 640px; color: var(--text-dim); margin-bottom: 2rem; line-height: 1.8; }
+.section p strong { color: var(--text-primary); font-weight: 600; }
+.section p em { color: var(--accent-2); }
+.key-idea {
+  border-left: 3px solid var(--accent-coral); background: var(--bg-card);
+  padding: 1.25rem 1.5rem; border-radius: 0 8px 8px 0; max-width: 640px; margin-bottom: 2rem;
+}
+.key-idea .kicker {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--accent-coral); margin-bottom: 0.5rem;
+}
+.key-idea p { margin-bottom: 0; color: var(--text-primary); font-size: 1rem; }
+/* ---------- SVG stage ---------- */
+.svg-stage {
+  width: 100%; border-radius: 16px; background: var(--bg-card); border: var(--border-card);
+  padding: 2rem; margin: 2rem 0; display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1rem;
+}
+.svg-stage svg { width: 100%; height: auto; display: block; max-width: 100%; }
+.svg-stage img.fig { width: 100%; height: auto; display: block; border-radius: 10px; }
+.recipe-card img.recipe-photo { width: 100%; height: 220px; object-fit: cover; object-position: center 62%; display: block; }
+.scene-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.scene-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
+.scene-card:hover { transform: translateY(-3px); border-color: var(--accent-teal); }
+img.scene-fig { width: 100%; height: auto; display: block; cursor: zoom-in; }
+.scene-body { padding: 1rem 1.2rem 1.3rem; }
+.scene-body h3 { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-2); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
+.scene-body h3 img.medal { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; }
+.scene-body p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 0; max-width: none; }
+.scene-body p strong { color: var(--text-primary); }
+.deck-cover { max-width: 400px; margin: 2rem auto 0.5rem; }
+.deck-cover img { border-radius: 12px; border: var(--border-card); }
+@media (max-width: 540px) { .scene-grid { grid-template-columns: 1fr; } }
+#explodedToggle { cursor: pointer; }
+#section-exposure .photo-grid .photo-card img { height: 300px; }
+.lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(14,11,6,0.93); display: flex; align-items: center; justify-content: center; }
+.lightbox[hidden] { display: none; }
+.lightbox img { max-width: min(92vw, 1080px); max-height: 86vh; border-radius: 10px; box-shadow: 0 24px 80px rgba(0,0,0,0.55); }
+.lb-btn { position: fixed; background: none; border: none; color: #f4f3ee; cursor: pointer; opacity: 0.7; font-family: 'JetBrains Mono', monospace; transition: opacity 0.2s ease; z-index: 61; }
+.lb-btn:hover { opacity: 1; }
+.lb-prev, .lb-next { top: 50%; transform: translateY(-50%); font-size: 3rem; padding: 1.5rem 1rem; }
+.lb-prev { left: 6px; } .lb-next { right: 6px; }
+.lb-close { top: 12px; right: 16px; font-size: 2rem; padding: 0.5rem 1rem; }
+.lb-cap { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #d8d0bd; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; display: flex; gap: 1.2rem; }
+.stage-caption {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-dim); text-align: center;
+}
+.flow-line { stroke-dasharray: 800; stroke-dashoffset: 800; animation: flowRight 3s ease-in-out infinite; }
+.pulse-node { animation: pulse 2s ease-in-out infinite; }
+.grain-dot { animation: matrixFade 2.2s ease-in-out infinite; }
+/* ---------- Step nav ---------- */
+.step-nav { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 0.5rem; justify-content: center; }
+.step-btn {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px; background: transparent; color: var(--text-dim); cursor: pointer;
+  transition: all 0.3s ease;
+}
+.step-btn:hover { border-color: var(--accent-coral); color: var(--accent-coral); }
+.step-btn.active { background: var(--accent-coral); color: var(--bg-deepest); border-color: var(--accent-coral); }
+/* ---------- Arch cards ---------- */
+.arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+.arch-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; padding: 1.5rem; transition: all 0.4s ease; }
+.arch-card:hover { border-color: var(--accent-teal); transform: translateY(-4px); box-shadow: 0 0 30px var(--glow-teal); }
+.arch-card h3 {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent-2); margin-bottom: 0.75rem;
+}
+.arch-card p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 0; max-width: none; }
+.arch-card p strong { color: var(--text-primary); }
+/* ---------- Recipe cards ---------- */
+.recipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
+.recipe-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
+.recipe-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); box-shadow: 0 0 30px rgba(255,230,109,0.15); }
+.recipe-card svg { width: 100%; height: auto; display: block; }
+.recipe-body { padding: 1.1rem 1.25rem 1.4rem; }
+.recipe-body h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+.recipe-use {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent-coral); margin-bottom: 0.8rem;
+}
+.recipe-settings { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); line-height: 1.9; }
+.recipe-settings b { color: var(--accent-2); font-weight: 600; }
+/* ---------- Composition grid ---------- */
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+.comp-card { background: var(--bg-card); border: var(--border-card); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; }
+.comp-card:hover { transform: translateY(-4px); border-color: var(--accent-purple); box-shadow: 0 0 26px rgba(167,139,250,0.18); }
+.comp-card svg { width: 100%; height: auto; display: block; }
+.comp-body { padding: 0.85rem 1rem 1.1rem; }
+.comp-name { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--accent-2); margin-bottom: 0.35rem; }
+.comp-tip { font-size: 0.85rem; color: var(--text-dim); line-height: 1.55; }
+/* ---------- Real photo grid ---------- */
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.photo-card {
+  display: block; background: var(--bg-card); border: var(--border-card); border-radius: 12px;
+  overflow: hidden; text-decoration: none; color: inherit; transition: all 0.4s ease;
+}
+.photo-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); box-shadow: 0 0 30px rgba(255,230,109,0.15); }
+.photo-card img { width: 100%; height: 210px; object-fit: cover; display: block; background: rgba(255,255,255,0.04); }
+.photo-cap { padding: 0.9rem 1.1rem 1.1rem; }
+.photo-tag {
+  display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--accent-coral); margin-bottom: 0.4rem;
+}
+.photo-credit { display: block; font-size: 0.85rem; color: var(--text-dim); }
+/* ---------- Reading list ---------- */
+.reading-list {
+  max-width: 1100px; margin: 0 auto; padding: var(--spacing-xl) var(--spacing-md);
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.reading-list.visible { opacity: 1; transform: translateY(0); }
+.tier { margin-bottom: 3rem; }
+.tier-header { margin-bottom: 1.5rem; }
+.tier-badge {
+  display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 0.12em; padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: 600;
+}
+.tier-1-badge { background: var(--accent-coral); color: var(--bg-deepest); }
+.tier-2-badge { background: var(--accent-teal); color: var(--bg-deepest); }
+.tier-3-badge { background: var(--accent-purple); color: var(--bg-deepest); }
+.resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.resource-card {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 1rem;
+  background: var(--bg-card); border: var(--border-card); border-left: 3px solid var(--accent-coral);
+  border-radius: 8px; padding: 1.25rem; align-items: start; transition: all 0.3s ease;
+  text-decoration: none; color: inherit;
+}
+.resource-card:hover { transform: translateX(4px); border-left-color: var(--accent-teal); box-shadow: -6px 0 20px var(--glow-teal); }
+.resource-icon { font-size: 1.5rem; text-align: center; flex-shrink: 0; }
+.resource-body h4 {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-primary); margin-bottom: 0.4rem;
+}
+.resource-body .author {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim);
+  margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.resource-body p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 0; }
+.resource-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-dim); padding: 0.4rem 0.6rem;
+  background: rgba(255,255,255,0.05); border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+}
+.suggested-path {
+  margin-top: 2rem; padding: 2rem; background: var(--bg-card);
+  border-top: 2px solid; border-image: linear-gradient(90deg, var(--accent-coral), var(--accent-teal)) 1;
+  border-radius: 8px;
+}
+.suggested-path h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; margin-bottom: 1.5rem; }
+.path-steps { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.path-step {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 0.6rem 1.2rem; background: rgba(78,205,196,0.1);
+  border: 1px solid rgba(78,205,196,0.3); border-radius: 6px; color: var(--accent-teal);
+}
+/* ---------- Footer ---------- */
+.page-footer {
+  max-width: 1100px; margin: 0 auto; padding: var(--spacing-xl) var(--spacing-md);
+  border-top: 1px solid rgba(255,255,255,0.06); text-align: center;
+}
+.page-footer p { font-family: 'Fraunces', serif; font-style: italic; color: var(--text-dim); max-width: 600px; margin: 0 auto; }
+.page-footer em { color: var(--accent-coral); }
+.page-footer strong { color: var(--text-primary); font-weight: 600; font-style: normal; }
+/* ---------- Animations ---------- */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shimmer { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+@keyframes flowRight { from { stroke-dashoffset: 800; } to { stroke-dashoffset: 0; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+@keyframes matrixFade { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.8; } }
+/* ---------- Accessibility ---------- */
+.step-btn:focus-visible, .photo-card:focus-visible, .resource-card:focus-visible, .scroll-cue:focus-visible {
+  outline: 2px solid var(--accent-2); outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .section, .reading-list { opacity: 1; transform: none; }
+}
+/* ---------- Responsive ---------- */
+@media (max-width: 700px) {
+  .arch-grid { grid-template-columns: 1fr; }
+  .resource-grid { grid-template-columns: repeat(2, 1fr); }
+  .svg-stage { padding: 1rem; }
+}
+@media (max-width: 600px) {
+  .section { padding: var(--spacing-lg) var(--spacing-sm); }
+  .hero { padding: 2rem; }
+  .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+  .hero-sub { font-size: 1rem; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .path-steps { flex-direction: column; gap: 0.5rem; }
+  .path-steps svg { display: none; }
+  .page-footer { padding: var(--spacing-lg) var(--spacing-sm); }
+  .page-footer p { font-size: 0.95rem; }
+}
+@media (max-width: 500px) {
+  .hero-kicker { font-size: 0.65rem; }
+  .section-number { font-size: 0.65rem; }
+  .step-nav { gap: 0.5rem; }
+  .step-btn { padding: 0.5rem 0.9rem; font-size: 0.65rem; }
+  .resource-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<style id="paper-theme">
+/* ============ PAPER & CHROME — sadh.ink x X100VI ============ */
+:root {
+  --paper: #f4f3ee; --paper-hi: #fafaf5; --paper-cool: #eeefe9;
+  --ink: #1a1208; --ink-soft: #3d2a16; --dim-paper: #8a7a56;
+  --azure: #2a6bb8; --azure-deep: #1a3e68; --red-pen: #b8422a;
+  --line: rgba(26,18,8,.14);
+  --bg-deepest: var(--paper); --bg-dark: var(--paper-cool);
+  --bg-card: #fbfaf6;
+  --text-primary: var(--ink); --text-dim: var(--dim-paper);
+  --accent-coral: var(--red-pen); --accent-teal: var(--azure);
+  --accent-gold: #b8912a; --accent-purple: var(--azure-deep); --accent-pink: #b8422a;
+  --accent-2: var(--azure);
+  --glow-coral: rgba(184,66,42,.14); --glow-teal: rgba(42,107,184,.14);
+  --border-card: 1px solid var(--line);
+  --finder: #eeefe9; --finder-line: rgba(26,18,8,.32);
+}
+body { background: var(--paper); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; }
+/* paper grain + warm/cool ambient, straight from sadh.ink */
+body::before { content:''; position: fixed; inset: 0; pointer-events: none; opacity: .05; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply; }
+body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: linear-gradient(180deg, rgba(250,245,230,.55) 0%, rgba(244,243,238,0) 40%, rgba(238,239,233,.35) 100%); }
+.hero, .section, .reading-list, .page-footer { position: relative; z-index: 1; }
+/* ---- Hero ---- */
+.hero::before { background: radial-gradient(circle at 30% 20%, rgba(220,180,120,.20) 0%, rgba(42,107,184,.05) 45%, transparent 100%); }
+.hero-kicker { color: var(--red-pen); font-weight: 600; }
+.hero h1 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+  letter-spacing: -.03em; font-variation-settings: "opsz" 144;
+  background: linear-gradient(120deg, var(--ink) 0%, var(--ink) 55%, var(--azure) 80%, var(--ink) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { color: var(--ink-soft); }
+.hero-sub em { color: var(--azure); }
+.scroll-cue { color: var(--dim-paper); }
+.scroll-cue .arrow { color: var(--red-pen); }
+/* chrome top plate */
+.top-plate { display: flex; align-items: center; justify-content: center; gap: 14px;
+  margin: 0 auto 2.2rem; padding: 10px 22px; max-width: 380px; border-radius: 8px;
+  background: linear-gradient(180deg, #f4f4f1 0%, #dcdcd7 42%, #c8c8c3 58%, #ececea 100%);
+  border: 1px solid #b9b9b4; box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 2px 8px rgba(26,18,8,.12); }
+.tp-text { font-family: 'JetBrains Mono', monospace; font-size: .78rem; letter-spacing: .5em;
+  margin-right: -.5em; color: #63635e; text-shadow: 0 1px 0 rgba(255,255,255,.85); font-weight: 600; }
+.tp-dot { width: 11px; height: 11px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #d9634b, #a52d18 70%);
+  box-shadow: 0 1px 2px rgba(26,18,8,.35), 0 1px 0 rgba(255,255,255,.7); }
+.tp-knurl { width: 42px; height: 12px; border-radius: 2px; opacity: .55;
+  background: repeating-linear-gradient(90deg, #8f8f8a 0 1.5px, transparent 1.5px 4px); }
+/* ---- Sections ---- */
+.section-number { color: var(--red-pen); font-weight: 600; }
+.section h2 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+  font-variation-settings: "opsz" 100; color: var(--ink); letter-spacing: -.02em; }
+.section p { color: var(--ink-soft); }
+.section p strong { color: var(--ink); }
+.section p em { color: var(--azure); font-style: italic; }
+.key-idea { border-left: 3px solid var(--red-pen); background: var(--paper-hi);
+  box-shadow: 0 1px 4px rgba(26,18,8,.06); }
+.key-idea .kicker { color: var(--red-pen); }
+.key-idea p { color: var(--ink-soft); }
+/* ---- The viewfinder stages: dark panels on paper, OVF corner brackets ---- */
+.svg-stage { background: var(--finder); border: 1px solid var(--line); border-radius: 14px;
+  position: relative; box-shadow: 0 8px 26px rgba(26,18,8,.10), 0 1px 4px rgba(26,18,8,.06); }
+.svg-stage::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .75; border-radius: 14px;
+  background:
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat left 13px top 13px / 22px 2px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat left 13px top 13px / 2px 22px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat right 13px top 13px / 22px 2px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat right 13px top 13px / 2px 22px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat left 13px bottom 13px / 22px 2px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat left 13px bottom 13px / 2px 22px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat right 13px bottom 13px / 22px 2px,
+    linear-gradient(var(--finder-line),var(--finder-line)) no-repeat right 13px bottom 13px / 2px 22px; }
+.svg-stage .stage-caption { color: var(--dim-paper); }
+.svg-stage .step-btn { border: 1px solid var(--line); color: var(--dim-paper); background: transparent; }
+.svg-stage .step-btn:hover { border-color: var(--ink); color: var(--ink); }
+.svg-stage .step-btn.active { background: var(--ink); color: var(--paper-hi); border-color: var(--ink); }
+/* ---- Cards on paper ---- */
+.arch-card { background: var(--paper-hi); border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(26,18,8,.05); }
+.arch-card:hover { border-color: var(--azure); box-shadow: 0 6px 22px rgba(42,107,184,.14); }
+.arch-card h3 { color: var(--azure); }
+.arch-card p { color: var(--ink-soft); }
+.arch-card p strong { color: var(--ink); }
+.recipe-card, .comp-card { background: var(--paper-hi); border: 1px solid var(--line); box-shadow: 0 1px 5px rgba(26,18,8,.07); }
+.recipe-card svg, .comp-card svg, .recipe-card img.recipe-photo { display: block; padding: 8px 8px 0; background: var(--paper-hi); box-sizing: border-box; border-bottom: 1px solid var(--line); }
+.recipe-card:hover { border-color: var(--accent-gold); box-shadow: 0 8px 26px rgba(184,145,42,.18); }
+.comp-card:hover { border-color: var(--azure-deep); box-shadow: 0 8px 26px rgba(26,62,104,.16); }
+.recipe-body h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--ink); }
+.recipe-use { color: var(--red-pen); }
+.recipe-settings { color: var(--dim-paper); }
+.recipe-settings b { color: var(--azure); }
+.comp-name { color: var(--azure); }
+.comp-tip { color: var(--ink-soft); }
+/* ---- Real frames as mounted prints ---- */
+.photo-card { background: #fff; border: 1px solid var(--line); box-shadow: 0 2px 10px rgba(26,18,8,.1); }
+.photo-card img { padding: 10px 10px 0; background: #fff; box-sizing: border-box; }
+.photo-card:hover { border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(26,18,8,.18); }
+.photo-tag { color: var(--red-pen); }
+.photo-credit { color: var(--dim-paper); }
+/* ---- Reading list ---- */
+.tier-1-badge { background: var(--red-pen); color: var(--paper-hi); }
+.tier-2-badge { background: var(--azure); color: var(--paper-hi); }
+.tier-3-badge { background: var(--azure-deep); color: var(--paper-hi); }
+.resource-card { background: var(--paper-hi); border: 1px solid var(--line); border-left: 3px solid var(--red-pen); }
+.resource-card:hover { border-left-color: var(--azure); box-shadow: -6px 0 20px rgba(42,107,184,.14); }
+.resource-body h4 { color: var(--ink); }
+.resource-body .author { color: var(--dim-paper); }
+.resource-body p { color: var(--ink-soft); }
+.resource-tag { background: rgba(26,18,8,.05); color: var(--dim-paper); }
+.suggested-path { background: var(--paper-hi); border-image: linear-gradient(90deg, var(--red-pen), var(--azure)) 1; }
+.suggested-path h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; }
+.path-step { background: rgba(42,107,184,.08); border: 1px solid rgba(42,107,184,.3); color: var(--azure); }
+/* ---- Footer ---- */
+.page-footer { border-top: 1px solid var(--line); }
+.page-footer p { font-family: 'Fraunces', serif; color: var(--dim-paper); }
+.page-footer em { color: var(--red-pen); }
+.page-footer strong { color: var(--ink); font-style: normal; }
+@media (max-width: 600px) { .top-plate { max-width: 300px; gap: 10px; } .tp-knurl { width: 26px; } }
+</style>
+</head>
+<body>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="top-plate">
+      <span class="tp-knurl"></span>
+      <span class="tp-text">X100VI</span>
+      <span class="tp-dot" title="shutter"></span>
+      <span class="tp-knurl"></span>
+    </div>
+    <span class="hero-kicker">Visual Field Guide · Fujifilm X100VI</span>
+    <h1>Seeing with the X100VI</h1>
+    <p class="hero-sub">One lens, one frame, endless light. How the <em>23mm f/2</em>, the <em>leaf shutter</em>, the <em>built-in ND</em> and <em>film recipes</em> add up to stunning photographs.</p>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll to explore</span>
+    <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 2v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= 01 APERTURE ================= -->
+<section class="section" id="section-01">
+  <div class="section-header">
+    <span class="section-number">01 — The Lens</span>
+    <h2>What the Aperture Actually Does</h2>
+  </div>
+  <p>The X100VI's fixed 23mm f/2 (a <strong>35mm equivalent</strong> field of view) is the whole camera. Aperture is your main creative dial: it trades <strong>light</strong> against <strong>depth of field</strong> — and on this particular lens, against <strong>sharpness</strong> wide open.</p>
+  <div class="svg-stage">
+    <img class="fig" id="explodedToggle" src="img/exploded-x100vi.jpg" data-alt-src="img/official-camera.webp" alt="Rendered exploded view of an X100VI-style camera: lens elements, aperture iris, ND filter, leaf shutter, sensor on stabilizer cage, hybrid viewfinder prism" loading="lazy">
+    <div class="stage-caption">The whole camera, unstacked — elements, iris, flip-in ND, leaf shutter, sensor on its IBIS cage, finder prism · rendered cutaway (Gemini) — component order stylized, not to scale · <strong>tap the image</strong> to flip to the assembled camera (© Fujifilm, from the X100VI product page)</div>
+  </div>
+  <div class="key-idea">
+    <div class="kicker">The rule of thumb</div>
+    <p><strong>f/4 is home base.</strong> Open to f/2 for low light or deliberate softness; stop to f/8 for zone-focused street. Tap the apertures below and watch the simulated scene change.</p>
+  </div>
+  <div class="svg-stage">
+    <div class="step-nav">
+      <button class="step-btn" data-ap="2">f/2 — wide open</button>
+      <button class="step-btn active" data-ap="4">f/4 — home base</button>
+      <button class="step-btn" data-ap="8">f/8 — zone focus</button>
+    </div>
+    <svg viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive depth of field simulation">
+      <defs>
+        <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#12142a"/>
+          <stop offset="100%" stop-color="#1e1b33"/>
+        </linearGradient>
+        <filter id="blur70" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter>
+        <filter id="blur35" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3.5"/></filter>
+        <filter id="blur06" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.6"/></filter>
+        <filter id="blur30" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3"/></filter>
+        <filter id="blur15" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.5"/></filter>
+        <filter id="blur02" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.2"/></filter>
+        <clipPath id="sceneClip"><rect x="20" y="60" width="580" height="300" rx="10"/></clipPath>
+      </defs>
+
+      <text x="310" y="48" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6a7a" letter-spacing="2">SIMULATED SCENE — SUBJECT AT 3 m</text>
+
+      <!-- Scene frame -->
+      <rect x="20" y="60" width="580" height="300" rx="10" fill="url(#nightSky)" stroke="rgba(255,255,255,0.12)"/>
+      <g clip-path="url(#sceneClip)">
+        <!-- BACKGROUND (blur varies) -->
+        <g id="bgGroup" filter="url(#blur35)">
+          <rect x="20" y="240" width="120" height="120" fill="#181630"/>
+          <rect x="150" y="210" width="90" height="150" fill="#141228"/>
+          <rect x="390" y="225" width="110" height="135" fill="#181630"/>
+          <rect x="510" y="250" width="90" height="110" fill="#141228"/>
+          <!-- lit windows -->
+          <rect x="165" y="228" width="10" height="12" fill="#ffe66d" opacity="0.65"/>
+          <rect x="185" y="228" width="10" height="12" fill="#ffe66d" opacity="0.4"/>
+          <rect x="165" y="252" width="10" height="12" fill="#ffb45d" opacity="0.5"/>
+          <rect x="410" y="245" width="10" height="12" fill="#ffe66d" opacity="0.6"/>
+          <rect x="432" y="245" width="10" height="12" fill="#ffb45d" opacity="0.45"/>
+          <rect x="410" y="270" width="10" height="12" fill="#ffe66d" opacity="0.35"/>
+          <!-- bokeh street lights -->
+          <circle cx="90" cy="120" r="13" fill="#ffe66d" opacity="0.85" class="grain-dot"/>
+          <circle cx="150" cy="95" r="9" fill="#ff6b3d" opacity="0.8"/>
+          <circle cx="330" cy="105" r="11" fill="#4ecdc4" opacity="0.8" class="grain-dot"/>
+          <circle cx="420" cy="88" r="8" fill="#ffe66d" opacity="0.75"/>
+          <circle cx="480" cy="125" r="12" fill="#f472b6" opacity="0.7" class="grain-dot"/>
+          <circle cx="555" cy="100" r="9" fill="#ffb45d" opacity="0.8"/>
+          <circle cx="255" cy="90" r="7" fill="#a78bfa" opacity="0.7"/>
+          <!-- distant car streaks -->
+          <rect x="40" y="330" width="70" height="4" rx="2" fill="#ff6b3d" opacity="0.55"/>
+          <rect x="470" y="333" width="80" height="4" rx="2" fill="#ffe66d" opacity="0.5"/>
+        </g>
+        <!-- MIDGROUND (lighter blur) -->
+        <g id="midGroup" filter="url(#blur15)">
+          <rect x="486" y="150" width="6" height="185" fill="#2a2740"/>
+          <circle cx="489" cy="142" r="12" fill="#ffe66d" opacity="0.9"/>
+          <circle cx="489" cy="142" r="22" fill="#ffe66d" opacity="0.18"/>
+          <!-- second, farther figure -->
+          <circle cx="540" cy="272" r="8" fill="#3a3752"/>
+          <rect x="533" y="280" width="14" height="38" rx="5" fill="#3a3752"/>
+        </g>
+        <!-- GROUND -->
+        <rect x="20" y="336" width="580" height="24" fill="#0d0c18"/>
+        <!-- SUBJECT: always sharp -->
+        <g id="subjGroup">
+          <circle cx="235" cy="200" r="17" fill="#101020" stroke="#4ecdc4" stroke-width="1.6"/>
+          <path d="M 210 224 Q 235 210 260 224 L 256 300 Q 254 312 244 312 L 226 312 Q 216 312 214 300 Z" fill="#101020" stroke="#4ecdc4" stroke-width="1.6"/>
+          <rect x="219" y="310" width="12" height="34" rx="4" fill="#101020" stroke="#4ecdc4" stroke-width="1.4"/>
+          <rect x="239" y="310" width="12" height="34" rx="4" fill="#101020" stroke="#4ecdc4" stroke-width="1.4"/>
+        </g>
+      </g>
+      <text x="235" y="382" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#4ecdc4">SUBJECT · 3 m · ALWAYS YOUR ANCHOR</text>
+      <text id="sceneNote" x="310" y="410" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#e8e6e1">Crisp subject, gentle separation — the reliable look</text>
+
+      <!-- RIGHT PANEL: iris + DOF scale -->
+      <g>
+        <text x="752" y="66" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6a7a" letter-spacing="1.5">IRIS OPENING</text>
+        <circle cx="752" cy="135" r="52" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        <circle id="irisOpen" cx="752" cy="135" r="26" fill="#ffe66d" opacity="0.85" class="pulse-node"/>
+        <text id="apLabel" x="752" y="222" text-anchor="middle" font-family="Fraunces, serif" font-size="26" fill="#e8e6e1">f/4</text>
+        <text id="lightLabel" x="752" y="244" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6a7a">¼ of the light of f/2</text>
+
+        <text x="752" y="284" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b6a7a" letter-spacing="1.5">DEPTH OF FIELD</text>
+        <line x1="640" y1="312" x2="864" y2="312" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+        <rect id="dofBand" x="722" y="303" width="83" height="18" rx="4" fill="#4ecdc4" opacity="0.45"/>
+        <line x1="760" y1="298" x2="760" y2="326" stroke="#ff6b3d" stroke-width="2"/>
+        <g font-family="JetBrains Mono, monospace" font-size="9" fill="#6b6a7a">
+          <text x="660" y="340" text-anchor="middle">1m</text>
+          <text x="715" y="340" text-anchor="middle">2m</text>
+          <text x="760" y="340" text-anchor="middle" fill="#ff6b3d">3m</text>
+          <text x="810" y="340" text-anchor="middle">5m</text>
+          <text x="858" y="340" text-anchor="middle">∞</text>
+        </g>
+        <text id="dofRange" x="752" y="368" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ecdc4">≈ 2.2 – 4.7 m in focus</text>
+        <text id="dofNote" x="752" y="392" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#6b6a7a">margin for recompose &amp; movement</text>
+      </g>
+    </svg>
+    <div class="stage-caption">Interactive — depth of field &amp; brightness are illustrative for 23mm APS-C, subject at 3 m</div>
+  </div>
+  <p><strong>Why not always f/2?</strong> Wide open, this lens is famously <em>dreamy</em> at close distances, and the focus plane is thin enough that a swaying subject drifts out of focus. By f/4 it is crisp corner to corner with enough depth to actually land the shot. f/2 is a choice, not a default — use it when the light demands it or the glow is the point.</p>
+  <div class="svg-stage">
+    <img class="fig" src="img/iris-four.jpg" alt="Rendered illustration of a nine-blade lens iris at four progressively smaller openings" loading="lazy">
+    <div class="stage-caption">The geometry behind the f-numbers — nine blades walking from wide open to pinhole · rendered illustration (Gemini)</div>
+  </div>
+  <p><strong>And yes — the lens changes after all.</strong> The front ring unscrews to reveal a 49mm thread, and Fujifilm makes two <em>afocal converters</em> that screw straight on. They bend the light before it ever reaches the fixed 23mm, scaling the focal length and the entrance pupil <em>together</em> — which is why <strong>f/2 stays f/2</strong>, all 40 megapixels stay, and the leaf shutter and ND never notice. The II versions carry a magnet the body detects: attach one and the camera silently applies its corrections and redraws the OVF framelines. The ritual is three moves: <strong>unscrew the front trim ring</strong>, <strong>thread the converter onto the 49mm mount</strong>, shoot — no menu visit needed (first-generation converters want CONVERSION LENS set by hand). The same thread takes the AR-X100 filter adapter that completes the weather sealing.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" aria-label="How afocal conversion lenses change the angle of view">
+      <text x="450" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8a7a56" letter-spacing="1.5">AFOCAL CONVERTERS — SAME LENS BEHIND, NEW ANGLE OF VIEW IN FRONT</text>
+      <text x="450" y="54" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#1a1208">The converter re-angles light <tspan font-style="italic">before</tspan> the 23mm — focal length and entrance pupil scale together,</text>
+      <text x="450" y="72" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#1a1208">so <tspan font-weight="600">f/2 and 40MP survive untouched</tspan></text>
+      <!-- WCL -->
+      <g>
+        <rect x="40" y="120" width="44" height="64" rx="6" fill="rgba(26,18,8,0.08)" stroke="#8a7a56"/>
+        <rect x="84" y="134" width="22" height="36" rx="3" fill="rgba(26,18,8,0.16)" stroke="#8a7a56"/>
+        <rect x="106" y="126" width="26" height="52" rx="4" fill="rgba(42,107,184,0.18)" stroke="#2a6bb8" stroke-width="2"/>
+        <line x1="132" y1="152" x2="288" y2="46" stroke="#2a6bb8" stroke-width="1.5"/>
+        <line x1="132" y1="152" x2="288" y2="258" stroke="#2a6bb8" stroke-width="1.5"/>
+        <line x1="288" y1="46" x2="288" y2="258" stroke="#2a6bb8" stroke-width="1" opacity="0.4"/>
+        <text x="164" y="290" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#2a6bb8" font-weight="600">WCL ×0.8</text>
+        <text x="164" y="308" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">28mm-e · wider cone in</text>
+      </g>
+      <!-- bare -->
+      <g>
+        <rect x="340" y="120" width="44" height="64" rx="6" fill="rgba(26,18,8,0.08)" stroke="#8a7a56"/>
+        <rect x="384" y="134" width="22" height="36" rx="3" fill="rgba(26,18,8,0.16)" stroke="#8a7a56"/>
+        <line x1="406" y1="152" x2="562" y2="64" stroke="#1a1208" stroke-width="1.5"/>
+        <line x1="406" y1="152" x2="562" y2="240" stroke="#1a1208" stroke-width="1.5"/>
+        <line x1="562" y1="64" x2="562" y2="240" stroke="#1a1208" stroke-width="1" opacity="0.35"/>
+        <text x="452" y="290" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#1a1208" font-weight="600">BARE 23mm</text>
+        <text x="452" y="308" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">35mm-e · the camera&#8217;s soul</text>
+      </g>
+      <!-- TCL -->
+      <g>
+        <rect x="620" y="120" width="44" height="64" rx="6" fill="rgba(26,18,8,0.08)" stroke="#8a7a56"/>
+        <rect x="664" y="134" width="22" height="36" rx="3" fill="rgba(26,18,8,0.16)" stroke="#8a7a56"/>
+        <rect x="686" y="122" width="34" height="60" rx="4" fill="rgba(184,66,42,0.14)" stroke="#b8422a" stroke-width="2"/>
+        <line x1="720" y1="152" x2="876" y2="90" stroke="#b8422a" stroke-width="1.5"/>
+        <line x1="720" y1="152" x2="876" y2="214" stroke="#b8422a" stroke-width="1.5"/>
+        <line x1="876" y1="90" x2="876" y2="214" stroke="#b8422a" stroke-width="1" opacity="0.4"/>
+        <text x="748" y="290" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#b8422a" font-weight="600">TCL ×1.4</text>
+        <text x="748" y="308" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">50mm-e · narrower cone in</text>
+      </g>
+    </svg>
+    <div class="stage-caption">Afocal = no focus shift: only the angle of view changes — AF, leaf shutter, ND and close-focus all behave as before · unscrew trim ring → thread on 49mm → shoot</div>
+  </div>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>WCL-X100II · ×0.8</h3>
+      <p><strong>23mm → 28mm equivalent.</strong> The classic reportage width — rooms, tables, streets that won't step back. Full 40MP, f/2 intact, auto-detected. The cost: real money, real bulk on a pocket camera, and a look less "X100" — wider than the camera's soul.</p>
+    </div>
+    <div class="arch-card">
+      <h3>TCL-X100II · ×1.4</h3>
+      <p><strong>23mm → 50mm equivalent.</strong> The portrait normal — tighter frames, kinder perspective for faces (§13). Full 40MP and <strong>f/2 stays f/2</strong>, which at 50mm-e means genuinely shallow depth. The glass answer to the portrait problem the digital TC solves for free.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Digital TC · ×1.4 / ×2</h3>
+      <p><strong>Crop, not glass: 50mm at ~20MP, 70mm at ~10MP.</strong> Free, weightless, on the control ring (§02) — but JPEG-only (RAW keeps the full frame) and unavailable in some modes. The honest split: digital for travel-light days, glass when the pixels are the point.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 EXPOSURE SYSTEM ================= -->
+<section class="section" id="section-exposure">
+  <div class="section-header">
+    <span class="section-number">02 — Exposure System</span>
+    <h2>No Mode Dial, Just Dials</h2>
+  </div>
+  <p>The X100VI has no PASM dial. The exposure mode is <strong>implied by which physical dials you set to A</strong> — exposure is a conversation between three dials, readable with the camera off. Tap a mode below to see the dial states.</p>
+  <div class="svg-stage">
+    <div class="step-nav" id="dialNav">
+      <button class="step-btn active" data-mode="p">Program</button>
+      <button class="step-btn" data-mode="a">Aperture Prio</button>
+      <button class="step-btn" data-mode="s">Shutter Prio</button>
+      <button class="step-btn" data-mode="mi">M + Auto-ISO</button>
+      <button class="step-btn" data-mode="m">Full Manual</button>
+    </div>
+    <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive dial-state exposure mode simulator">
+      <g font-family="JetBrains Mono, monospace">
+        <text x="170" y="52" text-anchor="middle" font-size="11" fill="#8a7a56" letter-spacing="1.5">APERTURE RING</text>
+        <circle id="ringAp" cx="170" cy="140" r="58" fill="rgba(255,255,255,0.03)" stroke="#4ecdc4" stroke-width="3"/>
+        <text id="dialAp" x="170" y="148" text-anchor="middle" font-size="22" fill="#1a1208">A</text>
+        <text x="450" y="52" text-anchor="middle" font-size="11" fill="#8a7a56" letter-spacing="1.5">SHUTTER DIAL</text>
+        <circle id="ringSh" cx="450" cy="140" r="58" fill="rgba(255,255,255,0.03)" stroke="#4ecdc4" stroke-width="3"/>
+        <text id="dialSh" x="450" y="148" text-anchor="middle" font-size="22" fill="#1a1208">A</text>
+        <text x="730" y="52" text-anchor="middle" font-size="11" fill="#8a7a56" letter-spacing="1.5">ISO DIAL</text>
+        <circle id="ringIso" cx="730" cy="140" r="58" fill="rgba(255,255,255,0.03)" stroke="#4ecdc4" stroke-width="3"/>
+        <text id="dialIso" x="730" y="148" text-anchor="middle" font-size="22" fill="#1a1208">A</text>
+      </g>
+      <text x="170" y="216" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56">teal ring = A · coral = set</text>
+      <text id="modeName" x="450" y="256" text-anchor="middle" font-family="Fraunces, serif" font-size="26" fill="#1a1208">Program AE</text>
+      <text id="modeDesc" x="450" y="284" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#8a7a56">camera picks the pair — the rear dial shifts it without changing exposure</text>
+      <g id="shiftLadder" opacity="1">
+        <rect x="205" y="310" width="140" height="30" rx="15" fill="rgba(78,205,196,0.12)" stroke="rgba(78,205,196,0.4)"/>
+        <text x="275" y="329" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ecdc4">f/2 · 1/2000</text>
+        <rect x="380" y="310" width="140" height="30" rx="15" fill="rgba(78,205,196,0.12)" stroke="rgba(78,205,196,0.4)"/>
+        <text x="450" y="329" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ecdc4">f/4 · 1/500</text>
+        <rect x="555" y="310" width="140" height="30" rx="15" fill="rgba(78,205,196,0.12)" stroke="rgba(78,205,196,0.4)"/>
+        <text x="625" y="329" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ecdc4">f/8 · 1/125</text>
+        <text x="450" y="366" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">PROGRAM SHIFT — SAME LIGHT, THREE RENDERINGS</text>
+      </g>
+    </svg>
+    <div class="stage-caption">Every full stop doubles or halves the light — aperture, shutter, ISO, and the ND are four trading axes</div>
+  </div>
+  <div class="photo-grid">
+    <a class="photo-card" href="https://www.fujifilm-x.com/en-us/products/cameras/x100vi/" target="_blank" rel="noopener">
+      <img src="img/official-top-plate.webp" alt="Official Fujifilm top view of the silver X100VI: aperture ring numerals, combined shutter-speed and ISO dial, and exposure compensation dial all legible" loading="lazy" style="object-fit: contain; background: #fff;">
+      <div class="photo-cap">
+        <span class="photo-tag">The dials in the metal — every number legible, straight down</span>
+        <span class="photo-credit">© Fujifilm — official product view ↗</span>
+      </div>
+    </a>
+    <a class="photo-card" href="https://unsplash.com/photos/a-person-holding-a-camera-in-their-hand-Q31lurr9Hog" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1720781491462-2b075aac3e58?fm=jpg&amp;q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Silver Fujifilm X100VI held in one hand, dials up — shutter-speed dial, EC dial and aperture ring all visible with the X100VI engraving" loading="lazy">
+      <div class="photo-cap">
+        <span class="photo-tag">The shooter's angle — everything readable in the hand</span>
+        <span class="photo-credit">Nikita Pishchugin — X100VI, silver ↗</span>
+      </div>
+    </a>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/shutter-triptych.jpg" alt="Rendered comparison of a cyclist crossing an intersection shot at 1/1000, 1/60 and 1/8 second from a fixed camera" loading="lazy">
+    <div class="stage-caption">The shutter dial&#8217;s whole personality — 1/1000 freezes, 1/60 hints at motion, 1/8 lets it flow · rendered comparison (Gemini)</div>
+  </div>
+  <div class="key-idea">
+    <div class="kicker">The underrated pro mode</div>
+    <p><strong>Manual + Auto-ISO:</strong> lock f/4 · 1/500 for a consistent look and motion rendering, let ISO absorb the light. Exposure compensation still works — it biases which ISO the camera picks. A quirk most people miss.</p>
+  </div>
+  <p><strong>Auto-ISO is a three-number contract</strong> per bank: <em>default sensitivity</em> (e.g. 125), <em>max sensitivity</em> (e.g. 6400), <em>minimum shutter speed</em> (e.g. 1/250). The algorithm: hold default ISO and lengthen shutter until it hits the minimum → then raise ISO to the max → only then let shutter drop below. That order explains every "why did it pick that?" moment. Set three banks: <strong>Street</strong> 125/6400/1/250 · <strong>Static &amp; dim</strong> 125/6400/1/60 (IBIS carries it) · <strong>Motion</strong> 125/12800/1/500.</p>
+  <p><strong>The two lens rings.</strong> The clicked <em>aperture ring</em> (nearest the body — ⅓-stop clicks, A position, two grip tabs) and the smooth <em>control ring</em> at the front. The control ring is the camera's chameleon: assign it via <strong>BUTTON/DIAL SETTING → CONTROL RING SETTING</strong> to one of four roles — and its default, <em>Standard</em>, secretly changes function with your focus mode.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" aria-label="X100VI lens rings guide">
+      <!-- Camera body edge -->
+      <rect x="700" y="70" width="170" height="180" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)"/>
+      <text x="785" y="166" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">BODY</text>
+      <!-- Lens barrel -->
+      <rect x="330" y="102" width="370" height="116" rx="10" fill="#141228" stroke="rgba(255,255,255,0.2)"/>
+      <!-- Front element -->
+      <ellipse cx="330" cy="160" rx="20" ry="58" fill="#0d0c1a" stroke="#4ecdc4" stroke-width="1.5"/>
+      <ellipse cx="330" cy="160" rx="11" ry="34" fill="rgba(78,205,196,0.12)"/>
+      <!-- CONTROL RING (front, smooth) -->
+      <rect x="380" y="96" width="86" height="128" rx="8" fill="rgba(78,205,196,0.16)" stroke="#4ecdc4" stroke-width="2"/>
+      <path d="M 423 84 L 423 46" stroke="#4ecdc4" stroke-width="1.5"/>
+      <text x="423" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ecdc4" letter-spacing="1">CONTROL RING · SMOOTH</text>
+      <!-- APERTURE RING (rear, clicked) -->
+      <rect x="540" y="96" width="96" height="128" rx="8" fill="rgba(255,107,61,0.14)" stroke="#ff6b3d" stroke-width="2"/>
+      <g stroke="#ff6b3d" stroke-width="1.5" opacity="0.8">
+        <line x1="552" y1="100" x2="552" y2="112"/><line x1="566" y1="100" x2="566" y2="112"/>
+        <line x1="580" y1="100" x2="580" y2="112"/><line x1="594" y1="100" x2="594" y2="112"/>
+        <line x1="608" y1="100" x2="608" y2="112"/><line x1="622" y1="100" x2="622" y2="112"/>
+      </g>
+      <text x="588" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#ff6b3d">2 · 2.8 · 4 · 5.6 · 8 · 11 · 16 · A</text>
+      <path d="M 588 236 L 588 268" stroke="#ff6b3d" stroke-width="1.5"/>
+      <text x="588" y="288" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#ff6b3d" letter-spacing="1">APERTURE RING · ⅓-STOP CLICKS</text>
+      <text x="588" y="306" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#8a7a56">at A: front command dial can take over (APERTURE RING SETTING → COMMAND)</text>
+      <!-- Standard mode truth table -->
+      <g font-family="JetBrains Mono, monospace">
+        <text x="150" y="66" text-anchor="middle" font-size="10" fill="#8a7a56" letter-spacing="1.5">"STANDARD" IS TWO-FACED</text>
+        <rect x="40" y="84" width="220" height="42" rx="21" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.5)"/>
+        <text x="150" y="103" text-anchor="middle" font-size="11" fill="#a78bfa">IN AF → DIGITAL TELE-CONV</text>
+        <text x="150" y="118" text-anchor="middle" font-size="9" fill="#8a7a56">rotate = crop to 50mm / 70mm</text>
+        <rect x="40" y="140" width="220" height="42" rx="21" fill="rgba(78,205,196,0.12)" stroke="rgba(78,205,196,0.5)"/>
+        <text x="150" y="159" text-anchor="middle" font-size="11" fill="#4ecdc4">IN MF → FOCUS (BY WIRE)</text>
+        <text x="150" y="174" text-anchor="middle" font-size="9" fill="#8a7a56">direction &amp; response configurable</text>
+        <text x="150" y="212" text-anchor="middle" font-size="10" fill="#8a7a56" letter-spacing="1.5">ASSIGNABLE ROLES</text>
+        <g font-size="9">
+          <rect x="36" y="224" width="72" height="24" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)"/>
+          <text x="72" y="240" text-anchor="middle" fill="#1a1208">STANDARD</text>
+          <rect x="114" y="224" width="94" height="24" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)"/>
+          <text x="161" y="240" text-anchor="middle" fill="#1a1208">FILM SIM ★</text>
+          <rect x="36" y="256" width="72" height="24" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)"/>
+          <text x="72" y="272" text-anchor="middle" fill="#1a1208">WB</text>
+          <rect x="114" y="256" width="94" height="24" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)"/>
+          <text x="161" y="272" text-anchor="middle" fill="#1a1208">DIGITAL TC</text>
+        </g>
+      </g>
+      <text x="450" y="330" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#1a1208">The classic gotcha: in AF, brushing the ring on Standard silently crops to 50/70mm — <tspan fill="#ffe66d">assign Film Sim if it bites you</tspan></text>
+    </svg>
+    <div class="stage-caption">With AF+MF enabled, half-press then turn the ring — instant manual override, no mode switch</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/lens-cross-section.jpg" alt="Rendered cutaway of a camera lens barrel showing glass elements, aperture blades and focus mechanics with a light ray converging to a point" loading="lazy">
+    <div class="stage-caption">What the rings drive — glass, iris, and focus mechanics in one barrel · rendered cutaway (Gemini), generic construction rather than the actual 23mm</div>
+  </div>
+  <div class="key-idea">
+    <div class="kicker">Three ways to run the ring</div>
+    <p><strong>Recipe switcher:</strong> assign Film Sim and roll between your C1–C7 looks without leaving the finder. <strong>Zoom-ish:</strong> keep Standard and treat the digital TC as a 35/50/70 three-prime kit (watch the frame-line indicator). <strong>Focus purist:</strong> shoot MF where it's always the focus ring — set rotation direction and linear response in BUTTON/DIAL SETTING to make focus-by-wire feel mechanical.</p>
+  </div>
+</section>
+
+<!-- ================= 03 METERING ================= -->
+<section class="section" id="section-metering">
+  <div class="section-header">
+    <span class="section-number">03 — Metering</span>
+    <h2>The Meter's One Assumption</h2>
+  </div>
+  <p>The camera never measures the light <em>falling on</em> a scene — only the light <strong>bouncing back off it</strong>. That's reflective metering, and it rests on a single act of faith: averaged out, the world reflects about <strong>18% of the light</strong> — middle gray. When a scene really does average near gray, the meter is dead-on. When it doesn't — snow, backlight, night — it misses <em>predictably</em>. And predictable is fixable.</p>
+  <div class="key-idea">
+    <div class="kicker">The whole game</div>
+    <p><strong>The meter is never wrong — just literal.</strong> It renders whatever it reads as middle gray: white snow comes out gray, black night comes out gray. Learn the three classic traps below and exposure compensation stops being a rescue and becomes a reflex.</p>
+  </div>
+  <div class="svg-stage">
+    <div class="step-nav" id="meterNav">
+      <button class="step-btn active" data-scene="even">Even scene</button>
+      <button class="step-btn" data-scene="snow">Snow &amp; sand</button>
+      <button class="step-btn" data-scene="backlit">Backlit subject</button>
+      <button class="step-btn" data-scene="night">Night street</button>
+    </div>
+    <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive metering trap simulator">
+      <defs>
+        <clipPath id="meterClip"><rect x="30" y="52" width="280" height="236" rx="10"/></clipPath>
+      </defs>
+      <text x="450" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8a7a56" letter-spacing="1.5">REFLECTED LIGHT IN → ASSUMED 18% GRAY → EXPOSURE OUT</text>
+      <!-- Scene: even -->
+      <g id="msEven" clip-path="url(#meterClip)">
+        <rect x="30" y="52" width="280" height="118" fill="#cfdce4"/>
+        <rect x="30" y="170" width="280" height="118" fill="#8fae7f"/>
+        <circle cx="270" cy="86" r="15" fill="#ffe66d"/>
+        <rect x="96" y="130" width="10" height="52" fill="#7a5b3a"/>
+        <circle cx="101" cy="114" r="30" fill="#5e8f5a"/>
+        <circle cx="205" cy="178" r="9" fill="#3d2a16"/>
+        <rect x="197" y="188" width="16" height="38" rx="7" fill="#46608a"/>
+        <rect x="199" y="226" width="5" height="28" fill="#2f3a4e"/>
+        <rect x="206" y="226" width="5" height="28" fill="#2f3a4e"/>
+      </g>
+      <!-- Scene: snow -->
+      <g id="msSnow" clip-path="url(#meterClip)" style="display:none">
+        <rect x="30" y="52" width="280" height="236" fill="#e7edf3"/>
+        <circle cx="272" cy="84" r="14" fill="#fff3c4"/>
+        <polygon points="30,204 118,108 200,204" fill="#dfe7ee"/>
+        <polygon points="146,204 234,92 310,204" fill="#e4eaf0"/>
+        <rect x="30" y="200" width="280" height="88" fill="#f7f9fb"/>
+        <circle cx="120" cy="252" r="22" fill="#fdfdfe" stroke="#d4dde5"/>
+        <circle cx="120" cy="222" r="15" fill="#fdfdfe" stroke="#d4dde5"/>
+        <circle cx="120" cy="201" r="10" fill="#fdfdfe" stroke="#d4dde5"/>
+        <circle cx="117" cy="199" r="1.5" fill="#1a1208"/><circle cx="123" cy="199" r="1.5" fill="#1a1208"/>
+        <polygon points="120,203 131,205 120,207" fill="#ff6b3d"/>
+      </g>
+      <!-- Scene: backlit -->
+      <g id="msBacklit" clip-path="url(#meterClip)" style="display:none">
+        <rect x="30" y="52" width="280" height="236" fill="#ffe9ac"/>
+        <circle cx="170" cy="128" r="48" fill="#fff6cf"/>
+        <circle cx="170" cy="128" r="28" fill="#fffdf0"/>
+        <rect x="30" y="238" width="280" height="50" fill="#8a6a3a" opacity="0.5"/>
+        <circle cx="170" cy="166" r="13" fill="#1a1208"/>
+        <rect x="155" y="180" width="30" height="54" rx="13" fill="#1a1208"/>
+        <rect x="160" y="232" width="8" height="42" fill="#1a1208"/>
+        <rect x="172" y="232" width="8" height="42" fill="#1a1208"/>
+      </g>
+      <!-- Scene: night -->
+      <g id="msNight" clip-path="url(#meterClip)" style="display:none">
+        <rect x="30" y="52" width="280" height="236" fill="#12142a"/>
+        <circle cx="282" cy="76" r="9" fill="#dfe7ee"/>
+        <rect x="46" y="120" width="52" height="122" fill="#1d2040"/>
+        <rect x="112" y="96" width="60" height="146" fill="#181b36"/>
+        <rect x="188" y="132" width="48" height="110" fill="#20234a"/>
+        <rect x="248" y="110" width="50" height="132" fill="#1a1d3c"/>
+        <g fill="#ffe66d" opacity="0.85">
+          <rect x="56" y="134" width="5" height="8"/><rect x="76" y="158" width="5" height="8"/>
+          <rect x="126" y="112" width="5" height="8"/><rect x="148" y="140" width="5" height="8"/><rect x="126" y="180" width="5" height="8"/>
+          <rect x="200" y="150" width="5" height="8"/><rect x="262" y="128" width="5" height="8"/><rect x="280" y="170" width="5" height="8"/>
+        </g>
+        <rect x="30" y="242" width="280" height="46" fill="#0d0e1e"/>
+        <line x1="90" y1="242" x2="90" y2="212" stroke="#2a2d52" stroke-width="3"/>
+        <circle cx="90" cy="208" r="12" fill="#ffe66d" opacity="0.22"/>
+        <circle cx="90" cy="208" r="5" fill="#ffe66d"/>
+        <line x1="220" y1="242" x2="220" y2="212" stroke="#2a2d52" stroke-width="3"/>
+        <circle cx="220" cy="208" r="12" fill="#ffe66d" opacity="0.22"/>
+        <circle cx="220" cy="208" r="5" fill="#ffe66d"/>
+      </g>
+      <rect x="30" y="52" width="280" height="236" rx="10" fill="none" stroke="#8a7a56" opacity="0.4"/>
+      <text x="170" y="308" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">THE SCENE</text>
+      <!-- Meter averaging -->
+      <text x="450" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1">METER AVERAGES THE FRAME</text>
+      <circle id="meterAvg" cx="450" cy="136" r="42" fill="#8b9184" stroke="rgba(26,18,8,0.25)"/>
+      <line x1="450" y1="186" x2="450" y2="210" stroke="#8a7a56" stroke-width="1.5"/>
+      <polygon points="444,208 456,208 450,218" fill="#8a7a56"/>
+      <rect x="420" y="224" width="60" height="40" rx="6" fill="#767676" stroke="rgba(26,18,8,0.25)"/>
+      <text x="450" y="286" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">…PULLED TO 18% GRAY</text>
+      <!-- Exposure indicator -->
+      <text x="735" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1">EXPOSURE INDICATOR</text>
+      <polygon id="ecMarker" points="-7,90 7,90 0,106" fill="#ff6b3d" transform="translate(735,0)"/>
+      <line x1="615" y1="110" x2="855" y2="110" stroke="#8a7a56" stroke-width="1.5"/>
+      <g stroke="#8a7a56" stroke-width="1">
+        <line x1="615" y1="104" x2="615" y2="116"/><line x1="655" y1="104" x2="655" y2="116"/>
+        <line x1="695" y1="104" x2="695" y2="116"/><line x1="775" y1="104" x2="775" y2="116"/>
+        <line x1="815" y1="104" x2="815" y2="116"/><line x1="855" y1="104" x2="855" y2="116"/>
+      </g>
+      <line x1="735" y1="100" x2="735" y2="120" stroke="#1a1208" stroke-width="1.5"/>
+      <g font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56" text-anchor="middle">
+        <text x="615" y="134">-3</text><text x="655" y="134">-2</text><text x="695" y="134">-1</text>
+        <text x="735" y="134" fill="#1a1208">0</text>
+        <text x="775" y="134">+1</text><text x="815" y="134">+2</text><text x="855" y="134">+3</text>
+      </g>
+      <text x="735" y="172" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1.5">THE MISS</text>
+      <text id="meterMiss1" x="735" y="194" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12.5" fill="#ff6b3d">Scene averages near gray —</text>
+      <text id="meterMiss2" x="735" y="212" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12.5" fill="#ff6b3d">the assumption simply holds.</text>
+      <text x="735" y="248" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56" letter-spacing="1.5">YOUR MOVE</text>
+      <text id="meterMove" x="735" y="272" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#4ecdc4">EC 0 — trust it</text>
+      <text id="meterNote" x="450" y="342" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">Most scenes really do average out near gray — that's why the meter is usually right</text>
+    </svg>
+    <div class="stage-caption">In P · A · S the camera self-centers the needle — the EC dial is how you overrule it · in M the needle is passive, just reporting your deviation</div>
+  </div>
+  <p><strong>The traps, seen.</strong> Same scene, two exposures — the one pairing you can't source as a real photograph, which is why these three are <em>renders</em> (Gemini), and labeled as such. Left half: the meter's literal reading. Right half: the frame you wanted.</p>
+  <div class="photo-grid">
+    <div class="photo-card">
+      <img src="img/metering-trap-snow.jpg" alt="Split comparison: snowfield rendered dull gray by the meter versus corrected bright white at plus 1 and two thirds EV" loading="lazy">
+      <div class="photo-cap">
+        <span class="photo-tag">Snow · meter's gray → yours at +1⅔ EV</span>
+        <span class="photo-credit">Rendered comparison — Gemini</span>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img src="img/metering-trap-backlit.jpg" alt="Split comparison: backlit subject fallen to silhouette versus face properly exposed by spot metering" loading="lazy">
+      <div class="photo-cap">
+        <span class="photo-tag">Backlit · silhouette → face spot-metered</span>
+        <span class="photo-credit">Rendered comparison — Gemini</span>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img src="img/metering-trap-night.jpg" alt="Split comparison: night street lifted to murky gray versus correctly dark frame at minus 1 EV" loading="lazy">
+      <div class="photo-cap">
+        <span class="photo-tag">Night · lifted to murk → yours at −1 EV</span>
+        <span class="photo-credit">Rendered comparison — Gemini</span>
+      </div>
+    </div>
+  </div>
+  <p><strong>Four photometry patterns</strong> decide <em>which pixels get a vote</em> in that average. Multi is right most of the time — it reads 256 zones and pattern-matches the scene. The other three are fixed weightings you can predict in your head, which is exactly their value: pick one when you want to out-think the pattern-matcher.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" aria-label="Metering mode patterns">
+      <defs>
+        <radialGradient id="cwGrad" cx="50%" cy="50%" r="60%">
+          <stop offset="0%" stop-color="#ffe66d" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#ffe66d" stop-opacity="0.05"/>
+        </radialGradient>
+      </defs>
+      <g font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">
+        <!-- MULTI -->
+        <rect x="30" y="40" width="190" height="120" rx="8" fill="#eeefe9" stroke="rgba(255,255,255,0.12)"/>
+        <g fill="#4ecdc4">
+          <circle cx="70" cy="70" r="4" opacity="0.5"/><circle cx="125" cy="70" r="5" opacity="0.7"/><circle cx="180" cy="70" r="4" opacity="0.5"/>
+          <circle cx="70" cy="100" r="5" opacity="0.7"/><circle cx="125" cy="100" r="8" opacity="1"/><circle cx="180" cy="100" r="5" opacity="0.7"/>
+          <circle cx="70" cy="130" r="4" opacity="0.5"/><circle cx="125" cy="130" r="5" opacity="0.7"/><circle cx="180" cy="130" r="4" opacity="0.5"/>
+        </g>
+        <text x="125" y="182" text-anchor="middle" fill="#1a1208">MULTI</text>
+        <text x="125" y="198" text-anchor="middle">scene-smart · default</text>
+        <!-- SPOT -->
+        <rect x="255" y="40" width="190" height="120" rx="8" fill="#eeefe9" stroke="rgba(255,255,255,0.12)"/>
+        <circle cx="350" cy="100" r="9" fill="#ff6b3d"/>
+        <circle cx="350" cy="100" r="16" fill="none" stroke="#ff6b3d" stroke-width="1" opacity="0.5"/>
+        <text x="350" y="182" text-anchor="middle" fill="#1a1208">SPOT</text>
+        <text x="350" y="198" text-anchor="middle">~2% · backlit, stage, harsh</text>
+        <!-- CENTER-WEIGHTED -->
+        <rect x="480" y="40" width="190" height="120" rx="8" fill="#eeefe9" stroke="rgba(255,255,255,0.12)"/>
+        <ellipse cx="575" cy="100" rx="70" ry="48" fill="url(#cwGrad)"/>
+        <text x="575" y="182" text-anchor="middle" fill="#1a1208">CENTER-WEIGHTED</text>
+        <text x="575" y="198" text-anchor="middle">middle-biased · predictable</text>
+        <!-- AVERAGE -->
+        <rect x="705" y="40" width="190" height="120" rx="8" fill="#eeefe9" stroke="rgba(255,255,255,0.12)"/>
+        <rect x="713" y="48" width="174" height="104" rx="5" fill="#a78bfa" opacity="0.22"/>
+        <text x="800" y="182" text-anchor="middle" fill="#1a1208">AVERAGE</text>
+        <text x="800" y="198" text-anchor="middle">flat mean · pano series</text>
+      </g>
+      <text x="450" y="238" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">Multi biases toward the focus point — with face detection on, a detected face gets the extra weight. <tspan fill="#4ecdc4">Metering is one of the three buttons worth mapping (§12)</tspan>.</text>
+    </svg>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/zone-strip.jpg" alt="Rendered zone system chart: eleven tonal patches from pure black to pure white with photographic textures and Roman numerals 0 through X" loading="lazy">
+    <div class="stage-caption">The zone system, 0–X — spot-meter any patch and the camera drags it to V; the EC dial walks it back where it belongs · rendered chart (Gemini)</div>
+  </div>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>Spot × AF Interlock</h3>
+      <p><strong>AF/MF SETTING → INTERLOCK SPOT AE &amp; FOCUS AREA → ON.</strong> The 2% spot now travels with your focus point — meter the off-center face you're focused on, not whatever sits in the middle of the frame. Kills the meter-then-recompose error in one menu toggle.</p>
+    </div>
+    <div class="arch-card">
+      <h3>AEL: Freeze the Reading</h3>
+      <p>Point at the tone that matters, press <strong>AEL</strong>, recompose freely — the reading stays frozen. Set <strong>AE LOCK MODE → SWITCH</strong> so it toggles instead of needing a held thumb. In AF-S a half-press already locks exposure with focus; AEL is for when you want them <em>separated</em>.</p>
+    </div>
+    <div class="arch-card">
+      <h3>The OM-1 Trick, Ported</h3>
+      <p>OM System bodies have dedicated <strong>Spot-HI / Spot-SH</strong> modes: one spot reading placed at white or black instead of gray. The X100VI doesn't — but the move is two gestures: <strong>spot a highlight, dial +2 EV</strong> to keep it white; <strong>spot a deep shadow, −2 EV</strong> to keep it black.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Needle vs Histogram</h3>
+      <p>The needle reports the meter's <em>opinion</em>; the histogram shows the actual tonal spread — and the EVF preview is the exposure you'll get. When they disagree, <strong>the histogram wins</strong>: guard the right edge, because clipped highlights are the one thing no recipe or RAW lift brings back.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 ND FILTER ================= -->
+<section class="section" id="section-02">
+  <div class="section-header">
+    <span class="section-number">04 — Light Control</span>
+    <h2>The Built-in ND: Sunglasses for the Lens</h2>
+  </div>
+  <p>The X100VI hides a <strong>4-stop neutral density filter</strong> behind the lens. Each stop halves the light, so four stops means only <strong>1/16th</strong> gets through — color, focus and depth of field untouched. It exists to let you break the sunny-day rules.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" aria-label="ND filter light attenuation diagram">
+      <defs>
+        <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ffe66d" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#ffe66d" stop-opacity="0"/>
+        </radialGradient>
+        <marker id="arrowTeal" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#4ecdc4"/>
+        </marker>
+      </defs>
+      <!-- Sun -->
+      <circle cx="110" cy="110" r="60" fill="url(#sunGlow)"/>
+      <circle cx="110" cy="110" r="30" fill="#ffe66d"/>
+      <text x="110" y="196" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">MIDDAY SUN</text>
+      <!-- Rays into ND -->
+      <g stroke="#ffe66d" stroke-width="2.5" opacity="0.85">
+        <line x1="150" y1="70" x2="420" y2="70" class="flow-line"/>
+        <line x1="152" y1="90"  x2="420" y2="90"  class="flow-line"/>
+        <line x1="154" y1="110" x2="420" y2="110" class="flow-line"/>
+        <line x1="152" y1="130" x2="420" y2="130" class="flow-line"/>
+        <line x1="150" y1="150" x2="420" y2="150" class="flow-line"/>
+      </g>
+      <text x="285" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#ffe66d">100% LIGHT</text>
+      <!-- ND filter plane -->
+      <rect x="422" y="40" width="16" height="150" rx="4" fill="#2a2740" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="430" y="215" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#a78bfa">ND ON</text>
+      <text x="430" y="232" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56">−4 STOPS</text>
+      <!-- Single surviving ray -->
+      <line x1="440" y1="110" x2="700" y2="110" stroke="#4ecdc4" stroke-width="2.5" marker-end="url(#arrowTeal)" class="flow-line"/>
+      <text x="570" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#4ecdc4">6.25% — 1/16TH</text>
+      <!-- Sensor -->
+      <rect x="706" y="60" width="18" height="100" rx="3" fill="#141228" stroke="#4ecdc4" stroke-width="1.5"/>
+      <text x="715" y="182" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">SENSOR</text>
+      <!-- Halving ladder -->
+      <g font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56">
+        <rect x="770" y="46"  width="100" height="13" rx="2" fill="#ffe66d" opacity="0.9"/>
+        <rect x="770" y="66"  width="50"  height="13" rx="2" fill="#ffe66d" opacity="0.7"/>
+        <rect x="770" y="86"  width="25"  height="13" rx="2" fill="#ffd94d" opacity="0.6"/>
+        <rect x="770" y="106" width="13"  height="13" rx="2" fill="#ffc94d" opacity="0.55"/>
+        <rect x="770" y="126" width="7"   height="13" rx="2" fill="#4ecdc4" opacity="0.9"/>
+        <text x="770" y="158">EACH STOP HALVES</text>
+        <text x="770" y="172">100→50→25→12.5→6.25%</text>
+      </g>
+      <!-- What it buys you -->
+      <g font-family="DM Sans, sans-serif" font-size="13" fill="#1a1208">
+        <text x="80" y="290">→ <tspan fill="#ffe66d">f/2 in bright sun</tspan> — shallow depth at noon without blown frames</text>
+        <text x="80" y="318">→ <tspan fill="#4ecdc4">slow shutters in daylight</tspan> — silky water, motion-blurred crowds</text>
+        <text x="80" y="346">→ <tspan fill="#f472b6">flash balance</tspan> — darken ambient so the leaf-shutter flash trick works</text>
+      </g>
+      <text x="80" y="372" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">TURN IT OFF INDOORS / AT NIGHT — IT ONLY COSTS YOU ISO THERE</text>
+    </svg>
+  </div>
+  <p><strong>What it physically is:</strong> a neutral-density glass element that swings into the optical path <em>behind the lens</em> when engaged — internal, instant, sealed, no vignetting, no color cast. The arithmetic from Sunny 16: bright sun ≈ ISO 125 · f/16 · 1/125. Re-expressed at f/2 that's 1/8000 — beyond the mechanical shutter wide open. Flip the ND on and it becomes <strong>1/500 at f/2</strong>: mechanical, flash-capable, artifact-free.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" aria-label="ND element cutaway and stop ladder">
+      <!-- Lens barrel cutaway -->
+      <text x="270" y="46" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8a7a56" letter-spacing="1.5">INSIDE THE LENS — ND SWINGS IN</text>
+      <rect x="80" y="90" width="380" height="120" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)"/>
+      <ellipse cx="130" cy="150" rx="10" ry="48" fill="rgba(78,205,196,0.15)" stroke="#4ecdc4" stroke-width="1.5"/>
+      <ellipse cx="185" cy="150" rx="8" ry="40" fill="rgba(78,205,196,0.15)" stroke="#4ecdc4" stroke-width="1.5"/>
+      <ellipse cx="330" cy="150" rx="9" ry="44" fill="rgba(78,205,196,0.15)" stroke="#4ecdc4" stroke-width="1.5"/>
+      <!-- ND element pivoting in -->
+      <g transform="rotate(-24 258 96)">
+        <rect x="252" y="96" width="12" height="86" rx="4" fill="#2a2740" stroke="#a78bfa" stroke-width="2"/>
+      </g>
+      <path d="M 300 92 A 44 44 0 0 0 262 82" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowTeal)"/>
+      <text x="258" y="238" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#a78bfa">ND ELEMENT · −4 STOPS</text>
+      <!-- Light axis -->
+      <line x1="40" y1="150" x2="120" y2="150" stroke="#ffe66d" stroke-width="2.5" class="flow-line"/>
+      <line x1="340" y1="150" x2="530" y2="150" stroke="#4ecdc4" stroke-width="2" class="flow-line"/>
+      <rect x="534" y="105" width="14" height="90" rx="3" fill="#141228" stroke="#4ecdc4" stroke-width="1.5"/>
+      <text x="541" y="222" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56">SENSOR</text>
+      <!-- Stop ladder -->
+      <g font-family="JetBrains Mono, monospace">
+        <text x="740" y="66" text-anchor="middle" font-size="10" fill="#8a7a56" letter-spacing="1">SAME SCENE · f/2 · ISO 125</text>
+        <text x="740" y="108" text-anchor="middle" font-size="15" fill="#ff6b3d">1/8000</text>
+        <line x1="690" y1="103" x2="790" y2="103" stroke="#ff6b3d" stroke-width="1.5"/>
+        <text x="740" y="128" text-anchor="middle" font-size="9" fill="#8a7a56">over the mechanical limit at f/2</text>
+        <path d="M 740 142 L 740 172" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowTeal)"/>
+        <text x="800" y="162" font-size="10" fill="#a78bfa">ND ON</text>
+        <text x="740" y="200" text-anchor="middle" font-size="17" fill="#4ecdc4">1/500</text>
+        <text x="740" y="222" text-anchor="middle" font-size="9" fill="#8a7a56">mechanical · flash-capable</text>
+        <text x="740" y="238" text-anchor="middle" font-size="9" fill="#8a7a56">no e-shutter artifacts</text>
+      </g>
+      <text x="450" y="282" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#8a7a56">4 stops = 2⁴ = 1/16th of the light — neutral means all wavelengths equally: exposure changes, color doesn't</text>
+    </svg>
+  </div>
+  <p><strong>When it hurts:</strong> indoors and at night it silently costs 4 stops of ISO. Map it to a function button <em>and</em> the Q menu so its state is always one glance away — and check the video-mode auto-ND setting so it never surprises you.</p>
+
+  <div class="svg-stage">
+    <img class="fig" src="img/nd-mechanism.jpg" alt="Rendered cutaway of a lens barrel with a neutral density element on a pivot arm swung into the light path, the beam dimming after it" loading="lazy">
+    <div class="stage-caption">The mechanism itself — a 4-stop ND element on its pivot arm, swung into the path; the beam leaves dimmer than it arrived · rendered cutaway (Gemini)</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/nd-ghosting.jpg" alt="Rendered comparison of a crowded piazza: fast shutter freezes the crowd, half-second exposure blurs pedestrians into ghosts around a sharp statue" loading="lazy">
+    <div class="stage-caption">Four stops of ND, applied — the crowd is still there; a half-second simply refuses to record it (technique in §10) · rendered comparison (Gemini)</div>
+  </div>
+</section>
+
+<!-- ================= 03 LEAF SHUTTER ================= -->
+<section class="section" id="section-03">
+  <div class="section-header">
+    <span class="section-number">05 — The Secret Weapon</span>
+    <h2>Leaf Shutter: Flash at Any Speed</h2>
+  </div>
+  <p>Your OM-1 II's focal-plane shutter is a <strong>travelling slit</strong> — flash only works while the whole frame is open, capping sync around 1/250s. The X100VI's <strong>leaf shutter</strong> lives inside the lens and opens like an iris: the entire frame exposes at once, so flash syncs at essentially any mechanical speed — with a taper: at the fastest speeds the blades are only fully open briefly, so effective flash output drops as speed rises. Full benefit through <strong>~1/500–1/1000</strong>, usable beyond at reduced power.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" aria-label="Focal plane versus leaf shutter comparison">
+      <!-- Focal plane side -->
+      <text x="235" y="46" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#ff6b3d" letter-spacing="1.5">FOCAL-PLANE (OM-1 II)</text>
+      <rect x="120" y="64" width="230" height="160" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)"/>
+      <rect x="120" y="64" width="230" height="52" fill="#2a2740"/>
+      <rect x="120" y="150" width="230" height="74" fill="#2a2740"/>
+      <rect x="122" y="118" width="226" height="30" fill="#ffe66d" opacity="0.35"/>
+      <line x1="360" y1="100" x2="360" y2="190" stroke="#ff6b3d" stroke-width="2" marker-end="url(#arrowTeal)"/>
+      <text x="235" y="252" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#8a7a56">a slit sweeps the sensor — flash sync ≤ 1/250s</text>
+      <!-- Leaf side -->
+      <text x="665" y="46" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ecdc4" letter-spacing="1.5">LEAF SHUTTER (X100VI)</text>
+      <circle cx="665" cy="144" r="80" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+      <g fill="#2a2740" stroke="#4ecdc4" stroke-width="1">
+        <path d="M 665 64 A 80 80 0 0 1 734 104 L 692 128 A 30 30 0 0 0 665 114 Z"/>
+        <path d="M 734 104 A 80 80 0 0 1 734 184 L 692 160 A 30 30 0 0 0 692 128 Z"/>
+        <path d="M 734 184 A 80 80 0 0 1 665 224 L 665 174 A 30 30 0 0 0 692 160 Z"/>
+        <path d="M 665 224 A 80 80 0 0 1 596 184 L 638 160 A 30 30 0 0 0 665 174 Z"/>
+        <path d="M 596 184 A 80 80 0 0 1 596 104 L 638 128 A 30 30 0 0 0 638 160 Z"/>
+        <path d="M 596 104 A 80 80 0 0 1 665 64 L 665 114 A 30 30 0 0 0 638 128 Z"/>
+      </g>
+      <circle cx="665" cy="144" r="27" fill="#ffe66d" opacity="0.8" class="pulse-node"/>
+      <text x="665" y="252" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#8a7a56">blades open in the lens — whole frame at once, near-silent · f/2 limit is why the ND exists</text>
+      <!-- Sync bar chart -->
+      <g font-family="JetBrains Mono, monospace" font-size="10">
+        <text x="70" y="296" fill="#8a7a56">MECH · f/2</text>
+        <rect x="230" y="284" width="180" height="15" rx="4" fill="#ffe66d" opacity="0.8"/>
+        <text x="422" y="296" fill="#ffe66d">1/2000 — blades can't clear f/2 faster</text>
+        <text x="70" y="326" fill="#8a7a56">MECH · f/8+</text>
+        <rect x="230" y="314" width="235" height="15" rx="4" fill="#4ecdc4" opacity="0.85"/>
+        <text x="477" y="326" fill="#4ecdc4">1/4000 — full speed stopped down</text>
+        <text x="70" y="356" fill="#8a7a56">ELECTRONIC</text>
+        <rect x="230" y="344" width="500" height="15" rx="4" fill="#a78bfa" opacity="0.85"/>
+        <text x="742" y="356" fill="#a78bfa">1/180,000</text>
+        <text x="230" y="378" fill="#8a7a56" font-size="9">E-SHUTTER: SILENT · NO FLASH · ROLLING SKEW · LED BANDING — MECH+ELEC SETTING USES EACH WHERE IT WINS</text>
+      </g>
+      <text x="450" y="396" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#1a1208">The recipe: ND on → f/2 → 1/1000 → ambient at −1 to −2 EV → flash the subject — <tspan fill="#ffe66d">sunlit drama, midday</tspan></text>
+    </svg>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/cutaway-leaf-fp.jpg" alt="Rendered cutaway comparing a leaf shutter, blades inside the lens exposing the whole frame at once, with a focal-plane shutter slit traveling across a sensor" loading="lazy">
+    <div class="stage-caption">Why the flash rule exists — leaf blades open the whole frame at once; a focal-plane slit only ever shows the flash a stripe · rendered cutaway (Gemini)</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/fill-flash.jpg" alt="Rendered comparison of a backlit portrait without and with subtle fill flash, background exposure identical in both halves" loading="lazy">
+    <div class="stage-caption">The payoff — daylight fill at any shutter speed: face lifted, ambient untouched · rendered comparison (Gemini)</div>
+  </div>
+</section>
+<!-- ================= 05 FOCUS ================= -->
+<section class="section" id="section-focus">
+  <div class="section-header">
+    <span class="section-number">06 — Focus</span>
+    <h2>The Machinery of Sharp</h2>
+  </div>
+  <p>Hybrid AF: <strong>phase-detect</strong> pixels across the sensor are fast and directional — they know <em>which way</em> and roughly <em>how far</em> to move the lens — while <strong>contrast-detect</strong> refines the landing. Subject detection (X-Processor 5) recognizes humans, animals, and vehicles; low-light AF works to about −4 EV wide open.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg" aria-label="Phase detect autofocus concept">
+      <text x="240" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#ff6b3d" letter-spacing="1.5">OUT OF FOCUS — PHASE GAP</text>
+      <circle cx="60" cy="130" r="6" fill="#ffe66d"/>
+      <path d="M 66 128 L 200 92" stroke="#4ecdc4" stroke-width="2"/>
+      <path d="M 66 132 L 200 168" stroke="#a78bfa" stroke-width="2"/>
+      <ellipse cx="205" cy="130" rx="9" ry="52" fill="rgba(78,205,196,0.12)" stroke="#4ecdc4" stroke-width="1.5"/>
+      <path d="M 210 94 L 330 118" stroke="#4ecdc4" stroke-width="2"/>
+      <path d="M 210 166 L 330 142" stroke="#a78bfa" stroke-width="2"/>
+      <rect x="332" y="70" width="10" height="120" rx="3" fill="#141228" stroke="rgba(255,255,255,0.2)"/>
+      <circle cx="337" cy="118" r="4" fill="#4ecdc4"/>
+      <circle cx="337" cy="142" r="4" fill="#a78bfa"/>
+      <path d="M 358 118 L 358 142" stroke="#ff6b3d" stroke-width="2" marker-end="url(#arrowTeal)"/>
+      <text x="372" y="134" font-family="JetBrains Mono, monospace" font-size="9" fill="#ff6b3d">GAP</text>
+      <text x="240" y="222" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#8a7a56">the gap's size and sign = distance and direction — one measurement, no hunting</text>
+      <text x="680" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ecdc4" letter-spacing="1.5">IN FOCUS — RAYS CONVERGE</text>
+      <circle cx="500" cy="130" r="6" fill="#ffe66d"/>
+      <path d="M 506 128 L 640 92" stroke="#4ecdc4" stroke-width="2"/>
+      <path d="M 506 132 L 640 168" stroke="#a78bfa" stroke-width="2"/>
+      <ellipse cx="645" cy="130" rx="9" ry="52" fill="rgba(78,205,196,0.12)" stroke="#4ecdc4" stroke-width="1.5"/>
+      <path d="M 650 94 L 790 130" stroke="#4ecdc4" stroke-width="2"/>
+      <path d="M 650 166 L 790 130" stroke="#a78bfa" stroke-width="2"/>
+      <rect x="792" y="70" width="10" height="120" rx="3" fill="#141228" stroke="rgba(255,255,255,0.2)"/>
+      <circle cx="797" cy="130" r="5" fill="#0d9488" class="pulse-node"/>
+      <text x="680" y="222" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#8a7a56">both bundles land on the same point — confirmed, contrast-detect polishes it</text>
+    </svg>
+  </div>
+  <p><strong>Modes and areas.</strong> <em>AF-S</em> locks once on half-press — static subjects, focus-recompose. <em>AF-C</em> tracks — pair with Zone 3×3. <em>MF</em> unlocks the focus aids and zone focusing. Areas: <strong>Single point</strong> (6 sizes; medium is the sweet spot), <strong>Zone</strong> (3×3/5×5/7×7), <strong>Wide/Tracking</strong> (cedes control — skip for street). Enable <strong>AF+MF</strong> in the menu: half-press to AF, then turn the ring to refine without switching modes. And <strong>back-button focus</strong> (Shutter AF off, AF-ON on AEL/AFL) decouples focusing from firing — focus once with the thumb, shoot freely with the finger.</p>
+  <p><strong>MF aids, ranked:</strong> focus peaking (red or yellow, low) is the workhorse; digital split image and microprism are rangefinder nostalgia. The real instrument is the <strong>distance scale</strong> with its blue depth-of-field bar — at f/8, watch it swallow the whole street.</p>
+  <div class="key-idea">
+    <div class="kicker">The hyperfocal math, honestly</div>
+    <p>H ≈ f²/(N·c) → 23² / (8 × 0.02) ≈ <strong>3.3 m</strong> at f/8 (c = 0.02 mm, APS-C convention). Focus there and ~1.65 m → ∞ is acceptably sharp. Conventions vary and 40MP pixel-peeping tightens them — treat hyperfocal as a <em>zone, not a line</em>, and bias focus slightly far. At f/5.6: ≈ 4.7 m · at f/11: ≈ 2.4 m.</p>
+  </div>
+<p>At 35mm-equivalent and <strong>f/8</strong>, physics does the focusing for you. Set manual focus near the <strong>hyperfocal distance (~3 m)</strong> and everything from about 2 m to the horizon is acceptably sharp — no AF lag, no missed moments. Just raise, frame, press.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" aria-label="Zone focusing distance diagram">
+      <!-- Camera -->
+      <rect x="40" y="128" width="64" height="44" rx="8" fill="#141228" stroke="#4ecdc4" stroke-width="1.5"/>
+      <circle cx="104" cy="150" r="15" fill="#0a0a0f" stroke="#4ecdc4" stroke-width="1.5"/>
+      <text x="72" y="196" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">MF · f/8 · 3m</text>
+      <!-- DOF cone -->
+      <path d="M 119 150 L 300 108 L 860 74 L 860 226 L 300 192 Z" fill="#4ecdc4" opacity="0.10"/>
+      <path d="M 300 108 L 860 74 L 860 226 L 300 192 Z" fill="#4ecdc4" opacity="0.14"/>
+      <!-- Distance axis -->
+      <line x1="130" y1="260" x2="866" y2="260" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+      <g font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">
+        <line x1="180" y1="253" x2="180" y2="267" stroke="#8a7a56"/><text x="180" y="286" text-anchor="middle">1m</text>
+        <line x1="300" y1="253" x2="300" y2="267" stroke="#4ecdc4"/><text x="300" y="286" text-anchor="middle" fill="#4ecdc4">2m</text>
+        <line x1="420" y1="253" x2="420" y2="267" stroke="#ff6b3d"/><text x="420" y="286" text-anchor="middle" fill="#ff6b3d">3m — set focus here</text>
+        <line x1="600" y1="253" x2="600" y2="267" stroke="#8a7a56"/><text x="600" y="286" text-anchor="middle">6m</text>
+        <line x1="840" y1="253" x2="840" y2="267" stroke="#4ecdc4"/><text x="840" y="286" text-anchor="middle" fill="#4ecdc4">∞</text>
+      </g>
+      <rect x="300" y="248" width="540" height="24" rx="5" fill="#4ecdc4" opacity="0.30"/>
+      <text x="570" y="316" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ecdc4">EVERYTHING FROM 2m TO ∞ IS SHARP — THE STREET IS PRE-FOCUSED</text>
+      <!-- People at distances -->
+      <g fill="#3a3752">
+        <circle cx="240" cy="120" r="9" fill="#2a2740"/><rect x="232" y="129" width="16" height="42" rx="5" fill="#2a2740"/>
+        <circle cx="420" cy="116" r="12" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.5"/>
+        <rect x="409" y="128" width="22" height="54" rx="6" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.5"/>
+        <circle cx="640" cy="118" r="7"/><rect x="634" y="125" width="12" height="32" rx="4"/>
+        <circle cx="780" cy="120" r="5"/><rect x="776" y="125" width="9" height="22" rx="3"/>
+      </g>
+      <text x="240" y="106" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#8a7a56">too close — soft</text>
+      <text x="420" y="98" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#ff6b3d">your subject zone</text>
+    </svg>
+    <div class="stage-caption">Hyperfocal at f/8 ≈ 3.3 m (c = 0.02 mm; conventions vary) — set ~3 m, bias far, treat it as a zone</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/cutaway-pdaf.jpg" alt="Rendered cutaway of phase-detect autofocus: lens splitting light onto masked pixel pairs with two waveforms sliding into alignment" loading="lazy">
+    <div class="stage-caption">Phase detect — masked pixel pairs see the lens from two sides; the offset between their signals says which way to focus, and how far · rendered cutaway (Gemini)</div>
+  </div>
+</section>
+
+<!-- ================= 04 FILM RECIPES ================= -->
+<section class="section" id="section-04">
+  <div class="section-header">
+    <span class="section-number">07 — Color</span>
+    <h2>Film Recipes: One Scene, Four Souls</h2>
+  </div>
+  <p>Recipes are custom JPEG settings layered on Fuji's film simulations — the fastest route to finished, characterful images straight out of camera. Program these into <strong>C1–C4</strong>. Parameters follow <strong>Fuji X Weekly</strong> (Ritchie Roesch); the panels below are one rendered scene (Gemini) re-graded four ways — same diner, four souls.</p>
+  <div class="recipe-grid">
+    <!-- Kodachrome 64 -->
+    <div class="recipe-card">
+      <img class="recipe-photo" src="img/recipe-kodachrome.jpg" alt="Diner scene rendered with Kodachrome 64 palette: saturated warm reds, deep contrast" loading="lazy">
+      <div class="recipe-body">
+        <h3>Kodachrome 64</h3>
+        <div class="recipe-use">Sunny days · golden hour</div>
+        <div class="recipe-settings">
+          <b>Classic Chrome</b> · DR200<br>
+          Grain Weak/Sm · CCE Strong · FX Blue Off<br>
+          WB Daylight <b>+2R −5B</b><br>
+          H 0 · S +0.5 · Color <b>+2</b> · Sharp +1<br>
+          NR −4 · Clarity <b>+3</b> · EC 0…+⅔
+        </div>
+      </div>
+    </div>
+    <!-- Portra 400 -->
+    <div class="recipe-card">
+      <img class="recipe-photo" src="img/recipe-portra.jpg" alt="Same diner scene rendered with Portra 400 palette: soft pastel tones, gentle skin" loading="lazy">
+      <div class="recipe-body">
+        <h3>Kodak Portra 400 v2</h3>
+        <div class="recipe-use">Portraits · soft light</div>
+        <div class="recipe-settings">
+          <b>Classic Chrome</b> · DR400<br>
+          Grain Strong/Sm · CCE Strong · FX Blue Off<br>
+          WB <b>5200K +1R −6B</b><br>
+          H 0 · S <b>−2</b> · Color +2 · Sharp −2<br>
+          NR −4 · Clarity <b>−2</b> · EC +⅓…+1
+        </div>
+      </div>
+    </div>
+    <!-- Tri-X 400 -->
+    <div class="recipe-card">
+      <img class="recipe-photo" src="img/recipe-trix.jpg" alt="Same diner scene rendered as grainy high-contrast Tri-X 400 black and white" loading="lazy">
+      <div class="recipe-body">
+        <h3>Kodak Tri-X 400</h3>
+        <div class="recipe-use">Gritty street B&amp;W · any light</div>
+        <div class="recipe-settings">
+          <b>Acros +Y</b> · DR200<br>
+          Grain <b>Strong/Lg</b> · CCE Strong · FX Blue Off<br>
+          WB Daylight <b>+9R −9B</b><br>
+          H 0 · S <b>+3</b> · Sharp +1<br>
+          NR −4 · Clarity <b>+4</b> · ISO 1600–12800
+        </div>
+      </div>
+    </div>
+    <!-- CineStill night -->
+    <div class="recipe-card">
+      <img class="recipe-photo" src="img/recipe-cinestill.jpg" alt="Same diner scene rendered with CineStill 800T palette: tungsten teal shadows, red neon halation" loading="lazy">
+      <div class="recipe-body">
+        <h3>CineStill 800T</h3>
+        <div class="recipe-use">Neon nights · cinematic teal</div>
+        <div class="recipe-settings">
+          <b>Eterna</b>-family night look<br>
+          cool WB · red-orange halation vibe<br>
+          Grain Strong · deep shadows<br>
+          see Fuji X Weekly for exact<br>
+          X-Trans V parameters
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/official-film-lineup.webp" alt="Fujifilm's original film boxes and canisters: Provia, Velvia, Pro 160, Reala, Provia 100F, Velvia 100, Neopan Acros II" loading="lazy">
+    <div class="stage-caption">The originals the simulations chase — Provia, Velvia, Astia's kin, Acros: Fujifilm's own emulsions, now menu items · © Fujifilm</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/official-fx-blue.png" alt="Official Fujifilm off/on comparison of Color Chrome FX Blue deepening the blue tones of aerial mountains" loading="lazy">
+    <div class="stage-caption">Color Chrome FX Blue, off → on — this is the deep-blue density the Kodak recipes deliberately switch <em>off</em> · © Fujifilm</div>
+  </div>
+  <p><strong>Under the hood — what each parameter touches.</strong> The X-Trans V sensor uses a <strong>6×6 color-filter pattern</strong> (vs Bayer's 2×2) with more randomized green — moiré resistance without an optical low-pass filter, and noise that reads as film-like texture. That's why most recipes set NR −4: at ISO 3200–6400 the grain is character, not garbage. <strong>Dynamic Range</strong> is the cleverest trick: DR200/DR400 <em>underexposes the sensor</em> by 1–2 stops to protect highlights, then lifts shadows in the tone curve (cost: minimum ISO rises to 250/500) — Portra recipes demand DR400 because negative film's gentle highlight rolloff is literally being emulated by headroom. <strong>Highlight/Shadow</strong> bend the curve's ends independently; <strong>Color Chrome / FX Blue</strong> add density in deep saturated colors (X-Trans V blues already run deep — hence FX Blue Off in ported recipes); <strong>WB shift</strong> is the secret axis (Kodak lives at +R −B); <strong>Clarity</strong> is powerful local contrast but adds ~1s of processing per frame — the one setting that slows the camera. And <strong>RAW is the escape hatch</strong>: re-develop any frame into any recipe later, in-camera or via X RAW Studio (which uses the camera's own processor — pixel-identical output).</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg" aria-label="JPEG processing pipeline with X-Trans CFA and DR tone curves">
+      <text x="450" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8a7a56" letter-spacing="2">PHOTONS → JPEG: WHERE EACH RECIPE PARAMETER LIVES</text>
+      <!-- CFA comparison -->
+      <text x="150" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#4ecdc4">X-TRANS 6×6</text>
+      <g transform="translate(78,84)">
+        <!-- rows of 6, cell 24px: G B G G R G / R G R B G B / G B G G R G / G R G G B G / B G B R G R / G R G G B G -->
+        <g>
+          <rect x="0" y="0" width="24" height="24" fill="#14966e"/><rect x="24" y="0" width="24" height="24" fill="#2b6cb0"/><rect x="48" y="0" width="24" height="24" fill="#14966e"/><rect x="72" y="0" width="24" height="24" fill="#14966e"/><rect x="96" y="0" width="24" height="24" fill="#c0392b"/><rect x="120" y="0" width="24" height="24" fill="#14966e"/>
+          <rect x="0" y="24" width="24" height="24" fill="#c0392b"/><rect x="24" y="24" width="24" height="24" fill="#14966e"/><rect x="48" y="24" width="24" height="24" fill="#c0392b"/><rect x="72" y="24" width="24" height="24" fill="#2b6cb0"/><rect x="96" y="24" width="24" height="24" fill="#14966e"/><rect x="120" y="24" width="24" height="24" fill="#2b6cb0"/>
+          <rect x="0" y="48" width="24" height="24" fill="#14966e"/><rect x="24" y="48" width="24" height="24" fill="#2b6cb0"/><rect x="48" y="48" width="24" height="24" fill="#14966e"/><rect x="72" y="48" width="24" height="24" fill="#14966e"/><rect x="96" y="48" width="24" height="24" fill="#c0392b"/><rect x="120" y="48" width="24" height="24" fill="#14966e"/>
+          <rect x="0" y="72" width="24" height="24" fill="#14966e"/><rect x="24" y="72" width="24" height="24" fill="#c0392b"/><rect x="48" y="72" width="24" height="24" fill="#14966e"/><rect x="72" y="72" width="24" height="24" fill="#14966e"/><rect x="96" y="72" width="24" height="24" fill="#2b6cb0"/><rect x="120" y="72" width="24" height="24" fill="#14966e"/>
+          <rect x="0" y="96" width="24" height="24" fill="#2b6cb0"/><rect x="24" y="96" width="24" height="24" fill="#14966e"/><rect x="48" y="96" width="24" height="24" fill="#2b6cb0"/><rect x="72" y="96" width="24" height="24" fill="#c0392b"/><rect x="96" y="96" width="24" height="24" fill="#14966e"/><rect x="120" y="96" width="24" height="24" fill="#c0392b"/>
+          <rect x="0" y="120" width="24" height="24" fill="#14966e"/><rect x="24" y="120" width="24" height="24" fill="#c0392b"/><rect x="48" y="120" width="24" height="24" fill="#14966e"/><rect x="72" y="120" width="24" height="24" fill="#14966e"/><rect x="96" y="120" width="24" height="24" fill="#2b6cb0"/><rect x="120" y="120" width="24" height="24" fill="#14966e"/>
+        </g>
+        <rect x="0" y="0" width="144" height="144" fill="none" stroke="rgba(255,255,255,0.25)"/>
+      </g>
+      <text x="150" y="252" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#8a7a56">randomized green → no moiré,</text>
+      <text x="150" y="268" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#8a7a56">no low-pass filter, filmic grain</text>
+      <text x="320" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a7a56">BAYER 2×2</text>
+      <g transform="translate(272,84)">
+        <rect x="0" y="0" width="48" height="48" fill="#c0392b"/><rect x="48" y="0" width="48" height="48" fill="#14966e"/>
+        <rect x="0" y="48" width="48" height="48" fill="#14966e"/><rect x="48" y="48" width="48" height="48" fill="#2b6cb0"/>
+        <rect x="0" y="0" width="96" height="96" fill="none" stroke="rgba(255,255,255,0.25)"/>
+      </g>
+      <text x="320" y="204" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#8a7a56">regular tiling —</text>
+      <text x="320" y="220" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#8a7a56">needs a low-pass filter</text>
+      <!-- DR curves -->
+      <text x="620" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#ffe66d">DR400: THE HIGHLIGHT TRICK</text>
+      <g transform="translate(500,84)">
+        <line x1="0" y1="150" x2="240" y2="150" stroke="rgba(255,255,255,0.3)"/>
+        <line x1="0" y1="150" x2="0" y2="0" stroke="rgba(255,255,255,0.3)"/>
+        <path d="M 0 150 L 210 0" stroke="#8a7a56" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <path d="M 0 150 C 60 60 120 30 235 12" stroke="#ffe66d" stroke-width="2.5" fill="none"/>
+        <text x="120" y="172" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8a7a56">SCENE BRIGHTNESS →</text>
+        <text x="196" y="52" font-family="DM Sans, sans-serif" font-size="10" fill="#ffe66d">soft rolloff</text>
+        <text x="46" y="52" font-family="DM Sans, sans-serif" font-size="10" fill="#8a7a56">straight = clips</text>
+      </g>
+      <text x="620" y="272" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#8a7a56">underexpose 2 stops → lift shadows in the curve · min ISO 500</text>
+      <!-- Pipeline flow -->
+      <g font-family="JetBrains Mono, monospace" font-size="10">
+        <rect x="30" y="310" width="110" height="40" rx="8" fill="rgba(255,255,255,0.03)" stroke="#4ecdc4"/>
+        <text x="85" y="334" text-anchor="middle" fill="#1a1208">CFA + SENSOR</text>
+        <line x1="140" y1="330" x2="176" y2="330" stroke="#4ecdc4" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+        <rect x="180" y="310" width="100" height="40" rx="8" fill="rgba(255,255,255,0.03)" stroke="#4ecdc4"/>
+        <text x="230" y="334" text-anchor="middle" fill="#1a1208">DEMOSAIC</text>
+        <line x1="280" y1="330" x2="316" y2="330" stroke="#4ecdc4" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+        <rect x="320" y="310" width="120" height="40" rx="8" fill="rgba(255,255,255,0.03)" stroke="#ffe66d"/>
+        <text x="380" y="334" text-anchor="middle" fill="#1a1208">FILM SIM</text>
+        <line x1="440" y1="330" x2="476" y2="330" stroke="#4ecdc4" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+        <rect x="480" y="310" width="120" height="40" rx="8" fill="rgba(255,255,255,0.03)" stroke="#ffe66d"/>
+        <text x="540" y="334" text-anchor="middle" fill="#1a1208">DR + H/S TONE</text>
+        <line x1="600" y1="330" x2="636" y2="330" stroke="#4ecdc4" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+        <rect x="640" y="310" width="130" height="40" rx="8" fill="rgba(255,255,255,0.03)" stroke="#f472b6"/>
+        <text x="705" y="334" text-anchor="middle" fill="#1a1208">GRAIN·CLARITY</text>
+        <line x1="770" y1="330" x2="806" y2="330" stroke="#4ecdc4" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+        <rect x="810" y="310" width="70" height="40" rx="8" fill="rgba(78,205,196,0.12)" stroke="#4ecdc4"/>
+        <text x="845" y="334" text-anchor="middle" fill="#4ecdc4">JPEG</text>
+      </g>
+      <g font-family="DM Sans, sans-serif" font-size="10" fill="#8a7a56">
+        <text x="85" y="374" text-anchor="middle">ISO · NR</text>
+        <text x="380" y="374" text-anchor="middle">color science · WB shift · CCE/FX Blue</text>
+        <text x="705" y="374" text-anchor="middle">clarity costs ~1s/frame</text>
+      </g>
+      <text x="450" y="412" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#1a1208">RAW forks off before FILM SIM — that's why any frame can be re-developed into any recipe later</text>
+    </svg>
+  </div>
+
+  <div class="key-idea">
+    <div class="kicker">Discipline that pays</div>
+    <p>Shoot <strong>one recipe for one week</strong>. You'll learn what light each palette loves — that's taste-building, not settings-collecting. Keep RAW+JPEG as a safety net for tricky light.</p>
+  </div>
+</section>
+
+<!-- ================= 05 ZONE FOCUS / COMPOSITION ================= -->
+<!-- ================= 07 VIEWFINDER ================= -->
+<section class="section" id="section-viewfinder">
+  <div class="section-header">
+    <span class="section-number">08 — Viewfinder</span>
+    <h2>Three Ways of Seeing</h2>
+  </div>
+  <p>The front lever cycles the hybrid viewfinder — the X100's soul, and most people never leave EVF. <strong>OVF</strong> is a direct optical window: no lag, no blackout, and you see <em>outside the frame lines</em> — a subject about to enter your composition is visible before they're in it. The decisive moment as a hardware feature. <strong>EVF</strong> shows the exact JPEG — exposure, recipe, depth of field. <strong>ERF</strong> overlays a small electronic magnifier on the OVF for focus confirmation while seeing optically.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" aria-label="OVF EVF ERF comparison">
+      <g font-family="JetBrains Mono, monospace" font-size="11">
+        <!-- OVF -->
+        <text x="160" y="40" text-anchor="middle" fill="#ffe66d" letter-spacing="1.5">OVF — SEE REALITY</text>
+        <rect x="20" y="54" width="280" height="180" rx="10" fill="#eeefe9" stroke="rgba(255,255,255,0.15)"/>
+        <circle cx="90" cy="100" r="10" fill="#ffe66d" opacity="0.8"/>
+        <rect x="40" y="150" width="60" height="84" fill="#181630"/>
+        <rect x="210" y="140" width="70" height="94" fill="#181630"/>
+        <rect x="60" y="84" width="200" height="130" fill="none" stroke="#ffe66d" stroke-width="2" opacity="0.9"/>
+        <circle cx="150" cy="150" r="9" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.4"/>
+        <rect x="142" y="159" width="16" height="40" rx="5" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.4"/>
+        <!-- subject outside frame entering -->
+        <circle cx="272" cy="170" r="8" fill="#2a2740" stroke="#ff6b3d" stroke-width="1.4"/>
+        <rect x="265" y="178" width="14" height="34" rx="4" fill="#2a2740" stroke="#ff6b3d" stroke-width="1.4"/>
+        <path d="M 262 190 L 268 190" stroke="#ff6b3d" stroke-width="2" marker-end="url(#arrowTeal)"/>
+        <text x="160" y="258" text-anchor="middle" fill="#8a7a56" font-size="10">frame lines + the world beyond them</text>
+        <text x="160" y="276" text-anchor="middle" fill="#ff6b3d" font-size="10">SEE THEM COMING — ANTICIPATE</text>
+        <text x="160" y="296" text-anchor="middle" fill="#8a7a56" font-size="9">parallax: lines shift as focus nears</text>
+        <!-- EVF -->
+        <text x="450" y="40" text-anchor="middle" fill="#4ecdc4" letter-spacing="1.5">EVF — SEE THE JPEG</text>
+        <rect x="330" y="70" width="240" height="150" rx="10" fill="#eeefe9" stroke="#4ecdc4" stroke-width="1.5"/>
+        <circle cx="392" cy="112" r="9" fill="#ffb45d" opacity="0.9"/>
+        <rect x="344" y="150" width="52" height="70" fill="#241a3d"/>
+        <rect x="500" y="142" width="60" height="78" fill="#241a3d"/>
+        <circle cx="450" cy="150" r="9" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.4"/>
+        <rect x="442" y="159" width="16" height="40" rx="5" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.4"/>
+        <g fill="#4ecdc4" opacity="0.9">
+          <rect x="522" y="82" width="4" height="12"/><rect x="528" y="78" width="4" height="16"/><rect x="534" y="84" width="4" height="10"/><rect x="540" y="80" width="4" height="14"/>
+        </g>
+        <text x="450" y="258" text-anchor="middle" fill="#8a7a56" font-size="10">exact frame · exposure · recipe · DoF</text>
+        <text x="450" y="276" text-anchor="middle" fill="#4ecdc4" font-size="10">WYSIWYG — DELIBERATE WORK</text>
+        <text x="450" y="296" text-anchor="middle" fill="#8a7a56" font-size="9">use under ~1 m: no parallax</text>
+        <!-- ERF -->
+        <text x="740" y="40" text-anchor="middle" fill="#a78bfa" letter-spacing="1.5">ERF — HYBRID'S HYBRID</text>
+        <rect x="600" y="54" width="280" height="180" rx="10" fill="#eeefe9" stroke="rgba(255,255,255,0.15)"/>
+        <rect x="640" y="84" width="200" height="130" fill="none" stroke="#ffe66d" stroke-width="2" opacity="0.9"/>
+        <circle cx="730" cy="150" r="9" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.4"/>
+        <rect x="722" y="159" width="16" height="40" rx="5" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.4"/>
+        <rect x="796" y="158" width="76" height="68" rx="6" fill="#eeefe9" stroke="#a78bfa" stroke-width="2"/>
+        <circle cx="834" cy="180" r="12" fill="#1a1208" stroke="#4ecdc4" stroke-width="2"/>
+        <rect x="824" y="192" width="20" height="28" rx="6" fill="#1a1208" stroke="#4ecdc4" stroke-width="2"/>
+        <text x="740" y="258" text-anchor="middle" fill="#8a7a56" font-size="10">optical view + corner magnifier</text>
+        <text x="740" y="276" text-anchor="middle" fill="#a78bfa" font-size="10">ZONE FOCUS WITH CONFIRMATION</text>
+        <text x="740" y="296" text-anchor="middle" fill="#8a7a56" font-size="9">front lever cycles all three</text>
+      </g>
+    </svg>
+    <div class="stage-caption">Practical split: OVF for street &amp; anticipation · EVF for portraits, recipes, close work · ERF when zone-focusing</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/hybrid-vf.jpg" alt="Rendered cutaway of a hybrid viewfinder: optical path passing straight through and an EVF panel projected into the eyepiece via a prism" loading="lazy">
+    <div class="stage-caption">The finder&#8217;s plumbing — window light straight through, the EVF folded in by a half-mirrored prism when you ask for it · rendered cutaway (Gemini)</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/ovf-view.jpg" alt="Rendered view through an optical viewfinder: bright frameline showing the capture area, scene visible beyond it, small electronic focus patch in the corner" loading="lazy">
+    <div class="stage-caption">Through the OVF — the frameline is the photo, the world beyond it is your early warning, the corner patch (ERF) confirms focus · rendered view (Gemini)</div>
+  </div>
+</section>
+
+<section class="section" id="section-05b">
+  <div class="section-header">
+    <span class="section-number">09 — Real Frames</span>
+    <h2>Straight Off the Sensor</h2>
+  </div>
+  <p>The SVGs above are illustrative — here are actual X100VI exposures, hotlinked from their original hosts (nothing downloaded or re-served) so the credit and full-resolution file stay with the photographer. All four are published under the <strong>Unsplash License</strong> — free to use, camera confirmed X100VI in each file's EXIF.</p>
+  <div class="photo-grid">
+    <a class="photo-card" href="https://unsplash.com/photos/a-sign-on-the-side-of-a-building-that-says-to-the-mosaics-ou3Usijr1Vg" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1715018898718-187bf9ea8c99?fm=jpg&amp;q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Street scene in Shoreditch, London, shot on the X100VI" loading="lazy">
+      <div class="photo-cap">
+        <span class="photo-tag">Street · f/8 zone-focus territory</span>
+        <span class="photo-credit">Adrian Raudaschl — Shoreditch, London ↗</span>
+      </div>
+    </a>
+    <a class="photo-card" href="https://unsplash.com/photos/a-man-taking-a-picture-of-himself-with-a-camera-9Ai-n2F9Zz0" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1712587729212-98a354b83ba0?fm=jpg&amp;q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Mirror self-portrait taken with the X100VI in Berlin" loading="lazy">
+      <div class="photo-cap">
+        <span class="photo-tag">Portrait · reflection, environmental</span>
+        <span class="photo-credit">Nikita Pishchugin — Mitte, Berlin ↗</span>
+      </div>
+    </a>
+    <a class="photo-card" href="https://unsplash.com/photos/a-dock-with-several-boats-docked-at-sunset-dU7OWFPgoi4" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1726041455094-f80a88752b8d?fm=jpg&amp;q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Sunset at a boat dock in Ålesund, Norway, shot on the X100VI" loading="lazy">
+      <div class="photo-cap">
+        <span class="photo-tag">Golden hour · warm, Kodachrome-adjacent light</span>
+        <span class="photo-credit">Laurence Ziegler — Ålesund, Norway ↗</span>
+      </div>
+    </a>
+    <a class="photo-card" href="https://unsplash.com/photos/a-grassy-field-with-a-mountain-in-the-background-NsUeOtfyI80" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1726041453761-93347cc8f580?fm=jpg&amp;q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Grassy field and mountain landscape shot on the X100VI in Norway" loading="lazy">
+      <div class="photo-cap">
+        <span class="photo-tag">Landscape · f/8, deep field</span>
+        <span class="photo-credit">Laurence Ziegler — Hoddevik, Norway ↗</span>
+      </div>
+    </a>
+  </div>
+  <div class="stage-caption">Click any frame to open the original on Unsplash — full EXIF (aperture, shutter, ISO) is one click further</div>
+</section>
+
+<!-- ================= 09 TECHNIQUES ================= -->
+<section class="section" id="section-tech">
+  <div class="section-header">
+    <span class="section-number">10 — Techniques</span>
+    <h2>The Science, Applied in the Field</h2>
+  </div>
+  <p><strong>Sunny 16, internalized.</strong> Bright sun: f/16 at 1/ISO. Each lighting drop opens one stop. Why bother with a great meter on board? Because knowing the answer before the camera does makes you notice <em>light itself</em> — and lets you sanity-check the meter when a scene fools it.</p>
+  <div class="svg-stage">
+    <svg viewBox="0 0 900 210" xmlns="http://www.w3.org/2000/svg" aria-label="Sunny 16 ladder">
+      <text x="450" y="34" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8a7a56" letter-spacing="2">SUNNY 16 — SHUTTER 1/ISO, APERTURE FOLLOWS THE SKY</text>
+      <g font-family="JetBrains Mono, monospace" font-size="12" fill="#1a1208">
+        <circle cx="110" cy="90" r="24" fill="#ffe66d"/>
+        <g stroke="#ffe66d" stroke-width="2"><line x1="110" y1="52" x2="110" y2="42"/><line x1="110" y1="128" x2="110" y2="138"/><line x1="72" y1="90" x2="62" y2="90"/><line x1="148" y1="90" x2="158" y2="90"/><line x1="83" y1="63" x2="76" y2="56"/><line x1="137" y1="63" x2="144" y2="56"/><line x1="83" y1="117" x2="76" y2="124"/><line x1="137" y1="117" x2="144" y2="124"/></g>
+        <text x="110" y="170" text-anchor="middle" font-weight="600" fill="#b8912a">f/16</text>
+        <text x="110" y="190" text-anchor="middle" font-size="9" fill="#8a7a56">BRIGHT SUN</text>
+        <circle cx="280" cy="90" r="22" fill="#ffe66d" opacity="0.75"/>
+        <line x1="248" y1="76" x2="312" y2="76" stroke="#12142a" stroke-width="5" opacity="0.8"/>
+        <line x1="244" y1="96" x2="316" y2="96" stroke="#12142a" stroke-width="6" opacity="0.8"/>
+        <text x="280" y="170" text-anchor="middle" font-weight="600" fill="#b8912a">f/11</text>
+        <text x="280" y="190" text-anchor="middle" font-size="9" fill="#8a7a56">HAZY</text>
+        <ellipse cx="450" cy="88" rx="34" ry="18" fill="#8f8fa8"/>
+        <ellipse cx="428" cy="96" rx="22" ry="14" fill="#a2a2b8"/>
+        <text x="450" y="170" text-anchor="middle" font-weight="600" fill="#1a1208">f/8</text>
+        <text x="450" y="190" text-anchor="middle" font-size="9" fill="#8a7a56">OVERCAST</text>
+        <ellipse cx="620" cy="86" rx="36" ry="19" fill="#4a4a5e"/>
+        <ellipse cx="596" cy="96" rx="24" ry="15" fill="#3a3a4c"/>
+        <text x="620" y="170" text-anchor="middle" font-weight="600" fill="#1a3e68">f/5.6</text>
+        <text x="620" y="190" text-anchor="middle" font-size="9" fill="#8a7a56">HEAVY OVERCAST</text>
+        <rect x="762" y="58" width="26" height="70" fill="#181630"/>
+        <polygon points="788,58 826,80 826,128 788,128" fill="#0e0d1c"/>
+        <text x="795" y="170" text-anchor="middle" font-weight="600" fill="#2a6bb8">f/4</text>
+        <text x="795" y="190" text-anchor="middle" font-size="9" fill="#8a7a56">OPEN SHADE</text>
+      </g>
+    </svg>
+  </div>
+  <p><strong>Expose for Fuji files:</strong> the sensor's shadows lift beautifully; clipped highlights are gone forever. Bias −⅓ to −⅔ EC in contrasty light, lean on DR200/400 for bright skies, watch the histogram, lift shadows later — or let the recipe do it.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>IBIS: Stack the Odds</h3>
+      <p>6 stops rated means ~1/2s handheld is <strong>possible, not guaranteed</strong>. Elbows in, exhale, lean on something, and fire a <strong>3-frame burst</strong> — the middle frame is usually the keeper (press and release both shake). IBIS stabilizes <em>you</em>, never the subject: moving people still need 1/125+.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Panning</h3>
+      <p>Shutter Priority <strong>1/30–1/60</strong>, AF-C, rotate your hips (not arms) tracking the subject, fire mid-swing, follow through. Background streaks, subject holds. At 35mm-equivalent, work close for strong streaks.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Ghost the Crowds</h3>
+      <p>f/16 + ND ≈ <strong>1/8–1/2s in daylight</strong>. At a half second, walking pedestrians render as ghosts — the crowd-thinning trick for busy landmarks. Brace or pocket-tripod beyond 1/2s; silky water works the same way.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Low Light, In Order</h3>
+      <p>Open to <strong>f/2</strong> → let Auto-ISO climb to <strong>6400</strong> → only then slow the shutter below your minimum. ISO 6400 with Acros or a grain-forward recipe looks intentional; motion blur from a lazy shutter rarely does. ND <strong>off</strong> — check it.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Digital TC, Honestly</h3>
+      <p><strong>50mm ≈ 20MP</strong> — genuinely fine, and it sidesteps the nose-enlarging perspective of true close 35mm portraiture. <strong>70mm ≈ 10MP</strong> — web only. It lives on the control ring; RAW records the full frame regardless. Want the pixels back? That's the TCL glass converter (§01).</p>
+    </div>
+    <div class="arch-card">
+      <h3>Flash Beyond Fill</h3>
+      <p><strong>Slow sync</strong> at dusk: sharp flash-lit subject over motion-blurred city lights. <strong>Second-curtain</strong> puts the blur behind movement instead of ahead. Both are built in and leaf-shutter-friendly — pair with ND to tame ambient.</p>
+    </div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/panning.jpg" alt="Rendered comparison of the same cyclist: frozen static frame at 1/500 versus a 1/30 pan with sharp rider and streaked background" loading="lazy">
+    <div class="stage-caption">1/500 static vs 1/30 panned — same rider, but only one frame moves; hips do the tracking (card above) · rendered comparison (Gemini)</div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/cutaway-ibis.jpg" alt="Rendered exploded view of an in-body stabilization unit: sensor suspended by electromagnetic actuators with five axes of correction" loading="lazy">
+    <div class="stage-caption">The floating sensor — five axes of correction between your heartbeat and the frame · rendered cutaway (Gemini)</div>
+  </div>
+  <p>That stabilizer unit is the single biggest hardware difference from the previous body — the V's sensor sat bolted still.</p>
+  <div class="svg-stage">
+    <img class="fig" src="img/official-ibis-v-vi.png" alt="Official Fujifilm diagram comparing the X100V's bare sensor with the X100VI's sensor mounted in its stabilizer unit" loading="lazy" style="background: #fff; border-radius: 10px; padding: 1rem; box-sizing: border-box;">
+    <div class="stage-caption">The VI's headline change — same body, but the sensor now rides in a stabilizer unit the V never had · © Fujifilm</div>
+  </div>
+</section>
+
+<section class="section" id="section-06">
+  <div class="section-header">
+    <span class="section-number">11 — Composition</span>
+    <h2>Composition: A Working Guide for 35mm</h2>
+  </div>
+  
+    <p>Twelve principles, ordered from grammar to poetry — weighted toward what a fixed 35mm rewards. Turn on the camera's 9-grid framing guide and electronic level (DISP settings) while these become instinct; turn them off after.</p>
+  <div class="comp-grid">
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#eeefe9"/>
+      <g stroke="#8a7a56" stroke-width="0.7" opacity="0.6"><line x1="80" y1="0" x2="80" y2="160"/><line x1="160" y1="0" x2="160" y2="160"/><line x1="0" y1="53" x2="240" y2="53"/><line x1="0" y1="107" x2="240" y2="107"/></g>
+      <line x1="0" y1="107" x2="240" y2="107" stroke="#4ecdc4" stroke-width="1.5" opacity="0.8"/>
+      <circle cx="160" cy="47" r="7" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.5"/>
+      <rect x="154" y="54" width="12" height="30" rx="4" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.5"/>
+      <circle cx="160" cy="53" r="12" fill="none" stroke="#ff6b3d" stroke-width="1" opacity="0.5" class="pulse-node"/>
+    </svg><div class="comp-body"><div class="comp-name">01 · Rule of Thirds</div><div class="comp-tip">Subject on an intersection, horizon on a line. Then break it on purpose.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#eeefe9"/>
+      <path d="M 10 160 L 148 62" stroke="#ffe66d" stroke-width="2"/>
+      <path d="M 230 160 L 156 62" stroke="#ffe66d" stroke-width="2"/>
+      <path d="M 70 160 L 150 66" stroke="#8a7a56" stroke-width="1" stroke-dasharray="5 4"/>
+      <path d="M 185 160 L 154 66" stroke="#8a7a56" stroke-width="1" stroke-dasharray="5 4"/>
+      <circle cx="152" cy="52" r="5" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.4"/>
+      <rect x="148" y="57" width="9" height="20" rx="3" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.4"/>
+    </svg><div class="comp-body"><div class="comp-name">02 · Leading Lines</div><div class="comp-tip">Lines enter and travel to the subject. Shoot along them; get low to exaggerate.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#eeefe9"/>
+      <rect x="150" y="30" width="34" height="70" fill="#181630"/><rect x="192" y="42" width="30" height="58" fill="#141228"/>
+      <text x="185" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#8a7a56">BG</text>
+      <circle cx="120" cy="78" r="9" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.5"/>
+      <rect x="112" y="87" width="16" height="38" rx="5" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.5"/>
+      <text x="120" y="66" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#4ecdc4">MID</text>
+      <path d="M -10 160 Q 60 96 60 160 Z" fill="#0a0a14"/>
+      <ellipse cx="34" cy="150" rx="52" ry="26" fill="#0a0a14"/>
+      <text x="36" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#ff6b3d">FG</text>
+    </svg><div class="comp-body"><div class="comp-name">03 · Layering</div><div class="comp-tip">The 35mm superpower: occupy foreground, midground, background. Three planes = inhabited.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#eeefe9"/>
+      <path d="M 0 160 L 0 0 L 70 0 L 70 66 Q 120 20 170 66 L 170 0 L 240 0 L 240 160 Z" fill="#c9c4b0"/>
+      <path d="M 70 160 L 70 66 Q 120 20 170 66 L 170 160" fill="#f6f4ec" stroke="#4ecdc4" stroke-width="1.5" opacity="0.9"/>
+      <circle cx="140" cy="72" r="8" fill="#ffe66d" opacity="0.85"/>
+      <circle cx="118" cy="106" r="7" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.4"/>
+      <rect x="112" y="113" width="12" height="30" rx="4" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.4"/>
+    </svg><div class="comp-body"><div class="comp-name">04 · Frame in Frame</div><div class="comp-tip">Doors, arches, gaps. The inner frame concentrates attention — watch subjects approach it in the OVF.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="negSp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f6f4ec"/><stop offset="100%" stop-color="#e3ded0"/></linearGradient></defs>
+      <rect width="240" height="160" fill="url(#negSp)"/>
+      <circle cx="196" cy="122" r="5" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.3"/>
+      <rect x="192" y="127" width="9" height="21" rx="3" fill="#1a1208" stroke="#4ecdc4" stroke-width="1.3"/>
+    </svg><div class="comp-body"><div class="comp-name">05 · Negative Space</div><div class="comp-tip">One subject, lots of nothing. The space is pressure — underexpose to deepen it.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="120" height="160" fill="#c9c6bd"/>
+      <rect x="120" y="0" width="120" height="160" fill="#0c0c16"/>
+      <circle cx="60" cy="66" r="9" fill="#0c0c16"/>
+      <rect x="52" y="75" width="16" height="42" rx="5" fill="#0c0c16"/>
+      <circle cx="180" cy="66" r="9" fill="#c9c6bd"/>
+      <rect x="172" y="75" width="16" height="42" rx="5" fill="#c9c6bd"/>
+    </svg><div class="comp-body"><div class="comp-name">06 · Figure to Ground</div><div class="comp-tip">Tonal separation makes photos readable at a glance. Squint: if the subject vanishes, move.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#08080e"/>
+      <polygon points="30,0 96,0 190,160 124,160" fill="#ffe66d" opacity="0.22"/>
+      <polygon points="52,0 74,0 168,160 146,160" fill="#ffe66d" opacity="0.3"/>
+      <circle cx="150" cy="106" r="8" fill="#1a1408" stroke="#ffe66d" stroke-width="1.6"/>
+      <rect x="143" y="114" width="14" height="34" rx="4" fill="#1a1408" stroke="#ffe66d" stroke-width="1.6"/>
+    </svg><div class="comp-body"><div class="comp-name">07 · Light First</div><div class="comp-tip">Find the shaft, expose for it (−1 EC or spot), let the rest fall to black. Then fish.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#eeefe9"/>
+      <circle cx="118" cy="52" r="9" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.6"/>
+      <path d="M 110 61 Q 118 58 126 61 L 124 96 L 112 96 Z" fill="#1a1208" stroke="#ff6b3d" stroke-width="1.6"/>
+      <path d="M 113 96 L 96 128" stroke="#ff6b3d" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 123 96 L 144 122" stroke="#ff6b3d" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 112 70 L 92 84" stroke="#ff6b3d" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 124 70 L 148 62" stroke="#ff6b3d" stroke-width="2.5" stroke-linecap="round"/>
+      <ellipse cx="120" cy="140" rx="46" ry="6" fill="#08080e"/>
+      <path d="M 158 46 A 30 30 0 0 1 166 70" fill="none" stroke="#4ecdc4" stroke-width="1.5" stroke-dasharray="4 3"/>
+    </svg><div class="comp-body"><div class="comp-name">08 · Gesture</div><div class="comp-tip">Mid-stride, raised hand, coat in wind — gesture peaks in fractions of a second. 1/500, burst, anticipate.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#eeefe9"/>
+      <line x1="120" y1="8" x2="120" y2="152" stroke="#4ecdc4" stroke-width="0.8" stroke-dasharray="5 4" opacity="0.5"/>
+      <g fill="#181630" stroke="rgba(255,255,255,0.2)">
+        <rect x="24" y="48" width="28" height="44"/><rect x="66" y="48" width="28" height="44"/>
+        <rect x="108" y="48" width="28" height="44"/><rect x="150" y="48" width="28" height="44"/>
+      </g>
+      <g transform="rotate(-18 206 92)"><rect x="192" y="48" width="28" height="44" fill="#2b1f10" stroke="#ffe66d" stroke-width="1.5"/></g>
+      <rect x="0" y="112" width="240" height="48" fill="#0c0c16"/>
+    </svg><div class="comp-body"><div class="comp-name">09 · Break the Pattern</div><div class="comp-tip">Patterns become photos when one element rebels. Center symmetry precisely — use the level.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#e3ded0"/>
+      <rect x="0" y="0" width="240" height="70" fill="#d8d2c0"/>
+      <g fill="#c7c0ac"><rect x="20" y="24" width="40" height="90"/><rect x="180" y="34" width="42" height="80"/></g>
+      <rect x="0" y="114" width="240" height="46" fill="#cdc6b2"/>
+      <path d="M 96 88 A 26 26 0 0 1 148 88 Z" fill="#c0392b"/>
+      <line x1="122" y1="88" x2="122" y2="104" stroke="#c0392b" stroke-width="2"/>
+      <circle cx="122" cy="110" r="6" fill="#1a1208"/>
+      <rect x="117" y="116" width="11" height="26" rx="4" fill="#1a1208"/>
+    </svg><div class="comp-body"><div class="comp-name">10 · Color Accent</div><div class="comp-tip">One saturated note in a muted world becomes the subject. Classic Chrome mutes the world for you.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#eeefe9"/>
+      <circle cx="120" cy="80" r="10" fill="#1a1208" stroke="#ffe66d" stroke-width="1.8"/>
+      <circle cx="120" cy="80" r="34" fill="none" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="4 4" opacity="0.6"/>
+      <circle cx="120" cy="80" r="58" fill="none" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="4 4" opacity="0.35"/>
+      <g fill="#ff6b3d">
+        <circle cx="120" cy="22" r="4"/><circle cx="178" cy="80" r="4"/><circle cx="120" cy="138" r="4"/>
+        <circle cx="62" cy="80" r="4"/><circle cx="79" cy="39" r="4"/><circle cx="161" cy="121" r="4"/>
+      </g>
+      <path d="M 120 30 A 50 50 0 0 1 170 80" fill="none" stroke="#ff6b3d" stroke-width="1.2" marker-end="url(#arrowTeal)" opacity="0.7"/>
+    </svg><div class="comp-body"><div class="comp-name">11 · Work the Scene</div><div class="comp-tip">First frame is the sketch. Move feet: closer, lower, around. Ten frames of one scene beat ten scenes.</div></div></div>
+
+    <div class="comp-card"><svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="160" fill="#eeefe9"/>
+      <rect x="14" y="12" width="212" height="136" fill="none" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="5 4" opacity="0.5"/>
+      <rect x="112" y="0" width="10" height="52" fill="#2a2740"/>
+      <circle cx="117" cy="66" r="10" fill="#1a1208" stroke="rgba(255,255,255,0.4)" stroke-width="1.4"/>
+      <rect x="108" y="76" width="18" height="44" rx="5" fill="#1a1208" stroke="rgba(255,255,255,0.4)" stroke-width="1.4"/>
+      <rect x="216" y="72" width="24" height="52" fill="#181630"/>
+      <circle cx="117" cy="10" r="7" fill="none" stroke="#ff6b3d" stroke-width="1.6" class="pulse-node"/>
+      <circle cx="230" cy="98" r="7" fill="none" stroke="#ff6b3d" stroke-width="1.6" class="pulse-node"/>
+      <text x="120" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#8a7a56">RUN THE BORDER BEFORE PRESSING</text>
+    </svg><div class="comp-body"><div class="comp-name">12 · Edge Patrol</div><div class="comp-tip">Poles into heads, amputated limbs, half-objects at edges. The 0.5s border check is the cheapest upgrade in photography.</div></div></div>
+  </div>
+
+
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>Get Close</h3>
+      <p>The 35mm frame rewards proximity — its energy comes from being <strong>in</strong> the scene, not observing it. The small body lowers social pressure; subjects stay natural. If a shot feels flat, take two steps forward, not a crop later.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Fish, Don't Chase</h3>
+      <p>Find a pocket of good light or a strong background, then <strong>wait for a subject to enter</strong>. The OVF shows action outside the frame lines, so you can time the entrance — a rangefinder trick the EVF can't do.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Exposure Comp as Mood</h3>
+      <p><strong>−⅓ to −⅔</strong> in harsh sun protects highlights and deepens mood; <strong>+⅓ to +⅔</strong> on overcast days keeps tones from going muddy. Ride the dial constantly — it's why it's under your thumb.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Environmental Portraits</h3>
+      <p>Don't fight the width — use it. Include context that gives the subject meaning, keep distance between subject and background for separation, and step in slightly when you want a 50mm feel (or engage the digital teleconverter's 50mm crop — 20MP and genuinely usable).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 SETUP ================= -->
+<section class="section" id="section-07">
+  <div class="section-header">
+    <span class="section-number">12 — Setup</span>
+    <h2>Make the Camera Disappear</h2>
+  </div>
+  <p>The expert consensus is minimalism: a few deliberate settings, then never think about the camera again.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>Exposure</h3>
+      <p><strong>Aperture Priority + Auto-ISO.</strong> Min shutter <strong>1/250</strong> for street (1/500 to freeze), max ISO 6400. Manual + Auto-ISO for consistent portrait sessions. File: <strong>Fine + RAW</strong>, lossless compressed.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Autofocus</h3>
+      <p><strong>Single point, medium box</strong> — point, half-press, recompose. Face/subject detect <strong>off</strong> by default (toggle on a button for portraits). Moving subjects: AF-C + Zone 3×3 + CL burst. Performance: <strong>Boost</strong>.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Buttons — Only Three</h3>
+      <p>Map <strong>ND filter</strong>, <strong>face-detect toggle</strong>, and <strong>spot metering</strong>. Disable everything else, including touchscreen swipes — your nose will thank you. Fewer controls, faster instincts.</p>
+    </div>
+    <div class="arch-card">
+      <h3>IBIS &amp; Shutter</h3>
+      <p>Up to <strong>6 stops</strong> of stabilization — handheld half-second frames are real, but IBIS can't freeze <em>subjects</em>; keep 1/125+ for moving people. Mechanical leaf shutter to 1/4000, electronic beyond for silent f/2 daylight.</p>
+    </div>
+  </div>
+  <p><strong>The gems the manual buries.</strong> Six features from the official guides that rarely make the reviews — each earns its place in a real day of shooting.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>The Tilting Screen</h3>
+      <p>The LCD tilts up for <strong>waist-level shooting</strong> — the classic candid posture: camera at the chest, eyes free, subjects unaware. Tilts down for overhead crowds. Pair with touch-shutter for the quietest possible frame. It sits flush when closed; most people never notice it moves.</p>
+    </div>
+    <div class="arch-card">
+      <h3>MF Assists, Three Flavors</h3>
+      <p>Manual focus isn't guesswork: <strong>focus peaking</strong> outlines what's sharp, <strong>digital split image</strong> recreates the rangefinder alignment trick, <strong>digital microprism</strong> shimmers until focus lands. Turning the ring auto-magnifies (FOCUS CHECK ON). Peaking + zone focus is the street kit (§06).</p>
+    </div>
+    <div class="arch-card">
+      <h3>USB-C Realities</h3>
+      <p>The <strong>NP-W126S</strong> is rated ~450 frames — a full day if you resist chimping. USB-C charges in-camera from any power bank: coffee-stop top-ups beat spare batteries. The same port turns the camera into a <strong>webcam</strong>, and X RAW Studio develops RAWs through it (§07).</p>
+    </div>
+    <div class="arch-card">
+      <h3>X App, Quietly Useful</h3>
+      <p><strong>Auto-transfer</strong> pushes JPEGs to your phone as you shoot — recipes straight to the group chat before you're home. <strong>Geotagging</strong> rides the Bluetooth link for free. The remote release is the tripod trick nobody carries a cable for.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Hidden Drive Modes</h3>
+      <p>Under DRIVE: <strong>multiple exposure</strong> (up to 9 frames, four blend modes — double exposures with recipes baked in), <strong>interval timer</strong> for timelapse, and motion panorama. The silent leaf shutter makes interval work quiet enough for a bedside window timelapse.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Video, In a Pinch</h3>
+      <p>Not this camera's point — but <strong>6.2K/30p</strong>, 4K/60 and F-Log2 live under DRIVE, and IBIS + the built-in ND (§04) make handheld clips genuinely usable. The fixed 35mm-e at f/2 with a silent shutter is quietly a lovely interview setup.</p>
+    </div>
+  </div>
+</section>
+<!-- ================= 13 SCENES ================= -->
+<section class="section" id="section-scenes">
+  <div class="section-header">
+    <span class="section-number">13 — Scenes</span>
+    <h2>Field Notes: One Camera, Every Scene</h2>
+  </div>
+  <p>Everything above, applied. These notes assume the §12 baseline — Aperture Priority + Auto-ISO, Fine+RAW — and name only what changes: the settings that matter, the metering move, the craft. A working dozen — each note paired with its field card. Tap any card to read it big, then arrow through the deck.</p>
+  <div class="deck-cover">
+    <img class="scene-fig" src="img/scene-00-cover.jpg" data-lb="0" data-title="Field Deck — Cover" alt="Field deck cover card: Seeing with the X100VI, twelve scene icons around a top-down camera illustration" loading="lazy">
+  </div>
+  <div class="scene-grid">
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-01-street-day.jpg" data-lb="1" data-title="Street · Daylight" alt="Field card infographic: Street · Daylight" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-01.jpg" alt="">Street · Daylight</h3>
+        <p><strong>f/8, zone-focused at 2.5 m</strong> (§06), Auto-ISO min <strong>1/250</strong>, OVF, Multi with <strong>−⅓ EC</strong>. Kodachrome 64. The camera is pre-focused — your whole job is position and timing. Work close; 35mm rewards being <em>in</em> the scene, not across from it.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-02-street-night.jpg" data-lb="2" data-title="Street · Night" alt="Field card infographic: Street · Night" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-02.jpg" alt="">Street · Night</h3>
+        <p><strong>M + Auto-ISO: f/2 · 1/125</strong>, ceiling 12800. <strong>−⅔ to −1 EV</strong> — let black be black (§03). CineStill 800T. <strong>ND off — check it</strong> (§04). Find the light pool first, then wait for someone to walk into it.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-03-portraits.jpg" data-lb="3" data-title="People & Portraits" alt="Field card infographic: People & Portraits" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-03.jpg" alt="">People &amp; Portraits</h3>
+        <p><strong>f/2–2.8</strong>, min 1/250, face detect on its button (§12), Portra 400. At arm's length 35mm grows noses — <strong>step back</strong>, or crop to 50mm digital TC (§10). Backlit: spot × AF on the face (§03). Talk more than you shoot.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-04-events.jpg" data-lb="4" data-title="Events You're Attending" alt="Field card infographic: Events You're Attending" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-04.jpg" alt="">Events You're Attending</h3>
+        <p>Guest first, photographer second — this camera's whole design brief. <strong>Silent shutter, f/2.8, Auto-ISO 6400</strong>, face detect on. Indoors or dusk: <strong>slow-sync flash</strong> — the leaf shutter syncs at any speed (§05) — sharp faces floating over candle-blur. No bag, wrist strap, done.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-05-landscape.jpg" data-lb="5" data-title="Landscape" alt="Field card infographic: Landscape" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-05.jpg" alt="">Landscape</h3>
+        <p><strong>f/8 · ISO 125 · DR200</strong> for skies (§10), focus a third into the scene, electronic level on. Snowfields: <strong>+1⅔ EV</strong> (§03). IBIS + a 3-frame burst replaces the tripod you didn't bring. The light is the subject; the land is the stage.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-06-city.jpg" data-lb="6" data-title="City & Architecture" alt="Field card infographic: City & Architecture" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-06.jpg" alt="">City &amp; Architecture</h3>
+        <p><strong>f/5.6–8</strong>, Classic Chrome mood. Keep the sensor plane parallel — tilting converges verticals; step back instead. Blue hour lights the windows (below). 9-grid on; hunt symmetry, repetition, and the one human that gives it scale (§11).</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-07-beach.jpg" data-lb="7" data-title="Beach & Bright Water" alt="Field card infographic: Beach & Bright Water" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-07.jpg" alt="">Beach &amp; Bright Water</h3>
+        <p>Snow's twin trap: <strong>+⅔ to +1⅓ EV</strong> over Multi (§03). <strong>ND on</strong> for f/2 looks or silky water in full sun (§04). Honest caveat: weather resistance requires the filter adapter — salt spray without it is a gamble. Late side-light makes sand three-dimensional.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-08-golden-hour.jpg" data-lb="8" data-title="Golden Hour" alt="Field card infographic: Golden Hour" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-08.jpg" alt="">Golden Hour</h3>
+        <p>Expose for the light, not the scene: <strong>spot the lit side, −⅓ EV</strong>, let shadows fall (§03). Backlit rim portraits: spot the face, let the sky blow warm. Kodachrome 64 or Portra. Long shadows are free leading lines (§11) — use them before they're gone.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-09-blue-hour.jpg" data-lb="9" data-title="Blue Hour" alt="Field card infographic: Blue Hour" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-09.jpg" alt="">Blue Hour</h3>
+        <p>The 25 quiet minutes after sunset when sky and city lights balance. <strong>f/2.8–4</strong>, Auto-ISO min <strong>1/60</strong> — IBIS holds static frames to 1/8 (§10). <strong>Tungsten WB</strong> deepens the blue against amber windows. CineStill 800T was born here.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-10-midday.jpg" data-lb="10" data-title="Harsh Midday" alt="Field card infographic: Harsh Midday" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-10.jpg" alt="">Harsh Midday</h3>
+        <p>Stop fighting it. <strong>Tri-X or Acros+R, −⅔ EV</strong> — shoot shadows as shapes (§11). Portraits: <strong>daylight fill-flash</strong> at f/2 — leaf shutter + ND make it possible at 1/2000 (§05). Or wait twenty minutes; light always moves.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-11-bars-dinners.jpg" data-lb="11" data-title="Bars & Dinners Out" alt="Field card infographic: Bars & Dinners Out" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-11.jpg" alt="">Bars &amp; Dinners Out</h3>
+        <p><strong>f/2, Auto-ISO 12800, min 1/60</strong> — subjects hold still at tables, IBIS does the rest (§10). <strong>Spot the candle-lit face, −1 EV</strong> keeps the room dark (§03). Silent everything. The X100VI disappears at the table — that's the entire point of it.</p>
+      </div>
+    </div>
+    <div class="scene-card">
+      <img class="scene-fig" src="img/scene-12-figure.jpg" data-lb="12" data-title="Figure & Intimate Work" alt="Field card infographic: Figure & Intimate Work" loading="lazy">
+      <div class="scene-body">
+        <h3><img class="medal" src="img/medal-12.jpg" alt="">Figure &amp; Intimate Work</h3>
+        <p><strong>Consent before craft:</strong> agree on boundaries, usage, and storage before the camera appears; delete on request, no questions. Then it's simple: one window, dark room, <strong>spot the lit skin</strong> and let the rest drop to black (§03). f/2, Acros or Portra. <strong>−1 EV sculpts</strong> — shapes over exposure. Show frames as you go; it's a collaboration.</p>
+      </div>
+    </div>
+  </div>
+  <div class="svg-stage">
+    <img class="fig" src="img/time-of-day.jpg" alt="Rendered comparison of one café corner at harsh midday, golden hour and blue hour" loading="lazy">
+    <div class="stage-caption">One corner, three light regimes — harsh noon, golden hour, blue hour: the three time cards above, photographed · rendered comparison (Gemini)</div>
+  </div>
+</section>
+
+<!-- ================= RESOURCES ================= -->
+<section class="reading-list">
+  <div class="section-header">
+    <span class="section-number">Resources</span>
+    <h2>Study, Then Shoot</h2>
+  </div>
+
+  <div class="tier tier-1">
+    <div class="tier-header"><span class="tier-badge tier-1-badge">Essential</span></div>
+    <div class="resource-grid">
+      <a class="resource-card" href="https://fujixweekly.com" target="_blank" rel="noopener">
+        <div class="resource-icon">🎞️</div>
+        <div class="resource-body">
+          <h4>Fuji X Weekly</h4>
+          <p class="author">Ritchie Roesch</p>
+          <p>The definitive film-recipe library — 400+ recipes plus a free app. Start with his "first 7 recipes for the X100VI" post.</p>
+        </div>
+        <div class="resource-tag">site + app</div>
+      </a>
+      <a class="resource-card" href="https://pal2tech.com/guides/camera/fujifilm-x100vi-setup-guide/" target="_blank" rel="noopener">
+        <div class="resource-icon">🎬</div>
+        <div class="resource-body">
+          <h4>pal2tech Setup Guide</h4>
+          <p class="author">Chris Lee</p>
+          <p>The most-recommended X100VI setup walkthrough — video series plus written companion covering every menu that matters.</p>
+        </div>
+        <div class="resource-tag">video</div>
+      </a>
+      <a class="resource-card" href="https://rockynook.com" target="_blank" rel="noopener">
+        <div class="resource-icon">📕</div>
+        <div class="resource-body">
+          <h4>134 X-Pert Tips</h4>
+          <p class="author">Rico Pfirstinger · Rocky Nook</p>
+          <p>The reference book for this exact body — hidden features, quirks, and advanced technique from the X-series authority.</p>
+        </div>
+        <div class="resource-tag">book</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="tier tier-2">
+    <div class="tier-header"><span class="tier-badge tier-2-badge">Craft</span></div>
+    <div class="resource-grid">
+      <a class="resource-card" href="https://www.kevinmullinsphotography.co.uk" target="_blank" rel="noopener">
+        <div class="resource-icon">🖤</div>
+        <div class="resource-body">
+          <h4>Kevin Mullins</h4>
+          <p class="author">Documentary · B&amp;W</p>
+          <p>Former Fujifilm X-Photographer. His quick-start settings and 20 street tips are gold; his B&amp;W work shows the ceiling.</p>
+        </div>
+        <div class="resource-tag">guide</div>
+      </a>
+      <a class="resource-card" href="https://www.snapsbyfox.com/blog/the-correct-fujifilm-x100vi-settings" target="_blank" rel="noopener">
+        <div class="resource-icon">🧭</div>
+        <div class="resource-body">
+          <h4>Roman Fox</h4>
+          <p class="author">Street · Travel</p>
+          <p>"The Correct X100VI Settings" — an opinionated, practical configuration from a full-time street/travel shooter.</p>
+        </div>
+        <div class="resource-tag">article</div>
+      </a>
+      <a class="resource-card" href="https://ollyheadey.com/blog/how-i-set-up-my-fujifilm-x100vi" target="_blank" rel="noopener">
+        <div class="resource-icon">⚙️</div>
+        <div class="resource-body">
+          <h4>Olly Headey</h4>
+          <p class="author">10+ years on X100</p>
+          <p>Setup notes and street/travel field reviews from a decade of shooting the X100 series daily.</p>
+        </div>
+        <div class="resource-tag">article</div>
+      </a>
+      <a class="resource-card" href="https://havecamerawilltravel.com/fujifilm-x100vi-digital-teleconverter/" target="_blank" rel="noopener">
+        <div class="resource-icon">🔭</div>
+        <div class="resource-body">
+          <h4>Digital TC, Tested</h4>
+          <p class="author">Have Camera Will Travel</p>
+          <p>Real-world verdict on the 50mm/70mm crops, plus a back-button-focus deep dive on the same site.</p>
+        </div>
+        <div class="resource-tag">article</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="tier tier-3">
+    <div class="tier-header"><span class="tier-badge tier-3-badge">Showcases</span></div>
+    <div class="resource-grid">
+      <a class="resource-card" href="https://www.reddit.com/r/fujix100/" target="_blank" rel="noopener">
+        <div class="resource-icon">📸</div>
+        <div class="resource-body">
+          <h4>r/fujix100</h4>
+          <p class="author">Reddit · daily galleries</p>
+          <p>Active X100-series community — settings talk and daily work. Pair with r/fujifilm for the wider ecosystem.</p>
+        </div>
+        <div class="resource-tag">community</div>
+      </a>
+      <a class="resource-card" href="https://www.flickr.com/search/groups/?text=X100VI" target="_blank" rel="noopener">
+        <div class="resource-icon">🌐</div>
+        <div class="resource-body">
+          <h4>Flickr X100 Groups</h4>
+          <p class="author">Curated · EXIF visible</p>
+          <p>The curated X100V/VI group requires EXIF — study exactly what settings made the shots you admire.</p>
+        </div>
+        <div class="resource-tag">gallery</div>
+      </a>
+      <a class="resource-card" href="https://www.andrepel.com" target="_blank" rel="noopener">
+        <div class="resource-icon">🌃</div>
+        <div class="resource-body">
+          <h4>Andre Pel · Erenjam</h4>
+          <p class="author">Tokyo &amp; NYC street</p>
+          <p>Two of the strongest X100VI street portfolios posting now — light-pocket hunting and night color worth reverse-engineering. Also see Rinzi Ruiz for B&amp;W.</p>
+        </div>
+        <div class="resource-tag">portfolio</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="suggested-path">
+    <h3>Suggested Path</h3>
+    <div class="path-steps">
+      <div class="path-step">Set up once</div>
+      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#ff6b3d" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#ff6b3d"/></svg>
+      <div class="path-step">One recipe / week</div>
+      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#ff6b3d" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#ff6b3d"/></svg>
+      <div class="path-step">Zone-focus sessions</div>
+      <svg width="20" height="4" viewBox="0 0 20 4"><line x1="0" y1="2" x2="16" y2="2" stroke="#ff6b3d" stroke-width="1.5"/><polygon points="16,2 20,0 20,4" fill="#ff6b3d"/></svg>
+      <div class="path-step">Study showcases</div>
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <p><em>"Your first 10,000 photographs are your worst."</em> — <strong>Henri Cartier-Bresson</strong>. The X100VI's job is to make the next 10,000 a joy to take.</p>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Field card viewer" hidden>
+  <button class="lb-btn lb-close" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev" aria-label="Previous card">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" aria-label="Next card">›</button>
+  <div class="lb-cap"><span id="lbTitle"></span><span id="lbCount"></span></div>
+</div>
+
+<script>
+// Scroll-triggered reveals
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
+document.querySelectorAll('.section, .reading-list').forEach(el => observer.observe(el));
+
+// Scroll cue → first section
+document.querySelector('.scroll-cue').addEventListener('click', () => {
+  document.getElementById('section-01').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Aperture simulator
+const apStates = {
+  '2': {
+    bg: 'url(#blur70)', mid: 'url(#blur30)', iris: 44,
+    ap: 'f/2', light: 'all the light — low-light king',
+    bandX: 740, bandW: 42, range: '\u2248 2.6 \u2013 3.6 m in focus',
+    note: 'razor-thin \u2014 eyes only, edges glow',
+    scene: 'Backgrounds melt to bokeh \u2014 dreamy, risky, gorgeous'
+  },
+  '4': {
+    bg: 'url(#blur35)', mid: 'url(#blur15)', iris: 26,
+    ap: 'f/4', light: '\u00bc of the light of f/2',
+    bandX: 722, bandW: 83, range: '\u2248 2.2 \u2013 4.7 m in focus',
+    note: 'margin for recompose & movement',
+    scene: 'Crisp subject, gentle separation \u2014 the reliable look'
+  },
+  '8': {
+    bg: 'url(#blur06)', mid: 'url(#blur02)', iris: 13,
+    ap: 'f/8', light: '1/16th of the light of f/2',
+    bandX: 705, bandW: 155, range: '\u2248 1.8 m \u2013 \u221e in focus',
+    note: 'zone focus \u2014 the street is pre-focused',
+    scene: 'Everything sharp \u2014 frame and fire, no focusing'
+  }
+};
+function setAperture(key) {
+  const s = apStates[key];
+  document.getElementById('bgGroup').setAttribute('filter', s.bg);
+  document.getElementById('midGroup').setAttribute('filter', s.mid);
+  document.getElementById('irisOpen').setAttribute('r', s.iris);
+  document.getElementById('apLabel').textContent = s.ap;
+  document.getElementById('lightLabel').textContent = s.light;
+  const band = document.getElementById('dofBand');
+  band.setAttribute('x', s.bandX);
+  band.setAttribute('width', s.bandW);
+  document.getElementById('dofRange').textContent = s.range;
+  document.getElementById('dofNote').textContent = s.note;
+  document.getElementById('sceneNote').textContent = s.scene;
+}
+// Dial-state exposure mode simulator
+const dialStates = {
+  p:  { ap:'A',   sh:'A',     iso:'A',    name:'Program AE',        desc:'camera picks the pair \u2014 the rear dial shifts it without changing exposure', ladder:1 },
+  a:  { ap:'f/4', sh:'A',     iso:'AUTO', name:'Aperture Priority', desc:'you fix depth of field \u2014 the camera solves for time', ladder:0 },
+  s:  { ap:'A',   sh:'1/30',  iso:'AUTO', name:'Shutter Priority',  desc:'you fix time \u2014 the solver only has f/2\u2013f/16 to work with', ladder:0 },
+  mi: { ap:'f/4', sh:'1/500', iso:'AUTO', name:'Manual + Auto-ISO', desc:'locked look \u2014 ISO absorbs the light; EC biases which ISO it picks', ladder:0 },
+  m:  { ap:'f/8', sh:'1/125', iso:'125',  name:'Full Manual',       desc:'you own all three stops \u2014 the meter becomes a suggestion', ladder:0 }
+};
+function setDialMode(key) {
+  const s = dialStates[key];
+  const setDial = (txt, ring, val) => {
+    document.getElementById(txt).textContent = val;
+    document.getElementById(ring).setAttribute('stroke', (val === 'A' || val === 'AUTO') ? '#4ecdc4' : '#ff6b3d');
+  };
+  setDial('dialAp', 'ringAp', s.ap);
+  setDial('dialSh', 'ringSh', s.sh);
+  setDial('dialIso', 'ringIso', s.iso);
+  document.getElementById('modeName').textContent = s.name;
+  document.getElementById('modeDesc').textContent = s.desc;
+  document.getElementById('shiftLadder').setAttribute('opacity', s.ladder);
+}
+// Metering trap simulator
+const meterStates = {
+  even: {
+    avg: '#8b9184', x: 735,
+    miss1: 'Scene averages near gray —', miss2: 'the assumption simply holds.',
+    move: 'EC 0 — trust it',
+    note: 'Most scenes really do average out near gray — that’s why the meter is usually right'
+  },
+  snow: {
+    avg: '#dde3e9', x: 802,
+    miss1: 'White dragged down to gray —', miss2: 'snow renders dull, a stop-plus dark.',
+    move: '+1⅔ EV — keep white white',
+    note: 'Bright fields fool the meter dark — sand, fog and white walls pull the same trick'
+  },
+  backlit: {
+    avg: '#cbb98a', x: 788,
+    miss1: 'The bright backdrop owns the average —', miss2: 'your subject falls into silhouette.',
+    move: 'spot the face · or +1⅓ EV',
+    note: 'Or embrace it: meter for the light and let the silhouette be the photograph'
+  },
+  night: {
+    avg: '#262a3e', x: 695,
+    miss1: 'Night lifted toward gray —', miss2: 'murky blacks, lamps blown to white.',
+    move: '−1 EV — let black be black',
+    note: 'Highlights are the anchor at night — protect the lamps and neon, drop the rest'
+  }
+};
+function setMeterScene(key) {
+  const s = meterStates[key];
+  const ids = { even: 'msEven', snow: 'msSnow', backlit: 'msBacklit', night: 'msNight' };
+  Object.keys(ids).forEach(k => {
+    document.getElementById(ids[k]).style.display = (k === key) ? '' : 'none';
+  });
+  document.getElementById('meterAvg').setAttribute('fill', s.avg);
+  document.getElementById('ecMarker').setAttribute('transform', 'translate(' + s.x + ',0)');
+  document.getElementById('meterMiss1').textContent = s.miss1;
+  document.getElementById('meterMiss2').textContent = s.miss2;
+  document.getElementById('meterMove').textContent = s.move;
+  document.getElementById('meterNote').textContent = s.note;
+}
+// Scoped step-nav groups: each nav only toggles its own buttons
+document.querySelectorAll('.step-nav').forEach(nav => {
+  nav.querySelectorAll('.step-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      nav.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      const d = e.currentTarget.dataset;
+      if (d.ap) setAperture(d.ap);
+      if (d.mode) setDialMode(d.mode);
+      if (d.scene) setMeterScene(d.scene);
+    });
+  });
+});
+setAperture('4');
+setDialMode('p');
+setMeterScene('even');
+
+// Field-deck lightbox
+const lbEls = [...document.querySelectorAll('img[data-lb]')].sort((a, b) => a.dataset.lb - b.dataset.lb);
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbTitle = document.getElementById('lbTitle');
+const lbCount = document.getElementById('lbCount');
+let lbIdx = 0;
+function lbShow(i) {
+  lbIdx = (i + lbEls.length) % lbEls.length;
+  const el = lbEls[lbIdx];
+  lbImg.src = el.src;
+  lbImg.alt = el.alt;
+  lbTitle.textContent = el.dataset.title || '';
+  lbCount.textContent = (lbIdx + 1) + ' / ' + lbEls.length;
+}
+function lbOpen(i) { lbShow(i); lb.hidden = false; document.body.style.overflow = 'hidden'; }
+function lbClose() { lb.hidden = true; document.body.style.overflow = ''; }
+lbEls.forEach((el, i) => el.addEventListener('click', () => lbOpen(i)));
+document.querySelector('.lb-prev').addEventListener('click', () => lbShow(lbIdx - 1));
+document.querySelector('.lb-next').addEventListener('click', () => lbShow(lbIdx + 1));
+document.querySelector('.lb-close').addEventListener('click', lbClose);
+lb.addEventListener('click', (e) => { if (e.target === lb) lbClose(); });
+document.addEventListener('keydown', (e) => {
+  if (lb.hidden) return;
+  if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
+  else if (e.key === 'ArrowLeft') lbShow(lbIdx - 1);
+  else if (e.key === 'Escape') lbClose();
+});
+
+// Exploded view: tap to flip between render and real camera
+const exFig = document.getElementById('explodedToggle');
+if (exFig) exFig.addEventListener('click', () => {
+  const t = exFig.getAttribute('src');
+  exFig.setAttribute('src', exFig.dataset.altSrc);
+  exFig.dataset.altSrc = t;
+});
+</script>
+</body>
+</html>
