@@ -678,7 +678,7 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <button class="step-btn" data-om="hi">Spot HI</button>
       <button class="step-btn" data-om="sh">Spot SH</button>
     </div>
-    <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive OM-1 metering mode simulator: white egret on dark water">
+    <svg viewBox="0 0 900 510" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive OM-1 metering mode simulator with live histogram: white egret on dark water">
       <defs><clipPath id="omScene"><rect x="30" y="52" width="360" height="250" rx="10"/></clipPath></defs>
       <text x="450" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6a7280" letter-spacing="1.5">ONE WHITE BIRD, DARK WATER — FOUR WAYS TO METER IT</text>
       <!-- scene -->
@@ -710,10 +710,39 @@ body::after { content:''; position: fixed; inset: 0; pointer-events: none; z-ind
       <text id="omVerdict2" x="650" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">usually right, occasionally surprised.</text>
       <text x="650" y="266" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a7280" letter-spacing="1.5">YOUR MOVE</text>
       <text id="omMove" x="650" y="290" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#2b7fa8">trust it · watch the blinkies</text>
-      <text id="omNote" x="450" y="342" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#171b21">ESP pattern-matches 324 zones against a scene library — smart, but it doesn&#8217;t know the bird is the picture</text>
+      <!-- live histogram -->
+      <text x="650" y="336" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#5d6b7d" letter-spacing="1.5">THE EGRET, IN GRAPH FORM</text>
+      <line x1="442" y1="450" x2="858" y2="450" stroke="#5d6b7d" stroke-width="1.5"/>
+      <line x1="442" y1="352" x2="442" y2="450" stroke="#171b21" stroke-width="1" opacity="0.5"/>
+      <line x1="858" y1="352" x2="858" y2="450" stroke="#171b21" stroke-width="1" opacity="0.5"/>
+      <text x="442" y="466" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#5d6b7d">BLACK</text>
+      <text x="858" y="466" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#5d6b7d">WHITE</text>
+      <g id="omHistBars"></g>
+      <text id="omHistRead" x="650" y="486" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12.5" fill="#171b21">Dark mass left, one white spike right — balanced, but the spike is the thing to watch</text>
+      <text id="omNote" x="450" y="506" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#5d6b7d">ESP pattern-matches 324 zones against a scene library — smart, but it doesn&#8217;t know the bird is the picture</text>
     </svg>
-    <div class="stage-caption">Set SPOT METERING to track the AF target in the custom menu — HI/SH then measure exactly what you&#8217;re focused on</div>
+    <div class="stage-caption">Set SPOT METERING to track the AF target in the custom menu — HI/SH then measure exactly what you&#8217;re focused on · needle = the meter&#8217;s opinion, histogram = the outcome</div>
   </div>
+  <p><strong>How do you know which situation you&#8217;re standing in?</strong> You don&#8217;t judge the scene — you read the camera. The finder shows the photograph you&#8217;re about to take; the histogram names the problem before the shutter fires.</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>EVF vs Your Eyes</h3>
+      <p>Two eyes open — one on the finder, one on the world. When the white bird reads grey in the EVF, that gap <em>is</em> the meter failing, visible before capture. The caveat: <strong>LIVE VIEW BOOST → OFF</strong> for stills — boost brightens the finder for framing in the dark and quietly breaks the what-you-see-is-what-you-get contract.</p>
+    </div>
+    <div class="arch-card">
+      <h3>The Histogram, Not the Needle</h3>
+      <p>Cycle it in with <strong>INFO</strong> and read the shape: a middle hump on an even scene, trust it. A hump in the middle while you look at snow, dial + or declare it with Spot HI. Two masses, choose a side. Piled left at night is correct — lifted means mud.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Red &amp; Blue Patches</h3>
+      <p><strong>Highlight&amp;Shadow warning</strong> paints blown areas red and crushed areas blue, live in the finder. Set the thresholds near <strong>250 / 5</strong> so the warning fires just before the wall, not after. Blown is forever; crushed usually lifts.</p>
+    </div>
+    <div class="arch-card">
+      <h3>Skip the Arithmetic</h3>
+      <p>The manual method: spot the brightest thing that must hold detail, spot the darkest, count the swing — beyond ~5 stops one frame won&#8217;t hold both. The OM-1 method: one press. <strong>Spot HI declares the white, Spot SH declares the black</strong>, exactly as the simulator above shows.</p>
+    </div>
+  </div>
+  <p><em>Setting names as printed in the OM SYSTEM OM-1 instruction manual.</em></p>
   <div class="key-idea">
     <div class="kicker">Why this matters</div>
     <p><strong>Spot HI replaces "+1⅔ and hope."</strong> On the X100VI you spot-meter a white and dial compensation from memory (its §03); here you press one button and the camera <em>places</em> the tone. Egrets, snowfields, black bears, stage light — the two hardest metering days become the two easiest. EVF shows the result live; the histogram settles arguments.</p>
@@ -1324,6 +1353,30 @@ function setOmMeter(key) {
   mv.textContent = s.move;
   mv.setAttribute('fill', s.moveColor);
   document.getElementById('omNote').textContent = s.note;
+  const hist = {
+    esp:  { h: [42,64,72,50,28,14,9,7,11,27,46,22],
+            read: 'Dark mass left, one white spike right — balanced, but the spike is the thing to watch' },
+    spot: { h: [72,84,62,36,20,13,17,31,21,7,3,1],
+            read: 'The white spike slid to the middle — the grey egret, in graph form' },
+    hi:   { h: [46,62,68,46,24,11,7,7,9,21,54,36],
+            read: 'Spike parked high with detail intact — white declared, nothing clipped' },
+    sh:   { h: [90,68,54,38,21,11,7,7,11,25,44,19],
+            read: 'Blacks pinned to the wall on purpose — the mood survives the meter' }
+  }[key];
+  const g = document.getElementById('omHistBars');
+  if (!g.childElementCount) {
+    for (let i = 0; i < 12; i++) {
+      const r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      r.setAttribute('x', 452 + i * 34); r.setAttribute('width', 26); r.setAttribute('rx', 2);
+      g.appendChild(r);
+    }
+  }
+  [...g.children].forEach((r, i) => {
+    const h = hist.h[i] * 0.95;
+    r.setAttribute('y', 450 - h); r.setAttribute('height', Math.max(h, 1));
+    r.setAttribute('fill', '#5d6b7d'); r.setAttribute('opacity', '0.55');
+  });
+  document.getElementById('omHistRead').textContent = hist.read;
 }
 
 // Scoped step-nav groups
