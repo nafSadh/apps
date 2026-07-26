@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In Practice — a companion to the field guides</title>
+<meta name="description" content="Seven lessons on why cameras fail predictably — metering, depth of field, motion, light, subject — worked through with real frames as evidence.">
+<meta name="theme-color" content="#f2f1ea">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='86'%3E%F0%9F%93%B7%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2f1ea; --paper-hi:#f9f7f1; --card:#f9f6ee; --line:rgba(26,20,10,.14);
+  --ink:#1a1610; --ink-soft:#3a3226; --dim:#7d7358;
+  --fuji:#b8422a; --om:#1f6a99; --graphite:#4a4436; --rule:#4f7a46;
+  --measure:37rem; --wide:50rem; --sidebar:14.5rem;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink-soft);font-family:'DM Sans',system-ui,sans-serif;line-height:1.7;
+  position:relative;-webkit-font-smoothing:antialiased;font-size:17px}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.05;z-index:0;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--om);z-index:50;width:0%}
+.wrap{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:clamp(3rem,8vh,5.5rem) 1.8rem 6rem}
+.intro{max-width:74rem}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:1.2rem}
+.kicker a{color:var(--dim);text-decoration:none;border-bottom:1px solid transparent}
+.kicker a:hover{color:var(--ink);border-bottom-color:var(--line)}
+h1{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400;font-variation-settings:"opsz" 144;
+  font-size:clamp(2.6rem,7vw,4.4rem);line-height:1;letter-spacing:-.03em;color:var(--ink);margin-bottom:1.1rem}
+.lede{font-size:1.1rem;max-width:var(--measure);margin-bottom:1rem}
+.lede em{font-style:italic;color:var(--ink)}
+.lede a{color:var(--om);text-decoration:none;border-bottom:1px solid rgba(31,106,153,.35)}
+.standfirst{font-size:.95rem;color:var(--dim);max-width:var(--measure);margin-bottom:1.6rem}
+
+/* layout: sidebar nav + reading column, full width used on wide screens */
+.layout{display:block}
+.content{max-width:100%}
+@media (min-width:1060px){
+  .layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);gap:3.4rem;align-items:start}
+}
+
+/* table of contents — in-flow block on mobile, sticky sidebar on desktop */
+.toc{max-width:var(--measure);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:1rem 0;margin-bottom:3.4rem}
+.toc ol{list-style:none;counter-reset:t}
+.toc li{counter-increment:t;font-size:.9rem;padding:.2rem 0 .2rem 2.2rem;position:relative}
+.toc li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;
+  font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--dim);top:.35rem}
+.toc a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{color:var(--ink);border-bottom-color:var(--line)}
+.toc a.active{color:var(--ink);font-weight:500}
+.toc li.active::before{color:var(--om)}
+@media (min-width:1060px){
+  .toc{max-width:none;border:0;padding:0;margin-bottom:0;position:sticky;top:2.6rem;
+    max-height:calc(100vh - 4.5rem);overflow-y:auto}
+  .toc-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--dim);margin-bottom:1rem;display:block}
+  .toc li{font-size:.82rem;padding:.32rem 0 .32rem 1.6rem;line-height:1.4}
+  .toc li::before{top:.42rem}
+  .toc a.active{border-bottom-color:var(--om)}
+}
+@media (max-width:1059px){.toc-label{display:none}}
+
+/* lesson structure */
+.lesson{margin-bottom:4.5rem;scroll-margin-top:1.5rem}
+.lesson-num{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:.5rem}
+.lesson h2{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(1.7rem,3.6vw,2.25rem);
+  color:var(--ink);letter-spacing:-.02em;line-height:1.12;margin-bottom:.5rem;max-width:28rem}
+.thesis{font-size:1.02rem;color:var(--ink);max-width:var(--measure);margin-bottom:.4rem;font-weight:500}
+.xref{font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.05em;color:var(--dim);margin-bottom:1.5rem}
+.xref a{color:var(--om);text-decoration:none;border-bottom:1px solid transparent}
+.xref a:hover{border-bottom-color:var(--om)}
+.lesson p{max-width:var(--measure);margin-bottom:1.05rem}
+.lesson p.wide{max-width:var(--wide)}
+.lesson h3{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:1.22rem;color:var(--ink);
+  margin:2rem 0 .7rem;max-width:var(--measure)}
+.lesson strong{color:var(--ink)}
+.num{font-family:'JetBrains Mono',monospace;font-size:.93em;color:var(--ink);font-weight:600;white-space:nowrap}
+.formula{font-family:'JetBrains Mono',monospace;font-size:.9rem;background:var(--paper-hi);border:1px solid var(--line);
+  border-radius:8px;padding:.85rem 1rem;margin:.3rem 0 1.15rem;max-width:var(--measure);color:var(--ink);line-height:1.7}
+.formula em{font-style:italic;color:var(--dim)}
+
+/* figures inside the argument */
+figure{margin:1.7rem 0 1.9rem}
+figure img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line)}
+figcaption{font-size:.86rem;color:var(--ink-soft);margin-top:.6rem;max-width:var(--measure);line-height:1.6}
+figcaption b{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--om);font-weight:600;display:block;margin-bottom:.3rem}
+figcaption .ex{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--graphite);display:block;margin-top:.4rem}
+figcaption .ex em{font-style:normal;color:var(--dim)}
+.fig-narrow{max-width:var(--measure)}
+.fig-wide{max-width:100%}
+.fig-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin:1.7rem 0 1.9rem;max-width:var(--wide)}
+.fig-row figure{margin:0}
+.fig-row.three{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+/* before/after */
+.frame{position:relative;cursor:pointer;background:var(--paper-hi);overflow:hidden;border-radius:10px;
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.frame .ph{width:100%;height:auto;display:block;border:0;border-radius:0}
+.frame .sooc{position:absolute;top:0;left:0;opacity:0;transition:opacity .18s ease}
+.frame:hover .sooc,.frame:focus .sooc,.frame.show .sooc{opacity:1}
+.lab{position:absolute;top:9px;left:9px;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:600;padding:.24rem .45rem;border-radius:4px;background:rgba(20,16,10,.72);color:#f7f4ec;z-index:2}
+.lab-s{opacity:0}
+.frame:hover .lab-e,.frame.show .lab-e{opacity:0}
+.frame:hover .lab-s,.frame.show .lab-s{opacity:1}
+.hint{position:absolute;right:9px;bottom:9px;font-family:'JetBrains Mono',monospace;font-size:.55rem;z-index:2;
+  letter-spacing:.08em;text-transform:uppercase;color:#f7f4ec;background:rgba(20,16,10,.55);padding:.2rem .4rem;border-radius:4px}
+
+/* tables */
+.tscroll{overflow-x:auto;margin:1.1rem 0 1.5rem;-webkit-overflow-scrolling:touch;max-width:var(--wide)}
+table.tbl{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:.71rem;min-width:440px}
+table.tbl caption{text-align:left;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--dim);padding-bottom:.5rem}
+table.tbl th{color:var(--dim);font-weight:400;text-transform:uppercase;letter-spacing:.08em;text-align:left;
+  padding:.4rem .6rem;font-size:.6rem;border-bottom:1px solid var(--line)}
+table.tbl td{padding:.45rem .6rem;border-top:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+table.tbl td:first-child{color:var(--ink)}
+table.tbl td.n{font-weight:600;color:var(--ink);white-space:nowrap}
+
+.takeaway{background:var(--paper-hi);border:1px solid var(--line);border-left:3px solid var(--rule);
+  border-radius:10px;padding:1.1rem 1.3rem;max-width:var(--wide);margin:1.6rem 0 0}
+.takeaway b{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--rule);display:block;margin-bottom:.4rem}
+.takeaway p{font-size:.93rem;max-width:none;margin-bottom:.5rem}
+.takeaway p:last-child{margin-bottom:0}
+.caveat{border-left-color:var(--fuji)}
+.caveat b{color:var(--fuji)}
+
+.planlist{list-style:none;counter-reset:pl;display:flex;flex-direction:column;gap:.8rem;max-width:var(--wide)}
+.planlist li{counter-increment:pl;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--graphite);
+  border-radius:10px;padding:.9rem 1.1rem .9rem 3.1rem;position:relative;font-size:.92rem}
+.planlist li::before{content:counter(pl,decimal-leading-zero);position:absolute;left:1rem;top:.95rem;
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;color:var(--dim)}
+.pref{display:block;margin-top:.3rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.05em}
+.pref a{color:var(--om);text-decoration:none;border-bottom:1px solid transparent}
+.pref a:hover{border-bottom-color:var(--om)}
+
+footer{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--dim);text-decoration:none;border-bottom:1px solid transparent}
+footer a:hover{color:var(--ink);border-bottom-color:var(--line)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="wrap">
+  <div class="intro">
+  <div class="kicker"><a href="/">sadh.app</a> · <a href="index.html">photoing</a> · in practice</div>
+  <h1>In practice.</h1>
+  <p class="lede">A companion to the <a href="x100vi-guide.html">X100VI</a> and <a href="om1-guide.html">OM-1</a> guides. Seven lessons on <em>why a camera fails in predictable ways</em> — and what the override is. The photographs are evidence that the reasoning holds; the reasoning is the point.</p>
+  <p class="standfirst">Depth-of-field figures are computed for each format&#8217;s circle of confusion (0.015&#8202;mm on Micro Four Thirds, 0.02&#8202;mm on APS-C). Settings are read from the files. Every number here is one you can check against your own results.</p>
+  </div>
+
+  <div class="layout">
+  <nav class="toc"><span class="toc-label">On this page</span><ol>
+    <li><a href="#metering">The meter is guessing, and you can predict its error</a></li>
+    <li><a href="#dof">Depth of field is arithmetic, not taste</a></li>
+    <li><a href="#motion">Blur has two causes and only one of them is fixable</a></li>
+    <li><a href="#light">Light has four properties; only one is exposure</a></li>
+    <li><a href="#subject">The decision no setting can make</a></li>
+    <li><a href="#people">Rooms full of people: everything at once</a></li>
+    <li><a href="#method">Working a scene, and what cannot be recovered</a></li>
+  </ol></nav>
+
+  <main class="content">
+  <!-- ═════════ 1 ═════════ -->
+  <section class="lesson" id="metering">
+    <div class="lesson-num">Lesson 01</div>
+    <h2>The meter is guessing, and you can predict its error</h2>
+    <p class="thesis">A reflected-light meter has no way to know how bright a scene is. Every exposure mistake it makes follows from the single assumption it uses to cover that ignorance — which means every mistake is predictable, and correctable with a number.</p>
+    <p class="xref"><a href="x100vi-guide.html#section-metering">X100VI §03 Metering</a> · <a href="om1-guide.html#section-metering">OM-1 §03 Metering</a></p>
+
+    <p>Point a camera at a white wall in dim light and at a grey wall in bright light, and the light arriving at the sensor can be identical. The meter measures only <em>reflected luminance</em> — photons coming back — so those two scenes are indistinguishable to it. It cannot solve for both the illumination and the reflectance of what it sees; there is one measurement and two unknowns.</p>
+
+    <p>So it assumes one of them. It assumes the scene averages to a fixed reflectance and sets exposure to render the measurement at that value. The number is usually quoted as 18% grey, which is darkroom folklore; the ISO standard for exposure meters defines a calibration constant that works out closer to <span class="num">12&#8211;13%</span> reflectance. The exact figure matters less than the consequence: <strong>whenever the real scene reflects more or less than that, the meter is wrong, in a known direction, by an amount you can estimate in stops.</strong></p>
+
+    <p>Snow reflects around 80&#8211;90%. That is roughly two and a half stops brighter than the assumption, so a meter pointed at a snowfield will stop down by about that much and render it grey. Not a malfunction — a correct answer to the wrong question.</p>
+
+    <figure class="fig-narrow">
+      <div class="frame" tabindex="0" role="button" aria-label="Compare: Mt Shasta snowcap, repaired versus what the meter produced">
+        <img class="ph edit" src="img/lessons/p07-edit.jpg" alt="Mt Shasta snowcap — repaired at the desk" loading="lazy">
+        <img class="ph sooc" src="img/lessons/p07-sooc.jpg" alt="Mt Shasta snowcap — what the meter produced" loading="lazy">
+        <span class="lab lab-e">Repaired</span><span class="lab lab-s">What the meter did</span>
+        <span class="hint">hover or tap</span>
+      </div>
+      <figcaption><b>The assumption failing in the field</b>
+        Whole-scene averaging (ESP), no exposure compensation, aimed at a frame that is mostly snow and sky. The camera did precisely what it is built to do and drove white toward mid-grey. The correction was <span class="num">+1⅓ EV</span> — or Spot&#8202;HI on the snowcap, which places the metered patch two to three stops <em>above</em> mid-grey rather than at it.
+        <span class="ex">60mm <em>120mm-e</em> · f/10 · 1/640 · ISO 200 · ESP · EV 0</span></figcaption>
+    </figure>
+
+    <h3>The metering modes are different sampling strategies</h3>
+    <p>Matrix or ESP metering samples the whole frame and applies pattern recognition to guess the scene type. Centre-weighted biases toward the middle. Spot reads about <span class="num">2% of the frame</span> and ignores everything else. The under-taught detail is that spot metering measures a fixed <em>angle</em>, so the real-world patch it covers scales with focal length: on a 300mm-e lens the spot lands on a bird&#8217;s breast, while on a 24mm-e lens the same 2% swallows an entire building. Spot metering gets more precise as you go longer, and is nearly useless wide.</p>
+
+    <p>Olympus&#8217;s Spot&#8202;HI and Spot&#8202;SH are the useful refinement: rather than placing the metered patch at mid-grey, they place it near the top or bottom of the tonal range. That is zone placement built into a button — you are telling the camera not just <em>where</em> to measure but <em>what that thing should be</em>.</p>
+
+    <div class="tscroll">
+    <table class="tbl">
+      <caption>Predicting the error, and the override</caption>
+      <tr><th>What fills the frame</th><th>Reflectance vs assumption</th><th>Meter will</th><th>Dial</th></tr>
+      <tr><td>Snow, sand, white wall, fog</td><td>~80% — far above</td><td>Underexpose, render white as grey</td><td class="n">+1⅓ to +2 EV</td></tr>
+      <tr><td>Average landscape, mixed scene</td><td>~15% — close</td><td>Be about right</td><td class="n">0 EV</td></tr>
+      <tr><td>Dark foliage, night street</td><td>~4% — far below</td><td>Overexpose, lift black to grey</td><td class="n">−1 to −2 EV</td></tr>
+      <tr><td>Backlit subject against sky</td><td>bimodal — no average is right</td><td>Split the difference, ruin both</td><td class="n">Spot the subject, or choose</td></tr>
+    </table>
+    </div>
+
+    <h3>Why the highlights get protected and the shadows do not</h3>
+    <p>A raw file records light linearly, and that has a consequence most exposure advice skips. In a 14-bit file with roughly 16,384 levels, <strong>the brightest stop of the range holds about 8,000 of them</strong>; the next stop down holds 4,000; the one after 2,000. By five stops below clipping, a whole stop of tonality is described by a few hundred levels.</p>
+
+    <div class="formula">levels available &#8776; 2<sup>14</sup> &#215; 2<sup>&#8722;n</sup> &nbsp; <em>for the n-th stop below clipping</em><br>
+    stop 1 &#8594; ~8192 levels &nbsp;·&nbsp; stop 5 &#8594; ~512 &nbsp;·&nbsp; stop 9 &#8594; ~32</div>
+
+    <p>Two things follow. First, clipped highlights contain no recoverable data at all — the values saturated, and nothing in any editor reconstructs them. Second, shadows do contain data, but very little of it, so lifting them amplifies quantisation and read noise along with the signal. That asymmetry is the whole argument for exposing to the right, and for the approach in the frame below: decide what you are willing to lose, protect the other end, and let the loss happen deliberately.</p>
+
+    <figure class="fig-narrow">
+      <img src="img/lessons/w10.jpg" alt="Sunlit granite peak seen through silhouetted pines" loading="lazy">
+      <figcaption><b>Deliberate loss</b>
+        The scene spans perhaps eleven stops; the sensor holds eight or nine usable. Exposure was set for the lit granite, which is why ISO sits at base — no amplification was needed once the bright end was placed correctly. Everything more than about five stops below it was allowed to go black, because those pines were never the picture.
+        <span class="ex">23mm <em>35mm-e</em> · f/2.2 · 1/100 · ISO 125</span></figcaption>
+    </figure>
+
+    <p>One practical caveat about the tool you use to check this: the histogram and the blinking highlight warning are computed from the embedded JPEG preview, not from the raw data. The raw file typically holds another <span class="num">&#8531; to 1 stop</span> of headroom beyond where the blinkies start. So the warning is conservative — useful to know when you are deliberately pushing exposure right, and useful to know when a bright red or deep blue starts blinking, because a single saturated channel clips long before overall luminance does.</p>
+
+    <div class="takeaway"><b>What to do differently</b>
+      <p>Before pressing, ask what fills the frame and whether it is brighter or darker than a mid-grey card. If it is, the meter is already wrong and you know the direction. Dial the compensation, then confirm on the histogram — <strong>a middle hump while you are looking at snow is the mismatch made visible.</strong> For a small bright subject in a dark surround, use spot, and use it long rather than wide.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 2 ═════════ -->
+  <section class="lesson" id="dof">
+    <div class="lesson-num">Lesson 02</div>
+    <h2>Depth of field is arithmetic, not taste</h2>
+    <p class="thesis">Most composition devices — leading lines, foreground screens, layered bands, scale contrast — are depth-of-field problems with numeric answers. Two formulas and one physical limit cover nearly all of them.</p>
+    <p class="xref"><a href="x100vi-guide.html#section-06">X100VI §11 Composition</a> · <a href="om1-guide.html#section-tech">OM-1 §10 Techniques</a> · <a href="om1-guide.html#section-01">§01 Format</a></p>
+
+    <p>A lens focuses at exactly one distance. Everything else is a blur circle, and &#8220;sharp&#8221; simply means the circle is smaller than we can resolve at normal viewing — the <em>circle of confusion</em>. Because it is defined relative to the final image, it scales with sensor size: about 0.015&#8202;mm on Micro Four Thirds, 0.02&#8202;mm on APS-C. Every depth-of-field number depends on that choice, which is why the same lens and aperture behave differently across formats.</p>
+
+    <div class="formula">H &nbsp;&#8776;&nbsp; f&#178; / (N &#215; c) &nbsp;+&nbsp; f<br>
+    <em>hyperfocal distance — focus here, and everything from H/2 to infinity is acceptably sharp</em></div>
+
+    <p>That formula does more work in the field than any compositional maxim. A leading line has to be sharp <em>where it enters the frame</em>, which is usually a metre or two away, and simultaneously at the far end. That sounds like a case for stopping right down. Run the numbers and it usually is not.</p>
+
+    <figure class="fig-narrow">
+      <img src="img/lessons/h44.jpg" alt="Rail tracks curving away through redwoods from a wooden crossing" loading="lazy">
+      <figcaption><b>Hyperfocal, worked</b>
+        At 14mm and f/5 on Micro Four Thirds the hyperfocal distance is <span class="num">2.6 m</span> — focus there and everything from <span class="num">1.3 m to infinity</span> resolves. The line enters the frame at about a metre and a half, so f/5 covers it completely. Stopping to f/11 would have added nothing but diffraction.
+        <span class="ex">14mm <em>28mm-e</em> · f/5 · 1/100 · ISO 200</span></figcaption>
+    </figure>
+
+    <h3>Separation is a ratio problem, so move your feet</h3>
+    <p>How thoroughly an out-of-focus plane dissolves depends on how far it sits outside the focused distance <em>relative to that distance</em> — not on aperture alone. A foreground object at one-tenth the subject distance melts completely at almost any aperture. This is why shooting through grass or blossom works so reliably, and why it does not require a fast lens.</p>
+
+    <figure class="fig-narrow">
+      <img src="img/lessons/h50.jpg" alt="Gull calling, photographed through out-of-focus pink flowers with surf behind" loading="lazy">
+      <figcaption><b>Ratio beats aperture</b>
+        Flowers roughly a metre from the lens, gull about twenty metres out — a ratio near <span class="num">1:20</span>. The foreground cannot resolve at any usable aperture, which frees you to pick the aperture the <em>subject</em> needs. f/6.3 holds the whole bird; opening to f/2.8 would have thinned focus onto part of it and added no extra foreground blur.
+        <span class="ex">150mm <em>300mm-e</em> · f/6.3 · 1/800 · ISO 200</span></figcaption>
+    </figure>
+
+    <h3>Equivalence: the crop factor converts more than framing</h3>
+    <p>The OM-1&#8217;s sensor is 17.4&#215;13&#8202;mm against the X100VI&#8217;s 23.5&#215;15.6&#8202;mm — crop factors of 2&#215; and 1.5&#215; against full frame. Everyone knows this converts focal length. It also converts <strong>depth of field and total light gathered</strong>, by the same factor applied to the f-number. For the same framing, f/2.8 on Micro Four Thirds renders roughly like f/5.6 on full frame: twice the depth of field, and about two stops less total light on the sensor.</p>
+
+    <p>Neither half of that is a defect — it is the trade the format makes, and it explains the pattern in the settings throughout this page. The OM-1 frames sit at f/5.6&#8211;f/11 and hold from foreground to horizon at apertures where a larger sensor would need to be two stops further down. The X100VI lives at f/2 indoors because it needs to.</p>
+
+    <h3>The ceiling: diffraction</h3>
+    <p>Closing the aperture eventually destroys what it was meant to protect. Light passing an aperture spreads into an Airy pattern whose central disc has a radius of about <span class="num">1.22&#8202;&#955;N</span>. In green light at 550&#8202;nm that is roughly 3.8&#8202;&#181;m at f/5.6 and <span class="num">7.4&#8202;&#181;m at f/11</span>. Both bodies here have a pixel pitch near 3&#8202;&#181;m — so by f/11 a point source is already smeared across several pixels, and no lens quality recovers it.</p>
+
+    <div class="tscroll">
+    <table class="tbl">
+      <caption>Hyperfocal, computed for the frames in this lesson</caption>
+      <tr><th>Lens · aperture</th><th>Hyperfocal</th><th>Sharp from → to</th><th>Note</th></tr>
+      <tr><td>14mm f/5 · m43</td><td class="n">2.6 m</td><td class="n">1.3 m → ∞</td><td>Well clear of diffraction</td></tr>
+      <tr><td>40mm f/8 · m43</td><td class="n">13.4 m</td><td class="n">6.7 m → ∞</td><td>Practical floor for this format</td></tr>
+      <tr><td>40mm f/11 · m43</td><td class="n">9.7 m</td><td class="n">4.9 m → ∞</td><td>Buys 1.8 m of near limit, costs resolution</td></tr>
+      <tr><td>23mm f/8 · APS-C</td><td class="n">3.3 m</td><td class="n">1.7 m → ∞</td><td>Classic zone-focus setting</td></tr>
+      <tr><td>23mm f/2 · APS-C</td><td class="n">13.3 m</td><td class="n">6.6 m → ∞</td><td>Wide open still covers a street</td></tr>
+    </table>
+    </div>
+
+    <figure class="fig-narrow">
+      <img src="img/lessons/h40.jpg" alt="Line of horseback riders on a beach between a wildflower band and sunlit surf" loading="lazy">
+      <figcaption><b>The trade, made explicit</b>
+        Long focal lengths compress separated planes into bands — but they also shrink depth of field, and bands only read if every plane resolves. f/11 puts the near limit at <span class="num">4.9 m</span> where f/8 would put it at <span class="num">6.7 m</span>. If the flowers stood beyond 6.7&#8202;m, f/8 was the better call: identical coverage, measurably less diffraction. That check takes two seconds and is worth running before reflexively stopping down.
+        <span class="ex">40mm <em>80mm-e</em> · f/11 · 1/640 · ISO 200</span></figcaption>
+    </figure>
+
+    <h3>Where the rules invert at high magnification</h3>
+    <p>Close to 1:1 the arithmetic changes character. Depth of field is measured in millimetres, and the <em>effective</em> aperture darkens as the lens extends: <span class="num">N<sub>eff</sub> = N &#215; (1 + m)</span>, so at 1:1 magnification a marked f/5.6 behaves optically like f/11 — two stops of light lost, and diffraction arriving two stops earlier than the barrel suggests. The correct response is still to stop down, because at that scale insufficient depth destroys a frame faster than softening does, but you should know you are already at the ceiling.</p>
+
+    <div class="fig-row">
+      <figure>
+        <img src="img/lessons/h26.jpg" alt="New red rose shoots in sharp focus against a soft grey background" loading="lazy">
+        <figcaption><b>Macro: f/5.6 acting like f/11</b>
+          Stopped down further than instinct suggests, and the shutter held high — at this magnification the smallest body sway shifts the focal plane entirely.
+          <span class="ex">60mm macro <em>120mm-e</em> · f/5.6 · 1/200 · ISO 200</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/lessons/h57.jpg" alt="Tiny paddleboarder on an alpine lake beneath a massive talus wall" loading="lazy">
+        <figcaption><b>Scale needs both planes sharp</b>
+          A rock face has no size until something of known dimensions sits in front of it — and the reference only works if it resolves. At 40mm f/6.3 the near limit is <span class="num">8.5 m</span>, so paddler and wall both hold.
+          <span class="ex">40mm <em>80mm-e</em> · f/6.3 · 1/200 · ISO 200</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="takeaway"><b>What to do differently</b>
+      <p>Decide which planes must be sharp <em>before</em> choosing an aperture, then compute rather than guess. Default to the lens&#8217;s sharp middle — f/4&#8211;f/5.6 on Micro Four Thirds — and stop down only when the hyperfocal arithmetic says you must. Past f/8 you are buying depth with resolution. And when you want separation, <strong>change your distance to the foreground before you change the aperture</strong>: the ratio does more than the f-number.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 3 ═════════ -->
+  <section class="lesson" id="motion">
+    <div class="lesson-num">Lesson 03</div>
+    <h2>Blur has two causes and only one of them is fixable by the camera</h2>
+    <p class="thesis">Camera shake and subject motion look identical in a thumbnail and have completely different cures. Stabilisation solves the first entirely and the second not at all. Reading which one you face sets the shutter floor.</p>
+    <p class="xref"><a href="om1-guide.html#section-ibis">OM-1 §07 Stabilisation</a> · <a href="om1-guide.html#section-af">§04 Autofocus</a> · <a href="x100vi-guide.html#section-tech">X100VI §10 Techniques</a></p>
+
+    <p>Camera shake is angular: a small rotation of the body sweeps the projected image across the sensor by an amount proportional to focal length. That proportionality is the origin of the reciprocal rule — shutter at <span class="num">1/focal-e</span> — which was calibrated for film and handheld technique, not physics, but holds up as a starting point. Stabilisation attacks this directly by moving the sensor to cancel the measured rotation, and modern systems claim <span class="num">six to eight stops</span> of correction.</p>
+
+    <p>Subject motion is a different quantity entirely. It depends on how fast the subject crosses the <em>frame</em>, which is why a bird flying toward you blurs far less than one crossing at the same speed, and why the same walking pace needs a faster shutter at 300mm-e than at 24mm-e. No sensor movement can cancel it, because the sensor cannot move differently for different parts of the image.</p>
+
+    <div class="tscroll">
+    <table class="tbl">
+      <caption>Two floors — take whichever is faster</caption>
+      <tr><th>Subject</th><th>Subject floor</th><th>Binding constraint</th><th>Evidence below</th></tr>
+      <tr><td>Architecture, landscape, sleeping</td><td class="n">none</td><td>Shake only — spend the IBIS stops</td><td>1/15 · 1/20</td></tr>
+      <tr><td>Seated person, between sentences</td><td class="n">~1/30 – 1/60</td><td>Micro-movement</td><td>1/30 at ISO 200</td></tr>
+      <tr><td>Gesture, laughter, walking</td><td class="n">1/125 – 1/250</td><td>Subject — IBIS irrelevant</td><td>1/34, shot in numbers</td></tr>
+      <tr><td>Animal head, bird in flight</td><td class="n">1/640 – 1/2000</td><td>Subject, strongly</td><td>1/640 · 1/800</td></tr>
+    </table>
+    </div>
+
+    <p>The practical value of separating them is that a still subject converts stabilisation stops directly into image quality. A worked case from the catalogue (a family frame, so it stays off this page): a sleeping child carried on a shoulder, window light only — <span class="num">15mm · f/2.8 · 1/15 · ISO 400</span>. That shutter is a stop below the reciprocal rule and trivial for IBIS, and because a sleeping child is genuinely motionless it bought ISO 400 instead of the ISO 3200 a &#8220;safe&#8221; 1/125 would have forced: three stops of noise, saved by correctly reading the subject. The moment the head turns, the frame is gone and no setting recovers it — which is why this technique is always paired with several exposures.</p>
+
+    <p>Stabilisation has limits worth knowing. It corrects rotational shake best; the lateral shift that dominates at close focusing distances is much harder, which is one reason macro work demands a fast shutter despite excellent IBIS. And CIPA ratings assume decent technique — bracing, exhaling, squeezing rather than stabbing, firing a short burst and keeping the middle frames is worth another stop or two on top of whatever the specification promises.</p>
+
+    <div class="fig-row">
+      <figure>
+        <img src="img/lessons/h53.jpg" alt="Cave stalactites lit by mixed white and blue lights" loading="lazy">
+        <figcaption><b>Technique as extra stops</b>
+          No tripod, no flash. Braced against rock at 1/40 — the difference between ISO 2500 and ISO 10000 is entirely posture.
+          <span class="ex">40mm <em>80mm-e</em> · f/2.8 · 1/40 · ISO 2500</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/lessons/h49.jpg" alt="Sea otter head-up in blue rippled water" loading="lazy">
+        <figcaption><b>Tracking is not freezing</b>
+          Subject-detect AF holds the eye reliably, but focus accuracy says nothing about motion blur. The shutter comes from the animal&#8217;s own speed first; aperture and ISO follow.
+          <span class="ex">150mm <em>300mm-e</em> · f/5.6 · 1/640 · ISO 200</span></figcaption>
+      </figure>
+    </div>
+
+    <h3>ISO is not exposure</h3>
+    <p>Aperture and shutter determine how many photons reach the sensor. ISO does not — the photons are already caught, and ISO is amplification applied afterwards. That is why it belongs last in the decision order, and also why raising it is far less costly than the folklore suggests: modern sensors are close to <em>ISO-invariant</em> over much of their range, meaning a correctly exposed high-ISO frame and an underexposed low-ISO frame lifted in software end up in a similar place. Given that, refusing to raise ISO buys nothing and risks the shutter speed that actually matters.</p>
+
+    <figure class="fig-narrow">
+      <img src="img/lessons/t01.jpg" alt="Night arcade in Austin, brick underfoot, lit colonnade receding" loading="lazy">
+      <figcaption><b>ISO as the remainder</b>
+        Aperture already wide open, shutter already at the stabilised floor for a static scene — ISO 12800 was not a choice but what was left over. The recipe works because nothing in the frame moves; the same settings on a walking figure would fail completely.
+        <span class="ex">23mm <em>35mm-e</em> · f/2 · 1/20 · ISO 12800 · 19:07, full dark</span></figcaption>
+    </figure>
+
+    <div class="takeaway"><b>What to do differently</b>
+      <p>Name the motion before choosing the shutter. If the subject is static, drop to your measured stabilisation floor and take the ISO back. If the subject moves, set the shutter from the table and let ISO go wherever it must — <strong>a clean photograph of a blurred gesture is still a failed photograph.</strong> And when the required floor is unreachable, say so to yourself and shoot a burst deliberately, rather than taking one frame and hoping.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 4 ═════════ -->
+  <section class="lesson" id="light">
+    <div class="lesson-num">Lesson 04</div>
+    <h2>Light has four properties; exposure is only one</h2>
+    <p class="thesis">Quantity is what the meter measures. Direction, quality and colour are what make the photograph — and all three are controlled by where you stand, not by any setting.</p>
+    <p class="xref"><a href="x100vi-guide.html#section-04">X100VI §07 Colour</a> · <a href="x100vi-guide.html#section-scenes">§13 Scenes</a> · <a href="om1-guide.html#section-scenes">OM-1 §12 Missions</a></p>
+
+    <p><strong>Quality</strong> — hard or soft — is governed by the apparent size of the source relative to the subject, and by nothing else. The sun is enormous and 150 million kilometres away, so it subtends half a degree and casts hard-edged shadows. Put cloud in front of it and the whole sky becomes the source: shadows soften because light now arrives from many angles. A window behaves the same way. Standing a person close to it makes it large in their sky and the light soft; moving them back across the room shrinks it toward a point source and hardens every shadow. <strong>Distance from the window is a lighting modifier that costs nothing.</strong></p>
+
+    <p>That falloff is also steep, and predictable: illumination drops with the square of distance. Move a subject from one metre to two metres from a window and they lose two stops. Within a small room this is the strongest contrast control available — a step sideways changes the ratio between lit and shadow side more than any camera setting will.</p>
+
+    <div class="fig-row">
+      <figure>
+        <img src="img/lessons/h16.jpg" alt="Boy holding a mug, seated low against a large textured grey wall" loading="lazy">
+        <figcaption><b>Large source, close</b>
+          Soft gradient across the face and the wall behind. A still sitter also moves the binding constraint back to shake — 1/30 at ISO 200 rather than 1/125 at ISO 800, which is what preserves the wall&#8217;s weave.
+          <span class="ex">24mm <em>48mm-e</em> · f/2.8 · 1/30 · ISO 200</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/lessons/h35.jpg" alt="Two figures silhouetted in a dark adobe passage looking out to a sunlit street" loading="lazy">
+        <figcaption><b>Direction as structure</b>
+          Shooting from deep shade toward a sunlit street is a five-to-seven stop step. The doorway will be black whatever you do — the only question is whether that was chosen. Metered for the exterior; the near frame needs shape, not detail, so f/2.2 is sufficient.
+          <span class="ex">23mm <em>35mm-e</em> · f/2.2 · 1/70 · ISO 125</span></figcaption>
+      </figure>
+    </div>
+
+    <p><strong>Colour</strong> is where cameras most often erase the thing worth photographing. Household tungsten sits near 2800&#8202;K, overcast daylight near 6500&#8202;K, and a room containing both is a room with two palettes. Auto white balance is designed to neutralise exactly that — it computes a single correction and averages the difference away. Fixing white balance to one source instead preserves the contrast between them.</p>
+
+    <p>Golden hour is the same physics on a planetary scale. Near the horizon, sunlight traverses a far longer path through atmosphere; Rayleigh scattering removes the short wavelengths, leaving the warm remainder. The light is also low, so it rakes across surfaces and models texture instead of flattening it. Both effects are geometric, which is why the hour cannot be simulated with a slider — the shadows would be in the wrong place.</p>
+
+    <figure class="fig-narrow">
+      <img src="img/lessons/h17.jpg" alt="Laughing profile against a wood panel on one side and cool window light on the other" loading="lazy">
+      <figcaption><b>Two illuminants, kept apart</b>
+        Warm interior on one side, cool window on the other, and the subject standing on the seam. Fixing white balance to daylight keeps the tungsten visibly warm; auto would have split the difference and deleted the effect. The fast prime buys 1/50 at ISO 640 while keeping the background split legible but soft.
+        <span class="ex">45mm <em>90mm-e</em> · f/1.8 · 1/50 · ISO 640</span></figcaption>
+    </figure>
+
+    <h3>The missing tool</h3>
+    <p>Everything above adapts to light that already exists. The other option is to add some — and here the X100VI has a genuine structural advantage. A focal-plane shutter exposes the frame through a travelling slit, so above roughly <span class="num">1/250</span> the sensor is never fully uncovered and a flash can only illuminate part of it. A leaf shutter opens and closes as a whole, so it synchronises at speeds up to <span class="num">1/2000</span> (aperture dependent).</p>
+
+    <p>That single fact enables daylight fill: set 1/2000 at f/2, expose the background two stops down, and let the flash carry the subject. On a focal-plane camera the same thing needs a much smaller aperture and a much larger flash. No frame in this catalogue demonstrates it, which is why it is <a href="#method">assignment 04</a>.</p>
+
+    <div class="takeaway"><b>What to do differently</b>
+      <p>Before adjusting the camera, walk. Change the angle between the source, the subject and yourself; move the subject nearer the window or further from it. Ask whether the light is hard or soft and <em>why</em> — how big is the source from where the subject stands. Fix white balance when two colours of light are the point. <strong>Every one of these is free, and each changes the photograph more than any setting.</strong></p>
+    </div>
+  </section>
+
+  <!-- ═════════ 5 ═════════ -->
+  <section class="lesson" id="subject">
+    <div class="lesson-num">Lesson 05</div>
+    <h2>The decision no setting can make</h2>
+    <p class="thesis">Everything so far is solvable arithmetic. This one is not — and your settings record whether you made it.</p>
+    <p class="xref"><a href="x100vi-guide.html#section-scenes">X100VI §13 Scenes</a> · <a href="om1-guide.html#section-scenes">OM-1 §12 Missions</a></p>
+
+    <p>There is a diagnostic hiding in the metadata. Every frame in the previous lessons has at least one setting that is specific to its subject — 1/640 because the otter&#8217;s head turns, f/11 because three planes must resolve, ISO 400 because the child is asleep. The setting is a fossil of a decision.</p>
+
+    <p>Which means the reverse is also readable. When a frame&#8217;s settings are unremarkable in every dimension, usually no decision was made — the camera chose a competent middle and the photographer accepted it.</p>
+
+    <figure class="fig-narrow">
+      <img src="img/lessons/dp01-sooc.jpg" alt="Boat wake diagonal across Shasta Lake with hills behind" loading="lazy">
+      <figcaption><b>Diagnosis by metadata</b>
+        Bright sun, defaults throughout. Three subjects were available and each implied different numbers: the wake as abstract wanted <span class="num">1/1000+</span> and a low camera with no horizon; the far boat crossing the wake line wanted patience and <span class="num">f/8</span> for two planes; the red shoreline band wanted a longer focal length to compress it. f/3.2 · 1/125 answers none of those questions.
+        <span class="ex">23mm <em>35mm-e</em> · f/3.2 · 1/125 · ISO 125</span></figcaption>
+    </figure>
+
+    <p>This matters because of a distinction that runs through the whole page. Almost every failure discussed so far is a <em>redistribution</em> problem — tone in the wrong place, colour averaged away, contrast misjudged — and a raw file absorbs a surprising amount of redistribution. A missing subject is an <em>information</em> problem. The low angle was never recorded. The boat never crossed. There is no bit depth at which that data exists.</p>
+
+    <p>The same logic explains why famous viewpoints are difficult rather than easy. At a landmark the subject, the position and often the hour are fixed and shared with everyone else standing there. What remains under your control is focal length and precise position — which is to say, which optical device you brought.</p>
+
+    <figure class="fig-narrow">
+      <img src="img/lessons/w08.jpg" alt="Half Dome at golden hour with a dark cliff framing the left edge" loading="lazy">
+      <figcaption><b>The landmark case</b>
+        300mm-e compresses the framing cliff against the dome — an effect that exists only at long focal lengths — and isolates the lit face from valley clutter. The wide-angle version from the same spot is the postcard everyone else already has.
+        <span class="ex">150mm <em>300mm-e</em> · f/5.6 · 1/640 · ISO 200</span></figcaption>
+    </figure>
+
+    <div class="takeaway"><b>What to do differently</b>
+      <p>Before pressing, answer out loud: <em>what is this a photograph of?</em> Then check that at least one setting is specific to that answer. If nothing in the exposure would change had the subject been something else in the same scene, you have not chosen yet. <strong>Read your own metadata back occasionally — it is an honest record of how many decisions you actually made.</strong></p>
+    </div>
+  </section>
+
+  <!-- ═════════ 6 ═════════ -->
+  <section class="lesson" id="people">
+    <div class="lesson-num">Lesson 06</div>
+    <h2>Rooms full of people: every constraint at once</h2>
+    <p class="thesis">Indoor events combine low light, moving subjects, mixed colour temperature and no second chance. The technical work must be finished before you walk in.</p>
+    <p class="xref"><a href="x100vi-guide.html#section-scenes">X100VI §13 Scenes</a> · <a href="om1-guide.html#section-af">OM-1 §04 Autofocus</a></p>
+
+    <p>Every lesson above applies simultaneously here, and the shutter floor is the one that binds. Gesture needs <span class="num">1/125</span> or better; a typical indoor room, wide open, offers something closer to 1/30. That gap of two stops is the entire technical problem of event photography, and it cannot be closed at the moment it matters — which is why the configuration happens at the door.</p>
+
+    <div class="takeaway"><b>Configure before entering</b>
+      <p>Aperture wide (f/2 on the X100VI, f/1.8&#8211;2.8 on a fast prime). Auto-ISO on, ceiling raised to <span class="num">12800</span>, minimum shutter pinned to <span class="num">1/125</span> — that floor comes from the subject, not the focal length. White balance fixed rather than auto so the room stays one colour all evening. Face and eye detection enabled. Silent shutter if the body offers one. After that, the only remaining decisions are where to stand and when to press.</p>
+    </div>
+
+    <p>Depth of field then does the compositional work. At 35mm-e and f/2 with a subject two metres away, the zone of sharpness spans roughly a metre — enough that immediate context resolves while people further back soften into tone. One legible layer of room is the target: wider erases the venue and you lose the story, stopping down brings a second layer into focus and the frame becomes clutter.</p>
+
+    <div class="fig-row">
+      <figure>
+        <img src="img/lessons/h12.jpg" alt="Man grinning while riding a toy scooter through a party kitchen, guests reacting behind" loading="lazy">
+        <figcaption><b>One legible layer</b>
+          Subject at about two metres, context at four, guests beyond dissolving into tone. Watch for bright sources behind: out of focus does not mean unnoticeable, and a window will out-compete a face. Faces are obscured here for privacy — the layering is the lesson.
+          <span class="ex">23mm <em>35mm-e</em> · f/2 · available light</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/lessons/h37.jpg" alt="Two friends laughing with red baskets of food in front of a pop-art mural at night" loading="lazy">
+        <figcaption><b>Two stops under the floor, on purpose</b>
+          A laugh needs 1/125; wide open at ISO 4000 the street gave 1/34. Gestures decelerate at their extremes, so a burst through the moment converts a timing problem into a probability one — reliable at six frames, a coin flip at one. Faces obscured for privacy — the gesture still reads, which is the point.
+          <span class="ex">23mm <em>35mm-e</em> · f/2 · 1/34 · ISO 4000</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="takeaway"><b>What to do differently</b>
+      <p>Set the camera at the door and then stop thinking about it. Inside, work only on position and timing: where the light is, how much room stays legible behind your subject, and where the gesture is heading. <strong>When you are under the shutter floor, know it and shoot in numbers</strong> — that is technique, not luck, provided it is deliberate.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 7 ═════════ -->
+  <section class="lesson" id="method">
+    <div class="lesson-num">Lesson 07</div>
+    <h2>Working a scene, and what can never be recovered</h2>
+    <p class="thesis">Several frames of one moment is method rather than indecision — provided each frame changes exactly one variable, and provided you choose the winner while you can still take another.</p>
+
+    <p>Ten frames at identical settings are one guess repeated ten times. Ten frames that step through position, focal length, plane of focus and moment are ten answers to different questions, and whichever you keep tells you which question was the right one. That is how every rule on this page was derived, and how you would derive one it does not contain.</p>
+
+    <p>Vary them in order of leverage. <strong>Position</strong> first — it changes the distance ratios, the background, the light angle and the perspective all at once. Then <strong>focal length</strong>, which changes compression and how much context survives. Then <strong>the moment</strong>, which changes gesture. Then <strong>aperture</strong>, which is the variable most people reach for first and which alters the least.</p>
+
+    <p>The reason to settle the winner before developing anything comes back to the distinction from Lesson 05. Redistribution problems — tone, colour, contrast, local adjustment — a raw file absorbs. Information problems do not exist in the file at any bit depth: the angle you did not take, the plane you did not focus on, the moment you did not wait for. <strong>The cheap moves all happen before the shutter; after it, you are only ever rearranging what you already caught.</strong></p>
+
+    <h3>Assignments</h3>
+    <p>Each one is designed to make a rule above <em>fail</em>, so you learn where its boundary sits on your own equipment rather than taking a published number on trust.</p>
+    <ol class="planlist">
+      <li><strong>Find your shake floor.</strong> One static subject, five frames at every shutter speed from 1/60 down to 1/4 at fixed focal length. Note where sharpness collapses. That is your stabilisation figure — use it for every low-light decision afterwards. <span class="pref"><a href="om1-guide.html#section-ibis">OM-1 §07</a> · <a href="x100vi-guide.html#section-tech">X100VI §10</a></span></li>
+      <li><strong>Find your diffraction ceiling.</strong> Tripod, one flat detailed subject, every aperture from wide open to minimum, compared at 100%. Resolution will rise then fall; the peak is your default aperture and the fall is what stopping down actually costs. <span class="pref"><a href="om1-guide.html#section-glass">OM-1 §09</a></span></li>
+      <li><strong>Verify the meter table.</strong> A white subject and a black subject on one afternoon. Shoot each at EV 0, then at the prescribed compensation, then compare histograms. Confirm the direction and size of the error yourself. <span class="pref"><a href="om1-guide.html#section-metering">OM-1 §03</a> · <a href="x100vi-guide.html#section-metering">X100VI §03</a></span></li>
+      <li><strong>The leaf shutter.</strong> Daylight fill at f/2 · 1/2000 — background two stops down, flash carrying the subject. Then slow-sync at dusk. Keep the failures; they map where sync really stops on this body. <span class="pref"><a href="x100vi-guide.html#section-03">X100VI §05</a></span></li>
+      <li><strong>Isolate subject motion.</strong> One walking person, constant light, shutter from 1/30 to 1/500. Find where the feet stop smearing — and note that stabilisation helps at none of them. <span class="pref"><a href="#motion">Lesson 03</a></span></li>
+      <li><strong>One scene, one variable per frame.</strong> Ten frames changing position, then focal length, then moment, then aperture, in that order. Write one line on why the winner won. If the reason is not a variable you changed, take ten more. <span class="pref"><a href="#method">above</a></span></li>
+    </ol>
+  </section>
+  </main>
+  </div>
+
+  <footer>
+    <span>Reasoning first · photographs as evidence · settings read from the files</span>
+    <span><a href="index.html">← photoing</a></span>
+  </footer>
+</div>
+<script>
+document.querySelectorAll('.frame').forEach(f => {
+  f.addEventListener('click', () => f.classList.toggle('show'));
+  f.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); f.classList.toggle('show'); }
+  });
+});
+
+const bar = document.getElementById('progress');
+const onScroll = () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+  bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+};
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+const tocLinks = [...document.querySelectorAll('.toc a')];
+const tocItems = tocLinks.map(a => a.closest('li'));
+const sections = [...document.querySelectorAll('.lesson')];
+const setActive = id => {
+  tocLinks.forEach((a, i) => {
+    const on = a.getAttribute('href') === '#' + id;
+    a.classList.toggle('active', on);
+    tocItems[i].classList.toggle('active', on);
+  });
+};
+const io = new IntersectionObserver(entries => {
+  const visible = entries.filter(e => e.isIntersecting);
+  if (visible.length) setActive(visible[0].target.id);
+}, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>

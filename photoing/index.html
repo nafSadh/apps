@@ -35,6 +35,8 @@ h1{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400;font-v
 .lede em{font-style:italic;color:var(--ink)}
 .note{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.06em;color:var(--dim);
   max-width:36rem;margin-bottom:3.2rem}
+.companion{margin-top:1.6rem}
+.companion .guide-body{padding:1.4rem 1.5rem 1.6rem}
 .guides{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.6rem}
 .guide{--accent:var(--fuji);display:flex;flex-direction:column;text-decoration:none;color:inherit;
   background:var(--paper-hi);border:1px solid var(--line);border-radius:14px;overflow:hidden;
@@ -69,7 +71,7 @@ footer a:hover{color:var(--ink);border-bottom-color:var(--line)}
   <div class="kicker"><a href="/">sadh.app</a> · photoing</div>
   <h1>Learning to see.</h1>
   <p class="lede">Visual field guides to the cameras I actually shoot with — built to be <em>read once and carried after</em>. Interactive simulators for the things a manual only describes, cutaway diagrams of the mechanisms inside, and craft notes that admit what doesn't work.</p>
-  <p class="note">Two cameras · twelve interactive diagrams · twenty-four pocket field cards</p>
+  <p class="note">Two cameras · twelve interactive diagrams · twenty-four pocket field cards · one companion of real frames</p>
 
   <div class="guides">
     <a class="guide fuji" href="x100vi-guide.html">
@@ -94,6 +96,16 @@ footer a:hover{color:var(--ink);border-bottom-color:var(--line)}
       </div>
     </a>
   </div>
+
+  <a class="guide companion" href="in-practice.html" style="--accent:var(--om)">
+    <div class="guide-body">
+      <div class="cam">Companion · both bodies</div>
+      <h2>In practice</h2>
+      <p>Seven lessons on why a camera fails in predictable ways — the meter&#8217;s built-in assumption and how to override it, depth of field as arithmetic, why blur has two causes with one cure, the four properties of light, and the decision no setting can make. Photographs as evidence, not decoration.</p>
+      <div class="tags"><span class="tag">7 lessons</span><span class="tag">worked numbers</span><span class="tag">6 assignments</span></div>
+      <div class="open">Open the companion <span class="arrow">→</span></div>
+    </div>
+  </a>
 
   <footer>
     <span>Diagrams drawn for these pages · photographs credited where shown</span>
