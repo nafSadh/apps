@@ -5,6 +5,46 @@ can tell what is on the page, where it came from, and what has been retracted.
 
 ---
 
+## [5.1.0] - 2026-07-30
+
+Editing pass on `street-guide.html` from Sadh's read-through. Four notes, all about the page
+talking about itself and about figures being too large.
+
+### Changed
+- **Cut the page's self-commentary.** The `#howtoread` block read as the author explaining
+  their own curation rather than teaching photography; it is now three paragraphs titled
+  *Reading old photographs*, keeping the scarcity argument and the "free to use is a legal
+  category" ruling and dropping the methodology narration. Thirty self-referential sentences
+  across the file ("it belongs in this lesson because…", "chosen because each one solved a
+  problem this guide diagnoses", "which is how the shelves on this page were built") are gone
+  or rewritten to state the point directly. Five remain and are deliberate: the TOC label and
+  the "Diagram drawn for this guide" credit lines.
+- **Removed the figure counts from prose.** "135 photographs", "seventy-six photographers" and
+  "seventy frames" are out of the lede, the intro block and the index card. The counts were
+  accurate but had to be updated in three places whenever a figure moved, and they told the
+  reader nothing. Numbers that carry an argument — the FSA's 171,074 negatives, the 40:1
+  response spread — stay.
+- **Figures default to half-row width (`--half`, 24rem).** The real cause of the oversized
+  frames was that `.takeaway` is `max-width:var(--wide)`, so a bare `<figure>` inside a
+  "Carry this" box rendered at ~774px — wider than anything else on the page. Solo figures now
+  match the paired `.fig-row` scale at 384px, and the lightbox carries full size, per Sadh:
+  *"we already have lightbox to see full image, but on the article keep images half row
+  width."* Three stacked figures in the §02 takeaway became a two-up row.
+- **`.fig-study` added** for the eight annotation studies and drawn diagrams, which keep the
+  592px text measure. Their overlay labels are sized in `rem`, not scaled to the image, so they
+  stop being legible inline below that width.
+- **Local images re-encoded: 2,418 KB → 810 KB** at 1200px, quality 80, progressive. They were
+  1400px masters at display sizes of 384px. The three `street-dia-*.png` diagrams were JPEG
+  data carrying a `.png` extension; they are now `.jpg` and their references updated.
+
+### Known gaps
+- More SVG annotation studies were wanted (Delano `fsac.1a33932`, the Abdolahabadi panorama,
+  the Majali Giza frame). Not done: coordinates have to be read off the source pixels, and the
+  hosts are unreachable from the environment this pass ran in. Guessing them would repeat two
+  errors already in the log.
+
+---
+
 ## [5.0.0] - 2026-07-30
 
 `street-guide.html` grows from an archive syllabus into a half-contemporary one, on Sadh's
