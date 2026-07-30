@@ -34,6 +34,17 @@ Second pass from Sadh's read-through.
   Every coordinate was read off a rendered percent grid and checked against a PIL mock-up before
   any HTML was written, then verified in-browser.
 
+### Changed
+- **Second sweep for self-commentary, this time by reading the prose rather than grepping it.**
+  Fourteen more instances across lessons 04–12 and the references, of a kind the earlier
+  pattern-match missed because they name no lesson and no guide: process narration ("every link
+  below was fetched and confirmed to load", "Availability was checked"), inclusion justification
+  ("which is why he is in the syllabus", "The reference case for this whole lesson", "and both
+  belong here"), structural self-reference ("This is the paragraph above, executed", "the way the
+  field decks isolate one scene per card"), and UI narration ("Turn the read on and the fifth box
+  is the point"). All rewritten to state the observation directly. Three references remain, all
+  the "Diagram drawn for this guide" credit that distinguishes drawn figures from photographs.
+
 ### Note for later
 - **Short labels are the real width constraint.** `.anno-label` is `.62rem` and does not scale
   with the image, so a 6–12 character label reads fine at 384px while a 30-character one does

@@ -68,6 +68,14 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
    lesson…", "which is how the shelves on this page were built", "X is the second and last figure in
    this guide". Write the observation, not the reason it was included. Still allowed: the TOC label,
    the "Diagram drawn for this guide" credit, and cross-references like "Lesson 09 gathers them by name".
+   **A second sweep found fourteen more that grep missed**, because they name no lesson and no guide.
+   Four shapes to watch for: *process narration* ("every link below was fetched and confirmed to
+   load", "Availability was checked"); *inclusion justification* ("which is why he is in the
+   syllabus", "The reference case for this whole lesson", "and both belong here"); *structural
+   self-reference* ("This is the paragraph above, executed", "the way the field decks isolate one
+   scene per card"); *UI narration* ("Turn the read on and the fifth box is the point"). **Grep is
+   not enough — extract the prose and read it.** Script that works: pull every `<p>` and
+   `<figcaption>`, strip tags, print in blocks, read them.
 10. **Images stay small in the body; the lightbox is the full view.** See figure rhythm above.
 
 ## Mistakes made, do not repeat
