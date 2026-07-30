@@ -116,8 +116,8 @@ figure.img-dead::before{content:'frame unavailable — source link below';displa
 
 /* annotation study: SVG overlay on the untouched original */
 .anno{position:relative}
-.anno .anno-layer{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s ease}
-.anno.anno-on .anno-layer{opacity:1}
+.anno .anno-layer{position:absolute;inset:0;pointer-events:none;opacity:1;transition:opacity .35s ease}
+.anno.anno-off .anno-layer{opacity:0}
 .anno .anno-layer svg{position:absolute;inset:0;width:100%;height:100%}
 .anno-label{position:absolute;transform:translate(-50%,-50%);font-family:'JetBrains Mono',monospace;font-size:.62rem;
   font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#f9f7f1;background:rgba(26,22,16,.82);
@@ -382,7 +382,7 @@ figure img{cursor:zoom-in}
           <span class="anno-label al-street" style="left:30%;top:27%">behind him · a third the size</span>
         </div>
       </div>
-      <button class="anno-toggle" data-anno="annoDist" aria-pressed="false">Show the read</button>
+      <button class="anno-toggle" data-anno="annoDist" aria-pressed="true">Show original</button>
         <figcaption><b>Participant geometry</b>
           Made from inside conversational distance: the man&#8217;s face carries the frame, the walker a few paces behind already renders half his size and soft, and the street shrinks to context. That size falloff <em>is</em> the wide-lens-up-close signature — read it in anyone&#8217;s frame and you know where they stood.
           <span class="ex">John Vachon · <em>Man on the street, Washington, D.C.</em> · 1937 · <a href="https://www.loc.gov/resource/fsa.8a03035/" target="_blank" rel="noopener">LoC</a></span></figcaption>
@@ -482,7 +482,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label al-street" style="left:84%;top:79%">onlooker 34%</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoPanier" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoPanier" aria-pressed="true">Show original</button>
         <figcaption><b>Annotation study — what standing close buys</b>
           Both principals run about half the plate from head to sole: the seller <span class="num">51%</span>, the customer <span class="num">54%</span>. Neither is a figure in a street scene. The pavement, the shopfront and the DÉGUSTATION sign are what was left over after two people were given the full height of the frame.
           The woman watching from the doorway is only a few paces further back, and she measures <span class="num">34%</span> — roughly two thirds of the customer. That fall-off across a few paces is the whole record of where the camera stood: from across the road the same two paces would cost almost nothing, everyone would render near the same size, and the frame would go flat.
@@ -531,7 +531,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label" style="left:38%;top:30%">static</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoOrgue" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoOrgue" aria-pressed="true">Show original</button>
         <figcaption><b>Annotation study — one of them is peaking</b>
           Atget photographed Paris for thirty years and is usually taught as the man who shot it empty. Here he is close enough to catch a street singer mid-note beside her organ grinder — the frame is entirely about <em>her</em>, and it dies if she stops singing.
           Two people, one moment: her head is thrown back on a held note and her arm is flung out along the organ, a single line from her hand to her shoulder. He is looking at the lens and would look identical a second either side. That is the difference between a subject who is present and a subject who is peaking.
@@ -635,7 +635,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label al-accent" style="left:62%;top:70%">and her foot lands on it</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoFerris" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoFerris" aria-pressed="true">Show original</button>
         <figcaption><b>Where this lesson stops being true</b>
           The honest counter-case. Ask the question — would the photograph change if she were someone else? — and the answer here is no, because she has been reduced to a black shape, two legs and one arm, cropped at the shoulders exactly like the rank of sailors she is passing. Ferris kept the white uniforms, the yellow kerb line and the midday shadow, and threw every face away. Subject-first is the rule; this is the case where identity is deliberately deleted so tone, line and shape can carry the frame alone. The mistake is not choosing one — it is doing the second by accident while believing you did the first.
           <span class="ex">Sam Ferris · Sydney · &#169; the photographer, shown here for critical commentary · <a href="https://burnmyeye.org/sam-ferris" target="_blank" rel="noopener">see more</a></span></figcaption>
@@ -682,7 +682,7 @@ figure img{cursor:zoom-in}
           <span class="anno-label al-street" style="left:51%;top:92%">the pram: the stage that said wait here</span>
         </div>
       </div>
-      <button class="anno-toggle" data-anno="annoPeak" aria-pressed="false">Show the read</button>
+      <button class="anno-toggle" data-anno="annoPeak" aria-pressed="true">Show original</button>
       <figcaption><b>Annotation study — the gesture that peaked</b>
         A conversation outside a corner tailor&#8217;s. The raised hand is the photograph: it marks the sentence&#8217;s emphasis, the exact syllable of the exchange. Drop the hand and the frame is two women standing near a pram — present, not peaking. The signage, the marble storefront and the pram were there for minutes; the picture existed for half a second.
         <span class="ex">Russell Lee · <em>Women with baby carriage, L Street, Washington, D.C.</em> · 1938 · <a href="https://www.loc.gov/resource/fsa.8a22589/" target="_blank" rel="noopener">LoC</a></span></figcaption>
@@ -701,7 +701,7 @@ figure img{cursor:zoom-in}
           <span class="anno-label " style="left:80%;top:92%">a beat late · gone</span>
         </div>
       </div>
-      <button class="anno-toggle" data-anno="annoSeam" aria-pressed="false">Show the read</button>
+      <button class="anno-toggle" data-anno="annoSeam" aria-pressed="true">Show original</button>
       <figcaption><b>Pressed at the seam</b>
         One walker, two frame-worn storefronts. The shutter fired as he crossed the seam between the buildings — a beat earlier he is lost against blank clapboard, a beat later he is out of the frame. Watch feet, not faces: a stride telegraphs its landing point a full step ahead, which is more warning than an expression ever gives.
         <span class="ex">Russell Lee · <em>Buildings, L Street, Washington, D.C.</em> · 1938 · <a href="https://www.loc.gov/resource/fsa.8a22607/" target="_blank" rel="noopener">LoC</a></span></figcaption>
@@ -776,7 +776,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label" style="left:40%;top:12%">the monument: none of the four</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoGiza" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoGiza" aria-pressed="true">Show original</button>
         <figcaption><b>Everyone mid-something</b>
           Four peaks at once. A man with a camera to his face, a man fully airborne with his arms folded, a man doubled over with his head in the sand, a boy hauling on a jacket — and two horses standing patiently through all of it. The fifth marked box holds the most photographed structures on earth, sitting inside the frame doing none of the work. Every event here would have collapsed within a second, and none of them is the pyramids.
           <span class="ex">Laith Majali · Giza, 2018 · from <em>The Arab Street Vol. II</em> · &#169; the photographer, shown here for critical commentary · <a href="https://www.arabnews.com/node/2050466" target="_blank" rel="noopener">see more</a></span></figcaption>
@@ -893,7 +893,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label al-accent" style="left:33%;top:73%">red and cyan — the two colours he was issued</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoNarula" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoNarula" aria-pressed="true">Show original</button>
         <figcaption><b>Six months, one platform, twenty minutes a day</b>
           Narula made <em>Platform 10</em> at Bangkok&#8217;s Hua Lamphong station over six months, working a single platform during the daily twenty-minute stop of a three-carriage train. That is a fishing spot narrowed to an appointment. What the repetition buys is visible in the exposure: he already knows precisely where the one usable band of light falls and how little else on that platform is lit, so he can give nine tenths of the frame to black and wait for a guard to walk into the remaining tenth. You cannot compose this on arrival — you can only know it.
           <span class="ex">Rammy Narula · Hua Lamphong, Bangkok, from <em>Platform 10</em> · &#169; the photographer, shown here for critical commentary · <a href="https://rammynarula.com/platform10" target="_blank" rel="noopener">see more</a></span></figcaption>
@@ -936,7 +936,7 @@ figure img{cursor:zoom-in}
           <span class="anno-label" style="left:18%;top:78%">plane 3 · the street, doing street things</span>
         </div>
       </div>
-      <button class="anno-toggle" data-anno="annoLayer" aria-pressed="false">Show the read</button>
+      <button class="anno-toggle" data-anno="annoLayer" aria-pressed="true">Show original</button>
       <figcaption><b>Annotation study — three planes, one frame</b>
         Foreground: a face close enough to show the stubble under the hat brim. Middle: two women at the shop glass, one meeting the lens. Far plane: walkers, cars, a full city block. Each plane is a complete event, and the size gradient — huge, half, small — is the depth. Cover any one plane with a thumb and the other two still make a photograph; that is the test of a layer that earns its place.
         <span class="ex">John Vachon · <em>Street scene, Washington, D.C.</em> · 1937 · <a href="https://www.loc.gov/resource/fsa.8a02955/" target="_blank" rel="noopener">LoC</a></span></figcaption>
@@ -989,7 +989,7 @@ figure img{cursor:zoom-in}
           <span class="anno-label " style="left:78%;top:15%">the embrace</span>
         </div>
       </div>
-      <button class="anno-toggle" data-anno="annoWebb" aria-pressed="false">Show the read</button>
+      <button class="anno-toggle" data-anno="annoWebb" aria-pressed="true">Show original</button>
       <figcaption><b>Four things, one frame</b>
         Four events, stacked. A couple embracing, a man whose face is replaced by a board of photographs, a silhouette crossing a sunlit wall, and the words <em>Registro Civil</em> behind all of it — marriages and births recorded in the building they are standing against. Four elements, each readable, none colliding, held together by one shaft of hard sun.
         <span class="ex">Alex Webb · Magnum ref PAR112765 · &#169; the photographer, shown here for critical commentary · <a href="https://www.magnumphotos.com/photographer/alex-webb/" target="_blank" rel="noopener">see more</a></span></figcaption>
@@ -1015,7 +1015,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label al-street" style="left:50%;top:96.5%">one ground line: a frieze, not a stage</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoFrieze" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoFrieze" aria-pressed="true">Show original</button>
         <figcaption><b>Layered sideways</b>
           Most layering stacks front to back. This stacks left to right, and the read shows how: four vertical seams in the architecture cut one street into five compartments, each holding its own unrelated piece of business, nobody looking at anybody. Everything sits on a single continuous ground line — a frieze, not a stage — so there is no depth doing the work at all. And the hung white sheet is a studio backdrop dropped into a tyre shop, which is what turns four men standing around into a portrait.
           <span class="ex">Elaheh Abdolahabadi · Nishabour, Iran · <em>An Instant of Time and Place</em> · &#169; the photographer, shown here for critical commentary · <a href="https://www.womenstreetphotographers.com/photographers-ii" target="_blank" rel="noopener">see more</a></span></figcaption>
@@ -1049,7 +1049,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label" style="left:63%;top:84%">the caption the street handed over</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoArgolo" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoArgolo" aria-pressed="true">Show original</button>
         <figcaption><b>Layers inside two metres of crowd</b>
           Everything else in this lesson builds depth across a street. This builds it inside arm&#8217;s reach, and the read gives you the arithmetic: the near head fills <span class="num">42%</span> of the frame height and both far heads fill about half that. A two-to-one size ratio is all the depth cue a viewer needs, and at 35mm-e you get it from roughly a metre of separation — no distance required, just a crowd. The fourth box is the gift: a tabloid held up at the bottom edge, supplying a caption nobody in the frame chose.
           <span class="ex">Marcelo Argolo · London · Observe Collective · &#169; the photographer, shown here for critical commentary · <a href="https://observecollective.com/Marcelo-Argolo" target="_blank" rel="noopener">see more</a></span></figcaption>
@@ -1086,7 +1086,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label al-street" style="left:14%;top:73%">near</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoTerminal" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoTerminal" aria-pressed="true">Show original</button>
         <figcaption><b>Annotation study — three planes, loaded on purpose</b>
           Stieglitz could have shot the team head-on from the cleared street. He stood behind a snowbank instead, so the frame carries three depths at once: churned snow in the near plane, the driver watering his steaming team in the middle, the shopfronts and waiting figures behind.
           Cover the snow and it is a competent record of a horsecar terminus. The near plane is what puts you in the cold standing in it. And the steam is the only thing here that existed for a second — the snow, the signs and the building would all have been there an hour later.
@@ -1114,7 +1114,7 @@ figure img{cursor:zoom-in}
           <span class="anno-label al-accent" style="left:42%;top:82%">the figure that gives the pattern a tempo</span>
         </div>
       </div>
-      <button class="anno-toggle" data-anno="annoRhythm" aria-pressed="false">Show the read</button>
+      <button class="anno-toggle" data-anno="annoRhythm" aria-pressed="true">Show original</button>
         <figcaption><b>Repetition found, not arranged</b>
           Five loan-shop signs stacked down one block until the word stops meaning and starts drumming. The signs were inventory; the angle — shooting <em>down</em> the sidewalk instead of across at one storefront — turned them into rhythm. One walker gives the pattern scale and a beat. Angle is the cheapest transformation lever: it costs four steps.
           <span class="ex">John Vachon · <em>Loan companies on lower Douglas Street. Omaha, Nebraska</em> · 1938 · <a href="https://www.loc.gov/resource/fsa.8b14227/" target="_blank" rel="noopener">LoC</a></span></figcaption>
@@ -1242,7 +1242,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label al-street" style="left:78%;top:94%">the rest of the street: nobody</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoVapour" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoVapour" aria-pressed="true">Show original</button>
         <figcaption><b>The object that arrived and left</b>
           A quiet street of ochre and pale green, and one white cloud where two heads should be. The vapour is the brightest thing in the frame and the only pure white in it, and it existed for perhaps two seconds — an object in the sense that counts, something with its own shape and tone that the street manufactured unasked. The read also shows what is <em>not</em> happening: two thirds of the frame is empty pavement. No gesture, no glance, no second event. Remove the cloud and this is a photograph of a bin.
           <span class="ex">Julie Hrudova · Amsterdam · &#169; the photographer, shown here for critical commentary · <a href="https://juliehrudova.com/street" target="_blank" rel="noopener">see more</a></span></figcaption>
@@ -1281,7 +1281,7 @@ figure img{cursor:zoom-in}
           <span class="anno-label " style="left:86%;top:80%">ochre field</span>
         </div>
       </div>
-      <button class="anno-toggle" data-anno="annoColour" aria-pressed="false">Show the read</button>
+      <button class="anno-toggle" data-anno="annoColour" aria-pressed="true">Show original</button>
         <figcaption><b>One red, doing all the work</b>
           Deep blue sky, ochre walls, and a single red sign hung exactly where the street bends. Cover the sign with a thumb: the frame goes quiet, the depth flattens, the eye has nowhere to enter. One saturated element, placed on the structural seam, carries the entire composition — color as architecture, not decoration.
           <span class="ex">Jack Delano · <em>Street in San Juan, Puerto Rico</em> · 1939 · <a href="https://www.loc.gov/resource/fsac.1a34067/" target="_blank" rel="noopener">LoC</a></span></figcaption>
@@ -1370,7 +1370,7 @@ figure img{cursor:zoom-in}
           <span class="anno-label al-street" style="left:74%;top:88%">cool · the haze</span>
         </div>
       </div>
-      <button class="anno-toggle" data-anno="annoUyar" aria-pressed="false">Show the read</button>
+      <button class="anno-toggle" data-anno="annoUyar" aria-pressed="true">Show original</button>
       <figcaption><b>Two temperatures, one platform</b>
         Cold blue haze filling three-quarters of the frame and one warm orange rectangle of open carriage down the left edge — the colour contrast is the whole structure, and the figure in white sits exactly on the seam between them. Shot on an empty pandemic platform, which is why the haze had room to become the subject.
         <span class="ex">F. Dilek Uyar · Ankara · <em>Disinfection</em> · Category Winner, Street, Sony World Photography Awards 2021 · &#169; the photographer, shown here for critical commentary · <a href="https://www.worldphoto.org/team-profile/fdilek-uyar-turkey" target="_blank" rel="noopener">see more</a></span></figcaption>
@@ -1390,7 +1390,7 @@ figure img{cursor:zoom-in}
             <span class="anno-label al-street" style="left:28%;top:16%">the other 94%: one blue</span>
           </div>
         </div>
-        <button class="anno-toggle" data-anno="annoTofanelli" aria-pressed="false">Show the read</button>
+        <button class="anno-toggle" data-anno="annoTofanelli" aria-pressed="true">Show original</button>
         <figcaption><b>Small warm patches, an enormous blue</b>
           Blue hour is the twenty-odd minutes when tungsten and sky are within a stop of each other and one exposure can hold both; after that the sky goes black and the lamps blow out. The ratio is the argument: four warm sources — a phone lighting a face from below through a rain-beaded windscreen, a star-ball, a wall lamp, and a FOTOTESSERA booth at the left edge — occupy about <span class="num">6%</span> of the frame between them. The remaining 94% is a single blue. That ratio <em>is</em> the effect; make the warm patches large and the same scene becomes an evening snapshot.
           <span class="ex">Valeria Tofanelli · Rome · &#169; the photographer, shown here for critical commentary · <a href="https://burnmyeye.org/valeria-tofanelli" target="_blank" rel="noopener">see more</a></span></figcaption>
@@ -1766,7 +1766,7 @@ figure img{cursor:zoom-in}
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Frame viewer" hidden>
   <button class="lb-btn lb-close" aria-label="Close">×</button>
   <button class="lb-btn lb-prev" aria-label="Previous frame">‹</button>
-  <button class="lb-btn lb-anno" id="lbAnno" hidden>Show the read</button>
+  <button class="lb-btn lb-anno" id="lbAnno" hidden>Show original</button>
   <div class="lb-stage" id="lbStage"><img id="lbImg" src="" alt=""></div>
   <button class="lb-btn lb-next" aria-label="Next frame">›</button>
   <div class="lb-cap"><span id="lbTitle"></span><span id="lbCount"></span></div>
@@ -1845,10 +1845,10 @@ figure img{cursor:zoom-in}
     var srcFig=el.closest('.anno');
     if(srcFig){
       var layer=srcFig.querySelector('.anno-layer').cloneNode(true);
-      var on=srcFig.classList.contains('anno-on');
+      var on=!srcFig.classList.contains('anno-off');
       layer.style.opacity = on ? '1' : '0';
       stage.appendChild(layer);
-      aBtn.hidden=false; aBtn.textContent = on ? 'Hide the read' : 'Show the read';
+      aBtn.hidden=false; aBtn.textContent = on ? 'Show original' : 'Show the read';
     } else { aBtn.hidden=true; }
     var fig=el.closest('figure'), cap='';
     if(el.dataset.title){ cap=el.dataset.title; }
@@ -1872,7 +1872,7 @@ figure img{cursor:zoom-in}
     if(!layer) return;
     var on=layer.style.opacity!=='1';
     layer.style.opacity = on ? '1' : '0';
-    this.textContent = on ? 'Hide the read' : 'Show the read';
+    this.textContent = on ? 'Show original' : 'Show the read';
   });
   lb.addEventListener('click',function(e){ if(e.target===lb) lbClose() });
   document.addEventListener('keydown',function(e){
@@ -1907,9 +1907,9 @@ figure img{cursor:zoom-in}
     btn.addEventListener('click',function(){
       var fig=document.getElementById(btn.getAttribute('data-anno'));
       if(!fig) return;
-      var on=fig.classList.toggle('anno-on');
-      btn.setAttribute('aria-pressed', on?'true':'false');
-      btn.textContent = on ? 'Hide the read' : 'Show the read';
+      var off=fig.classList.toggle('anno-off');
+      btn.setAttribute('aria-pressed', off?'false':'true');
+      btn.textContent = off ? 'Show the read' : 'Show original';
     });
   });
 })();
