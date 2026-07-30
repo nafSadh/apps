@@ -5,6 +5,33 @@ can tell what is on the page, where it came from, and what has been retracted.
 
 ---
 
+## [5.3.0] - 2026-07-30
+
+### Changed
+- **Annotation reads show by default.** All 18 overlays were `opacity:0` until the reader pressed a
+  button, so most of the annotation work on the page was invisible to anyone scrolling it. `.anno-on`
+  is replaced by `.anno-off`. Buttons now name the alternative rather than the action — "Show
+  original" while the read is up, "Show the read" once hidden — and the lightbox button matches.
+
+### Added
+- **Lesson 11, "The two bodies, worked"** (`#kit`), on Sadh's request for sections dedicated to the
+  X100VI and the OM-1 + 12–40. Drills move to 12, ethics to 13.
+  - **X100VI**: f/8 zone at 3.3 m holding 1.65 m→∞; the leaf shutter's 1/2000 ceiling at f/2 and why
+    that is what the 4-stop ND is for; near-silent firing at conversational distance.
+  - **A card on making the steamed-window frame** (the Baudet glass photograph), which was the
+    specific question. The frame is a choice of which plane gets the slab: at ~30 cm and f/2 the
+    sharp zone is 29.4–30.6 cm, about a centimetre, so the condensation renders and the face behind
+    is gone; at ~1 m it is 93–108 cm, about fifteen, so the face resolves and the glass drops to
+    texture. f/8 renders both and kills the effect. EVF, not OVF, below a metre.
+  - **OM-1 + 12–40**: zoom restricted to 14–25 mm; 17 mm at f/8 focused at 2.5 m holds 1.2 m→∞;
+    ProCapture keeping 70 frames from before the shutter press — the only thing on the page that
+    actually beats the 230 ms reaction latency of Lesson 03.
+  - **On a better alternative**: there isn't one worth buying, and the section says so.
+  Every specification is taken from this repo's own `x100vi-guide.html` and `om1-guide.html` rather
+  than from recall.
+
+---
+
 ## [5.2.0] - 2026-07-30
 
 Second pass from Sadh's read-through.

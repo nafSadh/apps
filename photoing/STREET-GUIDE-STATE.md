@@ -3,7 +3,9 @@
 Resume file. Read this plus `CLAUDE.md` before touching the guide.
 
 ## Where it stands
-- **135 figures**, 12 lessons, HTML valid, TOC/jump-menu consistent (12 sections ↔ 12 TOC entries).
+- **135 figures**, 13 lessons, HTML valid, TOC/jump-menu consistent (13 sections ↔ 13 TOC entries ↔
+  13 jump-menu items; the jump menu auto-builds from `.lesson`, but the TOC `<li>` and the
+  `.lesson-num` text are both manual — update all three when adding a section).
 - **76 distinct photographers**, six continents.
 - Source split: **65 archive/museum · 70 living photographers** (hotlinked, in copyright).
 - **Counts no longer appear in the prose** (Sadh, 2026-07-30: "is the number correct? do we need to
@@ -17,6 +19,18 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   describing the guide's own sourcing ("The photographs run from the 1850s to this year, half out of
   public archives and half from…"), flagged as meta in the same pass, and the `.standfirst` line
   about the optics being computed. `.standfirst` CSS removed as dead; `.caveat` kept (still used).
+- **Annotation reads are ON by default** (Sadh, 2026-07-30: "show annotations by default / make the
+  button -> show original / show the read"). CSS is `.anno .anno-layer{opacity:1}` with `.anno-off`
+  hiding it — the old `.anno-on` class is gone, do not reintroduce it. Button labels name the *state's
+  alternative*: "Show original" while the overlay is up, "Show the read" once hidden. The lightbox
+  button follows the same rule and inherits the inline figure's state.
+- **13 lessons** as of 2026-07-30 — Lesson 11 "The two bodies, worked" (`#kit`) was added, pushing
+  drills to 12 and ethics to 13. `CLAUDE.md` says "do not talk about gear beyond the focal-length
+  argument"; **Sadh overrode that** ("we probably need to add sections dedicated for x100vi and om-1
+  with 12-40mm lens"). The section reuses numbers from the repo's own camera guides rather than
+  recalled specs — X100VI f/8 hyperfocal 3.3 m → 1.65 m–∞, leaf shutter capped at 1/2000 at f/2
+  (hence the 4-stop ND), OM-1 ProCapture keeping 70 pre-press frames, 12–40 at 0.3×. **Check
+  `x100vi-guide.html` and `om1-guide.html` before writing any spec into this page.**
 - **18 annotation studies** (inline SVG over untouched originals, toggleable + `a` key). Three added
   2026-07-30 on the **local public-domain files**, which is the trick when the CDNs are unreachable —
   `img/` can be opened with PIL and measured, so a sandbox with no network can still produce studies:
