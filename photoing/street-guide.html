@@ -283,7 +283,7 @@ figure img{cursor:zoom-in}
     <li><a href="#masters">Masters as data</a></li>
     <li><a href="#living">The living bar</a></li>
     <li><a href="#city">Reading a city you don&#8217;t know</a></li>
-    <li><a href="#kit">The two bodies, worked</a></li>
+    <li><a href="#kit">Kit and settings</a></li>
     <li><a href="#drills">The drills</a></li>
     <li><a href="#ethics">Where the line is</a></li>
   </ol></nav>
@@ -1672,32 +1672,81 @@ figure img{cursor:zoom-in}
   <!-- ═════════ 11 ═════════ -->
   <section class="lesson" id="kit">
     <div class="lesson-num">Lesson 11</div>
-    <h2>The two bodies, worked</h2>
-    <p class="thesis">Lesson&#8202;01 settles most of what gear can settle: stand closer, use a wide-normal. Past that, each of these two bodies has three or four controls that decide whether a frame you have already seen is available to you — and they are not the same controls.</p>
-    <p class="xref"><a href="x100vi-guide.html#section-focus">X100VI §Focus</a> · <a href="x100vi-guide.html#section-viewfinder">§Viewfinder</a> · <a href="om1-guide.html#section-speed">OM-1 §Speed — ProCapture</a> · <a href="om1-guide.html#section-glass">§Glass</a></p>
+    <h2>Kit and settings</h2>
+    <p class="thesis">Lesson&#8202;01 settles most of what gear can settle: stand closer, use a wide-normal. Past that there are perhaps five settings that decide whether a frame you have already seen is available to you, and most of them are about not focusing.</p>
+    <p class="xref"><a href="x100vi-guide.html#section-focus">X100VI §Focus</a> · <a href="x100vi-guide.html#section-viewfinder">§Viewfinder</a> · <a href="om1-guide.html#section-speed">OM-1 §Speed</a> · <a href="in-practice.html#dof">In practice §02 — depth of field</a></p>
 
-    <h3>X100VI — the decision already made</h3>
-    <p>The 23mm f/2 is fixed, so the argument of Lesson&#8202;01 is settled by the hardware: there is nothing to zoom to from across the road. That is the feature. The rest is three numbers worth committing.</p>
-    <div class="formula">zone focus · f/8, focus <span class="num">3.3&#8202;m</span> → sharp <span class="num">1.65&#8202;m</span> to ∞<br>
-      leaf shutter · near-silent, whole frame at once — fires without announcing you<br>
-      the catch · at f/2 the blades top out at <span class="num">1/2000</span>, which is what the built-in <span class="num">4-stop ND</span> is for</div>
-    <p>Set the zone once and shutter lag is the only latency left in the system — the point Lesson&#8202;03 costs at <span class="num">230&#8202;ms</span> of reaction time. The leaf shutter is why you can work at conversational distance: it is quiet enough that the press is not the thing that gets noticed. And the close-focus end of the lens is what buys the glass and reflection frames, which is where the thin depth of field stops being a liability and becomes the subject.</p>
+    <h3>Zone focus, and why f/8</h3>
+    <p>Autofocus is a request the camera answers when it is ready. Zone focus is a decision made before you arrive, so that focus is simply not in the loop. That matters because of the arithmetic in Lesson&#8202;03: <span class="num">230&#8202;ms</span> of human reaction, plus shutter lag, plus however long the camera hunts. Remove the third term and the frame is roughly twice as reachable.</p>
+    <p>Set the lens to manual, pick a distance, and everything inside a band around that distance renders acceptably sharp. The band comes from one expression:</p>
+    <div class="formula">H = f&#178; / (N &#215; c)&nbsp;&nbsp;<em>hyperfocal distance</em><br>
+      f = focal length (mm, actual, not equivalent) · N = f-number · c = circle of confusion<br>
+      c = <span class="num">0.02&#8202;mm</span> APS-C · <span class="num">0.015&#8202;mm</span> Micro Four Thirds</div>
+    <p><em>c</em> is the honest part of this. It is the diameter of a blur circle small enough to read as a point — a convention about print size and viewing distance, not a fact about optics. So &#8220;acceptably sharp&#8221; means acceptable in a print held at arm&#8217;s length, or a web image around 2000&#8202;px. Pixel-peep a <span class="num">40&#8202;MP</span> file at 100% and the edges of the zone are visibly soft. That is not a failure of the method; it is the method being quoted correctly.</p>
+    <p>Focus <em>at</em> H and the far limit runs to infinity while the near limit sits at about H/2. On the X100VI&#8217;s 23mm:</p>
+    <div class="formula">f/2 &nbsp;&#8594; H <span class="num">13.3&#8202;m</span> &nbsp;· sharp <span class="num">6.6&#8202;m</span> &#8594; ∞<br>
+      f/4 &nbsp;&#8594; H <span class="num">6.6&#8202;m</span> &nbsp;· sharp <span class="num">3.3&#8202;m</span> &#8594; ∞<br>
+      f/5.6 &#8594; H <span class="num">4.8&#8202;m</span> &nbsp;· sharp <span class="num">2.4&#8202;m</span> &#8594; ∞<br>
+      f/8 &nbsp;&#8594; H <span class="num">3.3&#8202;m</span> &nbsp;· sharp <span class="num">1.7&#8202;m</span> &#8594; ∞<br>
+      f/11 &#8594; H <span class="num">2.4&#8202;m</span> &nbsp;· sharp <span class="num">1.2&#8202;m</span> &#8594; ∞</div>
+    <p><strong>f/8 is the first aperture where the near limit falls under two metres.</strong> That is the whole reason it is the number everyone repeats. Below f/8 the zone starts beyond conversational distance, which is exactly where Lesson&#8202;01 wants you standing — a person at 2&#8202;m would be outside the zone at f/5.6 and you would be back to focusing. f/11 buys another half-metre at the front and costs a stop; on a 40&#8202;MP APS-C sensor it is also where diffraction starts showing. f/8 is the compromise, not the optimum.</p>
 
-    <div class="takeaway"><b>Card — how the steamed-window frame is made</b>
+    <figure class="fig-study">
+      <svg viewBox="0 0 800 250" role="img" aria-label="Depth of field at a fixed focus distance of 2.5 metres, compared across four apertures on a 23mm lens. At f/2 the sharp zone runs 2.11 to 3.07 metres; at f/4, 1.82 to 3.99; at f/5.6, 1.64 to 5.23; at f/8, 1.43 to 9.77 metres." style="width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px;background:var(--paper-hi)">
+        <text x="24" y="26" font-family="'JetBrains Mono',monospace" font-size="12" fill="#7d7358" letter-spacing="1.4">ONE FOCUS DISTANCE (2.5 m), FOUR APERTURES &#183; 23mm, APS-C</text>
+        <line x1="245" y1="42" x2="245" y2="212" stroke="#b8422a" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <text x="245" y="38" font-family="'JetBrains Mono',monospace" font-size="11" fill="#b8422a" text-anchor="middle">focus 2.5 m</text>
+        <g font-family="'JetBrains Mono',monospace" font-size="12">
+          <rect x="219" y="52" width="64" height="18" rx="3" fill="#4a4436" opacity=".55"/>
+          <text x="60" y="65" fill="#3a3126" text-anchor="end">f/2</text>
+          <text x="291" y="65" fill="#7d7358">2.11 &#8211; 3.07 m &#183; 0.97 m deep</text>
+          <rect x="200" y="88" width="145" height="18" rx="3" fill="#4a4436" opacity=".55"/>
+          <text x="60" y="101" fill="#3a3126" text-anchor="end">f/4</text>
+          <text x="353" y="101" fill="#7d7358">1.82 &#8211; 3.99 m &#183; 2.2 m</text>
+          <rect x="188" y="124" width="240" height="18" rx="3" fill="#4a4436" opacity=".55"/>
+          <text x="60" y="137" fill="#3a3126" text-anchor="end">f/5.6</text>
+          <text x="436" y="137" fill="#7d7358">1.64 &#8211; 5.23 m &#183; 3.6 m</text>
+          <rect x="174" y="160" width="558" height="18" rx="3" fill="#2e6e62" opacity=".8"/>
+          <text x="60" y="173" fill="#1a1610" text-anchor="end" font-weight="600">f/8</text>
+          <text x="722" y="173" fill="#f9f7f1" font-weight="600" text-anchor="end">1.43 &#8211; 9.77 m &#183; 8.3 m deep</text>
+        </g>
+        <line x1="78" y1="196" x2="780" y2="196" stroke="rgba(26,20,10,.3)" stroke-width="1"/>
+        <g font-family="'JetBrains Mono',monospace" font-size="11" fill="#7d7358" text-anchor="middle">
+          <line x1="145" y1="196" x2="145" y2="202" stroke="rgba(26,20,10,.3)"/><text x="145" y="216">1 m</text>
+          <line x1="212" y1="196" x2="212" y2="202" stroke="rgba(26,20,10,.3)"/><text x="212" y="216">2</text>
+          <line x1="279" y1="196" x2="279" y2="202" stroke="rgba(26,20,10,.3)"/><text x="279" y="216">3</text>
+          <line x1="412" y1="196" x2="412" y2="202" stroke="rgba(26,20,10,.3)"/><text x="412" y="216">5</text>
+          <line x1="747" y1="196" x2="747" y2="202" stroke="rgba(26,20,10,.3)"/><text x="747" y="216">10</text>
+        </g>
+        <text x="24" y="240" font-family="'JetBrains Mono',monospace" font-size="11" fill="#7d7358">Nothing moves but the aperture ring. Stopping down 2 &#8594; 8 turns a 1 m slab into an 8 m one.</text>
+      </svg>
+      <figcaption><b>Why the aperture is the focus control</b>
+        Same lens, same focus distance, four apertures. At f/2 the sharp band is under a metre, so a subject who steps toward you leaves it; at f/8 it runs from 1.4&#8202;m to nearly 10&#8202;m and almost the whole street is inside it. This is why zone focus is an aperture decision rather than a focus decision — you are not choosing where to focus, you are choosing how much of the street to stop caring about.
+        <span class="ex">Diagram drawn for this guide · computed with c = 0.02&#8202;mm</span></figcaption>
+    </figure>
+
+    <p>What it costs is light, and this is where the method has an honest edge. f/8 is four stops down from f/2. In sun that is free — <span class="num">1/400&#8202;s</span> at ISO&#8202;100. Overcast still works at <span class="num">1/250&#8202;s</span> and ISO&#8202;400. But at blue hour, f/8 wants something like a half-second at base ISO, and no amount of stabilisation fixes a walking subject. So you open up, the zone collapses to the metre-wide slab in the diagram, and you are back on autofocus. <strong>Zone focus is a daylight technique.</strong> The frames in Lesson&#8202;07 that depend on last light were not made this way.</p>
+
+    <h3>X100VI</h3>
+    <p>The 23mm f/2 is fixed, so the argument of Lesson&#8202;01 is settled by the hardware: there is nothing to zoom to from across the road. Set the focus ring to manual, put the zone at f/8 and 3.3&#8202;m, and the camera is ready before you are.</p>
+    <p>Two things about the shutter. It is a leaf shutter, so it fires the whole frame at once and is close to silent — which is what makes conversational distance workable, because the press is not the thing that gets noticed. And it is aperture-limited: at f/2 the blades cannot clear faster than <span class="num">1/2000&#8202;s</span>, which in daylight is not enough. That is what the built-in <span class="num">4-stop ND</span> is for, and it is why the ND matters more on this camera than on any other you own.</p>
+    <p>Below a metre, use the electronic finder. The optical finder&#8217;s framelines are offset from the lens and the parallax error at close range is larger than the thing you are trying to frame.</p>
+
+    <div class="takeaway"><b>Making the steamed-window frame</b>
       <p>A fogged pane with somebody&#8217;s finger-drawing still on it, one clear patch, a face behind it. Every decision in that frame is <em>which plane gets the sharp slab</em>, and wide open the slab is very thin:</p>
       <p><b>Focus on the glass, ~30&#8202;cm, f/2</b> — sharp from <span class="num">29.4</span> to <span class="num">30.6&#8202;cm</span>. About a centimetre deep. The condensation and the drawing render; a face 40&#8202;cm behind is gone entirely. The photograph is about the surface.</p>
       <p><b>Focus through the patch, ~1&#8202;m, f/2</b> — sharp from <span class="num">93</span> to <span class="num">108&#8202;cm</span>. About fifteen centimetres. The face resolves and the glass drops to texture around it. The photograph is about the person, framed by the surface.</p>
-      <p>Stop down to f/8 and you get both, which is the one outcome that kills it — the effect <em>is</em> the separation. Two working notes: use the EVF, because under a metre the optical finder&#8217;s framelines lie about where the clear patch sits; and stand at the glass rather than across the street, since at f/2 you cannot buy this separation with distance, only with proximity.</p>
+      <p>Stop down to f/8 and you get both, which is the one outcome that kills it — the effect <em>is</em> the separation. This is the exact inverse of the zone-focus problem above: there you stop down to stop caring about distance, here you open up because the distance is the subject. Two working notes: use the EVF, and stand at the glass rather than across the street, because at f/2 the separation is bought with proximity and not with distance.</p>
     </div>
 
-    <h3>OM-1 + 12&#8211;40 — the body that beats your reflexes</h3>
-    <p>Restrict the zoom to <span class="num">14&#8211;25&#8202;mm</span> (<span class="num">28&#8211;50mm-e</span>) and treat the range past it as absent. Micro Four Thirds runs about two stops deeper at the same f-number, so the zone is cheaper here than on the Fuji: at 17mm and f/8, focus at <span class="num">2.5&#8202;m</span> and <span class="num">1.2&#8202;m</span> to ∞ holds.</p>
-    <p>The reason to carry it for street is one feature. <strong>ProCapture is the only thing on this page that actually defeats the <span class="num">230&#8202;ms</span></strong> of Lesson&#8202;03: half-press and the camera rolls a silent buffer; full-press keeps up to <span class="num">70 frames from before your reflexes fired</span>. The peak you registered too late is already on the card.</p>
-    <p>It is a buffer, not a licence to stop watching — you still have to be half-pressed <em>before</em> the thing happens, which still means having read the scene. What it removes is the specific tax on being right but slow. Beyond that: IP53 sealing and the stabiliser make bad weather and the end of blue hour ordinary shooting conditions rather than a reason to go home, and the 12&#8211;40&#8217;s 0.3× close focus covers the object work in Lesson&#8202;06.</p>
+    <h3>OM-1 with the 12&#8211;40</h3>
+    <p>Restrict the zoom to <span class="num">14&#8211;25&#8202;mm</span> (<span class="num">28&#8211;50mm-e</span>) and treat the rest of the barrel as absent. Micro Four Thirds runs about two stops deeper at the same f-number, so the zone is cheaper here: at 17mm and f/8 the hyperfocal is only <span class="num">2.4&#8202;m</span>, and focusing at 2.5&#8202;m holds <span class="num">1.2&#8202;m</span> to infinity. The same setting on the Fuji stops at 9.8&#8202;m. Put differently, the format hands you roughly one extra stop of zone for free — f/5.6 here behaves about like f/8 there.</p>
+    <p>The reason to carry it for street is one feature. <strong>ProCapture is the only thing in the bag that actually defeats the <span class="num">230&#8202;ms</span></strong>: half-press and the camera rolls a silent buffer; full-press keeps up to <span class="num">70 frames from before your reflexes fired</span>. The peak you registered too late is already on the card.</p>
+    <p>It is a buffer, not a licence to stop watching — you still have to be half-pressed <em>before</em> the thing happens, which still means having read the scene. What it removes is the specific tax on being right but slow. Beyond that: the sealing and the stabiliser make rain and the end of blue hour ordinary shooting conditions rather than a reason to go home, and the 12&#8211;40&#8217;s 0.3&#215; close focus covers the object work in Lesson&#8202;06.</p>
 
-    <h3>Which one, and is there a better one</h3>
-    <p>The X100VI is the street camera, for the reason that sounds like a limitation: it removes the decision. You cannot back off and zoom, so the only way to fill a frame is to walk. Carry the OM-1 when the weather is against you, when the light has gone, or when the frame depends on a peak too fast to be anticipated — the three cases where the Fuji is the weaker tool.</p>
-    <p>As for a better alternative: there is nothing worth buying. Both bodies out-resolve, out-focus and out-shoot the photographers who made most of the frames in these lessons, several of whom worked a fixed lens on film with no meter. The measured gap in the street work was distance and timing, and no purchase closes either.</p>
+    <h3>Which camera, when</h3>
+    <p>The X100VI is the street camera, for the reason that sounds like a limitation: it removes the decision. You cannot back off and zoom, so the only way to fill a frame is to walk. Carry the OM-1 when the weather is against you, when the light has gone, or when the frame depends on a peak too fast to anticipate — the three cases where the Fuji is the weaker tool.</p>
+    <p>As for a better alternative: there is nothing worth buying. Both bodies out-resolve, out-focus and out-shoot the photographers who made most of the frames in these lessons, several of whom worked a fixed lens on film with no meter and no second chance. The measured gap in the street work was distance and timing, and no purchase closes either.</p>
   </section>
   <!-- ═════════ 12 ═════════ -->
   <section class="lesson" id="drills">

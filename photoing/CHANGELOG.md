@@ -22,8 +22,19 @@ can tell what is on the page, where it came from, and what has been retracted.
   Labels are rendered in the page's own JetBrains Mono at 3.125× the display scale, so baked and SVG
   annotations are visually identical. Verified: inline toggle both directions, lightbox toggle both
   directions, SVG figures unaffected, no JS errors.
-- **Lesson 11, "The two bodies, worked"** (`#kit`), on Sadh's request for sections dedicated to the
-  X100VI and the OM-1 + 12–40. Drills move to 12, ethics to 13.
+- **Lesson 11, "Kit and settings"** (`#kit`), on Sadh's request for sections dedicated to the
+  X100VI and the OM-1 + 12–40. Drills move to 12, ethics to 13. Retitled from "The two bodies,
+  worked" — *"just use less poetic titles. I am a poet who doesn't like poetics."* Subheads are
+  functional for the same reason.
+  - **Zone focus gets the space it needed**: the hyperfocal expression with `c` named honestly as a
+    print-size convention rather than a fact about optics (so "acceptably sharp" is quoted, not
+    claimed — pixel-peep a 40 MP file and the zone edges are soft); a hyperfocal table from f/2 to
+    f/11; why f/8 rather than any other stop, which is that it is the first aperture whose near
+    limit falls under 2 m and therefore inside the conversational distance Lesson 01 asks for; and
+    the limit that matters — f/8 is a daylight technique, and at blue hour the zone collapses back
+    to a metre and you are on autofocus again.
+  - **An inline-SVG diagram** (no raster file, nothing to generate): one focus distance at 2.5 m
+    against four apertures, showing 0.97 m of depth at f/2 versus 8.3 m at f/8.
   - **X100VI**: f/8 zone at 3.3 m holding 1.65 m→∞; the leaf shutter's 1/2000 ceiling at f/2 and why
     that is what the 4-stop ND is for; near-silent firing at conversational distance.
   - **A card on making the steamed-window frame** (the Baudet glass photograph), which was the

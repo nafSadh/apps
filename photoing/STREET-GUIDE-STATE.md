@@ -35,13 +35,27 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   hiding it — the old `.anno-on` class is gone, do not reintroduce it. Button labels name the *state's
   alternative*: "Show original" while the overlay is up, "Show the read" once hidden. The lightbox
   button follows the same rule and inherits the inline figure's state.
-- **13 lessons** as of 2026-07-30 — Lesson 11 "The two bodies, worked" (`#kit`) was added, pushing
+- **13 lessons** as of 2026-07-30 — Lesson 11 **"Kit and settings"** (`#kit`) was added, pushing
   drills to 12 and ethics to 13. `CLAUDE.md` says "do not talk about gear beyond the focal-length
   argument"; **Sadh overrode that** ("we probably need to add sections dedicated for x100vi and om-1
   with 12-40mm lens"). The section reuses numbers from the repo's own camera guides rather than
   recalled specs — X100VI f/8 hyperfocal 3.3 m → 1.65 m–∞, leaf shutter capped at 1/2000 at f/2
   (hence the 4-stop ND), OM-1 ProCapture keeping 70 pre-press frames, 12–40 at 0.3×. **Check
   `x100vi-guide.html` and `om1-guide.html` before writing any spec into this page.**
+  The section leads on **zone focus**: the hyperfocal expression with `c` named as a print-size
+  convention rather than physics, a hyperfocal table, why f/8 specifically (it is the first stop
+  whose near limit falls under 2 m, i.e. inside conversational distance), the diffraction/near-limit
+  trade at f/11, and the honest limit — f/8 needs daylight, so at blue hour the zone collapses and
+  you are back on AF. Carries an **inline-SVG diagram** (`#kit figure svg`, no raster file): one
+  focus distance at 2.5 m, four apertures, bars showing 0.97 m of depth at f/2 against 8.3 m at f/8.
+  Rebuild numbers with `H = f²/(N·c) + f`, `near = Hs/(H+s−f)`, `far = Hs/(H−s+f)`.
+  **Watch the viewBox:** SVG text is not clipped by the browser but does overflow `0 0 800 250` —
+  the f/8 value label had to move inside its bar. Check with `getBBox()` against `viewBox.baseVal`.
+- **Titles: plain, not poetic** (Sadh, 2026-07-30: *"just use less poetic titles. I am a poet who
+  doesn't like poetics."*). "The two bodies, worked" became "Kit and settings"; its subheads are
+  "Zone focus, and why f/8", "X100VI", "OM-1 with the 12–40", "Which camera, when". The older lesson
+  titles ("Fishing, not hunting", "Distance is the medium") were not in scope and are untouched —
+  ask before restyling them. **New sections get functional titles.**
 - **18 annotation studies** (inline SVG over untouched originals, toggleable + `a` key). Three added
   2026-07-30 on the **local public-domain files**, which is the trick when the CDNs are unreachable —
   `img/` can be opened with PIL and measured, so a sandbox with no network can still produce studies:
