@@ -19,6 +19,17 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   describing the guide's own sourcing ("The photographs run from the 1850s to this year, half out of
   public archives and half from…"), flagged as meta in the same pass, and the `.standfirst` line
   about the optics being computed. `.standfirst` CSS removed as dead; `.caveat` kept (still used).
+- **Two annotation mechanisms, both default-on.** 15 figures use inline SVG overlays; the 3 local
+  public-domain frames are **baked** — annotations painted into `img/street-*-anno.jpg` with PIL, and
+  the button swaps `src` between the baked file and the untouched original via `data-annotated` /
+  `data-original` on the `<img>`, marked `class="anno anno-baked"` with **no `.anno-layer`**. The
+  lightbox handles both: it clones a layer when one exists, otherwise it swaps `lbImg.src` and tracks
+  `lbImg.dataset.state`. **Any code touching `.anno` must not assume `.anno-layer` exists** — that
+  null deref is the trap. Baking rebuild: the bake script mirrors the SVG coordinates and the
+  `.anno-label` CSS at `scale = 1200/384 = 3.125` (font 31px, stroke 5px), using
+  `/mnt/skills/examples/canvas-design/canvas-fonts/JetBrainsMono-Bold.ttf` — the page's actual font,
+  so baked and SVG labels match. If a baked frame's geometry changes, re-bake *and* update nothing
+  else; there is no SVG left on those three to keep in sync.
 - **Annotation reads are ON by default** (Sadh, 2026-07-30: "show annotations by default / make the
   button -> show original / show the read"). CSS is `.anno .anno-layer{opacity:1}` with `.anno-off`
   hiding it — the old `.anno-on` class is gone, do not reintroduce it. Button labels name the *state's

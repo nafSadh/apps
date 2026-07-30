@@ -14,6 +14,14 @@ can tell what is on the page, where it came from, and what has been retracted.
   original" while the read is up, "Show the read" once hidden — and the lightbox button matches.
 
 ### Added
+- **The three local public-domain frames are now baked** (Sadh: "bake + also show original on button
+  click"). Annotations are painted into `img/street-atget-panier-anno.jpg`,
+  `street-atget-orgue-anno.jpg` and `street-stieglitz-terminal-anno.jpg`, shown by default, with the
+  button swapping `src` back to the untouched original — so baking did not cost the "Show original"
+  behaviour. The 15 hotlinked studies keep their SVG overlays; the lightbox now handles both paths.
+  Labels are rendered in the page's own JetBrains Mono at 3.125× the display scale, so baked and SVG
+  annotations are visually identical. Verified: inline toggle both directions, lightbox toggle both
+  directions, SVG figures unaffected, no JS errors.
 - **Lesson 11, "The two bodies, worked"** (`#kit`), on Sadh's request for sections dedicated to the
   X100VI and the OM-1 + 12–40. Drills move to 12, ethics to 13.
   - **X100VI**: f/8 zone at 3.3 m holding 1.65 m→∞; the leaf shutter's 1/2000 ceiling at f/2 and why
