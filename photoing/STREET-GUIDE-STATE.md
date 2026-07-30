@@ -49,8 +49,18 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   you are back on AF. Carries an **inline-SVG diagram** (`#kit figure svg`, no raster file): one
   focus distance at 2.5 m, four apertures, bars showing 0.97 m of depth at f/2 against 8.3 m at f/8.
   Rebuild numbers with `H = f²/(N·c) + f`, `near = Hs/(H+s−f)`, `far = Hs/(H−s+f)`.
-  **Watch the viewBox:** SVG text is not clipped by the browser but does overflow `0 0 800 250` —
-  the f/8 value label had to move inside its bar. Check with `getBBox()` against `viewBox.baseVal`.
+  **Watch the viewBox.** A root `<svg>` computes `overflow:hidden`, so anything drawn past the
+  viewBox is **clipped and silently disappears** — the f/8 value label rendered as "1.43 – 9" with
+  the rest cut off, and had to move inside its bar. (An earlier version of this note said the
+  opposite; it was wrong. Verified: default `<svg>` → `getComputedStyle().overflow === 'hidden'`;
+  add `overflow:visible` and the same text spills outside the box instead.)
+  **Audit method — do not use `getBBox()` for this.** `getBBox()` returns a bbox in the element's
+  *own* user space and ignores ancestor transforms, so it reports dozens of false positives on any
+  SVG that uses `<g transform>`. Compare `el.getBoundingClientRect()` against the `<svg>`'s own
+  `getBoundingClientRect()` instead; that accounts for transforms and matches what renders.
+  Audited across all 17 SVGs on the page: **the only genuine clipping is in `#distsim`**, where
+  background figures get cropped at the panel edge at long focal lengths. That is intentional — the
+  panel is captioned "what the frame holds", and a frame cropping its edges is the point.
 - **Titles: plain, not poetic** (Sadh, 2026-07-30: *"just use less poetic titles. I am a poet who
   doesn't like poetics."*). "The two bodies, worked" became "Kit and settings"; its subheads are
   "Zone focus, and why f/8", "X100VI", "OM-1 with the 12–40", "Which camera, when". The older lesson
