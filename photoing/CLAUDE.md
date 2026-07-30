@@ -11,6 +11,8 @@ CSS/JS. Do not introduce tooling.
 - `om1-guide.html` — OM-1 guide (12 sections, 2 simulators, 12-card mission deck).
 - `in-practice.html` — camera-agnostic companion: 7 lessons, worked numbers, 6 assignments,
   real photographs as evidence.
+- `street-guide.html` — street photography guide, 13 lessons, 135 figures, 18 annotation studies.
+  **Built and live.** `STREET-GUIDE-STATE.md` is its resume file — read that before touching it.
 - `img/` — web-ready images, short kebab names (`scene-01-street-day.jpg`, `om-mission-04.jpg`).
 - `gen/` — generated illustration masters (jpeg, higher res; `-BROKEN` suffix = discarded take).
   Pipeline: masters land in `gen/`, the chosen/renamed web copies go to `img/`.
@@ -30,7 +32,57 @@ CSS/JS. Do not introduce tooling.
 - Voice: first person, honest, plain words, "read once and carried after." Worked numbers over
   adjectives. Photographs as evidence, not decoration. No hype, no euphemism.
 
-## TASK: add a street photography guide (`street-guide.html`)
+## street-guide.html — blocked work, pick up from a local session
+
+The guide is **built**; everything below this heading down to "Content pillars" is the original
+brief, kept for the diagnosis it contains. `STREET-GUIDE-STATE.md` is the live resume file and
+wins wherever the two disagree. What follows here is only the part that **cannot be done from
+Claude Code on the web**.
+
+**Why it is blocked.** The web sandbox's network policy answers `403` to CONNECT for
+`tile.loc.gov`, `www.maciejdakowicz.com`, `circuitgallery.com` and `images.squarespace-cdn.com`.
+This is *not* a missing-browser problem — Chromium and Playwright are installed there and were
+used throughout the build; a browser goes through the same proxy and renders those figures as
+"frame unavailable". A local session fixes it through unrestricted egress, nothing else.
+
+**The rule that decides the treatment: bake what you host, overlay what you hotlink.**
+- **Public domain, mirrored into `img/`** → paint the annotations into a `-anno.jpg` with PIL and
+  swap `src` on the button (`data-annotated` / `data-original`, wrapper `class="anno anno-baked"`,
+  no `.anno-layer`). Also works with JS off. Three frames do this today.
+- **In copyright, hotlinked** → inline SVG overlay only, and keep the hotlink. You cannot bake a
+  file you do not host, and painting on an in-copyright photograph makes a derivative work — a
+  different legal question from showing it for criticism. Fifteen frames do this today.
+
+**Queued, in priority order:**
+1. **Delano `fsac/1a33932`** — `https://tile.loc.gov/storage-services/service/pnp/fsac/1a33000/1a33900/1a33932r.jpg`
+   Public domain. Mirror it to `img/`, then bake. This also retires a hotlink that dies whenever
+   LoC does. It sits in §01 as the spectator-geometry counter-example.
+2. **Dakowicz, *Superman*** (`maciejdakowicz.com`, Cardiff After Dark, §04) and **Cartagena,
+   *Carpoolers*** (`circuitgallery.com`, §04) — Sadh asked for both to be studied. In copyright:
+   measure locally, ship an SVG overlay, keep the hotlink.
+3. Abdolahabadi panorama and Majali Giza — gridded once already, same overlay treatment.
+
+**Method — do not skip step 2.** Coordinates are measured, never estimated. Two of the three
+existing baked studies had positions wrong on the first attempt and were caught by the mock-up.
+1. Open with PIL, render a percent grid (5% lines, labelled every 10%), read coordinates off it.
+   Crop and re-grid at 1–2% for any edge that carries a number.
+2. Draw the planned annotation onto a copy with PIL and **look at it** before writing any HTML.
+3. Emit inline SVG with `viewBox="0 0 100 100" preserveAspectRatio="none"` so SVG units are
+   percentages directly. `<circle>` renders as an ellipse under that setting — expected, and
+   consistent with the existing studies.
+4. Baked frames only: mirror the SVG coordinates and the `.anno-label` CSS at
+   `scale = image_width / 384` (3.125 for the 1200px files → 31px label, 5px stroke) using
+   `JetBrainsMono-Bold.ttf`, the page's own label font.
+
+**Labels must be 6–12 characters.** `.anno-label` is `.62rem` and does not scale with the image,
+so "seller 51%" reads at 384px and a 30-character label does not.
+
+**Verify in a browser before committing:** figure count; `section.lesson` count matching both the
+TOC `<li>` count and the jump menu; no dead in-page anchors; annotation toggles in both
+directions; the lightbox for *both* mechanisms; no JS errors. Any code touching `.anno` must not
+assume `.anno-layer` exists — the baked three do not have one, and that is the null-deref trap.
+
+## The original brief (kept for the diagnosis; the guide is built)
 
 This one is different from the camera guides: it teaches **seeing**, not a body. It exists
 because the owner's street and object work is measurably their weakest genre, and the
@@ -51,7 +103,16 @@ repo; they understand exposure, metering, DoF arithmetic, and their gear deeply.
 post-processing and cropping are strong — in review sessions their crops beat both agent and
 judge proposals. Their landscape/graphic work already performs: art-deco fire escape 3300 on
 r/itookapicture, moon sliver 1300, a Golden Gate post at 2000 on r/sanfrancisco. **Do not
-teach basics. Do not talk about gear beyond the focal-length argument. Start past all of it.**
+teach basics. Start past all of it.**
+
+> **Superseded 2026-07-30.** This brief used to end that line with "do not talk about gear beyond
+> the focal-length argument". Sadh overrode it — *"we probably need to add sections dedicated for
+> x100vi and om-1 with 12-40mm lens"* — and **Lesson 11, "The two bodies, worked" (`#kit`), is the
+> result. Do not delete it as off-brief.** The constraint that replaced the old rule: every
+> specification on that page must be read out of this repo's own `x100vi-guide.html` /
+> `om1-guide.html`, never recalled. Gear talk earns its place by being arithmetic the reader can
+> act on (zone distances, the f/2 shutter ceiling, ProCapture's pre-press buffer), not by being
+> spec listing.
 
 Where they actually are in street/object, with receipts (their posted record, upvotes):
 - Street is their measurably worst genre: r/streetphotography engagement 1.10%, the lowest of
@@ -154,17 +215,21 @@ with them before publishing). Scores are Reddit upvotes on the owner's account.
    moments, homeless people are people not props, lit windows are off limits). Use the word
    "homeless," not "unhoused" — plain words throughout.
 
-### Build notes
-- One or two simulators max, only if they genuinely teach: candidates — a focal-length /
-  working-distance visualizer (what 28 vs 50 vs 150mm-e does to the same street), or a
-  "peak scrubber" that steps a sequence of frames ±1s around the moment.
-- A 12-card street deck matching the existing field-deck pattern would fit
-  (`img/street-card-NN-*.jpg`); generate masters into `gen/` first.
-- Add the third card to `index.html` (new accent, tags like `8 sections · 1 simulator ·
-  street deck`) and update the index `.note` line ("Two cameras · …") to include it.
+### Build notes — status
+- **One simulator exists** — the focal-length / working-distance visualizer, `#distsim` in §01.
+  The peak-latency simulator (`#peaksim`) recorded in CHANGELOG v1.3.0 **was removed** during the
+  v5.0.0 overhaul and is not on the page; the changelog entry is history, not current state. The
+  brief's ceiling of two still stands, so one more is permitted if it genuinely teaches.
+- **Not built:** the 12-card street deck (`img/street-card-NN-*.jpg`, masters into `gen/` first).
+  Still open if wanted.
+- ~~Add the third card to `index.html`~~ — **done**, with the `--street` accent. Its tag chips
+  read `12 lessons · 1 simulator · annotation studies`; the lesson count is now **13**, so fix
+  that chip next time `index.html` is touched. Deliberately **no figure/photographer counts** in
+  the card prose — see the counts ruling in `STREET-GUIDE-STATE.md`.
 - If real example frames are wanted, ask the owner to pick from their library rather than
   inventing; their photos live under `/Users/nafsadh/photos/` and the strongest street
-  attempts (and their scores) are catalogued in the craft file above.
+  attempts (and their scores) are catalogued in the craft file above. **None of the owner's own
+  photographs are on the page yet** — every figure is archive or a working photographer's work.
 
 ## Changelog
 See `CHANGELOG.md` for the complete record of updates across all field guides.
