@@ -7,10 +7,28 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
 - **76 distinct photographers**, six continents.
 - Source split: **65 archive/museum · 70 living photographers** (hotlinked, in copyright).
 - **Counts no longer appear in the prose** (Sadh, 2026-07-30: "is the number correct? do we need to
-  specify the number?"). They were stated in the lede, `#howtoread` and the index card and had to be
-  kept in sync by hand. Do not reintroduce them. Numbers that carry an argument stay — the FSA's
-  171,074 negatives, the 40:1 response spread. The lede says "roughly half predate 1943", not a count.
-- **15 annotation studies** (inline SVG over untouched originals, toggleable + `a` key). Seven added
+  specify the number?"). They were stated in the lede, the intro block and the index card and had to
+  be kept in sync by hand. Do not reintroduce them. Numbers that carry an argument stay — the FSA's
+  171,074 negatives (still cited twice, in §06 and §Sources), the 40:1 response spread.
+- **The `#howtoread` intro block is DELETED** (Sadh, 2026-07-30: "this whole section is bullshit").
+  It had already been rewritten once as "Reading old photographs" and that was not enough — the
+  problem was the block existing at all, not its wording. The lede is now two sentences and the page
+  goes straight into the TOC. **Do not write a new one.** Also deleted with it: the sentence
+  describing the guide's own sourcing ("The photographs run from the 1850s to this year, half out of
+  public archives and half from…"), flagged as meta in the same pass, and the `.standfirst` line
+  about the optics being computed. `.standfirst` CSS removed as dead; `.caveat` kept (still used).
+- **18 annotation studies** (inline SVG over untouched originals, toggleable + `a` key). Three added
+  2026-07-30 on the **local public-domain files**, which is the trick when the CDNs are unreachable —
+  `img/` can be opened with PIL and measured, so a sandbox with no network can still produce studies:
+  `annoPanier` (Atget *Marchand du Panier*, §01 takeaway — seller 51% / customer 54% / onlooker 34%
+  of frame height), `annoTerminal` (Stieglitz *The Terminal*, §05 takeaway — near / event / far
+  markers on the three planes), `annoOrgue` (Atget *Joueur d'orgue*, §02 fig-row — her thrown-back
+  head and flung arm against the grinder holding still). All heights and positions were measured off
+  a rendered percent grid and checked against a PIL mock-up before any HTML was written.
+  **Labels must be short.** `.anno-label` is `.62rem` and does *not* scale with the image, so a
+  6–12 character label ("seller 51%", "the peak", "near") is legible at 384px and a 30-character one
+  is not. That, not the annotation itself, is what forces a study to full width — see figure rhythm.
+  Seven earlier ones added
   2026-07-30: `annoGiza` (Majali, four peaks + the monument doing nothing), `annoFrieze`
   (Abdolahabadi, five compartments + one ground line), `annoFerris` (the crop, the kerb line, the
   foot landing on it), `annoArgolo` (42% vs 21% head heights), `annoNarula` (23% lit slot, two
@@ -37,7 +55,7 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
 
 ## Rulings from Sadh — these override defaults
 1. **Hotlink copyrighted images.** Stated three times. Fair use for criticism; every figure carries photographer, place/series, "© the photographer, shown here for critical commentary", and a source link. Do not retreat to PD-only.
-2. **"Copyright-free" is not neutral** — it is what governments funded and museums kept. This argument is on the page in the `#howtoread` intro block. Prefer living photographers' own sites over archives.
+2. **"Copyright-free" is not neutral** — it is what governments funded and museums kept. This still governs *sourcing*: prefer living photographers' own sites over archives. But it is **no longer argued on the page** — the `#howtoread` block that carried it was deleted 2026-07-30 as "bullshit". Treat it as a rule for picking frames, not as copy to reinstate.
 3. **Children rule applies to frames Sadh makes, not to citing published work.** Bhalotia's *Flying Boys* is in on that basis. Still exclude: frames whose interest IS someone's misfortune.
 4. **Ethics are culturally specific** — the Turpin/in-Public rule is labelled as one British collective's position, not universal. §Ethics carries the Shahidul Alam counter-argument about who gets to decide.
 5. **No museum-anchor requirement.** Contest records, platform reach and collectives count. This filter had excluded Rimita Sen, Sarmistha Bera, Roopsha Samanta — all now on the page.
@@ -75,10 +93,12 @@ Notes: LoC metadata API rate-limits hard (~40 req/10 min); the tile CDN never bl
   it is public domain, so a baked overlay would be legal, but keep the SVG-over-untouched pattern for
   the toggle and the lightbox clone). Also gridded and ready: Abdolahabadi panorama, Majali Giza.
   Method: render a percent grid with PIL, read coordinates, verify by drawing locally, then emit SVG.
-  **Attempted 2026-07-30 and abandoned:** that session ran in a sandbox whose network policy answered
-  403 to CONNECT for `tile.loc.gov`, `images.squarespace-cdn.com` and `arabnews.com`, so the source
-  pixels could not be fetched. Coordinates must be measured, never estimated — see the swapped-Delano
-  and invented-URL entries above. Do this from an environment that can reach the CDNs.
+  **Still blocked 2026-07-30:** the sandbox network policy answers 403 to CONNECT for `tile.loc.gov`,
+  `images.squarespace-cdn.com` and `arabnews.com`, so those source pixels cannot be fetched.
+  Coordinates must be measured, never estimated — see the swapped-Delano and invented-URL entries
+  above. Do the *hotlinked* ones from an environment that can reach the CDNs. Meanwhile the three
+  local public-domain files were annotated instead (see above) — check `img/` first before declaring
+  this blocked.
 - ~~CHANGELOG needs a 5.0.0 entry~~ — present, and 5.1.0 covers the 2026-07-30 editing pass.
 - `photoing/` **is** git-committed as of 2026-07-30 (branch `claude/street-guide-review-lsoe7b`), so
   `git checkout HEAD -- <file>` is a real undo for images. Earlier note said otherwise; it was stale.

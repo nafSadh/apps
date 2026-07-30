@@ -33,7 +33,6 @@ h1{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400;font-v
 .lede{font-size:1.1rem;max-width:var(--measure);margin-bottom:1rem}
 .lede em{font-style:italic;color:var(--ink)}
 .lede a{color:var(--street);text-decoration:none;border-bottom:1px solid rgba(46,110,98,.35)}
-.standfirst{font-size:.95rem;color:var(--dim);max-width:var(--measure);margin-bottom:1.6rem}
 
 .layout{display:block}
 .content{max-width:100%}
@@ -269,15 +268,7 @@ figure img{cursor:zoom-in}
   <div class="intro">
   <div class="kicker"><a href="/">sadh.app</a> · <a href="index.html">photoing</a> · street</div>
   <h1>Seeing the street.</h1>
-  <p class="lede">The camera guides teach a body; this one teaches a way of seeing. Street photography punishes exactly the habits that landscape and graphic work reward — composing first, standing back, finishing a scene in three frames. The photographs run from the 1850s to this year, half out of public archives and half from the sites of photographers working right now, every one credited and linked back to where it came from. Each is here for one decision you can copy tomorrow.</p>
-  <p class="standfirst">The optics are computed, not asserted — check any of them against a frame&#8217;s EXIF.</p>
-
-  <div class="takeaway caveat" id="howtoread"><b>Reading old photographs</b>
-    <p>Roughly half these frames predate 1943, made when a camera was rare and film cost money — when a competent photograph of an ordinary street was worth looking at partly <em>because so few existed</em>. The whole Farm Security Administration effort, a federal programme with staff photographers running most of a decade, produced <span class="num">171,074</span> negatives: fewer than <span class="num">sixty exposures a day</span> for the entire United States. You can make sixty in an afternoon. Scarcity used to do work the photographer didn&#8217;t have to, and it does none now. A street photograph today competes with everything every phone in the city made this morning, so it earns attention on construction alone — which is why description fails and transformation survives in Lesson&#8202;06.</p>
-    <p>The archive is also not a neutral sample of what was photographed. It is what got funded and what got kept. The Farm Security Administration set exists because a federal programme hired a small staff — overwhelmingly white, overwhelmingly men — to document a specific political argument about rural poverty; the museum holdings are what one or two institutions in New York and Ohio chose to collect. &#8220;Free to use&#8221; is a legal category, not an aesthetic or a moral one, and a syllabus assembled from it silently inherits every one of those selections. The living photographers here are hotlinked from their own sites, still in copyright, because there the selection was the photographer&#8217;s.</p>
-
-    <p><strong>Read these frames for mechanism, not for standard.</strong> Where the photographer stood, what peaked, how the planes stack, what the light was doing — that is geometry and physics, and it has not aged a day. But &#8220;would this hold up posted today?&#8221; is a different question, and for a fair number of them the honest answer is no. The bar is set by photographers working now, against the same flood you are; Lesson&#8202;09 gathers them by name.</p>
-  </div>
+  <p class="lede">The camera guides teach a body; this one teaches a way of seeing. Street photography punishes exactly the habits that landscape and graphic work reward — composing first, standing back, finishing a scene in three frames.</p>
   </div>
 
   <div class="layout">
@@ -477,7 +468,26 @@ figure img{cursor:zoom-in}
 
     <div class="takeaway"><b>Carry this</b>
       <p>Before raising the camera, close half the distance you think is right. If the frame gets uncomfortable, it is starting to be a street photograph. The lens restriction is the training wheel; the reflex is the goal.</p>
-      <figure><img src="img/street-atget-panier.jpg" alt="A basket seller with a wicker frame on his back and a basket in his hand stops to talk to a woman on a Paris pavement, two more women watching from a doorway" loading="lazy"><figcaption>Eugène Atget · <em>Marchand du Panier</em> · c. 1899–1900 · <a href="https://www.artic.edu/artworks/54282" target="_blank" rel="noopener">Art Institute of Chicago</a> · CC0</figcaption></figure>
+      <figure>
+        <div class="anno" id="annoPanier">
+          <img src="img/street-atget-panier.jpg" alt="A basket seller with a wicker frame on his back and a basket in his hand stops to talk to a woman on a Paris pavement, two more women watching from a doorway" loading="lazy" data-title="Annotation study — what standing close buys">
+          <div class="anno-layer" aria-hidden="true">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d="M 13 34 L 13 85 M 11 34 L 15 34 M 11 85 L 15 85" fill="none" stroke="#b8422a" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+              <path d="M 53 33 L 53 87 M 51 33 L 55 33 M 51 87 L 55 87" fill="none" stroke="#b8422a" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+              <path d="M 95 41 L 95 74.5 M 93 41 L 97 41 M 93 74.5 L 97 74.5" fill="none" stroke="#2e6e62" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+            </svg>
+            <span class="anno-label al-accent" style="left:15%;top:89%">seller 51%</span>
+            <span class="anno-label al-accent" style="left:53%;top:91.5%">customer 54%</span>
+            <span class="anno-label al-street" style="left:84%;top:79%">onlooker 34%</span>
+          </div>
+        </div>
+        <button class="anno-toggle" data-anno="annoPanier" aria-pressed="false">Show the read</button>
+        <figcaption><b>Annotation study — what standing close buys</b>
+          Both principals run about half the plate from head to sole: the seller <span class="num">51%</span>, the customer <span class="num">54%</span>. Neither is a figure in a street scene. The pavement, the shopfront and the DÉGUSTATION sign are what was left over after two people were given the full height of the frame.
+          The woman watching from the doorway is only a few paces further back, and she measures <span class="num">34%</span> — roughly two thirds of the customer. That fall-off across a few paces is the whole record of where the camera stood: from across the road the same two paces would cost almost nothing, everyone would render near the same size, and the frame would go flat.
+          <span class="ex">Eugène Atget · <em>Marchand du Panier</em> · c. 1899–1900 · <a href="https://www.artic.edu/artworks/54282" target="_blank" rel="noopener">Art Institute of Chicago</a> · CC0 · heights measured off the frame</span></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -508,9 +518,23 @@ figure img{cursor:zoom-in}
 
     <div class="fig-row">
       <figure>
-        <img src="img/street-atget-orgue.jpg" alt="An elderly organ grinder stands at his barrel-organ cart while a young woman beside him throws her head back, singing, one arm flung out" loading="lazy">
-        <figcaption><b>Joueur d’orgue</b>
+        <div class="anno" id="annoOrgue">
+          <img src="img/street-atget-orgue.jpg" alt="An elderly organ grinder stands at his barrel-organ cart while a young woman beside him throws her head back, singing, one arm flung out" loading="lazy" data-title="Annotation study — one of them is peaking">
+          <div class="anno-layer" aria-hidden="true">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+              <circle cx="77" cy="44.5" r="3.6" fill="none" stroke="#b8422a" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+              <path d="M 56 48.5 L 72 52" fill="none" stroke="#b8422a" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+              <circle cx="38" cy="38" r="3.6" fill="none" stroke="#1a1610" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+            </svg>
+            <span class="anno-label al-accent" style="left:77%;top:37%">the peak</span>
+            <span class="anno-label al-accent" style="left:60%;top:56%">arm out</span>
+            <span class="anno-label" style="left:38%;top:30%">static</span>
+          </div>
+        </div>
+        <button class="anno-toggle" data-anno="annoOrgue" aria-pressed="false">Show the read</button>
+        <figcaption><b>Annotation study — one of them is peaking</b>
           Atget photographed Paris for thirty years and is usually taught as the man who shot it empty. Here he is close enough to catch a street singer mid-note beside her organ grinder — the frame is entirely about <em>her</em>, and it dies if she stops singing.
+          Two people, one moment: her head is thrown back on a held note and her arm is flung out along the organ, a single line from her hand to her shoulder. He is looking at the lens and would look identical a second either side. That is the difference between a subject who is present and a subject who is peaking.
           <span class="ex">Eugène Atget · <em>Joueur d’orgue</em> · 1898–1899 · <a href="https://www.artic.edu/artworks/55394" target="_blank" rel="noopener">Art Institute of Chicago</a> · CC0</span></figcaption>
       </figure>
       <figure>
@@ -1048,7 +1072,26 @@ figure img{cursor:zoom-in}
 
     <div class="takeaway"><b>Carry this</b>
       <p>Load one extra plane on purpose. When the single-subject frame is composed, don&#8217;t press — take one step closer or sideways until something enters the foreground or resolves in the distance, then wait for both planes to peak. The keeper rate drops and the keepers get better; that trade is the lesson.</p>
-      <figure><img src="img/street-stieglitz-terminal.jpg" alt="Snowbound street: a driver in a heavy coat waters a team of steaming horses hitched to a Harlem streetcar, snowbanks piled in the foreground, shopfronts and figures behind" loading="lazy"><figcaption>Alfred Stieglitz · <em>The Terminal</em> · 1893 · <a href="https://www.artic.edu/artworks/66312" target="_blank" rel="noopener">Art Institute of Chicago</a> · CC0</figcaption></figure>
+      <figure>
+        <div class="anno" id="annoTerminal">
+          <img src="img/street-stieglitz-terminal.jpg" alt="Snowbound street: a driver in a heavy coat waters a team of steaming horses hitched to a Harlem streetcar, snowbanks piled in the foreground, shopfronts and figures behind" loading="lazy" data-title="Annotation study — three planes, loaded on purpose">
+          <div class="anno-layer" aria-hidden="true">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+              <circle cx="26.5" cy="38" r="4" fill="none" stroke="#1a1610" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+              <circle cx="57.5" cy="45" r="4" fill="none" stroke="#b8422a" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+              <circle cx="14" cy="82" r="4" fill="none" stroke="#2e6e62" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+            </svg>
+            <span class="anno-label" style="left:26.5%;top:29%">far</span>
+            <span class="anno-label al-accent" style="left:57.5%;top:36%">the event</span>
+            <span class="anno-label al-street" style="left:14%;top:73%">near</span>
+          </div>
+        </div>
+        <button class="anno-toggle" data-anno="annoTerminal" aria-pressed="false">Show the read</button>
+        <figcaption><b>Annotation study — three planes, loaded on purpose</b>
+          Stieglitz could have shot the team head-on from the cleared street. He stood behind a snowbank instead, so the frame carries three depths at once: churned snow in the near plane, the driver watering his steaming team in the middle, the shopfronts and waiting figures behind.
+          Cover the snow and it is a competent record of a horsecar terminus. The near plane is what puts you in the cold standing in it. And the steam is the only thing here that existed for a second — the snow, the signs and the building would all have been there an hour later.
+          <span class="ex">Alfred Stieglitz · <em>The Terminal</em> · 1893 · <a href="https://www.artic.edu/artworks/66312" target="_blank" rel="noopener">Art Institute of Chicago</a> · CC0</span></figcaption>
+      </figure>
     </div>
   </section>
 

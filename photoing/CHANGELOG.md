@@ -5,6 +5,42 @@ can tell what is on the page, where it came from, and what has been retracted.
 
 ---
 
+## [5.2.0] - 2026-07-30
+
+Second pass from Sadh's read-through.
+
+### Removed
+- **The `#howtoread` intro block is gone.** Rewriting it in 5.1.0 was the wrong fix — Sadh:
+  *"this whole section is bullshit."* The problem was six paragraphs of the page explaining
+  which photographs it picked and how to regard them before a single lesson, not the wording.
+  The page now runs title → two-sentence lede → Lesson 01.
+- The lede sentence describing the guide's own sourcing ("The photographs run from the 1850s to
+  this year, half out of public archives and half from…"), flagged as the same species of meta.
+- The `.standfirst` line about the optics being computed, and its now-dead CSS rule.
+- The FSA's 171,074 negatives survive in lesson 06 and the sources section, so that fact is not
+  orphaned, and no inbound links pointed at `#howtoread`.
+
+### Added
+- **Three annotation studies, 15 → 18**, built on the local public-domain files rather than the
+  hotlinked ones. The CDNs are still unreachable from this environment, but `img/` can be opened
+  and measured, which is the workaround the earlier pass missed:
+  - `annoPanier` — Atget, *Marchand du Panier*, §01 takeaway. Head-to-sole brackets: seller
+    **51%** of frame height, customer **54%**, the onlooker a few paces back **34%**. The fall-off
+    across those few paces is the record of where the camera stood.
+  - `annoTerminal` — Stieglitz, *The Terminal*, §05 takeaway. Markers on the three stacked
+    planes: churned snow near, the driver and his steaming team in the middle, shopfronts behind.
+  - `annoOrgue` — Atget, *Joueur d'orgue*, §02. Her thrown-back head and flung arm as one line,
+    against the grinder holding still — present versus peaking.
+  Every coordinate was read off a rendered percent grid and checked against a PIL mock-up before
+  any HTML was written, then verified in-browser.
+
+### Note for later
+- **Short labels are the real width constraint.** `.anno-label` is `.62rem` and does not scale
+  with the image, so a 6–12 character label reads fine at 384px while a 30-character one does
+  not. All three new studies sit at normal body width; none needed promoting to `.fig-study`.
+
+---
+
 ## [5.1.0] - 2026-07-30
 
 Editing pass on `street-guide.html` from Sadh's read-through. Four notes, all about the page
