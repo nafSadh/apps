@@ -14,7 +14,7 @@
 :root{
   --paper:#f3f2ec; --paper-hi:#faf9f4; --line:rgba(26,20,10,.13);
   --ink:#1b1710; --ink-soft:#3a3126; --dim:#877c62;
-  --fuji:#b8422a; --om:#1f6a99;
+  --fuji:#b8422a; --om:#1f6a99; --street:#2e6e62;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--paper);color:var(--ink-soft);font-family:'DM Sans',system-ui,sans-serif;
@@ -71,7 +71,7 @@ footer a:hover{color:var(--ink);border-bottom-color:var(--line)}
   <div class="kicker"><a href="/">sadh.app</a> · photoing</div>
   <h1>Learning to see.</h1>
   <p class="lede">Visual field guides to the cameras I actually shoot with — built to be <em>read once and carried after</em>. Interactive simulators for the things a manual only describes, cutaway diagrams of the mechanisms inside, and craft notes that admit what doesn't work.</p>
-  <p class="note">Two cameras · twelve interactive diagrams · twenty-four pocket field cards · one companion of real frames</p>
+  <p class="note">Two cameras · one craft guide · twelve interactive diagrams · twenty-four pocket field cards · one companion of real frames</p>
 
   <div class="guides">
     <a class="guide fuji" href="x100vi-guide.html">
@@ -95,6 +95,17 @@ footer a:hover{color:var(--ink);border-bottom-color:var(--line)}
         <div class="open">Open the guide <span class="arrow">→</span></div>
       </div>
     </a>
+    <a class="guide street" href="street-guide.html" style="--accent:var(--street)">
+      <img src="img/street-cover.jpg" alt="Overhead 1940s Kodachrome of a sunlit sidewalk: long shadows, a man in white walking toward two children" loading="lazy">
+      <div class="guide-body">
+        <div class="cam">Craft guide · seeing, not gear</div>
+        <h2>Seeing the street</h2>
+        <p>A street photography guide taught from 135 photographs — half from the public archive, half from photographers working now, by seventy-six photographers across six continents, all credited and linked. Working distance as the medium, the peak moment as arithmetic, fishing over hunting, layers, color as structure — every claim carrying a number, a named frame, or a working photographer&#8217;s example.</p>
+        <div class="tags"><span class="tag">12 lessons</span><span class="tag">1 simulator</span><span class="tag">15 annotation studies</span></div>
+        <div class="open">Open the guide <span class="arrow">→</span></div>
+      </div>
+    </a>
+
   </div>
 
   <a class="guide companion" href="in-practice.html" style="--accent:var(--om)">
