@@ -15,7 +15,7 @@
   --paper:#f2f1ea; --paper-hi:#f9f7f1; --card:#f9f6ee; --line:rgba(26,20,10,.14);
   --ink:#1a1610; --ink-soft:#3a3226; --dim:#7d7358;
   --fuji:#b8422a; --om:#1f6a99; --street:#2e6e62; --graphite:#4a4436;
-  --measure:37rem; --wide:50rem; --sidebar:14.5rem;
+  --measure:37rem; --wide:50rem; --half:24rem; --sidebar:14.5rem;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -89,8 +89,14 @@ figcaption .ex{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var
 figcaption .ex em{font-style:normal;color:var(--dim)}
 figcaption .ex a{color:var(--graphite);text-decoration:none;border-bottom:1px solid var(--line)}
 figcaption .ex a:hover{color:var(--street);border-bottom-color:var(--street)}
-.fig-narrow{max-width:var(--measure)}
+/* solo photographs run at the same width as a paired figure — the lightbox carries full size.
+   .fig-study is the exception: annotation overlays and drawn diagrams carry fixed-size labels
+   that need the text measure to stay legible inline. */
+.fig-narrow{max-width:var(--half)}
+.fig-study{max-width:var(--measure)}
 .fig-wide{max-width:100%}
+.takeaway figure{max-width:var(--half)}
+.takeaway .fig-row{max-width:100%;margin:1rem 0 0}
 .fig-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin:1.7rem 0 1.9rem;max-width:var(--wide)}
 .fig-row figure{margin:0}
 figure.img-dead img{display:none}
@@ -263,15 +269,14 @@ figure img{cursor:zoom-in}
   <div class="intro">
   <div class="kicker"><a href="/">sadh.app</a> · <a href="index.html">photoing</a> · street</div>
   <h1>Seeing the street.</h1>
-  <p class="lede">The camera guides teach a body; this one teaches a way of seeing. Street photography punishes exactly the habits that landscape and graphic work reward — composing first, standing back, finishing a scene in three frames. This guide is for any photographer crossing that bridge. It teaches from <span class="num">135</span> photographs made between the 1850s and this year — half from public archives, half from the sites of photographers working right now — every one credited and linked to where it came from, each chosen because it demonstrates one decision you can copy tomorrow.</p>
-  <p class="standfirst">Two kinds of numbers appear here. The optics are computed, not vibes — check them against any frame&#8217;s EXIF. Audience-response figures appear twice, as ratios and as an instrument rather than a goal: the guide was curated for a photographer whose graphic work outdraws his street work forty to one, and that spread — not taste — is what these lessons close.</p>
+  <p class="lede">The camera guides teach a body; this one teaches a way of seeing. Street photography punishes exactly the habits that landscape and graphic work reward — composing first, standing back, finishing a scene in three frames. The photographs run from the 1850s to this year, half out of public archives and half from the sites of photographers working right now, every one credited and linked back to where it came from. Each is here for one decision you can copy tomorrow.</p>
+  <p class="standfirst">The optics are computed, not asserted — check any of them against a frame&#8217;s EXIF.</p>
 
-  <div class="takeaway caveat" id="howtoread"><b>How to read the photographs on this page</b>
-    <p>Roughly half the frames here predate 1943, and that matters. Those were made when a camera was rare and film cost money — when a competent photograph of an ordinary street was worth looking at partly <em>because so few existed</em>. The whole Farm Security Administration effort, a federal programme with staff photographers running most of a decade, produced <span class="num">171,074</span> negatives: fewer than <span class="num">sixty exposures a day</span> for the entire United States. You can make sixty in an afternoon.</p>
-    <p>So scarcity used to do work the photographer didn&#8217;t have to. It does none now. A street photograph today competes with everything every phone in the city made this morning, which means it earns attention on construction alone — the reason description fails and transformation survives in Lesson&#8202;06, and a plausible part of that forty-to-one spread.</p>
-    <p>And the archive is not a neutral sample of what was photographed. It is what got funded and what got kept. The Farm Security Administration set exists because a federal programme hired a small staff — overwhelmingly white, overwhelmingly men — to document a specific political argument about rural poverty; the museum holdings here are what one or two institutions in New York and Ohio chose to collect. &#8220;Free to use&#8221; is a legal category, not an aesthetic or a moral one, and a syllabus assembled from it silently inherits every one of those selections. That is the main reason this guide also hotlinks living photographers&#8217; own sites, where the work is in copyright and the selection was made by the photographer rather than by an institution.</p>
+  <div class="takeaway caveat" id="howtoread"><b>Reading old photographs</b>
+    <p>Roughly half these frames predate 1943, made when a camera was rare and film cost money — when a competent photograph of an ordinary street was worth looking at partly <em>because so few existed</em>. The whole Farm Security Administration effort, a federal programme with staff photographers running most of a decade, produced <span class="num">171,074</span> negatives: fewer than <span class="num">sixty exposures a day</span> for the entire United States. You can make sixty in an afternoon. Scarcity used to do work the photographer didn&#8217;t have to, and it does none now. A street photograph today competes with everything every phone in the city made this morning, so it earns attention on construction alone — which is why description fails and transformation survives in Lesson&#8202;06.</p>
+    <p>The archive is also not a neutral sample of what was photographed. It is what got funded and what got kept. The Farm Security Administration set exists because a federal programme hired a small staff — overwhelmingly white, overwhelmingly men — to document a specific political argument about rural poverty; the museum holdings are what one or two institutions in New York and Ohio chose to collect. &#8220;Free to use&#8221; is a legal category, not an aesthetic or a moral one, and a syllabus assembled from it silently inherits every one of those selections. The living photographers here are hotlinked from their own sites, still in copyright, because there the selection was the photographer&#8217;s.</p>
 
-    <p><strong>Read these frames for mechanism, not for standard.</strong> Where the photographer stood, what peaked, how the planes stack, what the light was doing — that is geometry and physics, and it has not aged a day. But &#8220;would this hold up posted today?&#8221; is a different question, and for a fair number of these the honest answer is no. The bar is set by photographers working now, against the same flood you are. The other half of this page is theirs — seventy frames hotlinked from living photographers&#8217; own sites, in copyright, shown for criticism and credited to the person who made them — and Lesson&#8202;09 is where they are gathered by name.</p>
+    <p><strong>Read these frames for mechanism, not for standard.</strong> Where the photographer stood, what peaked, how the planes stack, what the light was doing — that is geometry and physics, and it has not aged a day. But &#8220;would this hold up posted today?&#8221; is a different question, and for a fair number of them the honest answer is no. The bar is set by photographers working now, against the same flood you are; Lesson&#8202;09 gathers them by name.</p>
   </div>
   </div>
 
@@ -316,8 +321,8 @@ figure img{cursor:zoom-in}
 
     <p class="wide">Read the middle column again. At 28&#8211;35mm-e the frame swallows a <span class="num">13&#8211;16&#8202;m</span> slice of the world behind the subject — context arrives for free, and the composition problem is <em>exclusion</em>. At 300mm-e the frame holds a 4&#8202;m sliver — context is gone, and what remains is a specimen on a compressed stage. That is why long-lens street frames read as observations <em>of</em> people rather than photographs <em>with</em> people: the geometry itself is third-person.</p>
 
-    <figure class="fig-narrow">
-      <img src="img/street-dia-distance.png" alt="Top-down diagram: a camera 2.9 metres from a subject with a wide cone admitting a 13.3 metre slice of the buildings behind, and a second camera 25 metres away whose narrow cone admits only 4.2 metres" loading="lazy">
+    <figure class="fig-study">
+      <img src="img/street-dia-distance.jpg" alt="Top-down diagram: a camera 2.9 metres from a subject with a wide cone admitting a 13.3 metre slice of the buildings behind, and a second camera 25 metres away whose narrow cone admits only 4.2 metres" loading="lazy">
       <figcaption><b>The geometry, drawn</b>
         Both cameras render the subject the same size. Only the cone changes — and with it, how much of the world behind arrives in the frame.
         <span class="ex">Diagram drawn for this guide</span></figcaption>
@@ -499,7 +504,7 @@ figure img{cursor:zoom-in}
       </figure>
     </div>
 
-    <p>The failure mode this lesson exists for is subtler than missing the person — it is finding a genuinely good subject and then treating them like scenery: photographing a <em>character</em> from spectator distance, recording the costume and missing the man. The eye does the hard part; the feet refuse the second half. When a remarkable subject draws the same flat response as a passer-by, the subject was never the problem. The distance was.</p>
+    <p>There is a failure subtler than missing the person — finding a genuinely good subject and then treating them like scenery: photographing a <em>character</em> from spectator distance, recording the costume and missing the man. The eye does the hard part; the feet refuse the second half. When a remarkable subject draws the same flat response as a passer-by, the subject was never the problem. The distance was.</p>
 
     <div class="fig-row">
       <figure>
@@ -620,9 +625,11 @@ figure img{cursor:zoom-in}
 
     <div class="takeaway"><b>Carry this</b>
       <p>Pick the person first. Not &#8220;a person&#8221; — <em>this</em> person, because of the hat, the gesture, the load they&#8217;re carrying, the way light lands on them. Then let the background resolve second. If anyone could replace the subject, you built a stage again.</p>
+      <div class="fig-row">
       <figure><img src="https://tile.loc.gov/storage-services/service/pnp/cph/3c00000/3c00000/3c00600/3c00607r.jpg" alt="A busy sidewalk of shoppers passing storefronts, a woman with a bag walking toward the camera" loading="lazy" data-remote="1"><figcaption>Russell Lee · <em>Street in the Negro section of Chicago, Illinois</em> · 1941 · <a href="https://www.loc.gov/resource/cph.3c00607/" target="_blank" rel="noopener">LoC</a></figcaption></figure>
       <figure><img src="https://tile.loc.gov/storage-services/service/pnp/fsa/8a03000/8a03000/8a03014r.jpg" alt="A row of onlookers in caps and hats seen in profile, all watching something out of frame" loading="lazy" data-remote="1"><figcaption>John Vachon · <em>Spectators at fire, Washington, D.C.</em> · 1937 · <a href="https://www.loc.gov/resource/fsa.8a03014/" target="_blank" rel="noopener">LoC</a></figcaption></figure>
       <figure><img src="https://tile.loc.gov/storage-services/service/pnp/fsa/8a25000/8a25500/8a25531r.jpg" alt="Two boys seen from behind, arms linked, studying a wall of painted cinema posters" loading="lazy" data-remote="1"><figcaption>Russell Lee · <em>Mexican boys looking at movie poster, San Antonio, Texas</em> · 1939 · <a href="https://www.loc.gov/resource/fsa.8a25531/" target="_blank" rel="noopener">LoC</a></figcaption></figure>
+      </div>
     </div>
   </section>
 
@@ -637,7 +644,7 @@ figure img{cursor:zoom-in}
 
     <p>The instructive part of his most famous frame, <em>Behind the Gare Saint-Lazare</em> (1932), is how it was made: a pre-seen stage — puddle, ladder, ripples — shot through a gap in a plank fence so narrow it partially blocked the lens, fired essentially blind as the man leapt, and then cropped (by the no-crop purist himself) to remove the intruding fence. He hadn&#8217;t even noticed the leaping-dancer posters echoing the jump until afterwards. No superhuman reflex anywhere in that story: a stage, a bet on an arriving moment, and honesty in the edit. The test it leaves for any frame: <strong>does the picture collapse if the moment moves a half-second either way?</strong> If nothing collapses, nothing peaked.</p>
 
-    <figure class="fig-narrow">
+    <figure class="fig-study">
       <div class="anno" id="annoPeak">
         <img src="https://tile.loc.gov/storage-services/service/pnp/fsa/8a22000/8a22500/8a22589r.jpg" alt="Two women talk beside a baby carriage outside a corner tailor shop; one raises a hand mid-sentence" data-lb="5" data-title="Annotation study — the gesture that peaked" data-remote="1">
         <div class="anno-layer" aria-hidden="true">
@@ -660,7 +667,7 @@ figure img{cursor:zoom-in}
     <h3>Anticipation is arithmetic, not talent</h3>
     <p>Measured mean simple visual reaction time in adults is about <span class="num">230&#8202;ms</span> (Woods et al. 2015, n&#8202;≈&#8202;1,470), before adding shutter lag. A person at walking pace covers <span class="num">~35&#8202;cm</span> in a quarter second; a cyclist covers a metre and a half. So a peak gesture cannot be <em>reacted</em> to — only anticipated. Every decisive photograph was pressed <em>before</em> its moment, by a photographer who watched the approach and bet on the convergence. This is why the pre-composed stage isn&#8217;t the enemy — it is half the method. The missing half is choosing the moment the stage is <em>for</em>, then firing ahead of it.</p>
 
-    <figure class="fig-narrow">
+    <figure class="fig-study">
       <div class="anno" id="annoSeam">
         <img src="https://tile.loc.gov/storage-services/service/pnp/fsa/8a22000/8a22600/8a22607r.jpg" alt="A man in a long coat and hat strides past two small wooden storefronts, one lettered American Lunch" data-lb="6" data-title="Pressed at the seam" data-remote="1">
         <div class="anno-layer" aria-hidden="true">
@@ -688,7 +695,7 @@ figure img{cursor:zoom-in}
       <figure>
         <img src="https://debranidas.com/wp-content/uploads/2024/06/debrani_das-copy.jpg" alt="Misty morning under the Howrah Bridge: a man in a knit cap strides past carrying two buckets while a pigeon&amp;#39;s outstretched wings, blurred with motion, align exactly over his shoulders so the wings appear to grow from his back; a carpet of feeding pigeons fills the lower third" loading="lazy" data-remote="1">
         <figcaption><b>The wings arrive on time</b>
-          The pigeon&#8217;s wingspan lands precisely across the walking man&#8217;s shoulders, so for one frame he sprouts wings. That alignment existed for a fraction of the <span class="num">230&#8202;ms</span> this lesson is built around — it cannot be reacted to. Das works Kolkata&#8217;s crowded ritual spaces daily; this is what accumulated repetitions buy you, not luck.
+          The pigeon&#8217;s wingspan lands precisely across the walking man&#8217;s shoulders, so for one frame he sprouts wings. That alignment existed for a fraction of the <span class="num">230&#8202;ms</span> a reaction costs — it cannot be reacted to. Das works Kolkata&#8217;s crowded ritual spaces daily; this is what accumulated repetitions buy you, not luck.
           <span class="ex">Debrani Das · Howrah Bridge, Kolkata · &#169; the photographer, shown here for critical commentary · <a href="https://debranidas.com/colour-photographs/bw-photographs/" target="_blank" rel="noopener">see more</a></span></figcaption>
       </figure>
       <figure>
@@ -808,8 +815,8 @@ figure img{cursor:zoom-in}
 
     <p>The discipline has a debrief side too. Reviewing forty frames from one spot teaches more in ten minutes than forty spots teach in a month, because every variable is controlled except the one that matters — the moment. That review is where &#8220;what was I waiting for?&#8221; gets an answer in your own handwriting.</p>
 
-    <figure class="fig-narrow">
-      <img src="img/street-dia-contact-sheet.png" alt="Diagram of two 35mm contact-sheet strips, the same street corner in twelve frames with a walking figure in a different position each time, frame eleven circled in red grease pencil" loading="lazy">
+    <figure class="fig-study">
+      <img src="img/street-dia-contact-sheet.jpg" alt="Diagram of two 35mm contact-sheet strips, the same street corner in twelve frames with a walking figure in a different position each time, frame eleven circled in red grease pencil" loading="lazy">
       <figcaption><b>What a worked scene looks like on the sheet</b>
         The stage is identical in all twelve frames. Only the cast moves — and only one frame has the picture in it.
         <span class="ex">Diagram drawn for this guide</span></figcaption>
@@ -891,7 +898,7 @@ figure img{cursor:zoom-in}
 
     <p>The optics make layering a wide-lens monopoly. At 35mm-e from <span class="num">2.9&#8202;m</span>, a face at 1&#8202;m renders three times the size of a face at 3&#8202;m — the planes separate by size, and the eye reads depth without being told. At 300mm-e from 25&#8202;m, a face at 24&#8202;m and a face at 27&#8202;m render within a few percent of each other: the planes fuse, and layering is geometrically impossible. Compression doesn&#8217;t stack layers; it deletes them. And zone focus at f/8 (Lesson&#8202;01) keeps two or three planes acceptably sharp at once, so the layers you compose are the layers you get.</p>
 
-    <figure class="fig-narrow">
+    <figure class="fig-study">
       <div class="anno" id="annoLayer">
         <img src="https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02900/8a02955r.jpg" alt="An elderly man in a homburg hat stands at a shop window; two women stand behind him at the glass; farther back, pedestrians and cars on the avenue" data-lb="9" data-title="Annotation study — three planes, one frame" data-remote="1">
         <div class="anno-layer" aria-hidden="true">
@@ -928,8 +935,8 @@ figure img{cursor:zoom-in}
 
     <p>Edge discipline is the layering skill nobody sees in the final frame. With three planes live, every frame edge is cutting through <em>something</em>; the craft is choosing what gets cut and where. Webb&#8217;s edges amputate at joints — a shoulder, a hat brim, a door jamb — never mid-face. The rule of thumb: an edge may crop a <em>thing</em>, but it shouldn&#8217;t decapitate an <em>event</em>.</p>
 
-    <figure class="fig-narrow">
-      <img src="img/street-dia-layers.png" alt="Side-elevation diagram comparing a 35mm lens at 2.9 metres, whose wide cone renders three figures at markedly different sizes, with a 300mm lens at 25 metres, whose narrow cone renders three figures at almost identical size" loading="lazy">
+    <figure class="fig-study">
+      <img src="img/street-dia-layers.jpg" alt="Side-elevation diagram comparing a 35mm lens at 2.9 metres, whose wide cone renders three figures at markedly different sizes, with a 300mm lens at 25 metres, whose narrow cone renders three figures at almost identical size" loading="lazy">
       <figcaption><b>Why layering is a wide-lens monopoly</b>
         Top: three planes at 1, 3 and 12 metres render huge, medium and small — depth the eye reads without being told. Bottom: three planes at 24, 25 and 27 metres render within a few percent of each other and fuse into one mass.
         <span class="ex">Diagram drawn for this guide</span></figcaption>
@@ -948,7 +955,7 @@ figure img{cursor:zoom-in}
           <span class="ex">Vineet Vohra · New Delhi · &#169; the photographer, shown here for critical commentary · <a href="https://www.street-macadam.com/partners-photo/vineet-vohra" target="_blank" rel="noopener">see more</a></span></figcaption>
       </figure>
     </div>
-    <figure class="fig-narrow">
+    <figure class="fig-study">
       <div class="anno" id="annoWebb">
         <img src="https://content.magnumphotos.com/wp-content/uploads/2016/04/cortex/par112765-overlay.jpg" alt="Hard raking sun: at right a couple embrace with the man&amp;#39;s arm braced high on a wall; at left a man in shadow holds a red-framed board of pinned photographs across his face; between them a sunlit wall reads OFICIALIA del REGISTRO CIVIL, against which a man carrying a small child is thrown into pure black silhouette" data-remote="1">
         <div class="anno-layer" aria-hidden="true">
@@ -1052,7 +1059,7 @@ figure img{cursor:zoom-in}
     <p class="thesis">An object photographed as it is, competently, is an inventory entry — the viewer files it and moves on. Transformation — light, angle, or abstraction changing what the thing reads as — is the only exit. Description earns polite approval; transformation gets remembered.</p>
     <p class="xref"><a href="in-practice.html#light">In practice §04 — the four properties of light</a></p>
 
-    <p>The case study behind this lesson, in one sentence: the same photographer, same city, same bag produced a set of competent object descriptions and one frame where evening light turned an art-deco fire escape into pure rhythm — and audiences responded to the transformation roughly <span class="num">40:1</span> over the descriptions. That ratio is the second and last response figure in this guide, kept because it prices the whole lesson: the difference was never sharpness, color, or crop. It was what the light was allowed to do before the shutter opened.</p>
+    <p>One photographer, one city, one bag: a set of competent object descriptions, and one frame where evening light turned an art-deco fire escape into pure rhythm. Audiences went for the transformation over the descriptions by roughly <span class="num">40:1</span>. The difference was never sharpness, color, or crop. It was what the light was allowed to do before the shutter opened.</p>
 
     <div class="fig-row">
       <figure>
@@ -1121,7 +1128,7 @@ figure img{cursor:zoom-in}
       <figure>
         <img src="https://images.squarespace-cdn.com/content/v1/56b3601440261d388166daee/1557900926294-UROCCO70VGWU4851VV2Q/168_MM_Lecture.jpg?format=1500w" alt="A large funeral wreath lies dumped face-down in the gutter between two parked cars, leaves dried and curling, a broken wooden pole laid across it, half of it resting on a storm drain; in the upper third a pedestrian walks past, cropped so only legs, one arm and a shoulder bag show" loading="lazy" data-remote="1">
         <figcaption><b>An object that is entirely argument</b>
-          This is the memorial wreath for General Carlo Alberto Dalla Chiesa, murdered by Cosa Nostra in 1982, lying face-down in a Palermo gutter with a storm drain under it. Photographed straight, as an object, with a passer-by cropped to legs — no face, no drama, no commentary. It is the strongest case in this lesson for the claim that transformation is not always about light: sometimes it is about knowing what a thing is and refusing to arrange it.
+          This is the memorial wreath for General Carlo Alberto Dalla Chiesa, murdered by Cosa Nostra in 1982, lying face-down in a Palermo gutter with a storm drain under it. Photographed straight, as an object, with a passer-by cropped to legs — no face, no drama, no commentary. Transformation is not always about light. Sometimes it is knowing what a thing is and refusing to arrange it.
           <span class="ex">Mimi Mollica · Palermo · from <em>Terra Nostra</em> · &#169; the photographer, shown here for critical commentary · <a href="https://www.mimimollica.com/terra" target="_blank" rel="noopener">see more</a></span></figcaption>
       </figure>
       <figure>
@@ -1194,7 +1201,7 @@ figure img{cursor:zoom-in}
         </div>
         <button class="anno-toggle" data-anno="annoVapour" aria-pressed="false">Show the read</button>
         <figcaption><b>The object that arrived and left</b>
-          A quiet street of ochre and pale green, and one white cloud where two heads should be. The vapour is the brightest thing in the frame and the only pure white in it, and it existed for perhaps two seconds — an object in the sense this lesson means, something with its own shape and tone that the street manufactured unasked. The read also shows what is <em>not</em> happening: two thirds of the frame is empty pavement. No gesture, no glance, no second event. Remove the cloud and this is a photograph of a bin.
+          A quiet street of ochre and pale green, and one white cloud where two heads should be. The vapour is the brightest thing in the frame and the only pure white in it, and it existed for perhaps two seconds — an object in the sense that counts, something with its own shape and tone that the street manufactured unasked. The read also shows what is <em>not</em> happening: two thirds of the frame is empty pavement. No gesture, no glance, no second event. Remove the cloud and this is a photograph of a bin.
           <span class="ex">Julie Hrudova · Amsterdam · &#169; the photographer, shown here for critical commentary · <a href="https://juliehrudova.com/street" target="_blank" rel="noopener">see more</a></span></figcaption>
       </figure>
     </div>
@@ -1218,7 +1225,7 @@ figure img{cursor:zoom-in}
     <h2>Color as structure</h2>
     <p class="thesis">Color earns its place in a street frame the same way a person does: by doing structural work. One saturated element anchoring a quiet field is composition; six competing hues are noise. The choice between color and monochrome is a decision about what the frame is <em>made of</em> — and it happens before the shutter, not in the edit.</p>
 
-    <p>The archive teaching this lesson is small and precious: alongside <span class="num">171,074</span> black-and-white negatives, the FSA/OWI photographers left only <span class="num">1,623</span> colour transparencies — Kodachrome was expensive, slow, and considered unserious for documentary work. The frames that survive show color used exactly the way the later masters would use it: not as a record of what things looked like, but as structure.</p>
+    <p>The colour archive is small and precious: alongside <span class="num">171,074</span> black-and-white negatives, the FSA/OWI photographers left only <span class="num">1,623</span> colour transparencies — Kodachrome was expensive, slow, and considered unserious for documentary work. The frames that survive show color used exactly the way the later masters would use it: not as a record of what things looked like, but as structure.</p>
 
     <div class="fig-row">
       <figure>
@@ -1272,13 +1279,13 @@ figure img{cursor:zoom-in}
       <figure>
         <img src="https://joanachoumali.com/images/speasyimagegallery/albums/9/images/cavaaller3.jpg" alt="Square frame: a man sits alone on a low ledge with his back to the camera against a bright blue wall; a large sunburst of teal thread is hand-embroidered radiating outward from his body across the wall, with magenta stitching on the steps and a mango tree rendered in green thread" loading="lazy" data-remote="1">
         <figcaption><b>Colour added by hand, on purpose</b>
-          Choumali photographed Grand-Bassam quietly after the 2016 attack there, then embroidered into the prints by hand. It belongs in this lesson because it makes the argument literal: the teal sunburst is structure, not decoration — it radiates from a solitary figure and organises the whole square. She was the first African winner of the Prix Pictet for this work.
+          Choumali photographed Grand-Bassam quietly after the 2016 attack there, then embroidered into the prints by hand. The argument goes literal here: the teal sunburst is structure, not decoration — it radiates from a solitary figure and organises the whole square. She was the first African winner of the Prix Pictet for this work.
           <span class="ex">Joana Choumali · Grand-Bassam, from <em>&#199;a va aller</em> · &#169; the photographer, shown here for critical commentary · <a href="https://joanachoumali.com/index.php/projects/photography/ca-va-aller" target="_blank" rel="noopener">see more</a></span></figcaption>
       </figure>
       <figure>
         <img src="https://content.magnumphotos.com/wp-content/uploads/2016/04/cortex/lon38356-overlay.jpg" alt="A pedestrian walking through a shaft of sun is blown out to featureless white — an inverted silhouette — dragging a hard black shadow across brick paving, while surrounding commuters sit in crushed near-black" loading="lazy" data-remote="1">
         <figcaption><b>Exposed for the highlight, and nothing else</b>
-          Parke exposes for the lit slot between buildings and lets everything else go to black, which turns a walker into an inverted silhouette — white where you expect dark. It belongs in this lesson because the decision is entirely tonal: no colour survives, and none was wanted. He shot hundreds of frames at single Adelaide corners to get this.
+          Parke exposes for the lit slot between buildings and lets everything else go to black, which turns a walker into an inverted silhouette — white where you expect dark. The decision is entirely tonal: no colour survives, and none was wanted. He shot hundreds of frames at single Adelaide corners to get this.
           <span class="ex">Trent Parke · Magnum ref LON38356 · &#169; the photographer, shown here for critical commentary · <a href="https://www.magnumphotos.com/photographer/trent-parke/" target="_blank" rel="noopener">see more</a></span></figcaption>
       </figure>
     </div>
@@ -1310,7 +1317,7 @@ figure img{cursor:zoom-in}
           <span class="ex">Md Enamul Kabir · Dhaka · Grand Prize, Lucie Foundation <em>On The Block</em> · &#169; the photographer, shown here for critical commentary · <a href="https://121clicks.com/inspirations/bangladesh-street-photography-md-enamul-kabir/" target="_blank" rel="noopener">see more</a></span></figcaption>
       </figure>
     </div>
-    <figure class="fig-narrow">
+    <figure class="fig-study">
       <div class="anno" id="annoUyar">
         <img src="https://images.squarespace-cdn.com/content/v1/5b60f03670e802968764179a/1641758610019-HBIGSPTTU73Z3W33UQ5E/F.+Dilek+Uyar.jpeg?format=2500w" alt="An Ankara metro platform at night: a lone worker in a white hazmat suit and yellow rubber boots walks away spraying disinfectant into a wall of cold blue haze, with an open orange-lit carriage running down the left edge" data-remote="1">
         <div class="anno-layer" aria-hidden="true">
@@ -1368,7 +1375,7 @@ figure img{cursor:zoom-in}
   <section class="lesson" id="masters">
     <div class="lesson-num">Lesson 08</div>
     <h2>Masters as data</h2>
-    <p class="thesis">Not inspiration — data. Fifty frames per photographer, one line per frame: single shape at thumbnail / where the moment peaks / camera distance / what got transformed. Three photographers, chosen because each one solved a problem this guide diagnoses.</p>
+    <p class="thesis">Not inspiration — data. Fifty frames per photographer, one line per frame: single shape at thumbnail / where the moment peaks / camera distance / what got transformed. Three photographers, each of whom solved one of the problems above.</p>
 
     <h3>Fan Ho — the bridge from the graphic eye</h3>
     <p>Hong Kong, 1950s&#8211;60s, a Rolleiflex, and the stage-building habit done consciously. In his own words: he would find a location and <em>stake it out</em> — returning across days and seasons — and wait for &#8220;the suitable subject matter&#8221; to enter at the mark where light, mood and composition hit the climax he had already pictured. He knew Central Market&#8217;s light &#8220;came in so beautifully around four o&#8217;clock,&#8221; when cooking smoke and dust made the beams solid. That is the difference between his stage and the tourist&#8217;s: his stayed <em>empty</em> until the specific figure — right silhouette, right gait, right mark — completed the sentence, while the stage-first habit accepts whoever wanders through. &#8220;I am like a cowboy with one bullet,&#8221; he told an interviewer, &#8220;and not a machine gun.&#8221;</p>
@@ -1402,7 +1409,7 @@ figure img{cursor:zoom-in}
       <figure>
         <img src="https://images.metmuseum.org/CRDImages/ph/web-large/DT4681.jpg" alt="Salted paper print from 1852: a curving street in Grasse, France, buildings stepping down the hill, no people visible" loading="lazy" data-lb="19" data-title="1852 — the street before the moment" data-remote="1">
         <figcaption><b>1852 — the street before the moment</b>
-          Charles Nègre&#8217;s Grasse: exposures so long that anyone moving vanished, leaving only what a street is when nobody peaks — geometry, light, and recession. Every lesson in this guide is about what became possible once shutters got fast enough to add people back. Thumbnail truth avant la lettre: one curve, unmistakable at any size.
+          Charles Nègre&#8217;s Grasse: exposures so long that anyone moving vanished, leaving only what a street is when nobody peaks — geometry, light, and recession. Everything since is what became possible once shutters got fast enough to add people back. Thumbnail truth avant la lettre: one curve, unmistakable at any size.
           <span class="ex">Charles Nègre · <em>A Street in Grasse</em> · 1852 · <a href="https://www.metmuseum.org/art/collection/search/283736" target="_blank" rel="noopener">The Met, public domain</a></span></figcaption>
       </figure>
       <figure>
@@ -1555,10 +1562,10 @@ figure img{cursor:zoom-in}
     </dl>
 
     <h3>Archives you can study, and the licence trap</h3>
-    <p>Three tiers, and the distinction between them is the thing to learn. <strong>Public domain</strong> means reusable: the Library of Congress FSA/OWI collections — <span class="num">171,074</span> black-and-white negatives and <span class="num">1,623</span> colour transparencies, the source of most of this page — plus Getty Open Content (160,000+, CC0) and Smithsonian Open Access (5.1M+, CC0). <strong>&#8220;No known copyright restrictions&#8221;</strong> is <em>not</em> the same thing: Flickr Commons and NYPL use it to mean the institution is not exercising control, while explicitly declining to guarantee the work is free. <strong>Free to view but copyrighted</strong> covers the richest teaching material of all — MoMA&#8217;s online collection holds 27,812 photographs with images, including 5,032 Atget and 360 Winogrand; study them, never reuse them.</p>
+    <p>Three tiers, and the distinction between them is the thing to learn. <strong>Public domain</strong> means reusable: the Library of Congress FSA/OWI collections — <span class="num">171,074</span> black-and-white negatives and <span class="num">1,623</span> colour transparencies — plus Getty Open Content (160,000+, CC0) and Smithsonian Open Access (5.1M+, CC0). <strong>&#8220;No known copyright restrictions&#8221;</strong> is <em>not</em> the same thing: Flickr Commons and NYPL use it to mean the institution is not exercising control, while explicitly declining to guarantee the work is free. <strong>Free to view but copyrighted</strong> covers the richest teaching material of all — MoMA&#8217;s online collection holds 27,812 photographs with images, including 5,032 Atget and 360 Winogrand; study them, never reuse them.</p>
     <dl class="study">
       <dt>Photogrammar <span class="place">free · University of Richmond</span></dt>
-      <dd>All 170,000 FSA/OWI photographs browsable by photographer, theme and <em>map</em> — so you can pull every frame Delano made in one place, which is how the shelves on this page were built. <span class="work"><a href="https://photogrammar.org" target="_blank" rel="noopener">view</a></span></dd>
+      <dd>All 170,000 FSA/OWI photographs browsable by photographer, theme and <em>map</em> — so you can pull every frame Delano made in one place. <span class="work"><a href="https://photogrammar.org" target="_blank" rel="noopener">view</a></span></dd>
       <dt>Vivian Maier · Contact Sheets <span class="place">free to view · copyrighted</span></dt>
       <dd>The official archive publishes her contact sheets. Pair it with Lesson&#8202;04: this is a hundred thousand negatives by someone who never edited them for an audience. <span class="work"><a href="https://www.vivianmaier.com" target="_blank" rel="noopener">view</a></span></dd>
       <dt>Two caveats worth carrying <span class="place">licence</span></dt>
@@ -1585,7 +1592,7 @@ figure img{cursor:zoom-in}
     <p>In a low-density city the same rule finds you the exceptions, and they are usually temporal rather than spatial: a weekend market, a stadium letting out, a festival, a transit plaza at shift change, the one commercial street that stays walkable after dark. Those hours are the city&#8217;s dense hours, and they are what a home city owes you. The rest of the week belongs to Lessons&#8202;06 and&#8202;07 — objects and colour — which need light, not crowds, and which a quiet city supplies generously.</p>
 
     <h3>Light is geometry, and you can look it up</h3>
-    <p>The other half of scouting is knowing when light will run <em>down</em> a street rather than across it. Axial light — sun low and end-on, throwing long shadows straight toward you — is what makes the contre-jour and silhouette frames in this guide possible, and it only happens where a street&#8217;s bearing matches the sun&#8217;s rising or setting azimuth. That azimuth is not fixed: it swings through the year, by an amount set entirely by your latitude.</p>
+    <p>The other half of scouting is knowing when light will run <em>down</em> a street rather than across it. Axial light — sun low and end-on, throwing long shadows straight toward you — is what makes a contre-jour or silhouette frame possible at all, and it only happens where a street&#8217;s bearing matches the sun&#8217;s rising or setting azimuth. That azimuth is not fixed: it swings through the year, by an amount set entirely by your latitude.</p>
 
     <div class="tscroll">
     <table class="tbl">
@@ -1614,7 +1621,7 @@ figure img{cursor:zoom-in}
 
 
     <h3>The other half of the city</h3>
-    <p>There is an inherited bias in this genre worth naming, because this page carries it too. Street photography descends from documentary — from the FSA frames in these lessons — and it has kept documentary&#8217;s instinct that the poor street is the real one and affluence is not a subject. So the market, the stall and the worker get photographed endlessly while the expensive street gets left to fashion magazines.</p>
+    <p>The genre carries an inherited bias worth naming. Street photography descends from documentary — from the FSA frames above — and it has kept documentary&#8217;s instinct that the poor street is the real one and affluence is not a subject. So the market, the stall and the worker get photographed endlessly while the expensive street gets left to fashion magazines.</p>
 
     <p>That is a mistake on its own terms, and it is most obviously a mistake now, because the affluent street is where the cast has changed fastest. The people occupying high-status public space in London, and increasingly in New York, are visibly Gulf, South Asian, Nigerian and Chinese in a way they simply were not in 1986. Knightsbridge in August, Bond Street, Mayfair, Canary Wharf at shift change — that is a genuinely contemporary subject and almost nobody is working it seriously. The default frame of a rich street is either an advertisement or a sneer; there is a lot of room between those.</p>
 
@@ -1688,7 +1695,7 @@ figure img{cursor:zoom-in}
 
     <p>So the operative question is not &#8220;is this subject allowed?&#8221; It is: <em>whose is this to photograph, what do I know that a visitor doesn&#8217;t, and could the person have said no?</em> A rule that answers those honestly will look different in San Jos&#233; than in Dhaka, and it should.</p>
 
-    <p>The archive on this page is itself a lesson in the difference. The FSA photographers worked among people at their lowest, on a government paycheck, and the frames that survive with honor are the ones that granted their subjects standing — the man wiping his hatband is dressed in his dignity, not stripped of it. One working note that is craft as much as ethics: proximity with a small quiet camera reads as participation; a long lens from cover reads as surveillance — to the subject and to the viewer. The 35mm-e position is not only better geometry. It is the honest one: visible, answerable, part of the street being photographed.</p>
+    <p>The FSA archive is itself a lesson in the difference. Those photographers worked among people at their lowest, on a government paycheck, and the frames that survive with honor are the ones that granted their subjects standing — the man wiping his hatband is dressed in his dignity, not stripped of it. One working note that is craft as much as ethics: proximity with a small quiet camera reads as participation; a long lens from cover reads as surveillance — to the subject and to the viewer. The 35mm-e position is not only better geometry. It is the honest one: visible, answerable, part of the street being photographed.</p>
 
 
     <h3>The uncomfortable end of the canon</h3>
