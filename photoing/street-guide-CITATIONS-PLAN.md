@@ -72,7 +72,7 @@ Unsubstantiated — the backlog. **P** = provenance needed (quote/fact, a real s
 | 25 | Ethnographic claim: street-ethics reflex is Anglo/N-European; markets elsewhere unremarkable (`:1786`) | O — soften or find support; currently reads as fact |
 | 26 | "Viewers feel it even when they can't name it" (`:297`); "worth ten times the frames on either side" (`:645`); long-lens = spectator geometry readings; every figure's "why it worked" reading | O — the guide's own; label, don't cite |
 | 27 | Bio lines on living photographers (Sevinçli four years at night, Das daily ritual spaces, Tavepong viewpoint-not-location, Bhalotia, Narula…) (`#living`, captions) | P — source each from the linked artist page/interview during verification |
-| 28 | 40:1 response spread (`:1076`) — numeric but *personal*: it's Sadh's own posted record | O — one-line "site's own posted record" note, no external cite |
+| 28 | ~~40:1 response spread (`:1076`)~~ — **RESOLVED 2026-07-31: cut from the page.** Sadh: "40:1 is not something we should have in the guide then." §06's opening paragraph was rewritten without it. Nothing to cite. | closed |
 
 Out of scope (numeric-and-computed, per the scope ruling): the distance/background-slice table,
 zone-focus and hyperfocal numbers, DoF bars, sun-path azimuths, walking-pace arithmetic, annotation
@@ -154,11 +154,19 @@ KaoRi's letter is her April 2018 note (Japanese original — cite it, not a para
 6. Update `STREET-GUIDE-STATE.md` and `CHANGELOG.md`; do **not** put counts of
    citations/terms in the page prose (standing counts ruling).
 
-## Open choices for Sadh (defaults chosen, say if wrong)
+## Decisions — settled 2026-07-31, do not re-ask
 
-- Marker style: dotted-underline phrase (default) vs a superscript glyph. Default keeps the
-  text quiet; glyph is more scannable.
-- Do O-type "guide's own reading" claims get inline markers too, or only the standing footer
-  line? Default: standing line only, cards on request.
-- The 40:1: keep as-is with a one-line "site's own posted record" endnote (default), or link
-  the actual Reddit posts.
+1. **Marker style: dotted-underline phrase.** Approved ("lgtm"). No superscript glyphs, no
+   bracketed numbers in the running text. The Provenance endnote block is where anyone who wants
+   the full apparatus goes.
+2. **O-type "guide's own reading" markers: skipped for now** (Sadh: "doesn't matter for now").
+   Build tiers A and B first; ship the standing line ("readings of individual frames are this
+   guide's own unless a curator is named") and leave inline O-markers unbuilt. Revisit only if
+   asked — do not treat this as an open question mid-implementation.
+3. **40:1: cut from the guide**, not cited. Done 2026-07-31, see row 28 and the ruling in
+   `STREET-GUIDE-STATE.md`.
+
+Still genuinely open, and it is a question about the page's argument rather than its plumbing:
+the ethics section's ethnographic claim (row 25) is asserted as fact with no source. It is either
+supported or rewritten as the guide's own position, and which one is Sadh's call because it
+changes what the page argues. Raise it when the verification pass reaches it, not before.

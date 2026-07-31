@@ -26,7 +26,27 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
 - **Counts no longer appear in the prose** (Sadh, 2026-07-30: "is the number correct? do we need to
   specify the number?"). They were stated in the lede, the intro block and the index card and had to
   be kept in sync by hand. Do not reintroduce them. Numbers that carry an argument stay — the FSA's
-  171,074 negatives (still cited twice, in §06 and §Sources), the 40:1 response spread.
+  171,074 negatives (still cited twice, in §06 and §Sources).
+- **The 40:1 response spread is OFF the page** (Sadh, 2026-07-31: "40:1 is not something we should
+  have in the guide then"). It opened §06 as an anonymised account of his own posted record — one
+  photographer, one city, one bag — which made it both unverifiable to a reader and a reintroduction
+  of the frames the guide deliberately removed. The paragraph now carries the same point on the
+  page's own terms (the gap is what light and angle were allowed to do before the shutter opened),
+  with no number. The 40:1 fact stays true in `CLAUDE.md`'s diagnosis section, which is background
+  for whoever writes here — it is just not a claim the page makes. **Do not reintroduce it**, and
+  treat it as the precedent for any other number sourced only to Sadh's own record.
+- **No unearned confidence** (Sadh, 2026-07-31: *"Claude often puts in a lot of very confident
+  statements like BCG. Your job is it cut all such bullshits."*). The existing repo test decides it:
+  a claim survives if it carries **a number, a named frame, or a master's example** — otherwise it
+  gets cut or stated as a position rather than a fact. Sixteen were fixed in that pass: invented
+  quantities ("worth ten times the frames on either side"), unsupported universals ("the only exit",
+  "what any trained eye finds", "Webb's edges … never mid-face", "the number everyone repeats"),
+  mind-reading about viewers ("viewers feel it even when they can't name it"), causal certainty
+  about how a master worked ("which is how she got this close" → "likely why"), superlatives on
+  sources ("*the* honest teaching document" → "an"), and the unsourced demographic assertion in
+  §12. The §12 footfall thresholds now say they were chosen by feel, not measured.
+  **Absolutes that describe what is visibly in a frame are fine** — "not one of them looking up",
+  "the only pure white in it" — a reader can check those by looking. Do not sand those out.
 - **The `#howtoread` intro block is DELETED** (Sadh, 2026-07-30: "this whole section is bullshit").
   It had already been rewritten once as "Reading old photographs" and that was not enough — the
   problem was the block existing at all, not its wording. The lede is now two sentences and the page
