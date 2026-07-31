@@ -72,11 +72,51 @@ Unsubstantiated — the backlog. **P** = provenance needed (quote/fact, a real s
 | 25 | Ethnographic claim: street-ethics reflex is Anglo/N-European; markets elsewhere unremarkable (`:1786`) | O — soften or find support; currently reads as fact |
 | 26 | "Viewers feel it even when they can't name it" (`:297`); "worth ten times the frames on either side" (`:645`); long-lens = spectator geometry readings; every figure's "why it worked" reading | O — the guide's own; label, don't cite |
 | 27 | Bio lines on living photographers (Sevinçli four years at night, Das daily ritual spaces, Tavepong viewpoint-not-location, Bhalotia, Narula…) (`#living`, captions) | P — source each from the linked artist page/interview during verification |
-| 28 | 40:1 response spread (`:1076`) — numeric but *personal*: it's Sadh's own posted record | O — one-line "site's own posted record" note, no external cite |
+| 28 | ~~40:1 response spread (`:1076`)~~ — **RESOLVED 2026-07-31: cut from the page.** Sadh: "40:1 is not something we should have in the guide then." §06's opening paragraph was rewritten without it. Nothing to cite. | closed |
 
 Out of scope (numeric-and-computed, per the scope ruling): the distance/background-slice table,
 zone-focus and hyperfocal numbers, DoF bars, sun-path azimuths, walking-pace arithmetic, annotation
 percent-measurements, camera specs already cross-linked to `x100vi-guide.html` / `om1-guide.html`.
+
+## Evidence on what viewers actually respond to (Sadh, 2026-07-31: "look into what people like
+## etc. based on proven citable sources")
+
+The guide used to ground its audience claims in Sadh's Reddit scores; those are cut. There *is* a
+real empirical literature here, and four findings map onto the guide's spine. **All four are
+UNVERIFIED LEADS — found by search, primary sources not opened.** Every scholarly host tested
+(`dl.acm.org`, `people.csail.mit.edu`, `proceedings.neurips.cc`, `cambridge.org`,
+`semanticscholar.org`, `eegilbert.org`, `news.gatech.edu`) answers **403 to CONNECT** through the
+web sandbox's proxy — the same block CLAUDE.md documents for the image CDNs. WebSearch works,
+WebFetch does not. **Do not write any of these onto the page from this file.** Open each primary
+source in a local session, confirm the numbers, then cite.
+
+| Lead | Would substantiate | Verify at |
+|---|---|---|
+| Bakhshi, Shamma & Gilbert, *Faces Engage Us: Photos with Faces Attract More Likes and Comments on Instagram*, CHI '14, pp. 965–974 | §02 "the person is the photo" — with a measured engagement effect instead of an assertion | `doi 10.1145/2556288.2557403`; author copy at eegilbert.org/papers/chi14.faces.bakhshi.pdf |
+| Cerf, Harel, Einhäuser & Koch, *Predicting human gaze using low-level saliency combined with face detection*, NIPS 2007 | §02 and §05 — faces are fixated within the first couple of fixations, so a face in frame decides where the eye goes before composition does | proceedings.neurips.cc, 2007 |
+| Torralba, *How many pixels make an image?*, **Visual Neuroscience** 26 (2009) 123–131 | §06 "thumbnail truth" — the 200-pixel test currently rests on nothing but assertion | Cambridge Core; author copy `howmanypixels.pdf` |
+| Isola, Xiao, Torralba & Oliva, *What makes an image memorable?* (CVPR 2011) and *Understanding the Intrinsic Memorability of Images* (NIPS 2011) | §06, §02, and the guide's whole self-assessment premise | web.mit.edu/phillipi/www/publications/UnderstandingMemorability.pdf |
+
+**Read the memorability work before leaning on it — search summaries say it cuts against us in
+one place and for us in two.** As reported (again, unverified): images containing people with
+visible faces are among the most memorable, and vistas and peaceful scenes among the least —
+which supports the guide's street-over-landscape spine harder than anything currently on the page.
+But aesthetic beauty is reportedly **weakly and even negatively** correlated with memorability,
+which does *not* support the line this pass just deleted ("description earns polite approval;
+transformation gets remembered"). Do not resurrect that sentence with this citation attached; if
+anything the finding argues the opposite and the honest move is to say so. Third finding, the most
+useful of the three for this reader: people's *predictions* of what will be memorable correlate
+weakly and negatively with actual memorability — i.e. the photographer's intuition about which of
+their own frames will land is measurably unreliable, which is an argument for the contact-sheet
+review in §04 that costs nothing to make.
+
+Not yet searched, worth a pass: composition/aesthetics datasets (AVA, Murray et al. CVPR 2012),
+eye-tracking on gesture and biological motion, and anything empirical on colour salience for §07.
+
+**Standing caution.** This literature measures *likes, fixations and recall on crowdsourced sets*,
+not photographic merit. It belongs in the guide as evidence about attention and memory, clearly
+labelled as such — never as proof that a photograph is good. A guide that cites engagement studies
+as an aesthetic standard has swapped one unearned confidence for another.
 
 ## Mechanism — three tiers, one endnote block as ground truth
 
@@ -154,11 +194,19 @@ KaoRi's letter is her April 2018 note (Japanese original — cite it, not a para
 6. Update `STREET-GUIDE-STATE.md` and `CHANGELOG.md`; do **not** put counts of
    citations/terms in the page prose (standing counts ruling).
 
-## Open choices for Sadh (defaults chosen, say if wrong)
+## Decisions — settled 2026-07-31, do not re-ask
 
-- Marker style: dotted-underline phrase (default) vs a superscript glyph. Default keeps the
-  text quiet; glyph is more scannable.
-- Do O-type "guide's own reading" claims get inline markers too, or only the standing footer
-  line? Default: standing line only, cards on request.
-- The 40:1: keep as-is with a one-line "site's own posted record" endnote (default), or link
-  the actual Reddit posts.
+1. **Marker style: dotted-underline phrase.** Approved ("lgtm"). No superscript glyphs, no
+   bracketed numbers in the running text. The Provenance endnote block is where anyone who wants
+   the full apparatus goes.
+2. **O-type "guide's own reading" markers: skipped for now** (Sadh: "doesn't matter for now").
+   Build tiers A and B first; ship the standing line ("readings of individual frames are this
+   guide's own unless a curator is named") and leave inline O-markers unbuilt. Revisit only if
+   asked — do not treat this as an open question mid-implementation.
+3. **40:1: cut from the guide**, not cited. Done 2026-07-31, see row 28 and the ruling in
+   `STREET-GUIDE-STATE.md`.
+
+Still genuinely open, and it is a question about the page's argument rather than its plumbing:
+the ethics section's ethnographic claim (row 25) is asserted as fact with no source. It is either
+supported or rewritten as the guide's own position, and which one is Sadh's call because it
+changes what the page argues. Raise it when the verification pass reaches it, not before.
