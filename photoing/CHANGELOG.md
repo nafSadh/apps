@@ -5,6 +5,32 @@ can tell what is on the page, where it came from, and what has been retracted.
 
 ---
 
+## [5.4.0] - 2026-07-31
+
+### Added
+- **Wikipedia links in Lesson 09 (`#living`).** Every entry in the section whose subject has an
+  English Wikipedia article now carries a second link in its `.work` line, styled and delimited
+  exactly like the existing "view" link: `view · wikipedia`. 26 of the section's 40 entries qualify;
+  the other 14 are unchanged and keep "view" alone.
+- **Provenance plan filed** at `street-guide-CITATIONS-PLAN.md` (planned, not yet implemented).
+  Inventories the page's unsubstantiated *subjective* claims — quotes, method stories, biographical
+  facts, legal characterizations — and proposes an endnote block plus hover-card cite markers and
+  glossary cards for house terms. Numeric/computed claims are explicitly out of scope (Sadh,
+  2026-07-31: "numeric claims are actually fine, but subjective claims… we want to see provenance
+  and attributions").
+
+### Verified
+- Every Wikipedia URL was confirmed by search against the article itself before being written; none
+  was constructed from a name. Disambiguated titles matter and were checked: Daniel Arnold, Yolanda
+  Andrade, Matt Stuart, Alex Webb, Siegfried Hansen and Tatsuo Suzuki all share their names with
+  other subjects who have their own articles. Nils Jorgensen is the trap that caught this — an
+  article at that name exists but is about a Norwegian fencer, so he is **not** linked.
+- In-browser after the change: 13 lessons ↔ 13 TOC entries, 136 figures, 18 annotation toggles, no
+  dead in-page anchors, no JS errors, all 26 new links `rel="noopener"` and in the house mono/green
+  `.work` style. (Remote-image console errors are the sandbox's blocked hotlinks, unrelated.)
+
+---
+
 ## [5.3.0] - 2026-07-30
 
 ### Changed

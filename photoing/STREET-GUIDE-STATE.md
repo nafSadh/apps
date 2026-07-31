@@ -7,6 +7,21 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   13 jump-menu items; the jump menu auto-builds from `.lesson`, but the TOC `<li>` and the
   `.lesson-num` text are both manual — update all three when adding a section).
 - **76 distinct photographers**, six continents.
+- **Lesson 09 (`#living`) carries Wikipedia links** as of 2026-07-31 — a second link in the `.work`
+  line, `view · wikipedia`, on the 26 of 40 entries whose subject has an English article. Two rules
+  bind any future additions here. **Verify the article exists before linking; never build a URL from
+  a name** — Nils Jorgensen has no article, but an article at his name does exist and is about a
+  Norwegian fencer. And **check the disambiguator**: Daniel Arnold, Yolanda Andrade, Matt Stuart,
+  Alex Webb, Siegfried Hansen and Tatsuo Suzuki all need the `(photographer)`-style title because a
+  different subject holds the bare name. Unlinked today, for want of an article: Julia Coddington,
+  Debrani Das, Nils Jorgensen, Melissa O'Shaughnessy, Rohit Vohra, Gustavo Minas, Pau Buscató,
+  Tavepong Pratoomwong, Jonathan Higbee, Sandra Cattaneo Adorno, Ismail Ferdous, Alan Schaller,
+  Women Street Photographers, Unexposed Collective. (Wikipedia is unreachable from the web sandbox —
+  `403` to CONNECT — so verification ran through WebSearch, not fetches.)
+- **`street-guide-CITATIONS-PLAN.md` is the open provenance backlog** (approved by Sadh 2026-07-31,
+  not yet implemented): 28 unsubstantiated *subjective* claims — quotes, method stories, legal
+  characterizations — plus the planned endnote/hover-card/glossary mechanism. Numeric and computed
+  claims are out of scope by his ruling.
 - Source split: **65 archive/museum · 70 living photographers** (hotlinked, in copyright).
 - **Counts no longer appear in the prose** (Sadh, 2026-07-30: "is the number correct? do we need to
   specify the number?"). They were stated in the lede, the intro block and the index card and had to
