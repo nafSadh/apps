@@ -35,6 +35,25 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   with no number. The 40:1 fact stays true in `CLAUDE.md`'s diagnosis section, which is background
   for whoever writes here — it is just not a claim the page makes. **Do not reintroduce it**, and
   treat it as the precedent for any other number sourced only to Sadh's own record.
+- **Glossary cards are BUILT** (2026-07-31). Eight house terms are marked on first use with
+  `<a class="gterm" href="#gloss-…">`, and a **Provenance** block at the end of §09 holds the
+  definitions in a `<dl class="study prov">`. A single shared `#pcard` popover clones the entry —
+  written once, shown twice. `.cref` is styled identically and is the hook for the *sourced* tier
+  when verification is possible; the JS already handles both selectors, so that tier is markup
+  plus endnote entries, no new code.
+  - **Markers are real anchors.** With JS off they jump to the entry. With JS on, click is
+    intercepted and the card carries its own "Full entry ↓" link.
+  - **Three input-path traps, all hit and fixed — do not "simplify" these back.** (1) A tap
+    synthesizes `mouseenter`, so hover must be gated on `pointerenter` + `e.pointerType`, not on
+    a touch latch. (2) `focus` fires *before* `click` on tap, so a naive click-toggle opened the
+    card on focus and immediately closed it on click; the fix is tracking `openedBy` and only
+    closing on a click that follows a click. (3) `blur` must not close a click-opened card.
+  - Verified in Chromium at 1280px and at 390px with touch: hover opens/closes, tap opens,
+    second tap closes, outside tap closes, focus opens, Escape closes, `aria-describedby` set,
+    card stays inside the viewport, no horizontal scroll, all 8 markers resolve to an entry,
+    annotation toggles still work both ways. Test scripts were scratch, not kept.
+  - **A tap inside the card does not close it** — that is deliberate, so "Full entry" is
+    reachable. A test that taps a coordinate the card covers will look like a failure.
 - **No unearned confidence** (Sadh, 2026-07-31: *"Claude often puts in a lot of very confident
   statements like BCG. Your job is it cut all such bullshits."*). The existing repo test decides it:
   a claim survives if it carries **a number, a named frame, or a master's example** — otherwise it
