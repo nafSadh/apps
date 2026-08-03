@@ -1,13 +1,18 @@
-# street-guide.html — state as of 2026-07-30
+# street-guide.html — state as of 2026-07-31
 
 Resume file. Read this plus `CLAUDE.md` before touching the guide.
 
 ## Where it stands
-- **135 figures**, 13 lessons, HTML valid, TOC/jump-menu consistent (13 sections ↔ 13 TOC entries ↔
+- **135 figures** (136 `<figure>` elements — the extra one is the `#kit` hyperfocal diagram, the
+  only figure whose graphic is an inline `<svg>` with no `<img>`), 13 lessons, HTML valid,
+  TOC/jump-menu consistent (13 sections ↔ 13 TOC entries ↔
   13 jump-menu items; the jump menu auto-builds from `.lesson`, but the TOC `<li>` and the
   `.lesson-num` text are both manual — update all three when adding a section).
 - **76 distinct photographers**, six continents.
-- Source split: **65 archive/museum · 70 living photographers** (hotlinked, in copyright).
+- Source split: **65 archive/museum · 70 living photographers** (the living side hotlinked, in
+  copyright). The split is by source, not hosting — mirroring the Delano staircase (2026-07-31)
+  retired its hotlink, but it was archive before and after, so the numbers did not move. (An
+  earlier draft of this line said 66 · 69; that confused the two axes.)
 - **Counts no longer appear in the prose** (Sadh, 2026-07-30: "is the number correct? do we need to
   specify the number?"). They were stated in the lede, the intro block and the index card and had to
   be kept in sync by hand. Do not reintroduce them. Numbers that carry an argument stay — the FSA's
@@ -19,7 +24,7 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   describing the guide's own sourcing ("The photographs run from the 1850s to this year, half out of
   public archives and half from…"), flagged as meta in the same pass, and the `.standfirst` line
   about the optics being computed. `.standfirst` CSS removed as dead; `.caveat` kept (still used).
-- **Two annotation mechanisms, both default-on.** 15 figures use inline SVG overlays; the 3 local
+- **Two annotation mechanisms, both default-on.** 17 figures use inline SVG overlays; the 4 local
   public-domain frames are **baked** — annotations painted into `img/street-*-anno.jpg` with PIL, and
   the button swaps `src` between the baked file and the untouched original via `data-annotated` /
   `data-original` on the `<img>`, marked `class="anno anno-baked"` with **no `.anno-layer`**. The
@@ -27,9 +32,13 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   `lbImg.dataset.state`. **Any code touching `.anno` must not assume `.anno-layer` exists** — that
   null deref is the trap. Baking rebuild: the bake script mirrors the SVG coordinates and the
   `.anno-label` CSS at `scale = 1200/384 = 3.125` (font 31px, stroke 5px), using
-  `/mnt/skills/examples/canvas-design/canvas-fonts/JetBrainsMono-Bold.ttf` — the page's actual font,
-  so baked and SVG labels match. If a baked frame's geometry changes, re-bake *and* update nothing
-  else; there is no SVG left on those three to keep in sync.
+  `JetBrainsMono-Bold.ttf` — the page's actual font, so baked and SVG labels match. If a baked
+  frame's geometry changes, re-bake *and* update nothing else; there is no SVG left on those four
+  to keep in sync. **The bake and the SVG now come from one spec**, `gen/_gemini-pipeline/anno.py`
+  (`svg()` and `bake()` read the same path/label lists), with the three 2026-07-31 specs kept in
+  `gen/anno-src/specs/`. The old note pointed the font at `/mnt/skills/…`, a sandbox path that does
+  not exist locally — fetch it from the JetBrainsMono GitHub release, and make a venv for Pillow
+  and numpy, neither of which is in this Mac's system Python.
 - **Annotation reads are ON by default** (Sadh, 2026-07-30: "show annotations by default / make the
   button -> show original / show the read"). CSS is `.anno .anno-layer{opacity:1}` with `.anno-off`
   hiding it — the old `.anno-on` class is gone, do not reintroduce it. Button labels name the *state's
@@ -66,8 +75,19 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   "Zone focus, and why f/8", "X100VI", "OM-1 with the 12–40", "Which camera, when". The older lesson
   titles ("Fishing, not hunting", "Distance is the medium") were not in scope and are untouched —
   ask before restyling them. **New sections get functional titles.**
-- **18 annotation studies** (inline SVG over untouched originals, toggleable + `a` key). Three added
-  2026-07-30 on the **local public-domain files**, which is the trick when the CDNs are unreachable —
+- **21 annotation studies** (toggleable + `a` key). **Three added 2026-07-31 from a local session**,
+  clearing the queue that the web sandbox's 403-on-CONNECT had blocked:
+  `annoStaircase` (Delano, *Charlotte Amalie*, §01 — **baked**, and the frame is now a local mirror,
+  so the LoC hotlink is retired: walker 4% of frame height against the street's 62%, the honest
+  counter-example to the Vachon it is paired with);
+  `annoCape` (Dakowicz, *Superman*, §04 — SVG, hotlink kept: a rect on the man labelled "the
+  variable", a polyline down the double yellow line labelled "always there");
+  `annoCarpool` (Cartagena, *Carpoolers* #10, §04 — SVG, hotlink kept: a teal rect on the truck bed
+  labelled "the cast", dashed ink on both lane markings labelled "every frame").
+  The two §04 studies sit in one `.fig-row` and deliberately carry the same fixed/variable read.
+  **Stroke colours were chosen for legibility, not convention** — see the ruling below.
+  Three earlier ones added
+  2026-07-30 on the **local public-domain files**, which was the trick when the CDNs were unreachable —
   `img/` can be opened with PIL and measured, so a sandbox with no network can still produce studies:
   `annoPanier` (Atget *Marchand du Panier*, §01 takeaway — seller 51% / customer 54% / onlooker 34%
   of frame height), `annoTerminal` (Stieglitz *The Terminal*, §05 takeaway — near / event / far
@@ -83,8 +103,15 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   foot landing on it), `annoArgolo` (42% vs 21% head heights), `annoNarula` (23% lit slot, two
   issued colours), `annoTofanelli` (four warm sources = 6% of frame), `annoVapour` (the cloud, the
   empty two-thirds). **An annotated figure can live inside a `.fig-row` pair** — three of the
-  originals already did, and the lightbox clones the overlay at full size, so annotating does not
-  require promoting a figure to full column.
+  originals already did, all three of the 2026-07-31 additions do, and the lightbox clones the
+  overlay at full size, so annotating does not require promoting a figure to full column.
+- **Stroke colour is a legibility decision, not a palette one** (2026-07-31). The usual reading is
+  accent `#b8422a` = the subject, street `#2e6e62` = the structural read, ink `#1a1610` dashed =
+  fixed context. Cartagena's frame breaks it: accent red vanishes on a red pickup, and ink
+  disappeared into the shadow line under the cab — verified on a mock-up, twice. The bed took the
+  street teal and the lane markings the dashed ink, and the label classes followed the strokes.
+  **Judge the colour off the mock-up before writing the HTML**; a mark nobody can see is worse than
+  an unconventional one.
 - **Figure rhythm (Sadh, 2026-07-30 — "we already have lightbox to see full image, but on the
   article keep images half row width"):** measured at 1280px wide, verified in-browser —
   - `.fig-study` **592px** (`--measure`) — the only wide class. **8 figures: the 5 full-column
@@ -136,26 +163,35 @@ Resume file. Read this plus `CLAUDE.md` before touching the guide.
   sets `scroll-behavior:smooth`, so a `window.scrollTo` of 76,000px never arrives. Set
   `document.documentElement.style.scrollBehavior='auto'` first. Even then this harness's screenshot
   often lags — verify layout by reading `getBoundingClientRect()` and `naturalWidth` off the DOM instead.
+  **2026-07-31: still blank on the real page even with `scrollBehavior='auto'` and reveal opacity forced**
+  (the page is now ~80,000px). What worked: write a throwaway page under `photoing/` containing the
+  page's `<style>` plus only the `<figure>` blocks under test, and screenshot that — it renders
+  immediately and is the only way an annotation has been visually confirmed in-browser. Delete it after.
 
 ## Hotlink map (tested with a sadh.app referer)
 Works: `tile.loc.gov`, `images.metmuseum.org`, `openaccess-cdn.clevelandart.org`, `upload.wikimedia.org`, `live.staticflickr.com`, `content.magnumphotos.com`, `images.squarespace-cdn.com`, `static1.squarespace.com`, `static.wixstatic.com`, `static-assets.artlogic.net`, `format.creatorcdn.com`, `cdn.prod.website-files.com`, `assets.yesstud.io`, `121clicks.com`, `arabnews.com`, `1854.photography`, `nickturpin.com`, `maciejdakowicz.com`, `siegfried-hansen.de`, `yusufsevincli.com`, `shinnoguchiphotography.com`, `agencevu.com`, `circuitgallery.com`, `burnmagazine.org`, `lenscratch.com`, `independent-photo.com`, `streetphotographersfoundation.com`, `joanachoumali.com`, `melissaoshaughnessy.com`, `vivianmaier.com`.
 Blocked/unusable: Instagram (signed URLs), `preview.redd.it` (403), `www.artic.edu` (curl 200 but fails in real browsers — its 3 CC0 frames are mirrored into `img/`), `cdn.myportfolio.com` (400 without its `?h=` hash), `cdn.magazine.exposuresop.com` (403 on referer), MoMA/NGA/Getty (bot-blocked).
 Notes: LoC metadata API rate-limits hard (~40 req/10 min); the tile CDN never blocks. Adobe Portfolio needs its `?h=` content hash. `format.creatorcdn.com` signatures are bound to the crop segment — cannot be resized.
+LoC full-res: `…/storage-services/service/pnp/…/NNNNNNNr.jpg` is only ~450px. For a mirror, swap `service`→`master` and `r.jpg`→`u.tif` (`…/master/pnp/fsac/1a33000/1a33900/1a33932u.tif` = 3807×5432, 62 MB). `www.loc.gov/…?fo=json` is behind a Cloudflare challenge and 403s, so do not plan on the metadata API. **Kodachrome scans carry the black slide mount with rounded corners** — the 1a33932 image area was x 141–3627, y 100–5265 of 3807×5432, cropped at (231, 190, 3537, 5175) to clear the corner radius; crop before measuring or every percentage is against the holder.
 
 ## Open threads
 - **`beside-the-streets.html`** — approved, not started. Outline: thumbnail truth · the graphic frame · negative space · scale figure · light as subject · time as material (long exposure) · return to one place · the edit · where it fails. Key source: **Ansel Adams's 1941–42 Dept of the Interior work is public domain** (US Government work) at the National Archives. Research agent running.
 - ~~Embed the 12 verified frames from `gen/PENDING-FRAMES.md`~~ — **done 2026-07-30**, 10 embedded, 2 skipped as duplicate photographers.
-- Six more SVG annotation studies wanted (Sadh: "a lot of SVG based annotations"; 2026-07-30 named
-  `tile.loc.gov/…/fsac/1a33000/1a33900/1a33932r.jpg`, the Delano staircase street, as a candidate —
-  it is public domain, so a baked overlay would be legal, but keep the SVG-over-untouched pattern for
-  the toggle and the lightbox clone). Also gridded and ready: Abdolahabadi panorama, Majali Giza.
-  Method: render a percent grid with PIL, read coordinates, verify by drawing locally, then emit SVG.
-  **Still blocked 2026-07-30:** the sandbox network policy answers 403 to CONNECT for `tile.loc.gov`,
-  `images.squarespace-cdn.com` and `arabnews.com`, so those source pixels cannot be fetched.
-  Coordinates must be measured, never estimated — see the swapped-Delano and invented-URL entries
-  above. Do the *hotlinked* ones from an environment that can reach the CDNs. Meanwhile the three
-  local public-domain files were annotated instead (see above) — check `img/` first before declaring
-  this blocked.
+- ~~Six more SVG annotation studies (Sadh: "a lot of SVG based annotations")~~ — **the named queue is
+  done as of 2026-07-31**: Delano staircase (baked, mirrored), Dakowicz *Superman*, Cartagena
+  *Carpoolers*; Abdolahabadi and Majali were already done 2026-07-30. That is 21 studies. The
+  network block that stalled this was a web-sandbox policy only; from a local session `tile.loc.gov`,
+  `maciejdakowicz.com`, `circuitgallery.com`, `images.squarespace-cdn.com` and `arabnews.com` all
+  answer 200. If more are wanted, the constraint is now editorial, not technical — pick frames whose
+  read is a *measurement*, since that is what separates these from decoration.
+- **One hotlink fails in this in-app browser but not elsewhere**: Tavepong Pratoomwong's *Tree Man*,
+  `live.staticflickr.com/7457/14060758691_90162ba1e5_b.jpg` (§ the contest-record shelf, line ~1470).
+  curl returns 200 / 163 KB with any referer or none, and the file opens fine in a browser tab on its
+  own — it only fails as a subresource of the localhost page, so the `img-dead` fallback fires and the
+  figure shows "frame unavailable". Same signature as the `www.artic.edu` entry below. **Not
+  introduced by the 2026-07-31 pass and not changed** — check it on real `sadh.app` before deciding
+  whether to mirror or drop it.
 - ~~CHANGELOG needs a 5.0.0 entry~~ — present, and 5.1.0 covers the 2026-07-30 editing pass.
-- `photoing/` **is** git-committed as of 2026-07-30 (branch `claude/street-guide-review-lsoe7b`), so
-  `git checkout HEAD -- <file>` is a real undo for images. Earlier note said otherwise; it was stale.
+- `photoing/` **is** git-committed — the street-guide work is on `main` as of 2026-07-31 — so
+  `git checkout HEAD -- <file>` is a real undo for images. (The 2026-07-30 note named branch
+  `claude/street-guide-review-lsoe7b`; it has since landed on `main`.)

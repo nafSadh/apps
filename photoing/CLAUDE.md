@@ -11,7 +11,7 @@ CSS/JS. Do not introduce tooling.
 - `om1-guide.html` — OM-1 guide (12 sections, 2 simulators, 12-card mission deck).
 - `in-practice.html` — camera-agnostic companion: 7 lessons, worked numbers, 6 assignments,
   real photographs as evidence.
-- `street-guide.html` — street photography guide, 13 lessons, 135 figures, 18 annotation studies.
+- `street-guide.html` — street photography guide, 13 lessons, 135 figures, 21 annotation studies.
   **Built and live.** `STREET-GUIDE-STATE.md` is its resume file — read that before touching it.
 - `img/` — web-ready images, short kebab names (`scene-01-street-day.jpg`, `om-mission-04.jpg`).
 - `gen/` — generated illustration masters (jpeg, higher res; `-BROKEN` suffix = discarded take).
@@ -32,38 +32,41 @@ CSS/JS. Do not introduce tooling.
 - Voice: first person, honest, plain words, "read once and carried after." Worked numbers over
   adjectives. Photographs as evidence, not decoration. No hype, no euphemism.
 
-## street-guide.html — blocked work, pick up from a local session
+## street-guide.html — annotation studies, and the network caveat
 
 The guide is **built**; everything below this heading down to "Content pillars" is the original
 brief, kept for the diagnosis it contains. `STREET-GUIDE-STATE.md` is the live resume file and
-wins wherever the two disagree. What follows here is only the part that **cannot be done from
-Claude Code on the web**.
+wins wherever the two disagree.
 
-**Why it is blocked.** The web sandbox's network policy answers `403` to CONNECT for
-`tile.loc.gov`, `www.maciejdakowicz.com`, `circuitgallery.com` and `images.squarespace-cdn.com`.
-This is *not* a missing-browser problem — Chromium and Playwright are installed there and were
-used throughout the build; a browser goes through the same proxy and renders those figures as
-"frame unavailable". A local session fixes it through unrestricted egress, nothing else.
+**The queue that was blocked on network is cleared** (2026-07-31, local session): Delano
+`fsac/1a33932` is mirrored and baked, Dakowicz's *Superman* and Cartagena's *Carpoolers* carry SVG
+overlays, and Abdolahabadi and Majali were already done. Nothing is outstanding.
+
+**The network caveat still applies to a web sandbox.** Claude Code on the web answers `403` to
+CONNECT for `tile.loc.gov`, `www.maciejdakowicz.com`, `circuitgallery.com` and
+`images.squarespace-cdn.com`. This is *not* a missing-browser problem — a browser goes through the
+same proxy and renders those figures as "frame unavailable". Any future study on a hotlinked CDN
+frame needs a local session; from a sandbox, work the files already in `img/` instead.
 
 **The rule that decides the treatment: bake what you host, overlay what you hotlink.**
 - **Public domain, mirrored into `img/`** → paint the annotations into a `-anno.jpg` with PIL and
   swap `src` on the button (`data-annotated` / `data-original`, wrapper `class="anno anno-baked"`,
-  no `.anno-layer`). Also works with JS off. Three frames do this today.
+  no `.anno-layer`). Also works with JS off. Four frames do this today.
 - **In copyright, hotlinked** → inline SVG overlay only, and keep the hotlink. You cannot bake a
   file you do not host, and painting on an in-copyright photograph makes a derivative work — a
-  different legal question from showing it for criticism. Fifteen frames do this today.
+  different legal question from showing it for criticism. Seventeen frames do this today.
 
-**Queued, in priority order:**
-1. **Delano `fsac/1a33932`** — `https://tile.loc.gov/storage-services/service/pnp/fsac/1a33000/1a33900/1a33932r.jpg`
-   Public domain. Mirror it to `img/`, then bake. This also retires a hotlink that dies whenever
-   LoC does. It sits in §01 as the spectator-geometry counter-example.
-2. **Dakowicz, *Superman*** (`maciejdakowicz.com`, Cardiff After Dark, §04) and **Cartagena,
-   *Carpoolers*** (`circuitgallery.com`, §04) — Sadh asked for both to be studied. In copyright:
-   measure locally, ship an SVG overlay, keep the hotlink.
-3. Abdolahabadi panorama and Majali Giza — gridded once already, same overlay treatment.
+**LoC gives you a full-resolution master.** The `…r.jpg` under `/storage-services/service/pnp/…`
+is only ~450px wide — too small to bake. Swap `service` for `master` and the extension for `u.tif`
+and you get the archival scan (`…/master/pnp/fsac/1a33000/1a33900/1a33932u.tif`, 3807×5432, 62 MB).
+The `www.loc.gov` JSON API sits behind a Cloudflare challenge and returns 403; the tile CDN never
+blocks. **Kodachrome scans include the black slide mount with rounded corners** — crop it off
+before measuring, or every percentage is computed against the holder rather than the photograph.
 
 **Method — do not skip step 2.** Coordinates are measured, never estimated. Two of the three
-existing baked studies had positions wrong on the first attempt and were caught by the mock-up.
+original baked studies had positions wrong on the first attempt and were caught by the mock-up.
+Where an edge has a colour signature — road paint, a red cape — locate it with a numpy mask over
+rows rather than by eye; that is how the Cartagena lane lines and the Dakowicz cape were placed.
 1. Open with PIL, render a percent grid (5% lines, labelled every 10%), read coordinates off it.
    Crop and re-grid at 1–2% for any edge that carries a number.
 2. Draw the planned annotation onto a copy with PIL and **look at it** before writing any HTML.
@@ -74,13 +77,30 @@ existing baked studies had positions wrong on the first attempt and were caught 
    `scale = image_width / 384` (3.125 for the 1200px files → 31px label, 5px stroke) using
    `JetBrainsMono-Bold.ttf`, the page's own label font.
 
+**Use the tooling, do not rewrite it.** `gen/_gemini-pipeline/anno.py` holds one spec → both
+outputs (`svg()` for the inline overlay, `bake()` for the `-anno.jpg`) so the two cannot drift; it
+already encodes the `/384` scale, the label padding/radius/letter-spacing and the label background
+colours. `gen/_gemini-pipeline/grid.py` renders the percent grid. The three specs shipped on
+2026-07-31 are kept verbatim in `gen/anno-src/specs/` — copy one to start a new study. Neither
+Pillow nor numpy is in the system Python on this Mac; make a venv. `JetBrainsMono-Bold.ttf` is not
+installed either — fetch it from the JetBrainsMono GitHub release.
+
+**Check the stroke colour against the photograph.** Accent red `#b8422a` is invisible on
+Cartagena's red truck and ink `#1a1610` disappeared into the shadow line under its cab; the bed
+had to take the street teal and the lane markings the dashed ink. Legibility beats the usual
+accent-means-subject convention — decide it off the mock-up, not off the palette.
+
 **Labels must be 6–12 characters.** `.anno-label` is `.62rem` and does not scale with the image,
 so "seller 51%" reads at 384px and a 30-character label does not.
 
 **Verify in a browser before committing:** figure count; `section.lesson` count matching both the
 TOC `<li>` count and the jump menu; no dead in-page anchors; annotation toggles in both
 directions; the lightbox for *both* mechanisms; no JS errors. Any code touching `.anno` must not
-assume `.anno-layer` exists — the baked three do not have one, and that is the null-deref trap.
+assume `.anno-layer` exists — the baked four do not have one, and that is the null-deref trap.
+The page is ~80,000px tall and this harness's screenshots of it come back blank, so read geometry
+off `getBoundingClientRect()`. To see a figure rendered, extract its `<figure>` block plus the
+page's `<style>` into a throwaway page under `photoing/` and screenshot that — it works, and it is
+the only way the annotation has actually been *looked at* in a browser. Delete it afterwards.
 
 ## The original brief (kept for the diagnosis; the guide is built)
 
@@ -222,10 +242,10 @@ with them before publishing). Scores are Reddit upvotes on the owner's account.
   brief's ceiling of two still stands, so one more is permitted if it genuinely teaches.
 - **Not built:** the 12-card street deck (`img/street-card-NN-*.jpg`, masters into `gen/` first).
   Still open if wanted.
-- ~~Add the third card to `index.html`~~ — **done**, with the `--street` accent. Its tag chips
-  read `12 lessons · 1 simulator · annotation studies`; the lesson count is now **13**, so fix
-  that chip next time `index.html` is touched. Deliberately **no figure/photographer counts** in
-  the card prose — see the counts ruling in `STREET-GUIDE-STATE.md`.
+- ~~Add the third card to `index.html`~~ — **done**, with the `--street` accent. ~~Its tag chips
+  still say 12 lessons~~ — also done; they read `13 lessons · 1 simulator · annotation studies`
+  (checked 2026-07-31). Deliberately **no figure/photographer counts** in the card prose — see the
+  counts ruling in `STREET-GUIDE-STATE.md`, which is also why the third chip stays unnumbered.
 - If real example frames are wanted, ask the owner to pick from their library rather than
   inventing; their photos live under `/Users/nafsadh/photos/` and the strongest street
   attempts (and their scores) are catalogued in the craft file above. **None of the owner's own

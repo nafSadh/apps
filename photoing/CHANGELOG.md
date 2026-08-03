@@ -5,6 +5,91 @@ can tell what is on the page, where it came from, and what has been retracted.
 
 ---
 
+## [5.4.1] - 2026-07-31
+
+Same-day audit of the 5.4.0 pass. Structural checks were clean — HTML parses with no mismatched
+tags, no duplicate ids, no dead anchors or toggles, and all three shipped studies reproduce
+byte-for-byte (baked) or character-for-character (SVG) from the specs in `gen/anno-src/specs/`.
+What the sweep caught:
+
+### Fixed
+- **The source split had been mis-stated as 66 · 69.** Mirroring the Delano changed its *hosting*,
+  not its *source* — it was LoC/archive before and after, so the split never moved from
+  **65 archive/museum · 70 living**. Corrected in the state file and in the 5.4.0 entry below.
+- **The Delano caption's ratio said fifteen to one; the measurement says fourteen.** The walker is
+  4.4% of frame height against the street's 61.5% → 13.98:1. "Fifteen" came from dividing the
+  rounded display values (62/4) instead of the raw ones. Now "fourteen to one".
+- **The two local Delano files were twice the per-pixel weight of the other baked frames**
+  (0.245 B/px against 0.12–0.17) — quality 90 on grainy Kodachrome. Re-encoded at quality 85,
+  chroma untouched (4:4:4): 522→395 KB and 532→403 KB. The bake was re-run on the new original so
+  the pair stays pixel-identical outside the painted marks; provenance re-verified byte-for-byte
+  from the repo copies of `anno.py` + `spec_delano.py`.
+- **`gen/anno-src/specs/README.md` gave run instructions that cannot work** — `from anno import *`
+  resolves against the script's directory, not the cwd, so a spec run in place always throws
+  `ModuleNotFoundError`. Now says to copy the spec beside `anno.py` (or set `PYTHONPATH`).
+- **`anno.py` baked plain-class labels at the wrong opacity** — every label got alpha 235 (.92),
+  but the page's plain `.anno-label` is rgba(…,.82) → 209. Per-class alpha now matches the CSS.
+  No shipped file affected: the Delano bake uses only `al-accent`/`al-street`, which were right.
+- **`CLAUDE.md` still said 18 annotation studies** in its files section; it is 21.
+
+### Noted, not changed
+- `data-lb` attributes on 19 images are vestigial — nothing reads them; the lightbox indexes
+  `figure img` in document order. The new Delano img doesn't carry one and nothing breaks.
+- 136 `<figure>` elements vs "135 figures": the `#kit` hyperfocal diagram is inline SVG with no
+  `<img>`. The state file now says so.
+
+---
+
+## [5.4.0] - 2026-07-31
+
+### Added
+- **Three annotation studies that had been blocked on network access**, cleared from a local session.
+  The queue in `CLAUDE.md` was stalled because Claude Code on the web answers `403` to CONNECT for
+  `tile.loc.gov`, `maciejdakowicz.com` and `circuitgallery.com`; every one of those returns 200 from
+  a local machine, so the block was environmental, not a property of the sources. Total is now
+  **21 studies — 17 SVG overlays, 4 baked**.
+  - `annoStaircase` — Jack Delano, *One of the steep hillside streets, Charlotte Amalie*, 1939, §01.
+    The frame is the counter-example paired with Vachon's participant geometry, and the read makes
+    the comparison numeric: the walker is **4%** of the frame's height, the street **62%** of it.
+    Baked, per "bake what you host, overlay what you hotlink".
+  - `annoCape` — Maciej Dakowicz, *Superman*, from *Cardiff After Dark*, §04. A rect on the man
+    ("the variable") against a polyline down the double yellow line ("always there") — the fishing
+    lesson stated as fixed set versus changing cast. SVG over the kept hotlink.
+  - `annoCarpool` — Alejandro Cartagena, *Carpooler #10*, §04. A rect on the truck bed ("the cast")
+    against dashed marks on both lane markings ("every frame"). SVG over the kept hotlink. The two
+    §04 studies share one `.fig-row` and deliberately carry the same read twice.
+
+### Changed
+- **The Delano staircase is no longer hotlinked.** `img/street-delano-staircase.jpg` (1200×1809) and
+  its baked `-anno.jpg` are mirrored from the LoC *master* TIFF — `…/master/pnp/fsac/1a33000/1a33900/
+  1a33932u.tif`, 3807×5432 — not from the `…r.jpg` service copy, which is only 449px wide and far too
+  small to bake. The Kodachrome's black slide mount and its rounded corners were cropped off first;
+  measuring against the holder rather than the photograph would have made every percentage wrong.
+  A 2400px master is kept at `gen/street-delano-staircase-master.jpg`. The archive/living source
+  split is unchanged at 65 · 70 — mirroring moves hosting, not source.
+- **Stroke colours are now chosen for legibility over convention**, and the state file says so.
+  Accent red is invisible on Cartagena's red pickup and ink vanished into the shadow under its cab —
+  both caught on the mock-up, which is what the mock-up step is for. That study inverts the usual
+  accent-means-subject reading and is correct to.
+
+### Tooling
+- **One spec now emits both the SVG and the bake**, so the two cannot drift:
+  `gen/_gemini-pipeline/anno.py` (`svg()` / `bake()`, encoding the `scale = width / 384` label maths,
+  padding, radius, letter-spacing and label backgrounds) plus `grid.py` for the percent grid. The
+  three specs shipped here are kept verbatim in `gen/anno-src/specs/`. Where an edge had a colour
+  signature — the road paint, the red cape — it was located with a numpy mask over rows rather than
+  read off a grid by eye.
+
+### Verified
+Figure count 135 and lesson count 13 unchanged; 13 sections ↔ 13 TOC entries ↔ 13 jump-menu items;
+no dead in-page anchors; all 21 annotation toggles resolve to a real element; the three new studies
+toggle correctly in both directions inline and in the lightbox, through both mechanisms; labels sit
+inside their frames at 1280px; no console errors. One **pre-existing** hotlink, Tavepong
+Pratoomwong's *Tree Man* on `live.staticflickr.com`, fails as a subresource in this in-app browser
+though curl and a direct tab both load it — left alone, flagged in `STREET-GUIDE-STATE.md`.
+
+---
+
 ## [5.3.0] - 2026-07-30
 
 ### Changed
