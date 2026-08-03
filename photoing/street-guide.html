@@ -248,6 +248,28 @@ figure img{cursor:zoom-in}
 .lb-cap{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);color:#d3d0c8;font-family:'JetBrains Mono',monospace;
   font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;display:flex;gap:1.2rem}
 
+/* glossary terms and cite refs — quiet dotted marker, card on hover/focus/tap */
+.gterm,.cref{font-style:normal;color:inherit;text-decoration:none;
+  border-bottom:1px dotted var(--dim);cursor:help}
+.gterm:hover,.cref:hover,.gterm:focus-visible,.cref:focus-visible{
+  color:var(--street);border-bottom-color:var(--street)}
+.gterm:focus-visible,.cref:focus-visible{outline:2px solid var(--street);outline-offset:2px}
+.pcard{position:absolute;z-index:60;max-width:23rem;background:var(--paper-hi);
+  border:1px solid var(--line);border-radius:4px;box-shadow:0 6px 24px rgba(26,20,10,.14);
+  padding:.85rem 1rem;font-size:.82rem;line-height:1.55;color:var(--ink-soft)}
+.pcard[hidden]{display:none}
+.pcard b{font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--street);display:block;margin-bottom:.35rem}
+.pcard .src{display:block;margin-top:.5rem;font-family:'JetBrains Mono',monospace;
+  font-size:.64rem;line-height:1.5;color:var(--dim)}
+.pcard .src a{color:var(--dim)}
+.pcard .more{display:inline-block;margin-top:.5rem;font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;letter-spacing:.08em;color:var(--street);text-decoration:none;
+  border-bottom:1px solid rgba(46,110,98,.35)}
+.prov dt{margin-top:1.1rem}
+.prov .own{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--dim)}
+
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
   .lesson,.intro,.toc{opacity:1!important;transform:none!important}
@@ -294,7 +316,7 @@ figure img{cursor:zoom-in}
   <section class="lesson" id="distance">
     <div class="lesson-num">Lesson 01</div>
     <h2>Distance is the medium</h2>
-    <p class="thesis">Perspective belongs to where you stand, not to the lens. A street frame shot from across the road on a telezoom carries the geometry of a spectator.</p>
+    <p class="thesis">Perspective belongs to where you stand, not to the lens. A street frame shot from across the road on a telezoom carries the <a class="gterm" href="#gloss-spectator">geometry of a spectator</a>.</p>
     <p class="xref"><a href="x100vi-guide.html#section-focus">X100VI §Focus — zone focusing</a> · <a href="om1-guide.html#section-glass">OM-1 §Glass — the 12&#8211;40</a></p>
 
     <p>The optics first: perspective — the size relationship between a subject and what&#8217;s behind them — is fixed by camera-to-subject distance and nothing else. The focal length only decides how much of that perspective gets cropped into the frame. Stand <span class="num">2.9&#8202;m</span> from a person with a 35mm-e lens and someone ten metres behind them renders at <span class="num">23%</span> of their size: the person dominates, the street recedes, the viewer stands where you stood — inside the scene. Back up to <span class="num">25&#8202;m</span> with a 300mm-e and that same background figure renders at <span class="num">71%</span> of the subject&#8217;s size: everything flattens into one plane, and the frame announces that the photographer was somewhere else entirely.</p>
@@ -302,7 +324,7 @@ figure img{cursor:zoom-in}
     <div class="tscroll">
     <table class="tbl">
       <caption>Same subject size (2&#8202;m frame height), what changes with distance</caption>
-      <tr><th>Lens</th><th>You stand at</th><th>Background slice (10&#8202;m back)</th><th>Background renders at</th></tr>
+      <tr><th>Lens</th><th>You stand at</th><th><a class="gterm" href="#gloss-slice">Background slice</a> (10&#8202;m back)</th><th>Background renders at</th></tr>
       <tr><td>28mm-e</td><td class="n">2.3 m</td><td>15.9 m wide</td><td class="n">19% of subject</td></tr>
       <tr><td>35mm-e</td><td class="n">2.9 m</td><td>13.3 m wide</td><td class="n">23%</td></tr>
       <tr><td>50mm-e</td><td class="n">4.2 m</td><td>10.2 m wide</td><td class="n">29%</td></tr>
@@ -645,7 +667,7 @@ figure img{cursor:zoom-in}
   <section class="lesson" id="peak">
     <div class="lesson-num">Lesson 03</div>
     <h2>The peak, and pressing on meaning</h2>
-    <p class="thesis">A street photograph peaks: there is a half-second when gesture, glance and geometry converge. A frame that would look the same shot three seconds earlier or later is timing-agnostic — the definition of pressing on presence instead of meaning.</p>
+    <p class="thesis">A street photograph <a class="gterm" href="#gloss-peak">peaks</a>: there is a half-second when gesture, glance and geometry converge. A frame that would look the same shot three seconds earlier or later is <a class="gterm" href="#gloss-timing">timing-agnostic</a> — the definition of pressing on presence instead of meaning.</p>
     <p class="xref"><a href="in-practice.html#motion">In practice §03 — blur has two causes</a></p>
 
     <p>The &#8220;decisive moment&#8221; is a phrase Cartier-Bresson never chose — his 1952 book was <em>Images à la sauvette</em>, &#8220;images on the run&#8221;; the English title was the American publisher&#8217;s. What he actually defined is more useful: the simultaneous recognition, in a fraction of a second, of an event&#8217;s significance <em>and</em> of the precise organization of forms that expresses it. Moment and geometry converging — not moment alone, not geometry alone. A photographer arriving from landscape brings the second half already trained.</p>
@@ -796,7 +818,7 @@ figure img{cursor:zoom-in}
   <section class="lesson" id="working">
     <div class="lesson-num">Lesson 04</div>
     <h2>Fishing, not hunting</h2>
-    <p class="thesis">Working a scene for 2&#8211;5 frames and moving on is hunting. Street winners come from standing in one worked spot for 20&#8211;40 frames while the scene re-deals itself — fishing. The contact sheets of the masters are the proof: the keeper sits in a thicket of near-misses that paid for it.</p>
+    <p class="thesis">Working a scene for 2&#8211;5 frames and moving on is hunting. Street winners come from standing in one worked spot for 20&#8211;40 frames while the scene re-deals itself — <a class="gterm" href="#gloss-fishing">fishing</a>. The contact sheets of the masters are the proof: the keeper sits in a thicket of near-misses that paid for it.</p>
     <p class="xref"><a href="in-practice.html#method">In practice §07 — working a scene</a></p>
 
     <p>The published <em>Magnum Contact Sheets</em> (139 sheets, 69 photographers) put numbers on it. René Burri exposed <span class="num">eight rolls</span> in one Havana interview for the Che portrait everyone knows. Richard Kalvar worked a Rome piazza and got his picture on <span class="num">the last frame of the roll</span>. Bruce Gilden says he can go fifty rolls without a good photograph. Robert Frank shot <span class="num">767 rolls</span> for <em>The Americans</em> and published <span class="num">83</span> frames — a 0.3% keep rate. The name for the method is on record too: Matt Stuart calls it <em>fishing</em> — compose the stage, then wait for the street to deal into it. Alex Webb, who stands in Caribbean heat for hours to stack four elements into one frame, put the whole genre in seven words: &#8220;Street photography is 99.9 percent about failure.&#8221;</p>
@@ -1089,7 +1111,7 @@ figure img{cursor:zoom-in}
   <section class="lesson" id="objects">
     <div class="lesson-num">Lesson 06</div>
     <h2>Objects: transform, don&#8217;t describe</h2>
-    <p class="thesis">An object photographed as it is, competently, is an inventory entry — the viewer files it and moves on. Transformation — light, angle, or abstraction changing what the thing reads as — is the way out.</p>
+    <p class="thesis">An object photographed as it is, competently, is an inventory entry — the viewer files it and moves on. <a class="gterm" href="#gloss-transform">Transformation</a> — light, angle, or abstraction changing what the thing reads as — is the way out.</p>
     <p class="xref"><a href="in-practice.html#light">In practice §04 — the four properties of light</a></p>
 
     <p>The gap between a description and a transformation is not sharpness, color, or crop — those are decided after the fact. It is what the light and the angle were allowed to do before the shutter opened.</p>
@@ -1127,7 +1149,7 @@ figure img{cursor:zoom-in}
     <h3>The transformation levers</h3>
     <p>Three, and they compose: <strong>light</strong> (wait until light is doing something <em>to</em> the object — a lighting event, not an architectural one), <strong>angle</strong> (move until the object&#8217;s function disappears and its geometry remains), and <strong>abstraction</strong> (exclude every element that names the thing; what survives is shape, rhythm, color). The question at the scene is never &#8220;what is this?&#8221; — it is &#8220;what is this <em>becoming</em> right now, and from where?&#8221;</p>
 
-    <p>The thumbnail test guards the result. Whatever the object became, it must survive at 200 pixels: one shape, unmistakable, uncontested. A single subject on a busy textured field tends to read as texture at thumbnail size, however clean it looked in the finder — at that scale the texture competes with the subject. Before firing: name the one shape the thumbnail will show. Can&#8217;t name it — recompose.</p>
+    <p>The <a class="gterm" href="#gloss-thumbnail">thumbnail test</a> guards the result. Whatever the object became, it must survive at 200 pixels: one shape, unmistakable, uncontested. A single subject on a busy textured field tends to read as texture at thumbnail size, however clean it looked in the finder — at that scale the texture competes with the subject. Before firing: name the one shape the thumbnail will show. Can&#8217;t name it — recompose.</p>
 
     <div class="fig-row">
       <figure>
@@ -1411,7 +1433,7 @@ figure img{cursor:zoom-in}
     <p class="thesis">Not inspiration — data. Fifty frames per photographer, one line per frame: single shape at thumbnail / where the moment peaks / camera distance / what got transformed. Three photographers, each of whom solved one of the problems above.</p>
 
     <h3>Fan Ho — the bridge from the graphic eye</h3>
-    <p>Hong Kong, 1950s&#8211;60s, a Rolleiflex, and the stage-building habit done consciously. In his own words: he would find a location and <em>stake it out</em> — returning across days and seasons — and wait for &#8220;the suitable subject matter&#8221; to enter at the mark where light, mood and composition hit the climax he had already pictured. He knew Central Market&#8217;s light &#8220;came in so beautifully around four o&#8217;clock,&#8221; when cooking smoke and dust made the beams solid. That is the difference between his stage and the tourist&#8217;s: his stayed <em>empty</em> until the specific figure — right silhouette, right gait, right mark — completed the sentence, while the stage-first habit accepts whoever wanders through. &#8220;I am like a cowboy with one bullet,&#8221; he told an interviewer, &#8220;and not a machine gun.&#8221;</p>
+    <p>Hong Kong, 1950s&#8211;60s, a Rolleiflex, and the stage-building habit done consciously. In his own words: he would find a location and <em>stake it out</em> — returning across days and seasons — and wait for &#8220;the suitable subject matter&#8221; to enter at the mark where light, mood and composition hit the climax he had already pictured. He knew Central Market&#8217;s light &#8220;came in so beautifully around four o&#8217;clock,&#8221; when cooking smoke and dust made the beams solid. That is the difference between his stage and the tourist&#8217;s: his stayed <em>empty</em> until the specific figure — right silhouette, right gait, right mark — completed the sentence, while the <a class="gterm" href="#gloss-stage">stage-first</a> habit accepts whoever wanders through. &#8220;I am like a cowboy with one bullet,&#8221; he told an interviewer, &#8220;and not a machine gun.&#8221;</p>
     <p>He was also honest about control, which matters here: <em>Approaching Shadow</em> (1954), his most famous frame, was posed — his cousin against a wall — and the diagonal shadow was burned in later in the darkroom. Another frame, <em>Private</em>, was staged with two friends. He cropped freely and called the square negative &#8220;suitable for my purpose of cropping.&#8221; A pictorialist, not a documentarian: the geometry was the instrument, the print was the truth he cared about. The study: which of his fifty frames survive with the figure removed? Almost none — that is the gap to measure.</p>
 
     <p>The Fan Ho grammar was not his alone. The government photographers arrived at it on assignment, between captioned documents:</p>
@@ -1603,6 +1625,34 @@ figure img{cursor:zoom-in}
       <dd>The official archive publishes her contact sheets. Pair it with Lesson&#8202;04: this is a hundred thousand negatives by someone who never edited them for an audience. <span class="work"><a href="https://www.vivianmaier.com" target="_blank" rel="noopener">view</a></span></dd>
       <dt>Two caveats worth carrying <span class="place">licence</span></dt>
       <dd>The canon is not free: Berenice Abbott has fourteen files on Wikimedia Commons, and the Met&#8217;s photography department — despite the museum&#8217;s huge open-access programme — is only around a tenth public domain, mostly nineteenth-century. And searching Commons by keyword rather than category will happily return thousands of hits for photographers who have essentially nothing free there.</dd>
+    </dl>
+
+    <h3>Provenance</h3>
+    <p>Some of the vocabulary on this page is this guide&#8217;s own rather than the field&#8217;s, and saying which is which seemed more useful than letting it pass as received terminology. The terms below are defined here; the marked phrase in each lesson links back to this list. Readings of individual photographs are this guide&#8217;s own unless a curator or the photographer is named.</p>
+    <dl class="study prov">
+      <dt id="gloss-peak">The peak</dt>
+      <dd>The half-second in which gesture, glance and geometry converge, tested by whether the picture collapses when the moment moves half a second either way. Coined here to do the work &#8220;the decisive moment&#8221; is usually asked to do, after Cartier-Bresson&#8217;s own 1952 definition — the simultaneous recognition of an event&#8217;s significance and of the form that expresses it. <span class="work">Defined in <a href="#peak">Lesson&#8202;03</a> · <span class="own">this guide&#8217;s term</span></span></dd>
+
+      <dt id="gloss-thumbnail">Thumbnail truth</dt>
+      <dd>Whether a frame still reads as one unmistakable shape at roughly 200 pixels — the size at which most photographs are actually first seen. A working test, not a measured threshold. <span class="work">Used in <a href="#objects">Lesson&#8202;06</a> · <span class="own">this guide&#8217;s term</span></span></dd>
+
+      <dt id="gloss-fishing">Fishing, not hunting</dt>
+      <dd>Committing to one productive position and working it for dozens of frames, rather than walking further in search of a better scene. The contact sheets in <a href="#working">Lesson&#8202;04</a> are the evidence; the phrase is this guide&#8217;s shorthand for what they show. <span class="work">Used in <a href="#working">Lesson&#8202;04</a> · <span class="own">this guide&#8217;s term</span></span></dd>
+
+      <dt id="gloss-spectator">Spectator geometry</dt>
+      <dd>The look a frame acquires when it is made from far outside conversational distance: background compressed onto the subject, no near plane, nothing the photographer could have been standing inside. The optics behind it are ordinary perspective arithmetic — see the table in <a href="#distance">Lesson&#8202;01</a>. The name is this guide&#8217;s. <span class="work">Used in <a href="#distance">Lesson&#8202;01</a> · <span class="own">this guide&#8217;s term</span></span></dd>
+
+      <dt id="gloss-timing">Timing-agnostic</dt>
+      <dd>Of a frame that would look substantially the same shot several seconds earlier or later. The opposite of a frame that peaks. <span class="work">Used in <a href="#peak">Lesson&#8202;03</a> · <span class="own">this guide&#8217;s term</span></span></dd>
+
+      <dt id="gloss-stage">Stage-first, subject-first</dt>
+      <dd>Two orders of composing. Stage-first builds the frame and waits for a figure to enter it; subject-first picks the person and lets the background resolve second. Both appear in the canon — Fan Ho worked stage-first deliberately — so this is a description of order, not a ranking. <span class="work">Used in <a href="#subject">Lesson&#8202;02</a> · <span class="own">this guide&#8217;s term</span></span></dd>
+
+      <dt id="gloss-slice">Background slice</dt>
+      <dd>How wide a band of the world behind the subject a given focal length admits, at the distance that holds the subject a fixed size. Computed, not asserted; the numbers are in <a href="#distance">Lesson&#8202;01</a>. <span class="work">Used in <a href="#distance">Lesson&#8202;01</a> · <span class="own">this guide&#8217;s term</span></span></dd>
+
+      <dt id="gloss-transform">Transformation, description</dt>
+      <dd>A described object is recorded as what it is; a transformed one reads as something else first and resolves into the object second. The levers are light, angle and abstraction. <span class="work">Defined in <a href="#objects">Lesson&#8202;06</a> · <span class="own">this guide&#8217;s term</span></span></dd>
     </dl>
 
     <div class="takeaway"><b>Carry this</b>
@@ -2002,6 +2052,88 @@ figure img{cursor:zoom-in}
       btn.textContent = off ? 'Show the read' : 'Show original';
     });
   });
+})();
+
+// glossary / provenance cards. Markers are real anchors into the Provenance list,
+// so with JS off they simply jump there. Content is cloned from that list — written once.
+(function(){
+  var marks=document.querySelectorAll('.gterm,.cref');
+  if(!marks.length) return;
+  var card=document.createElement('div');
+  card.className='pcard'; card.id='pcard'; card.hidden=true;
+  card.setAttribute('role','tooltip');
+  document.body.appendChild(card);
+  var open=null, touched=false, openedBy=null;
+
+  function fill(a){
+    var dt=document.getElementById((a.getAttribute('href')||'').slice(1));
+    if(!dt) return false;
+    var dd=dt.nextElementSibling;
+    if(!dd||dd.tagName!=='DD') return false;
+    var term=dt.cloneNode(true), place=term.querySelector('.place');
+    if(place) place.remove();
+    var body=dd.cloneNode(true), work=body.querySelector('.work');
+    if(work){ work.className='src'; }
+    card.innerHTML='';
+    var h=document.createElement('b'); h.textContent=term.textContent.trim();
+    card.appendChild(h);
+    while(body.firstChild) card.appendChild(body.firstChild);
+    var more=document.createElement('a');
+    more.className='more'; more.href=a.getAttribute('href');
+    more.textContent='Full entry ↓';
+    card.appendChild(more);
+    return true;
+  }
+  function place(a){
+    card.hidden=false;
+    var r=a.getBoundingClientRect(), cw=card.offsetWidth, ch=card.offsetHeight;
+    var sx=window.pageXOffset, sy=window.pageYOffset;
+    var left=r.left+sx+r.width/2-cw/2;
+    left=Math.max(sx+8,Math.min(left,sx+document.documentElement.clientWidth-cw-8));
+    var top=r.bottom+sy+8;
+    if(r.bottom+ch+16>window.innerHeight && r.top>ch+16) top=r.top+sy-ch-8;
+    card.style.left=left+'px'; card.style.top=top+'px';
+  }
+  function show(a,how){
+    if(open===a){ if(how) openedBy=how; return; }
+    if(!fill(a)){ hide(); return; }
+    open=a; openedBy=how||'hover'; place(a); a.setAttribute('aria-describedby','pcard');
+  }
+  function hide(){
+    if(open) open.removeAttribute('aria-describedby');
+    open=null; card.hidden=true;
+  }
+  // A tap also synthesizes mouseenter, so hover must be gated on the real input type
+  // rather than on a latch — pointer events carry it. Touch opens on click only.
+  var hasPointer = 'onpointerenter' in window;
+  function isMouse(e){ return !e.pointerType || e.pointerType==='mouse'; }
+  [].forEach.call(marks,function(a){
+    if(hasPointer){
+      a.addEventListener('pointerenter',function(e){ if(isMouse(e)) show(a,'hover'); });
+      a.addEventListener('pointerleave',function(e){ if(isMouse(e)) hide(); });
+    } else {
+      a.addEventListener('mouseenter',function(){ if(!touched) show(a); });
+      a.addEventListener('mouseleave',function(){ if(!touched) hide(); });
+      a.addEventListener('touchstart',function(){ touched=true; },{passive:true});
+    }
+    a.addEventListener('focus',function(){ show(a,'focus'); });
+    a.addEventListener('blur',function(){ if(openedBy!=='click') hide(); });
+    a.addEventListener('click',function(e){
+      // The marker never navigates — it toggles the card, which carries its own link
+      // to the full entry. With JS off it stays a plain anchor into the Provenance list.
+      // A tap fires focus before click, so only a card already opened BY a click closes
+      // on one; otherwise the tap that opened it would immediately shut it again.
+      e.preventDefault();
+      if(open===a && openedBy==='click') hide(); else show(a,'click');
+    });
+  });
+  card.addEventListener('mouseenter',function(){ if(!touched && open) card.hidden=false; });
+  document.addEventListener('click',function(e){
+    if(open && !open.contains(e.target) && !card.contains(e.target)) hide();
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') hide(); });
+  addEventListener('scroll',function(){ if(open) place(open); },{passive:true});
+  addEventListener('resize',function(){ if(open) place(open); });
 })();
 
 // hotlink failure fallback: keep the credit, drop the broken img
