@@ -6,9 +6,27 @@ retracted.
 
 ---
 
-## [5.4.1] - 2026-07-31
+## [5.6.0] - 2026-07-31
 
-Same-day audit of the 5.4.0 pass. Structural checks were clean — HTML parses
+### Added
+
+- **Glossary cards and the Provenance block** (merged from the citations
+  session, which shipped without a changelog entry — recorded here during the
+  merge). Eight house terms the page invented — the peak, thumbnail truth,
+  fishing not hunting, spectator geometry among them — are marked on first use
+  with `<a class="gterm" href="#gloss-…">`; a **Provenance** block at the end of
+  §09 holds the definitions in a `<dl class="study prov">`; one shared popover
+  (`#pcard`, created at runtime) clones the entry on hover, tap or focus.
+  Markers are real anchors, so everything still works with JS off. `.cref` is
+  the parallel hook for the _sourced_ tier, which stays open —
+  `street-guide-CITATIONS-PLAN.md` tracks it. Input-path traps and the
+  device-matrix verification are recorded in `STREET-GUIDE-STATE.md`.
+
+---
+
+## [5.5.1] - 2026-07-31
+
+Same-day audit of the 5.5.0 pass. Structural checks were clean — HTML parses
 with no mismatched tags, no duplicate ids, no dead anchors or toggles, and all
 three shipped studies reproduce byte-for-byte (baked) or character-for-character
 (SVG) from the specs in `gen/anno-src/specs/`. What the sweep caught:
@@ -18,7 +36,7 @@ three shipped studies reproduce byte-for-byte (baked) or character-for-character
 - **The source split had been mis-stated as 66 · 69.** Mirroring the Delano
   changed its _hosting_, not its _source_ — it was LoC/archive before and after,
   so the split never moved from **65 archive/museum · 70 living**. Corrected in
-  the state file and in the 5.4.0 entry below.
+  the state file and in the 5.5.0 entry below.
 - **The Delano caption's ratio said fifteen to one; the measurement says
   fourteen.** The walker is 4.4% of frame height against the street's 61.5% →
   13.98:1. "Fifteen" came from dividing the rounded display values (62/4)
@@ -50,7 +68,7 @@ three shipped studies reproduce byte-for-byte (baked) or character-for-character
 
 ---
 
-## [5.4.0] - 2026-07-31
+## [5.5.0] - 2026-07-31
 
 ### Added
 
