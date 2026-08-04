@@ -1,11 +1,11 @@
 {
- "fetched": "2026-08-03T16:13:23+00:00",
+ "fetched": "2026-08-04T16:05:05+00:00",
  "counts": {
-  "raw": 321,
-  "deduped": 303,
+  "raw": 323,
+  "deduped": 309,
   "byTier": {
    "1": 44,
-   "2": 139,
+   "2": 145,
    "3": 120
   }
  },
@@ -21,20 +21,6 @@
   }
  ],
  "items": [
-  {
-   "source": "BBC Gossip",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Salah demands put Saudi switch in doubt - Saturday's gossip",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cy06rnjzxkyo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-07-10T20:32:14+00:00",
-   "watch": [
-    "Barcelona",
-    "Bayern",
-    "Real Madrid"
-   ],
-   "summary": "Mohamed Salah's financial demands putting off Saudi clubs, Bayern Munich rebuff Real Madrid move for Michael Olise, Barcelona agree to sign Karim Adeyemi, plus more."
-  },
   {
    "source": "BBC Gossip",
    "tier": 1,
@@ -358,98 +344,6 @@
    "summary": "Mohamed Salah edging towards a move to Trabzonspor, Bayern Munich keen on Manchester United striker Benjamin Sesko and Man City boss Enzo Maresca wants to work with Chelsea winger Pedro Neto again."
   },
   {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Skinner leaves Man Utd Women",
-   "link": "https://www.skysports.com/football/news/11095/13569329/marc-skinner-manchester-united-womens-head-coach-leaves-club-after-five-years-in-charge",
-   "published": "2026-08-03T08:45:00+00:00",
-   "watch": [
-    "Manchester United"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Marc Skinner has left his role as Manchester United Women head coach after five years in charge."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Newcastle sign goalkeeper Hornicek",
-   "link": "https://www.skysports.com/football/news/11095/13569327/lukas-hornicek-newcastle-united-sign-czech-republic-international-goalkeeper-on-five-year-contract-from-braga-in-deal-worth-25-7m",
-   "published": "2026-08-03T09:00:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Newcastle United have signed goalkeeper Lukas Hornicek from Braga in a deal worth £25.7m."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Arsenal latest: Vinicius Jr reports back to Real Madrid",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-08-03T09:05:00+00:00",
-   "watch": [
-    "Arsenal",
-    "Real Madrid"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Spurs interested in Liverpool's Gakpo",
-   "link": "https://www.skysports.com/football/news/11095/13569350/cody-gakpo-tottenham-interested-in-signing-liverpool-forward-as-roberto-de-zerbi-aims-to-improve-spurs-attack",
-   "published": "2026-08-03T09:51:00+00:00",
-   "watch": [
-    "Inter",
-    "Liverpool",
-    "Tottenham"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Tottenham are interested in signing Cody Gakpo from Liverpool this summer."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "WSL latest: What Man Utd are looking for in a new head coach",
-   "link": "https://www.skysports.com/football/live-blog/11095/13208899/wsl-news-transfers-rumours-gossip-and-womens-football-latest",
-   "published": "2026-08-03T10:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Newcastle latest: Hornicek set to be first-choice goalkeeper",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025496/newcastle-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-08-03T10:10:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Tottenham latest: Atletico and Inter still interested in Romero",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025489/tottenham-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-08-03T10:16:00+00:00",
-   "watch": [
-    "Atletico",
-    "Inter",
-    "Tottenham"
-   ],
-   "summary": ""
-  },
-  {
    "source": "BBC Gossip",
    "tier": 1,
    "kind": "rumour",
@@ -461,9 +355,6 @@
     "Liverpool",
     "Manchester City",
     "Tottenham"
-   ],
-   "also": [
-    "BBC Sport"
    ],
    "summary": "Tottenham make an approach for Victor Osimhen, Atletico Madrid consider a move for Manchester City winger Jack Grealish, Liverpool forward Cody Gakpo has positive talks with Spurs, plus more."
   },
@@ -481,75 +372,162 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Pochettino signs new USA deal",
-   "link": "https://www.skysports.com/football/live-blog/11095/12507208/football-latest-news-gossip",
-   "published": "2026-08-03T11:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Can Mount be the third midfielder Man Utd are looking for?",
-   "link": "https://www.skysports.com/football/news/11095/13569342/mason-mount-can-manchester-uniteds-pre-season-revelation-be-a-big-part-of-michael-carricks-midfield-overhaul",
-   "published": "2026-08-03T12:00:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "\"Why go out searching for a midfielder when you've got Mason Mount at home?\""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "West Ham latest: Hammers exploring Solomon deal and make Adingra enquiry",
-   "link": "https://www.skysports.com/football/live-blog/11095/13210475/west-ham-latest-news",
-   "published": "2026-08-03T12:00:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Newcastle reject Guimaraes bid from Arsenal",
+   "title": "Newcastle reject Guimaraes bid from Arsenal as Gunners plot next move",
    "link": "https://www.skysports.com/football/news/11095/13557961/bruno-guimaraes-arsenal-bid-rejected-by-newcastle-with-magpies-determined-to-keep-captain-and-brazil-international-midfielder",
    "published": "2026-08-03T12:39:00+00:00",
    "watch": [
     "Arsenal"
    ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Arsenal's opening bid for Bruno Guimaraes has been rejected by Newcastle."
+   "summary": "Arsenal's opening bid for Bruno Guimaraes has been rejected by Newcastle, with the Gunners now considering their next move."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "'Man Utd concerned about cost of WSL title chase' - Why Skinner left Man Utd",
-   "link": "https://www.skysports.com/football/news/11095/13569353/marc-skinner-leaves-man-utd-women-lack-of-investment-a-change-of-direction-and-inconsistent-playing-style-contributed-to-head-coach-exit",
-   "published": "2026-08-03T13:00:00+00:00",
+   "title": "Rashford's future, Hall pursuit and Man Utd's midfield rebuild",
+   "link": "https://www.skysports.com/football/news/11095/13569445/man-utd-transfers-can-marcus-rashford-be-reintegrated-at-old-trafford-or-will-he-leave-before-the-end-of-the-window",
+   "published": "2026-08-03T18:42:00+00:00",
    "watch": [
     "Manchester United"
    ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Just a month out from their opening Women's Super League fixture, Manchester United find themselves without a head coach after Marc Skinner departed on Monday morning."
+   "summary": "Marcus Rashford's future at Manchester United remains up in the air."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Liverpool latest: Does Iraola have enough cover at the back?",
+   "title": "Tottenham latest: Inter must sell first before moving for Romero",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025489/tottenham-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-04T07:00:00+00:00",
+   "watch": [
+    "Inter",
+    "Tottenham"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Rangers' £8m bid for Serie A winger rejected as Yokota nears Ibrox move",
+   "link": "https://www.skysports.com/football/live-blog/11095/13176154/scottish-premiership-news-transfers-rumours-gossip-and-more",
+   "published": "2026-08-04T10:00:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "BBC Gossip",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Fenerbahce ready huge Rashford offer - Tuesday's gossip",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cy5dqynxdezo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-04T10:27:25+00:00",
+   "watch": [
+    "Arsenal",
+    "Real Madrid"
+   ],
+   "also": [
+    "BBC Sport"
+   ],
+   "summary": "Fenerbahce prepared to break the bank for Marcus Rashford, RB Leipzig hold out on Real Madrid over Yan Diomande deal, Arsenal open talks for Bruno Guimaraes."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Wenger responds to Infantino's FIFA plan U-turn",
+   "link": "https://www.skysports.com/football/live-blog/11095/12507208/football-latest-news-gossip",
+   "published": "2026-08-04T11:23:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "What did we learn from opening weekend of Scottish Premiership season?",
+   "link": "https://www.skysports.com/football/news/11095/13569683/scottish-premiership-what-did-we-learn-from-the-opening-weekend-of-the-2026-27-season",
+   "published": "2026-08-04T12:30:00+00:00",
+   "watch": [],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Four days, six matches, 18 goals, and one opening weekend full of unmissable drama."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Everton latest: Norgaard set for medical ahead of £7m move",
+   "link": "https://www.skysports.com/football/live-blog/11095/13279303/everton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+   "published": "2026-08-04T12:30:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Where would Guimaraes fit in at Arsenal?",
+   "link": "https://www.skysports.com/football/news/11095/13569644/bruno-guimaraes-to-arsenal-where-would-newcastle-captain-fit-in-and-what-would-it-mean-for-martin-zubimendi-martin-odegaard-myles-lewis-skelly",
+   "published": "2026-08-04T12:50:00+00:00",
+   "watch": [
+    "Arsenal",
+    "Inter"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "It is easy to understand Arsenal's interest in Bruno Guimaraes. The Newcastle captain is one of the Premier League's most complete midfielders, capable of dominating and destroying but also scoring and creating, with pas"
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Liverpool's squad lacks depth: What areas does Iraola needs to strengthen?",
+   "link": "https://www.skysports.com/football/news/11095/13569738/liverpool-transfer-news-andoni-iraolas-squad-lacks-depth-where-should-reds-strengthen",
+   "published": "2026-08-04T13:46:00+00:00",
+   "watch": [
+    "Liverpool"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Liverpool are short in a number of positions just three weeks out from their Premier League opener and seemingly no closer to bringing in any further additions this summer."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Chelsea latest: Mudryk attracting loan interest",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025497/chelsea-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-04T14:40:00+00:00",
+   "watch": [
+    "Chelsea",
+    "Inter"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Arsenal latest: Vinicius Jr breaks silence after Real Madrid return",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-04T15:00:00+00:00",
+   "watch": [
+    "Arsenal",
+    "Real Madrid"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Liverpool fans have their say on squad strength: 'Is Trent on loan the answer?'",
    "link": "https://www.skysports.com/football/live-blog/11095/13025501/liverpool-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-08-03T13:00:00+00:00",
+   "published": "2026-08-04T15:15:00+00:00",
    "watch": [
     "Liverpool"
    ],
@@ -559,16 +537,24 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Celtic learn CL opponents as Brighton discover European route",
-   "link": "https://www.skysports.com/football/news/11095/13569393/champions-league-europa-league-conference-league-play-off-draws-celtic-rangers-brighton-hearts-hibernian-motherwell-discover-opponents",
-   "published": "2026-08-03T13:30:00+00:00",
+   "title": "Man City latest: Marseille goalkeeper eyed as Trafford replacement",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025499/man-city-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-04T15:15:00+00:00",
    "watch": [
-    "Celtic"
+    "Man City",
+    "Marseille"
    ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Celtic will play Austrian champions LASK for a place in the league phase of the Champions League, while Brighton will face CFR Cluj or Tromso in the Conference League play-off round."
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "West Ham latest: Kretinsky makes move to block Staveley investment",
+   "link": "https://www.skysports.com/football/live-blog/11095/13210475/west-ham-latest-news",
+   "published": "2026-08-04T15:48:00+00:00",
+   "watch": [],
+   "summary": ""
   },
   {
    "source": "Guardian",
@@ -949,68 +935,6 @@
    "source": "Opta Analyst",
    "tier": 3,
    "kind": "analysis",
-   "title": "Interactive: What Does It Take to Score a Goal in a World Cup Final?",
-   "link": "https://theanalyst.com/articles/world-cup-final-goals-what-does-it-take-to-score",
-   "published": "2026-07-16T10:59:46+00:00",
-   "watch": [
-    "Inter"
-   ],
-   "summary": "We look back at every goal scored in a men’s World Cup final to see what it takes to score in football's biggest game. The post Interactive: What Does It Take to Score a Goal in a World Cup Final? appeared first on Opta "
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "How England Threw Away Their World Cup Dream",
-   "link": "https://theanalyst.com/articles/how-england-threw-away-their-world-cup-dream",
-   "published": "2026-07-16T12:24:48+00:00",
-   "watch": [],
-   "summary": "Once again at a major tournament, England took the lead against quality opposition and failed to keep hold of it. This is how they fell short in familiar fashion. The post How England Threw Away Their World Cup Dream app"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Style Without Enough Substance: Progress Desperately Needed at UNC Under Belichick, Colorado Under Prime",
-   "link": "https://theanalyst.com/articles/bill-belichick-deion-sanders-college-football-progress-needed-at-unc-colorado",
-   "published": "2026-07-16T15:00:25+00:00",
-   "watch": [],
-   "summary": "With North Carolina under Bill Belichick and Colorado under Deion Sanders, anything less than 2026 progress could lead to their departures. The post Style Without Enough Substance: Progress Desperately Needed at UNC Unde"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "France vs England Prediction: World Cup 2026 Match Preview",
-   "link": "https://theanalyst.com/articles/france-vs-england-prediction-world-cup-2026-match-preview",
-   "published": "2026-07-17T08:14:42+00:00",
-   "watch": [],
-   "summary": "Didier Deschamps bids adieu as France and England face off in the 2026 FIFA World Cup third place play-off. The post France vs England Prediction: World Cup 2026 Match Preview appeared first on Opta Analyst."
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "2026 World Cup Bracket: Opta Supercomputer Knockout-Stage Predictions",
-   "link": "https://theanalyst.com/articles/2026-world-cup-bracket-opta-supercomputer",
-   "published": "2026-07-17T14:55:17+00:00",
-   "watch": [],
-   "summary": "Use our 2026 FIFA World Cup bracket to look back on the knockout stages and get the latest Opta supercomputer predictions for the final. The post 2026 World Cup Bracket: Opta Supercomputer Knockout-Stage Predictions appe"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "The ‘Real Rodri’ Returns Just in Time For World Cup Final Date With Lionel Messi",
-   "link": "https://theanalyst.com/articles/real-rodri-is-back-spain-world-cup-2026-stats",
-   "published": "2026-07-18T09:11:17+00:00",
-   "watch": [],
-   "summary": "It was no secret that Rodri didn't return to his best in 2025-26 after a lengthy injury absence. But after exercising restraint and patience, he has led Spain to a second World Cup final. The post The ‘Real Rodri’ Return"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
    "title": "Goals, Set-Piece Ability, and Versatility: What Christos Tzolis Would Bring to Arsenal",
    "link": "https://theanalyst.com/articles/christos-tzolis-arsenal-stats-perfect-leandro-trossard-replacement",
    "published": "2026-07-18T09:36:59+00:00",
@@ -1250,6 +1174,66 @@
    "published": "2026-07-20T15:05:10+00:00",
    "watch": [],
    "summary": "Who has the most assists at the World Cup? Now that Opta has this data back to the 1966 finals, we can list the players with the most assists in the competition since that edition. The post Most Assists at the World Cup "
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Looking Back: Germany’s Four FIFA World Cup Wins",
+   "link": "https://theanalyst.com/articles/germany-world-cup-wins-fifa",
+   "published": "2026-07-20T15:17:46+00:00",
+   "watch": [],
+   "summary": "Only Brazil have won more men’s FIFA World Cup titles than Germany. We look back at each of Germany's four World Cup wins by analysing the data behind each tournament. The post Looking Back: Germany’s Four FIFA World Cup"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Most FIFA World Cup Appearances by a Player",
+   "link": "https://theanalyst.com/articles/most-world-cup-appearances-by-a-player",
+   "published": "2026-07-20T15:21:55+00:00",
+   "watch": [],
+   "summary": "Here are the players who combined longevity and excellence to make the most World Cup appearances as a player. The post Most FIFA World Cup Appearances by a Player appeared first on Opta Analyst."
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "The Youngest Players to Score at a World Cup",
+   "link": "https://theanalyst.com/articles/youngest-players-to-score-world-cup-fifa",
+   "published": "2026-07-20T15:29:22+00:00",
+   "watch": [],
+   "summary": "Who are the youngest FIFA World Cup scorers? We look back at the players to score their first goal at the youngest age in the competition. The post The Youngest Players to Score at a World Cup appeared first on Opta Anal"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Most Goals Scored by a Player in a Single FIFA World Cup Tournament",
+   "link": "https://theanalyst.com/articles/most-goals-scored-in-a-world-cup-tournament-by-one-player",
+   "published": "2026-07-20T15:50:27+00:00",
+   "watch": [],
+   "summary": "Just Fontaine holds the record for the most goals scored at a single tournament, with 13 goals in 1958. But who else makes the list? The post Most Goals Scored by a Player in a Single FIFA World Cup Tournament appeared f"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "The Biggest World Cup Wins",
+   "link": "https://theanalyst.com/articles/the-biggest-world-cup-wins",
+   "published": "2026-07-20T16:14:59+00:00",
+   "watch": [],
+   "summary": "We look back at the biggest World Cup wins in the history of the men's competition. The post The Biggest World Cup Wins appeared first on Opta Analyst."
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Opta’s World Cup 2026 Team of the Tournament",
+   "link": "https://theanalyst.com/articles/world-cup-opta-team-of-the-tournament-2026",
+   "published": "2026-07-20T16:16:03+00:00",
+   "watch": [],
+   "summary": "After six weeks of blood, sweat and tears (from both players and fans), the curtain has fallen on the 2026 FIFA World Cup. Find out who made our team of the tournament. The post Opta’s World Cup 2026 Team of the Tourname"
   }
  ]
 }
