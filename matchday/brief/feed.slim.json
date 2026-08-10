@@ -1,7 +1,7 @@
 {
- "fetched": "2026-08-09T14:23:09+00:00",
+ "fetched": "2026-08-10T14:49:25+00:00",
  "counts": {
-  "raw": 306,
+  "raw": 315,
   "deduped": 294,
   "byTier": {
    "1": 44,
@@ -21,21 +21,6 @@
   }
  ],
  "items": [
-  {
-   "source": "BBC Gossip",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Inter interested in Spence - Friday's gossip",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cvgx4rvz57vo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-07-16T22:27:33+00:00",
-   "watch": [
-    "Arsenal",
-    "Inter",
-    "Liverpool",
-    "Milan"
-   ],
-   "summary": "Inter Milan work on deals for Djed Spence and Cristian Romero, Liverpool lead the race for Kaishu Sano, Arsenal show interest in Ezri Konsa, plus more."
-  },
   {
    "source": "BBC Gossip",
    "tier": 1,
@@ -328,18 +313,6 @@
    "summary": "Liverpool explore move for Ibrahim Mbaye and Aston Villa reach agreement to sign Matteo Ruggeri."
   },
   {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Why Liverpool are ready to put their faith in the 'real deal' Jacquet",
-   "link": "https://www.skysports.com/football/news/11095/13570137/jeremy-jacquet-why-liverpool-are-ready-to-put-their-faith-in-60m-france-centre-back",
-   "published": "2026-08-07T08:00:00+00:00",
-   "watch": [
-    "Liverpool"
-   ],
-   "summary": "Liverpool have big hopes for Jeremy Jacquet having invested £60m to bring the highly regarded young central defender to Anfield this summer. An injury has disrupted his pre-season but the Frenchman looks worth the wait."
-  },
-  {
    "source": "BBC Gossip",
    "tier": 1,
    "kind": "rumour",
@@ -371,32 +344,6 @@
    "summary": "Manchester City explore Enzo Fernandez move, Arsenal could battle Manchester United for Pio Esposito and Liverpool yet to agree Bradley Barcola fee, plus more."
   },
   {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "West Ham, Burnley & Southampton progress! - Carabao Cup highlights",
-   "link": "https://www.skysports.com/football/live-blog/11095/13570685/carabao-cup-first-round-live-scores-match-updates-and-free-highlights",
-   "published": "2026-08-08T13:30:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Marmoush tucks in double as Semenyo stars in Man City win over Atletico Madrid",
-   "link": "https://www.skysports.com/football/manchester-city-vs-atletico-madrid/report/559827",
-   "published": "2026-08-08T16:57:00+00:00",
-   "watch": [
-    "Atletico",
-    "Man City"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Man City impressed in a 3-1 friendly win over Atletico Madrid in Seoul, with Enzo Maresca's tactical ideas beginning to take hold."
-  },
-  {
    "source": "BBC Gossip",
    "tier": 1,
    "kind": "rumour",
@@ -407,33 +354,88 @@
     "Arsenal",
     "Barcelona"
    ],
-   "also": [
-    "BBC Sport"
-   ],
    "summary": "Barcelona increase their Rodri bid, Cristian Romero wants to join Arsenal, Forest are set to sign Ousmane Diomande, plus more."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Wissa double gives Newcastle boss Jaissle winning start at 10-man Valencia",
-   "link": "https://www.skysports.com/football/valencia-vs-newcastle-united/report/568647",
-   "published": "2026-08-08T22:26:00+00:00",
+   "title": "PSG close in on World Cup final match-winner Torres",
+   "link": "https://www.skysports.com/football/live-blog/11095/12507208/football-latest-news-gossip",
+   "published": "2026-08-09T11:50:00+00:00",
+   "watch": [
+    "PSG"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Papers: Man Utd and Arsenal chase Club Brugge full-back Seys",
+   "link": "https://www.skysports.com/football/news/11095/13571517/manchester-united-and-arsenal-among-several-clubs-chasing-club-brugge-left-back-joaquin-seys",
+   "published": "2026-08-09T23:00:00+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "The top stories and transfer rumours from Monday's newspapers..."
+  },
+  {
+   "source": "BBC Gossip",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Villa interested in Endrick loan - Monday's gossip",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cx2klxw043xo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-10T09:20:48+00:00",
+   "watch": [
+    "Arsenal",
+    "Bayern",
+    "Inter"
+   ],
+   "also": [
+    "BBC Sport"
+   ],
+   "summary": "Aston Villa interested in Endrick loan, Harry Kane expected to extend Bayern Munich deal and Arsenal make Bradley Barcola contact, plus more."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Liverpool latest: Araujo completes medical ahead of switch from Barcelona",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025501/liverpool-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-10T10:00:00+00:00",
+   "watch": [
+    "Barcelona",
+    "Liverpool"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "UEFA signs joint letter slamming 'deception' as Infantino fallout continues",
+   "link": "https://www.skysports.com/football/news/11095/13571573/gianni-infantino-uefa-signs-joint-letter-slamming-deception-at-top-of-fifa-as-world-cup-stake-sale-fallout-continues",
+   "published": "2026-08-10T10:00:00+00:00",
    "watch": [],
    "also": [
     "Sky Sports"
    ],
-   "summary": "Substitute Yoane Wissa scored twice to give Matthias Jaissle a winning start as Newcastle boss with a 2-1 comeback pre-season win at 10-man Valencia."
+   "summary": "UEFA, CONCACAF and AFC have hit out at \"deception\" and a \"fundamental breach of trust\" around Gianni Infantino's botched World Cup stake sale plans to further raise the pressure on the under-fire FIFA president."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Arsenal latest: Do Gunners need Romero? Have your say!",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-08-09T08:35:00+00:00",
-   "watch": [
-    "Arsenal"
+   "title": "Sunderland latest: Wrexham agree £8m deal to sign Black Cats 'keeper",
+   "link": "https://www.skysports.com/football/live-blog/11095/13375102/sunderland-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-10T10:25:00+00:00",
+   "watch": [],
+   "also": [
+    "Sky Sports"
    ],
    "summary": ""
   },
@@ -441,21 +443,9 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Man City latest: 'Open-minded' players impress as Maresca-ball takes shape",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025499/man-city-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-08-09T09:08:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Coventry latest: Sky Blues agree deal to re-sign Hamer",
-   "link": "https://www.skysports.com/football/live-blog/11095/13541482/coventry-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-08-09T10:15:00+00:00",
+   "title": "Aston Villa latest: 'New set-piece coach talks after MacPhee exit'",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025491/aston-villa-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-10T10:32:00+00:00",
    "watch": [],
    "summary": ""
   },
@@ -463,13 +453,21 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Simeone stance clear on Alvarez's Atletico future amid Arsenal interest",
-   "link": "https://www.skysports.com/football/live-blog/11095/12507208/football-latest-news-gossip",
-   "published": "2026-08-09T11:50:00+00:00",
+   "title": "Everton latest: McNeil-Johnson swap deal agreed with Palace",
+   "link": "https://www.skysports.com/football/live-blog/11095/13279303/everton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+   "published": "2026-08-10T10:39:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Tottenham latest: Your questions and views for our Spurs summer podcast!",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025489/tottenham-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-10T11:00:00+00:00",
    "watch": [
-    "Arsenal",
-    "Atletico",
-    "Inter"
+    "Tottenham"
    ],
    "summary": ""
   },
@@ -477,83 +475,67 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Hogh hits first-half hat-trick for Celtic at woeful Kilmarnock LIVE!",
-   "link": "https://www.skysports.com/football/kilmarnock-vs-celtic/live/558343",
-   "published": "2026-08-09T12:00:00+00:00",
+   "title": "Rangers frustrations, Celtic's Hogh silences critics, Hearts win under Vrancken",
+   "link": "https://www.skysports.com/football/news/11095/13571564/scottish-premiership-review-rangers-struggle-kasper-hogh-silences-celtic-critics-hearts-shine-in-another-dramatic-weekend",
+   "published": "2026-08-10T11:00:00+00:00",
    "watch": [
     "Celtic"
    ],
    "also": [
     "Sky Sports"
    ],
-   "summary": ""
+   "summary": "Rangers manager Derek McInnes is still waiting for his first win, but both Celtic striker Kasper Hogh and Hearts boss Wouter Vrancken answered some of their critics."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "What we learned from Jaissle's first game in charge at Newcastle",
-   "link": "https://www.skysports.com/football/news/11095/13571333/valencia-1-2-newcastle-what-we-learned-after-matthias-jaissles-first-game-in-charge",
-   "published": "2026-08-09T12:05:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Substitute Yoane Wissa scored twice to give Matthias Jaissle a winning start as Newcastle boss with a 2-1 comeback pre-season win at 10-man Valencia."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Comical Arsenal defending puts Dortmund 3-1 up LIVE!",
-   "link": "https://www.skysports.com/football/live-blog/11095/13571163/arsenal-vs-borussia-dortmund-live-pre-season-friendly-team-news-preview-score-updates-and-live-blog",
-   "published": "2026-08-09T12:30:00+00:00",
-   "watch": [
-    "Arsenal",
-    "Dortmund"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Isak and Wirtz on target as Liverpool lead Monaco LIVE!",
-   "link": "https://www.skysports.com/football/liverpool-vs-monaco/live/556109",
-   "published": "2026-08-09T13:23:00+00:00",
+   "title": "Amazon founder Bezos nears deal to buy stake in Liverpool",
+   "link": "https://www.skysports.com/football/news/11095/13571596/liverpool-amazon-founder-jeff-bezos-nears-deal-to-buy-stake-with-consortium-led-by-amit-bhatia",
+   "published": "2026-08-10T11:14:00+00:00",
    "watch": [
     "Liverpool"
    ],
    "also": [
     "Sky Sports"
    ],
+   "summary": "Sky News understands a consortium including the Amazon founder Jeff Bezos is closing in on a deal to buy a roughly one-third stake in Liverpool."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Arsenal latest: Gunners target Alvarez returns to Atletico Madrid for pre-season",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-10T11:40:00+00:00",
+   "watch": [
+    "Arsenal",
+    "Atletico"
+   ],
    "summary": ""
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "'The first of many!' | Hogh opens Celtic account early on at Kilmarnock",
-   "link": "https://www.skysports.com/watch/video/13571358/it-will-be-the-first-of-many-kasper-hogh-opens-celtic-account-early-on-at-kilmarnock",
-   "published": "2026-08-09T13:37:00+00:00",
+   "title": "Why Munoz is a symbol of change for Iraola's new Liverpool",
+   "link": "https://www.skysports.com/football/news/11095/13561572/victor-munoz-to-liverpool-spain-international-is-a-symbol-of-andoni-iraolas-plan-to-add-intensity-in-attack",
+   "published": "2026-08-10T12:00:00+00:00",
    "watch": [
-    "Celtic"
+    "Liverpool"
    ],
    "also": [
     "Sky Sports"
    ],
-   "summary": "Kasper Hogh scored his first Celtic goal inside the opening two minutes of Celtic’s away match at Kilmarnock."
+   "summary": "Andoni Iraola could not have been clearer about how he plans to change Liverpool when speaking in his opening press conference. \"We have to be a team that works hard, intense and aggressive.” That shift in approach is em"
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Forest latest: Diomande travelling to UK to complete Forest move",
-   "link": "https://www.skysports.com/football/live-blog/11095/13279316/nottingham-forest-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-08-09T13:51:00+00:00",
+   "title": "West Ham latest: Parrott bid rejected as Hammers eye Vardy move",
+   "link": "https://www.skysports.com/football/live-blog/11095/13210475/west-ham-latest-news",
+   "published": "2026-08-10T12:52:00+00:00",
    "watch": [],
    "summary": ""
   },
@@ -561,16 +543,26 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "'He can't miss!' | Hogh running rampant with first-half hat-trick",
-   "link": "https://www.skysports.com/watch/video/13571375/kilmarnock-vs-celtic-hogh-running-rampant-with-first-half-hat-trick",
-   "published": "2026-08-09T14:11:00+00:00",
+   "title": "Carabao Cup second-round draw tonight as Chelsea, Spurs and Newcastle enter",
+   "link": "https://www.skysports.com/football/live-blog/11095/13571626/carabao-cup-draw-chelsea-spurs-everton-newcastle-leeds-nottingham-forest-and-more-join-first-round-winners-in-second-round",
+   "published": "2026-08-10T13:45:00+00:00",
    "watch": [
-    "Celtic"
+    "Chelsea"
    ],
    "also": [
     "Sky Sports"
    ],
-   "summary": "Hogh runs rampant with first-half hat-trick for Celtic."
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Man Utd latest: Rashford back with Carrick's squad - what's next? Have your say!",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025492/man-utd-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-10T14:00:00+00:00",
+   "watch": [],
+   "summary": ""
   },
   {
    "source": "Guardian",
@@ -706,18 +698,6 @@
    "source": "BBC Sport",
    "tier": 2,
    "kind": "news",
-   "title": "How Toone is navigating grief through football",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c3e2dg875x7o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-05-29T17:04:22+00:00",
-   "watch": [
-    "Manchester United"
-   ],
-   "summary": "England and Manchester United midfielder Ella Toone opens up about grief, football and preparing for her wedding without her dad in a new BBC documentary."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
    "title": "How Cornish miners brought football to Mexico",
    "link": "https://www.bbc.co.uk/sport/football/articles/cx21q453l4jo?at_medium=RSS&at_campaign=rss",
    "published": "2026-06-02T05:28:25+00:00",
@@ -733,16 +713,6 @@
    "published": "2026-06-26T21:16:26+00:00",
    "watch": [],
    "summary": "Our Ask Me Anything team break down the prize money on offer at the 2026 World Cup."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Should teams bring on players just for penalty shootouts?",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c4gy899mpp9o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-06-30T14:04:37+00:00",
-   "watch": [],
-   "summary": "BBC Sport's Ask Me Anything team looks at the numbers behind late substitutes taking penalties in shootouts."
   },
   {
    "source": "BBC Sport",
@@ -854,16 +824,6 @@
    "source": "BBC Sport",
    "tier": 2,
    "kind": "news",
-   "title": "With great power comes great responsibility",
-   "link": "https://www.bbc.co.uk/iplayer/group/m002pm3w?at_mid=e8Sm8RTslk&at_campaign=Spider_Man_Collection&at_medium=display_ad&at_campaign_type=owned&at_nation=NET&at_audience_id=SS&at_product=iplayer&at_brand=m002pm3w&at_ptr_name=bbc&at_ptr_type=media&at_format=image&at_objective=consumption&at_link_title=Spider_Man_Collection&at_bbc_team=BBC",
-   "published": "2026-07-20T20:05:00+00:00",
-   "watch": [],
-   "summary": "Swing into action: Your epic Spider-Man rewatch starts here"
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
    "title": "The country that doesn't play football... yet",
    "link": "https://www.bbc.co.uk/sport/football/articles/c5y03dermmeo?at_medium=RSS&at_campaign=rss",
    "published": "2026-07-21T05:47:13+00:00",
@@ -947,24 +907,38 @@
    "summary": "With youth and senior qualifiers on the horizon, Fifa’s aborted plan to sell stakes in its major tournaments would have heavily impacted the women’s gameDespite not having been deemed worthy of more than a single mention"
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "The Biggest World Cup Wins",
-   "link": "https://theanalyst.com/articles/the-biggest-world-cup-wins",
-   "published": "2026-07-20T16:14:59+00:00",
-   "watch": [],
-   "summary": "We look back at the biggest World Cup wins in the history of the men's competition. The post The Biggest World Cup Wins appeared first on Opta Analyst."
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "On the spot: 50 of the most famous – and infamous – Panenka penalties of all time",
+   "link": "https://www.theguardian.com/football/ng-interactive/2026/aug/03/50-of-the-most-famous-and-infamous-panenka-penalties-of-all-time",
+   "published": "2026-08-03T06:00:43+00:00",
+   "watch": [
+    "Inter"
+   ],
+   "summary": "The 50th anniversary is the perfect time to remember 50 of the most famous – and infamous – attempts at the Czech’s chipIt is 50 years since Antonin Panenka won the European Championship for Czechoslovakia with the most "
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Opta’s World Cup 2026 Team of the Tournament",
-   "link": "https://theanalyst.com/articles/world-cup-opta-team-of-the-tournament-2026",
-   "published": "2026-07-20T16:16:03+00:00",
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Football Weekly’s summer mailbag: AI, how transfer gossip works and more – part two",
+   "link": "https://www.theguardian.com/football/audio/2026/aug/03/football-weekly-summer-mailbag-ai-how-transfer-gossip-works-part-two-podcast",
+   "published": "2026-08-03T07:10:47+00:00",
    "watch": [],
-   "summary": "After six weeks of blood, sweat and tears (from both players and fans), the curtain has fallen on the 2026 FIFA World Cup. Find out who made our team of the tournament. The post Opta’s World Cup 2026 Team of the Tourname"
+   "summary": "Max Rushden is joined by Barry Glendenning, John Brewin, Seb Hutchinson and Jonathan Wilson to answer your questions from the Football Weekly mailbagRate, review, share on Apple Podcasts and join the conversation on emai"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "‘They are terrified’: Como spark row with fans over controversial new stadium policy",
+   "link": "https://www.theguardian.com/football/2026/aug/03/they-are-terrified-como-spark-row-with-fans-over-controversial-new-stadium-policy",
+   "published": "2026-08-03T12:53:25+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": "Supporters must not miss more than three home gamesSerie A club’s chairman defends new rulesComo, the surprise package of last season’s Serie A, who qualified for the Champions League for the first time, will revoke seas"
   },
   {
    "source": "Opta Analyst",
@@ -1266,6 +1240,26 @@
    "published": "2026-07-30T13:57:56+00:00",
    "watch": [],
    "summary": "The 2026-27 Women’s Super League fixtures have been released, so we’ve looked at the schedule to analyse which teams have the easiest and toughest starts to the season. The post WSL Fixtures: Who Has the Toughest Start t"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Scottish Premiership 2026-27: Opta Supercomputer Season Predictions",
+   "link": "https://theanalyst.com/articles/scottish-premiership-predictions-2026-27-opta-supercomputer",
+   "published": "2026-07-31T08:19:29+00:00",
+   "watch": [],
+   "summary": "Ahead of the Scottish Premiership returning for the 2026-27 season on Friday, the Opta supercomputer has run 10,000 simulations of the campaign. Who won most often? The post Scottish Premiership 2026-27: Opta Supercomput"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Eddie Howe’s Newcastle Reign a Story of Transformation, Ambition and Ultimately Frustration",
+   "link": "https://theanalyst.com/articles/eddie-howe-newcastle-reign-ambition-frustration-stats",
+   "published": "2026-07-31T08:19:35+00:00",
+   "watch": [],
+   "summary": "Eddie Howe is leaving Newcastle United, according to widespread reports. But the fact he'll depart on his own terms speaks volumes for the job he's done at St. James' Park. The post Eddie Howe’s Newcastle Reign a Story o"
   }
  ]
 }
