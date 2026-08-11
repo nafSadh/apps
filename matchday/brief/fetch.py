@@ -8,7 +8,7 @@ that happens downstream, where claims can be checked before anything is publishe
     python3 fetch.py --print    -> also dump a readable digest to stdout
 """
 import json, re, sys, html, urllib.request, urllib.error
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -21,7 +21,22 @@ UA = "Mozilla/5.0 (compatible; matchday-brief/1.0; +https://sadh.app/matchday)"
 MIN_FEEDS = 5      # of 8 — below this the haul is too thin to trust
 MIN_ITEMS = 60     # deduped
 
+# Transfermarkt's own RSS serves an EMPTY 200 to datacenter IPs (GitHub runners hit
+# this every run 2026-07-24 onward; residential IPs get a normal feed). All
+# transfermarkt.* country domains sit behind the same CloudFront origin, so the only
+# real fallbacks live off-site: Google News's index of transfermarkt.com, then ESPN
+# as a terminal stand-in. The .com URL stays first — it costs one request and
+# self-heals if the block is ever lifted.
+TM_CHAIN = [
+    "https://www.transfermarkt.com/rss/news",
+    # when:2d keeps it to fresh ARTICLES — the bare site: query surfaces player
+    # profiles and match-centre pages instead of news
+    "https://news.google.com/rss/search?q=site:transfermarkt.com%20when:2d&hl=en-US&gl=US&ceid=US:en",
+    "https://www.espn.com/espn/rss/soccer/news",
+]
+
 # tier: 1 = attributed rumour digest, 2 = news/confirmation, 3 = analysis
+# url may be a single string or an ordered fallback list — pull() walks it.
 FEEDS = [
     ("BBC Gossip",      "https://feeds.bbci.co.uk/sport/football/gossip/rss.xml", 1, "rumour"),
     ("Sky Transfers",   "https://www.skysports.com/rss/11095",                    1, "rumour"),
@@ -30,7 +45,7 @@ FEEDS = [
     ("Sky Sports",      "https://www.skysports.com/rss/12040",                    2, "news"),
     ("Opta Analyst",    "https://theanalyst.com/feed",                            3, "analysis"),
     ("FourFourTwo",     "https://www.fourfourtwo.com/feeds/all",                  3, "analysis"),
-    ("Transfermarkt",   "https://www.transfermarkt.com/rss/news",                 3, "data"),
+    ("Transfermarkt",   TM_CHAIN,                                                 3, "data"),
 ]
 
 # clubs the app actually tracks — used only to mark relevance, never to drop items
@@ -59,13 +74,9 @@ def when(item):
     return None
 
 
-def pull(name, url, tier, kind):
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        root = ET.fromstring(r.read())
-    items = root.iter("item") or []
+def parse_feed(root, name, tier, kind):
     out = []
-    for it in items:
+    for it in root.iter("item"):
         title = strip(it.findtext("title"))
         if not title:
             continue
@@ -90,6 +101,55 @@ def pull(name, url, tier, kind):
                         "summary": strip(e.findtext(ns + "summary"))[:600],
                         "link": link, "published": when(e)})
     return out
+
+
+def pull(name, urls, tier, kind):
+    """Walk a feed's URL chain until one answers with usable items."""
+    last = None
+    for i, url in enumerate([urls] if isinstance(urls, str) else urls):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=20) as r:
+                body = r.read()
+            if not body.strip():
+                # the Transfermarkt block signature: HTTP 200, zero bytes — fail
+                # loudly instead of surfacing as a cryptic XML ParseError
+                raise ValueError("empty body on HTTP 200")
+            out = parse_feed(ET.fromstring(body), name, tier, kind)
+            if not out:
+                raise ValueError("feed parsed but held no items")
+        except Exception as e:
+            last = e
+            continue
+        if "news.google.com" in url:
+            # Google News wraps the headlines: strip the outlet suffix. Keep GN's
+            # served (relevance) order — articles rank first, while a recency sort
+            # floats the constantly-reindexed junk. The index also carries player
+            # profiles (bare-name titles) and forum threads — drop those. Links are
+            # GN redirect URLs; acceptable for a headline digest.
+            for e in out:
+                e["title"] = re.sub(r"\s+-\s+Transfermarkt$", "", e["title"])
+            junk = re.compile(
+                r"^Match Centre -|- (?:Club|Player) profile\b|- Club news\b"
+                r"|- Forum\b|\| Page \d|\bTransfers? \d\d/\d\d|- Record against\b"
+                r"|^Football transfers, rumours")
+            # GN also re-surfaces years-old pages with fresh index stamps —
+            # a hard 3-day floor keeps the digest honest about "today". Real TM
+            # headlines carry a -/:/? separator or run long; bare entity names
+            # (club/player index pages) do neither.
+            floor = (datetime.now(timezone.utc) - timedelta(days=3)).isoformat()
+            out = [e for e in out
+                   if len(e["title"]) >= 30 and not junk.search(e["title"])
+                   and (re.search(r"[-:?]", e["title"]) or len(e["title"]) >= 60)
+                   and (e["published"] or "") >= floor][:40]
+        elif i and "espn.com" in url:
+            # honest attribution when the terminal stand-in answered
+            for e in out:
+                e["source"] = "ESPN (TM fallback)"
+        if i:
+            print(f"  {name:<16} answered via fallback #{i}", file=sys.stderr)
+        return out
+    raise last
 
 
 def key(entry):
