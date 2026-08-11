@@ -157,3 +157,19 @@ Untouched: `HANDOFF.md`, `guide.html`, `gen/` — all still exactly as you left 
 ## 2026-07-23 (later) — MatchDayBuddy → all
 
 Owner has folded `guide.html` into this agent's scope — Match-Guide-Agent's split is officially over, one agent owns all five pages now. Updated `HANDOFF.md` in place (added a status-update block at the top rather than rewriting it — the original historical record is still useful, just was stale): repo-state/concurrent-edit sections marked superseded, player/club counts corrected to the final 156/30, three of its four open decisions marked resolved. The one still-open item stands: **Athletic Bilbao has no squad-modal entry** (confirmed again just now — `SQUADS` has 30 keys, no `athletic`). Whoever touches clubs.html next, that's the one real gap left over from the parallel-agent period.
+
+
+---
+
+## 2026-08-10 — MatchDayBuddy → all
+
+Owner-directed update pass ("fix the calendar, Transfermarkt, transfers, and whatever else needs work"), researched by a 31-agent fleet with adversarial verification on every transfer claim, executed in six commits:
+
+- **brief: Transfermarkt fallback chain** — transfermarkt.com serves an empty HTTP 200 to GitHub runner IPs (every daily run since Jul 24; CloudFront bot block, all TM domains share the origin). fetch.py now walks TM → Google News `site:transfermarkt.com when:2d` (junk-filtered) → ESPN (labeled honestly). Empty-200 is an explicit failure now. **Runner-side proof still pending: needs a push + one Actions run.**
+- **cal.html** — added the Aug 12 Super Cup (PSG–Villa, Salzburg), full UCL knockout windows through the Jun 5 final (MONTHS extended to June), the merged Sep 21–Oct 6 international window, and the World Cup-postponed LaLiga J1 reschedule (Real's opener is now Espanyol away Aug 22; Bernabéu–Sociedad moved to Aug 26). UCL_SET now holds the confirmed 29-of-36 field — **Lyon are alive in the playoffs (Aug 25–26); add them if they qualify.** Renderer learned real UCL fixtures (`c:"UCL"` with a non-empty `a`) vs window placeholders (`!a`, tag-labeled). gen/cal re-split, byte-identical.
+- **players.html ages** — build.py had computed 2026−birth_year; 50 cards were a year old (all 156 audited vs Wikidata P569). Ages will rot again each birthday — owner may want `b. YYYY` instead; not changed unilaterally.
+- **transfers (confirmed only)** — Ramos→Milan, Salah→Trabzonspor, Guerreiro unattached, Gulácsi→Villarreal, Gauci/Barry loan notes; featured-club modals on index+clubs updated (out: Kolo Muani, Lee, Goretzka, Akanji, Aké, Trossard, Robertson, Digne-from-Villa; in: Bernardo Silva & Dumfries at Real, Guimarães & Tzolis at Arsenal, Anderson at City, Brown in Bayern's XI, Digne & Akliouche at PSG; Barcola promoted to PSG XI, Vandevoordt takes Leipzig's gloves, Bizot Villa's). NOT applied, verification refused them: Courtois extension (Romano only), Rodri exit, Watkins→Fener (bid only), Palestra→Arsenal (false — he's Chelsea's). 156-card count holds.
+- **brief quality** — 7-day recency floor at slim time, word-boundary WATCH tags with alias folding, rank ties break newest-first, feed-error note demoted to the footer.
+- **copy/consistency** — countdown targets fixed (LaLiga 15th, EPL 21st), guide modal opening dates aligned, "New Champions League" retired, Vinícius storyline resolved (extension to 2032, Aug 6), Savinho's headshot was a four-person City party photo on three pages — now his real Wikipedia portrait, 36 dead `photos/` onerror fallbacks removed, Ligue 1 row unified on beIN Sports (US rights confirmed through 2028-29).
+
+Watch-items for whoever's next: the Aug 27 draw fills in UCL opponents (footer + placeholder rows expect it); DFL sets MD5+ Bundesliga times in calendar week 37 (Der Klassiker Oct 30–Nov 1 window is deliberately hedged); EPL rows MW2–5 still carry ~20 unconfirmed kickoff times that TV picks have now fixed — optional polish, skipped rather than guessed under deadline.
