@@ -48,11 +48,36 @@ FEEDS = [
     ("Transfermarkt",   TM_CHAIN,                                                 3, "data"),
 ]
 
-# clubs the app actually tracks — used only to mark relevance, never to drop items
-WATCH = ["PSG","Paris Saint-Germain","Bayern","Real Madrid","Man City","Manchester City",
-         "Arsenal","Liverpool","Barcelona","Atletico","Atlético","Chelsea","Man United",
-         "Manchester United","Tottenham","Dortmund","Inter","Juventus","Napoli","Milan",
-         "Marseille","Lyon","Ajax","PSV","Porto","Sporting","Celtic","Galatasaray"]
+# clubs the app actually tracks — used only to mark relevance, never to drop items.
+# One canonical tag per club, matched on word boundaries: the old substring pass
+# tagged "international" as Inter and "sporting director" as Sporting, and
+# double-tagged Man City/Manchester City on the same item.
+WATCH = {tag: re.compile(r"\b(?:%s)\b" % pat, re.I) for tag, pat in {
+    "PSG":         r"psg|paris saint[- ]germain",
+    "Bayern":      r"bayern",
+    "Real Madrid": r"real madrid",
+    "Man City":    r"man(?:chester)? city",
+    "Arsenal":     r"arsenal",
+    "Liverpool":   r"liverpool",
+    "Barcelona":   r"barcelona|barça",
+    "Atlético":    r"atl[ée]tico",
+    "Chelsea":     r"chelsea",
+    "Man United":  r"man(?:chester)? (?:united|utd)",
+    "Tottenham":   r"tottenham|spurs",
+    "Dortmund":    r"dortmund",
+    "Inter":       r"inter(?!-)(?! miami)",
+    "Juventus":    r"juventus|juve",
+    "Napoli":      r"napoli",
+    "Milan":       r"ac milan|(?<!inter )milan",
+    "Marseille":   r"marseille",
+    "Lyon":        r"lyon",
+    "Ajax":        r"ajax",
+    "PSV":         r"psv",
+    "Porto":       r"porto",
+    "Sporting":    r"sporting (?:cp|lisbon)",
+    "Celtic":      r"celtic",
+    "Galatasaray": r"galatasaray",
+}.items()}
 
 
 def strip(s):
@@ -175,7 +200,7 @@ def main():
         if k in seen:
             seen[k]["also"] = sorted(set(seen[k].get("also", []) + [e["source"]]))
             continue
-        e["watch"] = sorted({w for w in WATCH if w.lower() in (e["title"] + " " + e["summary"]).lower()})
+        e["watch"] = sorted(tag for tag, rx in WATCH.items() if rx.search(e["title"] + " " + e["summary"]))
         seen[k] = e
         deduped.append(e)
 
@@ -196,8 +221,13 @@ def main():
     # so a plain [:90] fills up on rumour+news and the writer never sees an analysis
     # piece — which is exactly what happened on the first run.
     QUOTA = {1: 40, 2: 35, 3: 30}
+    # a Daily Brief should not ship week-old items — evergreen interactives from
+    # 2017 were making the slim cut. Undated items pass (can't judge them).
+    week_ago = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
     picked, taken = [], {1: 0, 2: 0, 3: 0}
     for e in deduped:
+        if (e["published"] or week_ago) < week_ago:
+            continue
         t = e["tier"]
         if taken[t] < QUOTA[t]:
             picked.append(e)

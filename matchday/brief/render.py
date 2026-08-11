@@ -87,19 +87,22 @@ def main():
     drop = {d.lower() for d in cur.get("drop", [])}
     items = [e for e in items if e["title"].lower() not in drop]
 
-    def rank(e):
-        return (-(len(e.get("also", [])) + len(e.get("watch", []))), e.get("published") or "")
+    def rank(pool):
+        # corroboration/relevance first, then RECENCY (newest first) — the old
+        # oldest-first tiebreak led a "Daily Brief" with last week's items
+        fresh = sorted(pool, key=lambda e: e.get("published") or "", reverse=True)
+        return sorted(fresh, key=lambda e: -(len(e.get("also", [])) + len(e.get("watch", []))))
 
-    rumours = sorted([e for e in items if e["kind"] == "rumour"], key=rank)[:14]
-    news = sorted([e for e in items if e["kind"] == "news"], key=rank)[:10]
-    reads = sorted([e for e in items if e["kind"] in ("analysis", "data")], key=rank)[:8]
+    rumours = rank([e for e in items if e["kind"] == "rumour"])[:14]
+    news = rank([e for e in items if e["kind"] == "news"])[:10]
+    reads = rank([e for e in items if e["kind"] in ("analysis", "data")])[:8]
 
     now = datetime.now(timezone.utc).astimezone(PT)
     fetched = blob.get("fetched", "")
     srcs = sorted({e["source"] for e in blob["items"]})
     errs = blob.get("errors", [])
-    errnote = (f'<div class="ferr">{len(errs)} feed(s) failed this run: '
-               + esc(", ".join(e["source"] for e in errs)) + "</div>") if errs else ""
+    errnote = (f' <span class="ferr">{len(errs)} feed(s) failed this run: '
+               + esc(", ".join(e["source"] for e in errs)) + "</span>") if errs else ""
 
     paras = cur.get("paragraphs") or ([cur["lead"]] if cur.get("lead") else [])
     if paras:
@@ -143,7 +146,7 @@ def main():
   .src{{color:var(--muted);text-transform:uppercase}}
   .corr{{color:var(--ucl);border:1px solid var(--hair);border-radius:999px;padding:1px 6px}}
   .wtag{{color:var(--soft);background:var(--wash);border-radius:999px;padding:1px 8px}}
-  .ferr{{font-family:var(--mono);font-size:11px;color:var(--l1);border:1px solid var(--hair);border-radius:8px;padding:8px 12px;margin-bottom:16px}}
+  .ferr{{color:var(--l1)}}
   footer{{margin-top:40px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}}
   @media(max-width:640px){{
     .head-row{{flex-wrap:wrap;align-items:flex-start}}
@@ -171,13 +174,13 @@ def main():
 </header>
 
 <section>
-{errnote}{leadhtml}{section('Rumour Mill', 'attributed · unconfirmed', rumours, 'Reports, not facts. ×N marks a story carried by more than one outlet.')}
+{leadhtml}{section('Rumour Mill', 'attributed · unconfirmed', rumours, 'Reports, not facts. ×N marks a story carried by more than one outlet.')}
 {section('Around the Grounds', 'news', news)}
 {section('Worth Reading', 'analysis', reads)}
 </section>
 
 <footer>
-  Aggregated from {esc(', '.join(srcs))}. Headlines and links belong to their publishers; follow the link for the full story.<br>
+  Aggregated from {esc(', '.join(srcs))}. Headlines and links belong to their publishers; follow the link for the full story.{errnote}<br>
   Transfer rumours are wrong more often than they are right — treat everything above as reported, not settled.<br>
   Part of <a href="index.html" style="color:inherit">Matchday Pacific</a> · <a href="guide.html" style="color:inherit">viewing guide</a> · <a href="cal.html" style="color:inherit">calendar</a>
 </footer>
