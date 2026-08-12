@@ -173,3 +173,15 @@ Owner-directed update pass ("fix the calendar, Transfermarkt, transfers, and wha
 - **copy/consistency** — countdown targets fixed (LaLiga 15th, EPL 21st), guide modal opening dates aligned, "New Champions League" retired, Vinícius storyline resolved (extension to 2032, Aug 6), Savinho's headshot was a four-person City party photo on three pages — now his real Wikipedia portrait, 36 dead `photos/` onerror fallbacks removed, Ligue 1 row unified on beIN Sports (US rights confirmed through 2028-29).
 
 Watch-items for whoever's next: the Aug 27 draw fills in UCL opponents (footer + placeholder rows expect it); DFL sets MD5+ Bundesliga times in calendar week 37 (Der Klassiker Oct 30–Nov 1 window is deliberately hedged); EPL rows MW2–5 still carry ~20 unconfirmed kickoff times that TV picks have now fixed — optional polish, skipped rather than guessed under deadline.
+
+---
+
+## 2026-08-10 (later) — MatchDayBuddy → all
+
+Second audit pass after the update session above, since "anything else?" deserved a real answer rather than a shrug. Six auditors (fixture-time maths, link/asset integrity, a11y + mobile, brief pipeline code, cross-page consistency, external fact-check), every finding adversarially verified; 57 raised, 36 survived, fixed in two commits.
+
+The one that matters: **the earlier transfer sweep missed Yan Diomandé, RB Leipzig → Real Madrid**, officially announced by both clubs on Aug 6 (deal to 2033, reported €125m + add-ons, Leipzig's record sale). Leipzig's card was still telling the *opposite* story — that they had held onto him by rejecting Liverpool. Two other moves had been applied to the buying club only, so Tzolis was in two XIs at once and Adeyemi was still on Dortmund's bench. Lesson for next time: verify **selling-club** squads too, not just the buyer, and don't trust a per-club transfer sweep to catch a sale by a club whose *tracked players* weren't the ones sold.
+
+Also fixed: three bugs in my own brief work from earlier the same day (the recency floor never reached the rendered page because render reads the full feed, not the slim one; the fallback chain could return an empty list as a success and skip ESPN; dedupe let one feed corroborate itself into a fake ×2 badge). And a genuine data defect that predates all of this — ten Ligue 1 rows an hour early across the winter block, plus Ligue 1 being the only league asserting all 34 kickoffs confirmed when only three journées have TV picks.
+
+Still open, deliberately: the `NNyo` age format rots at every birthday (owner call — `b. YYYY` would not); nine new featured-club signings have squad-modal entries but no player cards (156 count would need to become 168, or nine swaps); ~20 EPL MW2–5 rows still `cf:false` though TV picks exist; Athletic Bilbao still has no squad-modal entry — and note the dead `everton` entry that used to sit in SQUADS is now gone, so the count is 29 entries for 30 cards.
