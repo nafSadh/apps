@@ -8,7 +8,7 @@ pass (what leads, what gets cut) happens before this, in curate.json if present.
     python3 render.py
 """
 import json, html, re, sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -82,6 +82,13 @@ def main():
         sys.exit("no feed.json or feed.slim.json — run fetch.py first")
     blob = json.loads(src.read_text(encoding="utf-8"))
     items = blob["items"]
+
+    # The same 7-day floor fetch.py applies to the slim copy has to be applied here
+    # too: render reads the FULL feed.json whenever it exists (it always does in the
+    # workflow, where fetch runs first), so filtering only at slim time left the
+    # published page unfiltered. Undated items pass, matching fetch.py.
+    week_ago = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+    items = [e for e in items if (e.get("published") or week_ago) >= week_ago]
 
     cur = json.loads(CURATE.read_text(encoding="utf-8")) if CURATE.exists() else {}
     drop = {d.lower() for d in cur.get("drop", [])}

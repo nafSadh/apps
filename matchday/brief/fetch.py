@@ -171,6 +171,11 @@ def pull(name, urls, tier, kind):
             # honest attribution when the terminal stand-in answered
             for e in out:
                 e["source"] = "ESPN (TM fallback)"
+        if not out:
+            # filters can empty a feed that parsed fine — that is still a failure,
+            # so fall through to the next URL instead of returning a silent []
+            last = ValueError(f"all items filtered out ({url})")
+            continue
         if i:
             print(f"  {name:<16} answered via fallback #{i}", file=sys.stderr)
         return out
@@ -198,7 +203,7 @@ def main():
     for e in items:
         k = key(e)
         if k in seen:
-            seen[k]["also"] = sorted(set(seen[k].get("also", []) + [e["source"]]))
+            seen[k]["also"] = sorted((set(seen[k].get("also", [])) | {e["source"]}) - {seen[k]["source"]})
             continue
         e["watch"] = sorted(tag for tag, rx in WATCH.items() if rx.search(e["title"] + " " + e["summary"]))
         seen[k] = e
