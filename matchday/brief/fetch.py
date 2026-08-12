@@ -154,10 +154,15 @@ def pull(name, urls, tier, kind):
             # GN redirect URLs; acceptable for a headline digest.
             for e in out:
                 e["title"] = re.sub(r"\s+-\s+Transfermarkt$", "", e["title"])
+            # Patterns observed leaking into the live 2026-08-12 brief: the index is
+            # full of database pages (match sheets for Landespokal/MOL/Russian Cup
+            # ties, squad galleries, market-value tables) that are not news.
             junk = re.compile(
                 r"^Match Centre -|- (?:Club|Player) profile\b|- Club news\b"
                 r"|- Forum\b|\| Page \d|\bTransfers? \d\d/\d\d|- Record against\b"
-                r"|^Football transfers, rumours")
+                r"|^Football transfers, rumours"
+                r"|- Match sheet\s*$|- Detailed squad\b|\(Gallery\)|\(Detailed view\)"
+                r"|- Top market values|\d\d/\d\d/\d{4}")
             # GN also re-surfaces years-old pages with fresh index stamps —
             # a hard 3-day floor keeps the digest honest about "today". Real TM
             # headlines carry a -/:/? separator or run long; bare entity names
