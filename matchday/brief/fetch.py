@@ -229,14 +229,28 @@ def main():
     # a Daily Brief should not ship week-old items — evergreen interactives from
     # 2017 were making the slim cut. Undated items pass (can't judge them).
     week_ago = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+    fresh = [e for e in deduped if (e["published"] or week_ago) >= week_ago]
+
+    # Round-robin over sources, newest first. A plain scan filled each tier's
+    # quota from whichever feed happened to sort first and starved the rest:
+    # the 2026-08-11 run shipped a brief with no Transfermarkt and no Sky Sports
+    # at all, while reporting no failures. Interleaving guarantees every feed
+    # that answered is represented before any one of them takes a second slot.
     picked, taken = [], {1: 0, 2: 0, 3: 0}
-    for e in deduped:
-        if (e["published"] or week_ago) < week_ago:
-            continue
-        t = e["tier"]
-        if taken[t] < QUOTA[t]:
-            picked.append(e)
-            taken[t] += 1
+    for t in (1, 2, 3):
+        queues = {}
+        for e in sorted((x for x in fresh if x["tier"] == t),
+                        key=lambda x: x["published"] or "", reverse=True):
+            queues.setdefault(e["source"], []).append(e)
+        while taken[t] < QUOTA[t] and any(queues.values()):
+            for src in list(queues):
+                if not queues[src]:
+                    continue
+                if taken[t] >= QUOTA[t]:
+                    break
+                picked.append(queues[src].pop(0))
+                taken[t] += 1
+    picked.sort(key=lambda e: (e["tier"], e["published"] or ""))
 
     slim = {
         "fetched": blob["fetched"], "counts": blob["counts"],
