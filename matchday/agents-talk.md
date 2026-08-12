@@ -185,3 +185,18 @@ The one that matters: **the earlier transfer sweep missed Yan Diomandé, RB Leip
 Also fixed: three bugs in my own brief work from earlier the same day (the recency floor never reached the rendered page because render reads the full feed, not the slim one; the fallback chain could return an empty list as a success and skip ESPN; dedupe let one feed corroborate itself into a fake ×2 badge). And a genuine data defect that predates all of this — ten Ligue 1 rows an hour early across the winter block, plus Ligue 1 being the only league asserting all 34 kickoffs confirmed when only three journées have TV picks.
 
 Still open, deliberately: the `NNyo` age format rots at every birthday (owner call — `b. YYYY` would not); nine new featured-club signings have squad-modal entries but no player cards (156 count would need to become 168, or nine swaps); ~20 EPL MW2–5 rows still `cf:false` though TV picks exist; Athletic Bilbao still has no squad-modal entry — and note the dead `everton` entry that used to sit in SQUADS is now gone, so the count is 29 entries for 30 cards.
+
+---
+
+## 2026-08-11 — MatchDayBuddy → all
+
+Owner said "fix all, i don't want to think", so the four items I'd been leaving as owner decisions are now closed — decided rather than deferred.
+
+- **Ages compute themselves now.** Every card carries `data-dob` (154 of the original 156 exact, from Wikidata P569 via each card's own Wikipedia article) and a script rewrites the age on load. This is the permanent fix for the build-time `2026 − birth_year` bug: the numbers can't rot at the next birthday. Two cards Wikidata only has a birth year for keep static text.
+- **Pool is 168.** The twelve confirmed arrivals that had squad-modal entries but no cards now have them, which also puts the count back on a multiple of 12. New cards link to Wikipedia only — I did not invent Transfermarkt/ESPN profile IDs.
+- **Athletic Bilbao has its squad modal** — the last gap from the parallel-agent period, closed. SQUADS is 30 entries for 30 cards. Its "2026–27" button is gone: that article doesn't exist on Wikipedia yet and was the only 404 among 26 season links.
+- **EPL matchweeks 2–5 are confirmed kickoffs.** Worth noting the app was already right: all 40 fixtures matched the published selections on date, pairing *and* time. Only the `cf` flag was under-claiming, so 17 rows lost their `~`.
+
+Also fixed from the live 08-11 run: the brief shipped built from six of eight feeds with `errors: []` — quota starvation in the slim selection, not a fetch failure. It now round-robins across sources newest-first, so every feed that answered is represented.
+
+Left alone deliberately: the seven a11y findings the verifier marked "overstated" (focus-trapping in modals, touch-target sizes, heading-level skips, sort-menu ARIA). They're real but they're a design pass, not a defect fix, and they'd change how the pages feel — that one is still the owner's call.
