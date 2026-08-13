@@ -1,12 +1,12 @@
 {
- "fetched": "2026-08-12T14:49:33+00:00",
+ "fetched": "2026-08-13T14:49:38+00:00",
  "counts": {
-  "raw": 349,
-  "deduped": 340,
+  "raw": 336,
+  "deduped": 328,
   "byTier": {
    "1": 44,
    "2": 149,
-   "3": 147
+   "3": 135
   }
  },
  "slimByTier": {
@@ -16,18 +16,6 @@
  },
  "errors": [],
  "items": [
-  {
-   "source": "BBC Gossip",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Liverpool explore Mbaye deal - Thursday's gossip",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cr59z307my1o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-05T20:17:47+00:00",
-   "watch": [
-    "Liverpool"
-   ],
-   "summary": "Liverpool explore move for Ibrahim Mbaye and Aston Villa reach agreement to sign Matteo Ruggeri."
-  },
   {
    "source": "BBC Gossip",
    "tier": 1,
@@ -72,18 +60,6 @@
    "summary": "Barcelona increase their Rodri bid, Cristian Romero wants to join Arsenal, Forest are set to sign Ousmane Diomande, plus more."
   },
   {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Chelsea latest: Blues sign Chavarria",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025497/chelsea-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-08-10T09:00:00+00:00",
-   "watch": [
-    "Chelsea"
-   ],
-   "summary": ""
-  },
-  {
    "source": "BBC Gossip",
    "tier": 1,
    "kind": "rumour",
@@ -95,19 +71,6 @@
     "Bayern"
    ],
    "summary": "Aston Villa interested in Endrick loan, Harry Kane expected to extend Bayern Munich deal and Arsenal make Bradley Barcola contact, plus more."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Rangers 'playing with fire' over defensive options, says McInnes",
-   "link": "https://www.skysports.com/football/news/11095/13572258/rangers-transfers-derek-mcinnes-makes-playing-with-fire-admission-as-club-chase-more-signings-amid-winless-start",
-   "published": "2026-08-10T15:00:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Derek McInnes believes Rangers are \"playing with fire\" after being left with a shortage of options in defence."
   },
   {
    "source": "BBC Gossip",
@@ -125,83 +88,6 @@
    "summary": "Manchester City on the verge of signing Ayyoub Bouaddi, Serie A interest in Arsenal duo Gabriel Jesus and Gabriel Martinelli plus Harry Kane a target for Barcelona and Tottenham."
   },
   {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Rashford set for reintegration at Man Utd - but is it a good idea?",
-   "link": "https://www.skysports.com/football/news/11095/13571617/marcus-rashford-what-are-manchester-uniteds-plans-to-reintegrate-the-england-forward-after-two-loan-spells",
-   "published": "2026-08-11T08:00:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "All eyes will be on Marcus Rashford this week."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "PSG meet Villa again - what has changed since their last epic match?",
-   "link": "https://www.skysports.com/football/news/11095/13571861/super-cup-psg-and-aston-villa-meet-again-in-salzburg-as-unai-emery-enters-new-era-with-test-against-european-kingpins",
-   "published": "2026-08-11T09:22:00+00:00",
-   "watch": [
-    "PSG"
-   ],
-   "summary": "\"We were really suffering. I do not think this team has been dominated in this way.\""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Man City have signed Anderson - why do they also want Bouaddi?",
-   "link": "https://www.skysports.com/football/news/11095/13571912/ayyoub-bouaddi-transfer-why-do-man-city-want-to-spend-big-on-another-midfielder-after-signing-elliot-anderson",
-   "published": "2026-08-11T11:41:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Those who followed Morocco's recent World Cup campaign will recognise the name Ayyoub Bouaddi. Perhaps those who only took a passing glance will remember him, too. He tends to stand out."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Arsenal to retain title? Liverpool above Man Utd? Sky Sports predicted table revealed",
-   "link": "https://www.skysports.com/football/news/11095/13571927/sky-sports-supercomputer-predicts-2026-27-premier-league-table-as-arsenal-retain-title-and-liverpool-jump-back-above-man-utd-between-the-lines",
-   "published": "2026-08-11T12:22:00+00:00",
-   "watch": [
-    "Arsenal",
-    "Chelsea",
-    "Liverpool",
-    "Man City",
-    "Man United"
-   ],
-   "summary": "Will Arsenal retain the title? What's in store for Manchester City, Liverpool and Chelsea under their new managers? And which teams are going to be relegated?"
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Chelsea make enquiry for Arsenal's Lewis-Skelly",
-   "link": "https://www.skysports.com/football/news/11095/13571919/myles-lewis-skelly-transfer-news-chelsea-make-enquiry-for-arsenal-teenager-amid-long-term-interest-from-blues-and-man-utd",
-   "published": "2026-08-11T16:05:00+00:00",
-   "watch": [
-    "Arsenal",
-    "Chelsea"
-   ],
-   "summary": "Chelsea have made a new enquiry about signing Arsenal's Myles Lewis-Skelly."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Arsenal latest: Should Gunners sell Lewis-Skelly? Have your say!",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-08-11T16:11:00+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": ""
-  },
-  {
    "source": "BBC Gossip",
    "tier": 1,
    "kind": "rumour",
@@ -215,104 +101,28 @@
     "Man United",
     "Real Madrid"
    ],
-   "also": [
-    "BBC Sport"
-   ],
    "summary": "Coventry City interested in signing Chelsea winger Mykhaylo Mudryk on loan, Barcelona still chasing Manchester City midfielder Rodri and Manchester United make a move for Real Madrid striker Endrick."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Who is Pep Chavarria and why have Chelsea signed the Spanish left-back?",
-   "link": "https://www.skysports.com/football/news/11095/13559494/pep-chavarria-to-chelsea-transfer-rayo-vallecano-left-back-is-a-late-bloomer-but-could-his-mentality-help-xabi-alonso",
-   "published": "2026-08-12T09:05:00+00:00",
+   "title": "Could UK diaspora players represent India? | Bhatia closes in on Liverpool stake",
+   "link": "https://www.skysports.com/football/news/11095/13570292/devs-digest-will-british-indians-represent-india-national-team-amit-bhatia-closes-in-on-liverpool-stake-yan-dhandas-debut-revisited",
+   "published": "2026-08-12T12:15:00+00:00",
    "watch": [
-    "Chelsea"
-   ],
-   "summary": "Pep Chavarria is certainly not your typical Chelsea signing. He did not make his debut in Spain’s top flight until he was 24 years old. His European bow came aged 27 in October in the UEFA Conference League against Swedi"
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "What next for Birmingham City? Why Davies is changing his approach",
-   "link": "https://www.skysports.com/football/news/11095/13566218/chris-davies-interview-birmingham-city-managers-tactical-change-could-take-this-ambitious-club-up-from-the-championship",
-   "published": "2026-08-12T10:00:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Birmingham City is a football club transformed. Over 20,000 season tickets have been sold for the forthcoming Championship season, with 14,000 more on the waiting list. Fan parks surround St Andrew's these days. The buzz"
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Championship play-off changes, new managers & star players - the EFL is BACK!",
-   "link": "https://www.skysports.com/football/news/11095/13571934/efl-2026-27-season-preview-championship-play-off-changes-new-managers-and-star-players",
-   "published": "2026-08-12T10:00:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "The 2026/27 EFL season is here!"
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Crystal Palace latest: Guessand re-joins Eagles on season-long loan deal",
-   "link": "https://www.skysports.com/football/live-blog/11095/13279298/crystal-palace-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-08-12T10:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Reminder that Kvaratskhelia was the best player in Europe last season",
-   "link": "https://www.skysports.com/football/news/11095/13572065/khvicha-kvaratskhelia-is-back-for-psg-in-the-uefa-super-cup-georgian-missed-the-world-cup-but-might-just-be-europes-best",
-   "published": "2026-08-12T10:45:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "It was heralded as the World Cup in which all the stars shone. But while the big names did indeed illuminate the summer, the return of the club game with the showpiece UEFA Super Cup in Salzburg is a chance for Khvicha K"
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Tielemans: I did not expect to leave Aston Villa for Man Utd this summer",
-   "link": "https://www.skysports.com/football/news/11095/13572176/youri-tielemans-man-utd-midfield-on-joining-the-club-reuniting-with-marcus-rashford-and-jonny-evans-and-belgiums-world-cup-campaign",
-   "published": "2026-08-12T12:00:00+00:00",
-   "watch": [
-    "Man United"
+    "Liverpool"
    ],
    "also": [
     "Sky Sports"
    ],
-   "summary": "'Not really, no' - the perhaps surprising answer from Manchester United’s summer signing Youri Tielemans when asked whether he expected to leave his former club Aston Villa in this window."
+   "summary": "Welcome to Dev's Digest, a regular Sky Sports column in which Asian Football Award winner Dev Trehan delivers exclusive news and reflects on some of the key developments for British South Asians in Football."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Man Utd latest: Tielemans backs Rashford to replicate Villa form on return",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025492/man-utd-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-08-12T12:38:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Liverpool latest: Inter expected to make fresh bid for Jones",
+   "title": "Liverpool latest: Inter's Frattesi having Lazio medical - Jones move next?",
    "link": "https://www.skysports.com/football/live-blog/11095/13025501/liverpool-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
    "published": "2026-08-12T13:13:00+00:00",
    "watch": [
@@ -325,10 +135,11 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Man City latest: Barca ready to raise Rodri offer",
+   "title": "What should Man City do after Chelsea's Fernandez deadline? Vote!",
    "link": "https://www.skysports.com/football/live-blog/11095/13025499/man-city-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
    "published": "2026-08-12T13:45:00+00:00",
    "watch": [
+    "Chelsea",
     "Man City"
    ],
    "summary": ""
@@ -337,349 +148,219 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Monaco in talks with Pogba over contract termination",
-   "link": "https://www.skysports.com/football/live-blog/11095/12507208/football-latest-news-gossip",
-   "published": "2026-08-12T14:30:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Messi hints at retirement in tribute to late father",
-   "link": "https://www.skysports.com/football/news/11095/13572274/lionel-messi-legendary-argentina-forward-hints-at-retirement-following-death-of-his-father-jorge",
-   "published": "2026-08-12T15:05:00+00:00",
-   "watch": [],
-   "summary": "Lionel Messi has admitted he has doubts over whether he will continue his playing career following the death of his father, Jorge, saying, \"I don't know how to carry on.\""
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Premier League 2026-27 preview No 5: Brighton",
-   "link": "https://www.theguardian.com/football/2026/aug/12/premier-league-2026-27-preview-no-5-brighton",
-   "published": "2026-08-11T23:01:11+00:00",
-   "watch": [],
-   "summary": "Fabian Hürzeler has lost key players including Welbeck and Van Hecke with Brighton needing squad depth to cope with the demands of European footballGuardian writers’ predicted position: 9th (NB: this is not necessarily J"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Jodar on course for tennis history as Rybakina fights past Osaka",
-   "link": "https://www.skysports.com/tennis/news/12040/13572099/canadian-open-rafael-jodar-on-course-for-mens-tennis-history-as-elena-rybakina-fights-back-to-beat-naomi-osaka",
-   "published": "2026-08-12T06:45:00+00:00",
-   "watch": [],
-   "summary": "Spanish teenager Rafael Jodar is on course to break the record for the fastest rise into the top 10 of men's tennis after beating Arthur Filis in the quarter-finals of the Canadian Open."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Which footballer has played for the most clubs in their career? | The Knowledge",
-   "link": "https://www.theguardian.com/football/2026/aug/12/which-footballer-played-for-most-clubs-knowledge",
-   "published": "2026-08-12T07:00:21+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": "Plus: players whose names appear in their clubs, big leaps and the top tier short of title-winning managersMail us with your all of your questions and answers“Which footballer has played for the most clubs?” asks Paul Ga"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "League One 2026-27 preview: the contenders, hopefuls and strugglers",
-   "link": "https://www.theguardian.com/football/2026/aug/12/league-one-2026-27-preview-the-contenders-hopefuls-and-strugglers",
-   "published": "2026-08-12T07:00:22+00:00",
-   "watch": [],
-   "summary": "Russell Martin’s new-look Leicester look set to challenge for promotion, while it could be a tough campaign for Notts County and AFC WimbledonHow did it come to this, that a club crowned Premier League champions a decade"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Rybakina to meet Gauff in semis after Osaka fightback",
-   "link": "https://www.skysports.com/watch/video/13572134/elena-rybakina-vs-naomi-osaka-canadian-open-highlights",
-   "published": "2026-08-12T07:28:00+00:00",
-   "watch": [],
-   "summary": "Highlights of the Canadian Open match between Elena Rybakina and Naomi Osaka."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Football transfer rumours: Folarin Balogun to Tottenham? Gabriel Jesus to Napoli?",
-   "link": "https://www.theguardian.com/football/2026/aug/12/football-transfer-rumours-folarin-balogun-to-tottenham-gabriel-jesus-to-napoli",
-   "published": "2026-08-12T08:30:27+00:00",
-   "watch": [
-    "Ajax",
-    "Arsenal",
-    "Barcelona",
-    "Liverpool",
-    "Napoli",
-    "PSG",
-    "Tottenham"
-   ],
-   "summary": "Today’s fluff is coming back with a better offerBradley Barcola is firmly in Liverpool’s sights as they look to rebuild their attack in the post-Mohamed Salah era. The two-time Champions League winner reportedly wants to"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "UEFA Super Cup preview: Why three Villa stars won't play vs PSG",
-   "link": "https://www.skysports.com/football/paris-saint-germain-vs-aston-villa/live/556002",
-   "published": "2026-08-12T09:02:00+00:00",
-   "watch": [
-    "PSG"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Saudi Pro League tries to move on from era of ageing megastar but big names still loom | John Duerden",
-   "link": "https://www.theguardian.com/football/2026/aug/12/saudi-pro-league-ageing-overseas-stars-local-talent-investment",
-   "published": "2026-08-12T09:05:29+00:00",
-   "watch": [],
-   "summary": "As Ronaldo heads towards 1,000 career goals, the league plans to lift the standard of Saudi Arabian football, not just the clubsThere is no Mohamed Salah in the new Saudi Pro League season that kicks off on Thursday and "
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Sky Sports agrees deal to show Laver Cup from London's O2 in September",
-   "link": "https://www.skysports.com/tennis/news/12040/13571896/laver-cup-sky-sports-to-show-europe-vs-rest-of-the-world-from-londons-o2-in-september",
-   "published": "2026-08-12T10:00:00+00:00",
-   "watch": [],
-   "summary": "Sky Sports has agreed a deal with Trident8 to show all three days of the Laver Cup from London's O2 arena this September, as 12 of the world's best men's players compete in the annual Europe vs 'Rest of the World' showdo"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "NRL legend Cherry-Evans reportedly in advanced talks to sign for Hull FC",
-   "link": "https://www.skysports.com/rugby-league/news/12040/13572194/daly-cherry-evans-former-kangaroos-half-back-reportedly-in-advanced-talks-to-sign-for-hull-fc-for-2027-super-league-season",
-   "published": "2026-08-12T10:23:00+00:00",
-   "watch": [],
-   "summary": "Daly Cherry-Evans is reportedly in advanced talks to sign for Hull FC in what would be a shock switch to Super League for the 2027 season."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "‘It’s a nice hobby’: Manchester United’s Janina Leitzig on goalkeeping and gardening",
-   "link": "https://www.theguardian.com/football/2026/aug/12/manchester-united-janina-leitzig-interview-on-goalkeeping-and-gardening",
-   "published": "2026-08-12T10:50:19+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "The former Leicester player’s focus has moved from runner beans to running drills as the season approachesWith some parts of England gearing up for a fifth heatwave of 2026 the new Manchester United goalkeeper Janina Lei"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Barcelona make improved £51m bid for Rodri as Manchester City target Fernández",
-   "link": "https://www.theguardian.com/football/2026/aug/12/manchester-city-chelsea-enzo-fernandez",
-   "published": "2026-08-12T10:57:58+00:00",
-   "watch": [
-    "Barcelona",
-    "Man City"
-   ],
-   "summary": "Latest offer close to City’s valuation for Spain midfielderChelsea’s £120m price for Fernández may be too highBarcelona have made an improved bid to Manchester City of around €60m (£51m) for Rodri. This follows Barça’s i"
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "I owe Villa the world but Man Utd are above them - Tielemans",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cvg0z79l89go?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T11:00:23+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "Manchester United new boy Youri Tielemans gives his first extended interview on his £35m dream move, making it third time lucky for the ex-Aston Villa man."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "‘It is just smelling football’: Tielemans says adjusting to life at United has come naturally",
-   "link": "https://www.theguardian.com/football/2026/aug/12/youri-tielemans-manchester-united-smelling-football",
-   "published": "2026-08-12T11:00:26+00:00",
-   "watch": [
-    "Man United",
-    "PSG"
-   ],
-   "summary": "Midfielder says experience has helped him settle in‘It’s what I’ve been doing from when I was young’Youri Tielemans has stated that adjusting to Michael Carrick’s vision for Manchester United has been as easy as “smellin"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Premier League 2026-27 preview No 6: Chelsea",
-   "link": "https://www.theguardian.com/football/2026/aug/12/premier-league-2026-27-preview-no-6-chelsea",
-   "published": "2026-08-12T11:00:27+00:00",
+   "title": "Chelsea stars for sale: The players who could leave - and what they'll cost",
+   "link": "https://www.skysports.com/football/news/11095/13572382/chelsea-transfer-news-enzo-fernandez-nicolas-jackson-malo-gusto-and-more-in-spotlight-as-blues-look-to-player-sales",
+   "published": "2026-08-12T20:30:00+00:00",
    "watch": [
     "Chelsea"
    ],
-   "summary": "After a period of underachievement and upheaval for the Blues, the arrival of Xabi Alonso could signal a change in fortunesGuardian writers’ predicted position: 3rd (NB: this is not necessarily Billy Munday’s prediction "
+   "summary": "Chelsea are the Premier League's top spenders this summer with the bulk of their business done and attention is now turning to sales."
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "How will relegated trio fare in the Championship?",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cvg0d3ewek0o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T11:05:41+00:00",
-   "watch": [],
-   "summary": "BBC Sport England looks at how the three relegated sides - West Ham, Burnley and Wolves - will navigate the Championship this season."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "McClean remains Derry City player - Connolly",
-   "link": "https://www.bbc.co.uk/sport/articles/cjwx8ppp6x3o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T11:24:16+00:00",
-   "watch": [],
-   "summary": "Derry City interim manager Mark Connolly reiterates that James McClean remains employed by the club despite speculation over his future."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Kick It Out chair Bhandari to step down from role",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cg5lpd0l5l5o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T11:34:08+00:00",
-   "watch": [],
-   "summary": "Kick It Out chair Sanjay Bhandari will step down from his role at the end of the 2026-27 season."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Cult indoor event Tennent's Soccer Sixes returns",
-   "link": "https://www.bbc.co.uk/sport/football/articles/ckg6p8pg55go?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T12:00:20+00:00",
-   "watch": [],
-   "also": [],
-   "summary": "All 12 Scottish Premiership clubs will enter teams into a legends version of cult indoor tournament the Tennent's Soccer Sixes later this year."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Dubois on collision course with Turkish rival? MVP announce Turhan signing",
-   "link": "https://www.skysports.com/boxing/news/12040/13572018/caroline-dubois-could-face-elif-nur-turhan-after-rival-lightweight-world-champion-signed-for-most-valuable-promotions",
-   "published": "2026-08-12T13:00:00+00:00",
-   "watch": [],
-   "summary": "Caroline Dubois could settle her rivalry with Elif Nur Turhan after the Turkish world champion signed for Most Valuable Promotions."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Championship angst: why the sense of rejuvenation in EFL is not universal",
-   "link": "https://www.theguardian.com/football/2026/aug/12/championship-efl-2026-27-season-blackburn-tony-mowbray-bolton-preston",
-   "published": "2026-08-12T13:00:29+00:00",
-   "watch": [],
-   "summary": "The lineup of Championship teams this season is fearsome, leaving some supporters fearing a long slog to comeA new season is supposed to be about renewed hope and optimism, a fresh campaign opening up a world of possibil"
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "La Liga to inspect Celta Vigo's pitch after fungus outbreak",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cdx7pqwwyp1o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T13:01:06+00:00",
-   "watch": [],
-   "summary": "La Liga officials are set to inspect the pitch at Celta Vigo's Estadio de Balaidos over a suspected fungus outbreak."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "South Korea crisis deepens over sexual favours for referees scandal",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cpw9px9z5wgo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T13:11:07+00:00",
-   "watch": [],
-   "summary": "The South Korean FA apologises amid a series of controversies and a police raid on its headquarters."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Root removes England curfew",
-   "link": "https://www.skysports.com/cricket/news/12040/13572211/joe-root-england-test-captain-removes-curfew-and-implores-his-players-to-be-adults-ahead-of-pakistan-series",
-   "published": "2026-08-12T13:30:00+00:00",
-   "watch": [],
-   "summary": "Joe Root has ruled out a curfew under his England Test captaincy and implored his players to behave like \"grown adults\" ahead of his first series back at the helm against Pakistan."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Everton's Sherif charged with 61 alleged bets on matches",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cvgvzpzxedjo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T13:36:49+00:00",
-   "watch": [],
-   "summary": "The Football Association charges Everton's Martin Sherif with breaching betting rules after allegedly placing 61 bets on football matches."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Inter in advanced talks for Spurs full-back Spence",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cvgxz9xd95zo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T13:43:30+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Atletico agree deal to sign Spurs captain Romero",
+   "link": "https://www.skysports.com/football/news/11095/13571751/cristian-romero-atletico-madrid-agree-deal-with-tottenham-to-sign-argentina-defender-after-long-term-interest",
+   "published": "2026-08-12T21:30:00+00:00",
    "watch": [
-    "Inter",
+    "Atlético",
     "Tottenham"
    ],
-   "summary": "Inter Milan are in advanced talks to sign Tottenham and England full-back Djed Spence, in a deal worth a minimum of £25.6m (30m euros)."
+   "summary": "Atletico Madrid have agreed a deal in principle with Tottenham to sign Cristian Romero."
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Messi unsure he will play 'much longer' after father's death",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c78gqj2dqyno?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T13:48:23+00:00",
-   "watch": [],
-   "summary": "Lionel Messi says he is unsure how much longer he will continue playing football in an emotional tribute after his father's death."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Villa close in on Atletico defender Ruggeri",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c1j12xypl19o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T13:56:24+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Guimaraes makes bow and Lewis-Skelly scores as Arsenal held by Como",
+   "link": "https://www.skysports.com/football/arsenal-vs-como/report/562442",
+   "published": "2026-08-12T21:30:00+00:00",
    "watch": [
-    "Atlético"
+    "Arsenal"
    ],
-   "summary": "Aston Villa close in on the signing of Atletico Madrid defender Matteo Ruggeri."
+   "summary": "Bruno Guimaraes made his first appearance and Myles Lewis-Skelly scored amid speculation about his future as Arsenal were held to a 1-1 draw by Como before winning 4-3 on penalties."
   },
   {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Fery feels 'no added pressure' despite being British No 1 as he returns",
-   "link": "https://www.skysports.com/tennis/news/12040/13572237/arthur-fery-feels-no-added-pressure-despite-being-british-no-1-as-he-returns-to-action-at-cincinnati-open",
-   "published": "2026-08-12T14:00:00+00:00",
-   "watch": [],
-   "summary": "Arthur Fery insists he feels “no added pressure” as the new British No 1 prepares to return to action this weekend for the first time since his memorable run to the Wimbledon semi-finals."
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Rashford absent in Leeds friendly win but still part of Man Utd plans",
+   "link": "https://www.skysports.com/football/manchester-united-vs-leeds-united/report/555721",
+   "published": "2026-08-12T21:48:00+00:00",
+   "watch": [
+    "Man United"
+   ],
+   "summary": "Joshua Zirkzee and Brenden Aaronson scored as Manchester United and old foes Leeds played out an entertaining 1-1 friendly draw at the spiritual home of Irish sport in Dublin, before the concluding shoot-out was edged 5-"
   },
   {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Vikings confirm Murray as starting QB",
-   "link": "https://www.skysports.com/nfl/live-blog/12040/13572233/nfl-news-trades-injuries-and-rumours-latest-updates-and-highlights-from-2026-pre-season-regular-season-playoffs-and-super-bowl",
-   "published": "2026-08-12T14:00:00+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Chelsea set Man City deadline to bid for Fernandez",
+   "link": "https://www.skysports.com/football/news/11095/13572395/enzo-fernandez-transfer-news-chelsea-set-man-city-deadline-to-bid-for-midfielder",
+   "published": "2026-08-12T21:49:00+00:00",
+   "watch": [
+    "Chelsea",
+    "Man City"
+   ],
+   "summary": "Chelsea have told Manchester City they have a deadline of 5pm this Friday to make an offer for Enzo Fernandez."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Doue silences Madjo-mania as PSG beat Villa to win Super Cup",
+   "link": "https://www.skysports.com/football/paris-saint-germain-vs-aston-villa/report/556002",
+   "published": "2026-08-12T22:00:00+00:00",
+   "watch": [
+    "PSG"
+   ],
+   "summary": "Desire Doue scored the winner as champions of Europe Paris Saint-Germain beat Aston Villa 2-1 to win the UEFA Super Cup."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Arteta: There's more we want to do in the transfer market",
+   "link": "https://www.skysports.com/football/news/11095/13572410/mikel-arteta-says-arsenal-are-actively-looking-for-signings-in-the-transfer-market-after-bruno-guimaraes-makes-bow-in-friendly-against-como",
+   "published": "2026-08-12T23:10:00+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": "Mikel Arteta says Arsenal are actively looking for more new signings in the transfer market but admits there is only a small pool of available players who can take them to the next level."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Arsenal latest: 'Exceptional' Salmon shows star potential",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-12T23:15:00+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Papers: Arsenal hold further talks over Villa's Konsa",
+   "link": "https://www.skysports.com/football/news/11095/13572412/arsenal-transfer-news-gunners-hold-further-talks-over-aston-villa-defender-ezri-konsa-paper-talk",
+   "published": "2026-08-12T23:30:00+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": "The top stories and transfer rumours from Thursday's newspapers..."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Marauding Madjo! How 'new' Villa showed their teeth against PSG",
+   "link": "https://www.skysports.com/football/news/11095/13571624/brian-madjos-super-cup-performance-against-psg-shows-why-unai-emery-believes-new-aston-villa-can-keep-growing",
+   "published": "2026-08-13T06:30:00+00:00",
+   "watch": [
+    "PSG"
+   ],
+   "summary": "This was the night that Aston Villa lost a game but found two players. Their 2-1 defeat to Paris Saint-Germain in the UEFA Super Cup featured breakout performances by 17-year-old striker Brian Madjo striker on debut and "
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Chelsea latest: VOTE! Can Blues afford to let Fernandez leave this summer?",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025497/chelsea-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-13T08:00:00+00:00",
+   "watch": [
+    "Chelsea"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Man Utd latest: Would you start, bench or sell Rashford? VOTE NOW!",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025492/man-utd-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-13T08:30:00+00:00",
+   "watch": [
+    "Man United"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "BBC Gossip",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Galatasaray submit Martinelli bid - Thursday's gossip",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cwy42p7r00zo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T09:17:47+00:00",
+   "watch": [
+    "Arsenal",
+    "Chelsea",
+    "Galatasaray"
+   ],
+   "also": [
+    "BBC Sport"
+   ],
+   "summary": "Arsenal have received a bid from Galatasaray for Gabriel Martinelli, Spain midfielder Martin Zubimendi could leave the Gunners for Chelsea and Newcastle push for Benfica defender Amar Dedic."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Man City reject fresh Barcelona bid for Rodri",
+   "link": "https://www.skysports.com/football/news/11095/13567985/rodri-transfer-news-man-city-reject-55m-bid-from-barcelona-for-world-cup-winning-midfielder",
+   "published": "2026-08-13T10:00:00+00:00",
+   "watch": [
+    "Barcelona",
+    "Man City"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Manchester City have rejected a new £55m bid from Barcelona for Rodri."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Spurs latest: PODCAST - A big summer for... Tottenham Hotspur",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025489/tottenham-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-08-13T12:00:00+00:00",
+   "watch": [
+    "Tottenham"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "O'Hara: Spurs should sign Rashford with De Zerbi 'perfect' for him",
+   "link": "https://www.skysports.com/football/news/11095/13572329/marcus-rashford-transfer-news-tottenham-should-sign-man-utd-forward-says-ex-spurs-midfielder-jamie-ohara",
+   "published": "2026-08-13T12:05:00+00:00",
+   "watch": [
+    "Man United",
+    "Tottenham"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Former Tottenham midfielder Jamie O'Hara wants Spurs to sign Manchester United forward Marcus Rashford."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Hull City latest: Gelhardt having medical ahead of permanent move",
+   "link": "https://www.skysports.com/football/live-blog/11095/13548674/hull-city-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+   "published": "2026-08-13T12:05:00+00:00",
    "watch": [],
    "summary": ""
   },
@@ -687,177 +368,368 @@
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "Draper in line to meet Djokovic at Cincinnati Open",
-   "link": "https://www.skysports.com/tennis/live-blog/12040/13523297/jack-draper-tennis-results-next-match-news-ranking-video-and-how-to-watch-on-sky-sports-tennis",
-   "published": "2026-08-12T14:10:00+00:00",
+   "title": "Jodar's bid for history halted in Nakashima defeat as Rybakina beats Gauff",
+   "link": "https://www.skysports.com/tennis/news/12040/13572450/canadian-open-rafael-jodar-bid-for-atp-rankings-history-put-on-hold-while-elena-rybakina-beats-coco-gauff-in-semi-finals",
+   "published": "2026-08-13T06:06:00+00:00",
    "watch": [],
-   "summary": ""
+   "summary": "Spanish teenager Rafael Jodar's bid for ATP Tour rankings history was put on hold after he was beaten by Brandon Nakashima in the semi-finals of the Canadian Open."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Gold medallist Thomas chases 'own legacy' after AJ comparisons",
+   "link": "https://www.skysports.com/boxing/news/12040/13572325/damar-thomas-unfazed-by-anthony-joshua-comparisons-as-commonwealth-games-gold-medallist-chases-own-legacy-ahead-of-la-olympics",
+   "published": "2026-08-13T07:00:00+00:00",
+   "watch": [],
+   "summary": "Commonwealth Games gold medallist Damar Thomas wants to create his \"own legacy\" after being compared to former Team GB super-heavyweight stars following his triumph in Glasgow."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "'Where has this tennis been?' | Swiatek beats Svitolina to reach first final of 2026",
+   "link": "https://www.skysports.com/watch/video/13572456/iga-swiatek-vs-elina-svitolina-canadian-open-highlights",
+   "published": "2026-08-13T07:01:00+00:00",
+   "watch": [],
+   "summary": "Highlights of the Canadian Open match between Iga Swiatek and Elina Svitolina."
   },
   {
    "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "Lionel Messi has ‘quite a few doubts’ about football future after death of his father",
-   "link": "https://www.theguardian.com/football/2026/aug/12/lionel-messi-doubts-football-future-death-of-his-father-jorge",
-   "published": "2026-08-12T14:16:12+00:00",
+   "title": "Disney+ secures rights to Gary Neville’s Overlap content in riposte to Lineker’s Netflix deal",
+   "link": "https://www.theguardian.com/football/2026/aug/13/disney-buys-rights-gary-neville-overlap-podcast-content-gary-lineker-netflix-deal",
+   "published": "2026-08-13T08:00:52+00:00",
    "watch": [],
-   "summary": "Messi’s father, ⁠Jorge, died last week at age of 68Argentinian suggests he may not play on much longerLionel Messi said on Wednesday he is having doubts about continuing his career following the death of his father last "
+   "summary": "Multimillion-pound deal puts podcast in streaming battleRooney and Mark Goldbridge join forces for new showDisney+ has secured the rights to broadcast The Overlap’s podcast content in a multimillion pound deal under whic"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Football transfer rumours: Galatasaray to spend £38m on Arsenal’s Martinelli?",
+   "link": "https://www.theguardian.com/football/2026/aug/13/football-transfer-rumour-mill-galatasaray-38m-arsenal-gabriel-martinelli",
+   "published": "2026-08-13T08:14:07+00:00",
+   "watch": [
+    "Arsenal",
+    "Galatasaray",
+    "Inter",
+    "Liverpool"
+   ],
+   "summary": "Today’s fluff preferred Bonnie Tyler’s versionCurtis Jones’s future has been the subject of much gossipmongering this summer, especially with Inter plonking him in the middle of their radar. The Italian club have sniffed"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Seven players we’re excited to watch in the Championship this season",
+   "link": "https://www.theguardian.com/football/2026/aug/13/seven-stars-championship-season-bowen-vipotnik-galbraith-tolaj-maamma",
+   "published": "2026-08-13T09:00:53+00:00",
+   "watch": [],
+   "summary": "This should be a big year for Jarrod Bowen, Zan Vipotnik, Ethan Galbraith, Lorent Tolaj, Léo Scienza, Othmane Maamma and Mason MeliaBy Opta AnalystThe Championship, often called the most exciting league in football, is a"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Chelsea set Friday deadline for Fernández suitors as City reject new £51m Barça bid for Rodri",
+   "link": "https://www.theguardian.com/football/2026/aug/13/manchester-city-barcelona-rodri-chelsea-enzo-fernandez",
+   "published": "2026-08-13T09:26:27+00:00",
+   "watch": [
+    "Barcelona",
+    "Chelsea",
+    "Man City"
+   ],
+   "summary": "Manchester City want around £65m for Spain midfielderAl-Qadsiah closing on move for City’s Tijjani ReijndersManchester City have rejected Barcelona’s second bid of around €60m (£51m) for Rodri, while Chelsea have set a 5"
   },
   {
    "source": "BBC Sport",
    "tier": 2,
    "kind": "news",
-   "title": "Palace bid for Monaco midfielder Camara rejected",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c0jl27w90xxo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-12T14:20:21+00:00",
+   "title": "Rooney to co-host new Man Utd show with Goldbridge",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c8xnwn4zjeno?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T10:17:26+00:00",
+   "watch": [
+    "Man United"
+   ],
+   "summary": "Wayne Rooney will co-host a new Manchester United-dedicated show alongside influencer Mark Goldbrige this season."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Taylor on retirement, scrutiny, VAR and referee pundits",
+   "link": "https://www.bbc.co.uk/sport/football/videos/c0qv2v0ddx9o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T10:19:23+00:00",
    "watch": [],
-   "summary": "Ligue 1 side Monaco reject Crystal Palace's verbal bid for midfielder Lamine Camara."
+   "summary": "Referee Anthony Taylor explains to BBC sports editor Dan Roan why he has stepped away from officiating."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "La Liga postpone Celta Vigo match following fungus outbreak",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cdx7pqwwyp1o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T10:21:08+00:00",
+   "watch": [],
+   "summary": "Celta Vigo confirm their opening match of the 2026-27 La Liga season has been postponed due to a fungus outbreak on their pitch."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Men’s transfer window summer 2026: all deals from Europe’s top five leagues",
+   "link": "https://www.theguardian.com/football/ng-interactive/2026/jun/08/mens-transfer-window-summer-2026-all-deals-from-europes-top-five-leagues",
+   "published": "2026-08-13T10:29:11+00:00",
+   "watch": [],
+   "summary": "All the latest Premier League, La Liga, Bundesliga, Ligue 1 and Serie A deals and a club-by-club guideWomen’s transfer window interactive guide Continue reading..."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Women’s transfer window summer 2026: all deals from world’s top six leagues",
+   "link": "https://www.theguardian.com/football/ng-interactive/2026/jun/08/womens-transfer-window-summer-2026-all-deals-from-worlds-top-six-leagues",
+   "published": "2026-08-13T10:29:36+00:00",
+   "watch": [],
+   "summary": "Every deal in the NWSL, WSL, Liga F, Frauen-Bundesliga, Première Ligue and Serie A Femminile as well as a club-by-club guideMen’s transfer window interactive guide Continue reading..."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Premier League 2026-27 preview No 8: Crystal Palace",
+   "link": "https://www.theguardian.com/football/2026/aug/13/premier-league-2026-27-preview-no-8-crystal-palace",
+   "published": "2026-08-13T11:00:56+00:00",
+   "watch": [],
+   "summary": "Palace take a risk with new manager Pierre Sage, who is tasked with building on Glasner’s unprecedented successGuardian writers’ predicted position: 16th (NB: this is not necessarily Ed Aarons’ prediction but the average"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Kieran Trippier: ‘The Championship is relentless … it’s totally different to the Premier League’",
+   "link": "https://www.theguardian.com/football/2026/aug/13/kieran-trippier-wolves-championship-premier-league-england",
+   "published": "2026-08-13T11:00:56+00:00",
+   "watch": [],
+   "summary": "The former England full-back is back in the Championship after 12 years away, hoping to lead Wolves out of itWhen the question inevitably comes, Kieran Trippier is happy to set the record straight. Fresh from training, h"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "FAI withdraws Infantino support as IFA backs Uefa",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cy8m2mg0y99o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T11:05:03+00:00",
+   "watch": [],
+   "summary": "The Football Association of Ireland [FAI] officially withdraws support for under-fire Fifa president Gianni Infantino, while the Irish Football Association [IFA] confirms it backs Uefa's stance."
   },
   {
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "Coles and Opoku-Fordjour among 25 England players given enhanced contracts",
-   "link": "https://www.skysports.com/rugby-union/news/12040/13572250/alex-coles-and-asher-opoku-fordjour-among-england-players-given-enhanced-contracts-by-rfu-for-2026-27-season",
-   "published": "2026-08-12T14:30:00+00:00",
+   "title": "Australia exposed by Bangladesh in stunning start to first Test",
+   "link": "https://www.skysports.com/cricket/news/12040/13572532/australia-vs-bangladesh-hosts-humbled-on-first-day-of-test-skittled-for-198-as-hasan-mahmud-takes-six-first-innings-wickets",
+   "published": "2026-08-13T11:24:00+00:00",
    "watch": [],
-   "summary": "Alex Coles and Asher Opoku-Fordjour are among five England players to be awarded an enhanced contract by the RFU for the first time."
+   "summary": "Bangladesh's bowlers overshadowed Australia's Big Four getting back together on day one of the first Test as the hosts were dismissed for 198 and Hasan Mahmud took a career-best 6-55."
   },
   {
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "Cadillac announce shock sacking of team principal Lowdon",
-   "link": "https://www.skysports.com/f1/news/12040/13572275/cadillac-appoint-marcin-budkowski-as-team-principal-following-f1-2026-newcomers-sudden-sacking-of-graeme-lowdon",
-   "published": "2026-08-12T15:20:00+00:00",
+   "title": "EFL latest: 'It feels like home' - Jimenez explains Wolves return",
+   "link": "https://www.skysports.com/football/live-blog/12040/13163353/championship-news-transfer-latest-and-gossip-plus-efl-updates-from-league-one-and-league-two",
+   "published": "2026-08-13T11:26:00+00:00",
    "watch": [],
-   "summary": "Cadillac have sacked team principal Graeme Lowdon and replaced him with Marcin Budkowski in what Formula 1's 2026 newcomers claim is a \"planned leadership transition\"."
+   "summary": ""
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Ten Exciting EFL Transfers You May Have Missed This Summer",
-   "link": "https://theanalyst.com/articles/ten-exciting-efl-transfers-you-may-have-missed-2026-27",
-   "published": "2026-08-11T06:37:44+00:00",
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "LIV season finale tickets no longer on sale amid cancellation reports",
+   "link": "https://www.skysports.com/golf/news/12040/13572526/liv-golf-tickets-for-team-championship-event-in-michigan-no-longer-on-sale-on-official-website-amid-cancellation-reports",
+   "published": "2026-08-13T11:30:00+00:00",
    "watch": [],
-   "summary": "There is always a huge turnover of players across the English Football League in the summer months. Here’s 10 interesting additions you may have missed across the Championship, League One and League Two in this transfer "
+   "summary": "Tickets for LIV Golf's season-ending Team Championship event in Michigan are no longer on sale on its official website amid reports it has been cancelled."
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Southland Conference Predictions: SFA, Southeastern, Lamar Lead Deep Title Race",
-   "link": "https://theanalyst.com/articles/southland-conference-predictions-preview-fcs-football-2026",
-   "published": "2026-08-11T09:48:43+00:00",
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Critical former referees add to culture of fear, says retiring Taylor",
+   "link": "https://www.bbc.co.uk/sport/football/articles/czxq25zejj4o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T11:35:28+00:00",
    "watch": [],
-   "summary": "Southland Conference football had three teams qualify for the FCS playoffs last year. A deep title race suggests it could happen again. The post Southland Conference Predictions: SFA, Southeastern, Lamar Lead Deep Title "
+   "summary": "Retiring Premier League referee Anthony Taylor says his decision to quit was partly due to the toxic debate around officials."
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "SV Guntersblum - TSG 1846 Bretzenheim, 12/08/2026 - Landespokal Südwest - Match sheet",
-   "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBoRWxmN29wZnVUQkpnZkIxemNEZ0dwUzlqOXh6VDJGRS1rS3EydDhuRzU2SnNUa0lvcklTY3pPMTloandSMDV1b0Rxc05KSHRSdUV6M2piV2lEcUpFRHdibEg5Qm9rWjZtN21iR1FIM0dleG1lS2dCSQ?oc=5",
-   "published": "2026-08-12T01:11:49+00:00",
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Why are EFL matches at 3pm on Saturday being shown on TV?",
+   "link": "https://www.bbc.co.uk/sport/football/articles/czdm2zpg5g8o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T11:43:03+00:00",
    "watch": [],
-   "summary": "SV Guntersblum - TSG 1846 Bretzenheim, 12/08/2026 - Landespokal Südwest - Match sheet Transfermarkt"
+   "summary": "BBC Sport's Ask Me Anything team explains why the '3pm blackout' is not being enforced this weekend"
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "SV Buhlenberg - SG Hüffelsheim-Niederhausen, 12/08/2026 - Landespokal Südwest - Match sheet",
-   "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9vSFVmcHJpNXdzNjJTOTBvb0lKaURrdzQ3dkQ1Q1BxcEJrNjRBS2F2OHRkeXV1LVpJV094ZnpvRGdaeGhXLWNXX09TYmhVQV9mbXB2TEVhcTlQU190OXlvVzM1cGx1eXI0TVlfSFA3TGVXNXliWWFjMQ?oc=5",
-   "published": "2026-08-12T01:11:51+00:00",
-   "watch": [],
-   "summary": "SV Buhlenberg - SG Hüffelsheim-Niederhausen, 12/08/2026 - Landespokal Südwest - Match sheet Transfermarkt"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Volgar Astrakhan - Pobeda Khasavyurt, 12/08/2026 - Russian Cup - Match sheet",
-   "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1JYVlXeExoTU5xNDA4UDZGanc5b29rYnBSYzJYQUJXUlZCOXBUUGoyNk9XUlRuckJpTDYxXzhTSGNEUEx4LXAxLTllU2xJc1p6RVhxbTRwUDFvRnVJVG10UlUyVXZhYjE4VDRnWTBNaDNIMTU3c1Y2Ug?oc=5",
-   "published": "2026-08-12T02:32:53+00:00",
-   "watch": [],
-   "summary": "Volgar Astrakhan - Pobeda Khasavyurt, 12/08/2026 - Russian Cup - Match sheet Transfermarkt"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Sokol Hostoun - SK Kladno, 12/08/2026 - MOL Cup - Match sheet",
-   "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBPUnBBcHoyNXpXcE9McHhGeGlJaTRtYlBsbkZpOERZMGlGZnhmYXBHSGY5TGtsNGJ5QWh0ekF2TTM5UTdwWTItX01ZSy1aOEVmZ1pFUjkxby1sTjhCQURNT1FsVFYxUGFGdDVqWXZfRndXRk9heFhBSQ?oc=5",
-   "published": "2026-08-12T02:37:48+00:00",
-   "watch": [],
-   "summary": "Sokol Hostoun - SK Kladno, 12/08/2026 - MOL Cup - Match sheet Transfermarkt"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "PSG vs Aston Villa: Opta Supercomputer UEFA Super Cup Prediction",
-   "link": "https://theanalyst.com/articles/psg-vs-aston-villa-opta-supercomputer-uefa-super-cup-prediction",
-   "published": "2026-08-12T06:29:15+00:00",
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Our EFL preview and a Super Cup review as PSG prevail: Football Weekly | Football Weekly podcast",
+   "link": "https://www.theguardian.com/football/video/2026/aug/13/efl-preview-super-cup-review-psg-aston-villa-football-weekly-podcast-video",
+   "published": "2026-08-13T11:54:12+00:00",
    "watch": [
     "PSG"
    ],
-   "summary": "Look ahead to Wednesday’s UEFA Super Cup clash with our PSG vs Aston Villa prediction and preview. Can Unai Emery get one over his former side? The post PSG vs Aston Villa: Opta Supercomputer UEFA Super Cup Prediction ap"
+   "summary": "Max Rushden is joined by George Elek, Ali Maxwell and Seb Hutchinson to run through all you need to know about the Championship, League One and League Two Continue reading..."
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Liverpool 2026-27 Squad Audit: Where Andoni Iraola Still Needs Reinforcements",
-   "link": "https://theanalyst.com/articles/liverpool-squad-audit-transfers-stats-2026-27",
-   "published": "2026-08-12T06:29:25+00:00",
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "‘He has a very high ceiling’: Madjo makes instant mark on delayed Aston Villa bow",
+   "link": "https://www.theguardian.com/football/2026/aug/13/aston-villa-brian-madjo-makes-mark-psg",
+   "published": "2026-08-13T12:00:00+00:00",
+   "watch": [],
+   "summary": "Teenager endured a frustrating wait for his registration to be approved but took no time to show his potential on the big stage against PSGAt first glance there was the usual stuff: the wide smile, the guttural release, "
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Fog and on time? Lech Poznan race to reach Faroe Islands for Europa League tie",
+   "link": "https://www.theguardian.com/football/2026/aug/13/fog-and-on-time-lech-poznan-ki-klaksvik-faroe-islands-europa-league",
+   "published": "2026-08-13T12:06:01+00:00",
+   "watch": [],
+   "summary": "Heavy fog means planes unable to land in FaroesPolish team have been trying to reach Vágar for two daysThe Europa League second leg between Poland’s champions, Lech Poznan, and the Faroese champions, KÍ Klaksvík, on Thur"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Will West Ham bounce straight back up?",
+   "link": "https://www.bbc.co.uk/sport/football/articles/ckg9y2xrnego?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T12:18:40+00:00",
+   "watch": [],
+   "summary": "BBC Sport analyses the season ahead for West Ham, who will be playing in the Championship for the first time in 14 years."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "The Hundred Eliminators and Finals: All you need to know",
+   "link": "https://www.skysports.com/cricket/news/12040/13572516/the-hundred-teams-venues-timings-for-eliminators-and-finals-with-trent-rockets-waiting-to-find-out-their-opponents",
+   "published": "2026-08-13T12:21:00+00:00",
+   "watch": [],
+   "summary": "The Hundred 2026 is reaching its dramatic climax and we have the Eliminators then the Finals still to come your way..."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "When do the major European leagues start and what are the big stories?",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cly92pr6ej8o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T13:06:55+00:00",
+   "watch": [],
+   "summary": "BBC Sport looks at the big stories in Europe heading into the 2026-27 season."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Atherton: 'England must become Root's team - he has a unique opportunity'",
+   "link": "https://www.skysports.com/cricket/news/12040/13572589/michael-atherton-england-must-be-reshaped-as-joe-roots-team-after-stokes-and-mccullum-departures-8211-he-has-a-unique-opportunity",
+   "published": "2026-08-13T13:07:00+00:00",
+   "watch": [],
+   "summary": "Fresh from exclusively speaking to Joe Root following his reappointment as England captain, Sky Sports Cricket's Michael Atherton looks further into the move..."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Tielemans apologises to Villa fans for Man Utd remarks",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cm2gpr52drzo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T13:47:14+00:00",
    "watch": [
-    "Liverpool"
+    "Man United"
    ],
-   "summary": "With less than two weeks to go until the start of the 2026-27 Premier League season, Liverpool still look short in certain areas. What else do the Reds need to do before the close of the summer transfer window? The post "
+   "summary": "Youri Tielemans apologises to Aston Villa fans after suggesting he had moved to a bigger club in Premier League rivals Manchester United."
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Championship Fixture Difficulty: Who Has the Toughest Start to 2026-27?",
-   "link": "https://theanalyst.com/articles/championship-fixture-difficulty-ratings-who-has-toughest-start-to-2026-27",
-   "published": "2026-08-12T06:29:33+00:00",
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Leicester City put up for sale for more than £200m",
+   "link": "https://www.bbc.co.uk/sport/football/articles/ce3qp0yy0j9o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T14:08:18+00:00",
    "watch": [],
-   "summary": "The 2026-27 Championship season begins this week. We've analysed the schedule up to the September international break to determine which teams have the easiest and toughest starts to the new campaign. The post Championsh"
+   "summary": "Leicester City's Thai owners King Power are hoping to sell the club after 16 years, for more than £200m."
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Championship Predictions 2026-27: The Opta Supercomputer Projections",
-   "link": "https://theanalyst.com/articles/championship-predictions-opta-supercomputer-2026-27",
-   "published": "2026-08-12T06:29:38+00:00",
-   "watch": [],
-   "summary": "Who will win promotion to the Premier League? Which clubs are likeliest to be relegated to League One? We answer all the key questions with our Championship 2026-27 season predictions from the Opta supercomputer. The pos"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Seven Stars We’re Excited to Watch in the 2026-27 Championship",
-   "link": "https://theanalyst.com/articles/championship-players-to-watch-stats-2026-27",
-   "published": "2026-08-12T06:31:14+00:00",
-   "watch": [],
-   "summary": "The 2026-27 Championship season begins on Friday, but which players should you be looking forward to watching in the competition? The post Seven Stars We’re Excited to Watch in the 2026-27 Championship appeared first on "
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Who are TNT Sports' presenters, commentators and pundits for the UEFA Super Cup?",
-   "link": "https://www.fourfourtwo.com/competition/who-are-tnt-sports-presenters-commentators-and-pundits-for-the-uefa-super-cup",
-   "published": "2026-08-12T07:00:00+00:00",
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "The main contenders to replace Rodri at Man City",
+   "link": "https://www.bbc.co.uk/sport/football/articles/czdm2myqvyqo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T14:18:05+00:00",
    "watch": [
-    "PSG"
+    "Man City"
    ],
-   "summary": "TNT Sports will bring coverage live from Salzburg as Aston Villa go head-to-head with Paris Saint-Germain"
+   "summary": "As a move for Manchester City midfielder Rodri looks increasingly likely, BBC Sport takes a look at the options to replace him."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Crystal Palace latest: Eagles closing in on Khalaili signing",
+   "link": "https://www.skysports.com/football/live-blog/12040/13279298/crystal-palace-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+   "published": "2026-08-13T14:19:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Why half of England's World Cup defenders are on the move",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cj63p367gpyo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-08-13T14:41:24+00:00",
+   "watch": [],
+   "summary": "England came third in this summer's World Cup - their best performance in a men's competition in 60 years - and now their players are in demand in the transfer market."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "West Ham latest: Interim chief exec Virani targets Premier League return",
+   "link": "https://www.skysports.com/football/live-blog/12040/13210475/west-ham-latest-news",
+   "published": "2026-08-13T15:08:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Brighton latest: Genoa make contact over Ferguson loan",
+   "link": "https://www.skysports.com/football/live-blog/12040/13279295/brighton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+   "published": "2026-08-13T15:27:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Richards to face Kalajdzic showdown on Fisher bill",
+   "link": "https://www.skysports.com/boxing/news/12040/13572483/craig-richards-vs-radivoje-kalajdzic-lee-cutler-vs-louis-greene-added-to-johnny-fisher-boxing-bill-at-copper-box-arena",
+   "published": "2026-08-13T15:30:00+00:00",
+   "watch": [],
+   "summary": "British former world title challenger Craig Richards will take on Radivoje Kalajdzic in a 10-round light heavyweight showdown, while Lee Cutler faces Louis Greene in a middleweight clash, on Zuffa Boxing's Johnny Fisher "
   },
   {
    "source": "Transfermarkt",
@@ -870,40 +742,6 @@
     "Man City"
    ],
    "summary": "Transfer news LIVE: Man City want Enzo Fernández as Roma hold Martinelli talks Transfermarkt"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Who is Omar Artan? The referee for PSG vs Aston Villa in UEFA Super Cup",
-   "link": "https://www.fourfourtwo.com/person/who-is-omar-artan-the-referee-for-psg-vs-aston-villa-in-uefa-super-cup",
-   "published": "2026-08-12T08:00:00+00:00",
-   "watch": [
-    "PSG"
-   ],
-   "summary": "Aston Villa and PSG do battle in the UEFA Super Cup with a celebrity ref of sorts taking charge of the match"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "League One Predictions 2026-27: The Opta Supercomputer Projections",
-   "link": "https://theanalyst.com/articles/league-one-predictions-opta-supercomputer-2026-27",
-   "published": "2026-08-12T08:23:53+00:00",
-   "watch": [],
-   "summary": "Who will win promotion to the Championship? Which clubs are likeliest to be relegated to League Two? We answer all the key questions with our League One 2026-27 season predictions from the Opta supercomputer. The post Le"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Manchester United record signing offered contract termination in dramatic fall from grace: report",
-   "link": "https://www.fourfourtwo.com/transfer/manchester-united-record-signing-offered-contract-termination-in-dramatic-fall-from-grace-report",
-   "published": "2026-08-12T08:40:09+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "It looks as though the World Cup winner's time at the top of the game has come to an end"
   },
   {
    "source": "Transfermarkt",
@@ -919,77 +757,75 @@
    "source": "Transfermarkt",
    "tier": 3,
    "kind": "data",
-   "title": "SCM Zalau - Gloria Bistrita, 12/08/2026 - Romanian Cup - Match sheet",
-   "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1LNW54UUdtcnBQOEYtV24tR2VrQ3NQZTZ1Q0hBU25OV0xsVWlqdTFjaXhhY2ZscVNBZ0xMOFIxMkwwU1B0WDBSeV9oRC1NZ1hZaW4zZjlaVVpPekV6dF8xc0hGRWV1TGVOblgzMzFYM29jY1RiLXZtZg?oc=5",
-   "published": "2026-08-12T09:27:13+00:00",
+   "title": "Premier League Transfer Priorities: What Every ‘Big Six’ Club Needs Before the Window Closes",
+   "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNdEhqS3FqdVBmNm96cV9aXzVKRmc3Tjl3WmhZNm1rOUFFdlo2cnNIOHk1YVhJMEFkMjdFa3NyeWZ6NWlFM2pqVGM2UEltcHJ5ZlZ4Y21wNW52UW5wMDdWdzRWMFJMV3owVnZMMWNpQjlyc09NZGVRRXRaWHhhR3NxX1l6aUN2WGZGQnBCYjBPTGdxWGdzeDh6R3JkOVJwOE1mR3VDanRCbWwzUDlsM2Z0OUJqTXhpaTVGY1p6OXNRQnJZOEpSNzFndXpPLVVDc0F5dFE?oc=5",
+   "published": "2026-08-12T14:01:01+00:00",
    "watch": [],
-   "summary": "SCM Zalau - Gloria Bistrita, 12/08/2026 - Romanian Cup - Match sheet Transfermarkt"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Arne Slot dismisses new claims, following Liverpool sacking",
-   "link": "https://www.fourfourtwo.com/person/coaches-managers/arne-slot-dismisses-new-claims-following-liverpool-sacking",
-   "published": "2026-08-12T09:31:54+00:00",
-   "watch": [
-    "Liverpool"
-   ],
-   "summary": "Former Liverpool manager Arne Slot has been linked with the Netherlands national team job"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Missouri Valley Football Conference Predictions: SDSU, Illinois State at Front of a Deep Title Race",
-   "link": "https://theanalyst.com/articles/missouri-valley-football-conference-predictions-preview-fcs-2026",
-   "published": "2026-08-12T09:46:31+00:00",
-   "watch": [],
-   "summary": "The Missouri Valley Football Conference has had a national championship game qualifier in 15 straight years. Who's next from the league race? The post Missouri Valley Football Conference Predictions: SDSU, Illinois State"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "PSG vs Aston Villa prediction: Morgan Rogers absence and 'Kvaradona' freshness prove crucial in UEFA Super Cup",
-   "link": "https://www.fourfourtwo.com/competition/psg-vs-aston-villa-prediction-morgan-rogers-absence-and-kvaradona-freshness-prove-crucial-in-uefa-super-cup",
-   "published": "2026-08-12T10:52:37+00:00",
-   "watch": [
-    "PSG"
-   ],
-   "summary": "The UEFA Super Cup might not be the most prestigious of European titles but try telling that to the Villans are in Salzburg"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Three brand new wonderkids FourFourTwo can't wait to see in the Premier League this season",
-   "link": "https://www.fourfourtwo.com/transfer/three-brand-new-wonderkids-fourfourtwo-cant-wait-to-see-in-the-premier-league-this-season",
-   "published": "2026-08-12T11:24:11+00:00",
-   "watch": [],
-   "summary": "We've picked out three wonderkids to keep an eye on in the Premier League during 2026/27 - here they are"
+   "summary": "Premier League Transfer Priorities: What Every ‘Big Six’ Club Needs Before the Window Closes Transfermarkt"
   },
   {
    "source": "Transfermarkt",
    "tier": 3,
    "kind": "data",
-   "title": "Hong Kong U20 - Detailed squad 2027 (Gallery)",
-   "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQLTJZcHdBSlZmMVlKSzFWOWg4M3EwTU1WY2tyWmJ4S0E1VlhicVdzV0RlbnVSaHl5TU04c2tPM19XUWJjbUtTV1h0RTQ4V0N5VXZYaGVwblNSZWVOWEJaYUc0WV9xaFlZb2dvRE9fZUZoVGFnd1ZEM1VnSUVVc0d0NEwwTV9GaDRtZDVhOUh2VzVpQQ?oc=5",
-   "published": "2026-08-12T11:55:34+00:00",
-   "watch": [],
-   "summary": "Hong Kong U20 - Detailed squad 2027 (Gallery) Transfermarkt"
+   "title": "Djed Spence close to Inter move - where will he rank among Serie A record British signings?",
+   "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPU21yQzVTaFB2ZG1fRGJydWxHSHRSakRBZjRHTTN2dGtocEdpREwycEhMWU02d255UWJiMEtnNGREbVUwWUVSdWRtejRlQktlRXM5dEpzWG02Sjk3V2QwVWJDak1hWGpsZVQ1Y3ktOE9jRmlxYmhiS2VtUFZKWWQ0UXJRazJ4eXM1a0RmTjdQQWVuZVNKcExEbzRNVVlWaWd2NmJxYjkybXNNaUJUWkFBSVI3V2V3elZ0aUNpZGMtV2d4WWdJckw4M0hQMkIxVlo3SlE?oc=5",
+   "published": "2026-08-12T15:09:34+00:00",
+   "watch": [
+    "Inter"
+   ],
+   "summary": "Djed Spence close to Inter move - where will he rank among Serie A record British signings? Transfermarkt"
   },
   {
-   "source": "FourFourTwo",
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Fenerbahce complete Romelu Lukaku transfer from Napoli - 2nd most expensive player ever",
+   "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNbnlZTldUdW1mVjVQQ0dDSUg4NFZDRUZQQlNFdl81cmtIcXBMX0NOM3JiajB0LUVrV0RGc1FxUFlPVGRVSnBXTzF6b3FWNTRmOGNqV1E4RXlrUWk3VnFjTjk3Z29DUXIzYkJ5ZWJfMjZZT2dfT3FBYVRJc3R2NEV1ZEp2SUsxd1BvdXA2RmZHVVZLZUpuS1RZb1dxNjdSbENQZnp1WGlLYnA0QzhyWjZWMUtnbWhxN01IUllQQzVTZ29ucUhDdElfckRGalQ?oc=5",
+   "published": "2026-08-12T16:19:10+00:00",
+   "watch": [
+    "Napoli"
+   ],
+   "summary": "Fenerbahce complete Romelu Lukaku transfer from Napoli - 2nd most expensive player ever Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Dušan Vlahović joins Besitkas - Serbian striker becomes Turkish giants' all-time MVP",
+   "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQZk1ySGh3SnVUWlpzMjAxLWMwWF9VWFk5M1IzalRvMnR4Sno3TEJzWG1QNTE4RE0tSUtQdndGWk9pbTF1V1A4OHlSYWVBMFEyVzA3d0xwTThaaXRrX0V3Vi1oT1RTaUtvbFRrbVo3NHdBRV9BaXlZTTZubkpvRld3VzFnNFNJWFRjaGlsNkw5LURyYkNFcjdoRTlwM0lMZkl0TkpmWFEwRkpsNW9KZWxnNkU3ekhEeHVRWW1TUFdZZl9DUF8xUUM0?oc=5",
+   "published": "2026-08-12T16:19:10+00:00",
+   "watch": [],
+   "summary": "Dušan Vlahović joins Besitkas - Serbian striker becomes Turkish giants' all-time MVP Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Lucas Herrington joins Hull City - Deal for Australia star sets several records",
+   "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNQ1ZTQ194TmpHcEdGTkVUT0JvZnN3OWpOSWo4aTBxdEtjTklhcWJJaFlGb0F2dFdRRDBiV2FWeXhiM1lSX2pPS19EWGk2TVA4TXBFQ0dHVnhTRlB3TVU5VXpTSG9wSzBHZ1JMQTk5Ukg0NjJJTGhnbmkyUWtUbFhWbWxPaHN1dWJ0a0lVdTh6czdGYTR2ajk5MGg1WldaZndSSVlfempTLUpGQ3ZnSzFfM2txYnZhOVdKYzNNcUxUTngyUQ?oc=5",
+   "published": "2026-08-12T20:10:20+00:00",
+   "watch": [],
+   "summary": "Lucas Herrington joins Hull City - Deal for Australia star sets several records Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "U18-Europameisterschaft - Attendance figures",
+   "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxONE80U1A3dGxCZjEtdlhwVUNlc0FHUEZWcjN4UVNqWkFPb2xiT2IwbWxqYVREV1RpeWRmb2c2Wng2UW1VdGxma3VsRXYwY0V2SlpZbl9ad0tVeHJXNXV5VUtMT1Zwa3hGaGp2OVd5dUpyMkRZLWQ0OWlra3ZWRC1fd3AxUG9XOWNRZGFXYlRBQ21yeGFtSGRLUXZ2QUJ5aWw2RjhWTHhsQQ?oc=5",
+   "published": "2026-08-12T20:17:01+00:00",
+   "watch": [],
+   "summary": "U18-Europameisterschaft - Attendance figures Transfermarkt"
+  },
+  {
+   "source": "Opta Analyst",
    "tier": 3,
    "kind": "analysis",
-   "title": "Arsenal set to lose one of their highest earners from the wage bill: report",
-   "link": "https://www.fourfourtwo.com/transfer/arsenal-set-to-lose-one-of-their-highest-earners-from-the-wage-bill-report",
-   "published": "2026-08-12T12:14:59+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": "Arsenal are looking to cut a reported £17m from their outgoings, as they look to strengthen"
+   "title": "Are the NFL’s Highest-Paid Running Backs a Good Investment?",
+   "link": "https://theanalyst.com/articles/nfl-highest-paid-running-backs-jahmyr-gibbs-bijan-robinson-jonathan-taylor-contracts",
+   "published": "2026-08-12T21:11:16+00:00",
+   "watch": [],
+   "summary": "Bijan Robinson, Jonathan Taylor and Jahmyr Gibbs got paid this summer to complete an active offseason for NFL running backs with new deals. Are front offices making the right calls? The post Are the NFL’s Highest-Paid Ru"
   },
   {
    "source": "Transfermarkt",
@@ -997,7 +833,7 @@
    "kind": "data",
    "title": "Transfer news LIVE: Arsenal eye Jules Kounde as Coventry explore Mykhaylo Mudryk loan",
    "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPOUkyelNMalVNdmtPTGNBY2VXZ29Xb1prN0pIUV9IODlIV2xiNEU5d3l2ZG9GN3pVcUkzU3lmWnZOdnV1SnlOZDBLa0lwU0VRZXJVbFFPdkpGbXlnVlVadFFudk5KUFRvcjMwZmpEZXJlejJlZFhjeEFyTEFwTlZkVmREeWNTeThFSXBWSko0MnZVR3ZXSjE2ejlJdlg0b0kzZGxVRTByVTJPZG1sdVRpSC05bWN6Z0txVGE5RzkwaFBMVEw5VlUyVkhRMA?oc=5",
-   "published": "2026-08-12T12:17:03+00:00",
+   "published": "2026-08-13T00:42:02+00:00",
    "watch": [
     "Arsenal"
    ],
@@ -1007,45 +843,11 @@
    "source": "FourFourTwo",
    "tier": 3,
    "kind": "analysis",
-   "title": "Everton striker charged with breach of FA betting rules",
-   "link": "https://www.fourfourtwo.com/person/player/everton-striker-charged-with-breach-of-fa-betting-rules",
-   "published": "2026-08-12T13:19:57+00:00",
+   "title": "Can I shock you? Roberto Martinez never underachieved with Belgium’s golden generation",
+   "link": "https://www.fourfourtwo.com/person/coaches-managers/can-i-shock-you-roberto-martinez-never-underachieved-with-belgiums-golden-generation",
+   "published": "2026-08-13T06:00:00+00:00",
    "watch": [],
-   "summary": "A Toffees attacker has been charged with a breach of FA betting rules"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "How to watch UEFA Super Cup 2026 for FREE: TV Channels & Live stream details for PSG vs Aston Villa",
-   "link": "https://www.fourfourtwo.com/competition/watch-uefa-super-cup-2026-psg-vs-aston-villa-free",
-   "published": "2026-08-12T14:00:00+00:00",
-   "watch": [
-    "PSG"
-   ],
-   "summary": "Here's how to watch the UEFA Super Cup 2026 for free online from anywhere as Champions League winners PSG take on Europa League victors Aston Villa"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Premier League Transfer Priorities: What Every ‘Big Six’ Club Needs Before the Window Closes",
-   "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNdEhqS3FqdVBmNm96cV9aXzVKRmc3Tjl3WmhZNm1rOUFFdlo2cnNIOHk1YVhJMEFkMjdFa3NyeWZ6NWlFM2pqVGM2UEltcHJ5ZlZ4Y21wNW52UW5wMDdWdzRWMFJMV3owVnZMMWNpQjlyc09NZGVRRXRaWHhhR3NxX1l6aUN2WGZGQnBCYjBPTGdxWGdzeDh6R3JkOVJwOE1mR3VDanRCbWwzUDlsM2Z0OUJqTXhpaTVGY1p6OXNRQnJZOEpSNzFndXpPLVVDc0F5dFE?oc=5",
-   "published": "2026-08-12T14:01:01+00:00",
-   "watch": [],
-   "summary": "Premier League Transfer Priorities: What Every ‘Big Six’ Club Needs Before the Window Closes Transfermarkt"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Tottenham Hotspur reach agreement to sell Djed Spence: report",
-   "link": "https://www.fourfourtwo.com/transfer/tottenham-hotspur-reach-agreement-to-sell-djed-spence-report",
-   "published": "2026-08-12T14:32:47+00:00",
-   "watch": [
-    "Tottenham"
-   ],
-   "summary": "Tottenham Hotspur are to sell World Cup hero Djed Spence, in a surprise transfer out of the blue"
+   "summary": "Did Roberto Martinez really fail Belgium's golden generation? Or did everyone just expect way too much from a horribly imbalanced squad of stars?"
   },
   {
    "source": "Opta Analyst",
@@ -1053,9 +855,201 @@
    "kind": "analysis",
    "title": "League Two Predictions 2026-27: The Opta Supercomputer Projections",
    "link": "https://theanalyst.com/articles/league-two-predictions-opta-supercomputer-2026-27",
-   "published": "2026-08-12T14:33:44+00:00",
+   "published": "2026-08-13T06:40:11+00:00",
    "watch": [],
    "summary": "Who will win promotion to League One? Which clubs are likeliest to be relegated to the National League? We answer all the key questions with our League Two 2026-27 season predictions from the Opta supercomputer. The post"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "League One Predictions 2026-27: The Opta Supercomputer Projections",
+   "link": "https://theanalyst.com/articles/league-one-predictions-opta-supercomputer-2026-27",
+   "published": "2026-08-13T06:40:14+00:00",
+   "watch": [],
+   "summary": "Who will win promotion to the Championship? Which clubs are likeliest to be relegated to League Two? We answer all the key questions with our League One 2026-27 season predictions from the Opta supercomputer. The post Le"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Championship Fixture Difficulty: Who Has the Toughest Start to 2026-27?",
+   "link": "https://theanalyst.com/articles/championship-fixture-difficulty-ratings-who-has-toughest-start-to-2026-27",
+   "published": "2026-08-13T06:40:20+00:00",
+   "watch": [],
+   "summary": "The 2026-27 Championship season begins this week. We've analysed the schedule up to the September international break to determine which teams have the easiest and toughest starts to the new campaign. The post Championsh"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Seven Stars We’re Excited to Watch in the 2026-27 Championship",
+   "link": "https://theanalyst.com/articles/championship-players-to-watch-stats-2026-27",
+   "published": "2026-08-13T06:40:23+00:00",
+   "watch": [],
+   "summary": "The 2026-27 Championship season begins on Friday, but which players should you be looking forward to watching in the competition? The post Seven Stars We’re Excited to Watch in the 2026-27 Championship appeared first on "
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "La Liga 2026-27 Preview: Mourinho’s Return, Barcelona’s Three-Peat Ambition, and Promoting Romance",
+   "link": "https://theanalyst.com/articles/la-liga-2026-27-season-preview-real-madrid-barcelona-stats",
+   "published": "2026-08-13T06:40:30+00:00",
+   "watch": [
+    "Barcelona"
+   ],
+   "summary": "La Liga returns for the 2026-27 season this weekend. Ahead of the action, we identify some key narratives to observe over the coming months. The post La Liga 2026-27 Preview: Mourinho’s Return, Barcelona’s Three-Peat Amb"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Quiz! Can you name the 50 most expensive players signed by Barcelona and Real Madrid?",
+   "link": "https://www.fourfourtwo.com/quiz/football-quiz-can-you-name-the-50-most-expensive-players-signed-by-barcelona-and-real-madrid",
+   "published": "2026-08-13T07:00:00+00:00",
+   "watch": [
+    "Barcelona",
+    "Real Madrid"
+   ],
+   "summary": "The twin titans of Spanish football have never been shy about splashing the cash"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Very few Premier League clubs are relegation-proof – why Newcastle United, Everton, Crystal Palace and others must be careful",
+   "link": "https://www.fourfourtwo.com/competition/very-few-premier-league-clubs-are-relegation-proof-why-newcastle-united-everton-crystal-palace-and-others-must-be-careful",
+   "published": "2026-08-13T07:00:00+00:00",
+   "watch": [],
+   "summary": "Some Premier League clubs may think relegation battles are a thing of the past, but top-flight stability can evaporate before you know it"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "“My penalty in 1976 changed everything - but Sepp Maier hated me. He had a photo of me on his dartboard” Antonin Panenka on football's most famous ever penalty",
+   "link": "https://www.fourfourtwo.com/person/player/my-penalty-in-1976-changed-everything-but-sepp-maier-hated-me-he-had-a-photo-of-me-on-his-dartboard-antonin-panenka-on-footballs-most-famous-ever-penalty",
+   "published": "2026-08-13T08:00:00+00:00",
+   "watch": [],
+   "summary": "Antonin Panenka's career was changed by his fateful spot kick in the Euro 76 final"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Arsenal set to break long-standing transfer record, following new bid: report",
+   "link": "https://www.fourfourtwo.com/transfer/arsenal-set-to-break-long-standing-transfer-record-following-new-bid-report",
+   "published": "2026-08-13T08:59:14+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": "Arsenal are still working to improve their squad - with a new offer confirming that a record may well be broken imminently"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Gianni Infantino ready to back World Cup change as he courts Member Associations ahead of FIFA presidential run",
+   "link": "https://www.fourfourtwo.com/person/gianni-infantino-ready-to-back-world-cup-change-as-he-courts-member-associations-ahead-of-fifa-presidential-run",
+   "published": "2026-08-13T09:01:42+00:00",
+   "watch": [],
+   "summary": "FIFA president Infantino remains under pressure but his willingness to sell football out for power is unrivalled"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "NEC Football Predictions: CCSU, Duquesne the Teams to Beat; LIU Knocking at the Door",
+   "link": "https://theanalyst.com/articles/nec-football-predictions-preview-fcs-2026",
+   "published": "2026-08-13T09:55:33+00:00",
+   "watch": [],
+   "summary": "NEC Football featured the closest conference games in the FCS last season. The 2026 title race appears to be closely contested again. The post NEC Football Predictions: CCSU, Duquesne the Teams to Beat; LIU Knocking at t"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Premier League Survival Guide: How Can the Promoted Teams Stay Up in 2026-27?",
+   "link": "https://theanalyst.com/articles/premier-league-survival-guide-how-can-promoted-teams-stay-up",
+   "published": "2026-08-13T10:50:32+00:00",
+   "watch": [],
+   "summary": "We look at Premier League relegation data to see what it will take for promoted trio Coventry, Ipswich and Hull to avoid the drop in 2025-26. The post Premier League Survival Guide: How Can the Promoted Teams Stay Up in "
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Newcastle United agree next signing under Matthias Jaissle: report",
+   "link": "https://www.fourfourtwo.com/transfer/newcastle-united-agree-next-signing-under-matthias-jaissle-report",
+   "published": "2026-08-13T10:57:25+00:00",
+   "watch": [],
+   "summary": "Newcastle are rebuilding under their new manager, with another new name through the door"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Aston Villa might have replaced Morgan Rogers without spending a penny",
+   "link": "https://www.fourfourtwo.com/person/player/aston-villa-might-have-replaced-morgan-rogers-without-spending-a-penny",
+   "published": "2026-08-13T11:00:00+00:00",
+   "watch": [],
+   "summary": "Brian Madjo hogged the headlines after his debut goal but Villa’s rising star can be found further back"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Joint-fifth record sale - Cristian Romero nears Tottenham exit for Atlético Madrid",
+   "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQeUVXcWJOTU1zTVpqVVFVLXV1X0JxdjFkdkZhR2MtbmdONDZXUWlQT0NwRkNXYzBQT2xUc1VHLXl5WW9kRXcxekNCMG5XTG9YZkFHaXFhUjhGdjRUMHhaY3pJN0pIZmJTYUNGTHh6NTRIQS1YTWd1MGxMTWpNUmR2eVZEZXNadnNTcWhQaW85YzBka3dDcXdOLWcyczdGVlBLelVucjEtbHg3OHlDSmJ2VUZ1dlNIVjQ5VEJhbDRKTkJPb29UeEE?oc=5",
+   "published": "2026-08-13T11:07:22+00:00",
+   "watch": [
+    "Atlético",
+    "Tottenham"
+   ],
+   "summary": "Joint-fifth record sale - Cristian Romero nears Tottenham exit for Atlético Madrid Transfermarkt"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Trent Alexander-Arnold touted for shock Arsenal move - to play alongside England team-mate",
+   "link": "https://www.fourfourtwo.com/person/player/anders-limpar-trent-alexander-arnold-to-arsenal-would-allow-bukayo-saka-to-post-mohamed-salahs-numbers-every-season",
+   "published": "2026-08-13T12:00:00+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": "One former Arsenal midfielder believes that an unlikely link-up between England teammates would bear fruit for Arsenal"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "FPL New Signings 2026-27: Which Summer Transfers Offer the Best Fantasy Value?",
+   "link": "https://theanalyst.com/articles/fpl-summer-signings-stats-projections-tips-premier-league-2026-27",
+   "published": "2026-08-13T12:15:54+00:00",
+   "watch": [],
+   "summary": "We assess how seven of this summer's most intriguing arrivals are expected to translate their previous performances into FPL points in 2026-27. The post FPL New Signings 2026-27: Which Summer Transfers Offer the Best Fan"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "'He's on a mission' Vincent Kompany tipped to replace Gianni Infantino as FIFA president",
+   "link": "https://www.fourfourtwo.com/person/coaches-managers/toby-alderweireld-vincent-kompany-is-the-best-candidate-to-replace-gianni-infantino-as-fifa-president",
+   "published": "2026-08-13T14:00:00+00:00",
+   "watch": [],
+   "summary": "Infantino has become an unpopular leader in football and Alderweireld has put forward a surprise alternative"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Looking Into the Crystal Ball: Alex Kirshner’s 2026 CFP Bracket Projection",
+   "link": "https://theanalyst.com/articles/2026-cfp-bracket-fbs-college-football-predictions",
+   "published": "2026-08-13T14:48:03+00:00",
+   "watch": [],
+   "summary": "There will be twists and turns on the way to the 2026 CFP bracket, but Alex Kirshner provides a sneak peek to where it may wind up. The post Looking Into the Crystal Ball: Alex Kirshner’s 2026 CFP Bracket Projection appe"
   }
  ]
 }
