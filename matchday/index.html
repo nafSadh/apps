@@ -221,6 +221,33 @@
   .ok.yes{border:1px solid #7de0a6;color:#7de0a6}
   .ok.hmm{border:1px solid #ffd479;color:#ffd479}
 
+  .tlog{border:1px solid var(--hair);border-radius:10px;background:var(--card);padding:6px 16px;margin-top:12px}
+  .tlog-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:12px 0 4px;border-bottom:1px solid var(--hair)}
+  .tl-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid var(--hair);font-size:13.5px}
+  .tl-row:last-child{border-bottom:none}
+  .tlog .tl-hide{display:none}
+  .tl-d{font-family:var(--mono);font-size:11px;color:var(--muted);flex:none;width:52px}
+  .tl-p{font-weight:600}
+  .tl-p a{color:var(--chalk);text-decoration:none;border-bottom:1px dotted var(--hair2)}
+  .tl-p a:hover{border-bottom-color:var(--chalk)}
+  .tl-m{color:var(--soft)}
+  .tl-fee{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);flex:none}
+  .tl-badge{flex:none;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid var(--hair2);color:var(--muted)}
+  .tl-badge.agreed{border-color:var(--ucl);color:var(--ucl)}
+  .tl-note{flex-basis:100%;font-size:12px;line-height:1.5;color:var(--muted);margin:2px 0 0 62px}
+  .tl-more{display:block;margin:14px auto 4px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;background:none;border:1px solid var(--hair);color:var(--muted);padding:8px 18px;border-radius:6px;cursor:pointer}
+  .tl-more:hover{border-color:var(--chalk);color:var(--chalk)}
+  .tl-more:focus-visible{outline:2px solid var(--ucl);outline-offset:2px}
+  @media(max-width:640px){.tl-note{margin-left:0}}
+  .squad-window .tlw-row{display:flex;align-items:baseline;gap:8px;padding:6px 2px;border-bottom:1px solid var(--hair);font-size:13px}
+  .squad-window .tlw-row:last-child{border-bottom:none}
+  .squad-window .tlw-row a,.squad-window .tlw-p{color:var(--chalk);font-weight:600;text-decoration:none}
+  .squad-window .tlw-row a:hover{text-decoration:underline}
+  .tlw-club{color:var(--muted)}
+  .tlw-fee{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--muted);flex:none}
+  .tlw-badge{flex:none;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--hair2);border-radius:999px;padding:1px 6px;color:var(--muted)}
+  .tlw-badge.live{border-color:var(--ucl);color:var(--ucl)}
+
   .match{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .pitchcard{border:1px solid var(--hair);border-radius:10px;background:var(--card);padding:16px}
   .pitchcard h3{font-family:var(--disp);font-weight:800;font-size:23px}
@@ -436,6 +463,15 @@
       <span class="more-sub">Barcelona, Inter, Dortmund, Man United … ↗</span>
     </a>
   </div>
+</section>
+
+<!-- ============ TRANSFER LOG ============ -->
+<section id="window">
+  <div class="eyebrow"><h2>Transfer Log</h2><div class="rule"></div><div class="tag">2026–27 · summer window</div></div>
+  <p class="clocknote">Every move applied to the squads on this site, newest first — plus what the window is still deciding. Live lines follow the <a href="brief.html" style="color:inherit">daily brief's</a> rule: attributed, not asserted.</p>
+  <div class="tlog" id="tlogLive" hidden></div>
+  <div class="tlog" id="tlog" hidden></div>
+  <button class="tl-more" id="tlogMore" type="button" hidden>show the full window</button>
 </section>
 
 <!-- ============ PLAYERS ============ -->
@@ -787,6 +823,7 @@
         <div class="squad-depth" id="squadDepth"></div>
         <div class="squad-depth-hint">Tap a name to sub them in</div>
         <div class="squad-kits" id="squadKits"></div>
+        <div class="squad-window" id="squadWindow"></div>
       </div>
     </div>
   </div>
@@ -794,6 +831,81 @@
 
 </div>
 
+<script src="brief/transfers.js"></script>
+<script>
+// ---------- transfer log (data + helpers: brief/transfers.js) ----------
+(function(){
+  const host = document.getElementById('tlog');
+  if(!host || !window.TRANSFERS || !window.TL) return;
+  const COLLAPSED = 12;
+  const esc = TL.esc;
+
+  function row(t, withStatus){
+    const name = t.w
+      ? '<a href="' + esc(t.w) + '" target="_blank" rel="noopener">' + esc(t.p) + '</a>'
+      : esc(t.p);
+    const move = t.to
+      ? (t.from ? esc(t.from) + ' → ' + esc(t.to) : '→ ' + esc(t.to))
+      : esc(t.from) + ' → <span style="opacity:.6">destination not recorded</span>';
+    let badges = '';
+    if(withStatus) badges += '<span class="tl-badge ' + t.status + '">' + t.status + '</span>';
+    if(t.type && t.type !== 'transfer') badges += '<span class="tl-badge">' + t.type + '</span>';
+    const fee = t.fee ? '<span class="tl-fee">' + esc(t.fee) + '</span>' : '';
+    const note = t.note ? '<span class="tl-note">' + esc(t.note) + '</span>' : '';
+    return '<div class="tl-row"><span class="tl-d">' + esc(TL.fmtDate(t.d)) + '</span>'
+      + '<span class="tl-p">' + name + '</span><span class="tl-m">' + move + '</span>'
+      + badges + fee + note + '</div>';
+  }
+
+  function monthLabel(d){
+    const FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const p = (d || '').split('-');
+    if(p.length === 1) return 'Summer · date unrecorded';
+    const m = FULL[+p[1] - 1];
+    return +p[1] === 1 ? m + ' · winter window' : m;
+  }
+
+  const live = TL.sorted(TRANSFERS.filter(t => t.status !== 'official'));
+  const done = TL.sorted(TRANSFERS.filter(t => t.status === 'official'));
+
+  const liveEl = document.getElementById('tlogLive');
+  if(liveEl && live.length){
+    liveEl.innerHTML = '<div class="tlog-label">Still live · ' + live.length + ' in play</div>'
+      + live.map(t => row(t, true)).join('');
+    liveEl.hidden = false;
+  }
+
+  let html = '', lastMonth = null;
+  done.forEach(t => {
+    const m = monthLabel(t.d);
+    if(m !== lastMonth){ html += '<div class="tlog-label">' + m + '</div>'; lastMonth = m; }
+    html += row(t, false);
+  });
+  host.innerHTML = '<div class="tlog-label">Done deals · ' + done.length + ' this season</div>' + html;
+  host.hidden = false;
+
+  const rows = host.querySelectorAll('.tl-row');
+  const more = document.getElementById('tlogMore');
+  if(rows.length > COLLAPSED && more){
+    for(let i = COLLAPSED; i < rows.length; i++) rows[i].classList.add('tl-hide');
+    // hide month labels whose rows are all collapsed
+    host.querySelectorAll('.tlog-label').forEach(l => {
+      let n = l.nextElementSibling, any = false;
+      while(n && !n.classList.contains('tlog-label')){
+        if(n.classList.contains('tl-row') && !n.classList.contains('tl-hide')) any = true;
+        n = n.nextElementSibling;
+      }
+      if(!any) l.classList.add('tl-hide');
+    });
+    more.textContent = 'show the full window · ' + (rows.length - COLLAPSED) + ' more';
+    more.hidden = false;
+    more.addEventListener('click', () => {
+      host.querySelectorAll('.tl-hide').forEach(el => el.classList.remove('tl-hide'));
+      more.hidden = true;
+    });
+  }
+})();
+</script>
 <script>
 // ---------- countdowns (live) ----------
 (function(){
@@ -1063,6 +1175,9 @@
       ? '<div class="squad-depth-label">Kits \u00b7 <a class="kits-src" href="' + kd.page + '" target="_blank" rel="noopener">Wikipedia \u2197</a></div>'
         + '<div class="kits-row">' + kd.kits.map(k => kitFigure(k, kd.page)).join('') + '</div>'
       : '';
+
+    const winEl = document.getElementById('squadWindow');
+    if(winEl) winEl.innerHTML = window.TL ? TL.windowBlockHTML(slug) : '';
 
     const current = d.xi.map(p => ({flag:p.flag, name:p.name, photo:p.photo, page:p.page}));
     const coords = FORMATIONS[d.formation];

@@ -189,7 +189,7 @@ def main():
 <footer>
   Aggregated from {esc(', '.join(srcs))}. Headlines and links belong to their publishers; follow the link for the full story.{errnote}<br>
   Transfer rumours are wrong more often than they are right — treat everything above as reported, not settled.<br>
-  Part of <a href="index.html" style="color:inherit">Matchday Pacific</a> · <a href="guide.html" style="color:inherit">viewing guide</a> · <a href="cal.html" style="color:inherit">calendar</a>
+  Part of <a href="index.html" style="color:inherit">Matchday Pacific</a> · <a href="index.html#window" style="color:inherit">transfer log</a> · <a href="guide.html" style="color:inherit">viewing guide</a> · <a href="cal.html" style="color:inherit">calendar</a>
 </footer>
 
 </div>
