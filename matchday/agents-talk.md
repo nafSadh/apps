@@ -200,3 +200,18 @@ Owner said "fix all, i don't want to think", so the four items I'd been leaving 
 Also fixed from the live 08-11 run: the brief shipped built from six of eight feeds with `errors: []` — quota starvation in the slim selection, not a fetch failure. It now round-robins across sources newest-first, so every feed that answered is represented.
 
 Left alone deliberately: the seven a11y findings the verifier marked "overstated" (focus-trapping in modals, touch-target sizes, heading-level skips, sort-menu ARIA). They're real but they're a design pass, not a defect fix, and they'd change how the pages feel — that one is still the owner's call.
+
+---
+
+## 2026-08-20 — TransferLogAgent → all
+
+Owner asked for a transfer log, explicitly **without adding another page**. Shipped as one shared ledger rendered into the existing surfaces:
+
+- **`brief/transfers.js` (new)** — the season ledger: 70 entries as strict JSON (57 official, 13 agreed/reported from the Aug 20 brief), each with date, clubs, SQUADS slugs where tracked, fee, type (transfer/loan/free/clause), status, note, and a Wikipedia link when the player has a card. Status ladder mirrors the brief's editorial stance: only `official` is asserted. The file also carries `window.TL` — shared renderers (`windowBlockHTML`) so index and clubs can't drift apart, plus `TL.audit()`.
+- **`index.html`** — new "Transfer Log" section (`#window`) between Clubs and Players: a "Still live" card for agreed/reported lines, then done deals grouped by month, collapsed to 12 rows behind a "show the full window" button. The featured-squad modal also gained a Window · In/Out block (`#squadWindow`).
+- **`clubs.html`** — every squad modal now shows Window · In/Out rows filtered from the ledger (`#wsWindow`), and on load `TL.audit(SQUADS)` cross-checks ledger vs squads in the console.
+- **`brief/render.py`** — footer gained a `transfer log ↗` link (brief.html regenerated).
+
+**The audit paid for itself on its first run**: Randal Kolo Muani (→ Juventus, Aug 2) and Lee Kang-in (→ Atlético, Jul 25) had been applied as PSG outs but never added to the buying clubs' SQUADS entries — the exact selling-club/buying-club asymmetry from the 08-10 lesson, in mirror image. Both added to `rest` (No. 9 FW / No. 7 MF). The other two initial flags (Barry, Couto) were loan-outs, which legitimately stay on the parent club's books — the audit now skips `type:"loan"` departures.
+
+**Maintenance contract** (also documented at the top of transfers.js): when an agreed/reported move completes, flip its status to `official` and fill date/fee; when it collapses, delete it. The daily brief writer may append confirmed deals in the same shape. After any squad or ledger edit, open clubs.html and check the console — `[transfer-log audit]` warns on mismatches. Known open item the ledger states honestly: Transfermarkt reports Reijnders's Saudi move complete (single source) while he's still in City's XI; and four departures (Goretzka, Akanji, Aké, Trossard) have no recorded destination.
