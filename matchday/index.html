@@ -465,15 +465,6 @@
   </div>
 </section>
 
-<!-- ============ TRANSFER LOG ============ -->
-<section id="window">
-  <div class="eyebrow"><h2>Transfer Log</h2><div class="rule"></div><div class="tag">2026–27 · summer window</div></div>
-  <p class="clocknote">Every move applied to the squads on this site, newest first — plus what the window is still deciding. Live lines follow the <a href="brief.html" style="color:inherit">daily brief's</a> rule: attributed, not asserted.</p>
-  <div class="tlog" id="tlogLive" hidden></div>
-  <div class="tlog" id="tlog" hidden></div>
-  <button class="tl-more" id="tlogMore" type="button" hidden>show the full window</button>
-</section>
-
 <!-- ============ PLAYERS ============ -->
 <section id="players">
   <div class="eyebrow"><h2>Players to Watch</h2><div class="rule"></div>
@@ -792,6 +783,15 @@
   </div>
 </section>
 
+<!-- ============ TRANSFER LOG ============ -->
+<section id="window">
+  <div class="eyebrow"><h2>Transfer Log</h2><div class="rule"></div><div class="tag">2026–27 · summer window</div></div>
+  <p class="clocknote">Every move applied to the squads on this site, newest first — plus what the window is still deciding. Live lines follow the <a href="brief.html" style="color:inherit">daily brief's</a> rule: attributed, not asserted.</p>
+  <div class="tlog" id="tlogLive" hidden></div>
+  <div class="tlog" id="tlog" hidden></div>
+  <button class="tl-more" id="tlogMore" type="button" hidden>show the full window</button>
+</section>
+
 <footer>
   Built for a Bay Area viewer · kickoff windows are typical league slots converted to PT and shift with TV picks &amp; DST · fixture dates per league releases, Jun–Aug 2026 · US broadcasters per current rights deals, Jul 2026.<br>
   Player photos via Wikipedia/Wikimedia Commons, CC BY-SA — click a photo for its source page and author credit.<br>
@@ -837,7 +837,8 @@
 (function(){
   const host = document.getElementById('tlog');
   if(!host || !window.TRANSFERS || !window.TL) return;
-  const COLLAPSED = 12;
+  // default view stays within ~14 rows across both cards; the button reveals the rest
+  const LIVE_COLLAPSED = 6, DONE_COLLAPSED = 8;
   const esc = TL.esc;
 
   function row(t, withStatus){
@@ -884,12 +885,13 @@
   host.innerHTML = '<div class="tlog-label">Done deals · ' + done.length + ' this season</div>' + html;
   host.hidden = false;
 
-  const rows = host.querySelectorAll('.tl-row');
-  const more = document.getElementById('tlogMore');
-  if(rows.length > COLLAPSED && more){
-    for(let i = COLLAPSED; i < rows.length; i++) rows[i].classList.add('tl-hide');
+  function collapse(box, keep){
+    if(!box || box.hidden) return 0;
+    const rows = box.querySelectorAll('.tl-row');
+    if(rows.length <= keep) return 0;
+    for(let i = keep; i < rows.length; i++) rows[i].classList.add('tl-hide');
     // hide month labels whose rows are all collapsed
-    host.querySelectorAll('.tlog-label').forEach(l => {
+    box.querySelectorAll('.tlog-label').forEach(l => {
       let n = l.nextElementSibling, any = false;
       while(n && !n.classList.contains('tlog-label')){
         if(n.classList.contains('tl-row') && !n.classList.contains('tl-hide')) any = true;
@@ -897,10 +899,15 @@
       }
       if(!any) l.classList.add('tl-hide');
     });
-    more.textContent = 'show the full window · ' + (rows.length - COLLAPSED) + ' more';
+    return rows.length - keep;
+  }
+  const more = document.getElementById('tlogMore');
+  const hidden = collapse(liveEl, LIVE_COLLAPSED) + collapse(host, DONE_COLLAPSED);
+  if(hidden && more){
+    more.textContent = 'show the full window · ' + hidden + ' more';
     more.hidden = false;
     more.addEventListener('click', () => {
-      host.querySelectorAll('.tl-hide').forEach(el => el.classList.remove('tl-hide'));
+      document.querySelectorAll('#window .tl-hide').forEach(el => el.classList.remove('tl-hide'));
       more.hidden = true;
     });
   }
