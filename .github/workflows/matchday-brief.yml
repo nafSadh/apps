@@ -1,9 +1,12 @@
 name: Matchday daily brief
 
 # Daily: pull the football firehose (8 RSS feeds — BBC gossip/sport, Sky, Guardian,
-# Opta Analyst, FourFourTwo, Transfermarkt), rebuild matchday/brief.html, and commit +
-# push so GitHub Pages serves it. Runs here rather than in a cloud agent because that
-# environment's egress proxy 403s every news domain at CONNECT; GitHub runners don't.
+# Opta Analyst, FourFourTwo, Transfermarkt), pull ESPN scoreboards for last-week
+# finals and newly dated UCL fixtures (scores.py -> scores.json, with results and
+# fixtures stamped into matchday/cal.html), rebuild matchday/brief.html, and
+# commit + push so GitHub Pages serves it. Runs here rather than in a cloud agent
+# because that environment's egress proxy 403s these hosts at CONNECT; GitHub
+# runners don't.
 #
 # fetch.py exits non-zero if fewer than 5 of 8 feeds answer or the haul is under 60
 # deduped items, which fails the job before render — a stale brief beats a thin one.
@@ -33,6 +36,14 @@ jobs:
       - name: Fetch feeds
         working-directory: matchday/brief
         run: python3 fetch.py
+
+      # Additive: scores/fixtures must never block the brief. scores.py exits 0 on
+      # every failure path (prints ::warning), leaving scores.json + cal.html as-is.
+      # This is also what picks up newly dated UCL fixtures (draw was Aug 27; UEFA
+      # publishes dates/times by Aug 29) — the daily run lands them automatically.
+      - name: Scores + calendar update
+        working-directory: matchday/brief
+        run: python3 scores.py
 
       - name: Render brief.html
         working-directory: matchday/brief
@@ -73,12 +84,18 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # feed.slim.json is committed too: the writer job runs where outbound
           # fetches are blocked, so the repo is how it receives the feed.
-          git add matchday/brief.html matchday/brief/feed.slim.json
+          # scores.json feeds the Final Scores section; cal.html picks up stamped
+          # results and newly dated UCL fixtures from scores.py.
+          git add matchday/brief.html matchday/brief/feed.slim.json matchday/brief/scores.json matchday/cal.html
           # gate on STAGED changes so an untracked artifact can't trigger an empty commit (exit 1)
           if git diff --cached --quiet; then
             echo "Brief unchanged."; exit 0
           fi
-          git commit -m "brief: feed refresh $(date -u +%F)"
+          if git diff --cached --name-only | grep -q "matchday/cal.html"; then
+            git commit -m "brief + scores: daily refresh $(date -u +%F)"
+          else
+            git commit -m "brief: feed refresh $(date -u +%F)"
+          fi
           for i in 1 2 3; do
             if git push; then echo "pushed."; exit 0; fi
             echo "push rejected — rebasing onto origin/${GITHUB_REF_NAME} (attempt $i)…"

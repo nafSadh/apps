@@ -318,6 +318,8 @@ html[data-theme="dark"] .matchrow{background:rgba(12,19,36,.45);padding:7px 10px
 .m-win.dawn{color:var(--gold);}
 .m-win.prime,.m-win.lunch{color:var(--buli);}
 .m-why{font-family:var(--hand);font-size:15px;line-height:1.1;color:var(--gold);font-weight:600;}
+/* final score — replaces the "vs" once a match is played (r field, stamped by brief/scores.py) */
+.m-score{font-family:var(--mono);font-weight:600;font-size:11px;color:var(--ink);background:var(--quiet);border:1px solid var(--hair);padding:0 5px;margin:0 2px;white-space:nowrap;}
 .matchrow .m-time.win-dawn{color:var(--gold);opacity:1;}
 .matchrow .m-time.win-dawn.tbc{opacity:.65;}
 
@@ -1096,7 +1098,7 @@ function cellFixHTML(item, dense){
   const tr = isTracked(item);
   const label = `${shortName(item.h)}\u2013${shortName(item.a)}`;
   const w = watchFor(item);
-  const tip = `${item.h} vs ${item.a}${item.t?` \u00b7 ${item.cf?'':'~'}${item.t}`:''}${w?` \u00b7 ${w.s}`:''}`;
+  const tip = `${item.h} vs ${item.a}${item.r?` \u00b7 ${item.r.replace('-','\u2013')}`:''}${item.t?` \u00b7 ${item.cf?'':'~'}${item.t}`:''}${w?` \u00b7 ${w.s}`:''}`;
   if(dense && !tr){
     return `<div class="fixline compact ${slug(item.c)}" title="${tip}">${label}</div>`;
   }
@@ -1214,13 +1216,14 @@ function matchRowHTML(m, list){
   const win = winFor(m);
   const why = whyFor(m);
   const dawn = win && win.k==='dawn';
+  const mid = m.r ? `<span class="m-score">${m.r.replace('-','–')}</span>` : 'vs';
   if(list){
     const circleIt = myClubsOnly ? !!m.bg : star;
     return `<div class="matchrow listrow">
       <div class="m-time${tbc?' tbc':''}${dawn?' win-dawn':''}${circleIt?' circ':''}"${win?` title="${win.label.replace(/^[\u263e\u2600] /,'')}"`:''}>${circleIt?CIRC:''}${timeText}</div>
       <span class="comp-tag ${slug(m.c)}">${LIST_PREFIX[m.c]}</span>
       ${watchChip(m, tbc)}
-      <div class="m-teams">${shortName(m.h)} vs ${shortName(m.a)}${tag?` <span class="spec-tag">${tag}</span>`:''}${why?`<span class="m-note">${why}</span>`:''}${note?`<span class="m-note">${note}</span>`:''}</div>
+      <div class="m-teams">${shortName(m.h)} ${mid} ${shortName(m.a)}${tag?` <span class="spec-tag">${tag}</span>`:''}${why?`<span class="m-note">${why}</span>`:''}${note?`<span class="m-note">${note}</span>`:''}</div>
     </div>`;
   }
   const sub = (win||why)
@@ -1228,7 +1231,7 @@ function matchRowHTML(m, list){
     : '';
   return `<div class="matchrow">
     <div class="m-time${tbc?' tbc':''}${dawn?' win-dawn':''}">${timeText}</div>
-    <div class="m-teams">${star?'<span class="tr-star">\u2605</span>':''}${shortName(m.h)} vs ${shortName(m.a)}${note?`<span class="m-note">${note}</span>`:''}${sub}</div>
+    <div class="m-teams">${star?'<span class="tr-star">\u2605</span>':''}${shortName(m.h)} ${mid} ${shortName(m.a)}${note?`<span class="m-note">${note}</span>`:''}${sub}</div>
     <div class="m-meta">
       ${watchChip(m, tbc)}
       <span class="comp-tag ${slug(m.c)}">${dispName(m.c)}</span>
@@ -1381,7 +1384,7 @@ const KEY_DATES = [
   {d:'2026-08-22', text:'Real Madrid open the season \u2014 <b>Espanyol vs Real Madrid</b>'},
   {d:'2026-08-23', text:'PSG open at home \u2014 <b>PSG vs Rennes</b>, Parc des Princes'},
   {d:'2026-08-26', text:'<b>Real Madrid vs Real Sociedad</b>, Bernab\u00e9u \u2014 the rescheduled jornada 1 tie'},
-  {d:'2026-08-27', text:'Champions League league-phase draw, Nyon'},
+  {d:'2026-08-27', text:'Champions League league-phase draw, Grimaldi Forum, Monaco'},
   {d:'2026-08-28', text:'Bundesliga opens \u2014 <b>Bayern vs Stuttgart</b>, Allianz Arena'},
   {d:'2026-09-08', text:'Champions League Matchday 1 begins'},
   {d:'2026-09-21', text:'International window \u2014 no club football Sep 21\u2013Oct 6 (merged Sep+Oct FIFA windows)'},
