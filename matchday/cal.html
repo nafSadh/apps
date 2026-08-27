@@ -117,7 +117,8 @@ html[data-theme="light"] body::before{
 #toTop svg{width:15px;height:15px;}
 @media(max-width:640px){#toTop{right:14px;bottom:14px;}}
 .mast-cd{text-align:right;}
-.mast-cd .cd-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;white-space:nowrap;}
+/* width:0 + min-width:100% — the countdown digits set the column width; the label wraps inside it */
+.mast-cd .cd-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;width:0;min-width:100%;}
 .mast-cd .cd-label .star{color:var(--gold);}
 .mast-cd .cd-nums{font-family:var(--disp);font-weight:800;font-size:38px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap;}
 .mast-cd .cd-nums b{font-weight:800;}
@@ -299,7 +300,7 @@ html[data-theme="dark"] .matchrow{background:rgba(12,19,36,.45);padding:7px 10px
 .matchrow .m-teams{flex:1;font-size:13px;color:var(--ink);font-weight:450;min-width:0;}
 .matchrow .m-note{font-family:var(--body);font-size:10px;color:var(--muted);font-weight:400;margin-left:6px;}
 .matchrow .tr-star{color:var(--gold);margin-right:3px;font-size:11px;}
-.matchrow .m-meta{display:flex;align-items:center;gap:5px;flex:none;}
+.matchrow .m-meta{display:flex;align-items:center;gap:5px;flex:none;flex-wrap:wrap;justify-content:flex-end;}
 .comp-tag{font-family:var(--body);font-weight:700;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:0;}
 .comp-tag.EPL{color:var(--epl);background:var(--epl-bg);}
 .comp-tag.La-Liga{color:var(--liga);background:var(--liga-bg);}
@@ -307,6 +308,18 @@ html[data-theme="dark"] .matchrow{background:rgba(12,19,36,.45);padding:7px 10px
 .comp-tag.Bundesliga{color:var(--buli);background:var(--buli-bg);}
 .comp-tag.Ligue-1{color:var(--l1);background:var(--l1-bg);}
 .spec-tag{font-family:var(--body);font-weight:700;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:0;color:var(--gold);background:var(--gold-bg);border:1px solid var(--gold);}
+/* where-to-watch chip — dashed border = needs a live-TV package, not a base streamer */
+.watch-tag{font-family:var(--mono);font-weight:500;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:0;color:var(--soft);border:1px solid var(--hair2);background:var(--quiet);white-space:nowrap;cursor:default;}
+.watch-tag.cable{border-style:dashed;}
+.watch-tag.tbc{opacity:.6;}
+/* second line under teams: watchable-window label + why-it-matters note */
+.matchrow .m-sub{display:flex;align-items:baseline;gap:9px;margin-top:2px;min-width:0;flex-wrap:wrap;}
+.m-win{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.m-win.dawn{color:var(--gold);}
+.m-win.prime,.m-win.lunch{color:var(--buli);}
+.m-why{font-family:var(--hand);font-size:15px;line-height:1.1;color:var(--gold);font-weight:600;}
+.matchrow .m-time.win-dawn{color:var(--gold);opacity:1;}
+.matchrow .m-time.win-dawn.tbc{opacity:.65;}
 
 /* ---------- list view ---------- */
 #listView{display:none;margin-bottom:20px;}
@@ -390,6 +403,8 @@ html[data-theme="light"] .stickyhead.stick.compact{
 .listrow .m-teams{flex:0 1 auto;}
 .listrow .m-time{position:relative;padding:4px 0;}
 .listrow .comp-tag{min-width:60px;text-align:center;flex:none;text-transform:none;}
+.listrow .watch-tag{min-width:56px;text-align:center;flex:none;}
+@media(max-width:640px){ .listrow .watch-tag{min-width:0;padding:2px 4px;} }
 .listrow .m-time.circ{opacity:1;color:var(--ink);}
 .listrow .m-time.circ svg{position:absolute;top:-2px;bottom:-2px;left:-13px;right:-3px;width:auto;height:calc(100% + 4px);pointer-events:none;}
 .list-empty{color:var(--muted);font-size:13px;padding:16px 0;}
@@ -554,6 +569,7 @@ html[data-theme="dark"] .cm-foot .chip.active{color:#0b120e;}
       <button class="chip" data-comp="Bundesliga">Bundesliga</button>
       <button class="chip" data-comp="Ligue 1">Ligue 1</button>
       <button class="chip" data-comp="UCL">UCL</button>
+      <button class="chip" id="goldenToggle" title="Only kickoffs at humane Pacific hours — weekend 7 AM+ and weekday lunch">☀ Golden hours</button>
       <button class="chip active" id="myClubsToggle">★ Select Clubs <span class="gear" id="clubGear" role="button" tabindex="0" aria-label="Choose which clubs to follow" title="Choose clubs"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M16.4 12.5a1.4 1.4 0 0 0 .28 1.54l.05.05a1.7 1.7 0 1 1-2.4 2.4l-.05-.05a1.4 1.4 0 0 0-1.54-.28 1.4 1.4 0 0 0-.85 1.28V17.6a1.7 1.7 0 0 1-3.4 0v-.08a1.4 1.4 0 0 0-.92-1.28 1.4 1.4 0 0 0-1.54.28l-.05.05a1.7 1.7 0 1 1-2.4-2.4l.05-.05a1.4 1.4 0 0 0 .28-1.54 1.4 1.4 0 0 0-1.28-.85H2.4a1.7 1.7 0 0 1 0-3.4h.08a1.4 1.4 0 0 0 1.28-.92 1.4 1.4 0 0 0-.28-1.54l-.05-.05a1.7 1.7 0 1 1 2.4-2.4l.05.05a1.4 1.4 0 0 0 1.54.28h.06a1.4 1.4 0 0 0 .85-1.28V2.4a1.7 1.7 0 0 1 3.4 0v.08a1.4 1.4 0 0 0 .85 1.28h.06a1.4 1.4 0 0 0 1.54-.28l.05-.05a1.7 1.7 0 1 1 2.4 2.4l-.05.05a1.4 1.4 0 0 0-.28 1.54v.06a1.4 1.4 0 0 0 1.28.85h.12a1.7 1.7 0 0 1 0 3.4h-.08a1.4 1.4 0 0 0-1.28.85Z"/></svg></span></button>
     </div>
     <div class="viewswitch" role="tablist" aria-label="View">
@@ -644,6 +660,108 @@ const LIST_PREFIX = { "EPL":"EPL", "La Liga":"LaLiga", "Bundesliga":"Bundes.", "
 const DISPLAY_NAME = { "La Liga":"LaLiga" };
 function dispName(c){ return DISPLAY_NAME[c] || c; }
 
+/* ---------- where to watch ----------
+   cable:true = needs a live-TV package (YouTube TV / Hulu + Live TV / cable), not a base streamer.
+   EPL outlets are assigned by kickoff slot — NBC's outlets pick by slot, so when a TV pick
+   moves a kickoff in DATA, the chip follows automatically. A per-match "w" key (SVC code)
+   in DATA overrides the slot rule if a pick ever breaks the pattern. */
+const SVC = {
+  PCK:  {s:'Peacock',  cable:false, tip:'Peacock — NBC\'s streamer; carries the bulk of the EPL slate'},
+  USA:  {s:'USA Net',  cable:true,  tip:'USA Network — needs a live-TV package (YouTube TV, Hulu + Live TV, cable); NOT on Peacock'},
+  NBC:  {s:'NBC',      cable:true,  tip:'NBC broadcast — antenna or live-TV package; the marquee picks'},
+  ESPN: {s:'ESPN+',    cable:false, tip:'ESPN+ — all of LaLiga'},
+  FAN:  {s:'Fandango', cable:false, tip:'Fandango — most Bundesliga matches stream free with ads'},
+  BEIN: {s:'beIN',     cable:true,  tip:'beIN Sports — via Fanatiz, Sling, or Fubo'},
+  PPLUS:{s:'P+',       cable:false, tip:'Paramount+ — every Champions League match'},
+  CBSP: {s:'CBS·P+', cable:false, tip:'CBS broadcast + Paramount+'},
+};
+function ptMinutes(t){
+  const m = /^(\d+):(\d+) (AM|PM)$/.exec(t||''); if(!m) return null;
+  let h = (+m[1]) % 12; if(m[3]==='PM') h += 12;
+  return h*60 + (+m[2]);
+}
+function dowOf(dstr){ return new Date(dstr+'T12:00:00').getDay(); }
+/* games sharing an exact EPL kickoff slot — a simultaneous slate streams, a standalone kickoff is a TV pick */
+const EPL_SLOTN = {};
+DATA.forEach(m=>{ if(m.c==='EPL'){ const k=m.d+'|'+m.t; EPL_SLOTN[k]=(EPL_SLOTN[k]||0)+1; } });
+function watchFor(m){
+  if(m.w && SVC[m.w]) return SVC[m.w];
+  if(m.c==='La Liga') return SVC.ESPN;
+  if(m.c==='Ligue 1') return SVC.BEIN;
+  if(m.c==='Bundesliga') return (m.bg||m.tag) ? SVC.USA : SVC.FAN;
+  if(m.c==='UCL') return /^Final/.test(m.tag||'') ? SVC.CBSP : SVC.PPLUS;
+  /* EPL: simultaneous slates stream on Peacock (a big match parked in one is a presumed
+     TV pick — weekend NBC, weeknight USA — until the pick moves its kickoff);
+     standalone kickoffs are TV picks, outlet by slot */
+  const mins = ptMinutes(m.t); if(mins==null) return SVC.PCK;
+  const dow = dowOf(m.d);
+  const wkend = dow===0||dow===6;
+  if((EPL_SLOTN[m.d+'|'+m.t]||1) > 1) return m.bg ? (wkend?SVC.NBC:SVC.USA) : SVC.PCK;
+  if(dow===6) return mins<360 ? SVC.USA : (mins>=540 ? SVC.NBC : SVC.PCK); /* Sat: breakfast pick / marquee */
+  if(dow===0) return mins<390 ? SVC.USA : (mins>=480 ? SVC.NBC : SVC.PCK); /* Sun: early pick / late pick */
+  return SVC.USA; /* standalone weeknight pick */
+}
+
+/* ---------- watchable window (Pacific viewer) ---------- */
+function winFor(m){
+  const mins = ptMinutes(m.t); if(mins==null) return null;
+  const wkend = (d=>d===0||d===6)(dowOf(m.d));
+  if(mins<360)  return {k:'dawn',  label:'☾ dawn alarm'};
+  if(mins<420)  return {k:'early', label:'early start'};
+  if(wkend)     return {k:'prime', label:'☀ golden hours'};
+  if(mins>=690&&mins<=780) return {k:'lunch', label:'☀ lunch kickoff'};
+  if(mins<1020) return {k:'work',  label:'workday clash'};
+  return {k:'prime', label:'☀ evening'};
+}
+
+/* ---------- why it's worth watching ----------
+   keyed on the sorted club pair so both legs share one line; m.why in DATA overrides. */
+const WHY = {
+  /* the big-six round-robin — all 30 bg EPL fixtures */
+  "Arsenal|Tottenham Hotspur":"North London derby",
+  "Manchester City|Manchester United":"Manchester derby",
+  "Liverpool|Manchester United":"England's fiercest rivalry",
+  "Arsenal|Chelsea":"London heavyweights",
+  "Chelsea|Tottenham Hotspur":"London derby with real needle",
+  "Arsenal|Liverpool":"recent title-race regulars",
+  "Arsenal|Manchester City":"title contenders, head to head",
+  "Liverpool|Manchester City":"the modern title fixture",
+  "Chelsea|Liverpool":"old cup-final foes",
+  "Chelsea|Manchester City":"big-six clash",
+  "Chelsea|Manchester United":"big-six clash",
+  "Liverpool|Tottenham Hotspur":"big-six clash, usually goals",
+  "Manchester City|Tottenham Hotspur":"City's bogey fixture",
+  "Manchester United|Tottenham Hotspur":"big-six clash",
+  "Arsenal|Manchester United":"old title rivals",
+  /* the neutral's picks */
+  "Arsenal|Aston Villa":"Europa League holders vs title contenders",
+  "Newcastle United|Tottenham Hotspur":"the neutral's favorite — chaos and goals",
+  "Liverpool|Newcastle United":"recent barnburners, end to end",
+  "Arsenal|Newcastle United":"spiky recent history",
+  "Aston Villa|Manchester City":"Champions League sides collide",
+};
+const TAG_WHY = {
+  "El Clasico":"the fixture that stops two countries",
+  "Madrid Derby":"Madrid bragging rights",
+  "Der Klassiker":"Germany's title fight in one game",
+  "Le Classique":"France's grudge match",
+  "Super Cup":"Europe's curtain-raiser — UCL vs UEL champs",
+};
+function whyFor(m){
+  if(m.why) return m.why;
+  if(m.tag && TAG_WHY[m.tag]) return TAG_WHY[m.tag];
+  if(m.h && m.a){
+    const k = [m.h,m.a].sort().join('|');
+    if(WHY[k]) return WHY[k];
+  }
+  if(m.bg) return 'marquee TV pick';
+  return null;
+}
+function watchChip(m, tbc){
+  const w = watchFor(m); if(!w) return '';
+  return `<span class="watch-tag${w.cable?' cable':''}${tbc?' tbc':''}" title="${w.tip}">${w.s}</span>`;
+}
+
 /* ---------- club selection ---------- */
 const EPL_CLUBS = ["Arsenal","Aston Villa","AFC Bournemouth","Brentford","Brighton & Hove Albion","Chelsea","Coventry City","Crystal Palace","Everton","Fulham","Hull City","Ipswich Town","Leeds United","Liverpool","Manchester City","Manchester United","Newcastle United","Nottingham Forest","Sunderland","Tottenham Hotspur"];
 const LALIGA_CLUBS = ["Real Madrid","Alaves","Athletic Club","Atletico Madrid","Barcelona","Celta Vigo","Deportivo La Coruna","Elche","Espanyol","Getafe","Levante","Malaga","Osasuna","Racing Santander","Rayo Vallecano","Real Betis","Real Sociedad","Sevilla","Valencia","Villarreal"];
@@ -717,6 +835,7 @@ let cur;
 }
 let activeComps = new Set();
 let myClubsOnly = true;
+let goldenOnly = false;
 let selectedDate = null;
 let view = 'cal';
 
@@ -724,6 +843,10 @@ let view = 'cal';
 function passesFilter(m){
   if(activeComps.size && !activeComps.has(m.c)) return false;
   if(myClubsOnly && !isTracked(m)) return false;
+  if(goldenOnly){
+    const win = winFor(m); /* time-TBD rows (UCL windows) stay visible */
+    if(win && win.k!=='prime' && win.k!=='lunch') return false;
+  }
   return true;
 }
 function dayItems(dstr){
@@ -753,6 +876,11 @@ document.querySelectorAll('.chip[data-comp]').forEach(btn=>{
     syncCompChips();
     renderAll();
   });
+});
+document.getElementById('goldenToggle').addEventListener('click',()=>{
+  goldenOnly = !goldenOnly;
+  document.getElementById('goldenToggle').classList.toggle('active', goldenOnly);
+  renderAll();
 });
 document.getElementById('clubGear').addEventListener('keydown',(e)=>{
   if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); openClubModal(); }
@@ -967,10 +1095,12 @@ function cellFixHTML(item, dense){
   }
   const tr = isTracked(item);
   const label = `${shortName(item.h)}\u2013${shortName(item.a)}`;
+  const w = watchFor(item);
+  const tip = `${item.h} vs ${item.a}${item.t?` \u00b7 ${item.cf?'':'~'}${item.t}`:''}${w?` \u00b7 ${w.s}`:''}`;
   if(dense && !tr){
-    return `<div class="fixline compact ${slug(item.c)}" title="${item.h} vs ${item.a}">${label}</div>`;
+    return `<div class="fixline compact ${slug(item.c)}" title="${tip}">${label}</div>`;
   }
-  return `<div class="fixline ${slug(item.c)}${dense?' span':''}" title="${item.h} vs ${item.a}"><span class="lg">${LG_PREFIX[item.c]}</span>${tr||item.bg||item.tag?`<b>${label}</b>`:label}</div>`;
+  return `<div class="fixline ${slug(item.c)}${dense?' span':''}" title="${tip}"><span class="lg">${LG_PREFIX[item.c]}</span>${tr||item.bg||item.tag?`<b>${label}</b>`:label}</div>`;
 }
 function cellDotsHTML(items){
   const groups = {};
@@ -1081,18 +1211,26 @@ function matchRowHTML(m, list){
   let note = '';
   if(m.c!=='UCL' && m.dr) note = shortRange(m.dr);
   const star = isTracked(m);
+  const win = winFor(m);
+  const why = whyFor(m);
+  const dawn = win && win.k==='dawn';
   if(list){
     const circleIt = myClubsOnly ? !!m.bg : star;
     return `<div class="matchrow listrow">
-      <div class="m-time${tbc?' tbc':''}${circleIt?' circ':''}">${circleIt?CIRC:''}${timeText}</div>
+      <div class="m-time${tbc?' tbc':''}${dawn?' win-dawn':''}${circleIt?' circ':''}"${win?` title="${win.label.replace(/^[\u263e\u2600] /,'')}"`:''}>${circleIt?CIRC:''}${timeText}</div>
       <span class="comp-tag ${slug(m.c)}">${LIST_PREFIX[m.c]}</span>
-      <div class="m-teams">${shortName(m.h)} vs ${shortName(m.a)}${tag?` <span class="spec-tag">${tag}</span>`:''}${note?`<span class="m-note">${note}</span>`:''}</div>
+      ${watchChip(m, tbc)}
+      <div class="m-teams">${shortName(m.h)} vs ${shortName(m.a)}${tag?` <span class="spec-tag">${tag}</span>`:''}${why?`<span class="m-note">${why}</span>`:''}${note?`<span class="m-note">${note}</span>`:''}</div>
     </div>`;
   }
+  const sub = (win||why)
+    ? `<div class="m-sub">${win?`<span class="m-win ${win.k}">${win.label}</span>`:''}${why?`<span class="m-why">${why}</span>`:''}</div>`
+    : '';
   return `<div class="matchrow">
-    <div class="m-time${tbc?' tbc':''}">${timeText}</div>
-    <div class="m-teams">${star?'<span class="tr-star">\u2605</span>':''}${shortName(m.h)} vs ${shortName(m.a)}${note?`<span class="m-note">${note}</span>`:''}</div>
+    <div class="m-time${tbc?' tbc':''}${dawn?' win-dawn':''}">${timeText}</div>
+    <div class="m-teams">${star?'<span class="tr-star">\u2605</span>':''}${shortName(m.h)} vs ${shortName(m.a)}${note?`<span class="m-note">${note}</span>`:''}${sub}</div>
     <div class="m-meta">
+      ${watchChip(m, tbc)}
       <span class="comp-tag ${slug(m.c)}">${dispName(m.c)}</span>
       ${tag?`<span class="spec-tag">${tag}</span>`:''}
     </div>
@@ -1115,6 +1253,7 @@ function uclGroupRowHTML(g, list){
     return `<div class="matchrow listrow">
       <div class="m-time tbc${circleIt?' circ':''}">${circleIt?CIRC:''}TBD</div>
       <span class="comp-tag UCL">UCL</span>
+      ${watchChip(g, true)}
       <div class="m-teams">${label}<span class="m-note">${clubs}${win}</span></div>
     </div>`;
   }
@@ -1122,7 +1261,7 @@ function uclGroupRowHTML(g, list){
   return `<div class="matchrow">
     <div class="m-time tbc">TBD</div>
     <div class="m-teams">${star}UCL ${label}<span class="m-note">${clubs}${win}</span></div>
-    <div class="m-meta"><span class="comp-tag UCL">UCL</span></div>
+    <div class="m-meta">${watchChip(g, true)}<span class="comp-tag UCL">UCL</span></div>
   </div>`;
 }
 function rowsHTML(dstr, list){
@@ -1225,7 +1364,7 @@ function renderNextUp(){
     const mins = Math.floor((diff%3600000)/60000);
     const secs = Math.floor((diff%60000)/1000);
     el.innerHTML = `
-      <div class="cd-label"><span class="star">\u2605</span> ${shortName(m.h)} vs ${shortName(m.a)} \u00b7 ${m.cf?'':'~'}${m.t}</div>
+      <div class="cd-label"><span class="star">\u2605</span> ${shortName(m.h)} vs ${shortName(m.a)} \u00b7 ${m.cf?'':'~'}${m.t}${(w=>w?` \u00b7 ${w.s}`:'')(watchFor(m))}</div>
       <div class="cd-nums"><b class="gold">${days}</b><i>d</i><b>${String(hrs).padStart(2,'0')}</b><i>h</i><b>${String(mins).padStart(2,'0')}</b><i>m</i><b class="secs">${String(secs).padStart(2,'0')}</b><i>s</i></div>
     `;
   }
@@ -1287,7 +1426,8 @@ function renderKeyDates(){
 
 /* ---------- footer ---------- */
 document.getElementById('footer').innerHTML = `
-EPL \u00b7 NBC/Peacock &nbsp;\u00b7&nbsp; LaLiga \u00b7 ESPN+ &nbsp;\u00b7&nbsp; Bundesliga \u00b7 USA Network/Fandango &nbsp;\u00b7&nbsp; Ligue 1 \u00b7 beIN Sports &nbsp;\u00b7&nbsp; UCL \u00b7 CBS/Paramount+ &nbsp;\u00b7&nbsp; all times Pacific &nbsp;\u00b7&nbsp; ~ = typical slot, TBC.<br>
+Watch chips on every match \u2014 EPL is NOT all on Peacock: NBC splits it by slot \u2014 Peacock (every simultaneous slate), USA Network (standalone early &amp; weeknight picks), NBC (weekend marquee picks) &nbsp;\u00b7&nbsp; LaLiga \u00b7 ESPN+ &nbsp;\u00b7&nbsp; Bundesliga \u00b7 Fandango free, top picks on USA Network &nbsp;\u00b7&nbsp; Ligue 1 \u00b7 beIN via Fanatiz/Sling/Fubo &nbsp;\u00b7&nbsp; UCL \u00b7 Paramount+, final also on CBS &nbsp;\u00b7&nbsp; dashed chip = needs a live-TV package (YouTube TV, Hulu + Live TV, cable) &nbsp;\u00b7&nbsp; all times Pacific &nbsp;\u00b7&nbsp; ~ = typical slot, TBC \u2014 outlet firms up with the TV pick.<br>
+\u2600 Golden hours keeps kickoffs at humane Pacific times: weekend 7 AM+ and weekday lunch. \u263e gold times = dawn alarm. Handwritten notes say why a match is circled.<br>
 Dates per official Jun\u2013Aug 2026 releases; unconfirmed kickoffs assume standard slots and shift with TV picks. LaLiga = Real Madrid's schedule; Bundesliga = Bayern's; Ligue 1 = PSG's. UCL opponents set at the Aug 27 draw — 29 of 36 clubs are in; the last 7 come from the Aug 25–26 playoffs. \u2605 marks your clubs \u2014 change them via \u2699 on the Select Clubs chip. Quiet weekday columns are compressed.
 `;
 
