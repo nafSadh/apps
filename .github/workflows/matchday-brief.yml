@@ -43,6 +43,10 @@ jobs:
       # publishes dates/times by Aug 29) — the daily run lands them automatically.
       - name: Scores + calendar update
         working-directory: matchday/brief
+        # belt over scores.py's own warn-and-exit-0 + fetch deadline: even a hung
+        # runner step or interpreter crash must not stop the brief from publishing
+        timeout-minutes: 6
+        continue-on-error: true
         run: python3 scores.py
 
       - name: Render brief.html

@@ -791,7 +791,9 @@ function saveClubs(){
 }
 function uclSelected(){ return [...selectedClubs].filter(c=>UCL_SET.has(c)); }
 function isTracked(m){
-  if(m.c==='UCL') return uclSelected().length>0;
+  /* window placeholders track any UCL selection; a real UCL fixture is tracked
+     only when one of ITS clubs is selected (rows arrive via brief/scores.py) */
+  if(m.c==='UCL' && !m.a) return uclSelected().length>0;
   return selectedClubs.has(m.h) || selectedClubs.has(m.a);
 }
 
