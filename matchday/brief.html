@@ -97,6 +97,14 @@
   .corr{color:var(--ucl);border:1px solid var(--hair);border-radius:999px;padding:1px 6px}
   .wtag{color:var(--soft);background:var(--wash);border-radius:999px;padding:1px 8px}
   .ferr{color:var(--l1)}
+  .rlist{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:6px;max-width:640px}
+  .ritem{display:flex;align-items:baseline;gap:12px;border:1px solid var(--hair);border-radius:8px;padding:8px 14px;background:var(--card);font-size:13.5px}
+  .ritem:hover{border-color:var(--hair2)}
+  .rcomp{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex:none;width:74px}
+  .rline{flex:1;color:var(--soft);min-width:0}
+  .rline b{font-family:var(--mono);color:var(--chalk);font-weight:600;padding:0 2px}
+  .rdate{font-family:var(--mono);font-size:10.5px;color:var(--muted);flex:none}
+  @media(max-width:560px){.ritem{flex-wrap:wrap;gap:4px 10px}.rline{flex-basis:100%;order:3}}
   footer{margin-top:40px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}
   @media(max-width:640px){
     .head-row{flex-wrap:wrap;align-items:flex-start}
@@ -135,7 +143,7 @@
     </div>
   </div>
   <p class="sub">What the transfer desks and analysts are saying today — every line attributed to the outlet that ran it, nothing here confirmed by this page.</p>
-  <div class="meta">Thursday, August 27, 2026 · 90 items from 8 feeds · pulled 2026-08-26 14:33Z</div>
+  <div class="meta">Thursday, August 27, 2026 · 334 items from 8 feeds · pulled 2026-08-27 23:18Z</div>
 </header>
 
 <section>
@@ -143,19 +151,34 @@
 <div class="eyebrow"><h2>Rumour Mill</h2><div class="rule"></div><div class="tag">attributed · unconfirmed</div></div>
 <p class="snote">Reports, not facts. ×N marks a story carried by more than one outlet.</p><ul class="blist">
     <li class="bitem">
+      <a class="bt" href="https://www.skysports.com/football/news/11095/13577826/champions-league-draw-arsenal-to-face-real-madrid-and-bayern-munich-in-league-phase-as-man-city-and-aston-villa-get-psg" target="_blank" rel="noopener">Arsenal to face Real Madrid as City and Villa get PSG in CL league phase</a>
+      <p class="bs">Last season&#x27;s European finalists Arsenal will play Real Madrid and Bayern Munich in this year&#x27;s Champions League league phase.</p>
+      <div class="bmeta"><span class="src">Sky Transfers, Sky Sports</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Arsenal</span><span class="wtag">Bayern</span><span class="wtag">PSG</span><span class="wtag">Real Madrid</span></div>
+    </li>
+    <li class="bitem">
       <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/czxqx29jy02o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Man City ready to meet Chelsea&#x27;s Fernandez demand - Monday&#x27;s gossip</a>
       <p class="bs">Manchester City are ready to make Enzo Fernandez move, Liverpool consider a third bid for Yankuba Minteh, and a Barcelona full-back pushes to join Manchester United.</p>
       <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Barcelona</span><span class="wtag">Chelsea</span><span class="wtag">Liverpool</span><span class="wtag">Man City</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/news/11095/13570597/enzo-fernandez-transfer-news-man-city-considering-bid-for-chelsea-midfielder" target="_blank" rel="noopener">Man City considering bid for Chelsea&#x27;s Fernandez</a>
-      <p class="bs">Manchester City are considering making a bid for Chelsea midfielder Enzo Fernandez before the transfer deadline.</p>
+      <a class="bt" href="https://www.skysports.com/football/news/11095/13577977/enzo-fernandez-transfer-news-manchester-city-confident-of-signing-chelsea-midfielder-paper-talk" target="_blank" rel="noopener">Papers: Man City confident of signing Chelsea midfielder Fernandez</a>
+      <p class="bs">The top stories and transfer rumours from Friday&#x27;s newspapers...</p>
       <div class="bmeta"><span class="src">Sky Transfers, Sky Sports</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Chelsea</span><span class="wtag">Man City</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/ce8e0l7prg6o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Villa make offer for Mateta - Wednesday&#x27;s gossip</a>
-      <p class="bs">Aston Villa make a move for Jean-Philippe Mateta and Nicolas Jackson, Manchester United eye a promising defender, and Manchester City aren&#x27;t ready to give up on signing Enzo Fernandez.</p>
-      <div class="bmeta"><span class="src">BBC Gossip, BBC Sport</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Man City</span><span class="wtag">Man United</span></div>
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c3eq89xedp0o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Arsenal continue Alvarez pursuit - Friday&#x27;s gossip</a>
+      <p class="bs">Arsenal continue pursuit to sign Julian Alvarez, Manchester City target Everton&#x27;s Iliman Ndiaye and Aston Villa make direct contact to sign Rafael Leao.</p>
+      <div class="bmeta"><span class="src">BBC Gossip, BBC Sport</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Arsenal</span><span class="wtag">Man City</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c3eq9pjgewjo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Chelsea line up Bournemouth&#x27;s Scott - Thursday&#x27;s gossip</a>
+      <p class="bs">Chelsea line up Bournemouth&#x27;s Alex Scott, Sunderland make an offer for Manchester City&#x27;s Jack Grealish, and Aston Villa set to miss out on AC Milan winger Rafael Leao, plus more.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Chelsea</span><span class="wtag">Man City</span><span class="wtag">Milan</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.skysports.com/football/news/11095/13577751/julian-alvarez-transfer-news-atletico-madrid-wont-sell-striker-to-barcelona-with-arsenal-the-only-option" target="_blank" rel="noopener">&#x27;London or Madrid&#x27; - Alvarez&#x27;s Arsenal ultimatum explained</a>
+      <p class="bs">Atletico Madrid say they will not enter into negotiations with Barcelona for striker Julian Alvarez, who is considering a move to Arsenal.</p>
+      <div class="bmeta"><span class="src">Sky Transfers</span><span class="wtag">Arsenal</span><span class="wtag">Atlético</span><span class="wtag">Barcelona</span></div>
     </li>
     <li class="bitem">
       <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cvg0gxxkp1vo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Alvarez open to Arsenal transfer - Sunday&#x27;s gossip</a>
@@ -168,108 +191,98 @@
       <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Chelsea</span><span class="wtag">Liverpool</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/czxqvllyg72o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Arsenal exploring Yildiz move - Friday&#x27;s gossip</a>
-      <p class="bs">Arsenal explore move for Kenan Yildiz, Atletico Madrid trying to finalise Nicolas Jackson signing and Manchester City in talks over Allan Elias, plus more.</p>
-      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Arsenal</span><span class="wtag">Atlético</span><span class="wtag">Man City</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/news/11095/13577363/ismaila-sarr-transfer-news-liverpool-make-approach-for-senegal-forward-after-stalled-talks-for-yankuba-minteh" target="_blank" rel="noopener">Liverpool make approach for Palace forward Sarr</a>
-      <p class="bs">Liverpool have approached Crystal Palace over potentially signing winger Ismaila Sarr.</p>
-      <div class="bmeta"><span class="src">Sky Transfers, Sky Sports</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Liverpool</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/news/11095/13577362/celtic-knocked-out-of-champions-league-how-will-the-hoops-respond-to-collapse-in-transfer-window" target="_blank" rel="noopener">Celtic CL post-mortem: What went wrong and where do they go from here?</a>
-      <p class="bs">Celtic have spent the last couple of years making Champions League qualification look like a problem they simply cannot solve. But even by their recent standards, this was a collapse of rema</p>
-      <div class="bmeta"><span class="src">Sky Transfers, Sky Sports</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Celtic</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/news/11095/13577385/emiliano-martinez-transfer-news-chelsea-considering-late-move-for-aston-villa-and-argentina-goalkeeper" target="_blank" rel="noopener">Chelsea considering late move for Villa&#x27;s Martinez</a>
-      <p class="bs">Chelsea are considering a late move for Aston Villa goalkeeper Emi Martinez.</p>
-      <div class="bmeta"><span class="src">Sky Transfers, Sky Sports</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Chelsea</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts" target="_blank" rel="noopener">Arsenal latest: Barcelona ask Atleti to accept Alvarez offer</a>
-      
-      <div class="bmeta"><span class="src">Sky Transfers</span><span class="wtag">Arsenal</span><span class="wtag">Barcelona</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/live-blog/11095/13025497/chelsea-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts" target="_blank" rel="noopener">Chelsea latest: Alonso gives update on Fernandez amid Man City interest</a>
-      
-      <div class="bmeta"><span class="src">Sky Transfers</span><span class="wtag">Chelsea</span><span class="wtag">Man City</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/live-blog/11095/13279298/crystal-palace-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights" target="_blank" rel="noopener">Palace latest: Disasi joins on loan from Chelsea</a>
-      
-      <div class="bmeta"><span class="src">Sky Transfers, Sky Sports</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Chelsea</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/news/11095/13576515/ayyoub-bouaddi-transfer-manchester-city-complete-record-breaking-86m-deal-to-sign-18-year-old-morocco-midfielder" target="_blank" rel="noopener">Man City sign Bouaddi in record-breaking deal</a>
-      <p class="bs">Manchester City have completed the signing of midfielder Ayyoub Bouaddi in a record-breaking £86m move from Lille.</p>
+      <a class="bt" href="https://www.skysports.com/football/news/11095/13577786/premier-league-predictions-jones-knows-best-bets-crystal-palace-pain-man-city-to-make-it-back-to-back-wins" target="_blank" rel="noopener">PL Predictions: More Palace pain? Man City to make it back-to-back wins</a>
+      <p class="bs">Our top tipster Lewis Jones, aka Jones Knows, was in flying form last weekend - can he repeat the trick?</p>
       <div class="bmeta"><span class="src">Sky Transfers, Sky Sports</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Man City</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/news/11095/13577289/omar-marmoush-transfer-news-tottenham-agree-deal-to-sign-man-city-forward-on-loan-with-60m-obligation-to-buy" target="_blank" rel="noopener">Tottenham agree deal for Man City&#x27;s Marmoush</a>
-      <p class="bs">Tottenham have agreed a deal to sign Omar Marmoush from Manchester City.</p>
-      <div class="bmeta"><span class="src">Sky Transfers</span><span class="wtag">Man City</span><span class="wtag">Tottenham</span></div>
+      <a class="bt" href="https://www.skysports.com/football/chelsea-vs-luton-town/report/577427" target="_blank" rel="noopener">Welbeck off the mark for Chelsea in win over Wilshere&#x27;s Luton</a>
+      <p class="bs">Danny Welbeck scored on his Chelsea debut as Xabi Alonso&#x27;s first competitive game at Stamford Bridge as Blues manager ended in a 2-0 win over League One Luton in the Carabao Cup second round</p>
+      <div class="bmeta"><span class="src">Sky Transfers, Sky Sports</span><span class="corr" title="reported by 2 outlets">×2</span><span class="wtag">Chelsea</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.skysports.com/football/news/11095/13577569/bradley-barcola-transfer-news-liverpool-reach-120m-deal-in-principle-for-psg-forward" target="_blank" rel="noopener">Liverpool agree £120m deal in principle for Barcola</a>
+      <p class="bs">Liverpool have an agreement in principle with Paris Saint-Germain to sign Bradley Barcola for a package worth £120m.</p>
+      <div class="bmeta"><span class="src">Sky Transfers</span><span class="wtag">Liverpool</span><span class="wtag">PSG</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/ce8e0l7prg6o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Villa make offer for Mateta - Wednesday&#x27;s gossip</a>
+      <p class="bs">Aston Villa make a move for Jean-Philippe Mateta and Nicolas Jackson, Manchester United eye a promising defender, and Manchester City aren&#x27;t ready to give up on signing Enzo Fernandez.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Man City</span><span class="wtag">Man United</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cddv72gj7qro?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Man City enter race for Gakpo - Tuesday&#x27;s gossip</a>
+      <p class="bs">Manchester City emerge as surprise Cody Gakpo suitors, Newcastle agree to sign Nico Gonzalez, and Manchester United are confident of signing Myles Lewis-Skelly, plus more.</p>
+      <div class="bmeta"><span class="src">BBC Gossip</span><span class="wtag">Man City</span><span class="wtag">Man United</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.skysports.com/football/live-blog/11095/13025497/chelsea-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts" target="_blank" rel="noopener">Chelsea latest: Alonso quizzed on absent Fernandez</a>
+      
+      <div class="bmeta"><span class="src">Sky Transfers</span><span class="wtag">Chelsea</span></div>
     </li>
 </ul>
 
 <div class="eyebrow"><h2>Around the Grounds</h2><div class="rule"></div><div class="tag">news</div></div>
 <ul class="blist">
     <li class="bitem">
-      <a class="bt" href="https://www.theguardian.com/football/2026/aug/26/chelsea-emiliano-martinez-aston-villa-goalkeeper" target="_blank" rel="noopener">Chelsea in talks with Emiliano Martínez’s camp after being offered goalkeeper</a>
-      <p class="bs">Experienced World Cup winner wants to leave Aston VillaSánchez errors at Fulham led to Chelsea concedingChelsea have been offered Emiliano Martínez and are considering making an offer for th</p>
-      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Chelsea</span><span class="wtag">Juventus</span></div>
+      <a class="bt" href="https://www.theguardian.com/football/2026/aug/27/champions-league-draw-arsenal-face-real-madrid-as-manchester-city-get-psg" target="_blank" rel="noopener">Champions League draw: Arsenal face Real Madrid, Man City get Barcelona and PSG</a>
+      <p class="bs">Manchester United will host Bayern MunichAston Villa welcome PSG; Liverpool go to InterArsenal face mouthwatering assignments against Real Madrid and Bayern Munich as they bid to go one bett</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Arsenal</span><span class="wtag">Barcelona</span><span class="wtag">Bayern</span><span class="wtag">Liverpool</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cg7k8jpxgjzo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Why can&#x27;t Real Madrid play at Anfield in the Champions League league phase?</a>
-      <p class="bs">Our Ask Me Anything team explains why Liverpool are not allowed to host Real Madrid in the Champions League&#x27;s league phase</p>
-      <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Liverpool</span><span class="wtag">Real Madrid</span></div>
+      <a class="bt" href="https://www.theguardian.com/football/2026/aug/27/atletico-madrid-julian-alvarez-barcelona-transfer-news" target="_blank" rel="noopener">Atlético Madrid chief insists Júlian Alvarez will ‘never, ever’ be sold to Barcelona</a>
+      <p class="bs">Miguel Ángel Gil Marín accuses Barça of ‘dishonesty’Arsenal have also been linked with Argentina forwardAtlético Madrid’s chief executive appeared to slam the door on Barcelona’s pursuit of </p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Arsenal</span><span class="wtag">Atlético</span><span class="wtag">Barcelona</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://www.theguardian.com/football/2026/aug/26/forest-in-talks-with-celta-vigo-over-javi-rueda-as-axel-disasi-joins-palace-on-loan" target="_blank" rel="noopener">Forest in talks with Celta Vigo over Javi Rueda as Axel Disasi joins Palace on loan</a>
-      <p class="bs">Forest likely to end summer spending with right-backBrentford agree deal to sign El Hadji Malick DioufNottingham Forest are in talks over the €15m (£12.8m) signing of the Celta Vigo right-ba</p>
-      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Chelsea</span><span class="wtag">Real Madrid</span></div>
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c980e1d2vpgo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Arsenal only likely exit for Alvarez as striker skips training</a>
+      <p class="bs">Julian Alvarez has not attended Atletico Madrid training since being told privately that the club would not sell him to Barcelona.</p>
+      <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Arsenal</span><span class="wtag">Atlético</span><span class="wtag">Barcelona</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cx2z5ewlrwko?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Tottenham agree loan for Man City&#x27;s Marmoush</a>
-      <p class="bs">Tottenham agree a loan deal to sign Manchester City forward Omar Marmoush, with an obligation to make the deal permanent for £60m next summer.</p>
+      <a class="bt" href="https://www.theguardian.com/football/2026/aug/24/premier-league-10-talking-points-from-opening-weekend-action" target="_blank" rel="noopener">Premier League: 10 talking points from opening weekend of the season</a>
+      <p class="bs">Manchester United’s under-powered attack, Brentford’s £39m bargain and Dewsbury-Hall delivers for EvertonArsenal’s treatment of Gabriel Martinelli has been questioned by Ian Wright after the</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Arsenal</span><span class="wtag">Galatasaray</span><span class="wtag">Man United</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/aug/27/enzo-maresca-manchester-city-more-captains-enzo-fernandez-chelsea" target="_blank" rel="noopener">Manchester City target Iliman Ndiaye but Everton value forward at £80m</a>
+      <p class="bs">Everton interested in taking Grealish back from CityOmar Marmoush joins Spurs in season-long loanManchester City have identified Iliman Ndiaye as a potential target after the £75m departure </p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Man City</span><span class="wtag">Tottenham</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/aug/27/chelsea-luton-carabao-cup-second-round-match-report" target="_blank" rel="noopener">Danny Welbeck leads Chelsea past Luton but Enzo Fernández misses Carabao Cup tie</a>
+      <p class="bs">Emiliano Martínez is on his way but another high-profile Argentinian is likely to be wearing a different shade of blue soon. Chelsea have dealt with their biggest weakness, satisfying Xabi A</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Chelsea</span><span class="wtag">Man City</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/aug/27/chelsea-agree-deal-sign-emiliano-martinez-aston-villa-enzo-fernandez" target="_blank" rel="noopener">Chelsea agree £7.5m deal to sign Emiliano Martínez from Aston Villa</a>
+      <p class="bs">Enzo Fernández left out of Luton Carabao Cup tieVilla sign Germany midfielder Leon Goretzka on freeChelsea have agreed a £7.5m deal to sign the Aston Villa goalkeeper Emiliano Martínez and a</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Chelsea</span><span class="wtag">Man City</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/c5ywxxll10jo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Man City and Aston Villa to face champions PSG</a>
+      <p class="bs">European champions Paris St-Germain will face Premier League duo Manchester City and Aston Villa in the league phase of this season&#x27;s Champions League.</p>
+      <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Man City</span><span class="wtag">PSG</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.theguardian.com/football/2026/aug/27/liam-delap-signs-nottingham-forest-chelsea-transfer-latest" target="_blank" rel="noopener">‘I can’t wait’: Liam Delap seals £45m Nottingham Forest move from Chelsea</a>
+      <p class="bs">Chelsea agree to sign 18-year-old Ahanor for £40mAston Villa land Goretzka after Bayern exitNottingham Forest have completed the signing of the Chelsea striker Liam Delap in a club-record £4</p>
+      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Bayern</span><span class="wtag">Chelsea</span></div>
+    </li>
+    <li class="bitem">
+      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/clyj50j91xgo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Tottenham sign Man City&#x27;s Marmoush on loan</a>
+      <p class="bs">Tottenham sign Manchester City forward Omar Marmoush on loan until the end of the season, with an obligation to make the deal permanent for £60m next summer.</p>
       <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Man City</span><span class="wtag">Tottenham</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.theguardian.com/football/2026/aug/25/bruno-fernandes-khadija-shaw-pfa-player-of-the-year" target="_blank" rel="noopener">Bruno Fernandes and Khadija Shaw land PFA Player of the Year awards</a>
-      <p class="bs">Fellow players pick Manchester United and Manchester City starsNico O’Reilly and Olivia Smith collect young players’ honoursManchester United’s captain Bruno Fernandes has been crowned Profe</p>
-      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Man City</span><span class="wtag">Man United</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.theguardian.com/football/2026/aug/26/ayyoub-bouaddi-manchester-city-lille-transfer-rodri" target="_blank" rel="noopener">Ayyoub Bouaddi: maths student, chess fan and Manchester City’s new Rodri</a>
-      <p class="bs">The £85m midfielder passed his exams a year early, is studying for a degree and is ready to tackle Premier League learning curve“He’s like a computer,” the former Lille head of academy recru</p>
-      <div class="bmeta"><span class="src">Guardian</span><span class="wtag">Man City</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/ce9ejxvky8vo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Will a Premier League club break record for transfer sales in one window?</a>
-      <p class="bs">Aston Villa, Man City and Newcastle are closing in on Monaco&#x27;s record for transfer income generated in a single window.</p>
-      <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Man City</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cm27yzrkeydo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Chelsea in contact over move for Villa goalkeeper Martinez</a>
-      <p class="bs">Chelsea consider a move for Aston Villa goalkeeper Emiliano Martinez after making contact with the Argentina international&#x27;s representatives.</p>
-      <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Chelsea</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.bbc.co.uk/sport/football/articles/cn5dr0vyd3ro?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">Wrexham close in on Ekomie and Kabore deals</a>
-      <p class="bs">Manchester City&#x27;s Issa Kabore is poised to seal a permanent switch to Championship club Wrexham, who are also close to signing left-back Jacques Ekomie from French side Angers.</p>
-      <div class="bmeta"><span class="src">BBC Sport</span><span class="wtag">Man City</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://www.skysports.com/football/live-blog/12040/13375102/sunderland-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts" target="_blank" rel="noopener">Sunderland latest: Bid submitted for Marseille winger</a>
-      
-      <div class="bmeta"><span class="src">Sky Sports</span><span class="wtag">Marseille</span></div>
     </li>
 </ul>
 
 <div class="eyebrow"><h2>Worth Reading</h2><div class="rule"></div><div class="tag">analysis</div></div>
 <ul class="blist">
+    <li class="bitem">
+      <a class="bt" href="https://theanalyst.com/articles/champions-league-draw-2026-27-arsenal-liverpool-man-utd-city-aston-villa-best-worst-opponents" target="_blank" rel="noopener">Champions League Draw 2026-27: Best and Worst Scenarios for Arsenal, Liverpool, Man Utd, Man City and Aston Villa</a>
+      <p class="bs">Ahead of the draw for the league phase of the 2026-27 Champions League, we use the Opta Power Rankings to objectively assess the quality of the English sides’ possible opponents. The post Ch</p>
+      <div class="bmeta"><span class="src">Opta Analyst</span><span class="wtag">Arsenal</span><span class="wtag">Liverpool</span><span class="wtag">Man City</span><span class="wtag">Man United</span></div>
+    </li>
     <li class="bitem">
       <a class="bt" href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxQLWFJT3pmZGlyTVA0Sm92QmE4V2xRcnktTHVGZ0VVcVJ6SFJSbmpFRmg0VlFseDJiYWQtLW1DSzdrQXV2c1Q4bUZiYW9MQ1lab0EzeGttdy1Id2JfZ3NjY1Jvd05McTlqbm9maGdOZlUzZTdJem0xMTA3M2JZMUVyMC1CQ2JwelRoLVZiYWFJTDdqb1E0RHZrclpVR21JZ1ZsU0pmSGVvMnkteUhpSEJSTkNWS1pKTTRnQ3NKaTJ4RXJXdURpVTBkVTlEVnM2SzNXTXUtdC1VcDNnQTg?oc=5" target="_blank" rel="noopener">Transfer news LIVE: Liverpool in PSG talks over Bradley Barcola as Man City prepare Fernandez bid</a>
       <p class="bs">Transfer news LIVE: Liverpool in PSG talks over Bradley Barcola as Man City prepare Fernandez bid Transfermarkt</p>
@@ -281,34 +294,29 @@
       <div class="bmeta"><span class="src">Transfermarkt</span><span class="wtag">Arsenal</span><span class="wtag">Atlético</span><span class="wtag">Barcelona</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxOQWdtOHl4ZHNDQlhoRWR6UG9fOEJnSlRvT3oteUhDajE1OW5hazZEUEpOaG9jemNmSXlVWUZsd1Qtb1NaNUd2NHhlZHdCLTBnQVVmLU9SVzNXNWQ4ZDZRUHVFN2xZblZLU0dYalhjYkhSUEx1MkpSNW5La1B4T1RwQzEzd3BCTnFlVTA2bGVOS2ZvWWlxQURCdjlnZ2VNSDVrdGk3b0Z0Q1kzdHNIdXJnNzJxdkpzeVNJaFlPZVhjd1FJTkw2X3FDZVI1Mk9TMmxMOE5kOA?oc=5" target="_blank" rel="noopener">Two Galatasaray bids rejected - Liverpool submit Ismaïla Sarr offer to solve right-wing issue</a>
-      <p class="bs">Two Galatasaray bids rejected - Liverpool submit Ismaïla Sarr offer to solve right-wing issue Transfermarkt</p>
-      <div class="bmeta"><span class="src">Transfermarkt</span><span class="wtag">Galatasaray</span><span class="wtag">Liverpool</span></div>
+      <a class="bt" href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNWlJPMFp1OFRTTWpXN2U5TXEtZFM4bTQyNlJyR3lRSUN1RDg0V0IxYm5KT0tfc3pQN1ZoVnFMZ2NCdWNQV1VSa2RQNEdoZHRHdElHeTRoQmhBM3BJOWlPTTg0ZWVvR3dMTF9BeHh0Tnd1YThvdnhzT0NVSGwwS21EU0QwRXVWYUhHdjFLRWwxMndwTG1wTm5QNHBZYzZxNVlhMmhOSU5HanNPYkVGVnExRVFmREhDemlaOXZxSVN2WE5TeW81M21jRWJB?oc=5" target="_blank" rel="noopener">Transfer news LIVE: Joshua Zirkzee nears Man Utd exit as Liverpool agree Barcola fee</a>
+      <p class="bs">Transfer news LIVE: Joshua Zirkzee nears Man Utd exit as Liverpool agree Barcola fee Transfermarkt</p>
+      <div class="bmeta"><span class="src">Transfermarkt</span><span class="wtag">Liverpool</span><span class="wtag">Man United</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://www.fourfourtwo.com/transfer/arsenal-begin-breakthrough-julian-alvarez-talks-report" target="_blank" rel="noopener">Arsenal begin breakthrough Julian Alvarez talks: report</a>
-      <p class="bs">Arsenal have chased Julian Alvarez all summer, with Atletico Madrid now caving to begin negotiations for the forward</p>
-      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Arsenal</span><span class="wtag">Atlético</span></div>
+      <a class="bt" href="https://theanalyst.com/articles/omar-marmoush-tottenham-de-zerbi-ideal-forward" target="_blank" rel="noopener">Omar Marmoush to Spurs: Why Man City Loanee Can Thrive in North London</a>
+      <p class="bs">Omar Marmoush is reportedly close to joining Tottenham on loan with an obligation to buy next summer from Manchester City. Why have Spurs turned to the versatile Egyptian forward? The post O</p>
+      <div class="bmeta"><span class="src">Opta Analyst</span><span class="wtag">Man City</span><span class="wtag">Tottenham</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxONXlaSW1rQ0IzLThGaVlFRFhrcnk0RWhraDlmcHcyLUxBQmE2V01XcFFqaHlJcFRpNFRpZEN5eHdDQkdTVzF1Yno4Z0dyMzlWSmhtQk5Wb0tnX1Zna01jXzJTbFY3RmpoWktGbF9Hd3JBT0Rib2dYdHZZeFRVRmNhQzYyS3UzSC13MlZRbXBaeDY3aDNRMVRmREo4dmZEdV9FdkFPRnl0ZE1mT1hSNzZzR2xhcWRUWFp6ZnM5ZGI5dUozQQ?oc=5" target="_blank" rel="noopener">Transfer news LIVE: Chelsea eye Honest Ahanor as Man City join Cody Gakpo race</a>
-      <p class="bs">Transfer news LIVE: Chelsea eye Honest Ahanor as Man City join Cody Gakpo race Transfermarkt</p>
-      <div class="bmeta"><span class="src">Transfermarkt</span><span class="wtag">Chelsea</span><span class="wtag">Man City</span></div>
+      <a class="bt" href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNTmhkLV92aHZmUVpxZEpZbkxmeTIxLW16R01TUVp1T1NpUDN3dGpKUzViZERYWlhtT25pVE13NHh6MHRITWlwSm1naE4tTFF2N3YwdTJUb0gtUnhwcEVzaXZDdXlkLVNaSVVsMmtCVmw4RUVzWkNfMm5FZXItYi04U3lTVHMxdlZBajRGOGJDeDE2QjVTUlVSUWZ4QzBBUzVKTTFpQ1ExWDRBdGdBNkVWWEhyVzlQTjBtMURSbVpSbU1BczJhdF9HS2RR?oc=5" target="_blank" rel="noopener">Transfer news LIVE: Man City receive Jack Grealish bid as Barcelona starlet to leave</a>
+      <p class="bs">Transfer news LIVE: Man City receive Jack Grealish bid as Barcelona starlet to leave Transfermarkt</p>
+      <div class="bmeta"><span class="src">Transfermarkt</span><span class="wtag">Barcelona</span><span class="wtag">Man City</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://news.google.com/rss/articles/CBMivgFBVV95cUxQaXhuX25nUFFkU1RzYy1aLWtyLTZ3bWY0LVR5cVlwenZPR3V3aXZTNlZyejVrTGMzS25JNnBPU05YcmNCb0VuZFdkbW42WmNPdmt5NXdkRllyWUNXWGNDcmtfcFQwSjViVG1DM1dKZUdJaEU1UmNNQm1SUllfYjNaejNscUxTa0dtUXlyZ0pXZW4xbnVhVzZkUXNBU2NlczBaSzFmUTU4d0k1V1dQbGNIMzhZV1Bfa2xDYWE1Z3NR?oc=5" target="_blank" rel="noopener">Man City set to make Premier League record bid for Chelsea&#x27;s Enzo Fernández</a>
-      <p class="bs">Man City set to make Premier League record bid for Chelsea&#x27;s Enzo Fernández Transfermarkt</p>
-      <div class="bmeta"><span class="src">Transfermarkt</span><span class="wtag">Chelsea</span><span class="wtag">Man City</span></div>
+      <a class="bt" href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxNOXNtQ3UtZjdtTE82MW1qdlU2NHRINXYyaEpaS1A0aWkxbnZ6dUdqZW9feTEyRjdIaGNFbUMxUWJ6cDQ2M1ZWSVRjMDlycy10OUp0a1NZME5zMmdxNVV1YWFJRmJiLTVoTmlLdDhLUnZjWTF3cHktYzAyS0dUazFzTk9SS0RSeXpVeUp4QUJPbzhjRUVsNTU4aTBZdVZYRDRDamZEbXBVMWhNb28tM2RsTFBka1YzSWQySENWbDl2SGd0QkJ4Z0FjVTBHU2tlRGNjbk1j?oc=5" target="_blank" rel="noopener">AC Milan exit inevitable - Rafael Leão centre of Galatasaray and Aston Villa transfer battle</a>
+      <p class="bs">AC Milan exit inevitable - Rafael Leão centre of Galatasaray and Aston Villa transfer battle Transfermarkt</p>
+      <div class="bmeta"><span class="src">Transfermarkt</span><span class="wtag">Galatasaray</span><span class="wtag">Milan</span></div>
     </li>
     <li class="bitem">
-      <a class="bt" href="https://www.fourfourtwo.com/team/liverpools-scouse-identity-is-at-risk-after-curtis-jones-exit" target="_blank" rel="noopener">Liverpool’s Scouse identity is at risk after Curtis Jones exit</a>
-      <p class="bs">Curtis Jones’s departure marks a hammer blow to Liverpool’s local heartbeat.</p>
-      <div class="bmeta"><span class="src">FourFourTwo</span><span class="wtag">Liverpool</span></div>
-    </li>
-    <li class="bitem">
-      <a class="bt" href="https://theanalyst.com/articles/allan-man-city-transfer-stats" target="_blank" rel="noopener">Overshadowed by Endrick and Estevão, Man City-Bound Allan Found His Own Path to the Top</a>
-      <p class="bs">Manchester City are reportedly close to signing 22-year-old Brazilian winger Allan from Palmeiras for £34 million. Here, we look at what might have caught their eye. The post Overshadowed by</p>
-      <div class="bmeta"><span class="src">Opta Analyst</span><span class="wtag">Man City</span></div>
+      <a class="bt" href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYW9zVmRDVERGVUk1UjRvc25tVEJVakg4YVNncU4xUFVGcjNmVjlLcEpDYmM5Y3pUZ09wbF8yTzFtMWwzWXYtNE1BRUJkemNKU2VWMUYtZjB0eXBpbGc2NlZkeHdyd04yWWhNSEJsc3FJTVBVNkhwMFYyWE14SVNhSWU4ZzJkbXdzcmhMNzlJdE9IR1Ixd3RLcTM5MnBkXzIxQzlIREtHbDU5RHg3djNQaGEyamdYdDhyV2pMelg2WGtUVnJVLTZSX002bGZDX1Z3VFE?oc=5" target="_blank" rel="noopener">Liverpool reach agreement with PSG - Barcola set for record-breaking move to Premier League</a>
+      <p class="bs">Liverpool reach agreement with PSG - Barcola set for record-breaking move to Premier League Transfermarkt</p>
+      <div class="bmeta"><span class="src">Transfermarkt</span><span class="wtag">Liverpool</span><span class="wtag">PSG</span></div>
     </li>
 </ul>
 
