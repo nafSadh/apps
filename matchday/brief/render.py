@@ -17,6 +17,7 @@ ROOT = HERE.parent                      # matchday/
 FEED = HERE / "feed.json"               # full haul, written by fetch.py (local only)
 SLIM = HERE / "feed.slim.json"          # committed copy — what the writer job sees
 CURATE = HERE / "curate.json"           # written by the brief-writer job, see below
+SCORES = HERE / "scores.json"           # written by scores.py in the same workflow run
 OUT = ROOT / "brief.html"
 PT = ZoneInfo("America/Los_Angeles")
 
@@ -74,6 +75,30 @@ def section(title, tag, items, note=None):
     n = f'<p class="snote">{esc(note)}</p>' if note else ""
     return (f'<div class="eyebrow"><h2>{esc(title)}</h2><div class="rule"></div><div class="tag">{esc(tag)}</div></div>\n'
             f'{n}<ul class="blist">\n{body}\n</ul>\n')
+
+
+def results_html():
+    """Finals from the last 7 days, written by scores.py. Absent/stale/empty ->
+    no section at all; the brief predates this feature and must not depend on it."""
+    if not SCORES.exists():
+        return ""
+    try:
+        sc = json.loads(SCORES.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+    rows = sc.get("results") or []
+    if not rows:
+        return ""
+    def one(r):
+        d = datetime.fromisoformat(r["d"]).strftime("%a %b %-d")
+        line = f'{esc(r["h"])} <b>{esc(r["hs"])}\u2013{esc(r["as"])}</b> {esc(r["a"])}'
+        return (f'    <li class="ritem"><span class="rcomp">{esc(r["comp"])}</span>'
+                f'<span class="rline">{line}</span><span class="rdate">{d}</span></li>')
+    body = "\n".join(one(r) for r in rows[:40])
+    note = f'finals from the last {sc.get("days", 7)} days \u00b7 ESPN scoreboards'
+    return (f'<div class="eyebrow"><h2>Final Scores</h2><div class="rule"></div>'
+            f'<div class="tag">results</div></div>\n'
+            f'<p class="snote">{note}</p><ul class="rlist">\n{body}\n</ul>\n')
 
 
 def main():
@@ -154,6 +179,14 @@ def main():
   .corr{{color:var(--ucl);border:1px solid var(--hair);border-radius:999px;padding:1px 6px}}
   .wtag{{color:var(--soft);background:var(--wash);border-radius:999px;padding:1px 8px}}
   .ferr{{color:var(--l1)}}
+  .rlist{{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:6px;max-width:640px}}
+  .ritem{{display:flex;align-items:baseline;gap:12px;border:1px solid var(--hair);border-radius:8px;padding:8px 14px;background:var(--card);font-size:13.5px}}
+  .ritem:hover{{border-color:var(--hair2)}}
+  .rcomp{{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex:none;width:74px}}
+  .rline{{flex:1;color:var(--soft);min-width:0}}
+  .rline b{{font-family:var(--mono);color:var(--chalk);font-weight:600;padding:0 2px}}
+  .rdate{{font-family:var(--mono);font-size:10.5px;color:var(--muted);flex:none}}
+  @media(max-width:560px){{.ritem{{flex-wrap:wrap;gap:4px 10px}}.rline{{flex-basis:100%;order:3}}}}
   footer{{margin-top:40px;border-top:1px solid var(--hair);padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}}
   @media(max-width:640px){{
     .head-row{{flex-wrap:wrap;align-items:flex-start}}
@@ -181,7 +214,7 @@ def main():
 </header>
 
 <section>
-{leadhtml}{section('Rumour Mill', 'attributed · unconfirmed', rumours, 'Reports, not facts. ×N marks a story carried by more than one outlet.')}
+{leadhtml}{results_html()}{section('Rumour Mill', 'attributed · unconfirmed', rumours, 'Reports, not facts. ×N marks a story carried by more than one outlet.')}
 {section('Around the Grounds', 'news', news)}
 {section('Worth Reading', 'analysis', reads)}
 </section>
@@ -204,7 +237,8 @@ document.getElementById('themeToggle').addEventListener('click',function(){{
 </html>
 """
     OUT.write_text(page, encoding="utf-8")
-    print(f"wrote {OUT} — {len(rumours)} rumours, {len(news)} news, {len(reads)} reads")
+    print(f"wrote {OUT} — {len(rumours)} rumours, {len(news)} news, {len(reads)} reads"
+          + (", + Final Scores" if results_html() else ", no scores section"))
 
 
 if __name__ == "__main__":
