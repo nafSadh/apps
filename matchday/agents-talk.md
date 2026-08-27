@@ -215,3 +215,27 @@ Owner asked for a transfer log, explicitly **without adding another page**. Ship
 **The audit paid for itself on its first run**: Randal Kolo Muani (→ Juventus, Aug 2) and Lee Kang-in (→ Atlético, Jul 25) had been applied as PSG outs but never added to the buying clubs' SQUADS entries — the exact selling-club/buying-club asymmetry from the 08-10 lesson, in mirror image. Both added to `rest` (No. 9 FW / No. 7 MF). The other two initial flags (Barry, Couto) were loan-outs, which legitimately stay on the parent club's books — the audit now skips `type:"loan"` departures.
 
 **Maintenance contract** (also documented at the top of transfers.js): when an agreed/reported move completes, flip its status to `official` and fill date/fee; when it collapses, delete it. The daily brief writer may append confirmed deals in the same shape. After any squad or ledger edit, open clubs.html and check the console — `[transfer-log audit]` warns on mismatches. Known open item the ledger states honestly: Transfermarkt reports Reijnders's Saudi move complete (single source) while he's still in City's XI; and four departures (Goretzka, Akanji, Aké, Trossard) have no recorded destination.
+
+---
+
+## 2026-08-27 — RemoteCalAgent → local agent (handoff)
+
+Owner is switching work to your side. Everything below shipped from a remote session today; state and watch-items for whoever picks this up locally.
+
+**Shipped and merged (PR #10, on main):**
+
+- `cal.html` now answers where/when/why per match. Watch chips are DERIVED, not stored: EPL outlet comes from the kickoff slot (simultaneous slates → Peacock; standalone kickoffs → USA Network early/weeknight, NBC weekend marquee; big match parked in a slate → presumed pick with the `~` styling). A TV pick that moves a kickoff in DATA updates the chip by itself; per-match `"w"` (SVC code) overrides. Split today: 327 Peacock / 38 NBC / 15 USA. Watchable windows (`winFor`) classify each PT kickoff (dawn/early/easy morning/lunch/workday); "☀ Humane hours" chip filters to the humane set. Why-notes (`WHY`/`TAG_WHY` maps, keyed on the sorted club pair) annotate derbies, all 30 big-six games, and a neutral's-picks tier. Don't rename "Humane hours" back to "Golden hours" — owner rejected that name (photography term).
+- `brief/scores.py`, run in the daily brief workflow: stamps last-7-day finals into cal DATA (`r:"2-1"`, corrects d/t/dt to actuals), writes `brief/scores.json` for the brief's Final Scores section, and auto-fills dated UCL fixtures for UCL_SET clubs. The fetch date set comes from cal's own UCL window rows plus real fixture rows (±1 day while `cf:false`) — that second part matters: windows retire once ≥2 real fixtures land in range, and retired windows' dates must keep being fetched.
+
+**Open: PR #11 (draft) — merge BEFORE tomorrow's 14:00 UTC run.** Post-merge audit fixes: date-only ESPN placeholders no longer land a day early with a phantom kickoff (kept as UTC date + t/dt null → renders TBD); whole run is warn-and-exit-0; 240s fetch budget + step-level timeout/continue-on-error so the brief always publishes; ESPN names sanitised before touching cal's inline JSON/innerHTML and the DATA line escapes `</`; resolve() no longer single-token guesses (RB Salzburg ≠ RB Leipzig); renamed opponents update in place instead of duplicating; tagged windows pass their tag to replacing fixtures (the Final keeps CBS·P+); isTracked stars a real UCL fixture only for its own clubs.
+
+**Process notes:**
+
+- DATA is one line ending `];` — scores.py's regex and round-trip guard depend on that shape. Edit via the script or keep the shape.
+- scores.py test hooks: `--from-dir DIR` (offline boards named `<league>-<YYYYMMDD>.json`, `{"__fail__":true}` simulates an outage day), `--cal PATH`, `--out PATH`. Never test against the repo's scores.json.
+- First live runs will likely warn `unmatched club names, skipped` — extend the ALIAS table in scores.py (norm()-ed keys), never loosen resolve().
+- UEFA's dated UCL fixture list is due by Sat Aug 29; the daily run ingests it automatically once #11's workflow is on main. `workflow_dispatch` on "Matchday daily brief" forces an early pass.
+- `brief.html` + `brief/scores.json` + (post-scores) `cal.html` are rewritten by the daily workflow — don't hand-edit those parts and expect them to survive.
+- The old `gen/cal/` split no longer exists; cal.html is edited directly. Big Days draw venue was corrected Nyon → Monaco (Grimaldi Forum).
+
+Remote session is standing down its PR-watching now that the owner is moving local; #11 is yours to land.
