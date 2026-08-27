@@ -78,23 +78,35 @@ def section(title, tag, items, note=None):
 
 
 def results_html():
-    """Finals from the last 7 days, written by scores.py. Absent/stale/empty ->
-    no section at all; the brief predates this feature and must not depend on it."""
+    """Finals from the last 7 days, written by scores.py. Absent/stale/empty/
+    malformed -> no section at all; the brief predates this feature and must
+    not depend on it, so the whole builder is failure-contained."""
+    try:
+        return _results_html()
+    except Exception as e:
+        print(f"scores section skipped ({type(e).__name__}: {e})", file=sys.stderr)
+        return ""
+
+
+def _results_html():
     if not SCORES.exists():
         return ""
-    try:
-        sc = json.loads(SCORES.read_text(encoding="utf-8"))
-    except Exception:
-        return ""
+    sc = json.loads(SCORES.read_text(encoding="utf-8"))
     rows = sc.get("results") or []
     if not rows:
+        return ""
+    # scores.py exits 0 on outages by design, so an old file can linger —
+    # a two-day-stale feed must not keep rendering as "the last 7 days"
+    fetched = sc.get("fetched") or ""
+    cutoff = (datetime.now(timezone.utc) - timedelta(hours=48)).isoformat()
+    if fetched[:19] < cutoff[:19]:
         return ""
     def one(r):
         d = datetime.fromisoformat(r["d"]).strftime("%a %b %-d")
         line = f'{esc(r["h"])} <b>{esc(r["hs"])}\u2013{esc(r["as"])}</b> {esc(r["a"])}'
         return (f'    <li class="ritem"><span class="rcomp">{esc(r["comp"])}</span>'
                 f'<span class="rline">{line}</span><span class="rdate">{d}</span></li>')
-    body = "\n".join(one(r) for r in rows[:40])
+    body = "\n".join(one(r) for r in rows[:40] if r.get("d") and r.get("comp"))
     note = f'finals from the last {sc.get("days", 7)} days \u00b7 ESPN scoreboards'
     return (f'<div class="eyebrow"><h2>Final Scores</h2><div class="rule"></div>'
             f'<div class="tag">results</div></div>\n'
@@ -129,6 +141,7 @@ def main():
     news = rank([e for e in items if e["kind"] == "news"])[:10]
     reads = rank([e for e in items if e["kind"] in ("analysis", "data")])[:8]
 
+    scores_section = results_html()
     now = datetime.now(timezone.utc).astimezone(PT)
     fetched = blob.get("fetched", "")
     srcs = sorted({e["source"] for e in blob["items"]})
@@ -214,7 +227,7 @@ def main():
 </header>
 
 <section>
-{leadhtml}{results_html()}{section('Rumour Mill', 'attributed · unconfirmed', rumours, 'Reports, not facts. ×N marks a story carried by more than one outlet.')}
+{leadhtml}{scores_section}{section('Rumour Mill', 'attributed · unconfirmed', rumours, 'Reports, not facts. ×N marks a story carried by more than one outlet.')}
 {section('Around the Grounds', 'news', news)}
 {section('Worth Reading', 'analysis', reads)}
 </section>
@@ -238,7 +251,7 @@ document.getElementById('themeToggle').addEventListener('click',function(){{
 """
     OUT.write_text(page, encoding="utf-8")
     print(f"wrote {OUT} — {len(rumours)} rumours, {len(news)} news, {len(reads)} reads"
-          + (", + Final Scores" if results_html() else ", no scores section"))
+          + (", + Final Scores" if scores_section else ", no scores section"))
 
 
 if __name__ == "__main__":
