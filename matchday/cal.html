@@ -569,7 +569,7 @@ html[data-theme="dark"] .cm-foot .chip.active{color:#0b120e;}
       <button class="chip" data-comp="Bundesliga">Bundesliga</button>
       <button class="chip" data-comp="Ligue 1">Ligue 1</button>
       <button class="chip" data-comp="UCL">UCL</button>
-      <button class="chip" id="goldenToggle" title="Only kickoffs at humane Pacific hours — weekend 7 AM+ and weekday lunch">☀ Golden hours</button>
+      <button class="chip" id="humaneToggle" title="Only kickoffs at humane Pacific hours — weekend 7 AM+ and weekday lunch">☀ Humane hours</button>
       <button class="chip active" id="myClubsToggle">★ Select Clubs <span class="gear" id="clubGear" role="button" tabindex="0" aria-label="Choose which clubs to follow" title="Choose clubs"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M16.4 12.5a1.4 1.4 0 0 0 .28 1.54l.05.05a1.7 1.7 0 1 1-2.4 2.4l-.05-.05a1.4 1.4 0 0 0-1.54-.28 1.4 1.4 0 0 0-.85 1.28V17.6a1.7 1.7 0 0 1-3.4 0v-.08a1.4 1.4 0 0 0-.92-1.28 1.4 1.4 0 0 0-1.54.28l-.05.05a1.7 1.7 0 1 1-2.4-2.4l.05-.05a1.4 1.4 0 0 0 .28-1.54 1.4 1.4 0 0 0-1.28-.85H2.4a1.7 1.7 0 0 1 0-3.4h.08a1.4 1.4 0 0 0 1.28-.92 1.4 1.4 0 0 0-.28-1.54l-.05-.05a1.7 1.7 0 1 1 2.4-2.4l.05.05a1.4 1.4 0 0 0 1.54.28h.06a1.4 1.4 0 0 0 .85-1.28V2.4a1.7 1.7 0 0 1 3.4 0v.08a1.4 1.4 0 0 0 .85 1.28h.06a1.4 1.4 0 0 0 1.54-.28l.05-.05a1.7 1.7 0 1 1 2.4 2.4l-.05.05a1.4 1.4 0 0 0-.28 1.54v.06a1.4 1.4 0 0 0 1.28.85h.12a1.7 1.7 0 0 1 0 3.4h-.08a1.4 1.4 0 0 0-1.28.85Z"/></svg></span></button>
     </div>
     <div class="viewswitch" role="tablist" aria-label="View">
@@ -708,7 +708,7 @@ function winFor(m){
   const wkend = (d=>d===0||d===6)(dowOf(m.d));
   if(mins<360)  return {k:'dawn',  label:'☾ dawn alarm'};
   if(mins<420)  return {k:'early', label:'early start'};
-  if(wkend)     return {k:'prime', label:'☀ golden hours'};
+  if(wkend)     return {k:'prime', label:'☀ easy morning'};
   if(mins>=690&&mins<=780) return {k:'lunch', label:'☀ lunch kickoff'};
   if(mins<1020) return {k:'work',  label:'workday clash'};
   return {k:'prime', label:'☀ evening'};
@@ -835,7 +835,7 @@ let cur;
 }
 let activeComps = new Set();
 let myClubsOnly = true;
-let goldenOnly = false;
+let humaneOnly = false;
 let selectedDate = null;
 let view = 'cal';
 
@@ -843,7 +843,7 @@ let view = 'cal';
 function passesFilter(m){
   if(activeComps.size && !activeComps.has(m.c)) return false;
   if(myClubsOnly && !isTracked(m)) return false;
-  if(goldenOnly){
+  if(humaneOnly){
     const win = winFor(m); /* time-TBD rows (UCL windows) stay visible */
     if(win && win.k!=='prime' && win.k!=='lunch') return false;
   }
@@ -877,9 +877,9 @@ document.querySelectorAll('.chip[data-comp]').forEach(btn=>{
     renderAll();
   });
 });
-document.getElementById('goldenToggle').addEventListener('click',()=>{
-  goldenOnly = !goldenOnly;
-  document.getElementById('goldenToggle').classList.toggle('active', goldenOnly);
+document.getElementById('humaneToggle').addEventListener('click',()=>{
+  humaneOnly = !humaneOnly;
+  document.getElementById('humaneToggle').classList.toggle('active', humaneOnly);
   renderAll();
 });
 document.getElementById('clubGear').addEventListener('keydown',(e)=>{
@@ -1427,7 +1427,7 @@ function renderKeyDates(){
 /* ---------- footer ---------- */
 document.getElementById('footer').innerHTML = `
 Watch chips on every match \u2014 EPL is NOT all on Peacock: NBC splits it by slot \u2014 Peacock (every simultaneous slate), USA Network (standalone early &amp; weeknight picks), NBC (weekend marquee picks) &nbsp;\u00b7&nbsp; LaLiga \u00b7 ESPN+ &nbsp;\u00b7&nbsp; Bundesliga \u00b7 Fandango free, top picks on USA Network &nbsp;\u00b7&nbsp; Ligue 1 \u00b7 beIN via Fanatiz/Sling/Fubo &nbsp;\u00b7&nbsp; UCL \u00b7 Paramount+, final also on CBS &nbsp;\u00b7&nbsp; dashed chip = needs a live-TV package (YouTube TV, Hulu + Live TV, cable) &nbsp;\u00b7&nbsp; all times Pacific &nbsp;\u00b7&nbsp; ~ = typical slot, TBC \u2014 outlet firms up with the TV pick.<br>
-\u2600 Golden hours keeps kickoffs at humane Pacific times: weekend 7 AM+ and weekday lunch. \u263e gold times = dawn alarm. Handwritten notes say why a match is circled.<br>
+\u2600 Humane hours keeps kickoffs you can watch without an alarm or a meeting conflict: weekend 7 AM+ and weekday lunch. \u263e gold times = dawn alarm. Handwritten notes say why a match is circled.<br>
 Dates per official Jun\u2013Aug 2026 releases; unconfirmed kickoffs assume standard slots and shift with TV picks. LaLiga = Real Madrid's schedule; Bundesliga = Bayern's; Ligue 1 = PSG's. UCL opponents set at the Aug 27 draw — 29 of 36 clubs are in; the last 7 come from the Aug 25–26 playoffs. \u2605 marks your clubs \u2014 change them via \u2699 on the Select Clubs chip. Quiet weekday columns are compressed.
 `;
 
