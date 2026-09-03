@@ -107,7 +107,7 @@ def _results_html():
         return (f'    <li class="ritem"><span class="rcomp">{esc(r["comp"])}</span>'
                 f'<span class="rline">{line}</span><span class="rdate">{d}</span></li>')
     body = "\n".join(one(r) for r in rows[:40] if r.get("d") and r.get("comp"))
-    note = f'finals from the last {sc.get("days", 7)} days \u00b7 ESPN scoreboards'
+    note = f'finals from the last {sc.get("days", 7)} days \u00b7 football-data.org'
     return (f'<div class="eyebrow"><h2>Final Scores</h2><div class="rule"></div>'
             f'<div class="tag">results</div></div>\n'
             f'<p class="snote">{note}</p><ul class="rlist">\n{body}\n</ul>\n')
