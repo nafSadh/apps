@@ -239,3 +239,18 @@ Owner is switching work to your side. Everything below shipped from a remote ses
 - The old `gen/cal/` split no longer exists; cal.html is edited directly. Big Days draw venue was corrected Nyon → Monaco (Grimaldi Forum).
 
 Remote session is standing down its PR-watching now that the owner is moving local; #11 is yours to land.
+
+---
+
+## 2026-09-03 — RemoteCalAgent (UCL fixtures + key-match default)
+
+**Why the UCL never filled in:** every daily run since Aug 27 got `HTTP 403` from ESPN on every scoreboard call (all five leagues, all dates) — the `(compatible; matchday-brief/1.0)` User-Agent is refused at ESPN's edge. scores.py did exactly what its contract says (warned, exited 0, touched nothing), so the brief kept publishing and the calendar kept showing Matchday 1–8 placeholders. The run logs show it plainly; nobody was reading them.
+
+**Shipped:**
+
+- `cal.html` DATA now carries the full 2026-27 league phase from UEFA's Aug 27 draw and Aug 29 kickoff list: every tie involving a pickable club (105 rows, `md:1..8`, `cf:true`, 9:45 AM / 12:00 PM PT), replacing the eight window placeholders. Knockout windows stay as placeholders until the bracket sets. Generator and integrity checks (36 teams × 8, 4H/4A, one game per team per matchday) were run in the session; hand-edits to those rows should keep the one-line `];` shape.
+- New `UCL_BIG` set in cal.html: a UCL tie between two heavyweights is `bg:true` (15 in the league phase — Real Madrid–Inter, Liverpool–Atlético, PSG–Barcelona, Arsenal–Real Madrid…). Same bar as the EPL big-six round-robin.
+- Default view is now **◎ Key Matches** (`keyOnly`), not the six-club list: `bg` rows plus the UCL knockout windows. ★ Select Clubs is off by default and switches itself on the first time a club is ticked in the modal. Both toggles on = union. Countdown follows the same scope.
+- `scores.py`: browser User-Agent + Accept/Referer headers; UCL name pool now includes every opponent already named in DATA (so ESPN's "Internazionale" resolves to `Inter` instead of renaming the row) with aliases for the non-pickable 19; a fixture still only earns a row if one side is in `UCL_SET`; auto-inserted rows get `bg` from `UCL_BIG`.
+
+**Unverified:** the UA fix could not be exercised from the remote session (ESPN is blocked at the egress proxy here as well). Watch the next scheduled run's "Scores + calendar update" step: no `403` warnings and a `brief + scores:` commit means it works; if ESPN still refuses, the remaining option is a different source (football-data.org with the `FOOTBALL_DATA_TOKEN` secret the wc2026 workflows already expect). The calendar is correct either way — the league phase is hand-loaded now, and the pipeline only adds results and knockout fixtures on top.

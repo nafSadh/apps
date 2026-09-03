@@ -35,7 +35,14 @@ HERE = Path(__file__).resolve().parent
 CAL = HERE.parent / "cal.html"
 OUT = HERE / "scores.json"
 PT = ZoneInfo("America/Los_Angeles")
-UA = "Mozilla/5.0 (compatible; matchday-brief/1.0; +https://sadh.app/matchday)"
+# ESPN's edge 403s anything that announces itself as a bot — the previous
+# "(compatible; matchday-brief/1.0)" UA was refused on every run from Aug 27 to
+# Sep 3, so no result or UCL fixture ever landed. Present as a browser instead.
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36")
+HEADERS = {"User-Agent": UA, "Accept": "application/json, text/plain, */*",
+           "Accept-Language": "en-US,en;q=0.9", "Referer": "https://www.espn.com/",
+           "Origin": "https://www.espn.com"}
 
 RESULT_DAYS = 7          # how far back to look for finals
 DEADLINE_S = 240         # hard budget for all fetching — the job must go on
@@ -63,6 +70,15 @@ ALIAS = {
     "as monaco": "Monaco", "ogc nice": "Nice", "stade brestois 29": "Brest",
     "afc bournemouth": "AFC Bournemouth", "bournemouth": "AFC Bournemouth",
     "brighton and hove albion": "Brighton & Hove Albion", "brighton": "Brighton & Hove Albion",
+    # UCL opponents outside the pickable lists (names as they sit in cal.html DATA)
+    "internazionale": "Inter", "inter milan": "Inter", "fc internazionale milano": "Inter",
+    "fc porto": "Porto", "as roma": "Roma", "ssc napoli": "Napoli", "como 1907": "Como",
+    "slavia prague": "Slavia Praha", "sk slavia praha": "Slavia Praha",
+    "sk slovan bratislava": "Slovan Bratislava", "bodo glimt": "Bodo/Glimt",
+    "fk bodo glimt": "Bodo/Glimt", "viking fk": "Viking", "sabah fk": "Sabah",
+    "lask linz": "LASK", "club brugge kv": "Club Brugge", "psv": "PSV Eindhoven",
+    "sporting lisbon": "Sporting CP", "sporting clube de portugal": "Sporting CP",
+    "aek athens fc": "AEK Athens", "shakhtar": "Shakhtar Donetsk",
 }
 
 
@@ -107,6 +123,19 @@ def cal_lists(src):
         out[comp] = json.loads(m.group(1)) if m else []
     m = re.search(r"const UCL_SET = new Set\((\[[^\]]*\])\)", src)
     out["UCL"] = json.loads(m.group(1)) if m else []
+    m = re.search(r"const UCL_BIG = new Set\((\[[^\]]*\])\)", src)
+    out["_big"] = json.loads(m.group(1)) if m else []
+    # every side already named in a UCL row (Inter, Porto, Bodo/Glimt...) is canon too,
+    # so a known opponent resolves to its DATA spelling instead of being renamed to
+    # ESPN's display name; only UCL_SET decides whether a fixture is worth a row
+    _, data = read_cal_from_text(src)
+    seen = []
+    for m in data:
+        if m["c"] == "UCL" and m.get("a"):
+            for side in (m["h"], m["a"]):
+                if side not in seen:
+                    seen.append(side)
+    out["_ucl_pool"] = out["UCL"] + [c for c in seen if c not in out["UCL"]]
     m = re.search(r"const DEFAULT_CLUBS = (\[[^\]]*\])", src)
     out["_default"] = json.loads(m.group(1)) if m else []
     return out
@@ -137,7 +166,7 @@ def fetch_board(lg, ymd, from_dir):
         if board.get("__fail__"):          # test hook: simulate an outage day
             raise RuntimeError("simulated fetch failure")
         return board
-    req = urllib.request.Request(ESPN.format(lg=lg, d=ymd), headers={"User-Agent": UA})
+    req = urllib.request.Request(ESPN.format(lg=lg, d=ymd), headers=HEADERS)
     with urllib.request.urlopen(req, timeout=20) as r:
         return json.loads(r.read().decode("utf-8"))
 
@@ -253,7 +282,7 @@ def run():
     results_out, stamped, inserted, unmatched = [], 0, 0, []
     week_floor = (today - timedelta(days=RESULT_DAYS)).isoformat()
     for ev in events:
-        pool = canon["UCL"] if ev["comp"] == "UCL" else canon[ev["comp"]]
+        pool = canon["_ucl_pool"] if ev["comp"] == "UCL" else canon[ev["comp"]]
         h, a = resolve(ev["home"], pool), resolve(ev["away"], pool)
         # a date-only placeholder (timeValid false) sits at an arbitrary UTC
         # midnight: converting it to PT shifts the matchday back a day and
@@ -269,23 +298,25 @@ def run():
                                 "hs": str(ev["hs"]), "as": str(ev["as"])})
 
         if ev["comp"] == "UCL":
-            if not (h or a):
-                continue                      # neither side tracked
+            if not (h in canon["UCL"] or a in canon["UCL"]):
+                continue                      # neither side a pickable club
             H, A = h or ev["home"], a or ev["away"]
             row = next((data[i] for i in by_pair.get(("UCL", H, A), [])
                         if near(data[i]["d"], d, 3)), None)
             if row is None:
                 # same fixture under a renamed untracked side: any real UCL row
                 # a day either side sharing the resolved tracked club is it
-                side = h or a
+                side = h if h in canon["UCL"] else a
                 row = next((m for m in data if m["c"] == "UCL" and m.get("a")
                             and side in (m["h"], m["a"]) and near(m["d"], d, 1)), None)
                 if row is not None:
                     row["h"], row["a"] = H, A
             if row is None:
+                # a heavyweight-vs-heavyweight tie is a key match, same bar as cal.html
                 row = {"d": d, "c": "UCL", "h": H, "a": A, "t": t, "dt": dt,
                        "cf": bool(ev["time_valid"]),
-                       "tr": H in canon["_default"] or A in canon["_default"], "bg": False}
+                       "tr": H in canon["_default"] or A in canon["_default"],
+                       "bg": H in canon["_big"] and A in canon["_big"]}
                 data.append(row)
                 by_pair.setdefault(("UCL", H, A), []).append(len(data) - 1)
                 inserted += 1
