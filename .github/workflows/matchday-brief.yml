@@ -39,10 +39,15 @@ jobs:
 
       # Additive: scores/fixtures must never block the brief. scores.py exits 0 on
       # every failure path (prints ::warning), leaving scores.json + cal.html as-is.
-      # This is also what picks up newly dated UCL fixtures (draw was Aug 27; UEFA
-      # publishes dates/times by Aug 29) — the daily run lands them automatically.
+      # This is also what stamps results and picks up newly dated UCL fixtures.
+      # Source is football-data.org via the FOOTBALL_DATA_TOKEN repo secret (free
+      # token from https://www.football-data.org/client/register — the same secret
+      # the wc2026 workflows use). Without it the step falls back to ESPN, which
+      # 403'd every run Aug 27–Sep 3 2026, so treat the secret as required.
       - name: Scores + calendar update
         working-directory: matchday/brief
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
         # belt over scores.py's own warn-and-exit-0 + fetch deadline: even a hung
         # runner step or interpreter crash must not stop the brief from publishing
         timeout-minutes: 6
