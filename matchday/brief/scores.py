@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Pull final scores and newly dated fixtures from ESPN's public scoreboards.
+"""Pull final scores and newly dated fixtures into scores.json and cal.html.
+
+Source of truth is football-data.org (free tier covers PL, PD, BL1, FL1 and CL;
+token in the FOOTBALL_DATA_TOKEN env var, set from the repo secret by the
+workflow). Without a token the script falls back to ESPN's undocumented
+scoreboard JSON, which is best-effort only: ESPN refused every runner request
+with HTTP 403 from Aug 27 to Sep 3 2026, so never count on it.
 
 Runs in the daily brief workflow (GitHub runners — the cloud-agent proxy 403s
 these hosts, same reason fetch.py lives here) and does three additive jobs:
@@ -15,18 +21,20 @@ these hosts, same reason fetch.py lives here) and does three additive jobs:
 
 A scores outage must never block the brief: main() catches everything, prints a
 ::warning and exits 0, leaving cal.html and scores.json exactly as they were.
-Fetching also stops at DEADLINE_S so a hanging ESPN cannot eat the job timeout.
+Fetching also stops at DEADLINE_S so a hanging source cannot eat the job timeout.
 
-ESPN payloads are external input: display names are sanitised (clean_name) before
+API payloads are external input: display names are sanitised (clean_name) before
 they can reach cal.html's inline <script> JSON or the brief's HTML, and the DATA
 line is written with `</` escaped so no name can close the script block.
 
     python3 scores.py                  live fetch (needs egress)
-    python3 scores.py --from-dir DIR   offline: read DIR/<league>-<YYYYMMDD>.json
+    python3 scores.py --from-dir DIR   offline: football-data shaped DIR/fd-<CODE>.json
+                                       (CL, PL, PD, BL1, FL1) when present, else
+                                       ESPN shaped DIR/<league>-<YYYYMMDD>.json
     python3 scores.py --cal PATH       operate on a different cal.html (testing)
     python3 scores.py --out PATH       write scores.json elsewhere (testing)
 """
-import json, re, sys, time, unicodedata, urllib.request
+import json, os, re, sys, time, unicodedata, urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -46,6 +54,12 @@ HEADERS = {"User-Agent": UA, "Accept": "application/json, text/plain, */*",
 
 RESULT_DAYS = 7          # how far back to look for finals
 DEADLINE_S = 240         # hard budget for all fetching — the job must go on
+SEASON_END = "2027-06-30"
+# primary: football-data.org v4 — one request per competition, date-ranged
+FD = "https://api.football-data.org/v4/competitions/{code}/matches?dateFrom={a}&dateTo={b}"
+FD_CODES = {"EPL": "PL", "La Liga": "PD", "Bundesliga": "BL1", "Ligue 1": "FL1", "UCL": "CL"}
+FD_TOKEN = os.environ.get("FOOTBALL_DATA_TOKEN", "").strip()
+# fallback: ESPN's scoreboard, one request per league-day
 ESPN = "https://site.api.espn.com/apis/site/v2/sports/soccer/{lg}/scoreboard?dates={d}"
 LEAGUES = [("EPL", "eng.1"), ("La Liga", "esp.1"), ("Bundesliga", "ger.1"),
            ("Ligue 1", "fra.1"), ("UCL", "uefa.champions")]
@@ -55,7 +69,8 @@ LEAGUES = [("EPL", "eng.1"), ("La Liga", "esp.1"), ("Bundesliga", "ger.1"),
 # side — never guess a mapping in code.
 ALIAS = {
     "bayern munich": "Bayern", "fc bayern munich": "Bayern",
-    "paris saint germain": "PSG",
+    "paris saint germain": "PSG", "paris saint germain fc": "PSG",
+    "rcd espanyol de barcelona": "Espanyol", "rcd espanyol": "Espanyol",
     "1 fc koln": "FC Koln", "fc cologne": "FC Koln", "cologne": "FC Koln",
     "1 fc union berlin": "Union Berlin",
     "1 fsv mainz 05": "Mainz 05", "mainz": "Mainz 05",
@@ -159,6 +174,57 @@ def resolve(name, canon):
     return hits[0] if len(hits) == 1 else None
 
 
+def fetch_fd(code, a, b, from_dir):
+    """football-data.org matches for one competition over [a, b] (ISO dates).
+    Offline: DIR/fd-<CODE>.json in the same shape; absent file -> None so the
+    caller can fall through to the ESPN-shaped fixtures."""
+    if from_dir:
+        p = Path(from_dir) / f"fd-{code}.json"
+        if not p.exists():
+            return None
+        board = json.loads(p.read_text(encoding="utf-8"))
+        if board.get("__fail__"):          # test hook: simulate an outage
+            raise RuntimeError("simulated fetch failure")
+        return board
+    req = urllib.request.Request(FD.format(code=code, a=a, b=b),
+                                 headers={"X-Auth-Token": FD_TOKEN, "User-Agent": UA,
+                                          "Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def parse_fd(board, comp):
+    """football-data match -> the same event shape parse_events produces.
+    status: SCHEDULED = date known, kickoff still provisional; TIMED = kickoff
+    set; FINISHED = final. Postponed/cancelled/suspended games are skipped —
+    the calendar keeps its row until a new date is announced."""
+    out = []
+    for m in board.get("matches", []):
+        try:
+            st = m.get("status") or ""
+            if st in ("POSTPONED", "CANCELLED", "SUSPENDED", "AWARDED"):
+                continue
+            utc = m["utcDate"]
+            datetime.fromisoformat(utc.replace("Z", "+00:00"))  # reject junk now
+            ft = (m.get("score") or {}).get("fullTime") or {}
+            h, a = m["homeTeam"], m["awayTeam"]
+            out.append({
+                "comp": comp,
+                "utc": utc,
+                "home": clean_name(h.get("name") or h.get("shortName") or ""),
+                "away": clean_name(a.get("name") or a.get("shortName") or ""),
+                "home_alt": clean_name(h.get("shortName") or ""),
+                "away_alt": clean_name(a.get("shortName") or ""),
+                "hs": ft.get("home"),
+                "as": ft.get("away"),
+                "final": st == "FINISHED",
+                "time_valid": st != "SCHEDULED",
+            })
+        except Exception as e:
+            warn(f"{comp}: unparseable football-data match ({type(e).__name__}: {e})")
+    return out
+
+
 def fetch_board(lg, ymd, from_dir):
     if from_dir:
         p = Path(from_dir) / f"{lg}-{ymd}.json"
@@ -236,7 +302,36 @@ def run():
     started = time.monotonic()
     events, errors = [], 0
     league_ok, league_err = {c: 0 for c, _ in LEAGUES}, {c: 0 for c, _ in LEAGUES}
+    use_fd = bool(FD_TOKEN) or bool(from_dir)
+    if not FD_TOKEN and not from_dir:
+        warn("FOOTBALL_DATA_TOKEN is not set — falling back to ESPN, which is "
+             "best-effort only (it 403'd every run Aug 27–Sep 3). Add the repo "
+             "secret from https://www.football-data.org/client/register")
+    week_floor_d = today - timedelta(days=RESULT_DAYS)
     for comp, lg in LEAGUES:
+        if time.monotonic() - started > DEADLINE_S:
+            warn(f"fetch budget ({DEADLINE_S}s) spent — stopping at {comp}")
+            errors += 1; league_err[comp] += 1
+            continue
+        # --- football-data.org: one date-ranged request per competition; the UCL
+        # range runs to season end so every newly dated fixture arrives at once
+        if use_fd:
+            hi = SEASON_END if comp == "UCL" else today.isoformat()
+            try:
+                board = fetch_fd(FD_CODES[comp], week_floor_d.isoformat(), hi, from_dir)
+            except Exception as e:
+                board = None
+                errors += 1; league_err[comp] += 1
+                warn(f"{comp}: football-data fetch failed ({type(e).__name__}: {e})")
+            if board is not None:
+                events += parse_fd(board, comp)
+                league_ok[comp] += 1
+                if not from_dir:
+                    time.sleep(6.5)          # free tier: 10 requests / minute
+                continue
+            if FD_TOKEN and not from_dir:
+                continue                     # a token is configured: never mix sources
+        # --- ESPN fallback: one request per league-day
         days = result_days + (ucl_days if comp == "UCL" else [])
         for day in days:
             if time.monotonic() - started > DEADLINE_S:
@@ -283,7 +378,8 @@ def run():
     week_floor = (today - timedelta(days=RESULT_DAYS)).isoformat()
     for ev in events:
         pool = canon["_ucl_pool"] if ev["comp"] == "UCL" else canon[ev["comp"]]
-        h, a = resolve(ev["home"], pool), resolve(ev["away"], pool)
+        h = resolve(ev["home"], pool) or resolve(ev.get("home_alt") or "", pool)
+        a = resolve(ev["away"], pool) or resolve(ev.get("away_alt") or "", pool)
         # a date-only placeholder (timeValid false) sits at an arbitrary UTC
         # midnight: converting it to PT shifts the matchday back a day and
         # invents a kickoff, so keep the UTC date and no time at all
