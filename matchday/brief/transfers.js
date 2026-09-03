@@ -206,6 +206,17 @@ window.TRANSFERS = [
   "note": "Loan; short-term injury (Glasgow World)"
  },
  {
+  "d": "2026-09-02",
+  "p": "Keito Nakamura",
+  "from": "Reims",
+  "to": "Lyon",
+  "toKey": "lyon",
+  "fee": "€1m (+€19m)",
+  "type": "transfer",
+  "status": "official",
+  "note": "'Joker' signing after the window; four years to 2030; €1m fixed + up to €19m variables (Lyon Foot, Orange, Ferveur Lyonnaise)"
+ },
+ {
   "d": "2026-09-01",
   "p": "Enzo Fernández",
   "from": "Chelsea",
@@ -293,16 +304,6 @@ window.TRANSFERS = [
   "type": "loan",
   "status": "official",
   "note": "Season-long loan to League One (arsenal.com, Stevenage FC)"
- },
- {
-  "d": "2026-09-01",
-  "p": "Lucca Brughmans",
-  "from": "Genk",
-  "to": "Liverpool (loaned back to Genk)",
-  "fee": "up to £30m",
-  "type": "transfer",
-  "status": "official",
-  "note": "18-year-old GK; loaned back to Genk for 2026-27, joins in 2027 (liverpoolfc.com, ESPN)"
  },
  {
   "d": "2026-09-01",
@@ -400,16 +401,6 @@ window.TRANSFERS = [
   "type": "loan",
   "status": "official",
   "note": "Listed in Sky Sports' deadline-day done deals; loan/permanent status not verified"
- },
- {
-  "d": "2026-09-01",
-  "p": "Honest Ahanor",
-  "from": "Atalanta",
-  "to": "Chelsea (joins 2027)",
-  "fee": "£40m (reported)",
-  "type": "transfer",
-  "status": "official",
-  "note": "Deferred deal: joins Chelsea in July 2027; spends 2026-27 on loan at Crystal Palace direct from Atalanta (ESPN, Heavy)"
  },
  {
   "d": "2026-09-01",
@@ -642,6 +633,100 @@ window.TRANSFERS = [
   "note": "Per Sports Mole"
  },
  {
+  "d": "2026-09-01",
+  "p": "Lucca Brughmans",
+  "from": "Genk",
+  "to": "Liverpool (loaned back to Genk)",
+  "fee": "up to £30m",
+  "type": "transfer",
+  "status": "official",
+  "note": "18-year-old GK; loaned back to Genk for 2026-27, joins in 2027 (liverpoolfc.com, ESPN)"
+ },
+ {
+  "d": "2026-09-01",
+  "p": "Honest Ahanor",
+  "from": "Atalanta",
+  "to": "Chelsea (joins 2027)",
+  "fee": "£40m (reported)",
+  "type": "transfer",
+  "status": "official",
+  "note": "Deferred deal: joins Chelsea in July 2027; spends 2026-27 on loan at Crystal Palace direct from Atalanta (ESPN, Heavy)"
+ },
+ {
+  "d": "2026-09-01",
+  "p": "Kevin Danso",
+  "from": "Tottenham",
+  "to": "Sunderland",
+  "fromKey": "tottenham",
+  "fee": "loan; conditional obligation (~£25m reported)",
+  "type": "loan",
+  "status": "official",
+  "note": "Season loan with performance-based obligation (tottenhamhotspur.com, VAVEL)"
+ },
+ {
+  "d": "2026-09-01",
+  "p": "Dane Scarlett",
+  "from": "Tottenham",
+  "to": "Leyton Orient",
+  "fromKey": "tottenham",
+  "type": "transfer",
+  "status": "official",
+  "note": "Undisclosed fee (TEAMtalk done-deals list)"
+ },
+ {
+  "d": "2026-09-01",
+  "p": "Arijon Ibrahimović",
+  "from": "Bayern",
+  "to": "Augsburg",
+  "fromKey": "bayern",
+  "type": "loan",
+  "status": "official",
+  "note": "Season loan, €0.5m fee, €8m option (Bundesliga.com, Sport1, AZ); not in site squad"
+ },
+ {
+  "d": "2026-09-01",
+  "p": "Malick Fofana",
+  "from": "Lyon",
+  "to": "Sunderland",
+  "fromKey": "lyon",
+  "fee": "€35m (+€5m)",
+  "type": "transfer",
+  "status": "official",
+  "note": "€35m + €5m, five-year deal; Palace/Sunderland two-jets saga (Maxifoot, GFFN)"
+ },
+ {
+  "d": "2026-09-01",
+  "p": "Ainsley Maitland-Niles",
+  "from": "Lyon",
+  "to": "Everton",
+  "fromKey": "lyon",
+  "fee": "€3.5m",
+  "type": "transfer",
+  "status": "official",
+  "note": "€3.5m, to 2029 (Maxifoot, GFFN, Ferveur Lyonnaise)"
+ },
+ {
+  "d": "2026-09-01",
+  "p": "Duje Ćaleta-Car",
+  "from": "Lyon",
+  "to": "Unattached",
+  "fromKey": "lyon",
+  "type": "free",
+  "status": "official",
+  "note": "Contract terminated 1 Sep per Foot-sur7/Mercatoprime summaries; club statement not retrieved"
+ },
+ {
+  "d": "2026-09-01",
+  "p": "Quinten Timber",
+  "from": "Marseille",
+  "to": "Crystal Palace",
+  "fromKey": "marseille",
+  "fee": "€20m",
+  "type": "transfer",
+  "status": "official",
+  "note": "~€20m incl. bonuses, five-year deal (GFFN, Sofascore)"
+ },
+ {
   "d": "2026-08-31",
   "p": "Bradley Barcola",
   "from": "PSG",
@@ -663,6 +748,17 @@ window.TRANSFERS = [
   "type": "transfer",
   "status": "official",
   "note": "Three-year deal after six seasons and 108 Villa goals (ESPN, Sky Sports)"
+ },
+ {
+  "d": "2026-08-31",
+  "p": "Kristjan Asllani",
+  "from": "Inter",
+  "to": "Al-Jazira",
+  "fromKey": "inter",
+  "fee": "€2m loan (+€5m obligation)",
+  "type": "loan",
+  "status": "official",
+  "note": "Loan (~€2m) with conditional obligation (~€5m); Inter statement in final days of window — exact day to verify (fcinter1908, Goal IT, Sportmediaset)"
  },
  {
   "d": "2026-08-30",
@@ -839,6 +935,17 @@ window.TRANSFERS = [
   "type": "transfer",
   "status": "official",
   "note": "17-year-old left-back, five-year deal, ~€3m (A Bola)"
+ },
+ {
+  "d": "2026-08-26",
+  "p": "João Palhinha",
+  "from": "Bayern",
+  "to": "Benfica",
+  "fromKey": "bayern",
+  "fee": "€15m (+€5m)",
+  "type": "transfer",
+  "status": "official",
+  "note": "To 2030; Bundesliga.com, Benfica, ESPN"
  },
  {
   "d": "2026-08-25",
@@ -1112,6 +1219,17 @@ window.TRANSFERS = [
   "note": "To 2031, No. 22; Ajax says fee can reach €55m with bonuses (PSG.fr, Ajax1, ESPN)"
  },
  {
+  "d": "2026-08-16",
+  "p": "Giannis Konstantelias",
+  "from": "PAOK",
+  "to": "Dortmund",
+  "toKey": "dortmund",
+  "fee": "€26m (+€6m)",
+  "type": "transfer",
+  "status": "official",
+  "note": "To 2030; €26m + €6m add-ons, 15% sell-on (BVB.de 17 Aug, Bundesliga.com). Tore an ACL vs Hamburg on 31 Aug — out several months"
+ },
+ {
   "d": "2026-08-15",
   "p": "Djed Spence",
   "from": "Tottenham",
@@ -1155,6 +1273,28 @@ window.TRANSFERS = [
   "type": "transfer",
   "status": "official",
   "note": "£21m/€24.5m, club-record sale, to 2031 (CPFC.co.uk, Brussels Times)"
+ },
+ {
+  "d": "2026-08-15",
+  "p": "Ashley Phillips",
+  "from": "Tottenham",
+  "to": "Middlesbrough",
+  "fromKey": "tottenham",
+  "fee": "£7m (+ add-ons, up to £20m reported)",
+  "type": "transfer",
+  "status": "official",
+  "note": "Missing from ledger (tottenhamhotspur.com, Gazette Live)"
+ },
+ {
+  "d": "2026-08-15",
+  "p": "Davide Frattesi",
+  "from": "Inter",
+  "to": "Lazio",
+  "fromKey": "inter",
+  "fee": "€5m loan",
+  "type": "loan",
+  "status": "official",
+  "note": "Loan with option to buy (€5m loan + €3m bonuses, €10m option, 50% sell-on reported); Lazio announced 14–15 Aug (ANSA, Lazio, fcinter1908)"
  },
  {
   "d": "2026-08-14",
@@ -1255,6 +1395,17 @@ window.TRANSFERS = [
   "note": "Season loan with option to buy; missing from ledger (Sky Sports, ESPN, liverpoolfc.com)"
  },
  {
+  "d": "2026-08-10",
+  "p": "Manor Solomon",
+  "from": "Tottenham",
+  "to": "West Ham",
+  "fromKey": "tottenham",
+  "fee": "£7m",
+  "type": "transfer",
+  "status": "official",
+  "note": "Missing from ledger (tottenhamhotspur.com, WHUFC)"
+ },
+ {
   "d": "2026-08-09",
   "p": "Lucas Digne",
   "from": "Aston Villa",
@@ -1318,10 +1469,11 @@ window.TRANSFERS = [
   "from": "Marseille",
   "to": "Man City",
   "toKey": "man-city",
-  "fee": "~£1.7m",
+  "fee": "£1.7m",
   "type": "transfer",
-  "status": "reported",
-  "note": "Reported by English outlets; Marseille-side coverage says he stayed — unresolved"
+  "status": "official",
+  "note": "Two-year deal as Donnarumma's understudy (beIN, Sky); Marseille-side reports of a stay were wrong",
+  "fromKey": "marseille"
  },
  {
   "d": "2026-08-07",
@@ -1455,6 +1607,17 @@ window.TRANSFERS = [
   "type": "loan",
   "status": "official",
   "note": "Loan for 2026-27, €1.8m with €9.5m option (juventus.com, A Bola)"
+ },
+ {
+  "d": "2026-08-03",
+  "p": "Konstantinos Karetsas",
+  "from": "Genk",
+  "to": "Dortmund",
+  "toKey": "dortmund",
+  "fee": "€32m",
+  "type": "transfer",
+  "status": "official",
+  "note": "To 2031 (BVB.de, Bundesliga.com); missing from ledger and squad"
  },
  {
   "d": "2026-08-03",
@@ -1614,6 +1777,27 @@ window.TRANSFERS = [
   "type": "transfer",
   "status": "official",
   "note": "August arrival per Worldfootball/AiScore; not in site squad"
+ },
+ {
+  "d": "2026-08",
+  "p": "Yang Min-hyeok",
+  "from": "Tottenham",
+  "to": "Westerlo",
+  "fromKey": "tottenham",
+  "type": "loan",
+  "status": "official",
+  "note": "Season loan to Belgium; exact date not verified (TEAMtalk, Spurs Web)"
+ },
+ {
+  "d": "2026-08",
+  "p": "Leonardo Balerdi",
+  "from": "Marseille",
+  "to": "Roma",
+  "fromKey": "marseille",
+  "fee": "€1m loan (+~€15m)",
+  "type": "loan",
+  "status": "official",
+  "note": "€1m paid loan, option likely to become obligation (~€15m) (AS Roma, GFFN); late August"
  },
  {
   "d": "2026-07-31",
@@ -1862,6 +2046,18 @@ window.TRANSFERS = [
   "status": "official",
   "note": "To 2031, took the No. 11; Frankfurt's player of the season",
   "w": "https://en.wikipedia.org/wiki/Nathaniel_Brown_%28footballer%29"
+ },
+ {
+  "d": "2026-07-02",
+  "p": "Julien Duranville",
+  "from": "Dortmund",
+  "to": "Lyon",
+  "fromKey": "dortmund",
+  "toKey": "lyon",
+  "fee": "€5m (+€3.5m)",
+  "type": "transfer",
+  "status": "official",
+  "note": "Five-year deal to 2031; €5m + up to €3.5m bonuses, 20% sell-on (Walfoot, L'Avenir); missing from ledger, already in Lyon squad"
  },
  {
   "d": "2026-07-01",
@@ -2558,6 +2754,108 @@ window.TRANSFERS = [
   "type": "transfer",
   "status": "official",
   "note": "Galatasaray 'parted ways' per Fanatik; destination/date not retrieved"
+ },
+ {
+  "d": "2026",
+  "p": "Alexander Nübel",
+  "from": "Bayern",
+  "to": "Beşiktaş",
+  "fromKey": "bayern",
+  "type": "transfer",
+  "status": "official",
+  "note": "Listed as completed in fcbinside/Sportschau summer summaries; date not verified; not in site squad"
+ },
+ {
+  "d": "2026",
+  "p": "Daniel Peretz",
+  "from": "Bayern",
+  "to": "Southampton",
+  "fromKey": "bayern",
+  "type": "transfer",
+  "status": "official",
+  "note": "Per fcbinside/Sportschau summaries; date not verified; not in site squad"
+ },
+ {
+  "d": "2026",
+  "p": "Jonah Kusi-Asare",
+  "from": "Bayern",
+  "to": "Fulham",
+  "fromKey": "bayern",
+  "type": "transfer",
+  "status": "official",
+  "note": "Per fcbinside summary; not in site squad"
+ },
+ {
+  "d": "2026",
+  "p": "Noel Aseko",
+  "from": "Bayern",
+  "to": "Eintracht Frankfurt",
+  "fromKey": "bayern",
+  "type": "transfer",
+  "status": "official",
+  "note": "Per fcbinside summary; not in site squad"
+ },
+ {
+  "d": "2026",
+  "p": "Felix Bacher",
+  "from": "",
+  "to": "Lyon",
+  "toKey": "lyon",
+  "type": "transfer",
+  "status": "official",
+  "note": "Centre-back, listed among OL's seven summer signings (Foot Mercato table, Mercatoprime); date/fee unverified; not in site squad"
+ },
+ {
+  "d": "2026",
+  "p": "Zachary Athekame",
+  "from": "",
+  "to": "Lyon",
+  "toKey": "lyon",
+  "type": "loan",
+  "status": "official",
+  "note": "Right-back loaned to OL until June 2027 (Foot Mercato table); parent club not verified; not in site squad"
+ },
+ {
+  "d": "2026",
+  "p": "Mahamadou Diawara",
+  "from": "Lyon",
+  "to": "Red Star",
+  "fromKey": "lyon",
+  "type": "loan",
+  "status": "official",
+  "note": "Season loan with option per OL-focused summaries; date unverified"
+ },
+ {
+  "d": "2026",
+  "p": "Facundo Medina",
+  "from": "Marseille",
+  "to": "Bayer Leverkusen",
+  "fromKey": "marseille",
+  "fee": "€23m (+€2m)",
+  "type": "transfer",
+  "status": "official",
+  "note": "€23m + €2m per OM recaps (FootballClubDeMarseille, Maxifoot); exact date not verified (mid-August)"
+ },
+ {
+  "d": "2026",
+  "p": "Pierre-Emerick Aubameyang",
+  "from": "Marseille",
+  "to": "Deportivo La Coruña",
+  "fromKey": "marseille",
+  "fee": "€1.5m",
+  "type": "transfer",
+  "status": "official",
+  "note": "€1.5m per OM recap; not in site squad"
+ },
+ {
+  "d": "2026",
+  "p": "Hamed Junior Traoré",
+  "from": "Marseille",
+  "to": "Genoa",
+  "fromKey": "marseille",
+  "type": "loan",
+  "status": "official",
+  "note": "Per OM recap; not in site squad"
  }
 ];
 
