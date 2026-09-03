@@ -93,7 +93,8 @@ ALIAS = {
     "fk bodo glimt": "Bodo/Glimt", "viking fk": "Viking", "sabah fk": "Sabah",
     "lask linz": "LASK", "club brugge kv": "Club Brugge", "psv": "PSV Eindhoven",
     "sporting lisbon": "Sporting CP", "sporting clube de portugal": "Sporting CP",
-    "aek athens fc": "AEK Athens", "shakhtar": "Shakhtar Donetsk",
+    "aek athens fc": "AEK Athens", "pae aek": "AEK Athens", "aek": "AEK Athens",
+    "shakhtar": "Shakhtar Donetsk",
 }
 
 
@@ -101,8 +102,17 @@ def warn(msg):
     print(f"::warning::scores.py: {msg}", file=sys.stderr)
 
 
+# letters NFKD cannot decompose — dropping them mangles a name ("Bodø" -> "Bod")
+_XLIT = str.maketrans({"ø": "o", "Ø": "O", "æ": "ae", "Æ": "AE", "œ": "oe", "Œ": "OE",
+                       "ß": "ss", "ł": "l", "Ł": "L", "đ": "d", "Đ": "D", "ı": "i"})
+
+
+def ascii_fold(s):
+    return unicodedata.normalize("NFKD", (s or "").translate(_XLIT)).encode("ascii", "ignore").decode()
+
+
 def norm(s):
-    s = unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode()
+    s = ascii_fold(s)
     s = s.replace("&", " and ")
     s = re.sub(r"[^a-z0-9 ]", " ", s.lower())
     return re.sub(r"\s+", " ", s).strip()
@@ -111,7 +121,7 @@ def norm(s):
 def clean_name(s):
     """ESPN input -> safe display text: ascii, no HTML-significant characters.
     These names end up inside cal.html's inline JSON and innerHTML templates."""
-    s = unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode()
+    s = ascii_fold(s)
     s = re.sub(r"[^A-Za-z0-9 .,'&()/-]", "", s)
     return re.sub(r"\s+", " ", s).strip()[:48]
 
