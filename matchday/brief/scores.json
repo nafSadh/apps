@@ -1,141 +1,341 @@
 {
- "fetched": "2026-08-27T23:58:04+00:00",
+ "fetched": "2026-09-03T22:48:17+00:00",
  "days": 7,
  "results": [
   {
-   "d": "2026-08-26",
+   "d": "2026-09-03",
    "comp": "La Liga",
-   "h": "Real Madrid",
-   "a": "Real Sociedad",
-   "hs": "4",
-   "as": "1"
-  },
-  {
-   "d": "2026-08-24",
-   "comp": "EPL",
-   "h": "Fulham",
-   "a": "Chelsea",
-   "hs": "2",
-   "as": "3"
-  },
-  {
-   "d": "2026-08-23",
-   "comp": "EPL",
-   "h": "Brighton & Hove Albion",
-   "a": "Aston Villa",
-   "hs": "4",
-   "as": "0"
-  },
-  {
-   "d": "2026-08-23",
-   "comp": "EPL",
-   "h": "Manchester City",
-   "a": "AFC Bournemouth",
-   "hs": "2",
-   "as": "1"
-  },
-  {
-   "d": "2026-08-23",
-   "comp": "EPL",
-   "h": "Newcastle United",
-   "a": "Liverpool",
-   "hs": "2",
-   "as": "2"
-  },
-  {
-   "d": "2026-08-23",
-   "comp": "Ligue 1",
-   "h": "Angers SCO",
-   "a": "Lille",
-   "hs": "0",
-   "as": "2"
-  },
-  {
-   "d": "2026-08-23",
-   "comp": "Ligue 1",
-   "h": "Le Havre",
-   "a": "Monaco",
-   "hs": "0",
-   "as": "1"
-  },
-  {
-   "d": "2026-08-23",
-   "comp": "Ligue 1",
-   "h": "Stade Rennais",
-   "a": "PSG",
-   "hs": "2",
-   "as": "2"
-  },
-  {
-   "d": "2026-08-22",
-   "comp": "EPL",
-   "h": "Hull City",
-   "a": "Manchester United",
-   "hs": "2",
-   "as": "0"
-  },
-  {
-   "d": "2026-08-22",
-   "comp": "EPL",
-   "h": "Everton",
-   "a": "Crystal Palace",
-   "hs": "2",
-   "as": "0"
-  },
-  {
-   "d": "2026-08-22",
-   "comp": "EPL",
-   "h": "Ipswich Town",
-   "a": "Sunderland",
-   "hs": "2",
-   "as": "1"
-  },
-  {
-   "d": "2026-08-22",
-   "comp": "EPL",
-   "h": "Nottingham Forest",
-   "a": "Leeds United",
-   "hs": "0",
-   "as": "1"
-  },
-  {
-   "d": "2026-08-22",
-   "comp": "EPL",
-   "h": "Brentford",
-   "a": "Tottenham Hotspur",
-   "hs": "3",
-   "as": "0"
-  },
-  {
-   "d": "2026-08-22",
-   "comp": "La Liga",
-   "h": "Athletic Club",
-   "a": "Sevilla",
-   "hs": "1",
-   "as": "3"
-  },
-  {
-   "d": "2026-08-22",
-   "comp": "La Liga",
-   "h": "Valencia",
+   "h": "Real Sociedad",
    "a": "Celta Vigo",
    "hs": "0",
    "as": "0"
   },
   {
-   "d": "2026-08-22",
+   "d": "2026-09-03",
+   "comp": "Ligue 1",
+   "h": "Toulouse",
+   "a": "Lille",
+   "hs": "0",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-31",
+   "comp": "EPL",
+   "h": "Aston Villa",
+   "a": "Arsenal",
+   "hs": "0",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-31",
    "comp": "La Liga",
-   "h": "Espanyol",
-   "a": "Real Madrid",
+   "h": "Osasuna",
+   "a": "Getafe",
+   "hs": "1",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-31",
+   "comp": "La Liga",
+   "h": "Barcelona",
+   "a": "Rayo Vallecano",
+   "hs": "5",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "EPL",
+   "h": "Sunderland",
+   "a": "Fulham",
+   "hs": "1",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "EPL",
+   "h": "Chelsea",
+   "a": "Brighton & Hove Albion",
+   "hs": "4",
+   "as": "3"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "EPL",
+   "h": "Leeds United",
+   "a": "Brentford",
+   "hs": "1",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "EPL",
+   "h": "Manchester United",
+   "a": "Ipswich Town",
+   "hs": "5",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "La Liga",
+   "h": "Real Madrid",
+   "a": "Malaga",
+   "hs": "4",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "La Liga",
+   "h": "Deportivo La Coruna",
+   "a": "Valencia",
+   "hs": "3",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "La Liga",
+   "h": "Celta Vigo",
+   "a": "Athletic Club",
+   "hs": "0",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "Bundesliga",
+   "h": "SC Freiburg",
+   "a": "Werder Bremen",
+   "hs": "4",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "Bundesliga",
+   "h": "FC Augsburg",
+   "a": "Schalke 04",
+   "hs": "3",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "Ligue 1",
+   "h": "Paris FC",
+   "a": "Nice",
+   "hs": "3",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "Ligue 1",
+   "h": "Stade Rennais",
+   "a": "Le Mans",
+   "hs": "3",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-30",
+   "comp": "Ligue 1",
+   "h": "Monaco",
+   "a": "Marseille",
+   "hs": "2",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "EPL",
+   "h": "Liverpool",
+   "a": "Nottingham Forest",
+   "hs": "2",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "EPL",
+   "h": "AFC Bournemouth",
+   "a": "Everton",
+   "hs": "1",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "EPL",
+   "h": "Coventry City",
+   "a": "Hull City",
+   "hs": "0",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "EPL",
+   "h": "Tottenham Hotspur",
+   "a": "Newcastle United",
+   "hs": "0",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "La Liga",
+   "h": "Levante",
+   "a": "Real Betis",
+   "hs": "5",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "La Liga",
+   "h": "Real Sociedad",
+   "a": "Espanyol",
+   "hs": "2",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "La Liga",
+   "h": "Sevilla",
+   "a": "Atletico Madrid",
+   "hs": "1",
+   "as": "3"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Bundesliga",
+   "h": "RB Leipzig",
+   "a": "Borussia Monchengladbach",
+   "hs": "3",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Bundesliga",
+   "h": "Mainz 05",
+   "a": "SC Paderborn",
+   "hs": "0",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Bundesliga",
+   "h": "Union Berlin",
+   "a": "Eintracht Frankfurt",
+   "hs": "3",
+   "as": "3"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Bundesliga",
+   "h": "SV Elversberg",
+   "a": "Bayer Leverkusen",
+   "hs": "3",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Bundesliga",
+   "h": "FC Koln",
+   "a": "TSG Hoffenheim",
+   "hs": "3",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Bundesliga",
+   "h": "Borussia Dortmund",
+   "a": "Hamburger SV",
+   "hs": "2",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Ligue 1",
+   "h": "Strasbourg",
+   "a": "Lens",
+   "hs": "2",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Ligue 1",
+   "h": "Lorient",
+   "a": "Troyes AC",
    "hs": "1",
    "as": "2"
   },
   {
-   "d": "2026-08-21",
+   "d": "2026-08-29",
+   "comp": "Ligue 1",
+   "h": "Olympique Lyonnais",
+   "a": "Le Havre",
+   "hs": "1",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Ligue 1",
+   "h": "AJ Auxerre",
+   "a": "Angers SCO",
+   "hs": "1",
+   "as": "3"
+  },
+  {
+   "d": "2026-08-29",
+   "comp": "Ligue 1",
+   "h": "Brest",
+   "a": "Toulouse",
+   "hs": "2",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-28",
    "comp": "EPL",
-   "h": "Arsenal",
-   "a": "Coventry City",
+   "h": "Crystal Palace",
+   "a": "Manchester City",
+   "hs": "1",
+   "as": "4"
+  },
+  {
+   "d": "2026-08-28",
+   "comp": "La Liga",
+   "h": "Racing Santander",
+   "a": "Elche",
    "hs": "3",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-28",
+   "comp": "La Liga",
+   "h": "Alaves",
+   "a": "Villarreal",
+   "hs": "1",
+   "as": "0"
+  },
+  {
+   "d": "2026-08-28",
+   "comp": "Bundesliga",
+   "h": "Bayern",
+   "a": "VfB Stuttgart",
+   "hs": "5",
+   "as": "1"
+  },
+  {
+   "d": "2026-08-28",
+   "comp": "Ligue 1",
+   "h": "Lille",
+   "a": "PSG",
+   "hs": "2",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-27",
+   "comp": "La Liga",
+   "h": "Celta Vigo",
+   "a": "Osasuna",
+   "hs": "1",
+   "as": "2"
+  },
+  {
+   "d": "2026-08-27",
+   "comp": "La Liga",
+   "h": "Barcelona",
+   "a": "Athletic Club",
+   "hs": "2",
    "as": "0"
   }
  ]
