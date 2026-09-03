@@ -22,6 +22,9 @@ OUT = ROOT / "brief.html"
 PT = ZoneInfo("America/Los_Angeles")
 
 SHELL_SRC = ROOT / "clubs.html"         # single source of truth for theme + header CSS
+CAL_SRC = ROOT / "cal.html"             # bg/tag flags + UCL_BIG decide which results are key
+COMP_LABEL = {"EPL": "EPL", "La Liga": "LaLiga", "Bundesliga": "Bundesliga",
+              "Ligue 1": "Ligue 1", "UCL": "UCL"}
 
 
 def esc(s):
@@ -88,6 +91,26 @@ def results_html():
         return ""
 
 
+def key_matcher():
+    """() -> f(comp, home, away) -> bool. A result is a key match when the
+    calendar flags that fixture (bg: the big-six round-robin, the derbies, the
+    heavyweight UCL ties, or a tagged tie) or, for UCL rows the calendar does not
+    carry, when both sides are in UCL_BIG. Same bar as cal.html's ◎ Key Matches."""
+    src = CAL_SRC.read_text(encoding="utf-8")
+    m = re.search(r"const DATA =[ \t]*\n(\[.*?\]);?\n", src, re.S)
+    flagged = set()
+    for row in json.loads(m.group(1)) if m else []:
+        if row.get("a") and (row.get("bg") or row.get("tag")):
+            flagged.add((row["c"], row["h"], row["a"]))
+    m = re.search(r"const UCL_BIG = new Set\((\[[^\]]*\])\)", src)
+    big = set(json.loads(m.group(1))) if m else set()
+    def is_key(comp, h, a):
+        if (comp, h, a) in flagged:
+            return True
+        return comp == "UCL" and h in big and a in big
+    return is_key
+
+
 def _results_html():
     if not SCORES.exists():
         return ""
@@ -95,22 +118,39 @@ def _results_html():
     rows = sc.get("results") or []
     if not rows:
         return ""
+    try:
+        is_key = key_matcher()
+    except Exception as e:               # a calendar edit must not cost the section
+        print(f"key-match flags unavailable ({type(e).__name__}: {e})", file=sys.stderr)
+        is_key = lambda comp, h, a: False
     # scores.py exits 0 on outages by design, so an old file can linger —
     # a two-day-stale feed must not keep rendering as "the last 7 days"
     fetched = sc.get("fetched") or ""
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=48)).isoformat()
     if fetched[:19] < cutoff[:19]:
         return ""
+    rows = [r for r in rows[:40] if r.get("d") and r.get("comp")]
     def one(r):
         d = datetime.fromisoformat(r["d"]).strftime("%a %b %-d")
+        key = is_key(r["comp"], r["h"], r["a"])
         line = f'{esc(r["h"])} <b>{esc(r["hs"])}\u2013{esc(r["as"])}</b> {esc(r["a"])}'
-        return (f'    <li class="ritem"><span class="rcomp">{esc(r["comp"])}</span>'
-                f'<span class="rline">{line}</span><span class="rdate">{d}</span></li>')
-    body = "\n".join(one(r) for r in rows[:40] if r.get("d") and r.get("comp"))
+        mark = '<span class="rkey" title="key match">\u25ce</span>' if key else ""
+        return (f'    <li class="ritem" data-comp="{esc(r["comp"])}" data-key="{1 if key else 0}">'
+                f'<span class="rcomp">{esc(COMP_LABEL.get(r["comp"], r["comp"]))}</span>'
+                f'<span class="rline">{line}{mark}</span><span class="rdate">{d}</span></li>')
+    body = "\n".join(one(r) for r in rows)
+    comps = [c for c in COMP_LABEL if any(r["comp"] == c for r in rows)]
+    nkey = sum(1 for r in rows if is_key(r["comp"], r["h"], r["a"]))
+    chips = ('<button class="rchip on" data-f="all">All</button>'
+             + f'<button class="rchip" data-f="key" title="big clubs facing each other \u00b7 {nkey} this week">\u25ce Key</button>'
+             + "".join(f'<button class="rchip" data-f="{esc(c)}">{esc(COMP_LABEL[c])}</button>' for c in comps))
     note = f'finals from the last {sc.get("days", 7)} days \u00b7 football-data.org'
     return (f'<div class="eyebrow"><h2>Final Scores</h2><div class="rule"></div>'
-            f'<div class="tag">results</div></div>\n'
-            f'<p class="snote">{note}</p><ul class="rlist">\n{body}\n</ul>\n')
+            f'<div class="tag"><span id="rcount">{len(rows)}</span> results</div></div>\n'
+            f'<p class="snote">{note}</p>\n'
+            f'<div class="rfilter" role="group" aria-label="Filter results">{chips}</div>\n'
+            f'<ul class="rlist" id="rlist">\n{body}\n</ul>\n'
+            f'<p class="rempty" id="rempty" hidden>No finals in that view this week.</p>\n')
 
 
 def main():
@@ -192,7 +232,16 @@ def main():
   .corr{{color:var(--ucl);border:1px solid var(--hair);border-radius:999px;padding:1px 6px}}
   .wtag{{color:var(--soft);background:var(--wash);border-radius:999px;padding:1px 8px}}
   .ferr{{color:var(--l1)}}
+  .rfilter{{display:inline-flex;flex-wrap:wrap;border:1px solid var(--hair);border-radius:6px;overflow:hidden;margin:0 0 12px}}
+  .rchip{{font-family:var(--body);font-weight:500;font-size:11.5px;letter-spacing:.03em;color:var(--muted);background:none;border:none;border-right:1px solid var(--hair);padding:6px 13px;cursor:pointer;transition:.15s}}
+  .rchip:last-child{{border-right:none}}
+  .rchip:hover{{color:var(--chalk);background:var(--wash)}}
+  .rchip.on{{color:var(--chalk);background:var(--wash);font-weight:600}}
+  .rchip:focus-visible{{outline:2px solid var(--ucl);outline-offset:-2px}}
+  .rkey{{color:var(--gold,#a87c1f);margin-left:8px;font-size:12px}}
+  .rempty{{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:0 0 30px}}
   .rlist{{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:6px;max-width:640px}}
+  .rlist:has(+ .rempty:not([hidden])){{margin-bottom:8px}}
   .ritem{{display:flex;align-items:baseline;gap:12px;border:1px solid var(--hair);border-radius:8px;padding:8px 14px;background:var(--card);font-size:13.5px}}
   .ritem:hover{{border-color:var(--hair2)}}
   .rcomp{{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex:none;width:74px}}
@@ -240,6 +289,26 @@ def main():
 
 </div>
 <script>
+(function(){{
+  var bar=document.querySelector('.rfilter'); if(!bar) return;
+  var rows=[].slice.call(document.querySelectorAll('#rlist .ritem'));
+  var chips=[].slice.call(bar.querySelectorAll('.rchip'));
+  var count=document.getElementById('rcount'), empty=document.getElementById('rempty');
+  function apply(f){{
+    var n=0;
+    rows.forEach(function(li){{
+      var show = f==='all' || (f==='key' ? li.dataset.key==='1' : li.dataset.comp===f);
+      li.hidden=!show; if(show) n++;
+    }});
+    chips.forEach(function(c){{c.classList.toggle('on',c.dataset.f===f);}});
+    if(count) count.textContent=n;
+    if(empty) empty.hidden=n>0;
+    try{{localStorage.setItem('mdbrief-scores',f);}}catch(e){{}}
+  }}
+  chips.forEach(function(c){{c.addEventListener('click',function(){{apply(c.dataset.f);}});}});
+  var saved=null; try{{saved=localStorage.getItem('mdbrief-scores');}}catch(e){{}}
+  if(saved && chips.some(function(c){{return c.dataset.f===saved;}})) apply(saved);
+}})();
 document.getElementById('themeToggle').addEventListener('click',function(){{
   var next=document.documentElement.dataset.theme==='dark'?'light':'dark';
   document.documentElement.dataset.theme=next;
