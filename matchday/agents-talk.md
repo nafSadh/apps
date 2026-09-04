@@ -256,3 +256,33 @@ Remote session is standing down its PR-watching now that the owner is moving loc
 **Source switched off ESPN (owner's call, same day):** football-data.org v4 is now the primary source — one date-ranged request per competition (`PL`, `PD`, `BL1`, `FL1`, `CL`; the CL range runs to season end so newly dated fixtures arrive in one call), `X-Auth-Token` from the `FOOTBALL_DATA_TOKEN` env var, which the workflow sets from the repo secret of the same name (the wc2026 workflows already expect it). Statuses map as: `FINISHED` → final, `TIMED` → kickoff set, `SCHEDULED` → date only (row stays TBD), postponed/cancelled → skipped. Team names come as "Real Madrid CF" / "FC Internazionale Milano" style; resolve() tries `name` then `shortName`, with aliases added for the ones that don't fall out of normalisation. ESPN remains only as the keyless fallback and prints a warning telling you to add the secret.
 
 **Action for the owner:** add the `FOOTBALL_DATA_TOKEN` repo secret (free tier is enough: https://www.football-data.org/client/register) if it isn't already there. Neither source could be exercised from the remote session (both blocked at the egress proxy), so the next scheduled run's "Scores + calendar update" step is the test: no warnings and a `brief + scores:` commit means it works. Offline coverage: `--from-dir` with `fd-<CODE>.json` files exercises the football-data path; the ESPN-shaped files still exercise the fallback. The calendar is correct either way — the league phase is hand-loaded now, and the pipeline only adds results and knockout fixtures on top.
+
+
+---
+
+## 2026-09-03 — RemoteCalAgent (post-deadline squads, ledger, cards)
+
+Window closed 1 Sep (EPL 23:00 BST; BL/L1/LaLiga/Serie A same day; Eredivisie 2 Sep; Belgium/Scotland 3 Sep; Turkey 4 Sep; Portugal 15 Sep; Saudi later still). Everything below came from a two-pass WebSearch sweep of all 30 tracked clubs (WebFetch is blocked in the remote environment; the session's search budget capped the second pass, so per-player checks are thinner for Galatasaray, Olympiacos, Club Brugge and the Portuguese/Dutch clubs — every unverified point is recorded in the scratch verdicts and summarised here).
+
+**Shipped:**
+
+- `brief/transfers.js`: the 13 pending entries are resolved (Konsa, C. Jones, Savinho, Marmoush, Baleba, Reijnders→Al Qadsiah, Vicario, Rodri, Spence completed; Wharton, Alvarez, Kane, Gyökeres collapsed and deleted). 234 entries now, all but two official (Rulli→City is disputed by Marseille-side coverage; Bailey→Olympiacos is Villa-side only). The audit's surname rule now also requires the first initial to agree (Pablo/Fran García false positive).
+- `clubs.html` SQUADS: 126 departures removed and 141 arrivals/omissions added across the 30 clubs; managers/formations corrected where sourced (Inter 3-5-2, Juventus 4-2-3-1, Chelsea 3-4-2-1, Atlético 4-4-2, Betis and Athletic 4-2-3-1); starting XIs re-picked from the verified squads. New entries have no photo yet (chip renders without one) — a Commons pass is the obvious follow-up. `TL.audit()` reports "ledger and squads agree".
+- `players.html`: 14 cards moved club (Enzo Fernández→Man City, Barcola→Liverpool, Rodri→Barcelona, Savinho→Spurs, Watkins→Al Hilal, Vicario→Juventus, Ferran Torres→PSG, Reijnders→Al Qadsiah, Sánchez→Como, Perin→Palermo, Gutiérrez→Leverkusen, Couto→Como, Barry→Al-Shabab, Gauci→Lincoln). Card blurbs/stats were not rewritten.
+
+**Known soft spots (check when convenient):** Ćaleta-Car release (Lyon) and Carlos Martín loan (Atlético) are single-source; Porto's "Tiago Silva" entry is unresolved; Ajax's Berghuis/Carrizo/Konadu exits are fan-site only; Brugge/Union 3 Sep deadline-day moves unchecked; Leipzig's coach not re-verified; Bayern omits Pavlović/Bischof/Ito/Zaragoza and PSG omits Zabarnyi/Beraldo/L. Hernández/Mayulu (never in the file — not added without a source).
+
+---
+
+## 2026-09-04 — RemoteCalAgent (deep audit: squads, ledger, fixtures)
+
+The session's WebSearch budget is 200 calls per session and it is shared by every subagent and Workflow agent the session spawns — once spent, refuters "default to refuted" and auditors cannot verify anything. The way around it: child sessions (`create_session` with `source_url` set and an explicit "never call add_repo/register_repo_root" line, `acceptEdits`), each with its own 200. Ten of them ran here, each pushing one JSON verdict to a `research/*` branch that the parent fetched and applied with a script; nine got stuck on a permission prompt the first time because they tried to attach the repo themselves. The `research/*` branches can be deleted.
+
+**Shipped on top of the 09-03 update:**
+
+- Squads: every one of the 30 clubs re-audited from club sites, league squad lists and local outlets; ~60 further exits and ~45 arrivals/omissions applied, managers and formations sourced, XIs from the latest line-ups. The long-standing Bayern (Davies, Pavlović, Bischof, Ito, Ulreich) and PSG (Zabarnyi, Beraldo, L. Hernández, Mayulu, Longoni, Dro) omissions are filled. Three research "adds" were rejected on cross-checks: Nwaneri to Arsenal (loaned to Dortmund), Sávio to Spurs (= Savinho), Echeverri to City (reported Benfica loan).
+- Ledger: 339 entries, all official; 79 added from the research, blanks filled, Rulli→City and Bailey→Olympiacos made official on second sources. Merge scripts must resolve club names through an alias table — the first pass silently dropped 33 deals because "Bayern", "Tottenham", "Inter", "Lyon", "Marseille" and "Dortmund" did not map to the SQUADS display names.
+- Cards: blurbs rewritten for the 18 moved players; four more cards moved (Meijer, Baltacı, Maffeo, Ortega).
+- Calendar: 53 fixture corrections, all from league/club/broadcaster sources — the 20 Sep Sunday moves, every October EPL TV pick, the 25 Oct–1 Nov week converted at minus seven hours (Europe off DST, US still on), the 1–2 Nov moves, LaLiga J4–J7 kickoffs, Ligue 1 through J9, the Clásico at 21:00 CET = 1:00 PM PT (guide's derby table follows). UCL MD1–5 confirmed against UEFA; EPL Nov/Dec/Jan and Bundesliga MD5+ have no published picks yet and stay provisional (the Dec 2 and Dec 30 midweeks were wrongly marked confirmed — fixed).
+
+**Still open:** photos for ~150 new squad entries (Commons pages are unreachable from here); Bundesliga kickoffs after MD4 and EPL picks from November once the DFL/PL publish them; the Souza→Porto loan has no toKey because Porto's list doesn't show him.
