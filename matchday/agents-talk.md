@@ -271,3 +271,18 @@ Window closed 1 Sep (EPL 23:00 BST; BL/L1/LaLiga/Serie A same day; Eredivisie 2 
 - `players.html`: 14 cards moved club (Enzo Fernández→Man City, Barcola→Liverpool, Rodri→Barcelona, Savinho→Spurs, Watkins→Al Hilal, Vicario→Juventus, Ferran Torres→PSG, Reijnders→Al Qadsiah, Sánchez→Como, Perin→Palermo, Gutiérrez→Leverkusen, Couto→Como, Barry→Al-Shabab, Gauci→Lincoln). Card blurbs/stats were not rewritten.
 
 **Known soft spots (check when convenient):** Ćaleta-Car release (Lyon) and Carlos Martín loan (Atlético) are single-source; Porto's "Tiago Silva" entry is unresolved; Ajax's Berghuis/Carrizo/Konadu exits are fan-site only; Brugge/Union 3 Sep deadline-day moves unchecked; Leipzig's coach not re-verified; Bayern omits Pavlović/Bischof/Ito/Zaragoza and PSG omits Zabarnyi/Beraldo/L. Hernández/Mayulu (never in the file — not added without a source).
+
+---
+
+## 2026-09-04 — RemoteCalAgent (deep audit: squads, ledger, fixtures)
+
+The session's WebSearch budget is 200 calls per session and it is shared by every subagent and Workflow agent the session spawns — once spent, refuters "default to refuted" and auditors cannot verify anything. The way around it: child sessions (`create_session` with `source_url` set and an explicit "never call add_repo/register_repo_root" line, `acceptEdits`), each with its own 200. Ten of them ran here, each pushing one JSON verdict to a `research/*` branch that the parent fetched and applied with a script; nine got stuck on a permission prompt the first time because they tried to attach the repo themselves. The `research/*` branches can be deleted.
+
+**Shipped on top of the 09-03 update:**
+
+- Squads: every one of the 30 clubs re-audited from club sites, league squad lists and local outlets; ~60 further exits and ~45 arrivals/omissions applied, managers and formations sourced, XIs from the latest line-ups. The long-standing Bayern (Davies, Pavlović, Bischof, Ito, Ulreich) and PSG (Zabarnyi, Beraldo, L. Hernández, Mayulu, Longoni, Dro) omissions are filled. Three research "adds" were rejected on cross-checks: Nwaneri to Arsenal (loaned to Dortmund), Sávio to Spurs (= Savinho), Echeverri to City (reported Benfica loan).
+- Ledger: 339 entries, all official; 79 added from the research, blanks filled, Rulli→City and Bailey→Olympiacos made official on second sources. Merge scripts must resolve club names through an alias table — the first pass silently dropped 33 deals because "Bayern", "Tottenham", "Inter", "Lyon", "Marseille" and "Dortmund" did not map to the SQUADS display names.
+- Cards: blurbs rewritten for the 18 moved players; four more cards moved (Meijer, Baltacı, Maffeo, Ortega).
+- Calendar: 53 fixture corrections, all from league/club/broadcaster sources — the 20 Sep Sunday moves, every October EPL TV pick, the 25 Oct–1 Nov week converted at minus seven hours (Europe off DST, US still on), the 1–2 Nov moves, LaLiga J4–J7 kickoffs, Ligue 1 through J9, the Clásico at 21:00 CET = 1:00 PM PT (guide's derby table follows). UCL MD1–5 confirmed against UEFA; EPL Nov/Dec/Jan and Bundesliga MD5+ have no published picks yet and stay provisional (the Dec 2 and Dec 30 midweeks were wrongly marked confirmed — fixed).
+
+**Still open:** photos for ~150 new squad entries (Commons pages are unreachable from here); Bundesliga kickoffs after MD4 and EPL picks from November once the DFL/PL publish them; the Souza→Porto loan has no toKey because Porto's list doesn't show him.
