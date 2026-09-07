@@ -1,12 +1,12 @@
 {
- "fetched": "2026-09-06T16:32:21+00:00",
+ "fetched": "2026-09-07T18:27:42+00:00",
  "counts": {
-  "raw": 318,
-  "deduped": 308,
+  "raw": 342,
+  "deduped": 333,
   "byTier": {
    "1": 44,
-   "2": 134,
-   "3": 130
+   "2": 151,
+   "3": 138
   }
  },
  "slimByTier": {
@@ -16,19 +16,6 @@
  },
  "errors": [],
  "items": [
-  {
-   "source": "BBC Gossip",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Tottenham enquire about Pulisic - Monday's gossip",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c89jxnelpywo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-08-30T20:59:21+00:00",
-   "watch": [
-    "Liverpool",
-    "Tottenham"
-   ],
-   "summary": "Spurs turn attention to Christian Pulisic, Liverpool and Everton show interest in Stuttgart winger Jamie Leweling, and Crystal Palace want to keep Dean Henderson after Nottingham Forest bid."
-  },
   {
    "source": "BBC Gossip",
    "tier": 1,
@@ -85,30 +72,6 @@
    "summary": "Everton weigh up moves for Jamie Vardy or Anthony Martial, Wilfried Zaha could join AC Milan, Estevao Willian considers move from Chelsea."
   },
   {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Forest latest: Glasner lists THREE moments officials got wrong in Spurs draw",
-   "link": "https://www.skysports.com/football/live-blog/11095/13279316/nottingham-forest-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-09-04T18:00:00+00:00",
-   "watch": [
-    "Tottenham"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Liverpool latest: Sporting director Hughes steps down",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025501/liverpool-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-09-04T19:55:00+00:00",
-   "watch": [
-    "Liverpool"
-   ],
-   "summary": ""
-  },
-  {
    "source": "BBC Gossip",
    "tier": 1,
    "kind": "rumour",
@@ -128,69 +91,11 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Spurs fire another blank in goalless draw with Forest",
-   "link": "https://www.skysports.com/football/nottingham-forest-vs-tottenham-hotspur/report/559473",
-   "published": "2026-09-05T14:14:00+00:00",
-   "watch": [
-    "Tottenham"
-   ],
-   "summary": "Tottenham are still searching for their first goal of the Premier League season as they drew 0-0 at Nottingham Forest."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Haaland hits new record and Fernandez shines as Man City beat Coventry",
-   "link": "https://www.skysports.com/football/manchester-city-vs-coventry-city/report/559471",
-   "published": "2026-09-05T17:00:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Erling Haaland showed how much he loves playing against newly promoted sides by scoring the winner in a nervy 1-0 victory over Coventry to keep Manchester City's record under Enzo Maresca perfect."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Haaland scores 300th career goal as Man City edge Coventry",
-   "link": "https://www.skysports.com/watch/video/13581902/manchester-city-1-0-coventry-premier-league-highlights",
-   "published": "2026-09-05T17:11:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "FREE TO WATCH: Highlights from Manchester City’s match against Coventry in the Premier League."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
    "title": "Spurs latest: Medical staff encouraged subs that cost momentum, says De Zerbi",
    "link": "https://www.skysports.com/football/live-blog/11095/13025489/tottenham-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
    "published": "2026-09-05T17:30:00+00:00",
    "watch": [
     "Tottenham"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Hits and misses: Gakpo steals Barcola's thunder as Anderson passes like Rodri",
-   "link": "https://www.skysports.com/football/news/11095/13581444/cody-gakpo-outshines-new-liverpool-signing-bradley-barcola-as-elliot-anderson-gives-his-best-rodri-impression-pl-hits-and-misses",
-   "published": "2026-09-05T20:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Man City latest: Fernandez's debut performance analysed",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025499/man-city-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-09-05T20:00:00+00:00",
-   "watch": [
-    "Man City"
    ],
    "summary": ""
   },
@@ -205,66 +110,112 @@
     "Liverpool",
     "Tottenham"
    ],
-   "also": [
-    "BBC Sport"
-   ],
    "summary": "Liverpool may make another move for Crystal Palace winger Ismaila Sarr in January and Tottenham's Richarlison may look for a Saudi switch."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Papers: Saudi move most likely for Richarlison",
-   "link": "https://www.skysports.com/football/news/11095/13582156/tottenham-transfer-news-saudi-pro-league-most-likely-destination-for-richarlison-after-being-left-out-of-pl-squad-paper-talk",
-   "published": "2026-09-05T22:30:00+00:00",
-   "watch": [],
-   "summary": "The top stories and transfer rumours from Sunday's newspapers..."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Celtic come from behind to win at St Mirren",
-   "link": "https://www.skysports.com/watch/video/13582162/st-mirren-1-2-celtic-scottish-premiership-highlights",
-   "published": "2026-09-05T23:30:00+00:00",
+   "title": "No blockbuster signing but Arsenal's attack still finding another level",
+   "link": "https://www.skysports.com/football/news/11095/13582329/martin-odegaard-kai-havertz-and-bukayo-saka-show-arsenal-can-level-up-their-attack-even-without-the-blockbuster-signing-they-craved",
+   "published": "2026-09-06T19:00:00+00:00",
    "watch": [
-    "Celtic"
+    "Arsenal"
    ],
-   "summary": "Highlights of the Scottish Premiership match between St Mirren and Celtic."
+   "summary": "Midway through the second half at the Emirates Stadium, Martin Odegaard picked up the ball in an inside-right position and threaded a pass towards Kai Havertz, whose flick allowed the onrushing Bukayo Saka to test Emilia"
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Rangers 1-0 Motherwell",
-   "link": "https://www.skysports.com/watch/video/13582158/rangers-1-0-motherwell-scottish-premiership-highlights",
-   "published": "2026-09-05T23:30:00+00:00",
-   "watch": [],
-   "summary": "Highlights from the Scottish Premiership match between Rangers and Motherwell."
+   "title": "Nev fearful Man Utd's habit of conceding goals isn't going away",
+   "link": "https://www.skysports.com/football/news/11095/13582539/everton-2-2-man-utd-gary-neville-fearful-that-manchester-uniteds-liability-of-conceding-goals-isnt-going-away",
+   "published": "2026-09-06T19:55:00+00:00",
+   "watch": [
+    "Man United"
+   ],
+   "summary": "Gary Neville is fearful that Manchester United's habit of conceding goals isn't going away after they shipped two goals for the third game running at Everton."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Infantino to stand for re-election as FIFA president",
-   "link": "https://www.skysports.com/football/news/11095/13582278/gianni-infantino-fifa-president-confirms-he-will-stand-for-re-election-in-march",
-   "published": "2026-09-06T12:56:00+00:00",
-   "watch": [],
-   "summary": "Gianni Infantino will stand for re-election as FIFA president next March."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Neto hits the post with Arsenal and Chelsea level in thrilling derby LIVE!",
-   "link": "https://www.skysports.com/football/arsenal-vs-chelsea/live/559464",
-   "published": "2026-09-06T14:00:00+00:00",
+   "title": "'All over the place' - Neville questions Chelsea defence after defeat",
+   "link": "https://www.skysports.com/football/news/11095/13582543/arsenal-2-1-chelsea-gary-neville-questions-chelseas-all-over-the-place-back-three-after-defeat-but-is-confident-they-can-finish-top-three",
+   "published": "2026-09-06T20:14:00+00:00",
    "watch": [
     "Arsenal",
     "Chelsea"
    ],
+   "summary": "Gary Neville criticised Chelsea's \"all over the place\" back three in their Super Sunday defeat to Arsenal - but believes Xabi Alonso's side are capable of finshing second or third in the Premier League table."
+  },
+  {
+   "source": "BBC Gossip",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Chelsea plot early move for Scott - Monday's gossip",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cj3dj6djrd3o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-06T20:54:40+00:00",
+   "watch": [
+    "Chelsea",
+    "Man United"
+   ],
    "also": [
-    "Sky Sports"
+    "BBC Sport"
+   ],
+   "summary": "Chelsea plot early move for Bournemouth midfielder Alex Scott, Chelsea winger Pedro Neto attracts interest, and Manchester United and Newcastle United inquire about Christopher Nkunku."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Rangers' Shankland blow, Celtic lose Yang & managers already under pressure",
+   "link": "https://www.skysports.com/football/news/11095/13582658/scottish-premiership-rangers-lawrence-shankland-blow-celtic-lose-hyun-jun-yang-is-pressure-on-at-hibs-aberdeen-kilmarnock",
+   "published": "2026-09-07T09:00:00+00:00",
+   "watch": [
+    "Celtic"
+   ],
+   "summary": "Injury blows, international losses and pressure mounting on THREE managers."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Euro Debrief: Parrott knocks Madrid off their perch as Barca show brilliance",
+   "link": "https://www.skysports.com/football/news/11095/13580730/troy-parrott-stuns-old-boss-jose-mourinho-as-kylian-mbappe-costs-real-madrid-plus-lots-more-in-the-euro-debrief",
+   "published": "2026-09-07T09:00:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Police investigating Bielik incident with fan at Portsmouth",
+   "link": "https://www.skysports.com/football/news/11095/13582657/krystian-bielik-hampshire-police-investigating-incident-between-cardiff-midfielder-and-portsmouth-supporter",
+   "published": "2026-09-07T09:10:00+00:00",
+   "watch": [],
+   "summary": "Hampshire Police are investigating an incident between Cardiff's Krystian Bielik and a home supporter during Portsmouth's 2-0 win at Fratton Park on Saturday."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "EFL latest: Is Vardy 'ready to be unleashed' for Burnley?",
+   "link": "https://www.skysports.com/football/live-blog/11095/13163353/championship-news-transfer-latest-and-gossip-plus-efl-updates-from-league-one-and-league-two",
+   "published": "2026-09-07T09:19:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Man Utd latest: Have your say! Are United under pressure after start to the season?",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025492/man-utd-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-09-07T09:48:00+00:00",
+   "watch": [
+    "Man United"
    ],
    "summary": ""
   },
@@ -272,814 +223,515 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Crazy own goal sees Birmingham hold Wolves",
-   "link": "https://www.skysports.com/football/birmingham-city-vs-wolverhampton-wanderers/report/560546",
-   "published": "2026-09-06T14:00:00+00:00",
-   "watch": [],
-   "summary": "Birmingham and Wolves played out a chaotic 2-2 draw as Jackson Tchatchoua's own goal saw the spoils shared."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "WSL: New signing Baum shines for Arsenal as Man City start defence with win",
-   "link": "https://www.skysports.com/football/news/11095/13581388/womens-super-league-round-up-lisa-baum-shines-on-arsenal-debut-to-beat-brighton-and-tottenham-dominate-west-ham",
-   "published": "2026-09-06T14:00:00+00:00",
+   "title": "Merse: I worry about De Zerbi criticising Spurs forwards and medical staff",
+   "link": "https://www.skysports.com/football/news/11095/13582716/tottenham-roberto-de-zerbis-criticism-of-spurs-forwards-and-medical-staff-worrying-says-paul-merson",
+   "published": "2026-09-07T11:32:00+00:00",
    "watch": [
-    "Arsenal",
-    "Man City",
     "Tottenham"
    ],
-   "summary": "Sky Sports' round-up of Sunday's action across the Women's Super League as new signings for Arsenal and Tottenham shine to secure wins for both clubs."
+   "summary": "In his latest Sky Sports column, Paul Merson says he would be worried by Roberto De Zerbi's post-match comments criticising Spurs' forward players and medical staff."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Everton latest: George was problem for Man Utd, he'll get better too, says Moyes",
+   "title": "Ref Watch: Williams disallowed goal and Gabriel's Martinez head-kick analysed",
+   "link": "https://www.skysports.com/football/live-blog/11095/13576553/ref-watch-premier-league-weekend-reaction-live-dermot-gallagher-assesses-the-big-refereeing-decisions",
+   "published": "2026-09-07T12:00:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Kane proud to be in Ballon d’Or running after ‘best season by far’",
+   "link": "https://www.skysports.com/football/live-blog/11095/13575723/european-football-news-and-transfers-barcelona-real-madrid-psg-bayern-munich-latest-and-more",
+   "published": "2026-09-07T12:52:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Putellas outshone by Cascarino on debut but is spine of London City's success",
+   "link": "https://www.skysports.com/football/news/11095/13582679/womens-super-league-alexia-putellas-debut-for-london-city-analysed-with-more-on-man-city-and-chelsea",
+   "published": "2026-09-07T13:00:00+00:00",
+   "watch": [],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Sky Sports columnist Laura Hunter analyses the big talking points from the first round of Women's Super League matches, bringing you closer to the key stories at the heart of the women's game."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Newcastle latest: Ramsey ready to step up after Tonali and Guimaraes exits",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025496/newcastle-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-09-07T13:20:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Leicester have sunk to new low under Martin but can he turn it around?",
+   "link": "https://www.skysports.com/football/news/11095/13582797/leicester-city-sink-to-new-low-in-league-one-but-can-russell-martin-turn-it-around",
+   "published": "2026-09-07T13:41:00+00:00",
+   "watch": [],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "A decade ago in September 2016, Leicester City were getting ready to play in the Champions League."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Everton latest: Maitland-Niles ready to fight for his place",
    "link": "https://www.skysports.com/football/live-blog/11095/13279303/everton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-09-06T15:00:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
+   "published": "2026-09-07T15:15:00+00:00",
+   "watch": [],
    "summary": ""
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "90+5! Maitland-Niles stuns Man Utd as Everton salvage dramatic draw",
-   "link": "https://www.skysports.com/football/everton-vs-manchester-united/report/559467",
-   "published": "2026-09-06T16:15:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Manchester United were held to a pulsating 2-2 draw with Everton at the Hill Dickinson after leading twice but conceding to an outrageous 95th-minute leveller from Ainsley Maitland-Niles on his Toffees debut."
+   "title": "Barton to remain in custody ahead of trial next year",
+   "link": "https://www.skysports.com/football/live-blog/11095/12507208/football-latest-news-gossip",
+   "published": "2026-09-07T15:55:00+00:00",
+   "watch": [],
+   "summary": ""
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Late SCENES! Maitland-Niles' incredible last-gasp goal nicks point for Everton",
-   "link": "https://www.skysports.com/watch/video/13582401/everton-2-2-man-united-premier-league-highlights",
-   "published": "2026-09-06T16:19:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "FREE TO WATCH: Highlights from Everton’s match against Manchester United in the Premier League."
+   "title": "Forest latest: Edu's contract as global head of football terminated",
+   "link": "https://www.skysports.com/football/live-blog/11095/13279316/nottingham-forest-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
+   "published": "2026-09-07T16:55:00+00:00",
+   "watch": [],
+   "summary": ""
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "'Instinct and precision!' | Rogers fires Chelsea ahead inside 2 mins",
-   "link": "https://www.skysports.com/watch/video/13582414/goal-m-rogers-2-arsenal-0-1-chelsea",
-   "published": "2026-09-06T16:39:00+00:00",
+   "title": "Liverpool latest: Isak feeling 'good' and says Reds must keep pushing",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025501/liverpool-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-09-07T17:35:00+00:00",
    "watch": [
-    "Arsenal",
-    "Chelsea"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Morgan Rogers gives Chelsea an early lead inside 2 mins vs Arsenal."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "'Utter precision' as Havertz levels for Gunners",
-   "link": "https://www.skysports.com/watch/video/13582433/goal-k-havertz-25-arsenal-1-1-chelsea",
-   "published": "2026-09-06T17:02:00+00:00",
-   "watch": [
-    "Arsenal",
-    "Chelsea"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Kai Havertz finds a gap at the near post and levels for Arsenal vs Chelsea."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Chilwell seals Crystal Palace comeback win after Mitchell double at Fulham",
-   "link": "https://www.theguardian.com/football/2026/sep/05/fulham-crystal-palace-premier-league-match-report",
-   "published": "2026-09-05T16:13:47+00:00",
-   "watch": [],
-   "summary": "The managers may have changed but the result stays the same. For the fourth successive trip to this part of west London, Crystal Palace returned over the river with a win as Pierre Sage got his reign off the mark in dram"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Enzo Le Fée penalty redemption rescues point for Sunderland at Brentford",
-   "link": "https://www.theguardian.com/football/2026/sep/05/brentford-sunderland-premier-league-match-report",
-   "published": "2026-09-05T16:14:24+00:00",
-   "watch": [],
-   "summary": "True redemption, perhaps, would have been to score with a Panenka, but Enzo Le Fée didn’t quite have the chutzpah for that. His duffed dink at Brentford in January was the low point of one of Sunderland’s two worst perfo"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Glasner claims VAR was ‘guessing’ after Forest are denied winner against Spurs",
-   "link": "https://www.theguardian.com/football/2026/sep/05/nottingham-forest-tottenham-premier-league-match-report",
-   "published": "2026-09-05T17:59:25+00:00",
-   "watch": [
-    "Tottenham"
-   ],
-   "summary": "Oliver Glasner argued there was insufficient evidence to disallow Neco Williams’s goal against Tottenham, accusing the video assistant referee Peter Bankes of guessing that the Nottingham Forest defender handled and said"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "High-flying Hull stay unbeaten by holding off Aston Villa in stalemate",
-   "link": "https://www.theguardian.com/football/2026/sep/05/hull-city-aston-villa-premier-league-match-report",
-   "published": "2026-09-05T18:28:55+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "It’s never dull in Hull, as the saying goes in these parts, and after just three games the Premier League is proving to be quite some ride for Hull City supporters.Having embarrassed Manchester United here on the opening"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "European football: Martínez seals thrilling comeback for unbeaten Inter",
-   "link": "https://www.theguardian.com/football/2026/sep/05/european-football-ethan-nwaneri-dortmund-hoffenheim-athletic-bilbao-atletico-madrid-inter-napoli",
-   "published": "2026-09-05T19:50:21+00:00",
-   "watch": [
-    "Bayern",
-    "Inter",
-    "Napoli"
-   ],
-   "summary": "Champions Inter and Roma pull off stunning comebacksSchalke 0-0 Bayern Munich; Hoffenheim 2-3 DortmundLautaro Martínez scored in the 91st minute as Inter rallied from two goals down ⁠to secure a stunning 3-2 home victory"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Scottish Premiership: Celtic’s Yang completes fightback to see off St Mirren",
-   "link": "https://www.theguardian.com/football/2026/sep/05/scottish-premiership-rangers-motherwell-aberdeen-celtic",
-   "published": "2026-09-05T21:36:26+00:00",
-   "watch": [
-    "Celtic"
-   ],
-   "summary": "Celtic come from behind to win 2-1 at St MirrenRangers beat Motherwell 1-0 but lose Shankland to injuryYang Hyun-jun scored the winner as Celtic came from behind to beat an impressive St Mirren side 2-1. St Mirren were h"
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Flex your football brain with our daily quizzes",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cgmrgl3zerpo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T06:02:35+00:00",
-   "watch": [],
-   "summary": "Test your ball knowledge against today's Who Am I?, Five in Five and Brainteaser."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Who am I? Guess WSL star No 3",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c4gkdke979do?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T06:03:27+00:00",
-   "watch": [],
-   "summary": "Work out the identity of today's Women's Super League player in as few attempts as possible."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Is Bain on course to be Scotland's number one?",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c62jn6n0rvlo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T07:56:52+00:00",
-   "watch": [],
-   "summary": "With Sebastien Pocognoli looking to change the way Scotland play, might Scott Bain be the answer to his goalkeeping problems?"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Taylor ecstatic with Croke Park swansong",
-   "link": "https://www.skysports.com/boxing/news/12040/13582203/katie-taylor-ecstatic-after-beating-flora-pili-to-make-perfect-end-to-dream-career-at-dublins-croke-park",
-   "published": "2026-09-06T08:03:00+00:00",
-   "watch": [],
-   "summary": "Katie Taylor acclaimed becoming a three-time undisputed world champion in her farewell fight at Croke Park as the most special moment of her decorated career."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Scorecard: England vs Ireland, third women's ODI",
-   "link": "https://www.skysports.com/cricket/england-women-v-ireland-women/scorecard/2bcda366-f5e0-50a1-9e3e-d68c0f6994ca",
-   "published": "2026-09-06T10:18:00+00:00",
-   "watch": [],
-   "summary": "Latest score from the third and final one-day international between England and Ireland in Worcester. Watch on Sky Sports Cricket."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "England clinch 3-0 ODI series sweep of Ireland with 114-run win- as it happened",
-   "link": "https://www.skysports.com/cricket/live-blog/12040/13581569/england-vs-ireland-third-womens-odi-live-cricket-score-updates-video-and-analysis-from-final-match-of-series-in-worcester",
-   "published": "2026-09-06T10:20:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Fans furious with Robinson, but what is going wrong at Aberdeen?",
-   "link": "https://www.bbc.co.uk/sport/football/articles/ced7257g7l0o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T10:57:44+00:00",
-   "watch": [],
-   "also": [],
-   "summary": "After a fourth straight Scottish Premiership game without a goal and just one league win this season, what is wrong with Aberdeen?"
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "How much will Celtic miss Asian Games-bound Yang?",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cx2zr7jjpero?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T11:02:04+00:00",
-   "watch": [
-    "Celtic"
-   ],
-   "also": [],
-   "summary": "Yang Hyun-jun illustrated his importance to Celtic with a vital goal against St Mirren before heading off for the Asian Games."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Italian GP: Reaction to Antonelli's remarkable win on big day in title race",
-   "link": "https://www.skysports.com/f1/live-blog/12040/13581630/f1-italian-gp-live-race-updates-results-stream-highlights-from-13th-round-of-2026-formula-1-season-at-hungaroring-at-monza",
-   "published": "2026-09-06T12:20:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Police investigate Bielik fan clash at Portsmouth",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c5ym8mx573yo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T12:22:31+00:00",
-   "watch": [],
-   "summary": "Police are investigating an incident between Cardiff defender Krystian Bielik and a Portsmouth supporter during Pompey's 2-0 home win on Saturday."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Fifa president Infantino will stand for re-election",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c99d1dlpkp4o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T13:01:17+00:00",
-   "watch": [],
-   "summary": "Fifa president Gianni Infantino will stand for re-election in March, the world governing body has confirmed."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Brighton 0-1 Arsenal: Women’s Super League – as it happened",
-   "link": "https://www.theguardian.com/football/live/2026/sep/06/brighton-v-arsenal-womens-super-league-live",
-   "published": "2026-09-06T13:21:42+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": "Lisa Baum’s superb solo goal earned Arsenal a narrow win but Arturo Ruiz will take hope from his first game in charge of Brighton1 min: Arsenal pass the ball around serenely from the off. Lisa Baum and Olivia Smith are p"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "'Saka NEEDS to level up' - Nev, Wright, Carra & Sturridge debate Arsenal's attack",
-   "link": "https://www.skysports.com/watch/video/13582290/carragher-wright-neville-and-sturridge-debate-whether-saka-needs-to-step-up-more-for-arsenal",
-   "published": "2026-09-06T13:28:00+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": "Ian Wright, Jamie Carragher, Gary Neville and Daniel Sturridge debate how Arsenal's attack shapes up and whether Bukayo Saka needs to step up to another level for the Gunners."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Armstrong spurns golden chance to win derby as Birmingham and Wolves draw",
-   "link": "https://www.theguardian.com/football/2026/sep/06/birmingham-wolves-championship-match-report",
-   "published": "2026-09-06T13:40:19+00:00",
-   "watch": [],
-   "summary": "If only Adam Armstrong, the Wolves striker presented with a golden chance in the 87th minute, had shot into the same corner of the net at the Railway End that his teammate Jackson Tchatchoua had located when scoring one "
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Why Spurs' under-the-radar buy might be summer's smartest deal",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cj3d1ky2642o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T13:48:58+00:00",
-   "watch": [
-    "Tottenham"
-   ],
-   "also": [],
-   "summary": "Kirsty Hanson swapped Aston Villa for Tottenham and there is reason to believe Spurs have pulled off a recruitment masterstroke, based off her debut at Brisbane Road."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Ex-Leicester striker Vardy joins Burnley",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cdx5v3405k3o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T14:01:54+00:00",
-   "watch": [],
-   "summary": "Former Leicester City and England striker Jamie Vardy joins Burnley until the end of the season."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Embattled Fifa president Infantino declares intention to stand for re-election",
-   "link": "https://www.theguardian.com/football/2026/sep/06/fifa-president-gianni-infantino-intention-election-uefa",
-   "published": "2026-09-06T14:03:17+00:00",
-   "watch": [],
-   "summary": "Infantino is under pressure to resign after sell-off planUefa has led calls for president to quitThe Fifa president, Gianni Infantino, has reiterated his desire to stand for re-election next year despite the continuing c"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Dunkley hits ton as England clinch ODI series sweep of Ireland",
-   "link": "https://www.skysports.com/cricket/news/12040/13582326/england-clinch-odi-series-sweep-of-ireland-as-sophia-dunkley-hits-second-international-century-in-114-run-win",
-   "published": "2026-09-06T14:35:00+00:00",
-   "watch": [],
-   "summary": "England secured a 3-0 sweep of Ireland as they won the third and final one-day international of the series by 114 runs in Worcester on Sunday."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Which sub had biggest impact? Everton v Man Utd player ratings",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c78070053wvo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T15:11:29+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "How Everton and Manchester United's players rated at Hill Dickinson Stadium."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Jamie Vardy takes party to Burnley after signing deal with Championship strugglers",
-   "link": "https://www.theguardian.com/football/2026/sep/06/jamie-vardy-signs-for-burnley-championship-football",
-   "published": "2026-09-06T15:16:08+00:00",
-   "watch": [],
-   "summary": "Vardy a free agent after departing CremonesePlans to play on despite burgeoning media careerJamie Vardy has returned to English football after signing for Burnley in the Championship as a free agent.Vardy, who will be 40"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Maitland-Niles stunner rescues late point for Everton against Manchester United",
-   "link": "https://www.theguardian.com/football/2026/sep/06/everton-manchester-united-premier-league-match-report",
-   "published": "2026-09-06T15:22:16+00:00",
-   "watch": [
-    "Arsenal",
-    "Man United"
-   ],
-   "summary": "It would be putting it mildly to say Everton’s exhaustive search for a new right-back met an underwhelming response when it concluded with the signing of Ainsley Maitland-Niles on Monday. But there was an overwhelmingly "
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "US Open LIVE! Sabalenka and Alcaraz in action as they target quarter-finals",
-   "link": "https://www.skysports.com/tennis/live-blog/12040/13582160/us-open-live-scores-updates-news-commentary-results-from-new-york-with-coco-gauff-taylor-fritz-naomi-osaka-and-alexander-zverev-in-action",
-   "published": "2026-09-06T15:30:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "What a way to open your Everton account! George scores STUNNER late on",
-   "link": "https://www.skysports.com/watch/video/13582370/goal-t-george-83-everton-1-1-manchester-utd",
-   "published": "2026-09-06T15:48:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "Tyrique George scored a late stunner in Everton's Premier League clash with Manchester United."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "More heroics from the bench! Sesko heads in for Man Utd late on",
-   "link": "https://www.skysports.com/watch/video/13582376/goal-b-sesko-88-everton-1-2-manchester-utd",
-   "published": "2026-09-06T15:52:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "Benjamin Sesko's header puts Manchester United back in front late on in their Premier League clash with Everton."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "'That's OUTRAGEOUS!' - Maitland-Niles' audacious strike levels for Everton on debut",
-   "link": "https://www.skysports.com/watch/video/13582384/goal-a-maitland-niles-906-everton-2-2-manchester-utd",
-   "published": "2026-09-06T16:00:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "Ainsley Maitland-Niles score a last-minute stunner to snatch a point for Everton in their Premier League clash with Manchester United."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Carrick 'disappointed' that Man Utd could not see game out",
-   "link": "https://www.bbc.co.uk/sport/football/videos/c5ye5178e62o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-06T16:02:19+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "Manchester United boss Michael Carrick says his side made decisions that made the game more difficult as Everton rescued a point with a stoppage-time equaliser at Hill Dickinson Stadium."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "19th to victory! Antonelli sensationally wins thrilling Italian GP",
-   "link": "https://www.skysports.com/f1/news/12040/13582217/italian-gp-kimi-antonelli-sensationally-wins-thrilling-monza-race-from-george-russell-and-max-verstappen",
-   "published": "2026-09-06T16:18:00+00:00",
-   "watch": [],
-   "summary": "Kimi Antonelli completed a remarkable comeback to win his home Italian Grand Prix from 19th place after a race-long battle against Mercedes team-mate George Russell."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Arsenal v Chelsea: Premier League – live",
-   "link": "https://www.theguardian.com/football/live/2026/sep/06/arsenal-v-chelsea-premier-league-live",
-   "published": "2026-09-06T16:19:12+00:00",
-   "watch": [
-    "Arsenal",
-    "Chelsea"
-   ],
-   "summary": "Minute-by-minute updates from the action at the Emirates StadiumArsenal bank on continuity after window closesAnd now a third goal…There’s been a second goal at Hill Dickinson Stadium. Clickity click click click! Continu"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Itoje back in England squad but Lawes and Marchant made to wait",
-   "link": "https://www.skysports.com/rugby-union/news/12040/13582424/england-rugby-squad-captain-maro-itoje-returns-but-courtney-lawes-and-joe-marchant-made-to-wait-after-prem-returns",
-   "published": "2026-09-06T16:50:00+00:00",
-   "watch": [],
-   "summary": "Maro Itoje has been named in England's first squad since the summer tour but Courtney Lawes and Joe Marchant must prove themselves for Sale before being recalled."
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Barcola 4th, Rodri 20th, Cucurella 30th - Top 50 most expensive transfers this summer ranked",
-   "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNLUotN1JlM1NBbXc5V0dJbEI2SWx3cnF2NkVmOVBqTlNaNjZ2MW0yZlk1OTduSkZXbC1BTV9vUzBfQi05aTBTaFhHVWR5V3VHUTMzdFpIY3ZXNmtuanc3T0Q2SzBBaWt0SG5HU0FjTURqY0EyMHdkQkxqcGxBNzAtX2ZjdGFPOTFjdkRvR0tNdl9odmFKVV9VSnJPTGltTlA0X3UtQUxxRXYzc0JCc2RJdUxhc0xyV0IwMU0wTVZxdHFSd3U4MG9nbURUX3Ntb1Bx?oc=5",
-   "published": "2026-09-04T09:59:28+00:00",
-   "watch": [],
-   "summary": "Barcola 4th, Rodri 20th, Cucurella 30th - Top 50 most expensive transfers this summer ranked Transfermarkt"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Transfer news LIVE: Liverpool & Man Utd eye Mane as Olise to be offered release clause?",
-   "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPTUt1WVdaTEhCaEVWaHlHNFRBckgwVnpmSFJoaXVoZlNTT014VXVZMXNfWXVzWVJFR0pKQlRnVGJRd25qX1VQZjd5Qzc4eWViQzI2end6amYwekpISkFBSUxicWVudDdYNm5aM1ppV3dKNnV4LTdNUXZNZ041dzdzTkJUMk1jMEdTMHlNZnNRV09aYWVUc29nQUhKaDVvelVjRFVLOEFyb25UQzBDR3VRb2tKa25HR1VFSmJRZENRcG9mYnM0d3kwZ3QzTTVnUC1o?oc=5",
-   "published": "2026-09-05T07:00:00+00:00",
-   "watch": [
-    "Liverpool",
-    "Man United"
-   ],
-   "summary": "Transfer news LIVE: Liverpool & Man Utd eye Mane as Olise to be offered release clause? Transfermarkt"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Transfer news LIVE: Everton consider Anthony Martial as AC Milan eye Wilfred Zaha",
-   "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQS2x5ZW9wcjctaG54SFhlNXFwWExBMEMycUJlQWY4T2Q1cGlteXFKUGd5Ym9kT1Nlc0JwLXY0Z0FoSUU3Z2dzR3lUWmh3X2dnMS1qNUVxMHZ4QzNwZFBzRDl2UGtaMXBfY2RBMGFLa1ZQNXgzWlpsT0QtSVFKWGtRZVVIY3FSekowR0ROMXZadFM5QUlHTlBTVTR2Sml0NHhTMGRGcW04bnBjWGp1U1FzTEJDeHVvUk1VSWtlSUJpRGFmYXJId3c?oc=5",
-   "published": "2026-09-05T08:16:22+00:00",
-   "watch": [
-    "Milan"
-   ],
-   "summary": "Transfer news LIVE: Everton consider Anthony Martial as AC Milan eye Wilfred Zaha Transfermarkt"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Galatasaray 31st, Barcelona 5th & Arsenal 4th: The top 100 most valuable squads in the world",
-   "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPRWNIQ212aFYyM3BtWnpsYkR2WXlPbWhURlBkSFdTemNFQUVvRDVIbk9KdHljS28wdTRwLW5Lemp2aUIzT0tDNnVsSnlmZjNtNDMzMXhzYWZnMF83VjBWbWViUE1MMGxrNWZtZDQ1elNpMS1iTTJIOVBmWHNhdjZjNG84OWEtSG1HbGhjcGJYd25lTE1tZ2lwQ1NLUi1vV2puWm1aOEZLRGNQMDQ3azlZVXo5RFcwZE1HNUJRaERmUVA4Z1dDTHlMamtYUEZiTXNkTTJxX0RR?oc=5",
-   "published": "2026-09-05T09:18:06+00:00",
-   "watch": [
-    "Arsenal",
-    "Barcelona",
-    "Galatasaray"
-   ],
-   "summary": "Galatasaray 31st, Barcelona 5th & Arsenal 4th: The top 100 most valuable squads in the world Transfermarkt"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Newcastle 2-2 Bournemouth Stats: Jacob Ramsey Rescues Point as Cherries Concede Late Again",
-   "link": "https://theanalyst.com/articles/newcastle-vs-bournemouth-stats-premier-league-09-2026",
-   "published": "2026-09-05T13:51:03+00:00",
-   "watch": [],
-   "summary": "Bournemouth appeared to be heading for their first win of the season until Jacob Ramsey equalised late on for Newcastle The post Newcastle 2-2 Bournemouth Stats: Jacob Ramsey Rescues Point as Cherries Concede Late Again "
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "How to watch Ajax vs PSV: Live stream details, TV channels, team news and kick-off time for Eredivisie blockbuster",
-   "link": "https://www.fourfourtwo.com/competition/watch-ajax-vs-psv-eredivisie-2026-27",
-   "published": "2026-09-05T14:00:00+00:00",
-   "watch": [
-    "Ajax",
-    "PSV"
-   ],
-   "summary": "Here's how to watch Ajax vs PSV online from anywhere as the two Eredivisie giants renew hostilities in a fascinating early-season contest."
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "“It’s not often I’m scared, but I was scared for my kids” Former owner Theo Paphitis describes watching Millwall play in Europe",
-   "link": "https://www.fourfourtwo.com/team/its-not-often-im-scared-but-i-was-scared-for-my-kids-former-millwall-owner-theo-paphitis-describes-watching-the-club-play-in-europe",
-   "published": "2026-09-05T15:00:00+00:00",
-   "watch": [],
-   "summary": "The Lions’ run to the FA Cup final in 2004 saw them compete in Europe the following season"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "NFL 2026: The Three Divisions That Will Shape the 2026 Season",
-   "link": "https://theanalyst.com/articles/nfl-2026-three-divisions-that-will-shape-the-2026-season",
-   "published": "2026-09-05T16:11:14+00:00",
-   "watch": [],
-   "summary": "Using the Opta NFL projection model, the NFC West, AFC West and NFC North appear to be the divisions that could steer the 2026 season. The post NFL 2026: The Three Divisions That Will Shape the 2026 Season appeared first"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Miljan Krpic - Popularity ranking - Player detail",
-   "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNR0lmdTZSRHdXYTh5S0FPU09iejcyeFo1Z29XT1F4VmlhUExlR2xfaVp3cDh6YlhqSDBFLVJJZXdLbzlOb29wb3g2RENWNFVVSkhQVHBQaHlRQ3VGbXpod3lxTFAtWjByeG94bmhHdE5oRndNa0Fsc3Q1UE9TSjNySHNn?oc=5",
-   "published": "2026-09-05T16:19:25+00:00",
-   "watch": [],
-   "summary": "Miljan Krpic - Popularity ranking - Player detail Transfermarkt"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Premier League exclusive club - Alexi Iwobi joins icons with 100th Fulham league appearance",
-   "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPZUFud05iUUtLRWgwOERwYUdWazlnMnJ6ZHcwTFdfUVd6a3lSVjkzSXJMU2w4NzVQcEVGQXBSY3UySGdEWjZlMFdxYmc1dDlCX2xzbU5uUTJlYmJWUGk5RTlBSnJzSy11amdJSmZ2SW5aWl9sTGF4cEZtYk9sTVZpT2ZGZ2Q5U0kybTU0eDFENmlnS1pyMkVhNHhmTFJWclVYNGZUdk9MU3FfanBFazdaVEtYT2J6cVBoamRUQ2ZBVTloUTFoS1p5SlR1Z0ZkeG9rVVE?oc=5",
-   "published": "2026-09-05T16:40:18+00:00",
-   "watch": [],
-   "summary": "Premier League exclusive club - Alexi Iwobi joins icons with 100th Fulham league appearance Transfermarkt"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "“We were the pioneers of Jurgen Klopp’s gegenpressing philosophy. What he built at Dortmund and Liverpool, we were the architects” Demba Ba reveals the origin of Klopp’s ‘rock-and-roll football’ success story",
-   "link": "https://www.fourfourtwo.com/team/we-were-the-pioneers-of-jurgen-klopps-gegenpressing-philosophy-what-he-built-at-dortmund-and-liverpool-we-were-the-architects-demba-ba-reveals-the-origin-of-klopps-rock-and-roll-football-success-story",
-   "published": "2026-09-05T18:00:00+00:00",
-   "watch": [
-    "Dortmund",
     "Liverpool"
    ],
-   "summary": "The German manager’s high-octane style of play would go on to transform football"
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": ""
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Inter 3-2 Napoli Stats: Delirium at San Siro as Lautaro Martínez Completes Historic Comeback Win",
-   "link": "https://theanalyst.com/articles/inter-vs-napoli-stats-lautaro-martinez-serie-a-09-2026",
-   "published": "2026-09-05T18:25:07+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Man City latest: Doku and O’Reilly not part of squad for Porto trip",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025499/man-city-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-09-07T18:30:00+00:00",
+   "watch": [
+    "Man City",
+    "Porto"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Karius keeps Kane at bay as Schalke nullify Bayern on Neuer’s return | Andy Brassell",
+   "link": "https://www.theguardian.com/football/2026/sep/07/loris-karius-manuel-neuer-harry-kane-schalke-bayern-munich-bundesliga",
+   "published": "2026-09-07T11:29:40+00:00",
+   "watch": [
+    "Bayern"
+   ],
+   "summary": "The often-derided Loris Karius upstaged Manuel Neuer as Schalke held Bayern to a rare goalless draw in a tale of two goalkeepers in Gelsenkirchen If one goalkeeper was going to dominate the discussion in this game, it ac"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Aubameyang rolls back years as revamped ‘Super Dépor’ return to La Liga in style | Billy Munday",
+   "link": "https://www.theguardian.com/football/2026/sep/07/pierre-emerick-aubameyang-deportivo-a-coruna-la-liga",
+   "published": "2026-09-07T12:03:13+00:00",
+   "watch": [],
+   "summary": "Two assists and the winner for Deportivo A Coruña leave Gabonese striker with one club record and eyeing anotherPierre-Emerick Aubameyang was already the best player on the pitch when he ran through to score Deportivo A "
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Serie A’s hierarchy takes shape with wild night in Milan and flat draw in Turin | Nicky Bandini",
+   "link": "https://www.theguardian.com/football/2026/sep/07/inter-napoli-juventus-milan-serie-a-hierarchy",
+   "published": "2026-09-07T12:03:40+00:00",
    "watch": [
     "Inter",
+    "Juventus",
+    "Milan",
     "Napoli"
    ],
-   "summary": "Napoli held a two-goal lead early in the second half, but Inter dug deep to ensure they walked away from their clash with all three points. The post Inter 3-2 Napoli Stats: Delirium at San Siro as Lautaro Martínez Comple"
+   "summary": "Inter’s victory over Napoli had the feel of a title race classic, while Juventus and Milan exposed familiar shortcomings despite their summer spendingAlready as the words were being spoken, Cristian Chivu started to bris"
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Hull 0-0 Aston Villa Stats: Hull Maintain Unbeaten Record as Villa Fire Another Blank",
-   "link": "https://theanalyst.com/articles/hull-vs-aston-villa-stats-premier-league-09-2026",
-   "published": "2026-09-05T18:42:23+00:00",
-   "watch": [],
-   "summary": "Newly promoted Hull City continued their remarkable start to life back in the Premier League with yet another clean sheet, this one coming against Aston Villa The post Hull 0-0 Aston Villa Stats: Hull Maintain Unbeaten R"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Facundo Pardo - Popularity ranking - Player detail",
-   "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNcEN4X3dMT0tPekJ1VXNTR1RXQi1zNlJmNFFhUnc1RVJobm5DV1k4ME5JX2RsMEpDaURzOXhaUmdOM3Y3NFBqa3BQaE4zYjA0ZjI0QVc4LU0ybU5kclNsNjhRQ3pTYTFFRXMyYy1zeHZWcl9HVFJkb2d0aWk0SThIMkhR?oc=5",
-   "published": "2026-09-05T18:55:16+00:00",
-   "watch": [],
-   "summary": "Facundo Pardo - Popularity ranking - Player detail Transfermarkt"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Premier League - Overview: Matchday 6 26/27",
-   "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQMExQNW9BQnppZU1DdkpjMGtfcER5TWc3VE9uTEtIOG1XMWVzenUxQ3dvZ2dXV0o3cE45Y21iUEZWS042ODM3QXJRU1RpSnctNm52d2lHRkV2OHR6cXpiWnlwbzdhY3BVVXQ4dFhROEUwUHM1MHpjWi1NZkVkTEhHZDhMQzlKM1pjenpHS19kaXNNNTlOeTNNTzYtOA?oc=5",
-   "published": "2026-09-05T23:12:29+00:00",
-   "watch": [],
-   "summary": "Premier League - Overview: Matchday 6 26/27 Transfermarkt"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "FCS Football Teams With the Best 2-0 Starts, and the Worst 0-2 Starts",
-   "link": "https://theanalyst.com/articles/fcs-football-teams-best-2-0-starts-worst-0-2-starts-2026-season",
-   "published": "2026-09-06T03:56:31+00:00",
-   "watch": [],
-   "summary": "The FCS football season comes at you quickly, with plenty of teams 2-0 and others 0-2 already. Here are the best and worst of those records. The post FCS Football Teams With the Best 2-0 Starts, and the Worst 0-2 Starts "
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Arsenal vs Chelsea Prediction: Premier League Preview",
-   "link": "https://theanalyst.com/articles/arsenal-vs-chelsea-prediction-premier-league-09-2026",
-   "published": "2026-09-06T05:30:38+00:00",
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Arsenal beat Chelsea to maintain perfect start and late drama at Everton - Football Weekly",
+   "link": "https://www.theguardian.com/football/audio/2026/sep/07/arsenal-beat-chelsea-to-maintain-100-start-and-late-drama-at-everton-football-weekly",
+   "published": "2026-09-07T12:39:29+00:00",
    "watch": [
     "Arsenal",
     "Chelsea"
    ],
-   "summary": "We look ahead to Sunday’s Premier League game at the Emirates with our Arsenal vs Chelsea prediction and preview. Both teams have a perfect record so far, but who will blink first? The post Arsenal vs Chelsea Prediction:"
+   "summary": "Max Rushden is joined by Barry Glendenning, Jonathan Liew and Jordan Jarrett-Bryan as Arsenal maintain their perfect start with a win over ChelseaRate, review, share on Apple Podcasts and join the conversation on email.O"
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Champions League Predictions 2026-27: The Opta Supercomputer Projections",
-   "link": "https://theanalyst.com/articles/champions-league-predictions-2026-27-opta-supercomputer",
-   "published": "2026-09-06T05:30:48+00:00",
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "This could be year I win Ballon d'Or, says Mbappe",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c5ydplykdxno?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T12:42:03+00:00",
    "watch": [
-    "Arsenal",
-    "PSG",
     "Real Madrid"
    ],
-   "summary": "Who will win the Champions League in 2026-27? Will PSG manage a three-peat? Can Arsenal finally win the one trophy that’s always eluded them? Can Real Madrid be discounted? Here, we detail how the Opta supercomputer sees"
+   "summary": "Real Madrid forward Kylian Mbappe says this could be a good year for him to win the Ballon d'Or for the first time."
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Should Man Utd Have Signed Another Left-Back?",
-   "link": "https://theanalyst.com/articles/man-utd-left-back-transfer-luke-shaw-patrick-dorgu",
-   "published": "2026-09-06T05:31:01+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "Manchester United didn't sign a left-back in the summer, meaning Luke Shaw remains their only recognised senior option. Will they come to regret that decision? The post Should Man Utd Have Signed Another Left-Back? appea"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Kobbie Mainoo’s New Edge Suggests He Can Be Man Utd’s Midfield ‘Monster’",
-   "link": "https://theanalyst.com/articles/kobbie-mainoo-man-utd-midfield-monster-stats",
-   "published": "2026-09-06T05:31:27+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": "Kobbie Mainoo is a classy player, but in Manchester United's win over Ipswich he impressed in new ways. Could this be the season he takes his all-round game to another level? The post Kobbie Mainoo’s New Edge Suggests He"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Pre-Match Poser no.43: Can you answer this elite-level football quiz question?",
-   "link": "https://www.fourfourtwo.com/quiz/pre-match-poser-no-43",
-   "published": "2026-09-06T06:00:00+00:00",
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Super League Frantic Friday: League Leaders' Shield, third place to be decided",
+   "link": "https://www.skysports.com/rugby-league/news/12040/13582670/super-league-frantic-friday-wigan-warriors-and-leeds-rhinos-go-for-league-leaders-shield-wakefield-trinity-and-warrington-wolves-battle-for-third",
+   "published": "2026-09-07T12:55:00+00:00",
    "watch": [],
-   "summary": "Join the footballing one per cent club"
+   "summary": "The final round of the regular Betfred Super League season is here and there is still so much on the line."
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Azpilicueta, Jorginho, Lukaku & Co. - the last Chelsea XI to beat Arsenal revealed",
-   "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPaUoyNUxZQ2dieVZMUWlyTjc1WnE4eE5JOVpSemZQZFdXamU4TVlnTHM1cUNDMDhaWXRWU0c1VmpNdUNjWURLVllZbTdMc1dnclpzZXJ3enN5OWJaaElKMzBxdzVJZTE0OG9ZNkdkLXczYjRFbHEwZ1hIbFU3MWRKLWpfZC1wMTc1ZzN3bVFzXzFSTW5ib1ptc253NS1WMDBLT0syQjE5dmRjYTRBYjdYbTN6Zllkakd3aFNteEt5MTlmNFph?oc=5",
-   "published": "2026-09-06T08:18:34+00:00",
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "WSL investigating after Palace break substitution rules",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cde0znwjx61o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T12:57:15+00:00",
+   "watch": [],
+   "also": [],
+   "summary": "The Women's Super League says an investigation is under way after Crystal Palace breached substitution rules during Sunday's win over Everton."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "The flap of a wing: How St Helens let success become stagnation",
+   "link": "https://www.skysports.com/rugby-league/news/12040/13582671/how-st-helens-let-super-league-success-become-long-term-stagnation-the-flap-of-a-wing",
+   "published": "2026-09-07T13:20:00+00:00",
+   "watch": [],
+   "summary": "The dust has settled on the fact that St Helens have missed out on play-off rugby for the first time after their seventh-placed finish in Super League."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "The Tsunoda incident that's caused Audi to lodge an 'intention to appeal'",
+   "link": "https://www.skysports.com/watch/video/13582794/italian-grand-prix-the-yuki-tsunoda-incident-thats-caused-audi-to-lodge-an-intention-to-appeal",
+   "published": "2026-09-07T13:38:00+00:00",
+   "watch": [],
+   "summary": "Audi has lodged an 'intention to appeal' after Yuki Tsunoda escaped a penalty for this incident at the Italian Grand Prix restart."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Williams and Sheehan join Bellamy's Wales staff",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cq63mm9vzedo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T14:00:09+00:00",
+   "watch": [],
+   "summary": "Ex-Wales captain Ashley Williams and former Swansea boss Alan Sheehan join Craig Bellamy's backroom staff before Wales' Nations League campaign."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "BBC Women's Football Weekly",
+   "link": "https://www.bbc.co.uk/sounds/play/p0p8dwmw?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T14:11:00+00:00",
+   "watch": [],
+   "also": [],
+   "summary": "Should the league be supporting home grown talent more?"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Fitter, happier, more productive: Arsenal could hardly have started better | Jonathan Wilson",
+   "link": "https://www.theguardian.com/football/2026/sep/07/arsenals-season-could-hardly-have-started-better",
+   "published": "2026-09-07T14:34:31+00:00",
+   "watch": [
+    "Arsenal",
+    "Man City"
+   ],
+   "summary": "It’s still very early but Mikel Arteta’s side are playing with an authority and freshness that eluded them at times last seasonSign up for our free newsletter hereThree league games played, three games won. For Arsenal t"
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Poulter leads Team GB&I celebrations in the pub after Walker Cup triumph!",
+   "link": "https://www.skysports.com/watch/video/13582818/poulter-leads-the-gb-i-walker-cup-winning-team-in-a-chorus-of-ol201",
+   "published": "2026-09-07T14:41:00+00:00",
+   "watch": [],
+   "summary": "Ian Poulter leads the Great Britain & Ireland Walker Cup-winning team's celebrations after his son Luke helped them to their first victory since 2015."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Football Daily | Big day for Ødegaard with balaclavas, Basques and a boot to the head",
+   "link": "https://www.theguardian.com/football/2026/sep/07/football-daily-newsletter-martin-odegaard-arsenal",
+   "published": "2026-09-07T14:46:56+00:00",
+   "watch": [],
+   "summary": "Sign up now! Sign up now! Sign up now? Sign up now!Perusing assorted Social Media Disgrace for some Monday inspiration, Football Daily was struck by the amount of scorn and ridicule heaped upon a large group of men dress"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Monaco kept their best players and are top of Ligue 1 – but at what cost?",
+   "link": "https://www.theguardian.com/football/2026/sep/07/monaco-best-players-top-ligue-1-psg",
+   "published": "2026-09-07T14:59:41+00:00",
+   "watch": [
+    "PSG"
+   ],
+   "summary": "You might think Monaco have plenty to cheer about, especially after their 2-1 win at PSG, but it’s complicatedBy Get French Football NewsWhen a manager says that “no player is more important than the club”, it is usually"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "All the goals from the opening weekend of the WSL",
+   "link": "https://www.bbc.co.uk/sport/football/videos/cn4k1lwl2zxo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T15:21:29+00:00",
+   "watch": [],
+   "summary": "Watch every goal from the opening weekend of the Women's Super League 2026-27 season."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Celebratory rendition of Wonderwall! Team GB&I go BIG after Walker Cup triumph!",
+   "link": "https://www.skysports.com/watch/video/13582839/team-gbi-go-big-with-wonderwall-rendition-after-walker-cup-triumph",
+   "published": "2026-09-07T15:35:00+00:00",
+   "watch": [],
+   "summary": "Following Great Britain and Ireland winning the Walker Cup for the first time since 2015, the team went on to give their rendition of Wonderwall."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Chelsea’s midfield a headache for Alonso after Arsenal press advantage | Jacob Steinberg",
+   "link": "https://www.theguardian.com/football/2026/sep/07/chelseas-midfield-a-headache-for-alonso-after-arsenal-press-advantage",
+   "published": "2026-09-07T15:41:54+00:00",
    "watch": [
     "Arsenal",
     "Chelsea"
    ],
-   "summary": "Azpilicueta, Jorginho, Lukaku & Co. - the last Chelsea XI to beat Arsenal revealed Transfermarkt"
+   "summary": "There was a gulf between the teams in the middle of the park, with Moisés Caicedo’s absence hurting the visitorsThere have been seasons when Chelsea have turned up at the Emirates Stadium and parked the bus. “You know, I"
   },
   {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "\"No, it's not my wish to become president of Liberia\" George Weah's mid 90s stance on politics, playing alongside Roberto Baggio and under Arsene Wenger revisited",
-   "link": "https://www.fourfourtwo.com/person/player/no-its-not-my-wish-to-become-president-of-liberia-george-weahs-1995-stance-on-politics-playing-alongside-roberto-baggio-and-under-arsene-wenger-revisited",
-   "published": "2026-09-06T09:00:00+00:00",
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "American consortium cleared to buy Shrewsbury",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cdx05qpn0kvo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T15:43:08+00:00",
    "watch": [],
-   "summary": "Three decades ago, FFT labelled George Weah as Liberia’s next head of state, just after he’d been voted as the best player in the world for 1995. We revisit the interview he gave us 30 years ago, when he insisted politic"
+   "summary": "Shrewsbury Town's long-running takeover saga is set to end after an American consortium is granted approval to buy the club."
   },
   {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "How to watch Everton vs Man United for FREE: Live stream details for Premier League 2026/27 game",
-   "link": "https://www.fourfourtwo.com/competition/watch-everton-vs-manchester-united-premier-league-2026-27-free",
-   "published": "2026-09-06T09:00:00+00:00",
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "US Open LIVE! Osaka vs Rybakina to come after Zheng dumps out Swiatek",
+   "link": "https://www.skysports.com/tennis/live-blog/12040/13582595/us-open-live-scores-updates-news-and-results-from-new-york-with-naomi-osaka-iga-swiatek-coco-gauff-and-alexander-zverev-in-action",
+   "published": "2026-09-07T15:50:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Who will be new Liverpool sporting director - and what issues do they face?",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c5yw73ppwd1o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T15:52:04+00:00",
    "watch": [
-    "Man United"
+    "Liverpool"
    ],
-   "summary": "Here's how to watch Everton vs Man Utd online from anywhere in the world with TV channels, live stream details, kick-off times and prediction included."
+   "summary": "The possible candidates to succeed Richard Hughes - plus the numerous tasks facing Liverpool's next sporting director."
   },
   {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "“I could have replaced Del Piero at Juventus, but I always wanted to play in England. Michael Owen was a hero of mine” Sergio Aguero looks back on the opportunity Manchester City gave him as a young striker",
-   "link": "https://www.fourfourtwo.com/person/i-could-have-replaced-del-piero-at-juventus-but-i-always-wanted-to-play-in-england-michael-owen-was-a-hero-of-mine-sergio-aguero-looks-back-on-the-opportunity-manchester-city-gave-him-as-a-young-striker",
-   "published": "2026-09-06T12:00:00+00:00",
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Rhodes ready for 'dream' Europe debut: 'We're going to bring Solheim home!'",
+   "link": "https://www.skysports.com/golf/news/12040/13580864/solheim-cup-mimi-rhodes-ready-to-fulfil-childhood-dream-for-team-europe-and-backs-anna-nordqvists-side-for-home-win",
+   "published": "2026-09-07T16:00:00+00:00",
+   "watch": [],
+   "summary": "Mimi Rhodes is relishing the chance to fulfil a childhood dream at the Solheim Cup and is backing Anna Nordqvist to lead Team Europe to victory in the Netherlands."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Solheim Cup LIVE! Latest updates from Bernardus Golf and take on our quiz",
+   "link": "https://www.skysports.com/golf/live-blog/12040/13582746/solheim-cup-live-latest-news-build-up-highlights-as-anna-nordqvists-team-europe-host-team-usa-at-bernardus-golf",
+   "published": "2026-09-07T16:00:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Can Kane buck history and win Ballon d'Or?",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cm2gee75vz7o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T16:03:24+00:00",
+   "watch": [],
+   "summary": "History suggests Ballon d’Or winners come from those who have recently lifted one of football's biggest trophies. Can Harry Kane become a rare exception?"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Chelsea explored move for Fulham midfielder Berge",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cgrvx1jxrv0o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T16:03:52+00:00",
    "watch": [
-    "Juventus",
-    "Man City"
+    "Chelsea"
    ],
-   "summary": "Aguero joined the Citizens as a 23-year-old in 2011"
+   "summary": "Chelsea showed late interest in Fulham's Sander Berge as they attempted to strengthen their midfield options before Enzo Fernandez's departure."
   },
   {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "How to watch Arsenal vs Chelsea for FREE: TV channels for the biggest game of the weekend in the Premier League",
-   "link": "https://www.fourfourtwo.com/competition/watch-arsenal-vs-chelsea-premier-league-2026-27-free",
-   "published": "2026-09-06T12:30:00+00:00",
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Joey Barton to remain in custody until trial after bail application turned down",
+   "link": "https://www.theguardian.com/football/2026/sep/07/joey-barton-to-remain-in-custody-until-trial-after-bail-application-turned-down",
+   "published": "2026-09-07T16:36:25+00:00",
+   "watch": [
+    "Liverpool"
+   ],
+   "summary": "Former footballer accused of attack outside golf clubHis trial has been pushed back to March next yearThe former footballer Joey Barton will remain in custody until his trial next year after a bail application was refuse"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Edu leaves Nottingham Forest after turbulent spell",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cj06m1e3e75o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T16:45:43+00:00",
+   "watch": [],
+   "summary": "Global head of football Edu leaves Nottingham Forest after just over a year at the City Ground."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Pakistan investigating 'discipline and conduct' in latest twist on crisis tour",
+   "link": "https://www.skysports.com/cricket/news/12040/13582865/pakistan-cricket-board-investigating-discipline-and-conduct-of-team-in-latest-twist-on-crisis-tour-of-england",
+   "published": "2026-09-07T17:00:00+00:00",
+   "watch": [],
+   "summary": "The Pakistan Cricket Board has launched an investigation into \"media reports concerning discipline and conduct\" amid the team's crisis tour of England."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Isak reflects on quick goalscoring start to the season",
+   "link": "https://www.skysports.com/watch/video/13582859/liverpool-alexander-isak-reflects-on-his-start-to-the-season",
+   "published": "2026-09-07T17:00:00+00:00",
+   "watch": [
+    "Liverpool"
+   ],
+   "summary": "Liverpool striker Alexander Isak reflects on his start to the season where he has scored three goals in three games."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Motherwell fail to cut fine for Celtic penalty reaction",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cx2zng3de43o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T17:10:11+00:00",
+   "watch": [
+    "Celtic"
+   ],
+   "summary": "Motherwell fail in an attempt to reduce a £5,000 fine for their reaction to a last-gasp penalty award to Celtic at Fir Park in May, but former player Elliot Watt's suspension has been cut."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Mauricio Pochettino wants the US to become ‘one of the most powerful countries in soccer’",
+   "link": "https://www.theguardian.com/football/2026/sep/07/mauricio-pochettino-usmnt-soccer-head-coach",
+   "published": "2026-09-07T17:44:09+00:00",
+   "watch": [
+    "PSG",
+    "Tottenham"
+   ],
+   "summary": "As he prepares for the upcoming international window, the US head coach spoke about Folarin Balogun, the LA Olympics and dual national playersIt’s been two months since the US men’s national team crashed out of the World"
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Red Bull's Hadjar to miss Spanish GP as injury absence continue",
+   "link": "https://www.skysports.com/f1/news/12040/13582838/isack-hadjar-to-miss-spanish-grand-prix-in-madrid-due-to-wrist-injury-as-liam-lawson-continues-at-red-bull",
+   "published": "2026-09-07T18:00:00+00:00",
+   "watch": [],
+   "summary": "Isack Hadjar will miss this weekend's Spanish Grand Prix in Madrid as he continues to recover from a fractured wrist."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "‘Safety, security and service’: behind the scenes with police at Arsenal v Chelsea",
+   "link": "https://www.theguardian.com/football/2026/sep/07/safety-security-and-service-behind-the-scenes-with-police-at-arsenal-v-chelsea",
+   "published": "2026-09-07T18:00:14+00:00",
    "watch": [
     "Arsenal",
     "Chelsea"
    ],
-   "summary": "Here's how to watch Arsenal vs Chelsea for free online from anywhere with TV channels, broadcast details and kick-off times included."
+   "summary": "Facial recognition and spotters part of operation at Emirates that involved a dozen incidents and two arrestsThe concourses are silent when, deep in the Emirates Stadium’s bowels, Chief Inspector Pete Dearden’s briefing "
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Transfer news LIVE: Man Utd hold Louis Page talks as Liverpool could revive Ismaïla Sarr deal",
-   "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQc1M4WXE4Y0U1SEFLckJ5b21OSUFFeC13VWRCSDBsQjhCXzJqQ2dtbWRKWGVLZmpXVnhIM1pBVjA0VG5ZNVRoNEJsSVd6T0dOT2ZhWmdzWGstMTJ1Y2xmLWlDME1ZMml4NTF6WE9oM3pUdEpfTHJMd0twNlM5TlUxU3hWZkZhZzFVVk5vZTJBdGQ4TXNQTFp5MGVVanluZ213SFAyY1FvM25TM29UczB6LWJLZ1l3NHozR0FfWUc2cTBFMEY5Ri15T21HQVZzNXhSZjdyT1l3?oc=5",
-   "published": "2026-09-06T14:58:37+00:00",
-   "watch": [
-    "Liverpool",
-    "Man United"
-   ],
-   "summary": "Transfer news LIVE: Man Utd hold Louis Page talks as Liverpool could revive Ismaïla Sarr deal Transfermarkt"
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Zheng stages epic comeback to reach US Open quarters after Swiatek implodes",
+   "link": "https://www.skysports.com/tennis/news/12040/13582890/us-open-2026-qinwen-zheng-stages-epic-comeback-to-stun-iga-swiatek-and-reach-quarter-finals",
+   "published": "2026-09-07T19:00:00+00:00",
+   "watch": [],
+   "summary": "Qinwen Zheng staged a second epic comeback at the US Open in as many days to stun former champion Iga Swiatek and book her place in the quarter-finals for the third time."
   },
   {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "“Every year on May 13, I relive the QPR goal. They are lovely memories - it will always be that way” Sergio Aguero on the lasting impact of his Premier League-winning moment",
-   "link": "https://www.fourfourtwo.com/person/every-year-on-may-13-i-relive-the-qpr-goal-they-are-lovely-memories-it-will-always-be-that-way-sergio-aguero-on-the-lasting-impact-of-his-premier-league-winning-moment",
-   "published": "2026-09-06T15:00:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "The former Manchester City striker netted one of English football’s most famous goals in 2012"
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Monday Night Club",
+   "link": "https://www.bbc.co.uk/sounds/play/live:bbc_radio_five_live?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-07T20:00:00+00:00",
+   "watch": [],
+   "summary": "Mark Chapman and guests debate the weekend's football."
   },
   {
    "source": "Opta Analyst",
@@ -1094,14 +746,324 @@
    "summary": "After a thrilling second half, the two sides couldn't be separated at Hill Dickinson Stadium. Look back with our Everton vs Man Utd stats page and match recap. The post Everton 2-2 Man Utd Stats: Last-Gasp Maitland-Niles"
   },
   {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Arsenal 2-1 Chelsea Stats: Champions Come From Behind to Maintain Perfect Start",
+   "link": "https://theanalyst.com/articles/arsenal-vs-chelsea-stats-premier-league-09-2026",
+   "published": "2026-09-06T18:01:24+00:00",
+   "watch": [
+    "Arsenal",
+    "Chelsea"
+   ],
+   "summary": "The Premier League champions rose to the occasion in this clash of titans. Look back on an impressive win with our Arsenal vs Chelsea stats page. The post Arsenal 2-1 Chelsea Stats: Champions Come From Behind to Maintain"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "FC Kappel 1922 - Popularity ranking - Clubs",
+   "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9NdVo3TTl0R1pDQXE5MksxMTNRVEc3QWhuOUNlSkY3YnJBdFRCY2pEMDVud3NDcjlpR0F6LUcxZThXQkFsZ3pQd2loSDdwX2g5N0NtOUFyWk5HZ1FHNzFUcjF3VUdibFA4ZXRwNUp1c3JJc3pqTVpHeg?oc=5",
+   "published": "2026-09-06T19:25:35+00:00",
+   "watch": [],
+   "summary": "FC Kappel 1922 - Popularity ranking - Clubs Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Alexandru Maxim - Popularity ranking - Player detail",
+   "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNRms0QmhEZ2JiWFl5MkRKYnV1ZGFnQk9IWkVmNy1hVjJZTGhYWnljakMxR3VucHhlamRwWXhmQjJ2NVpXdXpiZ1NsZ19idEFzR1JibmJTeDlnTGc5cXJkb1dJQ055cVN6OVdHbEZSMVJjSUNpRm8yNEFBZVRVQnhCT0NnUkUzNkZEeGhQR054TW9valB2djZrdHRWdEw0SUk?oc=5",
+   "published": "2026-09-06T21:30:22+00:00",
+   "watch": [],
+   "summary": "Alexandru Maxim - Popularity ranking - Player detail Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Transfer news LIVE: Man Utd hold Louis Page talks as Liverpool could revive Ismaïla Sarr deal",
+   "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQc1M4WXE4Y0U1SEFLckJ5b21OSUFFeC13VWRCSDBsQjhCXzJqQ2dtbWRKWGVLZmpXVnhIM1pBVjA0VG5ZNVRoNEJsSVd6T0dOT2ZhWmdzWGstMTJ1Y2xmLWlDME1ZMml4NTF6WE9oM3pUdEpfTHJMd0twNlM5TlUxU3hWZkZhZzFVVk5vZTJBdGQ4TXNQTFp5MGVVanluZ213SFAyY1FvM25TM29UczB6LWJLZ1l3NHozR0FfWUc2cTBFMEY5Ri15T21HQVZzNXhSZjdyT1l3?oc=5",
+   "published": "2026-09-07T02:26:51+00:00",
+   "watch": [
+    "Liverpool",
+    "Man United"
+   ],
+   "summary": "Transfer news LIVE: Man Utd hold Louis Page talks as Liverpool could revive Ismaïla Sarr deal Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Club NXT - Popularity ranking - Clubs",
+   "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPcDQtVVc0dUlyd2pHVTRnbUdUekVZV3J4OVdNZjFqMVNDRHFsSk9oQ01LQUt4Q1dfdmkxend4Z1N6R29LMXA2STB5cXdWYXFyNHpXWTBxWDFLNjEtRE1wV2tVdmpYRzVLcDc2OUoxYWpxNjIxZk1MekQtZ1BUcmFLbGN5bWFSZmlLd0E?oc=5",
+   "published": "2026-09-07T02:58:30+00:00",
+   "watch": [],
+   "summary": "Club NXT - Popularity ranking - Clubs Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Liga Dominicana de Fútbol Apertura Play-off",
+   "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOWTAxdjdkdG43SU9JYW5pd1NPVDJVekxiekxmNFAyQ015SXMtQlBsUjVBZmdxMk55amdLcWprdlJubW9zWXhVSWlfX21GSENnWGtfSmNJcmhUQnUzd3drQ2hCSklvRjc5dkZFOXI5bTN1LThSQ2NqMkc0bU5WSnhoMkRPNlRvb1BCTzZ2ZWVlR09PRnZMbVZ5dDBnZlVINk0zdXF1UGZDZw?oc=5",
+   "published": "2026-09-07T03:59:07+00:00",
+   "watch": [],
+   "summary": "Liga Dominicana de Fútbol Apertura Play-off Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Jesper Karlsson - Popularity ranking - Player detail",
+   "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPdHpFX2tLSGwyWEFtbFQ2R0NTaDEwMVlxSEcxaTE3WFFPY0ZRNWF0V0c4TUIzMlp4S2lrcjNfMmJvSktoalJWczBMQzlVNmk2Q1AzSmxCOEtBRFBrWEppTENtX3B3eVZ6bHh4N1hYaDVWZ3QzdkNYQVlXR2N1SjExMURGaTVBWWdnQVFPY1U0eUwtejkwaHhKS0puN1JEdnc?oc=5",
+   "published": "2026-09-07T05:16:29+00:00",
+   "watch": [],
+   "summary": "Jesper Karlsson - Popularity ranking - Player detail Transfermarkt"
+  },
+  {
    "source": "FourFourTwo",
    "tier": 3,
    "kind": "analysis",
-   "title": "\"It didn’t sound like an idea that had legs – apparently students down their pints when I say ‘Unbelievable Jeff’, though\", Chris Kamara reveals he never thought Soccer Saturday would be a hit",
-   "link": "https://www.fourfourtwo.com/person/it-didnt-sound-like-an-idea-that-had-legs-apparently-students-down-their-pints-when-i-say-unbelievable-jeff-though-chris-kamara-reveals-he-never-thought-soccer-saturday-would-be-a-hit",
-   "published": "2026-09-06T16:00:00+00:00",
+   "title": "England have a number nine problem following Ollie Watkins' move to Saudi Arabia",
+   "link": "https://www.fourfourtwo.com/team/ollie-watkins-move-to-al-hilal-should-trigger-a-changing-of-the-guard-for-englands-strikers",
+   "published": "2026-09-07T06:00:00+00:00",
    "watch": [],
-   "summary": "The iconic Sky Sports show changed how UK fans consumed their football"
+   "summary": "With Ollie Watkins and Ivan Toney now playing in Saudi Arabia and both in their 30s, it is the perfect time to refresh England’s strike-force ahead of Euro 2028"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Quiz! Can you answer 20 questions on football's one-club men?",
+   "link": "https://www.fourfourtwo.com/quiz/quiz-can-you-answer-20-questions-on-footballs-one-club-men",
+   "published": "2026-09-07T07:00:00+00:00",
+   "watch": [],
+   "summary": "Players staying at one club is a rarity now. Can you remember the ones who did achieve the feat?"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "HENRY WINTER: Martin Odegaard is having his Dennis Bergkamp moment at Arsenal. He's tougher, more determined and a real winner",
+   "link": "https://www.fourfourtwo.com/person/player/henry-winter-martin-odegaard-is-having-his-dennis-bergkamp-moment-at-arsenal-hes-tougher-more-determined-and-a-real-winner",
+   "published": "2026-09-07T08:10:44+00:00",
+   "watch": [
+    "Arsenal",
+    "Chelsea"
+   ],
+   "summary": "Martin Odegaard used to decorate games. Now he dominates them. Arsenal’s captain is a different force this season, showing his new impact again with that Man of the Match performance against Chelsea"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Birmingham City are targeting the Premier League but their home form won't take them there yet",
+   "link": "https://www.fourfourtwo.com/team/birmingham-city-are-targeting-the-premier-league-but-are-yet-to-recreate-the-home-form-that-can-take-them-there",
+   "published": "2026-09-07T08:56:58+00:00",
+   "watch": [],
+   "summary": "Birmingham’s home form was behind a top 10 finish in 2025/26, but three home draws suggest better away results will be needed this season"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Liverpool out of the running for sensational transfer as contract details revealed: report",
+   "link": "https://www.fourfourtwo.com/transfer/liverpool-out-of-the-running-for-sensational-transfer-as-contract-details-revealed-report",
+   "published": "2026-09-07T09:24:13+00:00",
+   "watch": [
+    "Liverpool"
+   ],
+   "summary": "Liverpool's hopes of pulling off a sensational swoop for Michael Olise appear to have been definitively dashed"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "McAidoo, Steur & Co. - the 10 youngest players to play in the Premier League this season",
+   "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNRzh2YnNDQzRfbm0wRTdvQXFoM0dGMUVDUWhBbHlyWWR5R0hOR2FCYksyQTlNcEs1RU9IdWR5eS0yaW90SVFxWEF1WUoxMUlkTlhzQ3M0VGFheGh0bVNUaFp3TlI5dlFPYWxObGFQU0RQYzJyUGtVcFYxenRoX0V0UUEtTmY2UF9sLVIySmVKbDJCT0k5RmU5R042T0lQSUxra2gzUERrcndTWWpiMW50bDhBNUd0MjNGTl9KOS1sSllPbDRwS0hoeVJMVUFXdw?oc=5",
+   "published": "2026-09-07T09:25:39+00:00",
+   "watch": [],
+   "summary": "McAidoo, Steur & Co. - the 10 youngest players to play in the Premier League this season Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Pogba, Benzema & Sancho included: The incredible full list of most valuable free agents",
+   "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPeF9rQm1BXzlIV1RhOEFuM2hZTjM4aUszWl95VnpDSkRtYy1lLWd0NkFueFVyYlBiZ0VEVEMxVEJ2bTQtbXptOUptYmduNTR3anROVjdLbVFTVnRKak9rYWIyRC1PVU5zR2F6YUhVM2tHSDJ5c1JoZVdPcldqM2ZRZV9kS2pBLWFQeTNTWi1XWGFMZnBzZGRJSnhDYVFLWVg1azJGMUJUeDZJVnk4UHdpUVJUWEFERWpzLVFkV28tVXdGZ0o4aHZ1V3RTbGNUWlU?oc=5",
+   "published": "2026-09-07T09:41:16+00:00",
+   "watch": [],
+   "summary": "Pogba, Benzema & Sancho included: The incredible full list of most valuable free agents Transfermarkt"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Arsenal have one hand on another Premier League title and defence is the foundation again",
+   "link": "https://www.fourfourtwo.com/team/arsenal-have-one-hand-on-another-premier-league-title-and-defence-is-the-foundation-again",
+   "published": "2026-09-07T10:03:44+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": "The Premier League champions chose not to spend big on a striker – Arsenal are taking their title defence literally"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Chelsea Asked Questions; Arsenal Answered Them All",
+   "link": "https://theanalyst.com/articles/arsenal-answered-chelsea-questions-premier-league",
+   "published": "2026-09-07T10:42:11+00:00",
+   "watch": [
+    "Arsenal",
+    "Chelsea"
+   ],
+   "summary": "Arsenal had the first test of their Premier League title defence on Sunday. The manner of their win over Chelsea will stand them in good stead. The post Chelsea Asked Questions; Arsenal Answered Them All appeared first o"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "'I'm at my peak at 33. I feel great physically. I do a lot of work behind the scenes' Harry Kane breaks silence on retirement question after big World Cup summer with England",
+   "link": "https://www.fourfourtwo.com/person/player/im-at-my-peak-at-33-i-feel-great-physically-i-do-a-lot-of-work-behind-the-scenes-harry-kane-breaks-silence-on-retirement-question-after-big-world-cup-summer-with-england",
+   "published": "2026-09-07T11:27:19+00:00",
+   "watch": [],
+   "summary": "England captain Harry Kane has quashed any talk surrounding his eventual retirement, insisting he is currently operating at the 'peak' of his physical and mental powers"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Five Knee-Jerk Reactions to Matchday 3 of the Premier League 2026-27",
+   "link": "https://theanalyst.com/articles/premier-league-knee-jerk-reactions-matchday-3-2026-27",
+   "published": "2026-09-07T11:31:43+00:00",
+   "watch": [],
+   "summary": "We’re back with our weekly round-up of the Premier League action through a set of hasty conclusions that we’ve come to based on a single round of matches. The post Five Knee-Jerk Reactions to Matchday 3 of the Premier Le"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "The Citadel, Hines, Bursey, Lindberg, Watson Earn FCS National Awards (Week 1)",
+   "link": "https://theanalyst.com/articles/fcs-football-awards-week-1-2026-season",
+   "published": "2026-09-07T11:52:28+00:00",
+   "watch": [],
+   "summary": "Three teams that earned wins over FBS programs are part of Stats Perform's weekly FCS football awards following Week 1 games. The post The Citadel, Hines, Bursey, Lindberg, Watson Earn FCS National Awards (Week 1) appear"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Champions League Predictions 2026-27: The Opta Supercomputer Projections",
+   "link": "https://theanalyst.com/articles/champions-league-predictions-2026-27-opta-supercomputer",
+   "published": "2026-09-07T11:59:20+00:00",
+   "watch": [
+    "Arsenal",
+    "PSG",
+    "Real Madrid"
+   ],
+   "summary": "Who will win the Champions League in 2026-27? Will PSG manage a three-peat? Can Arsenal finally win the one trophy that’s always eluded them? Can Real Madrid be discounted? Here, we detail how the Opta supercomputer sees"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "WSL Matchday 1: The Most Eye-Catching Stats From the Opening Weekend of 2026-27",
+   "link": "https://theanalyst.com/articles/wsl-matchday-1-opta-stats-talking-points-opening-weekend",
+   "published": "2026-09-07T12:40:16+00:00",
+   "watch": [
+    "Man United"
+   ],
+   "summary": "From London City's statement win over Manchester United to Akane Okuma's record-chasing debut and Khadija Shaw matching a WSL milestone, we use Opta data to analyse the standout performers, trends and statistics from the"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "What's going wrong at Leicester City?",
+   "link": "https://www.fourfourtwo.com/team/whats-going-wrong-at-leicester-city",
+   "published": "2026-09-07T13:37:44+00:00",
+   "watch": [],
+   "summary": "11 years after winning the Premier League, Leicester are struggling in the third tier"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Tottenham Hotspur summer sale breaks silence on dressing room issues amid Roberto De Zerbi comments",
+   "link": "https://www.fourfourtwo.com/team/tottenham-hotspur-summer-sale-breaks-silence-on-dressing-room-issues-amid-roberto-de-zerbi-comments",
+   "published": "2026-09-07T14:18:27+00:00",
+   "watch": [
+    "Tottenham"
+   ],
+   "summary": "Former Tottenham Hotspur goalkeeper Guglielmo Vicario has offered a candid glimpse into the fractured dressing room he was a part of at Spurs"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "UEFA Champions League Match Predictions",
+   "link": "https://theanalyst.com/articles/uefa-champions-league-match-predictions-2026-27",
+   "published": "2026-09-07T14:27:13+00:00",
+   "watch": [],
+   "summary": "With the help of the AI-powered Opta supercomputer, we provide our UEFA Champions League match predictions for every game across 2026-27. The post UEFA Champions League Match Predictions appeared first on Opta Analyst."
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Transfer news LIVE: AC Milan want Endrick as Chelsea to revive Alex Scott interest",
+   "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPR0cxVkpHbW1DY2pQdDBUaHpqSzJGR0tCTjNEMEhnM2JCS3U5MGM3bkdNMUhybG9nT19NYjlWaDA3NDBHU2d1YkFQT1UzczUtaEVOaXg1bUlvM295RVJJMS10ODd2Z3RrNUt3UXZzYm1nZExzMUQtM2x1bEZ5WV9DVllPSUdjYVJyU1pucVMxMk55RXFGbkhqWGo3dlh3Mk0yLTlpSG1VR0w5NlFkTFNoVXJ6NHBPeTRkWV9JZ1FoNjdKYXZBYzNJ?oc=5",
+   "published": "2026-09-07T14:42:07+00:00",
+   "watch": [
+    "Chelsea",
+    "Milan"
+   ],
+   "summary": "Transfer news LIVE: AC Milan want Endrick as Chelsea to revive Alex Scott interest Transfermarkt"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "South Carolina State Remaining Strong in the Stats Perform FCS Top 25 Poll",
+   "link": "https://theanalyst.com/articles/fcs-top-25-poll-stats-perform-week-1-2026-football-season",
+   "published": "2026-09-07T14:57:34+00:00",
+   "watch": [],
+   "summary": "Each week, throughout the college football season, alumni, fans, media and the teams themselves look to the Stats Perform FCS Top 25 Poll to see who is rising and moving within the national rankings. The new poll follows"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Real Madrid vs Inter Prediction: Champions League Preview",
+   "link": "https://theanalyst.com/articles/real-madrid-vs-inter-prediction-champions-league-preview-09-2026",
+   "published": "2026-09-07T15:26:33+00:00",
+   "watch": [
+    "Inter",
+    "Real Madrid"
+   ],
+   "summary": "We look ahead to Tuesday’s Champions League blockbuster at Estadio Bernabéu with our Real Madrid vs Inter prediction and preview. Who will make a winning start? The post Real Madrid vs Inter Prediction: Champions League "
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Newcastle United demonstrated the power of the twelfth man – can Aston Villa overcome the empty North Stand?",
+   "link": "https://www.fourfourtwo.com/team/newcastle-united-demonstrated-the-power-of-the-twelfth-man-can-aston-villa-overcome-the-empty-north-stand",
+   "published": "2026-09-07T16:00:00+00:00",
+   "watch": [],
+   "summary": "Villa Park has three sides this season. Will the loss of the North Stand be a hindrance?"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Premier League Matchday 3: 10 standout performers with Kai Havertz top",
+   "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNZUQ4OGVweUs0em1JUDYyUXlOT2ctWS04dFN6SEFsZnZKWV9CeEZoVExmMVhfdm9NRFpKSHVTNWFGenFNTjFGaFQ2aWx6RUdqWEdHbmswZTBGbVlUUy1pUlRkZ0N6c3FMNTdJQnZWb25SNVF4a0p2V01Qc2JhUjU2ZW5hMFZZeDc1TFNCMElrQWRmbUlDUklSeWphYm82WXR0OEttYzdYbW5jdFNkM0Z4X2NxZFJDMGM?oc=5",
+   "published": "2026-09-07T16:18:15+00:00",
+   "watch": [],
+   "summary": "Premier League Matchday 3: 10 standout performers with Kai Havertz top Transfermarkt"
   }
  ]
 }
