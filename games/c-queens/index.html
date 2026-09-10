@@ -21,6 +21,7 @@
     --r0:#93e5b2; --r1:#c4b5fd; --r2:#6ee7c2; --r3:#fbb6d0; --r4:#fcd34d; --r5:#93c5fd;
     --r6:#fdba74; --r7:#a5b4fc; --r8:#dbb882; --r9:#b0bec5; --r10:#d946ef; --r11:#e8dfc4;
     --blur:0px; --cell-hi:rgba(255,255,255,.32); --cell-lo:rgba(0,0,0,.05); color-scheme:light;
+    --spring:linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121, 1.149 24.3%, 1.159, 1.152, 1.128 29.8%, 0.997 37.1%, 0.974, 0.966, 0.974 45.5%, 1 55%, 1.001, 0.996 72.6%, 1);
   }
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
     --bg:#080c16; --bg2:#0e1222; --ink:#eef1fa; --mut:#8e99b4; --mut2:#5a6580; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.04);
@@ -105,12 +106,14 @@
   .timer{margin-left:auto;font-family:var(--mono);font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.5px}
   .timer.done{color:var(--ok)}
 
-  /* ---- queens-placed pips ---- */
-  .pips{display:flex;gap:3px;margin:0 auto 6px;width:min(100%,520px)}
-  .pip{flex:1;height:4px;border-radius:2px;background:var(--line);transition:.2s ease}
-  .pip svg{display:none}
-  .pip.on{background:var(--acc)}
-  .pip.bad{background:var(--red)}
+  /* ---- region progress ---- */
+  .region-progress{display:flex;gap:4px;margin:0 auto 8px;width:min(100%,520px);justify-content:center;flex-wrap:wrap}
+  .rpip{width:18px;height:18px;border-radius:5px;background:var(--rpc);position:relative;transition:transform .25s var(--spring),opacity .2s;opacity:.38}
+  .rpip.on{opacity:1;transform:scale(1.12)}
+  .rpip.on::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:700;color:var(--tile-ink);animation:checkIn .35s var(--spring)}
+  .rpip.bad{opacity:1;outline:2px solid var(--red);outline-offset:-1px}
+  @keyframes checkIn{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0)}}
 
   /* ---- board ---- */
   .boardwrap{position:relative;margin:0 auto 10px;width:min(100%,520px)}
@@ -124,7 +127,7 @@
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .cell{
     box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(0,0,0,.16)}}
   :root[data-theme="dark"] .cell{box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(0,0,0,.16)}
-  .cell:active{transform:scale(.93)}
+  .cell:active{transform:scale(.88);transition:transform .1s var(--spring)}
   .cell:focus-visible{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--acc)}
   .outlines .cell{box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.10)}
   .outlines .cell::after{content:'';position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
@@ -134,10 +137,13 @@
   .outlines .cell:not(.bt):not(.bl):not(.bb):not(.br)::after{display:none}
   .cell .g{display:none;width:calc(var(--cs) * .58);height:calc(var(--cs) * .58);color:var(--tile-ink);pointer-events:none;transition:opacity .12s}
   .cell.x .g,.cell.ax .g,.cell.q .g{display:block}
-  .cell.x .g{width:calc(var(--cs) * .42);height:calc(var(--cs) * .42);stroke-width:3;opacity:.65}
-  .cell.ax .g{width:calc(var(--cs) * .36);height:calc(var(--cs) * .36);stroke-width:2.2;opacity:.28}
-  .cell.q .g{animation:pop .22s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 1px 1px rgba(0,0,0,.15))}
-  @keyframes pop{from{transform:scale(.3) rotate(-12deg)}60%{transform:scale(1.08) rotate(2deg)}to{transform:scale(1) rotate(0)}}
+  .cell.x .g{width:calc(var(--cs) * .42);height:calc(var(--cs) * .42);stroke-width:3;opacity:.65;animation:markIn .2s var(--spring)}
+  @keyframes markIn{from{transform:scale(0) rotate(90deg);opacity:0}to{transform:scale(1) rotate(0);opacity:.65}}
+  .cell.ax .g{width:calc(var(--cs) * .36);height:calc(var(--cs) * .36);stroke-width:2.2;opacity:0;
+    animation:cascadeIn .3s var(--spring) calc(var(--ax-d, 0) * 25ms) both}
+  @keyframes cascadeIn{from{opacity:0;transform:scale(.3)}to{opacity:.28;transform:scale(1)}}
+  .cell.q .g{animation:queenIn .35s var(--spring);filter:drop-shadow(0 1px 2px rgba(0,0,0,.18))}
+  @keyframes queenIn{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0)}}
   .cell.given{cursor:default}
   .cell.given .g{opacity:.55}
   .cell.given::before{content:'';position:absolute;inset:14%;border:1.5px dashed color-mix(in srgb,var(--tile-ink),transparent 50%);border-radius:50%;pointer-events:none}
@@ -146,20 +152,21 @@
   .cell.hint{box-shadow:0 0 0 2px var(--acc),0 0 16px 2px var(--acc-soft);animation:pulse 1.2s ease-in-out infinite}
   @keyframes pulse{50%{box-shadow:0 0 0 3px var(--acc),0 0 20px 6px color-mix(in srgb,var(--acc),transparent 60%)}}
   .board.solved .cell{cursor:default}
-  .board.solved .cell.q .g{animation:crown .7s cubic-bezier(.34,1.56,.64,1)}
-  @keyframes crown{0%{transform:scale(1)}35%{transform:scale(1.25) rotate(-10deg)}65%{transform:scale(1.1) rotate(4deg)}100%{transform:scale(1) rotate(0)}}
-  @media (prefers-reduced-motion:reduce){.cell,.cell .g,.cell.hint,.cell.err,.board.solved .cell.q .g{animation:none!important;transition:none!important}}
+  .board.solved .cell.q .g{animation:crown .5s var(--spring) calc(var(--qi, 0) * 80ms) both}
+  @keyframes crown{0%{transform:scale(1)}50%{transform:scale(1.3) rotate(-8deg)}100%{transform:scale(1) rotate(0)}}
+  @media (prefers-reduced-motion:reduce){.cell,.cell .g,.cell.hint,.cell.err,.board.solved .cell.q .g,.rpip,.rpip::after{animation:none!important;transition:none!important}}
 
   /* ---- controls ---- */
-  .controls{display:flex;gap:6px;margin-bottom:10px}
-  .btn{flex:1;font-family:var(--sans);font-weight:500;font-size:11.5px;color:var(--mut);background:transparent;border:1px solid var(--line);
-    border-radius:10px;padding:8px 4px;cursor:pointer;transition:.15s ease;display:flex;flex-direction:column;align-items:center;gap:3px}
-  .btn .ic{font-size:15px;line-height:1;color:var(--mut);transition:.15s}
-  .btn:hover{color:var(--ink);border-color:var(--mut2)} .btn:hover .ic{color:var(--ink)} .btn:active{transform:scale(.96)}
-  .btn:disabled{opacity:.28;cursor:default;transform:none}
-  .btn.primary{background:var(--acc);color:var(--acc-ink);border-color:transparent}
+  .controls{display:flex;gap:4px;margin-bottom:10px}
+  .btn{flex:1;font-family:var(--sans);font-weight:500;font-size:11px;color:var(--mut);background:transparent;border:0;
+    border-radius:10px;padding:8px 4px;cursor:pointer;transition:transform .15s var(--spring),color .15s,background .15s;
+    display:flex;flex-direction:column;align-items:center;gap:2px}
+  .btn .ic{font-size:16px;line-height:1;color:var(--mut);transition:color .15s,transform .2s var(--spring)}
+  .btn:hover{color:var(--ink);background:var(--acc-soft)} .btn:hover .ic{color:var(--ink);transform:scale(1.12)} .btn:active{transform:scale(.92)}
+  .btn:disabled{opacity:.25;cursor:default;transform:none}
+  .btn.primary{background:var(--acc);color:var(--acc-ink)}
   .btn.primary:hover{background:var(--acc2)}
-  .btn.on{border-color:var(--acc);color:var(--acc)} .btn.on .ic{color:var(--acc)}
+  .btn.on{color:var(--acc);background:var(--acc-soft)} .btn.on .ic{color:var(--acc)}
   .msg{font-size:13.5px;line-height:1.55;color:var(--mut);padding:12px 16px;border-radius:12px;margin-bottom:12px;display:none;border-left:3px solid var(--acc)}
   .msg.show{display:block} .msg b{color:var(--ink);font-weight:500}
   .msg.bad{border-left-color:var(--red)}
@@ -253,7 +260,7 @@
     <span class="timer" id="timer">0:00</span>
   </div>
 
-  <div class="pips" id="pips" aria-label="Queens placed"></div>
+  <div class="region-progress" id="regionProg" aria-label="Queens placed per region"></div>
 
   <div class="boardwrap">
     <div class="board" id="board" role="grid" aria-label="Puzzle board"></div>
@@ -300,6 +307,7 @@
       <label><input type="checkbox" id="prefAuto" checked> Auto-X after placing a queen</label>
       <label><input type="checkbox" id="prefErr" checked> Show conflicts as you go</label>
       <label><input type="checkbox" id="prefTimer" checked> Show timer</label>
+      <label><input type="checkbox" id="prefSound" checked> Sound effects</label>
       <label><input type="checkbox" id="prefOutline"> Outline regions (colour-blind aid)</label>
     </div>
   </details>
@@ -899,6 +907,45 @@ function fireConfetti(canvas, duration) {
   requestAnimationFrame(frame);
 }
 
+/* ---------- audio feedback ---------- */
+const AudioFX = (function() {
+  let ctx = null;
+  function getCtx() {
+    if (!ctx) try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+    return ctx;
+  }
+  function play(freq, dur, vol, type) {
+    const c = getCtx(); if (!c) return;
+    if (c.state === 'suspended') c.resume();
+    const o = c.createOscillator(), g = c.createGain();
+    o.type = type || 'sine';
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(vol, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(); o.stop(c.currentTime + dur);
+  }
+  let muted = false;
+  return {
+    set mute(v) { muted = v; },
+    mark() { if (muted) return; play(660, 0.05, 0.06, 'sine'); },
+    queen(n, total) {
+      if (muted) return;
+      const freq = 440 * Math.pow(2, (n / Math.max(total, 1)) * 0.5);
+      play(freq, 0.18, 0.10, 'triangle');
+    },
+    unqueen() { if (muted) return; play(280, 0.08, 0.05, 'sine'); },
+    solve() {
+      if (muted) return;
+      const c = getCtx(); if (!c) return;
+      if (c.state === 'suspended') c.resume();
+      [523.25, 659.25, 783.99].forEach(function(f, i) {
+        setTimeout(function() { play(f, 0.5, 0.09, 'triangle'); }, i * 100);
+      });
+    }
+  };
+})();
+
 /* =====================================================================
    Game shell — state, rendering, input, persistence. Engine is above.
    ===================================================================== */
@@ -911,7 +958,7 @@ function fireConfetti(canvas, duration) {
   /* ---------- storage ---------- */
   let save = { done: {}, prefs: { auto: true, err: true, timer: true }, boards: {}, mode: 'daily', level: 1 };
   try { const s = JSON.parse(localStorage.getItem(STORE)); if (s && typeof s === 'object') save = Object.assign(save, s); } catch (e) { /* fresh */ }
-  save.prefs = Object.assign({ auto: true, err: true, timer: true, outline: false, theme: 'auto' }, save.prefs || {});
+  save.prefs = Object.assign({ auto: true, err: true, timer: true, sound: true, outline: false, theme: 'auto' }, save.prefs || {});
 
   /* ---------- theme ---------- */
   const mq = window.matchMedia('(prefers-color-scheme: dark)');
@@ -1057,7 +1104,11 @@ function fireConfetti(canvas, duration) {
       let cls = 'cell', sym = '#sym-x';
       if (v === QUEEN) { cls += locked.has(i) ? ' q given' : ' q'; sym = '#sym-queen'; }
       else if (v === MARK) cls += ' x';
-      else if (auto && q.some(([qr, qc]) => attacks(qr, qc, r, c, P.reg))) cls += ' ax';
+      else if (auto && q.some(([qr, qc]) => attacks(qr, qc, r, c, P.reg))) {
+        cls += ' ax';
+        const minD = Math.min.apply(null, q.map(function(p) { return Math.abs(r - p[0]) + Math.abs(c - p[1]); }));
+        el.style.setProperty('--ax-d', String(minD));
+      }
       if (bad.has(i)) cls += ' err';
       if (i === hintCell) cls += ' hint';
       if (el.classList.contains('bt')) cls += ' bt'; if (el.classList.contains('bl')) cls += ' bl';
@@ -1066,9 +1117,12 @@ function fireConfetti(canvas, duration) {
       const use = el.firstChild.firstChild; if (use.getAttribute('href') !== sym) use.setAttribute('href', sym);
       el.setAttribute('aria-label', 'Row ' + (r + 1) + ' column ' + (c + 1) + ', ' + P.names[P.reg[r][c]] + ', ' + (locked.has(i) ? 'pre-filled queen' : v === QUEEN ? 'queen' : v === MARK ? 'ruled out' : 'empty'));
     }
-    const pips = $('pips');
-    if (pips.childElementCount !== N) { pips.innerHTML = ''; for (let k = 0; k < N; k++) { const e = document.createElement('span'); e.className = 'pip'; pips.appendChild(e); } }
-    for (let k = 0; k < N; k++) pips.children[k].className = 'pip' + (k < q.length ? (bad.size && k === q.length - 1 ? ' bad' : ' on') : '');
+    const rp = $('regionProg');
+    if (rp.childElementCount !== N) { rp.innerHTML = ''; for (let g = 0; g < N; g++) { const e = document.createElement('span'); e.className = 'rpip'; e.style.setProperty('--rpc', 'var(--r' + (P.slot[g] % 12) + ')'); rp.appendChild(e); } }
+    const regionHasQ = new Array(N).fill(false), regionBad = new Set();
+    for (const [r, c] of q) { const g = P.reg[r][c]; if (regionHasQ[g]) regionBad.add(g); regionHasQ[g] = true; }
+    for (const [r, c] of q) { if (bad.has(r * N + c)) regionBad.add(P.reg[r][c]); }
+    for (let g = 0; g < N; g++) rp.children[g].className = 'rpip' + (regionHasQ[g] ? (regionBad.has(g) ? ' bad' : ' on') : '');
     $('board').classList.toggle('solved', solved);
     $('undo').disabled = history.length === 0 || solved;
     $('hint').disabled = solved;
@@ -1115,12 +1169,19 @@ function fireConfetti(canvas, duration) {
     snapshot();
     const v = cells[i];
     setCell(i, v === EMPTY ? MARK : v === MARK ? QUEEN : EMPTY);
+    const nv = cells[i];
+    if (nv === MARK) { if (navigator.vibrate) navigator.vibrate(6); AudioFX.mark(); }
+    else if (nv === QUEEN) { if (navigator.vibrate) navigator.vibrate(12); AudioFX.queen(queens().length, P.N); }
+    else { AudioFX.unqueen(); }
     afterMove();
   }
   function toggleQueen(i) {
     if (solved || locked.has(i)) return;
     snapshot();
-    setCell(i, cells[i] === QUEEN ? EMPTY : QUEEN);
+    const wasQ = cells[i] === QUEEN;
+    setCell(i, wasQ ? EMPTY : QUEEN);
+    if (wasQ) { AudioFX.unqueen(); }
+    else { if (navigator.vibrate) navigator.vibrate(12); AudioFX.queen(queens().length, P.N); }
     afterMove();
   }
   function undo() { if (!history.length || solved) return; cells = history.pop(); hintCell = -1; hideMsg(); saveBoard(); render(); }
@@ -1132,6 +1193,8 @@ function fireConfetti(canvas, duration) {
     if (P.mode !== 'shuffle') { if (best) save.done[P.key] = { time: elapsed, hints, at: Date.now() }; }
     delete save.boards[P.key];
     persist();
+    if (navigator.vibrate) navigator.vibrate([10, 30, 10, 30, 20]);
+    AudioFX.solve();
     showWin(false, best && !!prev);
     renderStatus();
   }
@@ -1142,8 +1205,15 @@ function fireConfetti(canvas, duration) {
     $('winBest').textContent = newBest ? 'New best' : d && P.mode !== 'shuffle' ? 'Best ' + fmt(d.time) : '';
     $('winNext').style.display = P.next ? '' : 'none';
     $('winNext').firstChild.textContent = P.mode === 'shuffle' ? 'Another →' : P.mode === 'daily' ? 'Play levels →' : 'Next →';
-    $('win').classList.add('show');
-    if (!replayed) fireConfetti($('confetti'), 1800);
+    // Beat 1: stagger queen crown celebration
+    let qi = 0;
+    cellEls.forEach(function(el, i) { if (cells[i] === QUEEN) el.style.setProperty('--qi', qi++); });
+    const crownDur = replayed ? 0 : Math.min(qi * 80 + 500, 1200);
+    // Beat 2: win card slides in after crowns; Beat 3: confetti burst
+    setTimeout(function() {
+      $('win').classList.add('show');
+      if (!replayed) setTimeout(function() { fireConfetti($('confetti'), 1800); }, 150);
+    }, crownDur);
   }
 
   /* ---------- hints ---------- */
@@ -1199,7 +1269,7 @@ function fireConfetti(canvas, duration) {
       if (drag.mode === 'mark' && cells[drag.start] === EMPTY) cells[drag.start] = MARK;
       if (drag.mode === 'erase' && cells[drag.start] === MARK) cells[drag.start] = EMPTY; }
     drag.touched.add(i);
-    if (drag.mode === 'mark' && cells[i] === EMPTY) cells[i] = MARK;
+    if (drag.mode === 'mark' && cells[i] === EMPTY) { cells[i] = MARK; AudioFX.mark(); if (navigator.vibrate) navigator.vibrate(4); }
     if (drag.mode === 'erase' && cells[i] === MARK) cells[i] = EMPTY;
     render();
   });
@@ -1230,7 +1300,7 @@ function fireConfetti(canvas, duration) {
     else if (e.key === 'ArrowRight') ni = c < N - 1 ? i + 1 : i;
     else if (e.key === ' ' || e.key === 'Enter') { cycle(i); }
     else if (e.key === 'q' || e.key === 'Q') { toggleQueen(i); }
-    else if (e.key === 'x' || e.key === 'X') { if (!solved && !locked.has(i)) { snapshot(); setCell(i, cells[i] === MARK ? EMPTY : MARK); afterMove(); } }
+    else if (e.key === 'x' || e.key === 'X') { if (!solved && !locked.has(i)) { snapshot(); const wasM = cells[i] === MARK; setCell(i, wasM ? EMPTY : MARK); if (!wasM) AudioFX.mark(); afterMove(); } }
     else if (e.key === 'Backspace' || e.key === 'Delete') { if (!solved && !locked.has(i) && cells[i] !== EMPTY) { snapshot(); setCell(i, EMPTY); afterMove(); } }
     else return;
     e.preventDefault();
@@ -1251,8 +1321,10 @@ function fireConfetti(canvas, duration) {
   $('prefAuto').onchange = (e) => { save.prefs.auto = e.target.checked; persist(); render(); };
   $('prefErr').onchange = (e) => { save.prefs.err = e.target.checked; persist(); render(); };
   $('prefTimer').onchange = (e) => { save.prefs.timer = e.target.checked; persist(); render(); };
+  $('prefSound').onchange = (e) => { save.prefs.sound = e.target.checked; AudioFX.mute = !e.target.checked; persist(); };
   $('prefOutline').onchange = (e) => { save.prefs.outline = e.target.checked; persist(); applyTheme(); };
-  $('prefAuto').checked = save.prefs.auto; $('prefErr').checked = save.prefs.err; $('prefTimer').checked = save.prefs.timer; $('prefOutline').checked = !!save.prefs.outline;
+  $('prefAuto').checked = save.prefs.auto; $('prefErr').checked = save.prefs.err; $('prefTimer').checked = save.prefs.timer; $('prefSound').checked = save.prefs.sound !== false; $('prefOutline').checked = !!save.prefs.outline;
+  AudioFX.mute = save.prefs.sound === false;
   $('winNext').onclick = () => { if (P.mode === 'daily') loadPuzzle('ladder', nextUnsolvedLevel()); else if (P.next) P.next(); };
   $('winReplay').onclick = () => { delete save.boards[P.key]; const m = P.mode, k = P.key; $('win').classList.remove('show');
     solved = false; cells = cells.map((v, i) => (locked.has(i) ? QUEEN : EMPTY)); history = []; elapsed = 0; started = false; hints = 0; hintCell = -1;
