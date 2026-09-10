@@ -180,7 +180,7 @@
   .lv{position:relative;border:1px solid var(--line);border-radius:9px;padding:7px 4px 5px;text-align:center;cursor:pointer;background:transparent;transition:.15s}
   .lv:hover{border-color:var(--acc)}
   .lv .n{font-family:var(--mono);font-size:14px;color:var(--ink)}
-  .lv .t{font-family:var(--mono);font-size:8.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--mut2);margin-top:2px}
+  .lv .t{font-family:var(--mono);font-size:8px;letter-spacing:.3px;text-transform:uppercase;color:var(--mut2);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .lv.done{border-color:color-mix(in srgb,var(--ok),transparent 45%);background:color-mix(in srgb,var(--ok),transparent 92%)}
   .lv.done .n{color:var(--ok)} .lv.done::after{content:'✓';position:absolute;top:2px;right:5px;font-size:10px;color:var(--ok)}
   .lv.cur{border-color:var(--acc);background:var(--acc-soft)}
@@ -1208,7 +1208,7 @@ function generate(N, targetTier, seed, budget, style, givens) {
       if (e.N !== lastN) { lastN = e.N; const h = document.createElement('div'); h.className = 'lv-group'; h.textContent = e.N + ' × ' + e.N; list.appendChild(h);
         grid = document.createElement('div'); grid.className = 'lv-grid'; list.appendChild(grid); }
       const b = document.createElement('button'); b.className = 'lv' + (save.done['lvl:' + lvl] ? ' done' : '') + (P.key === 'lvl:' + lvl ? ' cur' : '');
-      b.innerHTML = '<div class="n">' + lvl + '</div><div class="t">' + tierName(e.t, e.N).slice(0, 7) + '</div>';
+      b.innerHTML = '<div class="n">' + lvl + '</div><div class="t">' + tierName(e.t, e.N) + '</div>';
       b.onclick = () => { closeSheet(); loadPuzzle('ladder', lvl); };
       grid.appendChild(b);
     });
