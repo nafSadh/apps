@@ -98,7 +98,8 @@
   /* ---- queens-placed pips ---- */
   .pips{display:flex;gap:4px;margin:0 auto 8px;width:min(100%,520px)}
   .pip{flex:1;height:22px;border-radius:7px;background:var(--acc-soft);display:flex;align-items:center;justify-content:center;
-    font-size:13px;line-height:1;color:var(--mut2);opacity:.55;transition:.2s}
+    color:var(--mut2);opacity:.55;transition:.2s}
+  .pip svg{width:13px;height:13px}
   .pip.on{background:var(--acc);color:var(--acc-ink);opacity:1}
   .pip.bad{background:var(--red);color:#fff;opacity:1}
 
@@ -119,10 +120,11 @@
     box-shadow:0 0 0 2px rgba(29,27,23,.55)}
   :root[data-theme="dark"] .outlines .cell::after{box-shadow:0 0 0 2px rgba(255,255,255,.55)}
   .outlines .cell:not(.bt):not(.bl):not(.bb):not(.br)::after{display:none}
-  .cell .g{font-size:calc(var(--cs) * .60);line-height:1;color:var(--tile-ink);pointer-events:none}
+  .cell .g{display:none;width:calc(var(--cs) * .62);height:calc(var(--cs) * .62);color:var(--tile-ink);pointer-events:none}
+  .cell.x .g,.cell.ax .g,.cell.q .g{display:block}
   /* manual × — firm; auto × — clearly an ×, but quieter */
-  .cell.x .g,.cell.ax .g{font-family:var(--sans);font-weight:300;font-size:calc(var(--cs) * .58);opacity:.72;transform:translateY(-3%)}
-  .cell.ax .g{opacity:.30}
+  .cell.x .g{width:calc(var(--cs) * .46);height:calc(var(--cs) * .46);stroke-width:3.2;opacity:.78}
+  .cell.ax .g{width:calc(var(--cs) * .40);height:calc(var(--cs) * .40);stroke-width:2.4;opacity:.34}
   .cell.q .g{animation:pop .18s ease-out;filter:drop-shadow(0 1px 0 rgba(255,255,255,.35))}
   @keyframes pop{from{transform:scale(.4)}to{transform:scale(1)}}
   .cell.given{cursor:default}
@@ -202,6 +204,16 @@
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sym-x" viewBox="0 0 24 24"><path d="M6 6 18 18M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round"/></symbol>
+    <symbol id="sym-queen" viewBox="0 0 24 24">
+      <path d="M4.2 17.5 2.9 8.6l4.9 3.6L12 5.4l4.2 6.8 4.9-3.6-1.3 8.9Z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+      <circle cx="2.9" cy="7.6" r="1.6" fill="currentColor"/><circle cx="12" cy="4.2" r="1.7" fill="currentColor"/><circle cx="21.1" cy="7.6" r="1.6" fill="currentColor"/>
+      <rect x="4" y="18.7" width="16" height="2.6" rx="1.3" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
 <div class="wrap">
   <div class="top">
     <div class="brand"><a href="/">sadh<span style="color:var(--acc)">.app</span></a><span class="crumb"> / games</span> / c-queens</div>
@@ -955,7 +967,7 @@ function generate(N, targetTier, seed, budget, style, givens) {
         if (c === 0 || P.reg[r][c - 1] !== g) el.classList.add('bl');
         if (r === N - 1 || P.reg[r + 1][c] !== g) el.classList.add('bb');
         if (c === N - 1 || P.reg[r][c + 1] !== g) el.classList.add('br');
-        const gl = document.createElement('span'); gl.className = 'g'; el.appendChild(gl);
+        el.insertAdjacentHTML('beforeend', '<svg class="g"><use href="#sym-x"/></svg>');
         board.appendChild(el); cellEls.push(el);
       }
     }
@@ -983,20 +995,20 @@ function generate(N, targetTier, seed, budget, style, givens) {
     const auto = save.prefs.auto;
     for (let i = 0; i < N * N; i++) {
       const r = Math.floor(i / N), c = i % N, el = cellEls[i], v = cells[i];
-      let cls = 'cell', glyph = '';
-      if (v === QUEEN) { cls += locked.has(i) ? ' q given' : ' q'; glyph = '♛'; }
-      else if (v === MARK) { cls += ' x'; glyph = '×'; }
-      else if (auto && q.some(([qr, qc]) => attacks(qr, qc, r, c, P.reg))) { cls += ' ax'; glyph = '×'; }
+      let cls = 'cell', sym = '#sym-x';
+      if (v === QUEEN) { cls += locked.has(i) ? ' q given' : ' q'; sym = '#sym-queen'; }
+      else if (v === MARK) cls += ' x';
+      else if (auto && q.some(([qr, qc]) => attacks(qr, qc, r, c, P.reg))) cls += ' ax';
       if (bad.has(i)) cls += ' err';
       if (i === hintCell) cls += ' hint';
       if (el.classList.contains('bt')) cls += ' bt'; if (el.classList.contains('bl')) cls += ' bl';
       if (el.classList.contains('bb')) cls += ' bb'; if (el.classList.contains('br')) cls += ' br';
       if (el.className !== cls) el.className = cls;
-      const gl = el.firstChild; if (gl.textContent !== glyph) gl.textContent = glyph;
+      const use = el.firstChild.firstChild; if (use.getAttribute('href') !== sym) use.setAttribute('href', sym);
       el.setAttribute('aria-label', 'Row ' + (r + 1) + ' column ' + (c + 1) + ', ' + P.names[P.reg[r][c]] + ', ' + (locked.has(i) ? 'pre-filled queen' : v === QUEEN ? 'queen' : v === MARK ? 'ruled out' : 'empty'));
     }
     const pips = $('pips');
-    if (pips.childElementCount !== N) { pips.innerHTML = ''; for (let k = 0; k < N; k++) { const e = document.createElement('span'); e.className = 'pip'; e.textContent = '♛'; pips.appendChild(e); } }
+    if (pips.childElementCount !== N) { pips.innerHTML = ''; for (let k = 0; k < N; k++) { const e = document.createElement('span'); e.className = 'pip'; e.innerHTML = '<svg><use href="#sym-queen"/></svg>'; pips.appendChild(e); } }
     for (let k = 0; k < N; k++) pips.children[k].className = 'pip' + (k < q.length ? (bad.size && k === q.length - 1 ? ' bad' : ' on') : '');
     $('board').classList.toggle('solved', solved);
     $('undo').disabled = history.length === 0 || solved;
