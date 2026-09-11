@@ -21,3 +21,7 @@ matchday/brief/feed.json
 
 # c-queens: level-bank build checkpoint (gen.js renames it into levels.js when done)
 games/c-queens/levels.js.tmp
+
+node_modules/
+package.json
+package-lock.json
