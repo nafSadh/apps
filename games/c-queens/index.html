@@ -137,11 +137,11 @@
   .outlines .cell:not(.bt):not(.bl):not(.bb):not(.br)::after{display:none}
   .cell .g{display:none;width:calc(var(--cs) * .58);height:calc(var(--cs) * .58);color:var(--tile-ink);pointer-events:none;transition:opacity .12s}
   .cell.x .g,.cell.ax .g,.cell.q .g{display:block}
-  .cell.x .g{width:calc(var(--cs) * .42);height:calc(var(--cs) * .42);stroke-width:3;opacity:.65;animation:markIn .2s var(--spring)}
+  .cell.x .g,.cell.ax .g{width:calc(var(--cs) * .42);height:calc(var(--cs) * .42);stroke-width:3;opacity:.65}
+  .cell.x .g{animation:markIn .2s var(--spring)}
   @keyframes markIn{from{transform:scale(0) rotate(90deg);opacity:0}to{transform:scale(1) rotate(0);opacity:.65}}
-  .cell.ax .g{width:calc(var(--cs) * .36);height:calc(var(--cs) * .36);stroke-width:2.2;opacity:0;
-    animation:cascadeIn .3s var(--spring) calc(var(--ax-d, 0) * 25ms) both}
-  @keyframes cascadeIn{from{opacity:0;transform:scale(.3)}to{opacity:.28;transform:scale(1)}}
+  .cell.ax .g{opacity:0;animation:cascadeIn .3s var(--spring) calc(var(--ax-d, 0) * 25ms) both}
+  @keyframes cascadeIn{from{opacity:0;transform:scale(.3)}to{opacity:.65;transform:scale(1)}}
   .cell.q .g{animation:queenIn .35s var(--spring);filter:drop-shadow(0 1px 2px rgba(0,0,0,.18))}
   @keyframes queenIn{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0)}}
   .cell.given{cursor:default}
