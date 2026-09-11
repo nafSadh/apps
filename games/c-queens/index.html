@@ -959,19 +959,18 @@ const AudioFX = (function() {
   let save = { done: {}, prefs: { auto: true, err: true, timer: true }, boards: {}, mode: 'daily', level: 1 };
   try { const s = JSON.parse(localStorage.getItem(STORE)); if (s && typeof s === 'object') save = Object.assign(save, s); } catch (e) { /* fresh */ }
   save.prefs = Object.assign({ auto: true, err: true, timer: true, sound: true, outline: false, theme: 'auto' }, save.prefs || {});
+  if (save.prefs.theme === 'auto') save.prefs.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
   /* ---------- theme ---------- */
-  const mq = window.matchMedia('(prefers-color-scheme: dark)');
   function applyTheme() {
-    const t = save.prefs.theme === 'auto' ? (mq.matches ? 'dark' : 'light') : save.prefs.theme;
+    const t = save.prefs.theme === 'dark' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', t);
     $('themeColor').setAttribute('content', t === 'dark' ? '#080c16' : '#f5f2eb');
-    $('theme').textContent = save.prefs.theme === 'auto' ? '◐' : t === 'dark' ? '☾' : '☀';
-    $('theme').title = 'Theme: ' + save.prefs.theme;
+    $('theme').textContent = t === 'dark' ? '☾' : '☀';
+    $('theme').title = 'Theme: ' + t;
     document.body.classList.toggle('outlines', !!save.prefs.outline);
   }
-  mq.addEventListener('change', applyTheme);
-  $('theme').onclick = () => { save.prefs.theme = { auto: 'light', light: 'dark', dark: 'auto' }[save.prefs.theme] || 'auto'; persist(); applyTheme(); };
+  $('theme').onclick = () => { save.prefs.theme = save.prefs.theme === 'dark' ? 'light' : 'dark'; persist(); applyTheme(); };
   applyTheme();
   function persist() { try { localStorage.setItem(STORE, JSON.stringify(save)); } catch (e) { /* private mode */ } }
   function saveBoard() { if (P.mode === 'shuffle') return; save.boards[P.key] = { cells: cells.slice(), elapsed, hints }; persist(); }
