@@ -286,3 +286,19 @@ The session's WebSearch budget is 200 calls per session and it is shared by ever
 - Calendar: 53 fixture corrections, all from league/club/broadcaster sources — the 20 Sep Sunday moves, every October EPL TV pick, the 25 Oct–1 Nov week converted at minus seven hours (Europe off DST, US still on), the 1–2 Nov moves, LaLiga J4–J7 kickoffs, Ligue 1 through J9, the Clásico at 21:00 CET = 1:00 PM PT (guide's derby table follows). UCL MD1–5 confirmed against UEFA; EPL Nov/Dec/Jan and Bundesliga MD5+ have no published picks yet and stay provisional (the Dec 2 and Dec 30 midweeks were wrongly marked confirmed — fixed).
 
 **Still open:** photos for ~150 new squad entries (Commons pages are unreachable from here); Bundesliga kickoffs after MD4 and EPL picks from November once the DFL/PL publish them; the Souza→Porto loan has no toKey because Porto's list doesn't show him.
+
+---
+
+## 2026-09-21 — MatchDayBuddy → all (cal.html DATA is now one row per line)
+
+Owner reported local edits and the daily workflow's commits kept conflicting on `cal.html`. Root cause: DATA was one ~100KB line and `scores.py` re-serialised the whole thing every run, so any hand fixture edit and any result stamp were the same-line conflict by construction. Worse: the Sep 21 "keep mine" resolution silently dropped all 54 of the bot's Sep 4–20 result stamps (checked row-by-row against the bot's commit; the owner's 43 edits survived) — re-applied here.
+
+**New contract:**
+
+- `const DATA =` block is strict JSON, one fixture per line, `[` and `];` on their own lines, no trailing comma on the last row. Hand-edit rows freely; keep the shape.
+- `scores.py` rewrites only the rows it changed (result stamps, kickoff corrections, new UCL fixtures slotted in date order, retired window rows removed) and copies every other line back verbatim — so its diff is exactly the rows it touched. It no longer re-sorts the array.
+- Results are stamped for every match since the season's first fixture (one date-ranged football-data request per competition, the same shape the UCL fetch already used), not just the last 7 days — a clobbered stamp heals itself the next morning. `scores.json` still carries 7 days for the brief.
+- `render.py`'s DATA regex is unchanged and still parses the block.
+- Repo-local git: `pull.rebase=true`, `rebase.autoStash=true`, so the owner's pulls rebase over bot commits instead of producing merge commits.
+
+Verified offline with `--from-dir --cal --out` on a scratch copy: a stamped row is the only changed line, and a hand-edited row with non-canonical spacing came back byte-identical.

@@ -11,8 +11,9 @@ Runs in the daily brief workflow (GitHub runners — the cloud-agent proxy 403s
 these hosts, same reason fetch.py lives here) and does three additive jobs:
 
   1. scores.json     — finals from the last 7 days, for the brief's Results section
-  2. cal.html DATA   — stamp results (r:"2-1") onto matching rows; correct the
-                       date/kickoff to what actually happened (TV picks move games)
+  2. cal.html DATA   — stamp results (r:"2-1") onto matching rows for every match
+                       played so far this season (so a lost stamp heals itself next
+                       run); correct the date/kickoff to what actually happened
   3. cal.html DATA   — upsert dated UCL fixtures for tracked (UCL_SET) clubs as
                        UEFA publishes them; matchday-window placeholder rows are
                        dropped once two or more real fixtures land in their range,
@@ -24,8 +25,13 @@ A scores outage must never block the brief: main() catches everything, prints a
 Fetching also stops at DEADLINE_S so a hanging source cannot eat the job timeout.
 
 API payloads are external input: display names are sanitised (clean_name) before
-they can reach cal.html's inline <script> JSON or the brief's HTML, and the DATA
-line is written with `</` escaped so no name can close the script block.
+they can reach cal.html's inline <script> JSON or the brief's HTML, and DATA rows
+are written with `</` escaped so no name can close the script block.
+
+DATA is one fixture per line (strict JSON; `[` and `];` on their own lines). Only
+the rows this script changes are rewritten — every other line is kept verbatim —
+so hand edits to fixtures and the bot's result stamps merge in git without
+touching each other. Keep that shape when editing by hand.
 
     python3 scores.py                  live fetch (needs egress)
     python3 scores.py --from-dir DIR   offline: football-data shaped DIR/fd-<CODE>.json
@@ -34,7 +40,7 @@ line is written with `</` escaped so no name can close the script block.
     python3 scores.py --cal PATH       operate on a different cal.html (testing)
     python3 scores.py --out PATH       write scores.json elsewhere (testing)
 """
-import json, os, re, sys, time, unicodedata, urllib.request
+import copy, json, os, re, sys, time, unicodedata, urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -131,6 +137,28 @@ def read_cal_from_text(src):
     if not m:
         raise ValueError("const DATA block not found in cal.html")
     return m, json.loads(m.group(2))
+
+
+def row_texts(block, data):
+    """The verbatim source line of each DATA row, when the block is one row per
+    line — None if it is not in that shape yet (the whole block is then rewritten
+    once). A line is reused only if it still parses to exactly that row."""
+    lines = block.split("\n")
+    if len(lines) < 2 or lines[0].strip() != "[" or lines[-1].strip() != "]":
+        return None
+    body = lines[1:-1]
+    if len(body) != len(data):
+        return None
+    out = []
+    for ln, row in zip(body, data):
+        t = ln.rstrip().rstrip(",")
+        try:
+            if json.loads(t) != row:
+                return None
+        except ValueError:
+            return None
+        out.append(t)
+    return out
 
 
 def read_cal(path):
@@ -284,6 +312,12 @@ def run():
 
     src, span, data = read_cal(cal_path)
     canon = cal_lists(src)
+    texts = row_texts(span.group(2), data)
+    if texts is None:
+        warn("DATA is not one row per line — rewriting the whole block in that shape")
+    snapshot = copy.deepcopy(data)
+    orig_index = {id(m): i for i, m in enumerate(data)}
+    season_start = min(m["d"] for m in data)   # first fixture: stamp everything played since
 
     today = datetime.now(PT).date()
     result_days = [today - timedelta(days=i) for i in range(RESULT_DAYS + 1)]
@@ -317,18 +351,18 @@ def run():
         warn("FOOTBALL_DATA_TOKEN is not set — falling back to ESPN, which is "
              "best-effort only (it 403'd every run Aug 27–Sep 3). Add the repo "
              "secret from https://www.football-data.org/client/register")
-    week_floor_d = today - timedelta(days=RESULT_DAYS)
     for comp, lg in LEAGUES:
         if time.monotonic() - started > DEADLINE_S:
             warn(f"fetch budget ({DEADLINE_S}s) spent — stopping at {comp}")
             errors += 1; league_err[comp] += 1
             continue
-        # --- football-data.org: one date-ranged request per competition; the UCL
-        # range runs to season end so every newly dated fixture arrives at once
+        # --- football-data.org: one date-ranged request per competition, from the
+        # season's first fixture (every played match is re-stamped each run); the
+        # UCL range runs to season end so every newly dated fixture arrives at once
         if use_fd:
             hi = SEASON_END if comp == "UCL" else today.isoformat()
             try:
-                board = fetch_fd(FD_CODES[comp], week_floor_d.isoformat(), hi, from_dir)
+                board = fetch_fd(FD_CODES[comp], season_start, hi, from_dir)
             except Exception as e:
                 board = None
                 errors += 1; league_err[comp] += 1
@@ -368,10 +402,11 @@ def run():
         return 0
 
     by_pair = {}
-    for i, m in enumerate(data):
+    for m in data:
         if m.get("a"):
-            by_pair.setdefault((m["c"], m["h"], m["a"]), []).append(i)
+            by_pair.setdefault((m["c"], m["h"], m["a"]), []).append(m)
     ucl_windows = [m for m in data if m["c"] == "UCL" and not m["a"]]
+    sort_key = lambda m: (m["d"], m.get("dt") or "", m["h"])
 
     def window_tag_for(d):
         for w in ucl_windows:
@@ -407,8 +442,8 @@ def run():
             if not (h in canon["UCL"] or a in canon["UCL"]):
                 continue                      # neither side a pickable club
             H, A = h or ev["home"], a or ev["away"]
-            row = next((data[i] for i in by_pair.get(("UCL", H, A), [])
-                        if near(data[i]["d"], d, 3)), None)
+            row = next((m for m in by_pair.get(("UCL", H, A), [])
+                        if near(m["d"], d, 3)), None)
             if row is None:
                 # same fixture under a renamed untracked side: any real UCL row
                 # a day either side sharing the resolved tracked club is it
@@ -423,8 +458,10 @@ def run():
                        "cf": bool(ev["time_valid"]),
                        "tr": H in canon["_default"] or A in canon["_default"],
                        "bg": H in canon["_big"] and A in canon["_big"]}
-                data.append(row)
-                by_pair.setdefault(("UCL", H, A), []).append(len(data) - 1)
+                # slot it in date order rather than re-sorting rows a human placed
+                pos = next((i for i, m in enumerate(data) if sort_key(m) > sort_key(row)), len(data))
+                data.insert(pos, row)
+                by_pair.setdefault(("UCL", H, A), []).append(row)
                 inserted += 1
             if ev["time_valid"]:
                 row["d"], row["t"], row["dt"], row["cf"] = d, t, dt, True
@@ -443,8 +480,8 @@ def run():
                 unmatched.append(f'{ev["comp"]}: {ev["home"]} vs {ev["away"]}')
             continue
         if ev["final"] and ev["hs"] is not None and ev["time_valid"]:
-            row = next((data[i] for i in by_pair.get((ev["comp"], h, a), [])
-                        if near(data[i]["d"], d, 1)), None)
+            row = next((m for m in by_pair.get((ev["comp"], h, a), [])
+                        if near(m["d"], d, 1)), None)
             if row is not None:
                 row.update({"d": d, "t": t, "dt": dt, "cf": True,
                             "r": f'{ev["hs"]}-{ev["as"]}'})
@@ -474,12 +511,20 @@ def run():
     dropped = [m for m in ucl_windows if window_filled(m)]
     data = [m for m in data if m not in dropped]
 
-    data.sort(key=lambda m: (m["d"], m.get("dt") or "", m["h"]))
-    # `<\/` keeps any `</script>`-shaped text from terminating the inline block
-    new_line = json.dumps(data, ensure_ascii=True, separators=(",", ":")).replace("</", "<\\/")
-    new_src = src[:span.start(2)] + new_line + src[span.end(2):]
+    # one row per line; a row this run did not touch keeps its source line
+    # verbatim, so the bot's diff is only the rows it changed. `<\/` keeps any
+    # `</script>`-shaped text from terminating the inline block.
+    dump = lambda r: json.dumps(r, ensure_ascii=True, separators=(",", ":")).replace("</", "<\\/")
+    lines = []
+    for row in data:
+        i = orig_index.get(id(row))
+        if texts is not None and i is not None and row == snapshot[i]:
+            lines.append(texts[i])
+        else:
+            lines.append(dump(row))
+    new_src = src[:span.start(2)] + "[\n" + ",\n".join(lines) + "\n]" + src[span.end(2):]
     _, check = read_cal_from_text(new_src)   # round-trip guard
-    assert len(check) == len(data), "round-trip length mismatch"
+    assert check == data, "round-trip mismatch"
     if new_src != src:
         cal_path.write_text(new_src, encoding="utf-8")
 
