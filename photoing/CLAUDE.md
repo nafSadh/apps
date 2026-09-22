@@ -8,7 +8,8 @@ CSS/JS. Do not introduce tooling.
 ## Files
 - `index.html` — hub. Card grid of guides + a full-width "companion" card. ~116 lines.
 - `x100vi-guide.html` — Fuji X100VI guide (13 sections, 3 simulators, 12-card field deck).
-- `om1-guide.html` — OM-1 guide (12 sections, 2 simulators, 12-card mission deck).
+- `om1-guide.html` — OM-1 guide (13 sections, 2 simulators, 12-card mission deck). §10 “Overlap”
+  explains why the 12-40 and 40-150 disagree at 40mm — measured from the owner’s own EXIF.
 - `in-practice.html` — camera-agnostic companion: 7 lessons, worked numbers, 6 assignments,
   real photographs as evidence.
 - `street-guide.html` — street photography guide, 13 lessons, 135 figures, 21 annotation studies.

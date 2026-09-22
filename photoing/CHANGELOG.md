@@ -6,6 +6,47 @@ retracted.
 
 ---
 
+## [5.7.0] - 2026-07-31
+
+### Added — `om1-guide.html` §10 "Overlap"
+
+New section, *Two Lenses, One Number, Different Pictures*: why a frame shot at 40mm on the
+12-40mm f/2.8 PRO II does not match one shot at 40mm on the 40-150mm f/2.8 PRO, and why the
+heavier lens usually looks better.
+
+Written in plain language for the guide's general reader, but every figure is measured, not
+recalled. The working-distance and aperture numbers come from `exiftool` over a 2,283-file
+sample of the owner's own raws (every 9th ORF of ~86,000), giving 247 frames at exactly 40mm on
+the standard zoom and 276 on the telephoto:
+
+- Typical working distance at 40mm — **4.8 m** on the 12-40 against **13.2 m** on the 40-150.
+  Perspective follows the photographer, not the lens, so this is most of the difference in look.
+- Closest focus **0.20 m / 0.30×** against **0.70 m / ~0.065×** at 40mm — the standard zoom
+  reaches about four and a half times deeper into the near field at the same marked number.
+- Aperture habit — **46%** of the 12-40's 40mm frames are at f/8 or smaller, against **27%** of
+  the 40-150's, across 14 of 20 albums. On the OM-1's 3.36 µm pitch, f/9 draws a 3.6-pixel Airy
+  disc against 1.1 pixels at f/2.8. This is the largest single contributor to the quality gap
+  and it is a habit, not glass.
+- Entrance pupil — both need 14.3 mm at 40mm f/2.8; that is the 12-40's maximum and about a
+  quarter of the 40-150's, which must hold 53.6 mm at 150mm.
+
+Two SVG diagrams in the house paper palette: measured working distance on a log scale, and
+pupil utilisation drawn to one scale beside the diffraction ladder.
+
+Optical claims are cited to OpticalLimits (the 12-40 softens at 40mm and prefers f/4; the 40-150
+is excellent at 40mm from f/2.8) and to the manufacturer specifications (14/9 elements and 7
+blades against 16/10 and 9; 8.5% native barrel at 12mm corrected in software against 2%).
+
+The thin-lens derivation that the 12-40's "40" behaves like roughly 35mm at its closest focus is
+ours, from the published minimum distance and magnification — it is not a manufacturer figure.
+
+### Changed
+- Sections 10-12 renumbered to 11-13 to make room; the eight in-prose `§` cross-references were
+  updated with them. The jump menu builds itself from `.section-number`, so it needed no edit.
+- `index.html` OM-1 card now reads 13 sections.
+
+---
+
 ## [5.6.0] - 2026-07-31
 
 ### Added
