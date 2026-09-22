@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Colored N-Queens — sadh.app</title>
+<meta name="description" content="A logic puzzle: one queen in every row, column and colored region, and no two queens touching. levels from 5×5 up to 12×12, a daily board, and hints that explain the deduction.">
+<meta name="theme-color" content="#f5f2eb" id="themeColor">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='86'%3E%E2%99%9B%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --serif:'Fraunces',Georgia,serif; --sans:'Jost',-apple-system,'Segoe UI',sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --bg:#f5f2eb; --bg2:#ede9e0; --ink:#1d1b17; --mut:#6c675d; --mut2:#9b958a; --line:rgba(29,27,23,.10); --line2:rgba(29,27,23,.05);
+    --panel:rgba(255,255,255,.78); --panel-solid:#fff; --panel-border:rgba(29,27,23,.07);
+    --shadow:0 1px 2px rgba(29,27,23,.04), 0 4px 16px -6px rgba(29,27,23,.08);
+    --acc:#4338ca; --acc2:#6366f1; --acc-ink:#fff; --acc-soft:rgba(67,56,202,.06); --ok:#059669; --warn:#d97706; --hot:#e11d48; --red:#ef4444;
+    --tile-ink:#1d1b17; --tile-radius:14%; --tile-gap:.06; --board-bg:rgba(29,27,23,.025); --board-border:rgba(29,27,23,.04); --board-shadow:none;
+    --r0:#68d898; --r1:#b488e0; --r2:#48c4d4; --r3:#f090b0; --r4:#e8c040; --r5:#68a8f0;
+    --r6:#f09848; --r7:#7890e0; --r8:#d0a868; --r9:#a0b4c4; --r10:#d060d8; --r11:#b0cc90;
+    --blur:0px; --cell-hi:rgba(255,255,255,.32); --cell-lo:rgba(0,0,0,.05); color-scheme:light;
+    --spring:linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121, 1.149 24.3%, 1.159, 1.152, 1.128 29.8%, 0.997 37.1%, 0.974, 0.966, 0.974 45.5%, 1 55%, 1.001, 0.996 72.6%, 1);
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --bg:#080c16; --bg2:#0e1222; --ink:#eef1fa; --mut:#8e99b4; --mut2:#5a6580; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.04);
+    --panel:rgba(255,255,255,.05); --panel-solid:#131829; --panel-border:rgba(255,255,255,.08);
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 8px 24px -8px rgba(0,0,0,.45);
+    --acc:#818cf8; --acc2:#a5b4fc; --acc-ink:#0c0f1a; --acc-soft:rgba(129,140,248,.10); --ok:#34d399; --warn:#fbbf24; --hot:#fb7185; --red:#f87171;
+    --tile-ink:#e8ecf4; --board-bg:rgba(255,255,255,.03); --board-border:rgba(255,255,255,.06); --board-shadow:none;
+    --r0:#2a9060; --r1:#7c5cb0; --r2:#2a8c88; --r3:#b05070; --r4:#a09028; --r5:#346cb4;
+    --r6:#b07838; --r7:#4860ac; --r8:#907838; --r9:#5c7484; --r10:#982ca8; --r11:#648850;
+    --blur:18px; --cell-hi:rgba(255,255,255,.18); --cell-lo:rgba(0,0,0,.18); color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#080c16; --bg2:#0e1222; --ink:#eef1fa; --mut:#8e99b4; --mut2:#5a6580; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.04);
+    --panel:rgba(255,255,255,.05); --panel-solid:#131829; --panel-border:rgba(255,255,255,.08);
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 8px 24px -8px rgba(0,0,0,.45);
+    --acc:#818cf8; --acc2:#a5b4fc; --acc-ink:#0c0f1a; --acc-soft:rgba(129,140,248,.10); --ok:#34d399; --warn:#fbbf24; --hot:#fb7185; --red:#f87171;
+    --tile-ink:#e8ecf4; --board-bg:rgba(255,255,255,.03); --board-border:rgba(255,255,255,.06); --board-shadow:none;
+    --r0:#2a9060; --r1:#7c5cb0; --r2:#2a8c88; --r3:#b05070; --r4:#a09028; --r5:#346cb4;
+    --r6:#b07838; --r7:#4860ac; --r8:#907838; --r9:#5c7484; --r10:#982ca8; --r11:#648850;
+    --blur:18px; --cell-hi:rgba(255,255,255,.18); --cell-lo:rgba(0,0,0,.18); color-scheme:dark;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--mut);font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100dvh;overflow-x:hidden;position:relative}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.38;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+  body::after{content:'';position:fixed;inset:-20%;pointer-events:none;z-index:0;display:none;filter:blur(60px);opacity:.85;
+    background:
+      radial-gradient(40% 36% at 25% 18%, rgba(45,212,191,.50), transparent 70%),
+      radial-gradient(35% 32% at 75% 22%, rgba(129,140,248,.55), transparent 70%),
+      radial-gradient(38% 34% at 70% 80%, rgba(236,72,153,.35), transparent 70%),
+      radial-gradient(32% 28% at 22% 78%, rgba(52,211,153,.28), transparent 70%),
+      radial-gradient(24% 22% at 50% 45%, rgba(167,139,250,.20), transparent 70%);
+    animation:aurora 30s ease-in-out infinite alternate}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) body::before{display:none} :root:not([data-theme="light"]) body::after{display:block} }
+  :root[data-theme="dark"] body::before{display:none}
+  :root[data-theme="dark"] body::after{display:block}
+  @keyframes aurora{0%{transform:translate3d(0,0,0) rotate(0) scale(1)}33%{transform:translate3d(4%,-3%,0) rotate(5deg) scale(1.08)}66%{transform:translate3d(-3%,2%,0) rotate(-4deg) scale(1.04)}100%{transform:translate3d(1%,-1%,0) rotate(2deg) scale(1.02)}}
+  @media (prefers-reduced-motion:reduce){body::after{animation:none}}
+
+  .wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:16px 16px calc(32px + env(safe-area-inset-bottom))}
+  a{color:var(--acc);text-decoration:none}
+
+  .panel{background:var(--panel);border:1px solid var(--panel-border);border-radius:14px;box-shadow:var(--shadow);
+    -webkit-backdrop-filter:blur(var(--blur)) saturate(140%);backdrop-filter:blur(var(--blur)) saturate(140%)}
+
+  /* ---- header ---- */
+  .top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+  .brand{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mut2)}
+  .brand a{color:var(--mut2)} .brand a:hover{color:var(--acc)}
+  .top-r{display:flex;align-items:center;gap:8px;white-space:nowrap}
+  @media (max-width:420px){ .crumb{display:none} .brand{letter-spacing:1.6px} }
+  .iconbtn{width:34px;height:34px;border-radius:10px;border:1px solid var(--panel-border);background:var(--panel);color:var(--mut);
+    display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;line-height:1;transition:.18s ease;
+    -webkit-backdrop-filter:blur(var(--blur));backdrop-filter:blur(var(--blur))}
+  .iconbtn:hover{color:var(--ink);border-color:var(--acc);background:var(--acc-soft)}
+
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(22px,5.5vw,28px);letter-spacing:-.02em;color:var(--ink);line-height:1.1;margin-bottom:12px}
+  h1 .sub{font-family:var(--sans);font-weight:300;font-size:.52em;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);display:block;margin-top:2px}
+
+  /* ---- segmented tabs ---- */
+  .tabs{display:flex;gap:2px;padding:3px;border-radius:12px;margin-bottom:12px}
+  .tab{flex:1;font-family:var(--sans);font-weight:500;font-size:13px;color:var(--mut);background:transparent;border:0;border-radius:9px;
+    padding:9px 6px;cursor:pointer;text-align:center;transition:.18s ease}
+  .tab:hover{color:var(--ink)}
+  .tab[aria-selected=true]{background:var(--panel-solid);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 12px -4px rgba(0,0,0,.12)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tab[aria-selected=true]{background:rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)} }
+  :root[data-theme="dark"] .tab[aria-selected=true]{background:rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+
+  /* ---- status row ---- */
+  .status{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;min-height:28px}
+  .title{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:5px;background:none;border:0;padding:0}
+  .title:hover{color:var(--acc)}
+  .title .chev{font-size:10px;color:var(--mut2);font-style:normal;transition:.18s}
+  .title:hover .chev{color:var(--acc)}
+  .chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);
+    background:var(--acc-soft);border-radius:6px;padding:3px 7px;white-space:nowrap}
+  .chip.t1{color:var(--ok);background:color-mix(in srgb,var(--ok),transparent 90%)}
+  .chip.t2{color:var(--warn);background:color-mix(in srgb,var(--warn),transparent 90%)}
+  .chip.t3{color:var(--hot);background:color-mix(in srgb,var(--hot),transparent 88%)}
+  .timer{margin-left:auto;font-family:var(--mono);font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+  .timer.done{color:var(--ok)}
+
+  /* ---- region progress ---- */
+  .region-progress{display:flex;gap:4px;margin:0 auto 8px;width:min(100%,520px);justify-content:center;flex-wrap:wrap}
+  .rpip{width:18px;height:18px;border-radius:5px;background:var(--rpc);position:relative;transition:transform .25s var(--spring),opacity .2s;opacity:.38}
+  .rpip.on{opacity:1;transform:scale(1.12)}
+  .rpip.on::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:700;color:var(--tile-ink);animation:checkIn .35s var(--spring)}
+  .rpip.bad{opacity:1;outline:2px solid var(--red);outline-offset:-1px}
+  @keyframes checkIn{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0)}}
+
+  /* ---- board ---- */
+  .boardwrap{position:relative;margin:0 auto 10px;width:min(100%,520px)}
+  .board{display:grid;width:100%;aspect-ratio:1;touch-action:none;user-select:none;-webkit-user-select:none;
+    gap:calc(var(--cs) * var(--tile-gap));padding:calc(var(--cs) * var(--tile-gap));border-radius:12px;
+    background:var(--board-bg);border:1px solid var(--board-border)}
+  .cell{position:relative;display:flex;align-items:center;justify-content:center;background:var(--rc);border-radius:var(--tile-radius);
+    cursor:pointer;outline:none;transition:transform .08s ease;
+    background-image:linear-gradient(180deg,var(--cell-hi) 0%,transparent 45%,var(--cell-lo) 100%);background-blend-mode:normal;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.05)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .cell{
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(0,0,0,.16)}}
+  :root[data-theme="dark"] .cell{box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(0,0,0,.16)}
+  .cell:active{transform:scale(.88);transition:transform .1s var(--spring)}
+  .cell:focus-visible{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--acc)}
+  .outlines .cell{box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.10)}
+  .outlines .cell::after{content:'';position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+    box-shadow:0 0 0 2px rgba(29,27,23,.50)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .outlines .cell::after{box-shadow:0 0 0 2px rgba(255,255,255,.50)} }
+  :root[data-theme="dark"] .outlines .cell::after{box-shadow:0 0 0 2px rgba(255,255,255,.50)}
+  .outlines .cell:not(.bt):not(.bl):not(.bb):not(.br)::after{display:none}
+  .cell .g{display:none;width:calc(var(--cs) * .58);height:calc(var(--cs) * .58);color:var(--tile-ink);pointer-events:none;transition:opacity .12s}
+  .cell.x .g,.cell.ax .g,.cell.q .g{display:block}
+  .cell.x .g,.cell.ax .g{width:calc(var(--cs) * .42);height:calc(var(--cs) * .42);stroke-width:3;opacity:.65}
+  .cell.x .g{animation:markIn .2s var(--spring)}
+  @keyframes markIn{from{transform:scale(0) rotate(90deg);opacity:0}to{transform:scale(1) rotate(0);opacity:.65}}
+  .cell.ax .g{opacity:0;animation:cascadeIn .3s var(--spring) calc(var(--ax-d, 0) * 25ms) both}
+  @keyframes cascadeIn{from{opacity:0;transform:scale(.3)}to{opacity:.65;transform:scale(1)}}
+  .cell.q .g{animation:queenIn .35s var(--spring);filter:drop-shadow(0 1px 2px rgba(0,0,0,.18))}
+  @keyframes queenIn{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0)}}
+  .cell.given{cursor:default}
+  .cell.given .g{opacity:.55}
+  .cell.given::before{content:'';position:absolute;inset:14%;border:1.5px dashed color-mix(in srgb,var(--tile-ink),transparent 50%);border-radius:50%;pointer-events:none}
+  .cell.err{background-color:color-mix(in srgb,var(--rc),var(--red) 55%);animation:shake .32s ease}
+  @keyframes shake{20%{transform:translateX(-3px)}40%{transform:translateX(3px)}60%{transform:translateX(-2px)}80%{transform:translateX(1px)}}
+  .cell.hint{box-shadow:0 0 0 2px var(--acc),0 0 16px 2px var(--acc-soft);animation:pulse 1.2s ease-in-out infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 3px var(--acc),0 0 20px 6px color-mix(in srgb,var(--acc),transparent 60%)}}
+  .board.solved .cell{cursor:default}
+  .board.solved .cell.q .g{animation:crown .5s var(--spring) calc(var(--qi, 0) * 80ms) both}
+  @keyframes crown{0%{transform:scale(1)}50%{transform:scale(1.3) rotate(-8deg)}100%{transform:scale(1) rotate(0)}}
+  @media (prefers-reduced-motion:reduce){.cell,.cell .g,.cell.hint,.cell.err,.board.solved .cell.q .g,.rpip,.rpip::after{animation:none!important;transition:none!important}}
+
+  /* ---- controls ---- */
+  .controls{display:flex;gap:4px;margin-bottom:10px}
+  .btn{flex:1;font-family:var(--sans);font-weight:500;font-size:11px;color:var(--mut);background:transparent;border:0;
+    border-radius:10px;padding:8px 4px;cursor:pointer;transition:transform .15s var(--spring),color .15s,background .15s;
+    display:flex;flex-direction:column;align-items:center;gap:2px}
+  .btn .ic{font-size:16px;line-height:1;color:var(--mut);transition:color .15s,transform .2s var(--spring)}
+  .btn:hover{color:var(--ink);background:var(--acc-soft)} .btn:hover .ic{color:var(--ink);transform:scale(1.12)} .btn:active{transform:scale(.92)}
+  .btn:disabled{opacity:.25;cursor:default;transform:none}
+  .btn.primary{background:var(--acc);color:var(--acc-ink)}
+  .btn.primary:hover{background:var(--acc2)}
+  .btn.on{color:var(--acc);background:var(--acc-soft)} .btn.on .ic{color:var(--acc)}
+  .msg{font-size:13.5px;line-height:1.55;color:var(--mut);padding:12px 16px;border-radius:12px;margin-bottom:12px;display:none;border-left:3px solid var(--acc)}
+  .msg.show{display:block} .msg b{color:var(--ink);font-weight:500}
+  .msg.bad{border-left-color:var(--red)}
+
+  /* ---- panels ---- */
+  details{padding:0 16px;margin-bottom:8px}
+  summary{cursor:pointer;list-style:none;padding:12px 0;font-family:var(--mono);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mut);display:flex;justify-content:space-between;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'+';color:var(--mut2);font-size:14px} details[open] summary::after{content:'–'}
+  .rules{padding:0 0 16px;font-size:13.5px;line-height:1.6;color:var(--mut)}
+  .rules p{margin-bottom:10px} .rules b{color:var(--ink);font-weight:500}
+  .rules ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin:8px 0 12px}
+  .rules li{display:flex;gap:10px;align-items:flex-start}
+  .rules .k{flex-shrink:0;font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:var(--acc);
+    background:var(--acc-soft);border-radius:5px;padding:4px 8px;margin-top:2px;min-width:68px;text-align:center;font-weight:500}
+  .prefs{display:flex;flex-wrap:wrap;gap:10px 20px;padding:4px 0 16px}
+  .prefs label{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--mut);cursor:pointer}
+  .prefs input{accent-color:var(--acc);width:16px;height:16px}
+
+  /* ---- level picker ---- */
+  .sheet{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    display:none;align-items:flex-end;justify-content:center;animation:fadeIn .2s ease}
+  .sheet.show{display:flex}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .sheet-in{background:var(--panel-solid);border:1px solid var(--panel-border);border-radius:20px 20px 0 0;width:min(100%,520px);max-height:80vh;
+    overflow:auto;padding:20px 16px calc(24px + env(safe-area-inset-bottom));transform:translateY(0);animation:sheetUp .25s cubic-bezier(.16,1,.3,1)}
+  @keyframes sheetUp{from{transform:translateY(40%);opacity:.5}to{transform:translateY(0);opacity:1}}
+  .sheet-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+  .sheet-head h2{font-family:var(--serif);font-weight:600;font-size:20px;color:var(--ink)}
+  .close{background:none;border:0;color:var(--mut);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:8px;transition:.15s}
+  .close:hover{background:var(--line);color:var(--ink)}
+  .lv-group{font-family:var(--mono);font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--mut2);margin:14px 0 8px;display:flex;gap:10px;align-items:center}
+  .lv-group::after{content:'';flex:1;height:1px;background:var(--line)}
+  .lv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:6px}
+  .lv{position:relative;border:1px solid var(--line);border-radius:10px;padding:8px 4px 6px;text-align:center;cursor:pointer;background:transparent;transition:.15s ease}
+  .lv:hover{border-color:var(--acc);background:var(--acc-soft)}
+  .lv .n{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--ink)}
+  .lv .t{font-family:var(--mono);font-size:7.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--mut2);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .lv.done{border-color:color-mix(in srgb,var(--ok),transparent 50%);background:color-mix(in srgb,var(--ok),transparent 93%)}
+  .lv.done .n{color:var(--ok)} .lv.done::after{content:'✓';position:absolute;top:3px;right:5px;font-size:9px;color:var(--ok)}
+  .lv.cur{border-color:var(--acc);background:var(--acc-soft)}
+
+  /* ---- win ---- */
+  .win{position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:5;border-radius:12px;
+    background:color-mix(in srgb,var(--bg),transparent 15%);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .win.show{display:flex;animation:winIn .4s cubic-bezier(.16,1,.3,1)}
+  @keyframes winIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+  .win-in{text-align:center;padding:28px 32px;border-radius:16px}
+  .win h2{font-family:var(--serif);font-weight:600;font-size:28px;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+  .win .sub{font-family:var(--mono);font-size:11.5px;letter-spacing:1px;text-transform:uppercase;color:var(--mut);margin-bottom:4px}
+  .win .best{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--ok);margin-bottom:18px;min-height:14px}
+  .win .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .win .btn{padding:11px 20px;flex-direction:row;font-size:13px}
+
+  /* ---- confetti canvas ---- */
+  .confetti{position:absolute;inset:0;pointer-events:none;z-index:6;border-radius:12px;overflow:hidden}
+
+  footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:1.2px;
+    text-transform:uppercase;color:var(--mut2);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sym-x" viewBox="0 0 24 24"><path d="M7 7 17 17M17 7 7 17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="sym-queen" viewBox="0 0 24 24">
+      <path d="M3.5 17 2.2 8.2l5.2 3.4L12 4.8l4.6 6.8 5.2-3.4L20.5 17Z" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round"/>
+      <circle cx="2.2" cy="7" r="1.5" fill="currentColor"/><circle cx="12" cy="3.6" r="1.6" fill="currentColor"/><circle cx="21.8" cy="7" r="1.5" fill="currentColor"/>
+      <rect x="3.2" y="18" width="17.6" height="2.4" rx="1.2" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><a href="/">sadh<span style="color:var(--acc)">.app</span></a><span class="crumb"> / games</span> / c-queens</div>
+    <div class="top-r"><span class="brand" id="progress"></span><button class="iconbtn" id="theme" aria-label="Switch theme" title="Theme">◐</button></div>
+  </div>
+  <h1>Colored N-Queens<span class="sub">logic puzzle</span></h1>
+
+  <div class="tabs panel" role="tablist">
+    <button class="tab" role="tab" data-mode="daily">Daily</button>
+    <button class="tab" role="tab" data-mode="ladder">Levels</button>
+    <button class="tab" role="tab" data-mode="shuffle">Shuffle</button>
+  </div>
+
+  <div class="status">
+    <button class="title" id="title"></button>
+    <span class="chip" id="chipN"></span>
+    <span class="chip" id="chipT"></span>
+    <span class="timer" id="timer">0:00</span>
+  </div>
+
+  <div class="region-progress" id="regionProg" aria-label="Queens placed per region"></div>
+
+  <div class="boardwrap">
+    <div class="board" id="board" role="grid" aria-label="Puzzle board"></div>
+    <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+    <div class="win" id="win">
+      <div class="win-in panel">
+        <h2 id="winH">Solved.</h2>
+        <div class="sub" id="winSub"></div>
+        <div class="best" id="winBest"></div>
+        <div class="row">
+          <button class="btn primary" id="winNext"><span>Next →</span></button>
+          <button class="btn" id="winReplay"><span>Replay</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="msg panel" id="msg" aria-live="polite"></div>
+
+  <div class="controls">
+    <button class="btn" id="undo"><span class="ic">↶</span>Undo</button>
+    <button class="btn" id="hint"><span class="ic">✦</span>Hint</button>
+    <button class="btn" id="autox"><span class="ic">×</span>Auto-X</button>
+    <button class="btn" id="clear"><span class="ic">⟲</span>Clear</button>
+  </div>
+
+  <details id="howto" class="panel">
+    <summary>How to play</summary>
+    <div class="rules">
+      <p>Place <b>one queen in every row, every column and every colored region</b>. Queens can't touch each other — <b>not even diagonally</b>. That's it: unlike chess, a queen here only guards the eight squares around her.</p>
+      <p>Every board has exactly one solution and can be finished by pure deduction. No guessing is ever required — and <b>Hint</b> will show you the next logical step and explain why.</p>
+      <ul>
+        <li><span class="k">tap</span><span>Cycle a square: empty → <b>×</b> (ruled out) → <b>♛</b> queen → empty.</span></li>
+        <li><span class="k">drag</span><span>Sweep across empty squares to × them all at once; sweep from an × to erase.</span></li>
+        <li><span class="k">hold / right-click</span><span>Drop a queen straight away.</span></li>
+        <li><span class="k">keys</span><span>Arrows move · Space cycles · Q queen · X mark · Backspace clear · U undo · H hint.</span></li>
+      </ul>
+      <p><b>Auto-X</b> greys out every square a placed queen already rules out, so you can see what's left. On the biggest boards a queen or two comes <b>pre-placed</b> (dashed ring) — they're part of the puzzle and can't be moved.</p>
+    </div>
+  </details>
+  <details class="panel">
+    <summary>Options</summary>
+    <div class="prefs">
+      <label><input type="checkbox" id="prefAuto" checked> Auto-X after placing a queen</label>
+      <label><input type="checkbox" id="prefErr" checked> Show conflicts as you go</label>
+      <label><input type="checkbox" id="prefTimer" checked> Show timer</label>
+      <label><input type="checkbox" id="prefSound" checked> Sound effects</label>
+      <label><input type="checkbox" id="prefOutline"> Outline regions (colour-blind aid)</label>
+    </div>
+  </details>
+
+  <footer>
+    <span>Everything here runs client-side</span>
+    <span>by <a href="https://nafsadh.com">nafSadh</a></span>
+  </footer>
+</div>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Choose a level">
+  <div class="sheet-in">
+    <div class="sheet-head"><h2>Levels</h2><button class="close" id="sheetClose" aria-label="Close">×</button></div>
+    <div id="lvList"></div>
+  </div>
+</div>
+
+<script src="levels.js"></script>
+<script>
+/* ===== ENGINE START =====
+   Colored N-Queens — puzzle engine.
+   Rules: place N queens on an N×N board so that every row, every column and
+   every colored region holds exactly one, and no two queens touch — including
+   diagonally. (Unlike chess, queens do NOT attack down a whole diagonal; only
+   the eight surrounding squares are forbidden.)
+   Everything below is pure: no DOM, no globals. */
+
+/* ---------- deterministic RNG ---------- */
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function hashSeed(str) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function shuffle(arr, rng) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/* ---------- geometry helpers ---------- */
+const DIFFS = ['Gentle', 'Steady', 'Tricky'];
+
+// Does a queen on `a` forbid a queen on `b`? (same row / col / region / touching)
+function attacks(ar, ac, br, bc, reg) {
+  if (ar === br && ac === bc) return false;
+  if (ar === br || ac === bc) return true;
+  if (reg[ar][ac] === reg[br][bc]) return true;
+  return Math.abs(ar - br) <= 1 && Math.abs(ac - bc) <= 1;
+}
+
+/* ---------- 1. a random legal queen placement ---------- */
+// One queen per row, columns all distinct, and because there is exactly one
+// queen per row only *consecutive* rows can ever touch — so |Δcol| >= 2 there.
+function randomPlacement(N, rng) {
+  const cols = new Array(N).fill(-1);
+  const used = new Array(N).fill(false);
+  function bt(r) {
+    if (r === N) return true;
+    const order = shuffle([...Array(N).keys()], rng);
+    for (const c of order) {
+      if (used[c]) continue;
+      if (r > 0 && Math.abs(c - cols[r - 1]) < 2) continue;
+      used[c] = true; cols[r] = c;
+      if (bt(r + 1)) return true;
+      used[c] = false; cols[r] = -1;
+    }
+    return false;
+  }
+  return bt(0) ? cols : null;
+}
+
+/* ---------- 2. grow N contiguous regions, one seeded on each queen ---------- */
+function growRegions(N, cols, rng, balance) {
+  const reg = Array.from({ length: N }, () => new Array(N).fill(-1));
+  const size = new Array(N).fill(1);
+  for (let r = 0; r < N; r++) reg[r][cols[r]] = r;
+  let remaining = N * N - N;
+
+  // Opening round: every region grabs one neighbour, so none is left as a
+  // single cell (which would hand the player a queen for free).
+  for (const g of shuffle([...Array(N).keys()], rng)) {
+    const [sr, sc] = [g, cols[g]];
+    const opts = [];
+    for (const [dr, dc] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+      const nr = sr + dr, nc = sc + dc;
+      if (nr >= 0 && nc >= 0 && nr < N && nc < N && reg[nr][nc] === -1) opts.push([nr, nc]);
+    }
+    if (!opts.length) return null;
+    const [r, c] = opts[Math.floor(rng() * opts.length)];
+    reg[r][c] = g; size[g]++; remaining--;
+  }
+
+  while (remaining > 0) {
+    // Collect, per region, the unassigned cells orthogonally touching it.
+    const frontier = Array.from({ length: N }, () => []);
+    for (let r = 0; r < N; r++) {
+      for (let c = 0; c < N; c++) {
+        if (reg[r][c] !== -1) continue;
+        const seen = new Set();
+        if (r > 0 && reg[r - 1][c] !== -1) seen.add(reg[r - 1][c]);
+        if (r < N - 1 && reg[r + 1][c] !== -1) seen.add(reg[r + 1][c]);
+        if (c > 0 && reg[r][c - 1] !== -1) seen.add(reg[r][c - 1]);
+        if (c < N - 1 && reg[r][c + 1] !== -1) seen.add(reg[r][c + 1]);
+        for (const g of seen) frontier[g].push([r, c]);
+      }
+    }
+    // Pick a region with weight size^balance. Mildly rich-get-richer (0.4–1.2)
+    // gives organic, varied shapes; equalising sizes instead produces boards
+    // with astronomically many solutions that no amount of sculpting fixes.
+    let total = 0;
+    const w = new Array(N).fill(0);
+    for (let g = 0; g < N; g++) {
+      if (!frontier[g].length) continue;
+      w[g] = Math.pow(size[g], balance);
+      total += w[g];
+    }
+    if (total === 0) break; // unreachable on a connected grid, but be safe
+    let pick = rng() * total, g = 0;
+    for (; g < N; g++) { if (w[g] === 0) continue; pick -= w[g]; if (pick <= 0) break; }
+    if (g >= N) g = w.findIndex((x) => x > 0);
+
+    const [r, c] = frontier[g][Math.floor(rng() * frontier[g].length)];
+    reg[r][c] = g; size[g]++; remaining--;
+  }
+  return reg;
+}
+
+/* ---------- 2b. sculpt the regions until the puzzle has ONE solution ----------
+   Blind region growth almost never lands on a unique solution past N=5, so
+   instead of rejecting and re-rolling we hill-climb: repeatedly hand a single
+   boundary cell to a neighbouring region and keep the move when it cuts the
+   solution count down. The queens' own cells are pinned, so the intended
+   solution survives every move and each region keeps exactly one queen. */
+function regionOf(reg, N, g) {
+  const cells = [];
+  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) if (reg[r][c] === g) cells.push([r, c]);
+  return cells;
+}
+// Is region `g` still one connected blob if we take `omit` out of it?
+function stillConnected(reg, N, g, omit) {
+  const cells = regionOf(reg, N, g).filter(([r, c]) => !(r === omit[0] && c === omit[1]));
+  if (cells.length === 0) return false;
+  const want = cells.length;
+  const inReg = new Set(cells.map(([r, c]) => r * N + c));
+  const seen = new Set([cells[0][0] * N + cells[0][1]]);
+  const stack = [cells[0]];
+  while (stack.length) {
+    const [r, c] = stack.pop();
+    for (const [dr, dc] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+      const nr = r + dr, nc = c + dc, k = nr * N + nc;
+      if (nr < 0 || nc < 0 || nr >= N || nc >= N) continue;
+      if (!inReg.has(k) || seen.has(k)) continue;
+      seen.add(k); stack.push([nr, nc]);
+    }
+  }
+  return seen.size === want;
+}
+
+// How constrained is this board? Run the human solver (up to `maxTier`) with
+// nothing given and measure what it could not settle. 0 means the solver
+// finished — which also proves the puzzle unique and logic-solvable.
+function constraintScore(N, reg, maxTier, given) {
+  const L = logicSolve(N, reg, { maxTier, given });
+  let placed = 0, cands = 0;
+  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) { if (L.queen[r][c]) placed++; if (L.cand[r][c]) cands++; }
+  return { v: (N - placed) * 1000 + cands, placed };
+}
+
+// Sculpt the region map until the human solver can finish it: repeatedly hand
+// one boundary cell to a neighbouring region, keeping whichever sampled move
+// leaves the solver with the least left to do. Queen cells are pinned, so the
+// intended solution survives every move and each region keeps exactly one
+// queen; size bounds keep the shapes from degenerating into one giant blob.
+function sculptRegions(N, cols, reg, rng, maxTier, maxSteps, sample, bounds, given) {
+  const pinned = new Set(cols.map((c, r) => r * N + c));
+  const size = new Array(N).fill(0);
+  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) size[reg[r][c]]++;
+  if (!bounds) {
+    const lo = Math.max(2, Math.round(N * 0.35)), hi = Math.round(N * 2.2);
+    bounds = new Array(N).fill(0).map(() => [lo, hi]);
+  }
+  let cur = constraintScore(N, reg, maxTier, given), stale = 0;
+  for (let step = 0; step < maxSteps; step++) {
+    if (cur.placed === N) return true;
+    const pool = [];
+    for (let r = 0; r < N; r++) {
+      for (let c = 0; c < N; c++) {
+        if (pinned.has(r * N + c)) continue;
+        const from = reg[r][c];
+        if (size[from] <= bounds[from][0]) continue;
+        const nb = new Set();
+        for (const [dr, dc] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+          const nr = r + dr, nc = c + dc;
+          if (nr < 0 || nc < 0 || nr >= N || nc >= N) continue;
+          if (reg[nr][nc] !== from) nb.add(reg[nr][nc]);
+        }
+        for (const to of nb) if (size[to] < bounds[to][1]) pool.push([r, c, from, to]);
+      }
+    }
+    if (!pool.length) return false;
+    let best = null;
+    for (let i = 0; i < sample; i++) {
+      const m = pool[Math.floor(rng() * pool.length)];
+      const [r, c, from, to] = m;
+      if (!stillConnected(reg, N, from, [r, c])) continue;
+      reg[r][c] = to;
+      const sc = constraintScore(N, reg, maxTier, given);
+      reg[r][c] = from;
+      if (!best || sc.v < best.sc.v) best = { m, sc };
+    }
+    if (!best) return false;
+    if (best.sc.v > cur.v) { if (++stale > 25) return false; } else stale = 0;
+    const [r, c, from, to] = best.m;
+    reg[r][c] = to; size[from]--; size[to]++;
+    cur = best.sc;
+  }
+  return cur.placed === N;
+}
+
+/* ---------- 2c. "islands" boards: small compact regions in one big sea ----------
+   A handful of 3–6 cell regions scattered through one large background
+   region. Naturally tight, so it needs little sculpting; the main checks are
+   uniqueness and logic-solvability. */
+function growIslands(N, cols, rng) {
+  const reg = Array.from({ length: N }, () => new Array(N).fill(-1));
+  for (let r = 0; r < N; r++) reg[r][cols[r]] = r;
+  const sea = Math.floor(rng() * N);
+  // Mostly 3–6 cells (2–4 on small boards), with the occasional lone square —
+  // a free queen to get the player started.
+  const lo = N <= 6 ? 2 : 3, hi = N <= 6 ? 4 : 6;
+  const target = new Array(N).fill(0).map(() => (rng() < 0.12 ? 1 : lo + Math.floor(rng() * (hi - lo + 1))));
+  const size = new Array(N).fill(1);
+  // Everything not yet claimed will become sea; it has to stay one piece.
+  function seaConnected() {
+    let start = null, want = 0;
+    for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
+      if (reg[r][c] === -1 || reg[r][c] === sea) { want++; if (!start) start = [r, c]; }
+    }
+    const seen = new Set([start[0] * N + start[1]]), stack = [start];
+    while (stack.length) {
+      const [r, c] = stack.pop();
+      for (const [dr, dc] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const nr = r + dr, nc = c + dc, k = nr * N + nc;
+        if (nr < 0 || nc < 0 || nr >= N || nc >= N || seen.has(k)) continue;
+        if (reg[nr][nc] !== -1 && reg[nr][nc] !== sea) continue;
+        seen.add(k); stack.push([nr, nc]);
+      }
+    }
+    return seen.size === want;
+  }
+  let grew = true;
+  while (grew) {
+    grew = false;
+    for (const g of shuffle([...Array(N).keys()], rng)) {
+      if (g === sea || size[g] >= target[g]) continue;
+      const front = [];
+      for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
+        if (reg[r][c] !== -1) continue;
+        if ((r > 0 && reg[r - 1][c] === g) || (r < N - 1 && reg[r + 1][c] === g) ||
+            (c > 0 && reg[r][c - 1] === g) || (c < N - 1 && reg[r][c + 1] === g)) front.push([r, c]);
+      }
+      shuffle(front, rng);
+      for (const [r, c] of front) {
+        reg[r][c] = g;
+        if (seaConnected()) { size[g]++; grew = true; break; }
+        reg[r][c] = -1;
+      }
+    }
+  }
+  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) if (reg[r][c] === -1) reg[r][c] = sea;
+  reg.sea = sea;
+  return reg;
+}
+
+/* ---------- 3. exact solver (counts solutions, used for uniqueness) ---------- */
+// `given` (optional) lists pre-filled queens as [row, col]; those rows are fixed.
+function countSolutions(N, reg, limit, given) {
+  limit = limit || 2;
+  let found = 0;
+  const cols = new Array(N).fill(-1);
+  const fixed = new Array(N).fill(-1);
+  for (const [r, c] of (given || [])) fixed[r] = c;
+  let usedCols = 0, usedRegs = 0;
+  function bt(r) {
+    if (r === N) { found++; return; }
+    for (let c = 0; c < N; c++) {
+      if (fixed[r] >= 0 && c !== fixed[r]) continue;
+      if (usedCols & (1 << c)) continue;
+      const g = reg[r][c];
+      if (usedRegs & (1 << g)) continue;
+      if (r > 0 && Math.abs(c - cols[r - 1]) < 2) continue;
+      cols[r] = c; usedCols |= 1 << c; usedRegs |= 1 << g;
+      bt(r + 1);
+      usedCols &= ~(1 << c); usedRegs &= ~(1 << g); cols[r] = -1;
+      if (found >= limit) return;
+    }
+  }
+  bt(0);
+  return found;
+}
+
+function solveOnce(N, reg, given) {
+  const cols = new Array(N).fill(-1);
+  const fixed = new Array(N).fill(-1);
+  for (const [r, c] of (given || [])) fixed[r] = c;
+  let usedCols = 0, usedRegs = 0;
+  function bt(r) {
+    if (r === N) return true;
+    for (let c = 0; c < N; c++) {
+      if (fixed[r] >= 0 && c !== fixed[r]) continue;
+      if (usedCols & (1 << c)) continue;
+      const g = reg[r][c];
+      if (usedRegs & (1 << g)) continue;
+      if (r > 0 && Math.abs(c - cols[r - 1]) < 2) continue;
+      cols[r] = c; usedCols |= 1 << c; usedRegs |= 1 << g;
+      if (bt(r + 1)) return true;
+      usedCols &= ~(1 << c); usedRegs &= ~(1 << g); cols[r] = -1;
+    }
+    return false;
+  }
+  return bt(0) ? cols : null;
+}
+
+/* ---------- 4. human-style logical solver ----------
+   Solves the way a person does, using three tiers of deduction, and reports
+   the hardest tier it needed. That rating is what grades a puzzle, and the
+   same routine drives the in-game hints. It never guesses. */
+
+// Unit families. A "unit" is a set of cells that must hold exactly one queen.
+function buildUnits(N, reg) {
+  const units = [];
+  for (let r = 0; r < N; r++) {
+    const cells = [];
+    for (let c = 0; c < N; c++) cells.push([r, c]);
+    units.push({ kind: 'row', idx: r, cells });
+  }
+  for (let c = 0; c < N; c++) {
+    const cells = [];
+    for (let r = 0; r < N; r++) cells.push([r, c]);
+    units.push({ kind: 'col', idx: c, cells });
+  }
+  const byReg = Array.from({ length: N }, () => []);
+  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) byReg[reg[r][c]].push([r, c]);
+  for (let g = 0; g < N; g++) units.push({ kind: 'region', idx: g, cells: byReg[g] });
+  return units;
+}
+
+// `given` is an optional list of [r,c] the player has already placed; the
+// solver starts from those. Returns {solved, tier, placed, steps}.
+function logicSolve(N, reg, opts) {
+  opts = opts || {};
+  const maxTier = opts.maxTier == null ? 3 : opts.maxTier;
+  const wantSteps = !!opts.steps;
+  const units = buildUnits(N, reg);
+
+  const cand = Array.from({ length: N }, () => new Array(N).fill(true));
+  const queen = Array.from({ length: N }, () => new Array(N).fill(false));
+  let placedCount = 0, tier = 0, contradiction = false;
+  const steps = [];
+
+  function place(r, c, why) {
+    if (queen[r][c]) return;
+    queen[r][c] = true; placedCount++;
+    if (wantSteps) steps.push({ type: 'place', r, c, tier: why.tier, text: why.text });
+    for (let rr = 0; rr < N; rr++) {
+      for (let cc = 0; cc < N; cc++) {
+        if (cand[rr][cc] && attacks(r, c, rr, cc, reg)) cand[rr][cc] = false;
+      }
+    }
+  }
+  function candsOf(u) {
+    const out = [];
+    for (const [r, c] of u.cells) if (cand[r][c]) out.push([r, c]);
+    return out;
+  }
+  // opts.names lets the UI pass the colour name it actually shows per region.
+  const nameOf = (g) => (opts.names && opts.names[g]) || colorName(g);
+  function label(u) {
+    if (u.kind === 'row') return 'row ' + (u.idx + 1);
+    if (u.kind === 'col') return 'column ' + (u.idx + 1);
+    return 'the ' + nameOf(u.idx) + ' region';
+  }
+
+  for (const [r, c] of (opts.given || [])) place(r, c, { tier: 0, text: 'given' });
+
+  let progress = true;
+  while (progress && placedCount < N && !contradiction) {
+    progress = false;
+
+    // Tier 1 — a unit with exactly one candidate left.
+    for (const u of units) {
+      const s = candsOf(u);
+      const hasQueen = u.cells.some(([r, c]) => queen[r][c]);
+      if (hasQueen) continue;
+      if (s.length === 0) { contradiction = true; break; }
+      if (s.length === 1) {
+        tier = Math.max(tier, 1);
+        place(s[0][0], s[0][1], { tier: 1, text: 'Only one square is still open in ' + label(u) + '.' });
+        progress = true;
+      }
+    }
+    if (progress || contradiction) continue;
+    if (maxTier < 2) break;
+
+    // Tier 2 — a cell every candidate of some unit would knock out.
+    // Covers both "this region is confined to one row" and the subtler
+    // "wherever this region's queen goes, it touches that square".
+    outer2:
+    for (const u of units) {
+      if (u.cells.some(([r, c]) => queen[r][c])) continue;
+      const s = candsOf(u);
+      if (s.length < 2) continue;
+      const inUnit = new Set(s.map(([r, c]) => r * N + c));
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < N; c++) {
+          if (!cand[r][c] || inUnit.has(r * N + c)) continue;
+          let all = true;
+          for (const [sr, sc] of s) { if (!attacks(sr, sc, r, c, reg)) { all = false; break; } }
+          if (all) {
+            cand[r][c] = false;
+            tier = Math.max(tier, 2);
+            if (wantSteps) steps.push({
+              type: 'eliminate', r, c, tier: 2,
+              text: 'Wherever the queen for ' + label(u) + ' ends up, it rules this square out.',
+            });
+            progress = true;
+            break outer2;
+          }
+        }
+      }
+    }
+    if (progress) continue;
+    if (maxTier < 3) break;
+
+    // Tier 3 — set confinement. If k units of family A between them can only
+    // reach k units of family B, those k B-units belong to them, and every
+    // other candidate sitting in those B-units is dead.
+    const families = [
+      { a: 'region', b: 'row' }, { a: 'region', b: 'col' },
+      { a: 'row', b: 'col' }, { a: 'col', b: 'row' },
+      { a: 'row', b: 'region' }, { a: 'col', b: 'region' },
+    ];
+    const bIndex = { row: (r) => r, col: (r, c) => c, region: (r, c) => reg[r][c] };
+    let did = false;
+    for (const fam of families) {
+      const as = units.filter((u) => u.kind === fam.a && !u.cells.some(([r, c]) => queen[r][c]));
+      const info = as.map((u) => {
+        const s = candsOf(u);
+        const bs = new Set(s.map(([r, c]) => bIndex[fam.b](r, c)));
+        return { u, s, bs };
+      }).filter((x) => x.s.length > 0);
+
+      for (let k = 2; k <= 3 && !did; k++) {
+        const combos = combinations(info.length, k);
+        for (const ci of combos) {
+          const chosen = ci.map((i) => info[i]);
+          const union = new Set();
+          for (const x of chosen) for (const b of x.bs) union.add(b);
+          if (union.size !== k) continue;
+          const owned = new Set();
+          for (const x of chosen) for (const [r, c] of x.s) owned.add(r * N + c);
+          let killed = null;
+          for (let r = 0; r < N && !killed; r++) {
+            for (let c = 0; c < N; c++) {
+              if (!cand[r][c] || owned.has(r * N + c)) continue;
+              if (!union.has(bIndex[fam.b](r, c))) continue;
+              cand[r][c] = false;
+              killed = [r, c];
+              break;
+            }
+          }
+          if (killed) {
+            tier = Math.max(tier, 3);
+            if (wantSteps) steps.push({
+              type: 'eliminate', r: killed[0], c: killed[1], tier: 3,
+              text: chosen.map((x) => label(x.u)).join(' and ') + ' must take '
+                + [...union].sort((p, q) => p - q).map((b) => bLabel(fam.b, b)).join(' and ')
+                + ' between them, so nothing else can sit there.',
+            });
+            did = true; progress = true;
+            break;
+          }
+        }
+      }
+      if (did) break;
+    }
+  }
+
+  function bLabel(kind, i) {
+    if (kind === 'row') return 'row ' + (i + 1);
+    if (kind === 'col') return 'column ' + (i + 1);
+    return 'the ' + nameOf(i) + ' region';
+  }
+
+  return { solved: !contradiction && placedCount === N, tier, queen, cand, steps, contradiction };
+}
+
+function combinations(n, k) {
+  const out = [], cur = [];
+  (function rec(start) {
+    if (cur.length === k) { out.push([...cur]); return; }
+    for (let i = start; i < n; i++) { cur.push(i); rec(i + 1); cur.pop(); }
+  })(0);
+  return out;
+}
+
+const COLOR_NAMES = ['mint', 'lavender', 'teal', 'rose', 'amber', 'sky', 'coral', 'indigo', 'sand', 'slate', 'plum', 'ivory'];
+function colorName(i) { return COLOR_NAMES[i % COLOR_NAMES.length]; }
+
+/* ---------- 5. put it together ---------- */
+// Builds one puzzle of size N whose difficulty tier is `targetTier` (1..3),
+// guaranteed to have exactly one solution and to be reachable by pure logic.
+// style: 'islands' (small regions in one big sea) or 'balanced' (evenly
+// sized regions, sculpted until unique).
+// givens: number of queens to pre-fill. On 11×11 and up a pinned queen or two
+// prunes the solution space enough that the regions can stay interesting.
+function generate(N, targetTier, seed, budget, style, givens) {
+  const rng = mulberry32(seed);
+  budget = budget || 40;
+  style = style || 'islands';
+  givens = givens || 0;
+  let fallback = null;
+  for (let attempt = 0; attempt < budget; attempt++) {
+    const cols = randomPlacement(N, rng);
+    if (!cols) return null;
+    const given = shuffle([...Array(N).keys()], rng).slice(0, givens).sort((a, b) => a - b).map((r) => [r, cols[r]]);
+    let reg;
+    if (style === 'islands') {
+      reg = growIslands(N, cols, rng);
+      if (!reg) continue;
+      // Islands may drift and reshape (2–7 cells); the sea just absorbs the rest.
+      const bounds = new Array(N).fill(0).map((_, g) => (g === reg.sea ? [N, N * N] : [2, 7]));
+      if (!sculptRegions(N, cols, reg, rng, targetTier, 30 * N, 8, bounds, given)) continue;
+    } else {
+      reg = growRegions(N, cols, rng, 0.4 + rng() * 0.8);
+      if (!reg) continue;
+      if (!sculptRegions(N, cols, reg, rng, targetTier, 60 * N, 8, null, given)) continue;
+    }
+    if (countSolutions(N, reg, 2, given) !== 1) continue;
+    const res = logicSolve(N, reg, { given });
+    if (!res.solved) continue;
+    const puz = { N, reg, solution: cols, tier: res.tier, seed, style, given };
+    if (res.tier === targetTier) return puz;
+    if (!fallback || Math.abs(res.tier - targetTier) < Math.abs(fallback.tier - targetTier)) fallback = puz;
+  }
+  return fallback;
+}
+
+/* ===== ENGINE END ===== */
+
+/* ---------- confetti ---------- */
+function fireConfetti(canvas, duration) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width = canvas.offsetWidth * 2, H = canvas.height = canvas.offsetHeight * 2;
+  ctx.scale(2, 2);
+  const w = W / 2, h = H / 2;
+  const colors = ['#818cf8','#34d399','#fbbf24','#fb7185','#c4b5fd','#5eead4','#fde047','#fb923c'];
+  const pieces = [];
+  for (let i = 0; i < 60; i++) {
+    pieces.push({
+      x: w * .5, y: h * .5,
+      vx: (Math.random() - .5) * 12, vy: -Math.random() * 10 - 4,
+      r: Math.random() * 4 + 2, rot: Math.random() * 360, rv: (Math.random() - .5) * 12,
+      c: colors[Math.floor(Math.random() * colors.length)],
+      shape: Math.random() < .4 ? 'circle' : 'rect',
+      life: 1
+    });
+  }
+  const t0 = performance.now();
+  function frame(now) {
+    const elapsed = now - t0;
+    if (elapsed > duration) { ctx.clearRect(0, 0, w, h); return; }
+    ctx.clearRect(0, 0, w, h);
+    for (const p of pieces) {
+      p.x += p.vx; p.y += p.vy; p.vy += .28; p.rot += p.rv;
+      p.life = Math.max(0, 1 - elapsed / duration);
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot * Math.PI / 180);
+      ctx.globalAlpha = p.life;
+      ctx.fillStyle = p.c;
+      if (p.shape === 'circle') { ctx.beginPath(); ctx.arc(0, 0, p.r, 0, Math.PI * 2); ctx.fill(); }
+      else { ctx.fillRect(-p.r, -p.r * .6, p.r * 2, p.r * 1.2); }
+      ctx.restore();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ---------- audio feedback ---------- */
+const AudioFX = (function() {
+  let ctx = null;
+  function getCtx() {
+    if (!ctx) try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+    return ctx;
+  }
+  function play(freq, dur, vol, type) {
+    const c = getCtx(); if (!c) return;
+    if (c.state === 'suspended') c.resume();
+    const o = c.createOscillator(), g = c.createGain();
+    o.type = type || 'sine';
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(vol, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(); o.stop(c.currentTime + dur);
+  }
+  let muted = false;
+  return {
+    set mute(v) { muted = v; },
+    mark() { if (muted) return; play(660, 0.05, 0.06, 'sine'); },
+    queen(n, total) {
+      if (muted) return;
+      const freq = 440 * Math.pow(2, (n / Math.max(total, 1)) * 0.5);
+      play(freq, 0.18, 0.10, 'triangle');
+    },
+    unqueen() { if (muted) return; play(280, 0.08, 0.05, 'sine'); },
+    solve() {
+      if (muted) return;
+      const c = getCtx(); if (!c) return;
+      if (c.state === 'suspended') c.resume();
+      [523.25, 659.25, 783.99].forEach(function(f, i) {
+        setTimeout(function() { play(f, 0.5, 0.09, 'triangle'); }, i * 100);
+      });
+    }
+  };
+})();
+
+/* =====================================================================
+   Game shell — state, rendering, input, persistence. Engine is above.
+   ===================================================================== */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const BANK = window.CNQ_LEVELS || { ladder: [], daily: [] };
+  const STORE = 'cnq:v1';
+  const EMPTY = 0, MARK = 1, QUEEN = 2;
+
+  /* ---------- storage ---------- */
+  let save = { done: {}, prefs: { auto: true, err: true, timer: true }, boards: {}, mode: 'daily', level: 1 };
+  try { const s = JSON.parse(localStorage.getItem(STORE)); if (s && typeof s === 'object') save = Object.assign(save, s); } catch (e) { /* fresh */ }
+  save.prefs = Object.assign({ auto: true, err: true, timer: true, sound: true, outline: false, theme: 'auto' }, save.prefs || {});
+  if (save.prefs.theme === 'auto') save.prefs.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+  /* ---------- theme ---------- */
+  function applyTheme() {
+    const t = save.prefs.theme === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    $('themeColor').setAttribute('content', t === 'dark' ? '#080c16' : '#f5f2eb');
+    $('theme').textContent = t === 'dark' ? '☾' : '☀';
+    $('theme').title = 'Theme: ' + t;
+    document.body.classList.toggle('outlines', !!save.prefs.outline);
+  }
+  $('theme').onclick = () => { save.prefs.theme = save.prefs.theme === 'dark' ? 'light' : 'dark'; persist(); applyTheme(); };
+  applyTheme();
+  function persist() { try { localStorage.setItem(STORE, JSON.stringify(save)); } catch (e) { /* private mode */ } }
+  function saveBoard() { if (P.mode === 'shuffle') return; save.boards[P.key] = { cells: cells.slice(), elapsed, hints }; persist(); }
+
+  /* ---------- puzzle decoding ---------- */
+  function decode(e) {
+    const N = e.N, reg = [];
+    for (let r = 0; r < N; r++) { reg.push([]); for (let c = 0; c < N; c++) reg[r].push(parseInt(e.r[r * N + c], 36)); }
+    // Colour slot per region: biggest region gets slot 0 (mint), and so on.
+    const size = new Array(N).fill(0);
+    for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) size[reg[r][c]]++;
+    const order = [...Array(N).keys()].sort((a, b) => size[b] - size[a] || a - b);
+    const slot = new Array(N); order.forEach((g, i) => { slot[g] = i; });
+    const names = slot.map((i) => colorName(i));
+    return { N, reg, solution: e.s, tier: e.t, given: (e.g || []).map(([r, c]) => r * N + c), slot, names };
+  }
+  function todayKey() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function dailyIndex(key) {
+    const [y, m, d] = key.split('-').map(Number);
+    const days = Math.round(Date.UTC(y, m - 1, d) / 86400000);
+    return ((days % BANK.daily.length) + BANK.daily.length) % BANK.daily.length;
+  }
+  function prettyDate(key) {
+    const [y, m, d] = key.split('-').map(Number);
+    return new Date(y, m - 1, d).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  }
+  function tierName(t, N) { if (t >= 3) return N >= 9 ? 'Fiendish' : 'Tricky'; return t === 1 || N <= 6 ? 'Gentle' : 'Steady'; }
+  function sizeChip(p) { return p.N + '×' + p.N + (p.given.length ? ' · ' + p.given.length + ' given' : ''); }
+
+  /* ---------- game state ---------- */
+  let P = null;          // current puzzle {N, reg, solution, tier, key, label}
+  let cells = [];        // user state per cell: EMPTY | MARK | QUEEN
+  let history = [];      // undo stack of cell arrays
+  let solved = false;
+  let elapsed = 0, tickTimer = null, lastTick = 0, started = false;
+  let hints = 0, hintCell = -1;
+  let cellEls = [];
+  let locked = new Set(); // pre-filled queens the player can't touch
+
+  function loadPuzzle(mode, arg) {
+    let entry, key, label, next = null;
+    if (mode === 'daily') {
+      const k = todayKey();
+      entry = BANK.daily[dailyIndex(k)]; key = 'daily:' + k; label = 'Daily · ' + prettyDate(k);
+    } else if (mode === 'ladder') {
+      const lvl = Math.max(1, Math.min(BANK.ladder.length, arg || 1));
+      entry = BANK.ladder[lvl - 1]; key = 'lvl:' + lvl; label = 'Level ' + lvl; save.level = lvl;
+      if (lvl < BANK.ladder.length) next = () => loadPuzzle('ladder', lvl + 1);
+    } else {
+      const pool = BANK.ladder.concat(BANK.daily);
+      const size = arg && arg.size;
+      const cand = size ? pool.filter((e) => e.N === size) : pool.filter((e) => e.N >= 7);
+      const pick = cand[Math.floor(Math.random() * cand.length)];
+      entry = pick; key = 'shuffle:' + Date.now(); label = 'Shuffle';
+      next = () => loadPuzzle('shuffle', arg);
+    }
+    save.mode = mode; persist();
+    P = Object.assign(decode(entry), { key, label, mode, next });
+    solved = false; hints = 0; hintCell = -1; history = [];
+    stopTimer(); elapsed = 0; started = false;
+    cells = new Array(P.N * P.N).fill(EMPTY);
+    locked = new Set(P.given);
+    for (const i of locked) cells[i] = QUEEN;
+    // resume an unfinished board
+    const b = save.boards[key];
+    if (b && b.cells && b.cells.length === cells.length && !save.done[key]) { cells = b.cells.slice(); elapsed = b.elapsed || 0; hints = b.hints || 0; started = elapsed > 0; }
+    buildBoard();
+    renderStatus();
+    render();
+    if (save.done[key] && mode !== 'shuffle') {
+      // show the finished board
+      cells = new Array(P.N * P.N).fill(EMPTY);
+      P.solution.forEach((c, r) => { cells[r * P.N + c] = QUEEN; });
+      solved = true; elapsed = save.done[key].time || 0; render();
+      showWin(true);
+    }
+  }
+
+  /* ---------- board DOM ---------- */
+  function buildBoard() {
+    const N = P.N, board = $('board');
+    board.innerHTML = '';
+    board.style.gridTemplateColumns = 'repeat(' + N + ',1fr)';
+    board.style.setProperty('--cs', cellSize(board.clientWidth || 360, N) + 'px');
+    cellEls = [];
+    for (let r = 0; r < N; r++) {
+      for (let c = 0; c < N; c++) {
+        const g = P.reg[r][c];
+        const el = document.createElement('div');
+        el.className = 'cell';
+        el.setAttribute('role', 'gridcell');
+        el.tabIndex = r === 0 && c === 0 ? 0 : -1;
+        el.dataset.i = r * N + c;
+        el.style.setProperty('--rc', 'var(--r' + (P.slot[g] % 12) + ')');
+        if (r === 0 || P.reg[r - 1][c] !== g) el.classList.add('bt');
+        if (c === 0 || P.reg[r][c - 1] !== g) el.classList.add('bl');
+        if (r === N - 1 || P.reg[r + 1][c] !== g) el.classList.add('bb');
+        if (c === N - 1 || P.reg[r][c + 1] !== g) el.classList.add('br');
+        el.insertAdjacentHTML('beforeend', '<svg class="g"><use href="#sym-x"/></svg>');
+        board.appendChild(el); cellEls.push(el);
+      }
+    }
+    $('win').classList.remove('show');
+  }
+  function cellSize(w, N) { const g = 0.06; return w / (N + (N + 1) * g); }
+  new ResizeObserver(() => { if (P) $('board').style.setProperty('--cs', cellSize($('board').clientWidth, P.N) + 'px'); }).observe($('board'));
+
+  /* ---------- derived state ---------- */
+  function queens() { const q = []; cells.forEach((v, i) => { if (v === QUEEN) q.push([Math.floor(i / P.N), i % P.N]); }); return q; }
+  function conflicts() {
+    const N = P.N, bad = new Set(), q = queens();
+    for (let i = 0; i < q.length; i++) for (let j = i + 1; j < q.length; j++) {
+      if (attacks(q[i][0], q[i][1], q[j][0], q[j][1], P.reg)) { bad.add(q[i][0] * N + q[i][1]); bad.add(q[j][0] * N + q[j][1]); }
+    }
+    return bad;
+  }
+  function isSolved() {
+    const q = queens();
+    return q.length === P.N && conflicts().size === 0;
+  }
+
+  function render() {
+    const N = P.N, q = queens(), bad = save.prefs.err ? conflicts() : new Set();
+    const auto = save.prefs.auto;
+    for (let i = 0; i < N * N; i++) {
+      const r = Math.floor(i / N), c = i % N, el = cellEls[i], v = cells[i];
+      let cls = 'cell', sym = '#sym-x';
+      if (v === QUEEN) { cls += locked.has(i) ? ' q given' : ' q'; sym = '#sym-queen'; }
+      else if (v === MARK) cls += ' x';
+      else if (auto && q.some(([qr, qc]) => attacks(qr, qc, r, c, P.reg))) {
+        cls += ' ax';
+        const minD = Math.min.apply(null, q.map(function(p) { return Math.abs(r - p[0]) + Math.abs(c - p[1]); }));
+        el.style.setProperty('--ax-d', String(minD));
+      }
+      if (bad.has(i)) cls += ' err';
+      if (i === hintCell) cls += ' hint';
+      if (el.classList.contains('bt')) cls += ' bt'; if (el.classList.contains('bl')) cls += ' bl';
+      if (el.classList.contains('bb')) cls += ' bb'; if (el.classList.contains('br')) cls += ' br';
+      if (el.className !== cls) el.className = cls;
+      const use = el.firstChild.firstChild; if (use.getAttribute('href') !== sym) use.setAttribute('href', sym);
+      el.setAttribute('aria-label', 'Row ' + (r + 1) + ' column ' + (c + 1) + ', ' + P.names[P.reg[r][c]] + ', ' + (locked.has(i) ? 'pre-filled queen' : v === QUEEN ? 'queen' : v === MARK ? 'ruled out' : 'empty'));
+    }
+    const rp = $('regionProg');
+    if (rp.childElementCount !== N) { rp.innerHTML = ''; for (let g = 0; g < N; g++) { const e = document.createElement('span'); e.className = 'rpip'; e.style.setProperty('--rpc', 'var(--r' + (P.slot[g] % 12) + ')'); rp.appendChild(e); } }
+    const regionHasQ = new Array(N).fill(false), regionBad = new Set();
+    for (const [r, c] of q) { const g = P.reg[r][c]; if (regionHasQ[g]) regionBad.add(g); regionHasQ[g] = true; }
+    for (const [r, c] of q) { if (bad.has(r * N + c)) regionBad.add(P.reg[r][c]); }
+    for (let g = 0; g < N; g++) rp.children[g].className = 'rpip' + (regionHasQ[g] ? (regionBad.has(g) ? ' bad' : ' on') : '');
+    $('board').classList.toggle('solved', solved);
+    $('undo').disabled = history.length === 0 || solved;
+    $('hint').disabled = solved;
+    $('clear').disabled = solved || cells.every((v, i) => v === EMPTY || locked.has(i));
+    $('autox').classList.toggle('on', auto);
+    $('timer').style.visibility = save.prefs.timer ? 'visible' : 'hidden';
+    $('timer').classList.toggle('done', solved);
+  }
+  function renderStatus() {
+    $('title').innerHTML = P.label + (P.mode === 'ladder' ? ' <span class="chev">▾</span>' : '');
+    $('chipN').textContent = sizeChip(P);
+    const t = $('chipT'); t.textContent = tierName(P.tier, P.N); t.className = 'chip t' + P.tier;
+    const doneCount = Object.keys(save.done).filter((k) => k.startsWith('lvl:')).length;
+    $('progress').textContent = doneCount + '/' + BANK.ladder.length;
+    $('progress').title = doneCount + ' of ' + BANK.ladder.length + ' levels solved';
+    document.querySelectorAll('.tab').forEach((b) => b.setAttribute('aria-selected', b.dataset.mode === P.mode));
+    renderTimer();
+  }
+
+  /* ---------- timer ---------- */
+  function fmt(ms) { const s = Math.floor(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+  function renderTimer() { $('timer').textContent = fmt(elapsed); }
+  function startTimer() {
+    if (tickTimer || solved) return;
+    lastTick = Date.now();
+    tickTimer = setInterval(() => { const n = Date.now(); elapsed += n - lastTick; lastTick = n; renderTimer(); }, 500);
+  }
+  function stopTimer() { if (tickTimer) { clearInterval(tickTimer); tickTimer = null; const n = Date.now(); elapsed += n - lastTick; renderTimer(); } }
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stopTimer(); else if (started && !solved) startTimer(); });
+
+  /* ---------- moves ---------- */
+  function snapshot() { history.push(cells.slice()); if (history.length > 200) history.shift(); }
+  function afterMove() {
+    hintCell = -1; hideMsg();
+    if (!started) { started = true; }
+    startTimer();
+    if (isSolved()) { solved = true; stopTimer(); finish(); }
+    saveBoard();
+    render();
+  }
+  function setCell(i, v) { if (cells[i] === v) return false; cells[i] = v; return true; }
+  function cycle(i) {
+    if (solved || locked.has(i)) return;
+    snapshot();
+    const v = cells[i];
+    setCell(i, v === EMPTY ? MARK : v === MARK ? QUEEN : EMPTY);
+    const nv = cells[i];
+    if (nv === MARK) { if (navigator.vibrate) navigator.vibrate(6); AudioFX.mark(); }
+    else if (nv === QUEEN) { if (navigator.vibrate) navigator.vibrate(12); AudioFX.queen(queens().length, P.N); }
+    else { AudioFX.unqueen(); }
+    afterMove();
+  }
+  function toggleQueen(i) {
+    if (solved || locked.has(i)) return;
+    snapshot();
+    const wasQ = cells[i] === QUEEN;
+    setCell(i, wasQ ? EMPTY : QUEEN);
+    if (wasQ) { AudioFX.unqueen(); }
+    else { if (navigator.vibrate) navigator.vibrate(12); AudioFX.queen(queens().length, P.N); }
+    afterMove();
+  }
+  function undo() { if (!history.length || solved) return; cells = history.pop(); hintCell = -1; hideMsg(); saveBoard(); render(); }
+  function clearBoard() { if ($('clear').disabled) return; snapshot(); cells = cells.map((v, i) => (locked.has(i) ? QUEEN : EMPTY)); afterMove(); }
+
+  function finish() {
+    const prev = save.done[P.key];
+    const best = !prev || elapsed < prev.time;
+    if (P.mode !== 'shuffle') { if (best) save.done[P.key] = { time: elapsed, hints, at: Date.now() }; }
+    delete save.boards[P.key];
+    persist();
+    if (navigator.vibrate) navigator.vibrate([10, 30, 10, 30, 20]);
+    AudioFX.solve();
+    showWin(false, best && !!prev);
+    renderStatus();
+  }
+  function showWin(replayed, newBest) {
+    $('winH').textContent = replayed ? 'Already solved.' : hints ? 'Solved.' : 'Solved clean.';
+    $('winSub').textContent = fmt(elapsed) + (hints ? ' · ' + hints + ' hint' + (hints > 1 ? 's' : '') : '');
+    const d = save.done[P.key];
+    $('winBest').textContent = newBest ? 'New best' : d && P.mode !== 'shuffle' ? 'Best ' + fmt(d.time) : '';
+    $('winNext').style.display = P.next ? '' : 'none';
+    $('winNext').firstChild.textContent = P.mode === 'shuffle' ? 'Another →' : P.mode === 'daily' ? 'Play levels →' : 'Next →';
+    // Beat 1: stagger queen crown celebration
+    let qi = 0;
+    cellEls.forEach(function(el, i) { if (cells[i] === QUEEN) el.style.setProperty('--qi', qi++); });
+    const crownDur = replayed ? 0 : Math.min(qi * 80 + 500, 1200);
+    // Beat 2: win card slides in after crowns; Beat 3: confetti burst
+    setTimeout(function() {
+      $('win').classList.add('show');
+      if (!replayed) setTimeout(function() { fireConfetti($('confetti'), 1800); }, 150);
+    }, crownDur);
+  }
+
+  /* ---------- hints ---------- */
+  function showMsg(html, kind) { const m = $('msg'); m.innerHTML = html; m.className = 'msg panel show ' + (kind || ''); }
+  function hideMsg() { $('msg').className = 'msg panel'; }
+  function hint() {
+    if (solved) return;
+    const N = P.N, q = queens();
+    // A misplaced queen? Point at it before anything else.
+    const wrong = q.find(([r, c]) => P.solution[r] !== c);
+    if (wrong) { hintCell = wrong[0] * N + wrong[1]; hints++; showMsg('<b>That queen isn\'t right.</b> Every other deduction depends on it — take it back and look again.', 'bad'); render(); return; }
+    const res = logicSolve(N, P.reg, { given: q, steps: true, names: P.names });
+    let step = null;
+    for (const s of res.steps) {
+      if (s.tier === 0) continue;
+      const i = s.r * N + s.c;
+      if (s.type === 'place' && cells[i] === QUEEN) continue;
+      if (s.type === 'eliminate' && (cells[i] === MARK || (save.prefs.auto && q.some(([qr, qc]) => attacks(qr, qc, s.r, s.c, P.reg))))) continue;
+      step = s; break;
+    }
+    if (!step) { showMsg('Nothing left to deduce — check your queens.', 'bad'); return; }
+    hintCell = step.r * N + step.c; hints++;
+    const what = step.type === 'place' ? 'A queen goes here.' : 'This square can be ruled out.';
+    showMsg('<b>' + what + '</b> ' + step.text, 'hint');
+    saveBoard();
+    render();
+    cellEls[hintCell].focus({ preventScroll: true });
+  }
+
+  /* ---------- pointer input ---------- */
+  const board = $('board');
+  let drag = null; // {mode:'mark'|'erase', touched:Set, moved, start, timer}
+  function cellFromEvent(e) {
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    return el && el.classList && el.classList.contains('cell') ? +el.dataset.i : -1;
+  }
+  board.addEventListener('pointerdown', (e) => {
+    if (solved || e.button === 2) return;
+    const i = cellFromEvent(e); if (i < 0) return;
+    board.setPointerCapture(e.pointerId);
+    drag = { start: i, touched: new Set([i]), moved: false, mode: cells[i] === EMPTY ? 'mark' : cells[i] === MARK ? 'erase' : null, timer: null, snap: false };
+    if (e.pointerType !== 'mouse') {
+      drag.timer = setTimeout(() => { if (drag && !drag.moved) { toggleQueen(i); drag.long = true; if (navigator.vibrate) navigator.vibrate(12); } }, 380);
+    }
+  });
+  board.addEventListener('pointermove', (e) => {
+    if (!drag || drag.long) return;
+    const i = cellFromEvent(e);
+    if (i < 0 || drag.touched.has(i)) return;
+    if (!drag.mode || locked.has(i)) return;
+    if (!drag.moved) { drag.moved = true; clearTimeout(drag.timer); snapshot(); drag.snap = true;
+      // apply to the start cell too
+      if (drag.mode === 'mark' && cells[drag.start] === EMPTY) cells[drag.start] = MARK;
+      if (drag.mode === 'erase' && cells[drag.start] === MARK) cells[drag.start] = EMPTY; }
+    drag.touched.add(i);
+    if (drag.mode === 'mark' && cells[i] === EMPTY) { cells[i] = MARK; AudioFX.mark(); if (navigator.vibrate) navigator.vibrate(4); }
+    if (drag.mode === 'erase' && cells[i] === MARK) cells[i] = EMPTY;
+    render();
+  });
+  function endDrag(e) {
+    if (!drag) return;
+    clearTimeout(drag.timer);
+    const d = drag; drag = null;
+    if (d.long) return;
+    if (d.moved) { afterMove(); return; }
+    cycle(d.start);
+  }
+  board.addEventListener('pointerup', endDrag);
+  board.addEventListener('pointercancel', () => { if (drag) { clearTimeout(drag.timer); if (drag.moved) afterMove(); drag = null; } });
+  board.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (drag) return;                    // touch long-press: the timer above already handled it
+    const i = cellFromEvent(e); if (i >= 0) toggleQueen(i);
+  });
+
+  /* ---------- keyboard ---------- */
+  board.addEventListener('keydown', (e) => {
+    const el = e.target; if (!el.classList.contains('cell')) return;
+    const i = +el.dataset.i, N = P.N, r = Math.floor(i / N), c = i % N;
+    let ni = -1;
+    if (e.key === 'ArrowUp') ni = r > 0 ? i - N : i;
+    else if (e.key === 'ArrowDown') ni = r < N - 1 ? i + N : i;
+    else if (e.key === 'ArrowLeft') ni = c > 0 ? i - 1 : i;
+    else if (e.key === 'ArrowRight') ni = c < N - 1 ? i + 1 : i;
+    else if (e.key === ' ' || e.key === 'Enter') { cycle(i); }
+    else if (e.key === 'q' || e.key === 'Q') { toggleQueen(i); }
+    else if (e.key === 'x' || e.key === 'X') { if (!solved && !locked.has(i)) { snapshot(); const wasM = cells[i] === MARK; setCell(i, wasM ? EMPTY : MARK); if (!wasM) AudioFX.mark(); afterMove(); } }
+    else if (e.key === 'Backspace' || e.key === 'Delete') { if (!solved && !locked.has(i) && cells[i] !== EMPTY) { snapshot(); setCell(i, EMPTY); afterMove(); } }
+    else return;
+    e.preventDefault();
+    if (ni >= 0) { cellEls[i].tabIndex = -1; cellEls[ni].tabIndex = 0; cellEls[ni].focus(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.metaKey || e.ctrlKey) return;
+    if (e.key === 'u' || e.key === 'U') undo();
+    else if (e.key === 'h' || e.key === 'H') hint();
+    else if (e.key === 'Escape') closeSheet();
+  });
+
+  /* ---------- buttons ---------- */
+  $('undo').onclick = undo;
+  $('hint').onclick = hint;
+  $('clear').onclick = clearBoard;
+  $('autox').onclick = () => { save.prefs.auto = !save.prefs.auto; $('prefAuto').checked = save.prefs.auto; persist(); render(); };
+  $('prefAuto').onchange = (e) => { save.prefs.auto = e.target.checked; persist(); render(); };
+  $('prefErr').onchange = (e) => { save.prefs.err = e.target.checked; persist(); render(); };
+  $('prefTimer').onchange = (e) => { save.prefs.timer = e.target.checked; persist(); render(); };
+  $('prefSound').onchange = (e) => { save.prefs.sound = e.target.checked; AudioFX.mute = !e.target.checked; persist(); };
+  $('prefOutline').onchange = (e) => { save.prefs.outline = e.target.checked; persist(); applyTheme(); };
+  $('prefAuto').checked = save.prefs.auto; $('prefErr').checked = save.prefs.err; $('prefTimer').checked = save.prefs.timer; $('prefSound').checked = save.prefs.sound !== false; $('prefOutline').checked = !!save.prefs.outline;
+  AudioFX.mute = save.prefs.sound === false;
+  $('winNext').onclick = () => { if (P.mode === 'daily') loadPuzzle('ladder', nextUnsolvedLevel()); else if (P.next) P.next(); };
+  $('winReplay').onclick = () => { delete save.boards[P.key]; const m = P.mode, k = P.key; $('win').classList.remove('show');
+    solved = false; cells = cells.map((v, i) => (locked.has(i) ? QUEEN : EMPTY)); history = []; elapsed = 0; started = false; hints = 0; hintCell = -1;
+    // replays don't overwrite a stored best unless faster (finish() handles that)
+    render(); renderStatus(); };
+  document.querySelectorAll('.tab').forEach((b) => { b.onclick = () => {
+    const m = b.dataset.mode;
+    if (m === 'ladder') loadPuzzle('ladder', save.level || nextUnsolvedLevel());
+    else if (m === 'daily') loadPuzzle('daily');
+    else loadPuzzle('shuffle', {});
+  }; });
+  $('title').onclick = () => { if (P.mode === 'ladder') openSheet(); };
+
+  function nextUnsolvedLevel() {
+    for (let i = 1; i <= BANK.ladder.length; i++) if (!save.done['lvl:' + i]) return i;
+    return 1;
+  }
+
+  /* ---------- level sheet ---------- */
+  function openSheet() {
+    const list = $('lvList'); list.innerHTML = '';
+    let lastN = -1, grid = null;
+    BANK.ladder.forEach((e, idx) => {
+      const lvl = idx + 1;
+      if (e.N !== lastN) { lastN = e.N; const h = document.createElement('div'); h.className = 'lv-group'; h.textContent = e.N + ' × ' + e.N; list.appendChild(h);
+        grid = document.createElement('div'); grid.className = 'lv-grid'; list.appendChild(grid); }
+      const b = document.createElement('button'); b.className = 'lv' + (save.done['lvl:' + lvl] ? ' done' : '') + (P.key === 'lvl:' + lvl ? ' cur' : '');
+      b.innerHTML = '<div class="n">' + lvl + '</div><div class="t">' + tierName(e.t, e.N) + '</div>';
+      b.onclick = () => { closeSheet(); loadPuzzle('ladder', lvl); };
+      grid.appendChild(b);
+    });
+    $('sheet').classList.add('show');
+  }
+  function closeSheet() { $('sheet').classList.remove('show'); }
+  $('sheetClose').onclick = closeSheet;
+  $('sheet').addEventListener('click', (e) => { if (e.target === $('sheet')) closeSheet(); });
+
+  /* ---------- boot ---------- */
+  if (!BANK.ladder.length) { showMsg('Level data failed to load.', 'bad'); return; }
+  for (const k of Object.keys(save.boards || {})) {          // drop stale in-progress boards
+    if (k.startsWith('shuffle:') || (k.startsWith('daily:') && k !== 'daily:' + todayKey())) delete save.boards[k];
+  }
+  if (Object.keys(save.done).length) $('howto').open = false; else $('howto').open = true;
+  if (save.mode === 'ladder') loadPuzzle('ladder', save.level || 1);
+  else loadPuzzle('daily');
+})();
+</script>
+</body>
+</html>
