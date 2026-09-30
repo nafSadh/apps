@@ -1,12 +1,12 @@
 {
- "fetched": "2026-09-29T18:58:20+00:00",
+ "fetched": "2026-09-30T18:39:33+00:00",
  "counts": {
   "raw": 330,
-  "deduped": 311,
+  "deduped": 319,
   "byTier": {
    "1": 44,
-   "2": 142,
-   "3": 125
+   "2": 148,
+   "3": 127
   }
  },
  "slimByTier": {
@@ -16,20 +16,6 @@
  },
  "errors": [],
  "items": [
-  {
-   "source": "BBC Gossip",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Man Utd & Liverpool eye Mitchell - Wednesday's gossip",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c6g7k421gvj4o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-22T21:19:41+00:00",
-   "watch": [
-    "Chelsea",
-    "Liverpool",
-    "Man United"
-   ],
-   "summary": "Manchester United and Liverpool are keen on Crystal Palace defender Tyrick Mitchell, Aston Villa loan attacker Alejandro Garnacho is on the radar of La Liga clubs, while Chelsea want Gambian teenager Adama Jeng, plus mor"
-  },
   {
    "source": "BBC Gossip",
    "tier": 1,
@@ -105,36 +91,12 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Papers: Real Madrid defender rejected interest from Chelsea and Liverpool",
-   "link": "https://www.skysports.com/football/news/11095/13593048/real-madrid-defender-raul-asencio-rejected-transfer-interest-from-liverpool-and-chelsea-this-summer-paper-talk",
-   "published": "2026-09-27T23:00:00+00:00",
-   "watch": [
-    "Chelsea",
-    "Liverpool",
-    "Real Madrid"
-   ],
-   "summary": "The top stories and transfer rumours from Tuesday's newspapers..."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Liverpool latest: Gakpo withdraws from Netherlands squad with injury",
+   "title": "Liverpool latest: Klopp delivers his response to City judgement",
    "link": "https://www.skysports.com/football/live-blog/11095/13025501/liverpool-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
    "published": "2026-09-28T14:09:00+00:00",
    "watch": [
     "Liverpool"
    ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Scotland latest: Pocognoli prepares for 'special moment' at Hampden",
-   "link": "https://www.skysports.com/football/live-blog/11095/13551944/scotland-football-news-live-updates-schedule-and-analysis-of-steve-clarkes-side",
-   "published": "2026-09-28T16:00:00+00:00",
-   "watch": [],
    "summary": ""
   },
   {
@@ -152,102 +114,7 @@
     "Porto",
     "Real Madrid"
    ],
-   "also": [
-    "BBC Sport"
-   ],
    "summary": "Arsenal and Manchester United eye Porto defender Alberto Costa, Manchester City will not let Erling Haaland leave on the cheap if they are relegated, Liverpool retain an interest in Real Madrid midfielder Aurelien Tchoua"
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Arsenal latest: Odegaard misses Norway training after 'ugly' Silva tackle",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-09-29T07:27:00+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "FIFA accuses European football chiefs of 'harassment' against Infantino",
-   "link": "https://www.skysports.com/football/news/11095/13593114/gianni-infantino-fifa-accuses-european-football-chiefs-of-harassment-against-world-governing-bodys-president",
-   "published": "2026-09-29T08:57:00+00:00",
-   "watch": [],
-   "summary": "FIFA has accused European football chiefs of \"harassment\" against Gianni Infantino and trying to influence the presidential election by \"spreading misinformation\" against him over the World Cup venture."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "WSL latest: Arroyo leaves Aston Villa after winless WSL start",
-   "link": "https://www.skysports.com/football/live-blog/11095/13208899/wsl-news-transfers-rumours-gossip-and-womens-football-latest",
-   "published": "2026-09-29T09:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Toone and Kelly left out of England squad for WC play-off with Greece",
-   "link": "https://www.skysports.com/football/news/11095/13593148/england-women-ella-toone-and-chloe-kelly-miss-out-as-sarina-wiegman-names-squad-to-face-greece-in-world-cup-qualifying-play-off",
-   "published": "2026-09-29T10:13:00+00:00",
-   "watch": [],
-   "summary": "England manager Sarina Wiegman has named a 23-player squad for next month’s World Cup qualifying play-off against Greece, with Ella Toone and Chloe Kelly both missing out."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Brighton latest: We're chasing a major trophy this season, says Bloom",
-   "link": "https://www.skysports.com/football/live-blog/11095/13279295/brighton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-09-29T13:05:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Man Utd latest: Another injury? Mazraoui forced off for Morocco",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025492/man-utd-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-09-29T16:14:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Aston Villa latest: Mbaye and Jackson combine to secure Senegal win",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025491/aston-villa-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-09-29T16:48:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Reaction and analysis after Man City found guilty LIVE!",
-   "link": "https://www.skysports.com/football/live-blog/11095/13593363/man-city-charges-reaction-and-findings-as-commission-finds-club-guilty-of-all-charges-related-to-serious-financial-breaches",
-   "published": "2026-09-29T16:59:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": ""
   },
   {
    "source": "Sky Transfers",
@@ -259,89 +126,44 @@
    "watch": [
     "Man City"
    ],
-   "also": [
-    "Sky Sports"
-   ],
    "summary": "Manchester City have been found guilty of all charges related to serious breaches of Premier League financial rules by an independent commission. Sky Sports analyses what could happen next in the inquiry..."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Manchester City found guilty of all charges as PL releases statement",
-   "link": "https://www.skysports.com/watch/video/13593366/manchester-city-found-guilty-of-all-charges-as-premier-league-release-statement",
-   "published": "2026-09-29T17:16:00+00:00",
+   "title": "Disguised funding and 'dishonest' witnesses - key revelations from City verdict",
+   "link": "https://www.skysports.com/football/news/11095/13593407/man-city-charges-verdict-key-findings-the-fordham-arrangement-effectively-a-front-for-abu-dhabi-united-group",
+   "published": "2026-09-29T20:30:00+00:00",
    "watch": [
     "Man City"
    ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Sky Sports chief correspondent Kaveh Solhekol breaks the news that Manchester City have been found guilty of all charges related to serious breaches of financial rules."
+   "summary": "In a damning 40-page document, an independent commission laid bare its findings into Manchester City's breaches of the Premier League's financial rules. Here, Sky Sports takes a look at the key revelations..."
   },
   {
-   "source": "Sky Transfers",
+   "source": "BBC Gossip",
    "tier": 1,
    "kind": "rumour",
-   "title": "Man City found guilty: What could be the punishment and when could it happen?",
-   "link": "https://www.skysports.com/watch/video/13593376/premier-league-what-could-be-manchester-citys-punishment-and-when-could-it-happen",
-   "published": "2026-09-29T17:33:00+00:00",
+   "title": "Real Madrid considering Van Dijk - Wednesday's gossip",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c6g7kl592vlmo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-29T21:40:55+00:00",
    "watch": [
-    "Man City"
+    "Barcelona",
+    "Bayern",
+    "Real Madrid"
    ],
    "also": [
-    "Sky Sports"
+    "BBC Sport"
    ],
-   "summary": "Sky Sports' Kaveh Solhekol explains what Manchester City's penalty could be and when a decision will be made, after the club was found guilty of serious breaches of the Premier League's financial rules."
+   "summary": "Real Madrid are waiting for Virgil van Dijk to become a free agent, Bayern Munich offer Michael Olise a long-term contract and are eyeing Barcelona's Jules Kounde."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Watch as Man City chief quizzed on guilty verdict",
-   "link": "https://www.skysports.com/watch/video/13593383/manchester-city-ceo-ferran-soriano-refuses-to-comment-on-guilty-verdict",
-   "published": "2026-09-29T17:46:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": "Manchester City CEO Ferran Soriano refuses to answer questions after the club was found guilty of serious breaches of the Premier League's financial rules."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Czech Republic vs England LIVE!",
-   "link": "https://www.skysports.com/football/czech-republic-vs-england/live/554024",
-   "published": "2026-09-29T18:10:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Scotland vs Switzerland LIVE!",
-   "link": "https://www.skysports.com/football/scotland-vs-switzerland/live/554028",
-   "published": "2026-09-29T18:20:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Man City chief claims 'conspiracy theory' after PL's guilty verdict",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025499/man-city-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-09-29T19:27:00+00:00",
+   "title": "Man City reaction LIVE! Dates and deadlines for appeal revealed",
+   "link": "https://www.skysports.com/football/live-blog/11095/13593363/man-city-charges-reaction-and-findings-as-commission-finds-club-guilty-of-all-charges-related-to-serious-financial-breaches",
+   "published": "2026-09-30T07:14:00+00:00",
    "watch": [
     "Man City"
    ],
@@ -351,103 +173,239 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Leaked video: Man City CEO Soriano sends message to staff and players following guilty verdict",
-   "link": "https://www.skysports.com/watch/video/13593410/manchester-city-ceo-soriano-ferran-sends-message-to-staff-and-players-following-guilty-verdict",
-   "published": "2026-09-29T19:33:00+00:00",
+   "title": "Carra: Man City should be stripped of titles and have owners removed",
+   "link": "https://www.skysports.com/football/news/11095/13593535/man-city-premier-league-charges-jamie-carragher-says-clubs-titles-should-be-stripped-and-owners-removed",
+   "published": "2026-09-30T08:55:00+00:00",
    "watch": [
     "Man City"
    ],
-   "summary": "Sky Sports News has obtained a video of Manchester City CEO Ferran Soriano that has been sent to internal staff and players at the club after the guilty verdict in relation to allegations of serious breaches of financial"
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Jamie Carragher believes Manchester City should be stripped of the titles they won during the years they have been found guilty of financial breaches - and says the club's owners should be removed from their positions."
   },
   {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Aston Villa sack manager Natalia Arroyo with club second-bottom of WSL",
-   "link": "https://www.theguardian.com/football/2026/sep/29/aston-villa-women-sack-manager-natalia-arroyo-wsl",
-   "published": "2026-09-29T08:58:48+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "How Man City's 'disguised funding scheme' changed the football landscape",
+   "link": "https://www.skysports.com/football/news/11095/13593612/man-city-premier-league-charges-how-disguised-funding-scheme-changed-the-football-landscape-between-the-lines",
+   "published": "2026-09-30T12:00:00+00:00",
    "watch": [
-    "Chelsea",
     "Man City",
+    "Real Madrid"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "When Sheikh Mansour completed his takeover in September 2008, marking the start of his ownership with the sensational and then-record signing of Robinho from Real Madrid, Manchester City were a club with two top-flight t"
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Six different takes on the Man City saga by Sky Sports reporters",
+   "link": "https://www.skysports.com/football/news/11095/13593565/man-city-charges-six-different-takes-on-the-financial-breaches-saga-by-sky-sports-reporters",
+   "published": "2026-09-30T13:27:00+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "Sky Sports News reporters discuss how Manchester City being found guilty of all charges related to serious breaches of Premier League financial rules unfolded and where the situation develops from here..."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Guardiola sends message to Man City amid calls for titles to be taken away",
+   "link": "https://www.skysports.com/football/news/11095/13593634/man-city-premier-league-charges-pep-guardiola-sends-message-of-support-to-former-club",
+   "published": "2026-09-30T13:30:00+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Pep Guardiola has posted a message of support to Manchester City's players, staff, fans and ownership saying: \"We will get through this together. I love you all.\""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Spurs latest: Van Hecke withdraws from Netherlands squad due to injury",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025489/tottenham-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-09-30T15:14:00+00:00",
+   "watch": [
     "Tottenham"
    ],
-   "summary": "Villa have two points from first four league matchesArroyo took charge of women’s side in January 2025Aston Villa have sacked Natalia Arroyo as their women’s manager, with the side winless and second-bottom of the Women’"
+   "summary": ""
   },
   {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Djokovic 'feeling good' ahead of China Open return, after US Open exit",
-   "link": "https://www.skysports.com/tennis/news/12040/13593136/feeling-good-so-far-8211-novak-djokovic-offers-positive-fitness-update-ahead-of-china-open-return",
-   "published": "2026-09-29T09:37:00+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Man City charges Q&A: Appeal, EFL, independent regulator and more answered",
+   "link": "https://www.skysports.com/football/news/11095/13593663/man-city-premier-league-charges-kaveh-solhekol-answers-your-questions-on-appeal-efl-independent-regulator-and-more",
+   "published": "2026-09-30T15:40:00+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Kaveh Solhekol has answered your latest questions on Manchester City after they were found guilty of all charges related to serious breaches of Premier League financial rules by an independent commission."
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Man Utd latest: 'Ex-Old Trafford defender set for Porto move'",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025492/man-utd-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-09-30T15:45:00+00:00",
+   "watch": [
+    "Man United",
+    "Porto"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Ronaldo holds 'crisis' meeting with Portugal after not playing vs Norway",
+   "link": "https://www.skysports.com/football/news/11095/13593674/explained-cristiano-ronaldos-crisis-meeting-with-portugal-after-not-playing-vs-norway",
+   "published": "2026-09-30T15:55:00+00:00",
    "watch": [],
-   "summary": "Novak Djokovic says his body is \"feeling good\" ahead of his return to the court at this week's China Open, following his first-round exit at the US Open."
+   "summary": "Jorge Jesus has enjoyed a strong start as Portugal head coach, overseeing wins against Wales and Norway in the UEFA Nations League. Ahead of Thursday's trip to Denmark, however, the build-up has centered on a 'crisis' me"
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Man City latest: Why PL future could be decided by rival clubs",
+   "link": "https://www.skysports.com/football/live-blog/11095/13025499/man-city-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+   "published": "2026-09-30T16:14:00+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "DRAMA! Paris peg Arsenal back late in WSL before Lyon vs Chelsea LIVE!",
+   "link": "https://www.skysports.com/football/paris-fc-women-vs-arsenal-women/live/578244",
+   "published": "2026-09-30T16:45:00+00:00",
+   "watch": [
+    "Arsenal",
+    "Chelsea",
+    "Lyon"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "WSL latest: Man City boss Jeglertz insists it is ‘business as usual’",
+   "link": "https://www.skysports.com/football/live-blog/11095/13208899/wsl-news-transfers-rumours-gossip-and-womens-football-latest",
+   "published": "2026-09-30T17:15:00+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "What if Man City's Premier League titles and trophies are stripped?",
+   "link": "https://www.skysports.com/football/news/11095/13593589/man-city-charges-what-if-clubs-premier-league-titles-and-trophies-are-stripped-who-benefits-and-what-changes",
+   "published": "2026-09-30T17:20:00+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Jamie Carragher has called for Manchester City to be stripped of their titles after the club was found guilty of serious breaches of the Premier League's financial rules – so what would change?"
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "PM Burnham 'really concerned' if Man City owners sell up after rule breaches",
+   "link": "https://www.skysports.com/football/live-blog/11095/12507208/football-latest-news-gossip",
+   "published": "2026-09-30T17:32:00+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Portugal boss denies Ronaldo has refused to train amid reports of rift",
+   "link": "https://www.skysports.com/football/live-blog/11095/13575723/european-football-news-and-transfers-barcelona-real-madrid-psg-bayern-munich-latest-and-more",
+   "published": "2026-09-30T19:15:00+00:00",
+   "watch": [],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "England latest: 'It might be another 10 years' - Tuchel on finding Kane successor",
+   "link": "https://www.skysports.com/football/live-blog/11095/13427059/england-football-news-live-updates-schedule-and-analysis-of-thomas-tuchels-three-lions",
+   "published": "2026-09-30T19:15:00+00:00",
+   "watch": [],
+   "summary": ""
   },
   {
    "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "Chloe Kelly and Ella Toone dropped by England after not hitting ‘expected’ level",
-   "link": "https://www.theguardian.com/football/2026/sep/29/england-women-squad-lexi-potter-chloe-kelly-ella-toone-sarina-wiegman-world-cup-playoff-greece",
-   "published": "2026-09-29T10:00:45+00:00",
-   "watch": [
-    "Chelsea"
-   ],
-   "summary": "Chelsea’s Lexi Potter gets first call-up to face GreeceLeah Williamson back after injury for World Cup playoffElla Toone and Chloe Kelly have been dropped from England’s squad because of their performance levels by Sarin"
+   "title": "Have any footballers ever scored with the first touch of their careers? | The Knowledge",
+   "link": "https://www.theguardian.com/football/2026/sep/30/footballers-scoring-first-touch-of-careers-the-knowledge",
+   "published": "2026-09-30T07:00:14+00:00",
+   "watch": [],
+   "summary": "Plus: European stadiums with low Google ratings, losing hat-tricks and the last time Spain had less than 50% possessionMail us with your all of your questions and answers“Jamie Spencer, 17, made his first first-team appe"
   },
   {
-   "source": "BBC Sport",
+   "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "Could Potter be England's next breakthrough star?",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cry8z31pl534o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T10:42:03+00:00",
+   "title": "Inside Rangers' summer transfer window - but will it deliver success?",
+   "link": "https://www.skysports.com/football/news/12040/13593167/rangers-transfers-inside-the-summer-window-that-lay-foundations-for-consecutive-celtic-wins-but-will-it-deliver-long-term-success",
+   "published": "2026-09-30T09:30:00+00:00",
    "watch": [],
-   "also": [],
-   "summary": "Everyone is talking about Lexi Potter, the uncapped midfielder named in Sarina Wiegman's England squad for their World Cup qualifiers. Here is why."
+   "summary": "We have passed the 100-day landmark in the Derek McInnes era at Rangers, and it has certainly been a rollercoaster ride."
   },
   {
    "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "Sam Gough’s journey from being ‘a hazard’ at PE to becoming Para Lionesses captain",
-   "link": "https://www.theguardian.com/football/2026/sep/29/sam-gough-journey-hazard-at-pe-to-para-lionesses-captain",
-   "published": "2026-09-29T11:00:48+00:00",
+   "title": "Next Generation 2021: why slow and steady sometimes wins the race",
+   "link": "https://www.theguardian.com/football/2026/sep/30/next-generation-2021-why-slow-and-steady-sometimes-wins-the-race",
+   "published": "2026-09-30T10:00:24+00:00",
    "watch": [],
-   "summary": "One of the best strikers in the world, the Scot talks about her career in blind football and the EurosHelga has spotted a pigeon just outside the changing rooms at Poltonhall Sports Complex in Bonnyrigg and it suddenly b"
+   "summary": "Our NextGen picks from five years ago show that breaking through early does not guarantee longevity or future successRead the full updates on our class of 2021 here and hereIn 2021, as every year, we picked 80 players fr"
   },
   {
-   "source": "BBC Sport",
+   "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "Toone and Kelly miss out on Lionesses squad",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c6y9z7dlq199o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T11:39:35+00:00",
+   "title": "The Premier League v Manchester City and England beat Czechia – Football Weekly",
+   "link": "https://www.theguardian.com/football/video/2026/sep/30/the-premier-league-v-manchester-city-and-england-beat-czechia-football-weekly",
+   "published": "2026-09-30T11:58:40+00:00",
    "watch": [
-    "Man United"
+    "Man City"
    ],
-   "also": [],
-   "summary": "Manchester United midfielder Ella Toone misses out on selection for England's Women's World Cup qualifying matches this month."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "24th season in F1! Alonso extends Aston Martin deal for 2027",
-   "link": "https://www.skysports.com/f1/news/12040/13571663/fernando-alonso-aston-martin-confirm-unchanged-line-up-for-2027-f1-season-with-spaniard-and-lance-stroll-extending-contracts",
-   "published": "2026-09-29T12:00:00+00:00",
-   "watch": [],
-   "summary": "Fernando Alonso will race on in Formula 1 with Aston Martin into the 2027 season after extending his contract with the team."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Maltese Cross out to fulfill Tom Marquand's Arc dream",
-   "link": "https://www.skysports.com/watch/video/13593229/maltese-cross-out-to-fulfill-tom-marquands-arc-dream",
-   "published": "2026-09-29T12:02:00+00:00",
-   "watch": [],
-   "summary": "Maltese Cross bids to back up his Grand Prix de Paris and Great Voltigeur wins in the Prix de l'Arc de Triomphe"
+   "summary": "Max Rushden is joined by Barry Glendenning, George Elek and Dan Bardell as the Premier League release their verdict on Manchester City and England win 2-0 in Prague Continue reading..."
   },
   {
    "source": "BBC Sport",
@@ -455,85 +413,226 @@
    "kind": "news",
    "title": "Turkish referees' chief arrested in corruption investigation",
    "link": "https://www.bbc.co.uk/sport/football/articles/cmzxzvny8xwdo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T12:04:34+00:00",
+   "published": "2026-09-30T12:15:46+00:00",
    "watch": [],
    "summary": "The head of Turkey's referees' committee is detained along with six others as part of an investigation into corruption. head of Turkey’s referees committee, is among seven people detained in an investigation into alleged"
   },
   {
-   "source": "Guardian",
+   "source": "BBC Sport",
    "tier": 2,
    "kind": "news",
-   "title": "Australia go down fighting to Brazil in fiery 4-2 friendly defeat",
-   "link": "https://www.theguardian.com/football/2026/sep/29/australia-go-down-fighting-to-brazil-in-fiery-4-2-friendly-defeat",
-   "published": "2026-09-29T12:31:50+00:00",
-   "watch": [],
-   "summary": "Socceroos led 2-1 with goals from Metcalfe and CircatiTwo late goals sealed win for five-time world championsSUNCORP STADIUM, Brisbane – His first touch taking the ball goalward, Vanderson felt the pressure from Australi"
+   "title": "Consortium involving ex-Brazil forward Pato seals Northampton takeover",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cmqxvqyy125lo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T12:29:34+00:00",
+   "watch": [
+    "Milan"
+   ],
+   "summary": "The takeover of Northampton Town by a consortium including former AC Milan and Brazil forward Alexandre Pato has been completed."
   },
   {
    "source": "BBC Sport",
    "tier": 2,
    "kind": "news",
-   "title": "Preston return 'surreal' and 'special' - Alexander",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c6grve2r0dr5o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T12:33:30+00:00",
-   "watch": [],
-   "summary": "New Preston North End boss Graham Alexander says he feels like he has come home after returning to his old club as manager."
+   "title": "Football Daily",
+   "link": "https://www.bbc.co.uk/sounds/play/p0pd5x19?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T12:34:00+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "Kieran Maguire & Dale Johnson answer listener questions on the Man City verdict."
   },
   {
    "source": "BBC Sport",
    "tier": 2,
    "kind": "news",
-   "title": "Man Utd do not deserve Man City titles - Rooney",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cmed7q89vp5no?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T12:36:50+00:00",
+   "title": "Criminal investigation? Relegation or expulsion? The key Man City questions",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c9y7zr4l6de1o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T13:17:44+00:00",
    "watch": [
-    "Man City",
-    "Man United"
+    "Man City"
    ],
-   "summary": "Wayne Rooney says Man Utd do not \"deserve\" to be awarded Premier League titles if rivals Man City are stripped of them."
+   "summary": "BBC Sport takes a look at the key questions following the guilty verdicts handed down to Manchester City."
   },
   {
    "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "How important is a fast start for teams chasing the Premier League title?",
-   "link": "https://www.theguardian.com/football/2026/sep/29/premier-league-fast-start-teams-manchester-city",
-   "published": "2026-09-29T12:41:56+00:00",
-   "watch": [
-    "Arsenal",
-    "Man City"
-   ],
-   "summary": "Manchester City have kicked off the campaign with five victories in a row but the title race is a marathon not a sprintBy Opta AnalystThe first international window gives us time to take stock and make sense of what has "
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "David Squires on … the Manchester City verdict and Nations League tensions",
-   "link": "https://www.theguardian.com/football/picture/2026/sep/29/david-squires-on-manchester-city-verdict-nations-league-israel-republic-of-ireland",
-   "published": "2026-09-29T12:45:10+00:00",
+   "title": "‘I am here more than ever’: Guardiola backs Manchester City owners over guilty verdicts",
+   "link": "https://www.theguardian.com/football/2026/sep/30/guardiola-backs-manchester-city-owners-over-guilty-verdicts",
+   "published": "2026-09-30T13:39:43+00:00",
    "watch": [
     "Man City"
    ],
-   "summary": "Our cartoonist on the Premier League’s ruling finally being revealed and Israel v Republic of IrelandBuy a cartoon | Some of David’s favourite worksAnd his latest book, Chaos in the Box: get it now Continue reading..."
+   "summary": "‘I am, always have been, always will, be behind my club’Former City chair Bernstein calls for directors to quitPep Guardiola has thrown his support behind Manchester City after the club were found guilty of all charges o"
   },
   {
-   "source": "Sky Sports",
+   "source": "BBC Sport",
    "tier": 2,
    "kind": "news",
-   "title": "Woodhouse calls for fans to get behind 'one-of-a-kind' Littler",
-   "link": "https://www.skysports.com/darts/news/12040/13593243/luke-littler-luke-woodhouse-calls-for-fans-to-appreciatate-one-of-a-kind-darts-sensation-amid-crowd-booing",
-   "published": "2026-09-29T12:59:00+00:00",
+   "title": "How much money do clubs get for Nations League players?",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cvj64l3xyzlyo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T13:47:34+00:00",
    "watch": [],
-   "summary": "Luke Woodhouse called on fans to get behind Luke Littler and \"appreciate\" his talents, after the 19-year-old has been subjected to boos by crowds at recent events."
+   "summary": "Our Ask Me Anything team look at what clubs are paid for releasing players for Nations League appearances."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Cristiano Ronaldo misses Portugal training amid reports of rift with coach Jesus",
+   "link": "https://www.theguardian.com/football/2026/sep/30/cristiano-ronaldo-misses-portugal-training-jorge-jesus-denmark",
+   "published": "2026-09-30T14:01:38+00:00",
+   "watch": [],
+   "summary": "Veteran left on bench by Jorge Jesus for win in NorwayThe 41-year-old has trained alone in gym since weekendCristiano Ronaldo’s continued absence from Portugal team training has led to speculation that the 41-year-old mi"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Ex-England defender Smalling in talks with Porto",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c6vgy205kmmro?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T14:07:18+00:00",
+   "watch": [
+    "Man United",
+    "Porto"
+   ],
+   "summary": "Former Manchester United and England defender Chris Smalling is in talks with Portuguese league leaders Porto."
   },
   {
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "England latest: Your questions answered ahead of Czech Republic game!",
-   "link": "https://www.skysports.com/football/live-blog/12040/13427059/england-football-news-live-updates-schedule-and-analysis-of-thomas-tuchels-three-lions",
-   "published": "2026-09-29T13:00:00+00:00",
+   "title": "Djokovic lands first win since Wimbledon at China Open",
+   "link": "https://www.skysports.com/tennis/news/12040/13593587/novak-djokovic-former-world-no-1-lands-his-first-win-since-wimbledon-with-victory-over-nuno-borges-at-the-china-open",
+   "published": "2026-09-30T14:44:00+00:00",
+   "watch": [],
+   "summary": "Novak Djokovic returned to action in Beijing 11 years after his last appearance and extended his incredible record to 30 consecutive wins at the China Open on Wednesday."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "‘A lot of lies’: Ireland manager hits out over coverage of Bazunu exit from Israel game",
+   "link": "https://www.theguardian.com/football/2026/sep/30/republic-of-ireland-manager-hits-out-over-coverage-of-bazunu-exit-from-israel-game",
+   "published": "2026-09-30T14:55:43+00:00",
+   "watch": [],
+   "summary": "Keeper pulled out of both Nations League games with IsraelHallgrímsson confident Sunday’s second match will go aheadThe Republic of Ireland manager, Heimir Hallgrímsson, has claimed “a lot of lies” were told over keeper "
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Football Daily | The big story is of course … Scotland fans pining for another home run",
+   "link": "https://www.theguardian.com/football/2026/sep/30/football-daily-newsletter-the-big-story-is-of-course-scotland",
+   "published": "2026-09-30T14:57:22+00:00",
+   "watch": [],
+   "summary": "Sign up now! Sign up now! Sign up now? Sign up now!In the four matches they’ve sat through since their unconvincing Geopolitics World Cup win over Haiti, it must rankle among diehard conscripts of the Tartan Army that th"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Questions about Wales form not unfair - Bellamy",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c50m3d789j74o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T15:35:02+00:00",
+   "watch": [],
+   "summary": "Head coach Craig Bellamy accepts that questions will be asked over Wales' form as they prepare for Thursday's Nations League meeting with Norway in Cardiff."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "What will new call-ups bring to Northern Ireland?",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cqp93d33y144o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T15:40:52+00:00",
+   "watch": [],
+   "also": [],
+   "summary": "Before the upcoming 2027 Women's World Cup play-off with Portugal, what will the five new faces bring to Northern Ireland?"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Burnham 'really concerned' if Man City owners sell up after rule breaches",
+   "link": "https://www.bbc.co.uk/news/articles/crkgwvv8xvw0o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T16:01:16+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "The prime minister compares the allegations against Man City to the plight of his own club Everton."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "'Business as usual' for Man City Women despite Premier League guilty verdicts",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c6kgxrr94dyno?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T16:08:36+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "also": [],
+   "summary": "Manchester City manager Andree Jeglertz said it was \"business as usual\" for the women's team despite the Premier League charges against the club."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Who wins the Arc? Jamie Lynch's big-race runner guide",
+   "link": "https://www.skysports.com/racing/news/12040/13593698/jamie-lynchs-guide-qatar-prix-de-larc-de-triomphe",
+   "published": "2026-09-30T16:39:00+00:00",
+   "watch": [],
+   "summary": "Our Senior Form Analyst looks ahead to Europe's most prestigious contest, live on Sky Sports Racing on Sunday, and reveals his big-race fancy."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Rock, paper, scissors! London Marathon start dates decided with iconic game!",
+   "link": "https://www.skysports.com/watch/video/13593699/tcs-london-marathon-rock-paper-scissors-marathon-racers-decide-start-dates-with-iconic-game",
+   "published": "2026-09-30T16:58:00+00:00",
+   "watch": [],
+   "summary": "Racers Sabastian Sawe and Catherine Debrunner decide the start dates for the London Marathon with a good old game of rock, paper, scissors!"
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Burgess and Powell know weight of expectation for Warrington and Wakefield in Grand Final",
+   "link": "https://www.skysports.com/rugby-league/news/12040/13592784/sam-burgess-and-daryl-powell-know-weight-of-expectation-as-warrington-wolves-and-wakefield-trinity-make-history-in-super-league-grand-final",
+   "published": "2026-09-30T17:00:00+00:00",
+   "watch": [],
+   "summary": "Hull KR made history in 2025 when they became the fifth team ever to win Super League, but 2026 is entirely different."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Why F1's return to 'intense' Sepang offers 'chaotic' race potential",
+   "link": "https://www.skysports.com/f1/news/12040/13593388/bahrain-gp-in-malaysia-what-to-expect-for-f1s-sepang-return-with-racing-chaos-and-unknowns-expected-by-drivers",
+   "published": "2026-09-30T17:00:00+00:00",
+   "watch": [],
+   "summary": "Ask a Formula 1 driver or fan anytime over the last nine years what track they would most like to see return to the sport's calendar, and there was a good chance that Malaysia's Sepang International Circuit would get men"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Craig Bellamy urges Wales improvement but wary of Norway’s threat",
+   "link": "https://www.theguardian.com/football/2026/sep/30/craig-bellamy-wales-norway-nations-league-erling-haaland-manchester-city",
+   "published": "2026-09-30T17:11:37+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "Wales ‘unrecognisable’ in defeat against DenmarkHaaland ‘exactly the same’ after Manchester City verdictCraig Bellamy has said Wales must improve against Norway on Thursday after appearing unrecognisable in defeat agains"
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Fury and Joshua reignite British rivalry in raucous press conference LIVE!",
+   "link": "https://www.skysports.com/boxing/live-blog/12040/13593588/fury-vs-joshua-press-conference-live-tyson-fury-and-anthony-joshua-speak-for-first-time-ahead-of-british-heavyweight-fight-in-cardiff",
+   "published": "2026-09-30T17:15:00+00:00",
    "watch": [],
    "summary": ""
   },
@@ -541,243 +640,107 @@
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "How Verstappen can disrupt Antonelli, Russell title fight",
-   "link": "https://www.skysports.com/f1/news/12040/13592609/how-max-verstappen-can-disrupt-kimi-antonelli-george-russell-title-fight-in-remainder-of-2026-formula-1-season",
-   "published": "2026-09-29T13:00:00+00:00",
+   "title": "Will Commanders star Daniels play in NFL London game?",
+   "link": "https://www.skysports.com/nfl/news/12040/13593678/nfl-london-games-2026-jayden-daniels-flies-to-london-but-status-uncertain-for-washington-commanders-game-at-tottenham",
+   "published": "2026-09-30T17:18:00+00:00",
    "watch": [],
-   "summary": "The 2026 Formula 1 title race has become a two-horse race between Mercedes duo Kimi Antonelli and George Russell with eight rounds remaining."
+   "summary": "Washington Commanders quarterback Jayden Daniels was seen on the practice field in London as he continues his recovery from an elbow injury amid the NFL's return to the UK."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Swiss FA ‘cannot justify’ its support for Infantino’s re-election as Fifa president",
+   "link": "https://www.theguardian.com/football/2026/sep/30/gianni-infantino-fifa-swiss-football-association-withdrawn-support-president-election-bid",
+   "published": "2026-09-30T17:19:40+00:00",
+   "watch": [],
+   "summary": "SFV withdraws support after endorsing candidacy in JuneSwiss-born Infantino has faced calls for his resignationThe Swiss Football Association (SFV) has withdrawn its support for Gianni Infantino’s bid for another term as"
   },
   {
    "source": "BBC Sport",
    "tier": 2,
    "kind": "news",
-   "title": "Why Salisbury are 'bigger than many Premier League teams' in Kuwait",
-   "link": "https://www.bbc.co.uk/sport/articles/cmx2z78p654yo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T13:49:53+00:00",
-   "watch": [],
-   "summary": "Sixth-tier Salisbury FC have a unique relationship with Kuwait, where they are regarded as \"bigger than many Premier League\" clubs."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Man City CEO refuses to answer questions on guilty verdict",
-   "link": "https://www.bbc.co.uk/sport/football/videos/cjly4dlwd1n5o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T15:05:04+00:00",
+   "title": "Haaland 'no different' following Man City verdict",
+   "link": "https://www.bbc.co.uk/sport/football/articles/ckge43e8nqdwo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T17:26:24+00:00",
    "watch": [
     "Man City"
    ],
-   "summary": "Manchester City chief executive Ferran Soriano refused to answer questions about the Premier League charges from BBC Sports Editor Dan Roan at a conference of top European clubs in Copenhagen."
+   "summary": "Norway colleagues say the striker has been unaffected by the headlines around the Premier League club ahead of the Nations League game with Wales"
   },
   {
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "The NFL returns to the UK - will we soon see a European franchise?",
-   "link": "https://www.skysports.com/nfl/news/12040/13593305/the-nfl-returns-to-the-uk-more-committed-than-ever-to-international-growth-after-rio-and-melbourne-games-but-is-a-european-team-possible",
-   "published": "2026-09-29T15:12:00+00:00",
+   "title": "'You tried to get out of it - I checkmated you!' - Fury and AJ face-off at last",
+   "link": "https://www.skysports.com/boxing/news/12040/13593728/fury-vs-joshua-british-rivals-trade-taunts-about-negotiations-for-long-awaited-fight-at-first-press-conference-in-london",
+   "published": "2026-09-30T17:59:00+00:00",
    "watch": [],
-   "summary": "The NFL returns to the United Kingdom this weekend with the first of three London games to be played in the month of October."
+   "summary": "Tyson Fury and Anthony Joshua taunted each other about the fight negotiations at a raucous first press conference in London."
   },
   {
    "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "Football Daily | Oh Jürgen! Mixed fortunes for the Nations League’s fab four",
-   "link": "https://www.theguardian.com/football/2026/sep/29/football-daily-newsletter-nations-league-germany-netherlands-france-italy",
-   "published": "2026-09-29T15:12:36+00:00",
-   "watch": [],
-   "summary": "Sign up now! Sign up now! Sign up now? Sign up now!This time last week, Football Daily romanticised a continental renaissance of sorts. The arrival of Jürgen Klopp, Zinedine Zidane and Xavi Hernández on the international"
+   "title": "‘I like him as a No 9’: Bellingham a striking alternative for England, says Tuchel",
+   "link": "https://www.theguardian.com/football/2026/sep/30/thomas-tuchel-harry-kane-jude-bellingham-trent-alexander-arnold-england-nations-league",
+   "published": "2026-09-30T18:00:15+00:00",
+   "watch": [
+    "Real Madrid"
+   ],
+   "summary": "Head coach sees Real Madrid man as an option up frontKane praises Alexander-Arnold’s impact and work rateThomas Tuchel’s hunt for alternatives to Harry Kane has led to him identifying Jude Bellingham as an option at No 9"
   },
   {
-   "source": "Sky Sports",
+   "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "Buttler: McCullum can go 'all in' on Cricket World Cup without Test role",
-   "link": "https://www.skysports.com/cricket/news/12040/13593308/joss-buttler-says-brendon-mccullums-removal-as-england-test-coach-may-have-boosted-cricket-world-cup-chances",
-   "published": "2026-09-29T15:30:00+00:00",
-   "watch": [],
-   "summary": "Jos Buttler believes Brendon McCullum's removal as Test coach may have boosted England's World Cup chances, with the New Zealander now \"all in\" on lifting the trophy next winter."
+   "title": "Paris FC v Arsenal: Women’s Champions League – live",
+   "link": "https://www.theguardian.com/football/live/2026/sep/30/paris-fc-v-arsenal-womens-champions-league-live",
+   "published": "2026-09-30T18:24:50+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": "⚽ Updates from the 5.45pm BST kick-off in France⚽ Live scores | Read Moving the Goalposts | Mail Niall7 mins: Arsenal win another corner and play it short, before Cooney Cross’ ball into the middle bobbles through the pe"
   },
   {
    "source": "BBC Sport",
    "tier": 2,
    "kind": "news",
-   "title": "England's Palmer a 'victim' of 'sick' schedule, says PFA chief",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c68048pynj94o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T15:37:43+00:00",
+   "title": "No rift with Ronaldo, says Portugal coach Jesus",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cm9dw7ddwgzwo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-09-30T18:28:26+00:00",
    "watch": [],
-   "summary": "Cole Palmer is the \"victim\" of a \"sick\" system that is expecting too much of players, according to Professional Footballers' Association chief executive Maheta Molango."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Forest Green confirm Savage offered Peterborough job",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c68xkzw9r7rko?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T16:01:42+00:00",
-   "watch": [],
-   "summary": "Robbie Savage has been offered the manager's job at Peterborough United, say Forest Green, who are in negotiations regarding the terms of his exit."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Wayne Rooney says Manchester City should not be stripped of titles for rules breach",
-   "link": "https://www.theguardian.com/football/2026/sep/29/wayne-rooney-manchester-city-united-premier-league-titles-breaching-financial-rules",
-   "published": "2026-09-29T16:04:34+00:00",
-   "watch": [
-    "Man City",
-    "Man United"
-   ],
-   "summary": "‘I wouldn’t feel comfortable … I don’t think we deserved it’Manchester United finished second to City in 2011-12Wayne Rooney does not believe it would be appropriate for Manchester City to be stripped of titles for breac"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Manchester City guilty over Premier League charges after £900m of ‘sham’ contracts",
-   "link": "https://www.theguardian.com/football/2026/sep/29/manchester-city-found-guilty-all-premier-league-charges-rule-breaches",
-   "published": "2026-09-29T16:05:21+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Commission: club broke rules over nine-season periodCity will appeal against verdict before Friday deadlineManchester City breached Premier League financial rules by creating “sham” contracts to help inflate revenue and "
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "USWNT roster: Ashley Sanchez earns the call for friendlies v Spain",
-   "link": "https://www.theguardian.com/football/2026/sep/29/uswnt-roster-spain-ashley-sanchez-mallory-swanson-naomi-girma",
-   "published": "2026-09-29T17:00:16+00:00",
-   "watch": [],
-   "summary": "Sanchez, NWSL’s top scorer, returns after years awayNaomi Girma called up despite injury absence for ChelseaMallory Swanson earns recall after Olympic heroicsNaomi Girma and Sam Coffey are returning to the United States "
+   "summary": "Portugal head coach Jorge Jesus says there is no rift with captain Cristiano Ronaldo following claims the five-time Ballon d'Or winner had refused to train."
   },
   {
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "World Grand Prix Darts LIVE! Humphries and Wade in action on night two",
-   "link": "https://www.skysports.com/darts/live-blog/12040/13593319/world-grand-prix-darts-day-two-live-luke-humphries-james-wade-gian-van-veen-and-gary-anderson-in-action-at-double-in-double-out-event",
-   "published": "2026-09-29T17:30:00+00:00",
+   "title": "World Grand Prix Darts LIVE! Price, Clayton in second-round action",
+   "link": "https://www.skysports.com/darts/live-blog/12040/13593703/world-grand-prix-darts-day-three-live-gerwyn-price-jonny-clayton-and-nathan-aspinall-play-in-second-round-of-double-start-tournament",
+   "published": "2026-09-30T18:30:00+00:00",
    "watch": [],
    "summary": ""
   },
   {
-   "source": "BBC Sport",
+   "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "The four 'what next?' scenarios for Premier League after Man City ruling",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cw3d77ne44k5o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T17:37:54+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "It has taken more than two years, but a judgement has finally been made on the 115 charges levelled against Manchester City. Here's what it means."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "What have Man City been found guilty of doing?",
-   "link": "https://www.bbc.co.uk/sport/football/videos/cm1j46n74ke6o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T18:09:34+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Manchester City are found guilty of all charges related to breaches of Premier League financial rules between the 2009-10 and 2017-18 seasons. BBC sports editor Dan Roan explains what it means for the club and the league"
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Man City guilty of 'sham' contracts and misleading accounts",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c63reg93xwzro?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-29T18:12:33+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "The Premier League confirms that Manchester City have been found guilty of all charges related to breaches of Premier League financial rules between 2009-10 and 2017-18."
+   "title": "'I'm bald and fat... It's true!' - AJ gives hilarious response to Fury!",
+   "link": "https://www.skysports.com/watch/video/13593745/tyson-fury-vs-anthony-joshua-im-bald-and-fat-its-true-aj-gives-hilarious-response-to-fury",
+   "published": "2026-09-30T19:04:00+00:00",
+   "watch": [],
+   "summary": "Anthony Joshua came up with the perfect response to Tyson Fury during their press conference ahead of their fight on December 11."
   },
   {
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "Fitzpatrick's 'best period of golf' ever? | 'I've contended a lot!'",
-   "link": "https://www.skysports.com/golf/news/12040/13593362/matt-fitzpatrick-on-open-de-france-victory-his-best-period-of-golf-ever-and-alfred-dunhill-links-championship-hopes",
-   "published": "2026-09-29T18:30:00+00:00",
+   "title": "It is happening! Fury and AJ finally come together in face-off!",
+   "link": "https://www.skysports.com/watch/video/13593749/fury-vs-joshua-it-is-happening-tyson-fury-and-anthony-joshua-finally-come-together-in-face-off",
+   "published": "2026-09-30T19:28:00+00:00",
    "watch": [],
-   "summary": "Matt Fitzpatrick believes he is currently playing the best golf of his career, ahead of the world No 4 teeing it up alongside his father at the Alfred Dunhill Links Championship."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Czechia v England: Nations League football – live",
-   "link": "https://www.theguardian.com/football/live/2026/sep/29/czechia-v-england-nations-league-football-live-score-updates",
-   "published": "2026-09-29T18:48:08+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "⚽️ Nations League updates, 7.45pm BST kick-off in Prague⚽️ Live scores | Follow us over on TikTok and InstagramJames Trafford looks genuinely affronted. The Leeds goalkeeper’s reaction borders on incredulity. Was it a se"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Scotland v Switzerland, Spain v Croatia, and more: Nations League – live",
-   "link": "https://www.theguardian.com/football/live/2026/sep/29/scotland-v-switzerland-spain-v-croatia-and-more-nations-league-live",
-   "published": "2026-09-29T18:49:58+00:00",
-   "watch": [],
-   "summary": "⚽️ Nations League updates from the 7.45pm BST kick-offs⚽️ Live scores | Follow Czechia v England | And mail TahaIt takes the golden boy just seconds. Spain work it from left to right, the ball finding Lamine Yamal by the"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Man City CEO sends message to staff and players following guilty verdict",
-   "link": "https://www.skysports.com/watch/video/13593410/manchester-city-ceo-soriano-ferran-sends-message-to-staff-and-players-following-guilty-verdict",
-   "published": "2026-09-29T19:33:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Sky Sports News has obtained a video of Manchester City CEO Ferran Soriano that has been sent to internal staff and players at the club after the guilty verdict in relation to allegations of serious breaches of financial"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Which Pitchers Have the Most Strikeouts in MLB History?",
-   "link": "https://theanalyst.com/articles/most-strikeouts-in-mlb-history-pitchers",
-   "published": "2026-09-27T21:14:56+00:00",
-   "watch": [],
-   "summary": "The Kings of the K: From Nolan Ryan to Pedro Martinez to Max Scherzer, here's a look at the most dominant strikeout pitchers in MLB history The post Which Pitchers Have the Most Strikeouts in MLB History? appeared first "
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Football Bourg-en-Bresse Péronnas 01",
-   "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNNlBMSldpUXBWRDdhb0lIOERkZWVVN1JyM1RuOU41eW1YUHEtcTdGaktzNXJxdVU1NmJUM1JYV2ozVFhCS24zRVlKUVV3SG9mLUJkalVVQTRNRWN1ZEl6TjFGZ1BtMzNKaXFKd2ZSU0U1dHhNTHhXalkwcGMteVctYUJlZVZkWUQ0REpqRzMwenZkZVBzR1YtU2U5Yw?oc=5",
-   "published": "2026-09-27T23:26:24+00:00",
-   "watch": [],
-   "summary": "Football Bourg-en-Bresse Péronnas 01 Transfermarkt"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Transfer news LIVE: Man United track Barcelona star as Arsenal & Liverpool chase Kevin Schade",
-   "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOSktGTXlLZHZwYklIQ1VpTXp2ZFZMU2Y0TVZmX19wZ1hlN09CSDlBblFld0tUUzN6c0VycGZwY2toSllHVlhXRUJXOWRnTU01NEd2ZnJSTUo1YnExNDhwazM3ZkZ1NHdiSHlxbWhTUFNDcVlJZlFCRFk0MGNfY0swSEYwV1FNbk1uU01IUUl1SzJBZjFxeV95WlpsUVF0NURPT2hJaU9GMGFjUkVkS3FIc0syNXQyellDbWVqZjZ3MXB6cGpocXpxWTZCMUplS2hLWExiS3VLQ0E?oc=5",
-   "published": "2026-09-28T06:21:21+00:00",
-   "watch": [
-    "Arsenal",
-    "Barcelona",
-    "Liverpool",
-    "Man United"
-   ],
-   "summary": "Transfer news LIVE: Man United track Barcelona star as Arsenal & Liverpool chase Kevin Schade Transfermarkt"
+   "summary": "Tyson Fury and Anthony Joshua come together in a face-off ahead of their fight on December 11."
   },
   {
    "source": "Opta Analyst",
@@ -825,26 +788,6 @@
    "summary": "Each week, fans, alumni, media and the teams themselves look to the Stats Perform FCS Top 25 Poll to see who's moving up and down. The post There’s a Strong Mix of Conferences Near the Top of Stats Perform FCS Top 25 Pol"
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Brazil market values: Paqueta drops again - Many upgrades at Athletico Paranaense",
-   "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNOXd4UmFfcFBpSVp2SGpHbUFLR296a3VjcnR3eGZQak5YOVZYdXRWVDdoT0JyeEFmLXFVR2lXMElsY2RGODluMFpuUWVpam5qdFk0d0hzWFRXVTVEaEZtdHN0ZEVZbVhsRVNpb0g1ODFiTU1qbHl0MFNLU1k5SWtBbnhWa3JYcGlNV3JpNlVoSGZ3UVYtdVB4ZDNXa0Iwck5BRjVlLWZ5MFREeG5NUDRidjR1b2FhZzJQRUt5QWM0Q0owRms?oc=5",
-   "published": "2026-09-28T15:04:11+00:00",
-   "watch": [],
-   "summary": "Brazil market values: Paqueta drops again - Many upgrades at Athletico Paranaense Transfermarkt"
-  },
-  {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Antony - Popularity ranking - Player detail",
-   "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQa01jUjdyaDNyaHYyQjVSOC1zdzR5WXkwdHk4VllnWmNmTG1POThPNkMxUFF3VWYwMnoya1hJNHZfNUE2U3IyM1YyZmxxWWFyUDV3RmUya0NrWHRQdDA0Qmo0dkg2RlZnVlc5RGRUYjlQU202Z25TY1BUWVBnTlN5Z1pzMDlicmEyU3VlZS1XdHhaQjQ?oc=5",
-   "published": "2026-09-28T16:03:26+00:00",
-   "watch": [],
-   "summary": "Antony - Popularity ranking - Player detail Transfermarkt"
-  },
-  {
    "source": "Opta Analyst",
    "tier": 3,
    "kind": "analysis",
@@ -858,6 +801,16 @@
    "source": "Transfermarkt",
    "tier": 3,
    "kind": "data",
+   "title": "Emerson Pata - Popularity ranking - Player detail",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOODR0VGdtTHhmSG5ZdC16WWpyS0cyaE9ZLTY5TkE0anROQ1YtckVaTEtta2phdm82aU9ld0NYNjFCYzVDYTkwMVZrOW91aVhLRXFEd1VVRGEybWdiTVA3UmlJT283alZVX2tPTWptalRGWklHODF1R3lYbHJlNTZ1dg?oc=5",
+   "published": "2026-09-29T05:03:03+00:00",
+   "watch": [],
+   "summary": "Emerson Pata - Popularity ranking - Player detail Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
    "title": "Bundesliga 66/67 - Participating teams",
    "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQc1hzS1lZSkxIQXBjRmgxQ1ViWVQyNHVyQWxFOFZPYXVmOUxOdEFrZ0xyS29MUFBlTXMxNno0b0M4MmVpYm4zSTN4SlYxNlNicEhrdENRT1BZLTdBbzJOeVZrdU8wZEE2YnlwQUlqWVA3SGtlRjAyWUd3VHVEZ3FJdVNR?oc=5",
    "published": "2026-09-29T06:14:44+00:00",
@@ -865,80 +818,14 @@
    "summary": "Bundesliga 66/67 - Participating teams Transfermarkt"
   },
   {
-   "source": "Opta Analyst",
+   "source": "Transfermarkt",
    "tier": 3,
-   "kind": "analysis",
-   "title": "Mass Overhaul or Squad Continuity: What is the Recipe for Premier League Success?",
-   "link": "https://theanalyst.com/articles/premier-league-new-signings-or-continuity-success",
-   "published": "2026-09-29T06:23:07+00:00",
+   "kind": "data",
+   "title": "Meister-Playoff LL Niederösterreich (- 1946)",
+   "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQMGp5WnlaT1NweUtXRnRfRDhGaS1KTE50SEl4SGJjbWszRVFlc08zbUdIWHdoNUJWVUtiTjZIVHVpR3U4N0RrVEp0ckNzdW1faWZVcUMwQ0Q1cXlISUpDbmNfUzJoRUJpUjc3RGZNNFlQQTItazdwVnJYTGxTNHlsN0pwbzNIMFpZd1J5cmFoRV82b2ZONEttWnYwZW9SMHRi?oc=5",
+   "published": "2026-09-29T07:16:12+00:00",
    "watch": [],
-   "summary": "In an age when fans wants limitless spending on shiny new signings, we ask whether less change can sometimes be more beneficial. The post Mass Overhaul or Squad Continuity: What is the Recipe for Premier League Success? "
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "UEFA Women’s Champions League: Opta Supercomputer Matchday 2 Predictions",
-   "link": "https://theanalyst.com/articles/uefa-womens-champions-league-opta-supercomputer-matchday-2-predictions",
-   "published": "2026-09-29T06:52:42+00:00",
-   "watch": [],
-   "summary": "With the help of the Opta supercomputer, we provide our UEFA Women’s Champions League match predictions across Matchday 2 in 2026-27. The post UEFA Women’s Champions League: Opta Supercomputer Matchday 2 Predictions appe"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Perfect Starts and Premier League Titles: Is There Any Correlation?",
-   "link": "https://theanalyst.com/articles/premier-league-winning-starts-title-race-man-city",
-   "published": "2026-09-29T06:54:40+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Manchester City may have started the season with five wins from five, but as the Premier League has proved many times in the past, it’s a marathon, not a sprint. The post Perfect Starts and Premier League Titles: Is Ther"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Quiz! Which countries are these brilliantly named football clubs from?",
-   "link": "https://www.fourfourtwo.com/quiz/quiz-which-countries-are-these-brilliantly-named-football-clubs-from",
-   "published": "2026-09-29T07:00:00+00:00",
-   "watch": [],
-   "summary": "Language is such a wonderful thing"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Arsenal defender sits out England training but Mikel Arteta shouldn’t worry just yet",
-   "link": "https://www.fourfourtwo.com/person/player/arsenal-defender-sits-out-england-training-but-mikel-arteta-shouldnt-worry-just-yet",
-   "published": "2026-09-29T07:53:51+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": "Arsenal fans faced a moment of collective anxiety during the international break following updates from the England camp regarding defender Ezri Konsa"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "\"Newcastle fans didn’t appreciate me - it led to a toxic atmosphere\"",
-   "link": "https://www.fourfourtwo.com/person/joey-barton-told-me-nobody-wanted-me-there-newcastle-fans-didnt-appreciate-me-and-the-local-media-didnt-help-it-led-to-a-toxic-atmosphere-alan-pardew-feels-hard-done-by-over-newcastle-united-spell",
-   "published": "2026-09-29T08:36:01+00:00",
-   "watch": [],
-   "summary": "Alan Pardew spent four years as Newcastle United manager and won two manager of the year awards - but some were never convinced"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "First Manchester City star's exit talks begin, following 114 charges bombshell: report",
-   "link": "https://www.fourfourtwo.com/transfer/first-manchester-city-stars-exit-talks-begin-following-114-charges-bombshell-report",
-   "published": "2026-09-29T09:08:18+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Manchester City have been found guilty of breaching Premier League rules - and now uncertainty hangs over the club"
+   "summary": "Meister-Playoff LL Niederösterreich (- 1946) Transfermarkt"
   },
   {
    "source": "Opta Analyst",
@@ -954,60 +841,6 @@
    "source": "Opta Analyst",
    "tier": 3,
    "kind": "analysis",
-   "title": "Premier League Fixture Difficulty vs Results: Which Teams Have Defied Expectations?",
-   "link": "https://theanalyst.com/articles/premier-league-results-vs-fixture-difficulty-stats",
-   "published": "2026-09-29T09:40:24+00:00",
-   "watch": [],
-   "summary": "We look back at pre-season expectations for Premier League clubs' first five matches and assess how well they've done relative to the difficulty of their fixture schedules. The post Premier League Fixture Difficulty vs R"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "The UEFA Nations League is getting more complicated: Everything you need to know about the competition's overhaul",
-   "link": "https://www.fourfourtwo.com/competition/the-uefa-nations-league-is-getting-more-complicated-everything-you-need-to-know-about-the-competitions-overhaul",
-   "published": "2026-09-29T10:00:00+00:00",
-   "watch": [],
-   "summary": "The UEFA Nations League will move to a three-tier format from 2028/29"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "New changes to the WSL Players Cup for the 2026/27 season - everything you need to know",
-   "link": "https://www.fourfourtwo.com/competition/new-changes-to-the-wsl-players-cup-for-the-2026-27-season-everything-you-need-to-know",
-   "published": "2026-09-29T12:00:00+00:00",
-   "watch": [],
-   "summary": "The former Women’s League Cup has had a makeover, with a new name, new format and the biggest teams no longer taking part"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Liverpool given Cody Gakpo injury update, as forward picks up ankle injury",
-   "link": "https://www.fourfourtwo.com/person/player/liverpool-given-cody-gakpo-injury-update-as-forward-picks-up-ankle-injury",
-   "published": "2026-09-29T13:00:00+00:00",
-   "watch": [
-    "Liverpool"
-   ],
-   "summary": "Liverpool star Cody Gakpo was the recipient of an industrial tackle on international duty"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Arsenal in 'continuous contact' with Norway over Martin Odegaard's ankle injury",
-   "link": "https://www.fourfourtwo.com/person/player/arsenal-in-continuous-contact-with-norway-over-martin-odegaards-ankle-injury",
-   "published": "2026-09-29T14:00:00+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": "Arsenal captain Martin Odegaard picked up a nasty knock to his ankle during international duty"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
    "title": "England Women’s Squad: Four Key Talking Points Ahead of Greece World Cup Play-Off",
    "link": "https://theanalyst.com/articles/england-womens-squad-key-talking-points-greece-world-cup-play-off",
    "published": "2026-09-29T14:13:12+00:00",
@@ -1015,58 +848,226 @@
    "summary": "Sarina Wiegman has named her England squad for the crucial World Cup play-off against Greece. We analyse the key selections using Opta data. The post England Women’s Squad: Four Key Talking Points Ahead of Greece World C"
   },
   {
-   "source": "FourFourTwo",
+   "source": "Transfermarkt",
    "tier": 3,
-   "kind": "analysis",
-   "title": "Liverpool given pathway to sign Alex Scott, as perfect Andoni Iraola transfer shapes up: report",
-   "link": "https://www.fourfourtwo.com/transfer/liverpool-given-pathway-to-sign-alex-scott-as-perfect-andoni-iraola-transfer-shapes-up-report",
-   "published": "2026-09-29T15:00:00+00:00",
+   "kind": "data",
+   "title": "Liga Portugal market values: Samu drops (again), Prestianni doubles his market value",
+   "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQcEJGNXBxcG5lSGhoRzJ1ZDBHVVRHZ1VadnZBVkNiUU9kN3pGRzduVE10ZEx6d0JpQmFScWt0VXR4T1IwbWQ2SklNYjJtbmM0eUF0TjNFVnBFM3NWenBfYkcxbzdER09VSTZfaENsS3E3NUNwNWtfVjRTUzZYRWNEa1RXQkFaVS1rY25RTXFxWXp4X29FRFhYNHp2X01QbWZGRURsWW1SNHkwUDJLRkZUMXEyTzFVbUtrUW5xaW9odmZ0MXVEM3c?oc=5",
+   "published": "2026-09-29T14:14:50+00:00",
+   "watch": [],
+   "summary": "Liga Portugal market values: Samu drops (again), Prestianni doubles his market value Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "£900m in inflated revenue - Premier League confirm ‘serious breaches’ by Man City",
+   "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOajl3WDJXQmVKOXByUW5tckhNYVNTemRzaGI1bWpmeGhaODkzN3ZSTi1wa3Z4Ml9ZVS1qVXVvOWw4X3NTWTN2cU5CaWhPeGhkNEVNVV9TRVRLd2JZZXJST1N0SENGS1ZqNzNLYTFHWGo5blhqUzJYeGFrLUNBdmw4aVhDTERZSFpRX240bnY3M0IxTENRVE95Yk9laVl4aDdVME54TXZtNi01SHBpV1BmVVVKUmdEUU56SldVLU1POHhROWhsU21kV0pR?oc=5",
+   "published": "2026-09-29T17:24:50+00:00",
    "watch": [
-    "Liverpool"
+    "Man City"
    ],
-   "summary": "Liverpool manager Andoni Iraola could reunite with a star he helped flourish at Bournemouth, thanks to new developments"
+   "summary": "£900m in inflated revenue - Premier League confirm ‘serious breaches’ by Man City Transfermarkt"
   },
   {
    "source": "FourFourTwo",
    "tier": 3,
    "kind": "analysis",
-   "title": "How to watch Czechia vs England: FREE streams and TV info",
-   "link": "https://www.fourfourtwo.com/competition/watch-czechia-vs-england-nations-league-free",
-   "published": "2026-09-29T15:45:00+00:00",
+   "title": "Quickfire Quiz 214: Can you answer 10 questions in 90 seconds?",
+   "link": "https://www.fourfourtwo.com/quiz/quickfire-quiz-214",
+   "published": "2026-09-30T05:00:00+00:00",
    "watch": [],
-   "summary": "Here's how to watch Czechia vs England for free from anywhere in the world as the Three Lions continue their Nations League campaign in Prague."
+   "summary": "Tackle these 10 football trivia questions about missing sponsors, old names, England scorers and more!"
   },
   {
    "source": "FourFourTwo",
    "tier": 3,
    "kind": "analysis",
-   "title": "Fulham star Bernd Leno readied for shock Bayern Munich switch: report",
-   "link": "https://www.fourfourtwo.com/person/player/fulham-star-bernd-leno-readied-for-shock-bayern-munich-switch-report",
-   "published": "2026-09-29T16:00:00+00:00",
+   "title": "'That was meant to be the year' Manchester City's actions denied Liverpool's greatest ever player the perfect end to his career",
+   "link": "https://www.fourfourtwo.com/team/that-was-meant-to-be-the-year-manchester-citys-actions-denied-liverpools-greatest-ever-player-the-perfect-end-to-his-career",
+   "published": "2026-09-30T06:00:00+00:00",
    "watch": [
-    "Bayern"
+    "Liverpool",
+    "Man City"
    ],
-   "summary": "Fulham's Bernd Leno could be in line to replace Manuel Neuer for Bayern Munich"
+   "summary": "Every team and supporter involved in the Premier League over the past decade and a half should be sincerely aggrieved, not least Liverpool"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "UEFA Women’s Champions League: Opta Supercomputer Matchday 2 Predictions",
+   "link": "https://theanalyst.com/articles/uefa-womens-champions-league-opta-supercomputer-matchday-2-predictions",
+   "published": "2026-09-30T06:38:51+00:00",
+   "watch": [],
+   "summary": "With the help of the Opta supercomputer, we provide our UEFA Women’s Champions League match predictions across Matchday 2 in 2026-27. The post UEFA Women’s Champions League: Opta Supercomputer Matchday 2 Predictions appe"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Mass Overhaul or Squad Continuity: What is the Recipe for Premier League Success?",
+   "link": "https://theanalyst.com/articles/premier-league-new-signings-or-continuity-success",
+   "published": "2026-09-30T06:38:59+00:00",
+   "watch": [],
+   "summary": "In an age when fans wants limitless spending on shiny new signings, we ask whether less change can sometimes be more beneficial. The post Mass Overhaul or Squad Continuity: What is the Recipe for Premier League Success? "
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Perfect Starts and Premier League Titles: Is There Any Correlation?",
+   "link": "https://theanalyst.com/articles/premier-league-winning-starts-title-race-man-city",
+   "published": "2026-09-30T06:39:05+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "Manchester City may have started the season with five wins from five, but as the Premier League has proved many times in the past, it’s a marathon, not a sprint. The post Perfect Starts and Premier League Titles: Is Ther"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Premier League Fixture Difficulty vs Results: Which Teams Have Defied Expectations?",
+   "link": "https://theanalyst.com/articles/premier-league-results-vs-fixture-difficulty-stats",
+   "published": "2026-09-30T06:39:11+00:00",
+   "watch": [],
+   "summary": "We look back at pre-season expectations for Premier League clubs' first five matches and assess how well they've done relative to the difficulty of their fixture schedules. The post Premier League Fixture Difficulty vs R"
   },
   {
    "source": "FourFourTwo",
    "tier": 3,
    "kind": "analysis",
-   "title": "How to watch Spain vs Croatia: Free streams & TV details",
-   "link": "https://www.fourfourtwo.com/competition/watch-spain-vs-croatia-nations-league-free",
-   "published": "2026-09-29T16:00:00+00:00",
+   "title": "Quiz! Which English football clubs were served by these fanzines?",
+   "link": "https://www.fourfourtwo.com/quiz/quiz-which-english-football-clubs-were-served-by-these-fanzines",
+   "published": "2026-09-30T07:00:00+00:00",
    "watch": [],
-   "summary": "Here's how to watch Spain vs Croatia for free online from anywhere as the world champions continue their Nations League campaign."
+   "summary": "Unofficial fanzines were a cornerstone of supporter culture - can you remember where these 20 could be found?"
   },
   {
    "source": "FourFourTwo",
    "tier": 3,
    "kind": "analysis",
-   "title": "How to watch Scotland vs Switzerland for FREE: Live streams",
-   "link": "https://www.fourfourtwo.com/competition/watch-scotland-vs-switzerland-nations-league-free",
-   "published": "2026-09-29T16:15:00+00:00",
+   "title": "Pardew: \"Meyler headbutt cost me financially and professionally\"",
+   "link": "https://www.fourfourtwo.com/person/im-certainly-not-proud-of-it-headbutting-david-meyler-cost-me-financially-and-professionally-alan-pardew-on-his-embarrassing-newcastle-united-moment",
+   "published": "2026-09-30T08:21:27+00:00",
    "watch": [],
-   "summary": "Here's how to watch Scotland vs Switzerland for free online from anywhere with TV channels, kick-off times and predictions included for this Nations League fixture."
+   "summary": "The then-Newcastle United boss stuck his head into the face of Hull City's David Meyler and received a seven-game ban"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Why Croatia vs England will be played behind closed doors - and why there will be fans there anyway",
+   "link": "https://www.fourfourtwo.com/team/why-croatia-vs-england-will-be-played-behind-closed-doors-and-why-there-will-be-england-fans-there-anyway",
+   "published": "2026-09-30T09:00:00+00:00",
+   "watch": [],
+   "summary": "England visit Rijeka in the Nations League this weekend"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Max Rietschel - Popularity ranking - Player detail",
+   "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOZ2xhOVNfZjFwUFR5QUFaUm42UDltQ1hydThMVjFTdzNna01vTkFxU25QYWM5TlRFNDBRcWNfQmd6REdPLUV5ZHlxUnRQb3phQVVXRnllY2ZWbnc2Q3BoSkhadUdSSm1vdFZWNFlNcmppMnJXWDRqRnEzSzJ6QS10bF9n?oc=5",
+   "published": "2026-09-30T09:17:21+00:00",
+   "watch": [],
+   "summary": "Max Rietschel - Popularity ranking - Player detail Transfermarkt"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Manchester City star Erling Haaland has already 'said yes' to Barcelona - with Norwegian NOT staying for charges aftermath: report",
+   "link": "https://www.fourfourtwo.com/transfer/manchester-city-star-erling-haaland-has-already-said-yes-to-barcelona-with-norwegian-not-staying-for-charges-aftermath-report",
+   "published": "2026-09-30T10:47:24+00:00",
+   "watch": [
+    "Barcelona",
+    "Man City"
+   ],
+   "summary": "Manchester City are facing a crisis - and talismanic forward Erling Haaland may not stick around, having previously agreed to move to Barcelona"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Manchester United rocked by SIXTH injury, following another international knock: report",
+   "link": "https://www.fourfourtwo.com/team/manchester-united-rocked-by-sixth-injury-following-another-international-knock-report",
+   "published": "2026-09-30T12:00:00+00:00",
+   "watch": [
+    "Man United"
+   ],
+   "summary": "Manchester United have been dealt another cruel blow, as the international break continues"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Argentina have already tried to retire the No.10 shirt: Will they do it again for Lionel Messi?",
+   "link": "https://www.fourfourtwo.com/person/player/argentina-have-already-tried-to-retire-the-no-10-shirt-will-they-do-it-again-for-lionel-messi",
+   "published": "2026-09-30T13:01:55+00:00",
+   "watch": [],
+   "summary": "Lionel Messi is retiring from Argentina - but will the national team retire his No.10 shirt?"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Süper Lig market values: Star signings Vlahović, Salah and Leão all drop",
+   "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOYTVleUNKcVl2WlZxT2UtVEs2Mi02OG9YVEQ3djk1UXpJTml6YmJvQzNMb2tOSzR2MnVtVTA3YzdaRjlEUmM4cnJxb05jT1VXdXFYTVhyVWlfMldmZTZNTGoxYlRfUWZ2dlB5U1FGTDNiWWRKeEIwcWJmZnpHamNwQ01nandkbjIzMmJBd2lfOWdLZjdUd3VvZmVvRTQyaVVLRllkQ0Z6bEFZUFB0LWlPRFVTWWFwM09V?oc=5",
+   "published": "2026-09-30T13:23:35+00:00",
+   "watch": [],
+   "summary": "Süper Lig market values: Star signings Vlahović, Salah and Leão all drop Transfermarkt"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Ian Wright claims Manchester City battle ‘broke’ Liverpool icon as guilty verdict comes down",
+   "link": "https://www.fourfourtwo.com/person/coaches-managers/ian-wright-claims-manchester-city-battle-broke-liverpool-icon-as-guilty-verdict-comes-down",
+   "published": "2026-09-30T14:02:28+00:00",
+   "watch": [
+    "Arsenal",
+    "Liverpool",
+    "Man City"
+   ],
+   "summary": "Former Arsenal striker and ITV pundit Ian Wright delivered a poignant assessment of the financial scandal involving Manchester City"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Manchester City fans should boycott the club: the owners sold the club's soul",
+   "link": "https://www.fourfourtwo.com/team/manchester-city-fans-should-boycott-the-club-the-owners-sold-the-clubs-soul",
+   "published": "2026-09-30T14:27:12+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "Manchester City fans may be going through the five stages of grief - but soon they'll have to accept they've been taken for a ride like the rest of us"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "'We will use these powers' Independent Football Regulator reveals action plan for Manchester City owners following guilty verdict",
+   "link": "https://www.fourfourtwo.com/team/we-will-use-these-powers-independent-football-regulator-reveals-action-plan-for-manchester-city-owners-following-guilty-verdict",
+   "published": "2026-09-30T14:27:43+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "The Chair of the Independent Football Regulator (IFR), David Kogan, has warned that the watchdog is prepared to scrutinise Manchester City’s ownership"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Design your own Manchester City punishment - FourFourTwo plays judge and jury on 114 charges guilty verdict",
+   "link": "https://www.fourfourtwo.com/team/design-your-own-manchester-city-punishment-fourfourtwo-plays-judge-and-jury-on-114-charges-guilty-verdict",
+   "published": "2026-09-30T16:54:27+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "FourFourTwo's editorial team have revealed how they would throw the book at Manchester City if they were the Premier League"
   }
  ]
 }
