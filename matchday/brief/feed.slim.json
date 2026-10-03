@@ -1,34 +1,21 @@
 {
- "fetched": "2026-10-02T18:46:16+00:00",
+ "fetched": "2026-10-03T17:40:21+00:00",
  "counts": {
-  "raw": 329,
-  "deduped": 317,
+  "raw": 323,
+  "deduped": 313,
   "byTier": {
    "1": 44,
-   "2": 144,
-   "3": 129
+   "2": 141,
+   "3": 128
   }
  },
  "slimByTier": {
-  "1": 27,
+  "1": 26,
   "2": 35,
   "3": 30
  },
  "errors": [],
  "items": [
-  {
-   "source": "BBC Gossip",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "No relegation clause in Haaland's Man City deal - Saturday's gossip",
-   "link": "https://www.bbc.co.uk/sport/football/articles/c84gkkepxxl4o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-09-25T21:10:17+00:00",
-   "watch": [
-    "Juventus",
-    "Man City"
-   ],
-   "summary": "Erling Haaland is without a relegation clause, Premier League clubs are eyeing Marcos Llorente, Juventus are considering Crystal Palace's Tyrick Mitchell."
-  },
   {
    "source": "BBC Gossip",
    "tier": 1,
@@ -90,6 +77,16 @@
    "summary": "Real Madrid are waiting for Virgil van Dijk to become a free agent, Bayern Munich offer Michael Olise a long-term contract and are eyeing Barcelona's Jules Kounde."
   },
   {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Drury: From Bernabeu glory to plotting Huddersfield's way out of League One",
+   "link": "https://www.skysports.com/football/news/11095/13582836/martin-drury-exclusive",
+   "published": "2026-09-30T10:00:00+00:00",
+   "watch": [],
+   "summary": "\"No. In truth, it wasn't.\""
+  },
+  {
    "source": "BBC Gossip",
    "tier": 1,
    "kind": "rumour",
@@ -101,18 +98,6 @@
     "Man City"
    ],
    "summary": "Germany forward Kevin Schade is wanted by Liverpool, Erling Haaland and Phil Foden are among the Manchester City players drawing interest from Europe's top clubs, plus more."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "'A risk not worth taking' - PL execs not expecting clubs to vote for Man City expulsion",
-   "link": "https://www.skysports.com/football/news/11095/13593861/man-city-charges-premier-league-executives-would-be-staggered-if-clubs-vote-for-expulsion-as-punishment",
-   "published": "2026-10-01T08:03:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Two senior executives at different top-level Premier League clubs have told Sky Sports News they would be \"staggered\" and \"amazed\" if 15 clubs were prepared to vote to expel Manchester City from the league, with such a m"
   },
   {
    "source": "Sky Transfers",
@@ -140,18 +125,6 @@
    "summary": "Premier League players and their agents have been engaging with lawyers to explore the prospect of seeking compensation from Manchester City for losses in possible bonus payments."
   },
   {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "HMRC asked to explore tax implications of Man City case",
-   "link": "https://www.skysports.com/football/news/11095/13594084/man-city-charges-treasury-committee-writes-to-hmrc-to-ask-about-tax-implications-of-premier-league-investigation",
-   "published": "2026-10-01T19:10:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "The Treasury Committee has written to the chief executive of HM Revenue and Customs (HMRC) to ask about the tax implications of the Premier League's investigation into Manchester City."
-  },
-  {
    "source": "BBC Gossip",
    "tier": 1,
    "kind": "rumour",
@@ -162,56 +135,19 @@
     "Liverpool",
     "Real Madrid"
    ],
-   "also": [
-    "BBC Sport"
-   ],
    "summary": "Real Madrid are keen on Bayer Leverkusen's Jarell Quansah, Liverpool are monitoring Club Tijuana's teenage midfielder Giberto Mora, plus more."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Arsenal latest: Tzolis hobbles off injured in Greece match",
+   "title": "Arsenal latest: Injured Tzolis expected to return to club this weekend",
    "link": "https://www.skysports.com/football/live-blog/11095/13025486/arsenal-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
    "published": "2026-10-01T20:00:00+00:00",
    "watch": [
     "Arsenal"
    ],
    "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Liverpool latest: Wirtz ends goalless run in Klopp's first Germany win",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025501/liverpool-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-10-01T22:00:00+00:00",
-   "watch": [
-    "Liverpool"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Papers: Man City players could be entitled to rip up contracts",
-   "link": "https://www.skysports.com/football/news/11095/13594183/man-city-players-told-they-could-be-entitled-to-rip-up-contracts-after-guilty-verdict-in-premier-league-case-paper-talk",
-   "published": "2026-10-01T22:41:00+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "The top stories and transfer rumours from Friday's newspapers..."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "'I was terrified' - Sir Alex reveals all on Old Trafford return after brain haemorrhage",
-   "link": "https://www.skysports.com/football/news/11095/13594235/sir-alex-ferguson-former-manchester-united-boss-admits-he-was-terrified-about-making-old-trafford-return-after-2018-brain-haemorrhage",
-   "published": "2026-10-02T07:22:00+00:00",
-   "watch": [],
-   "summary": "Sir Alex Ferguson has said he was \"terrified\" about returning to Old Trafford following a brain haemorrhage."
   },
   {
    "source": "Sky Transfers",
@@ -242,36 +178,11 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Brand’s lessons from Chelsea as he prepares for the next step",
-   "link": "https://www.skysports.com/football/news/11095/13581172/ed-brand-interview-former-chelsea-coach-on-his-17-years-at-stamford-bridge-and-what-he-learned-from-the-experience",
-   "published": "2026-10-02T11:00:00+00:00",
-   "watch": [
-    "Chelsea"
-   ],
-   "summary": "“When it first happened, I did not know what to do with myself,” Ed Brand tells Sky Sports. He spent 17 years at Chelsea before leaving the club earlier this year. But his long-term vision for his future career path is c"
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Dev's Digest: Hamza's FA Cup final shirt to be auctioned | Award winners stand with Iqbal",
-   "link": "https://www.skysports.com/football/news/11095/13594024/devs-digest-hamza-choudhurys-fa-cup-final-shirt-up-for-grabs-award-winning-pair-stand-with-zidane-iqbal-dilan-markanday-opens-up-on-wonder-goal",
-   "published": "2026-10-02T11:15:00+00:00",
-   "watch": [],
-   "summary": "Welcome to Dev's Digest, the agenda-setting Sky Sports column where Dev Trehan delivers exclusive news and reflects on some of the key developments for British South Asians in Football."
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
    "title": "Man City lodge appeal against guilty verdict",
    "link": "https://www.skysports.com/football/news/11095/13593606/man-city-lodge-appeal-premier-league-club-contest-guilty-verdict-of-independent-commission",
    "published": "2026-10-02T12:00:00+00:00",
    "watch": [
     "Man City"
-   ],
-   "also": [
-    "Sky Sports"
    ],
    "summary": "Manchester City have lodged their appeal against an independent commission finding them guilty of all charges related to serious breaches of Premier League financial rules."
   },
@@ -279,9 +190,9 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "England latest: Konsa in line to return for Croatia game",
-   "link": "https://www.skysports.com/football/live-blog/11095/13427059/england-football-news-live-updates-schedule-and-analysis-of-thomas-tuchels-three-lions",
-   "published": "2026-10-02T14:00:00+00:00",
+   "title": "EFL latest: Swansea's Eom fires South Korea to Asian Games triumph",
+   "link": "https://www.skysports.com/football/live-blog/11095/13163353/championship-news-transfer-latest-and-gossip-plus-efl-updates-from-league-one-and-league-two",
+   "published": "2026-10-02T13:21:00+00:00",
    "watch": [],
    "summary": ""
   },
@@ -289,7 +200,19 @@
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Man City reaction LIVE! Tuchel admits case is 'big topic' in England camp",
+   "title": "England latest: Tuchel understanding of Man City players affected by charges verdict",
+   "link": "https://www.skysports.com/football/live-blog/11095/13427059/england-football-news-live-updates-schedule-and-analysis-of-thomas-tuchels-three-lions",
+   "published": "2026-10-02T14:00:00+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": ""
+  },
+  {
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Man City reaction: Scholes wants PL winners' medal if titles stripped",
    "link": "https://www.skysports.com/football/live-blog/11095/13593363/man-city-charges-reaction-and-findings-as-commission-finds-club-guilty-of-all-charges-related-to-serious-financial-breaches",
    "published": "2026-10-02T14:20:00+00:00",
    "watch": [
@@ -307,255 +230,125 @@
    "watch": [
     "Man City"
    ],
-   "also": [
-    "Sky Sports"
-   ],
    "summary": "Gary Neville believes the ownership group at Manchester City will find it very difficult to \"retain their status\" at the club should the Premier League's ruling over financial breaches still stand following appeal."
   },
   {
    "source": "Sky Transfers",
    "tier": 1,
    "kind": "rumour",
-   "title": "Scotland reporter notebook: Will the goals come in Skopje?",
-   "link": "https://www.skysports.com/football/live-blog/11095/13551944/scotland-football-news-live-updates-schedule-and-analysis-of-steve-clarkes-side",
-   "published": "2026-10-02T15:00:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Brighton latest: Hurzeler, Gross and Dunk win Premier League awards for September",
-   "link": "https://www.skysports.com/football/live-blog/11095/13279295/brighton-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
-   "published": "2026-10-02T16:07:00+00:00",
-   "watch": [],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "Man Utd latest: Baleba plays first minutes in behind-closed-doors friendly",
-   "link": "https://www.skysports.com/football/live-blog/11095/13025492/man-utd-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
-   "published": "2026-10-02T17:26:00+00:00",
-   "watch": [
-    "Man United"
-   ],
-   "also": [
-    "Sky Sports"
-   ],
-   "summary": ""
-  },
-  {
-   "source": "Sky Transfers",
-   "tier": 1,
-   "kind": "rumour",
-   "title": "City sponsor's 2015 statement to US government raises questions about appeal strategy",
+   "title": "Man City sponsor's 2015 statement raises questions about appeal strategy",
    "link": "https://www.skysports.com/football/news/11095/13594496/man-city-appeal-clubs-strategy-brought-into-question-by-2015-statement-main-sponsor-etihad-airways-submitted-to-us-government",
    "published": "2026-10-02T19:20:00+00:00",
    "watch": [
     "Man City"
    ],
-   "also": [
-    "Sky Sports"
-   ],
    "summary": "Manchester City’s strategy in their bid to clear their name after being found guilty of breaking more than 100 of the Premier League's rules has been brought into question by a statement their main sponsor Etihad Airways"
   },
   {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Shaw secures WCL draw against Real Madrid as Manchester City show spirit after week of turmoil",
-   "link": "https://www.theguardian.com/football/2026/oct/01/manchester-city-real-madrid-womens-champions-league-league-stage-match-report",
-   "published": "2026-10-01T21:08:29+00:00",
+   "source": "BBC Gossip",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Chiesa eyes Liverpool exit - Saturday's gossip",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cq70p3w936w9o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-02T21:14:32+00:00",
    "watch": [
-    "Man City",
-    "Real Madrid"
-   ],
-   "summary": "Andrée Jeglertz, the Manchester City head coach, said the noise surrounding the guilty verdict dished out by the Premier League had zero impact on his women’s team’s performance after they played out a high-quality draw "
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Pro-Palestine protests interrupt game as Ireland pass up 2-0 lead in draw against Austria",
-   "link": "https://www.theguardian.com/football/2026/oct/01/pro-palestine-protests-interrupt-game-ireland-draw-austria-nations-league",
-   "published": "2026-10-01T21:59:55+00:00",
-   "watch": [],
-   "summary": "Protests halted events in Dublin twice before the Republic of Ireland were forced to settle for a 2-2 draw after Austria came back in the second half of their Nations League encounter at the Aviva Stadium.Despite a signi"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Bilic is back: bravery and belief underpin second coming as Croatia manager",
-   "link": "https://www.theguardian.com/football/2026/oct/02/slaven-bilic-croatia-manager-second-coming-england-nations-league",
-   "published": "2026-10-02T10:20:54+00:00",
-   "watch": [],
-   "summary": "Match against England is welcome test for former West Ham coach as he replaces history-making Zlatko Dalic“I don’t believe in comebacks.” Slaven Bilic sat in the lobby of a hotel in Canary Wharf wearing a black Soundgard"
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Robertson's Scotland career in numbers as 100th cap looms",
-   "link": "https://www.bbc.co.uk/sport/football/articles/crgjqjg1l740o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T11:43:12+00:00",
-   "watch": [],
-   "also": [],
-   "summary": "Andy Robertson is poised to become only the second man ever to play 100 times for Scotland. BBC Sport Scotland charts his international career in numbers."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Robbie Savage steps up to take Peterborough job: ‘All I want is a chance’",
-   "link": "https://www.theguardian.com/football/2026/oct/02/robbie-savage-peterborough-manager-job-understands-reservations",
-   "published": "2026-10-02T12:11:20+00:00",
-   "watch": [],
-   "summary": "Savage leaves Forest Green to take League One role‘Excitement is the word I can use,’ say MacAnthonyRobbie Savage has been confirmed as the new manager of League One strugglers Peterborough.Savage has left his role at Na"
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Peterborough appoint Forest Green boss Savage",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cqe8xrk0err4o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T12:23:50+00:00",
-   "watch": [],
-   "summary": "Peterborough United appoint Forest Green Rovers boss Robbie Savage as Luke Williams' successor."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Andy Burnham urged by Lib Dems to reveal all meetings with owners of Manchester City",
-   "link": "https://www.theguardian.com/football/2026/oct/02/andy-burnham-meetings-manchester-city-owners-lib-dems",
-   "published": "2026-10-02T13:00:13+00:00",
-   "watch": [
+    "Arsenal",
+    "Barcelona",
+    "Juventus",
+    "Liverpool",
     "Man City"
    ],
-   "summary": "Burnham should also declare City hospitality, party saysPM said he would be concerned if owners forced to sellAndy Burnham is facing calls from the Liberal Democrats to publish details of all his meetings with Manchester"
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "How Gordon became one of England's main men",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cm9qrqelnd49o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T13:15:44+00:00",
-   "watch": [
-    "Barcelona"
+   "also": [
+    "BBC Sport"
    ],
-   "summary": "Anthony Gordon has been England's in-form player since the World Cup knockout stage - is the Barcelona forward now undroppable?"
+   "summary": "Liverpool forward Federico Chiesa is on the radar of a trio of Serie A clubs, Man City striker Erling Haaland is more likely to head to Barcelona than Arsenal if he leaves the club, Brentford's Michael Kayode is wanted b"
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Giant Dzeko shirt unveiled in Sarajevo to mark retirement",
-   "link": "https://www.bbc.co.uk/sport/football/videos/cx8dzpj896edo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T14:00:18+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Brown scores twice as Northen Ireland cruise to win over Ukraine",
+   "link": "https://www.skysports.com/football/ukraine-vs-northern-ireland/report/554050",
+   "published": "2026-10-02T21:47:00+00:00",
    "watch": [],
-   "summary": "A giant Edin Dzeko shirt is unveiled in Sarajevo to mark the Bosnia striker's retirement from international football."
+   "summary": "Ciaron Brown's first international goals came as a pair to help a young Northern Ireland side stun Ukraine 3-0 and go clear at the top of Nations League Group B2."
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Timely recognition or long overdue? How Gross is proving all-time bargain",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cq1j427zze5xo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T14:04:17+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Zidane's France held by Italy as De Bruyne inspires Belgium",
+   "link": "https://www.skysports.com/football/live-blog/11095/13575723/european-football-news-and-transfers-barcelona-real-madrid-psg-bayern-munich-latest-and-more",
+   "published": "2026-10-02T22:16:00+00:00",
    "watch": [],
-   "summary": "Named the Premier League's player of the month for September, BBC Sport looks at Brighton star Pascal Gross' impact both this season and over the past nine years during his two spells at the club."
+   "summary": ""
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Tankards, Clough & 'creaky joints' - Tennent's Sixes returns",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cv8e3eyx5y8eo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T14:07:42+00:00",
-   "watch": [],
-   "summary": "More than three decades since its last staging, Scottish football's cult indoor event makes a comeback with the \"creaky joints\" of former players taking to an ice rink."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Football Daily | Manchester City lace up their gloves ready for another round. Bring your dinner",
-   "link": "https://www.theguardian.com/football/2026/oct/02/manchester-city-football-daily-newsletter",
-   "published": "2026-10-02T14:23:47+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Papers: Man Utd to consider legal action if Gabriel leaves",
+   "link": "https://www.skysports.com/football/news/11095/13594537/man-utd-to-consider-legal-action-if-jj-gabriel-leaves-as-bayern-munich-barcelona-and-real-madrid-chase-youngster-paper-talk",
+   "published": "2026-10-02T23:07:00+00:00",
    "watch": [
-    "Man City"
+    "Man United"
    ],
-   "summary": "Sign up now! Sign up now! Sign up now? Sign up now!Seven days after leaking out, the Manchester City saga has become a flood. Peace in our time has disappeared into the distance as football jurisprudence’s longest-runnin"
+   "summary": "The top stories and transfer rumours from Saturday's newspapers..."
   },
   {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Boulter loses out to Muchova in China after dominant second set",
-   "link": "https://www.skysports.com/watch/video/13594414/katie-boulter-vs-karolina-muchova-china-open-highlights",
-   "published": "2026-10-02T14:25:00+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Kane and Saka at the double with rampant England SIX up in Croatia LIVE!",
+   "link": "https://www.skysports.com/football/croatia-vs-england/live/554052",
+   "published": "2026-10-03T15:00:00+00:00",
    "watch": [],
-   "summary": "Highlights of the China Open match between Katie Boulter and Karolina Muchova."
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": ""
   },
   {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Sabalenka cruises past Zarazua at China Open",
-   "link": "https://www.skysports.com/watch/video/13594419/renata-zarazua-vs-aryna-sabalenka-china-open-highlights",
-   "published": "2026-10-02T14:44:00+00:00",
-   "watch": [],
-   "summary": "Highlights of the China Open match between Renata Zarazua and Aryna Sabalenka."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Kevin Blake's Arc day tips: Three fancies on star-studded undercard",
-   "link": "https://www.skysports.com/racing/news/12040/13594425/prix-de-larc-de-triomphe-kevin-blakes-three-tips-for-arc-day-at-parislongchamp",
-   "published": "2026-10-02T15:04:00+00:00",
-   "watch": [],
-   "summary": "Expert racing pundit Kevin Blake will be in Paris for the Prix de l'Arc de Triomphe and picks out three fancies on the undercard, all live on Sky Sports Racing."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Tuchel would never rule out players not in top flight",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cqd095z49gjvo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T15:05:31+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Superb Zigiotti chip keeps up Man Utd resurgence with Liverpool win",
+   "link": "https://www.skysports.com/football/manchester-united-women-vs-liverpool-women/report/575787",
+   "published": "2026-10-03T15:32:00+00:00",
    "watch": [
-    "Man City"
+    "Liverpool",
+    "Man United"
    ],
-   "summary": "England boss Thomas Tuchel says he would \"never rule out\" selecting someone who is not playing in the top flight, should Manchester City be relegated."
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Man Utd kept up their resurgence under new boss Eva Olid as Julia Zigiotti's early chip secured back-to-back victories with a 1-0 win over Liverpool."
   },
   {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Why Aston Villa are playing Sevilla for a trophy you haven't heard of",
-   "link": "https://www.bbc.co.uk/sport/football/articles/crvg6xd6p9n5o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T15:06:58+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Ireland news conference cut short after tense exchanges with Israeli media",
+   "link": "https://www.skysports.com/football/news/11095/13594742/republic-of-ireland-vs-israel-heimir-hallgrimssons-press-conference-cut-short-after-tense-exchanges-with-israeli-media",
+   "published": "2026-10-03T16:47:00+00:00",
    "watch": [],
-   "summary": "Aston Villa are set to take on Sevilla in the Antonio Puerta Trophy, named in memory of one of the Spanish club's former players."
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": "Republic of Ireland head coach Heimir Hallgrimsson's pre-match press conference ahead of Sunday's match against Israel in Serbia ended abruptly after a tense exchange with Israeli media."
   },
   {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Who wins the Arc? Sky Sports Racing team tips",
-   "link": "https://www.skysports.com/watch/video/13594431/who-wins-the-arc-sky-sports-racing-team-tips",
-   "published": "2026-10-02T15:29:00+00:00",
+   "source": "Sky Transfers",
+   "tier": 1,
+   "kind": "rumour",
+   "title": "Robertson set for 100th Scotland cap vs North Macedonia LIVE!",
+   "link": "https://www.skysports.com/football/north-macedonia-vs-scotland/live/554056",
+   "published": "2026-10-03T18:00:00+00:00",
    "watch": [],
-   "summary": "The Prix de l'Arc de Triomphe takes centre stage in Paris on Sunday, all live on Sky Sports Racing, and our team of experts have had their say on who wins the big one..."
+   "also": [
+    "Sky Sports"
+   ],
+   "summary": ""
   },
   {
    "source": "Guardian",
@@ -571,106 +364,6 @@
    "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "Slegers feels support from Arsenal hierarchy despite dismal run but biggest test looms",
-   "link": "https://www.theguardian.com/football/2026/oct/02/renee-slegers-feels-support-arsenal-hierarchy-despite-miserable-run-wsl",
-   "published": "2026-10-02T16:38:59+00:00",
-   "watch": [
-    "Arsenal",
-    "Man City"
-   ],
-   "summary": "Board ‘really good and positive’ at ‘difficult time’Gunners visit WSL leaders Manchester City on SundayRenée Slegers says she has felt the full support of Arsenal’s board and praised her senior players for showing “monum"
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "England bowler Carse charged by Cricket Regulator over nightclub incident",
-   "link": "https://www.skysports.com/cricket/news/12040/13594452/brydon-carse-england-fast-bowler-charged-by-cricket-regulator-following-nightclub-incident",
-   "published": "2026-10-02T16:42:00+00:00",
-   "watch": [],
-   "summary": "Brydon Carse has been charged by the Cricket Regulator in relation to events in Derby in August where he was ‌handcuffed by police and then dropped from the England squad."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "What can Peterborough fans expect from 'relentless' Savage?",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cmdx366q29klo?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T16:53:00+00:00",
-   "watch": [],
-   "summary": "Peterborough United's director of football Barry Fry predicts life under Robbie Savage will be anything but dull."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Mariota to start for Commanders in London as Daniels ruled out",
-   "link": "https://www.skysports.com/nfl/news/12040/13594429/nfl-london-games-2026-marcus-mariota-to-start-for-washington-commanders-vs-indianapolis-colts-as-jayden-daniels-ruled-out",
-   "published": "2026-10-02T17:00:00+00:00",
-   "watch": [
-    "Tottenham"
-   ],
-   "summary": "Washington Commanders quarterback Marcus Mariota will get his second start in place of the injured Jayden Daniels on Sunday when his side face the Indianapolis Colts at Tottenham Hotspur Stadium."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Doyle: Maltese Cross to bring home Arc glory for Marquand and Haggas",
-   "link": "https://www.skysports.com/racing/news/12040/13594467/hollie-doyle-maltese-cross-to-bring-home-prix-de-larc-de-triomphe-glory-for-tom-marquand-and-william-haggas",
-   "published": "2026-10-02T17:04:00+00:00",
-   "watch": [],
-   "summary": "Before heading to Paris to cheer on Maltese Cross, Hollie Doyle penned her latest exclusive blog ahead of Arc weekend."
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Football Daily",
-   "link": "https://www.bbc.co.uk/sounds/play/m0032m7b?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T17:18:00+00:00",
-   "watch": [],
-   "also": [],
-   "summary": "John Murray & Ali Bruce-Ball are joined by Conor McNamara to chat commentator life."
-  },
-  {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Sir Kevin Sinfield completes penultimate day of latest MND challenge",
-   "link": "https://www.skysports.com/rugby-league/live-blog/12040/13303427/rugby-league-news-transfers-and-rumours-super-league-latest-and-highlights",
-   "published": "2026-10-02T17:24:00+00:00",
-   "watch": [],
-   "summary": ""
-  },
-  {
-   "source": "BBC Sport",
-   "tier": 2,
-   "kind": "news",
-   "title": "Man City confirm appeal against guilty verdict",
-   "link": "https://www.bbc.co.uk/sport/football/articles/cqn7470513n0o?at_medium=RSS&at_campaign=rss",
-   "published": "2026-10-02T17:43:48+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "The club's statement says the ruling contains \"clear material errors, of law, principle and fact, and is unsafe\"."
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
-   "title": "Etihad’s statements on funding appear to contradict Manchester City’s defence",
-   "link": "https://www.theguardian.com/football/2026/oct/02/manchester-city-fa-guilty-verdict-premier-league-appeal",
-   "published": "2026-10-02T17:58:20+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Airline denied links to Abu Dhabi government in 2015FA confirms it has powers to take disciplinary actionManchester City’s defence in their appeal against the independent commission’s guilty verdict in more than 100 char"
-  },
-  {
-   "source": "Guardian",
-   "tier": 2,
-   "kind": "news",
    "title": "Pickford in spotlight against Croatia with England position under threat from Trafford",
    "link": "https://www.theguardian.com/football/2026/oct/02/jordan-pickford-england-croatia-nations-league-james-trafford",
    "published": "2026-10-02T18:00:36+00:00",
@@ -678,116 +371,363 @@
    "summary": "Goalkeeper returns for Saturday’s Nations League match but is under pressure to respond with strength of competition growingFor England’s first meeting with Luka Modric you have to go back 20 years. Croatia were managed "
   },
   {
-   "source": "Sky Sports",
-   "tier": 2,
-   "kind": "news",
-   "title": "Jordan handles Piers Morgan 'sledging' to move into contention",
-   "link": "https://www.skysports.com/golf/news/12040/13594476/alfred-dunhill-links-championship-matthew-jordan-moves-into-contention-with-casey-jarvis-leading-by-one",
-   "published": "2026-10-02T18:01:00+00:00",
-   "watch": [],
-   "summary": "Matthew Jordan shot a seven-under 65 to move into contention at the Alfred Dunhill Links Championship despite having to put up with Piers Morgan's verbal jousting."
-  },
-  {
    "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "Manchester City’s England players are worried about their futures, admits Tuchel",
-   "link": "https://www.theguardian.com/football/2026/oct/02/manchester-citys-england-players-are-worried-about-their-futures-admits-tuchel",
-   "published": "2026-10-02T18:06:11+00:00",
+   "title": "How best to punish City? Restitution over retribution, then hand club to the fans | Jonathan Liew",
+   "link": "https://www.theguardian.com/football/2026/oct/02/how-best-to-punish-manchester-city-restitution-retribution-hand-club-to-fans",
+   "published": "2026-10-02T19:00:37+00:00",
    "watch": [
     "Man City"
    ],
-   "summary": "‘It is of course a topic and we speak about it at dinner’Head coach has right-back dilemma for game in CroatiaThomas Tuchel has suggested Manchester City’s England contingent are worried about the club being found guilty"
+   "summary": "There are no real precedents and emotions are still raw, but good can come from this mess if ownership models changeA 17-year transfer embargo. Replay the entire era with all the original players. Restore the 2009 squad "
   },
   {
    "source": "Guardian",
    "tier": 2,
    "kind": "news",
-   "title": "France v Italy: Nations League football – live",
-   "link": "https://www.theguardian.com/football/live/2026/oct/02/france-v-italy-nations-league-football-live-score-updates",
-   "published": "2026-10-02T18:07:04+00:00",
+   "title": "Arsenal shelve plans for major expansion of Emirates Stadium",
+   "link": "https://www.theguardian.com/football/2026/oct/02/arsenal-shelve-plans-for-major-expansion-of-emirates-stadium",
+   "published": "2026-10-02T20:10:12+00:00",
+   "watch": [
+    "Arsenal"
+   ],
+   "summary": "Club opt for improvements in hospitality and retailAn increase to 60,704 capacity had been consideredArsenal have shelved plans for a major expansion of the Emirates Stadium, opting for a programme of smaller improvement"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Nations League: Italy earn draw against 10-man France, Northern Ireland stun Ukraine",
+   "link": "https://www.theguardian.com/football/2026/oct/02/nations-league-roundup-france-italy-northern-ireland-ukraine-belgium",
+   "published": "2026-10-02T21:11:15+00:00",
    "watch": [],
-   "summary": "⚽ Nations League updates from the 7.45pm BST kick-off⚽ Live scores | Nations League tables | Read Football Daily“Is Marco Materazzi in the house?” asks Peter Oh. “Given the primacy of gestures in today’s world, a symboli"
+   "summary": "League A: France 1-1 Italy, Belgium 3-0 TurkeyNorthern Ireland boost promotion bid with 3-0 winZinedine Zidane’s first home game in charge of France ended with a 1-1 draw against Italy in the Nations League on Friday. Vi"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Decline and fall: who will believe in Raheem Sterling now?",
+   "link": "https://www.theguardian.com/football/2026/oct/03/decline-and-fall-who-will-believe-in-raheem-sterling-now",
+   "published": "2026-10-03T05:00:51+00:00",
+   "watch": [
+    "Chelsea"
+   ],
+   "summary": "Former England winger could face a prison term next month and his career collapse raises many questionsIn another world, where careers broke in different directions, Raheem Sterling would be in this England squad now, pl"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "The football horse that Andy Burnham rode in on is now bucking his vibe | Barney Ronay",
+   "link": "https://www.theguardian.com/football/2026/oct/03/manchester-city-verdict-andy-burnham",
+   "published": "2026-10-03T07:00:52+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "PM’s contortions over the Manchester City verdicts have landed him with an early test of what he wants to stand for. Realpolitik, or real values?It’s coming for you. It’s coming for you. Oh Andy Burnham, the hugely probl"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Thrown in with Giggs and Beckham: how Manchester United tried to get Billy Kenny",
+   "link": "https://www.theguardian.com/football/2026/oct/03/billy-kenny-ryan-giggs-david-beckham-manchester-united-autobiography",
+   "published": "2026-10-03T07:00:53+00:00",
+   "watch": [
+    "Liverpool",
+    "Man United"
+   ],
+   "summary": "Former Everton midfielder, known as the ‘Goodison Gazza’, recalls being made to feel special by Alex Ferguson in this autobiography extract “So this is the scouser ya been goin’ on aboot then …” My face turned Manchester"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Lewandowski, 38, hits hat-trick in 6-0 Poland win",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c6vgxe0yxpn8o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T07:37:38+00:00",
+   "watch": [],
+   "summary": "Robert Lewandowski, 38, scores a hat-trick in the Nations League and Edin Dzeko plays his final game for Bosnia-Herzegovina."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Dyche would be open to Celtic approach - gossip",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c5398k7ezemko?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T08:40:42+00:00",
+   "watch": [
+    "Celtic"
+   ],
+   "summary": "Premier League manager would be interested if Celtic require a mid-season change..."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Second Israel game won't be a friendly - Hallgrimsson",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cq77075x5xv7o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T09:04:15+00:00",
+   "watch": [],
+   "summary": "Republic of Ireland head coach Heimir Hallgrimsson admits Sunday's second game against Israel is \"not going to be a friendly\" following comments from the latter's camp after last week's match in Hungary."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Why beating Denmark matters to Wales' Euro 2028 hopes",
+   "link": "https://www.bbc.co.uk/sport/football/articles/ck1wv77v9y3wo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T09:09:04+00:00",
+   "watch": [],
+   "summary": "Avoiding finishing bottom of their Nations League group is a major aim for Wales following a win over Erling Haaland's Norway."
   },
   {
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "Is Littler heading to Minehead? World No 1 to headline World Youth Championships",
-   "link": "https://www.skysports.com/darts/news/12040/13594484/luke-littler-world-no-1-to-headline-world-youth-championships-with-chance-to-reach-final-at-minehead",
-   "published": "2026-10-02T18:48:00+00:00",
+   "title": "Bahrain Grand Prix in Malaysia - Qualifying highlights",
+   "link": "https://www.skysports.com/watch/video/13594628/bahrain-grand-prix-in-malaysia-qualifying-highlights",
+   "published": "2026-10-03T10:26:00+00:00",
    "watch": [],
-   "summary": "World No 1 and former champion Luke Littler will headline the list of Tour Card Holders and International Qualifiers competing in Monday's Winmau World Youth Championship."
+   "summary": "Highlights of qualifying at the Bahrain Grand Prix in Malaysia on the Sepang International Circuit."
   },
   {
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "Djokovic battles through fitness issues to produce resilient China Open comeback",
-   "link": "https://www.skysports.com/tennis/news/12040/13594284/china-open-and-japan-open-novak-djokovic-aryna-sabalenka-and-naomi-osaka-all-advance-as-katie-boulter-knocked-out",
-   "published": "2026-10-02T18:50:00+00:00",
+   "title": "'It's like I won!' - Hamilton's wholesome reaction to qualifying on front row",
+   "link": "https://www.skysports.com/watch/video/13594641/lewis-hamilton-wholesome-reaction-to-qualifying-on-front-row-at-bahrain-gp-in-malaysia",
+   "published": "2026-10-03T11:03:00+00:00",
    "watch": [],
-   "summary": "Novak Djokovic again appeared to struggle with fitness issues as he came from behind to avoid a second-round exit to world No 104 Yunchaokete Bu at the China Open on Friday."
+   "summary": "Lewis Hamilton's wholesome reaction to qualifying on front row at Bahrain GP in Malaysia."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Manchester City whistleblower ready to help UK authorities in return for protection",
+   "link": "https://www.theguardian.com/football/2026/oct/03/manchester-city-whistleblower-rui-pinto-ready-to-help-uk-authorities-in-return-for-protection",
+   "published": "2026-10-03T11:12:48+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "Rui Pinto faces loss of witness safeguarding in PortugalMore documents over City affairs may be made availableRui Pinto, whose leaks helped to trigger the Premier League’s investigation into Manchester City’s financial a"
   },
   {
    "source": "Sky Sports",
    "tier": 2,
    "kind": "news",
-   "title": "World Grand Prix LIVE! Aspinall leads first QF before Price vs Clayton",
-   "link": "https://www.skysports.com/darts/live-blog/12040/13594445/world-grand-prix-darts-live-latest-scores-updates-highlights-as-luke-humphries-gerwyn-price-james-wade-in-quarter-final-action",
-   "published": "2026-10-02T19:25:00+00:00",
+   "title": "Hamilton hopes for 'awesome' Verstappen fight for win",
+   "link": "https://www.skysports.com/f1/news/12040/13594548/lewis-hamilton-ferrari-driver-hopes-he-can-battle-max-verstappen-for-bahrain-gp-in-malaysia-win-after-f1-qualifying-front-row",
+   "published": "2026-10-03T11:30:00+00:00",
+   "watch": [],
+   "summary": "Lewis Hamilton says it will be important for Ferrari to focus on their own race for what is expected to be a challenging Bahrain Grand Prix in Malaysia but admits it would be \"awesome\" if they have the pace to stay with "
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "F1 boss Domenicali confirms plan to stage final two races in Middle East",
+   "link": "https://www.skysports.com/f1/live-blog/12040/12466779/f1-news-rumours-and-gossip-formula-1-latest-updates-on-teams-driver-transfer-market-and-contracts",
+   "published": "2026-10-03T11:53:00+00:00",
    "watch": [],
    "summary": ""
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Mert Dikici - Popularity ranking - Player detail",
-   "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE94M1FOeGxEdktIeGJ1VjBIbFdOZ08wMzF2VUMzZlpWRXN5aS05a2JFR3RULTVRV1dUcDBwbTkxX0xQajg4dXVXMnBpZWJ6bjBmZVZmcnZQSDdEeE96SUNuZkVKWGk4SjlDZG4ydGw5QU9SVmlrUi0xNmppdl9uZWc?oc=5",
-   "published": "2026-10-01T04:08:21+00:00",
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Rybakina suffers shock loss in first match as world No 1",
+   "link": "https://www.skysports.com/tennis/news/12040/13594710/elena-rybakina-suffers-shock-loss-to-world-no-118-alina-charaeva-in-first-match-since-winning-us-open",
+   "published": "2026-10-03T11:57:00+00:00",
    "watch": [],
-   "summary": "Mert Dikici - Popularity ranking - Player detail Transfermarkt"
+   "summary": "Elena Rybakina suffered a stunning defeat to world No 118 Alina Charaeva in her first match since becoming world No 1."
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Sota Nakamura - Popularity ranking - Player detail",
-   "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQY2lHVTBhRjVEVXd5VkVTckJPeFJvb1g2M2NiTW9QUTZpRjdxQkVnZW42b1Z0WDRxLUJJSjhiMHA4M0hqSkt1SE92Mk0yd19Ja0JiUzBNMjV3V0IzNnJoUkg0LTFCbTFEZVFrXy0wRzZ2eEt1TWExUVVxWm5HWFN6dkJLOA?oc=5",
-   "published": "2026-10-01T05:09:44+00:00",
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "'Different' Morrison gives NI new option",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c6n9rlvr57pgo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T12:23:24+00:00",
    "watch": [],
-   "summary": "Sota Nakamura - Popularity ranking - Player detail Transfermarkt"
+   "summary": "Northern Ireland's Kieran Morrison hopes he has earned the trust of manager Michael O'Neill after impressing on his first international start."
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "\"Couldn't have ended worse\" - Portuguese expert on Cristiano Ronaldo's mooted retirement",
-   "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNR05ZeVRYa3M0V05pX3RZdGlQNHdZYkp3RE9oQktXbTFYOHBZSEdhSVY1S2lMMU5JTGo4d0Y5eUpMLVVoOVkweFIteDdtblpEY18xeUphWmF3d2xSWEUyZTdEanR6clduYTZQbHFqSDQ1c3ItdlZSeUMxTjR6X0NqUDd2U0ljX3VqSkpLV21rNEdZOHpoQVdxWjJYSE1NclBZMzFxa0gycE5DdHRDckl3aHZUQXJLZXF4ZUxjTWlWbWtyVW12NmJfMWhZRkR6SlMtLU9rYzdoOA?oc=5",
-   "published": "2026-10-01T13:28:07+00:00",
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "'Three tenths backwards' - Wolff admits confusion over Mercedes upgrades",
+   "link": "https://www.skysports.com/f1/news/12040/13594549/mercedes-boss-toto-wolff-admits-confusion-over-lack-of-qualifying-pace-following-upgrades-at-bahrain-gp-in-malaysia",
+   "published": "2026-10-03T12:30:00+00:00",
    "watch": [],
-   "summary": "\"Couldn't have ended worse\" - Portuguese expert on Cristiano Ronaldo's mooted retirement Transfermarkt"
+   "summary": "Toto Wolff has admitted his surprise at Mercedes' major upgrade package for the Bahrain Grand Prix having appeared to take the team backwards, following an underwhelming qualifying display."
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "Greek Super League 1 market values: Sá keeps top spot despite downgrade, Bailey biggest loser",
-   "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOSFBLYncyZ0V3LW12cURyaDlfWFhhcHJWeWotRkltUXEwN21FWU84dkRBbTBJWS1LS1ZqdmJlem4wUThBS2ozU0tzNWN3RmtwN0pzNS1JWktNZThnNzFHdzZodER2MUNCT2hRQ2k4ZWMxYkNuTDJoUWc4NFFQcUpTaUFQNWlaMXRYb21yUXFJdjdpZnQ4SE1rNV9jYmY5RG5LbkJnc1UyeG54Z3dzVE1UUEhSZ1cwaFhrT2JZSTBOa1hDS0F1aExtQlVoTTdUV0lOZXoxWg?oc=5",
-   "published": "2026-10-01T14:48:07+00:00",
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Republic of Ireland news conference ends abruptly amid accusations",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cm78p5x6xqq7o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T13:02:11+00:00",
    "watch": [],
-   "summary": "Greek Super League 1 market values: Sá keeps top spot despite downgrade, Bailey biggest loser Transfermarkt"
+   "summary": "Republic of Ireland manager Heimir Hallgrimsson's pre-match news conference ends abruptly as accusations are levelled at his players."
   },
   {
-   "source": "Transfermarkt",
-   "tier": 3,
-   "kind": "data",
-   "title": "FC Kudrivka - Popularity ranking - Development over time",
-   "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9ONnFRZW5uZkwtcVRLNTdCbUlWaV8wV3VZeGFIS3N3WlZwN3NPM0ZydU5RUHB0VzAwWlpBdkloeFk2cUlnUWQyb1diYVVaX0JJU3dhZDlnYTBkbHVtd2pDUkpnZ1dIQ19tYUVXOV9rcWdIdV9DdWF4X2pFQmN5RDA?oc=5",
-   "published": "2026-10-01T16:17:59+00:00",
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Fairy Glen foils Sunly in Prix de Royallieu",
+   "link": "https://www.skysports.com/racing/news/12040/13594681/parislongchamp-crisford-trained-fairy-glen-foils-sunly-in-prix-de-royallieu",
+   "published": "2026-10-03T13:52:00+00:00",
    "watch": [],
-   "summary": "FC Kudrivka - Popularity ranking - Development over time Transfermarkt"
+   "summary": "Fairy Glen came from last to first in the Qatar Prix de Royallieu to floor odds-on favourite Sunly and land a Group One prize for Newmarket training duo Simon and Ed Crisford."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Zverev flies past Shang to setup Djokovic quarter-final",
+   "link": "https://www.skysports.com/watch/video/13594693/alexander-zverev-vs-juncheng-shang-china-open-highlights",
+   "published": "2026-10-03T14:49:00+00:00",
+   "watch": [],
+   "summary": "Highlights of Alexander Zverev against Juncheng Shang from the China Open."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Zigiotti Olme capitalises on Liverpool mistake to keep Manchester United moving up WSL",
+   "link": "https://www.theguardian.com/football/2026/oct/03/manchester-united-liverpool-wsl-match-report",
+   "published": "2026-10-03T14:52:27+00:00",
+   "watch": [
+    "Liverpool",
+    "Man United"
+   ],
+   "summary": "Julia Zigiotti Olme’s sixth-minute lob proved enough to earn the Manchester United coach, Eva Olid, a second Women’s Super League victory of the season with a 1-0 home win over Liverpool.Zigiotti Olme capitalised on a mi"
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Ireland cut short news conference as mood darkens further before Israel game",
+   "link": "https://www.theguardian.com/football/2026/oct/03/ireland-cut-short-news-conference-israel-nations-league-football",
+   "published": "2026-10-03T15:02:38+00:00",
+   "watch": [],
+   "summary": "Ireland manager Hallgrímsson calls for ‘cool heads’Accusations of racism dismissed as ‘completely untrue’The Republic of Ireland’s press conference on the eve of their second Nations League match against Israel in Serbia"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Back-to-back wins for Man Utd as they see off Liverpool",
+   "link": "https://www.bbc.co.uk/sport/football/videos/cqx2z9gmjn7yo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T15:04:54+00:00",
+   "watch": [
+    "Liverpool",
+    "Man United"
+   ],
+   "summary": "Manchester United celebrate their 250th game in the club's history with a narrow victory over Liverpool in the Women's Super League."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Sinner pulls out of Shanghai Masters after withdrawing from China Open",
+   "link": "https://www.skysports.com/tennis/news/12040/13594696/jannik-sinner-world-no-1-withdraws-from-rolex-shanghai-masters-as-knee-injury-forces-him-to-skip-china-open",
+   "published": "2026-10-03T15:11:00+00:00",
+   "watch": [],
+   "summary": "Jannik Sinner has withdrawn from the Rolex Shanghai Masters as he deals with a knee problem."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Toone determined to come back better after 'difficult week'",
+   "link": "https://www.bbc.co.uk/sport/football/videos/cjx239vvql0qo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T15:33:16+00:00",
+   "watch": [
+    "Liverpool"
+   ],
+   "summary": "Ella Toone reflects on a \"difficult week\" and looks back on a narrow win against Liverpool in the Women's Super League."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "'I want to discover Manchester' - Olid hunts recommendations",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c35ynl9w41njo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T16:04:33+00:00",
+   "watch": [
+    "Man United"
+   ],
+   "also": [],
+   "summary": "Manchester United manager Eva Olid says she is \"asking for recommendations\" as she prepares to look around the city for the first time during the international break"
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Group has 'exploded' after Wales win - Bellamy",
+   "link": "https://www.bbc.co.uk/sport/football/articles/cmkgewx77521o?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T16:11:50+00:00",
+   "watch": [],
+   "summary": "Craig Bellamy says Wales' win over Norway has \"thrown a hand grenade\" into their Nations League group as they go in search of another victory against Denmark in Cardiff on Sunday."
+  },
+  {
+   "source": "BBC Sport",
+   "tier": 2,
+   "kind": "news",
+   "title": "Desmond targeted by Celtic fan protest at Alfred Dunhill",
+   "link": "https://www.bbc.co.uk/sport/football/articles/c60qke217knjo?at_medium=RSS&at_campaign=rss",
+   "published": "2026-10-03T16:24:56+00:00",
+   "watch": [
+    "Celtic"
+   ],
+   "also": [],
+   "summary": "Celtic's largest shareholder Dermot Desmond is targeted in a protest at the Alfred Dunhill Links golf tournament in St Andrews as tennis balls were thrown towards him."
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Caballo De Mar upsets Scandinavia in Cadran clash",
+   "link": "https://www.skysports.com/racing/news/12040/13594728/parislongchamp-caballo-de-mar-upsets-scandinavia-in-prix-du-cadran",
+   "published": "2026-10-03T16:58:00+00:00",
+   "watch": [],
+   "summary": "Caballo De Mar brought an end to Scandinavia’s eight-race winning run when repeating his win in the Qatar Prix du Cadran from 12 months ago in a thrilling finish at ParisLongchamp."
+  },
+  {
+   "source": "Guardian",
+   "tier": 2,
+   "kind": "news",
+   "title": "Croatia v England: Nations League football – live",
+   "link": "https://www.theguardian.com/football/live/2026/oct/03/croatia-v-england-nations-league-football-live-score-updates",
+   "published": "2026-10-03T17:34:10+00:00",
+   "watch": [],
+   "summary": "Nations League updates, 5pm BST kick-off (6pm local)Live scores | Get the Football Daily newsletter | Mail ScottThomas Tuchel speaks to ITV. “[Being in Rijeka on the sunny Adriatic coast] has helped us to unwind and rech"
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Jarvis pushing for third DP World tour title of year at Dunhill Links",
+   "link": "https://www.skysports.com/golf/news/12040/13594793/dunhill-links-championship-casey-jarvis-leads-going-into-final-round-as-he-seeks-third-dp-world-tour-title-of-year",
+   "published": "2026-10-03T17:55:00+00:00",
+   "watch": [],
+   "summary": "Casey Jarvis holed out for eagle on his first hole and used the brilliant start to post a seven-under 65 on the Old Course on Saturday, giving him a two-shot lead in the Dunhill Links Championship as he goes for his thir"
+  },
+  {
+   "source": "Sky Sports",
+   "tier": 2,
+   "kind": "news",
+   "title": "Kevin Sinfield arrives at Old Trafford after completing '7 in 7' challenge for MND",
+   "link": "https://www.skysports.com/watch/video/13594794/kevin-sinfield-arrives-at-old-trafford-after-completing-7-in-7-challenge-for-mnd",
+   "published": "2026-10-03T17:59:00+00:00",
+   "watch": [],
+   "summary": "Sir Kevin Sinfield brought out the trophy ahead of the Grand Final after completing 7 ultramarathons in 7 days to raise money for Motor Neuron Disease."
   },
   {
    "source": "Transfermarkt",
@@ -803,6 +743,16 @@
    "source": "Transfermarkt",
    "tier": 3,
    "kind": "data",
+   "title": "Lucas Paul de los Santos - Popularity ranking - Player detail",
+   "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNck43Ui1zcTB2RFp4UlZiVWRHOTJyeU9nYnVSTzhJdnpHMFNpSXNrQ0p5cWgxS1dKLURQY3h3ZGhFUkpxVTNnYzJBUmV2azNoTlVHdWV5Z2lhZk5mVE9RR3VCSHlvZld4TVRpNTFUNFUzYUF2d1FrWFRzMHN5NzFmbUwxRjZ4Z2dfS1dDN19iRzU?oc=5",
+   "published": "2026-10-01T23:26:32+00:00",
+   "watch": [],
+   "summary": "Lucas Paul de los Santos - Popularity ranking - Player detail Transfermarkt"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
    "title": "Transfer news LIVE: Real Madrid monitor Jarrel Quansah as Endrick eyes loan exit",
    "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPVklwc2otaFR2MG0tR21mTWlBcG5PMGpIT0RMVTEwR2hpTkNpbkJqVlBYNmhYWEM1eHk4TVg4b203MjY0NXYyV2E2X1JBZ19mbWd2dFBFc3k2Q05Jb252WU9iV2x5ZlE2T1l4VGcyM0sxUFg5NFhGSXJicVI2Q1NwTFhCcFdsVE9qMmZzeVh2MjhQR2JEVnpTcGFrNWRsUEJaR1Vodmd0M1QwN1pNMG91cUVyeVN3NUtJSW9SYVllNWdLeDct?oc=5",
    "published": "2026-10-02T04:09:39+00:00",
@@ -812,14 +762,14 @@
    "summary": "Transfer news LIVE: Real Madrid monitor Jarrel Quansah as Endrick eyes loan exit Transfermarkt"
   },
   {
-   "source": "Opta Analyst",
+   "source": "Transfermarkt",
    "tier": 3,
-   "kind": "analysis",
-   "title": "Premier League Fixture Difficulty vs Results: Which Teams Have Defied Expectations?",
-   "link": "https://theanalyst.com/articles/premier-league-results-vs-fixture-difficulty-stats",
-   "published": "2026-10-02T06:45:18+00:00",
+   "kind": "data",
+   "title": "Jesús Bustos - Popularity ranking - Development over time",
+   "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOcjNWY0RrdVQ0S2FEYmQxbUg0TnVRek9BTF9vbFIwN3hoWmU2R3JfdnN6dDdnVHRVQ2E1NVU0elBBV1N3MEI1anloeExiM25XUVBCa1U2bzBNUEdKU2NfclhVdVBiWGJFWmFTMXp4MnFMMXpHX0haeUlUV3VSN2tVQ2NZRQ?oc=5",
+   "published": "2026-10-02T05:53:51+00:00",
    "watch": [],
-   "summary": "We look back at pre-season expectations for Premier League clubs' first five matches and assess how well they've done relative to the difficulty of their fixture schedules. The post Premier League Fixture Difficulty vs R"
+   "summary": "Jesús Bustos - Popularity ranking - Development over time Transfermarkt"
   },
   {
    "source": "Opta Analyst",
@@ -855,16 +805,6 @@
    "summary": "After leaving Portugal's training camp, it would seem Cristiano Ronaldo's international career has come to a tense end. It didn't need to be like this. The post Cristiano Ronaldo and Portugal: An Avoidably Fractious End "
   },
   {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Croatia vs England Prediction: UEFA Nations League Preview",
-   "link": "https://theanalyst.com/articles/croatia-vs-england-prediction-uefa-nations-league-preview-10-2026",
-   "published": "2026-10-02T07:01:46+00:00",
-   "watch": [],
-   "summary": "With the Three Lions having three points on the board after two games, we look ahead to Saturday's UEFA Nations League matchup with our Croatia vs England prediction and preview. The post Croatia vs England Prediction: U"
-  },
-  {
    "source": "Transfermarkt",
    "tier": 3,
    "kind": "data",
@@ -873,40 +813,6 @@
    "published": "2026-10-02T09:13:17+00:00",
    "watch": [],
    "summary": "Danish SuperLiga market values: Martínez biggest winner, Amoako Junior new league MVP Transfermarkt"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Friday Football Quiz, episode 135: Can you get 20 correct answers?",
-   "link": "https://www.fourfourtwo.com/quiz/friday-football-quiz-021026",
-   "published": "2026-10-02T10:05:11+00:00",
-   "watch": [],
-   "summary": "Ease the elongation of the international break with a crack at this week's quiz"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Arsenal dealt big Christos Tzolis blow, with Greek winger suffering hamstring injury: report",
-   "link": "https://www.fourfourtwo.com/person/player/arsenal-dealt-big-christos-tzolis-blow-with-greek-winger-suffering-hamstring-injury-report",
-   "published": "2026-10-02T10:09:38+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": "Arsenal forward Christos Tzolis could be out for a while, having pulled up during international duty"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Why Manchester City star Erling Haaland may not need the release clause he signed to leave in January",
-   "link": "https://www.fourfourtwo.com/transfer/does-manchester-city-star-erling-haaland-have-a-release-clause",
-   "published": "2026-10-02T11:07:58+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Manchester City superstar Erling Haaland would surely be the most coveted player in the game, should anything happen to his employers"
   },
   {
    "source": "Transfermarkt",
@@ -922,114 +828,11 @@
    "source": "Opta Analyst",
    "tier": 3,
    "kind": "analysis",
-   "title": "Manchester City vs Arsenal Prediction: WSL Preview",
-   "link": "https://theanalyst.com/articles/man-city-vs-arsenal-prediction-wsl-preview-10-2026",
-   "published": "2026-10-02T11:45:20+00:00",
-   "watch": [
-    "Arsenal",
-    "Man City"
-   ],
-   "summary": "With just five points and two goals to their name in the WSL this season, Arsenal are under increasing pressure ahead of facing Man City. Can the Gunners show up in Manchester? We preview this crucial showdown with our p"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Arsenal handed William Saliba update, with defender still out with injury: report",
-   "link": "https://www.fourfourtwo.com/person/player/arsenal-handed-william-saliba-update-with-defender-still-out-with-injury-report",
-   "published": "2026-10-02T12:20:40+00:00",
-   "watch": [
-    "Arsenal"
-   ],
-   "summary": "Arsenal star William Saliba was injured over the World Cup and is yet to feature for Arsenal this season"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "How Would a Points Deduction Affect Manchester City’s 2026-27 Premier League Season?",
-   "link": "https://theanalyst.com/articles/manchester-city-points-deduction-charges-opta-supercomputer-premier-league-2026-27",
-   "published": "2026-10-02T12:31:06+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "After the Opta supercomputer ran 100,000 simulations of the 2026-27 Premier League season, we have calculated the exact impact of every possible points deduction. The post How Would a Points Deduction Affect Manchester C"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
    "title": "These Unsung Impact Players Are Instrumental to the NFL’s Five Undefeated Teams",
    "link": "https://theanalyst.com/articles/nfl-undefeated-teams-impact-players",
    "published": "2026-10-02T12:36:39+00:00",
    "watch": [],
    "summary": "You know the superstars like Josh Allen, Patrick Mahomes and Brock Purdy, but what other players have been key to the success of the NFL’s 3-0 teams. The post These Unsung Impact Players Are Instrumental to the NFL’s Fiv"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "'I will never rule it out' England boss Thomas Tuchel admits he may pick Manchester City stars if they're relegated",
-   "link": "https://www.fourfourtwo.com/team/i-will-never-rule-it-out-england-boss-thomas-tuchel-admits-he-may-pick-manchester-city-stars-if-theyre-relegated",
-   "published": "2026-10-02T13:27:51+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Thomas Tuchel's England squad could well feature Championship Manchester City stars in the future"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Was Troy Parrott ever eligible for England?",
-   "link": "https://www.fourfourtwo.com/team/was-troy-parrott-ever-eligible-for-england",
-   "published": "2026-10-02T13:53:27+00:00",
-   "watch": [],
-   "summary": "Troy Parrott has been on fire this season - leaving England fans wondering what might (and could never) have been"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Tottenham vs London City Lionesses Prediction: WSL Preview",
-   "link": "https://theanalyst.com/articles/tottenham-vs-london-city-lionesses-prediction-wsl-preview-10-2026",
-   "published": "2026-10-02T14:00:04+00:00",
-   "watch": [
-    "Tottenham"
-   ],
-   "summary": "We look ahead to Sunday afternoon’s London derby with our Tottenham vs London City prediction and preview, as Spurs look to cement second place in WSL table against a London City side sitting just one point behind them. "
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Manchester City offered Premier League get out of jail free card: report",
-   "link": "https://www.fourfourtwo.com/team/manchester-city-offered-premier-league-get-out-of-jail-free-card-report",
-   "published": "2026-10-02T14:54:32+00:00",
-   "watch": [
-    "Man City"
-   ],
-   "summary": "Manchester City's guilty verdict on 114 charges of Premier League rule breaches is the story of the season - and it's only getting started"
-  },
-  {
-   "source": "Opta Analyst",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "Celebrating 1,500 WSL Matches: Looking Back on the League’s Most Statistically Significant Games",
-   "link": "https://theanalyst.com/articles/wsl-1500-games-stats-behind-historic-matches",
-   "published": "2026-10-02T15:36:07+00:00",
-   "watch": [],
-   "summary": "With the 1,500th WSL game set to be played this weekend, we look back at some of the matches that hold statistical significance across the competition’s history. The post Celebrating 1,500 WSL Matches: Looking Back on th"
-  },
-  {
-   "source": "FourFourTwo",
-   "tier": 3,
-   "kind": "analysis",
-   "title": "How to watch France vs Italy: Free streams & TV details",
-   "link": "https://www.fourfourtwo.com/competition/how-to-watch-france-italy-free-stream-nations-league",
-   "published": "2026-10-02T15:45:00+00:00",
-   "watch": [],
-   "summary": "Here's how to watch France vs Italy for free online from anywhere in the world as two European giants face off at the Stade de France."
   },
   {
    "source": "FourFourTwo",
@@ -1045,11 +848,11 @@
    "source": "FourFourTwo",
    "tier": 3,
    "kind": "analysis",
-   "title": "Watch Hungary vs Georgia for FREE: Live stream details",
-   "link": "https://www.fourfourtwo.com/competition/watch-hungary-vs-georgia-free-nations-league",
+   "title": "How to watch France vs Italy: Free streams & TV details",
+   "link": "https://www.fourfourtwo.com/competition/how-to-watch-france-italy-free-stream-nations-league",
    "published": "2026-10-02T15:45:00+00:00",
    "watch": [],
-   "summary": "Here's how to watch Hungary vs Georgia for free online from anywhere with TV channels and full broadcast details provided for this Nations League fixture,"
+   "summary": "Here's how to watch France vs Italy for free online from anywhere in the world as two European giants face off at the Stade de France."
   },
   {
    "source": "FourFourTwo",
@@ -1060,6 +863,189 @@
    "published": "2026-10-02T16:15:00+00:00",
    "watch": [],
    "summary": "Here's how to watch Ukraine vs Northern Ireland online and from anywhere in the world for free."
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "FourFourTwo's Weekend Crossword 73: Lions, tigers and bears",
+   "link": "https://www.fourfourtwo.com/quiz/fourfourtwo-weekend-crossword-73",
+   "published": "2026-10-03T06:00:00+00:00",
+   "watch": [],
+   "summary": "Show off your puzzling proficiency with another weekend crossword from FourFourTwo"
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Harry Kane 8th: The top 100 most valuable Bundesliga stars as Bayern Munich dominate",
+   "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQREVjQVFtcmhIcXVFaHlZNmxrdk5sa2xBeEFyc3pkXzV6a2N6V0NVODJ0S25PeEZKdmJtZHNSOVh1OEFSWkZJbURodkVabDBUZEZuVWp1OFBmcjhONlJoekVFN1dxSlRBcFJCUnNNZk5tUEFyTTRlNVJjSzJubGxWcnAyZUFsRHZnalgtRXh5Zjg2VHRqcmxJMl93QzBkQUJnRDBrV01MQzNKM1ZCMEtnR2hMWXFRNVdTN3JtbzdMdXYxenFrUU80VVV3?oc=5",
+   "published": "2026-10-03T07:09:10+00:00",
+   "watch": [
+    "Bayern"
+   ],
+   "summary": "Harry Kane 8th: The top 100 most valuable Bundesliga stars as Bayern Munich dominate Transfermarkt"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "How to watch Brentwood Town vs Dagenham & Redbridge: live stream FA Cup 3rd round qualifying match for free",
+   "link": "https://www.fourfourtwo.com/competition/watch-brentwood-town-vs-dagenham-redbridge-live-stream-fa-cup-3rd-round-qualifying-match-for-free",
+   "published": "2026-10-03T08:00:00+00:00",
+   "watch": [],
+   "summary": "Here's how to watch Brentwood Town vs Dagenham & Redbridge in the FA Cup 3rd round qualifying"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Netherlands head coach Xavi already the focus of national team tension, as Barcelona icon reveals his demands",
+   "link": "https://www.fourfourtwo.com/team/netherlands-head-coach-xavi-already-the-focus-of-national-team-tension-as-barcelona-icon-reveals-his-demands",
+   "published": "2026-10-03T08:00:00+00:00",
+   "watch": [
+    "Barcelona"
+   ],
+   "summary": "Netherlands head coach Xavi is aiming to bring a stylistic fusion to the national team setup and has not been afraid to swing the axe so far"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "The World Cup stars that landed big summer moves",
+   "link": "https://www.fourfourtwo.com/transfer/from-an-gbp86m-wonderkid-to-a-40-year-old-cult-hero-the-world-cup-stars-that-landed-big-summer-moves",
+   "published": "2026-10-03T09:00:00+00:00",
+   "watch": [],
+   "summary": "Several of this summer's World Cup stars have since headed to new leagues, including Morocco's chess fanatic and Cape Verde's 40-year-old goalkeeping hero. Will they make a success of their big moves?"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "FCS Football Top 25 Scoreboard (Week 5)",
+   "link": "https://theanalyst.com/articles/fcs-football-top-25-scoreboard-week-5",
+   "published": "2026-10-03T09:12:12+00:00",
+   "watch": [],
+   "summary": "Idaho upsets No. 1 Montana State in the Week 5 Top 25 scoreboard of FCS teams that are nationally ranked or receiving votes in the poll. The post FCS Football Top 25 Scoreboard (Week 5) appeared first on Opta Analyst."
+  },
+  {
+   "source": "Transfermarkt",
+   "tier": 3,
+   "kind": "data",
+   "title": "Yogev Ben Nun - Popularity ranking - Player detail",
+   "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOUGswWktWaUlEeWdwQ042SUlmQUVlekg2NnN5T25WSnlGSEpvOVdvV0tZU0hLRFdEMHVMNmJaRGg5S3JSOEFLN2FfTUQzZDZfMXN1VUJOQ2J0cVg0XzZGbXBNZTNTUG80WmdrOVhNbE9YRElOUG5sSVpwM1FrV2k0VTYtaw?oc=5",
+   "published": "2026-10-03T11:47:43+00:00",
+   "watch": [],
+   "summary": "Yogev Ben Nun - Popularity ranking - Player detail Transfermarkt"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Jonjo Shelvey on joining Liverpool and lining up alongside his hero",
+   "link": "https://www.fourfourtwo.com/person/player/i-grew-up-idolising-steven-gerrard-then-i-became-his-neighbour-you-could-see-into-his-living-room-from-my-toilet-jonjo-shelvey-on-joining-liverpool-and-lining-up-alongside-his-hero",
+   "published": "2026-10-03T12:00:00+00:00",
+   "watch": [
+    "Liverpool"
+   ],
+   "summary": "The midfielder spent three seasons alongside Gerrard at Liverpool"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "How to watch Croatia vs England for FREE: Live stream details",
+   "link": "https://www.fourfourtwo.com/competition/watch-croatia-vs-england-nations-league-free",
+   "published": "2026-10-03T13:00:00+00:00",
+   "watch": [],
+   "summary": "Here's how to watch Croatia vs England for free from anywhere in the world, with TV channels, broadcast details, kick-off times and predictions provided for this Nations League fixture."
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Six Takeaways From Idaho’s Upset of No. 1 Montana State",
+   "link": "https://theanalyst.com/articles/montana-state-idaho-no-1-upset-fcs-football",
+   "published": "2026-10-03T13:07:35+00:00",
+   "watch": [],
+   "summary": "A review of how Idaho upset No. 1-ranked Montana State and what it means for the defending national champion and FCS football. The post Six Takeaways From Idaho’s Upset of No. 1 Montana State appeared first on Opta Analy"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Celebrating 1,500 WSL Matches: Looking Back on the League’s Most Statistically Significant Games",
+   "link": "https://theanalyst.com/articles/wsl-1500-games-stats-behind-historic-matches",
+   "published": "2026-10-03T13:12:55+00:00",
+   "watch": [],
+   "summary": "With the 1,500th WSL game set to be played this weekend, we look back at some of the matches that hold statistical significance across the competition’s history. The post Celebrating 1,500 WSL Matches: Looking Back on th"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Tottenham vs London City Lionesses Prediction: WSL Preview",
+   "link": "https://theanalyst.com/articles/tottenham-vs-london-city-lionesses-prediction-wsl-preview-10-2026",
+   "published": "2026-10-03T13:13:00+00:00",
+   "watch": [
+    "Tottenham"
+   ],
+   "summary": "We look ahead to Sunday afternoon’s London derby with our Tottenham vs London City prediction and preview, as Spurs look to cement second place in WSL table against a London City side sitting just one point behind them. "
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Manchester City vs Arsenal Prediction: WSL Preview",
+   "link": "https://theanalyst.com/articles/man-city-vs-arsenal-prediction-wsl-preview-10-2026",
+   "published": "2026-10-03T13:13:04+00:00",
+   "watch": [
+    "Arsenal",
+    "Man City"
+   ],
+   "summary": "With just five points and two goals to their name in the WSL this season, Arsenal are under increasing pressure ahead of facing Man City. Can the Gunners show up in Manchester? We preview this crucial showdown with our p"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Croatia vs England Prediction: UEFA Nations League Preview",
+   "link": "https://theanalyst.com/articles/croatia-vs-england-prediction-uefa-nations-league-preview-10-2026",
+   "published": "2026-10-03T13:13:11+00:00",
+   "watch": [],
+   "summary": "With the Three Lions having three points on the board after two games, we look ahead to Saturday's UEFA Nations League matchup with our Croatia vs England prediction and preview. The post Croatia vs England Prediction: U"
+  },
+  {
+   "source": "Opta Analyst",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "How Would a Points Deduction Affect Manchester City’s 2026-27 Premier League Season?",
+   "link": "https://theanalyst.com/articles/manchester-city-points-deduction-charges-opta-supercomputer-premier-league-2026-27",
+   "published": "2026-10-03T13:13:16+00:00",
+   "watch": [
+    "Man City"
+   ],
+   "summary": "After the Opta supercomputer ran 100,000 simulations of the 2026-27 Premier League season, we have calculated the exact impact of every possible points deduction. The post How Would a Points Deduction Affect Manchester C"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "Hitzlsperger on why WWII stereotypes stood out more than homophobia at Aston Villa",
+   "link": "https://www.fourfourtwo.com/person/player/homophobia-wasnt-on-my-radar-at-aston-villa-it-was-all-about-wwii-stereotypes-and-silly-war-rhetoric-thomas-hitzlsperger-on-moving-to-england",
+   "published": "2026-10-03T15:00:00+00:00",
+   "watch": [],
+   "summary": "The German moved to the Premier League as a teenager in 2000"
+  },
+  {
+   "source": "FourFourTwo",
+   "tier": 3,
+   "kind": "analysis",
+   "title": "How to watch North Macedonia vs Scotland for FREE: Live streams",
+   "link": "https://www.fourfourtwo.com/competition/watch-north-macedonia-vs-scotland-nations-league-free",
+   "published": "2026-10-03T16:05:00+00:00",
+   "watch": [],
+   "summary": "Here's how to watch North Macedonia vs Scotland for free online from anywhere with TV channels, kick-off times and predictions included for this Nations League fixture."
   }
  ]
 }
