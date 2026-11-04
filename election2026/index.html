@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      document.querySelector('meta[name="color-scheme"]').content = localStorage.getItem("color-scheme") ?? "light dark";
+    } catch (e) {}
+  </script>
+  <title>2026 Midterm Election Results · sadh.app</title>
+  <meta name="description" content="Data briefing on the Nov. 3, 2026 U.S. midterm elections: House, Senate, governors, 2024-to-2026 swings, all 435 districts, state exit polls, and 33 ballot measures.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='8' y='30' width='40' height='40' rx='6' fill='%232f6fde'/%3E%3Crect x='52' y='30' width='40' height='40' rx='6' fill='%23d9433b'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500;600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module">
+    if (!("popover" in HTMLElement.prototype)) {
+      import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+    }
+  </script>
+</head>
+<body>
+  <header class="top-chrome">
+    <div class="top-chrome-inner">
+      <div class="brand-crumb">
+        <a href="../"><b>sadh</b>.app</a>
+        <span aria-hidden="true">/</span>
+        <span>election2026</span>
+      </div>
+      <nav class="section-nav" aria-label="Page sections">
+        <a href="#swing">Swing</a>
+        <a href="#house">House</a>
+        <a href="#senate">Senate</a>
+        <a href="#governors">Governors</a>
+        <a href="#map">Map</a>
+        <a href="#uncalled">Counting</a>
+        <a href="#electorate">Exit Poll</a>
+        <a href="#measures">Measures</a>
+        <a href="#history">History &amp; '28</a>
+        <a href="#ledger">Table</a>
+      </nav>
+      <button type="button" class="settings-btn" popovertarget="theme-popover" aria-label="Appearance settings" data-tip="Appearance (System · Light · Dark)">
+        <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="8" cy="8" r="5.5"/>
+          <path d="M8 2.5v11A5.5 5.5 0 0 0 8 2.5z" fill="currentColor" stroke="none"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="theme-popover" popover class="theme-popover">
+    <h2>Color Scheme</h2>
+    <div class="theme-options">
+      <button type="button" class="theme-opt" data-scheme="system" aria-pressed="true">
+        <span>System</span>
+        <span id="sys-current-label" class="mono" style="font-size:11px;color:var(--mut)">Currently light</span>
+      </button>
+      <button type="button" class="theme-opt" data-scheme="light" aria-pressed="false">
+        <span>Light</span>
+        <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.3 1.3M11.3 11.3l1.3 1.3M12.6 3.4l-1.3 1.3M4.7 11.3l-1.3 1.3"/></svg>
+      </button>
+      <button type="button" class="theme-opt" data-scheme="dark" aria-pressed="false">
+        <span>Dark</span>
+        <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.2 9.8A5.5 5.5 0 0 1 6.2 2.8a5.5 5.5 0 1 0 7 7z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Masthead -->
+    <header class="hero col">
+      <div class="kicker"><span class="live" aria-hidden="true"></span>2026 Midterms · Results</div>
+      <h1>Democrats take both chambers as a midterm wave reaches deep into Trump country</h1>
+      <p class="dek">
+        Democrats flipped the House, gained seven Senate seats and picked up five governorships, winning statewide in Texas, Kansas, Iowa, Ohio, Georgia, and South Carolina. In 66 of 70 Senate and governor races with a comparable count, Democrats improved on the 2024 presidential margin.
+      </p>
+      <div class="byline">
+        <span class="mono" style="font-size:12px">Updated Nov. 4, 2026, 12:44 p.m. ET</span>
+        <span>·</span>
+        <span>Preliminary returns</span>
+        <span>·</span>
+        <a href="./data.json" download="election2026-data.json" class="mono" style="font-size:12px;display:inline-flex;align-items:center;gap:4px" data-tip="Download complete results dataset (JSON)">
+          <svg class="ico" style="inline-size:12.5px;block-size:12.5px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v7.5M5 7.5L8 10.5l3-3M3 13h10"/></svg>data.json
+        </a>
+      </div>
+    </header>
+
+    <!-- Stacked Balance of Power + 5-Stat Strip -->
+    <section class="col" aria-label="Balance of Power">
+      <div class="bop" id="bop"></div>
+      <div class="lg" id="boplg"></div>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <!-- 01 · THE SWING -->
+    <section id="swing" class="col">
+      <h2 class="sec-h2"><span class="n">01 · The Swing</span>Almost every statewide race shifted toward Democrats</h2>
+      <p id="swing-prose"></p>
+    </section>
+
+    <section class="wide">
+      <div class="viz-box" data-maximizable data-zoom-title="Statewide Swing From 2024 (Arrow Chart)">
+        <div class="fig-head">
+          <div>
+            <div class="chips" id="swing-arrow-tabs" role="group" aria-label="Choose office for swing arrows">
+              <button type="button" class="chip" aria-pressed="true" data-arrow-office="senate">Senate <span class="cnt">35</span></button>
+              <button type="button" class="chip" aria-pressed="false" data-arrow-office="governors">Governor <span class="cnt">36</span></button>
+            </div>
+            <h3 class="fig-title" id="swing-arrow-title">Senate races: 2026 margin vs. Trump's 2024 margin in the same state</h3>
+            <p class="fig-sub">Each arrow runs from the 2024 presidential margin (hollow circle) to the 2026 margin (solid dot), sorted by 2024 vote.</p>
+          </div>
+        </div>
+        <div id="swing-arrow-chart"></div>
+        <div class="src">Margins are the Democratic (or leading independent) share minus the Republican share. Source: NBC News / AP.</div>
+      </div>
+
+      <div class="two-col-viz">
+        <div class="viz-box" data-maximizable data-zoom-title="2026 Margin vs. 2024 Presidential Margin">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">2026 Margin vs. 2024 Presidential Margin</h3>
+              <p class="fig-sub">Shaded upper-left quadrant shows states carried by Donald Trump in 2024 where the Democrat won or leads in 2026.</p>
+            </div>
+          </div>
+          <div class="chips" role="group" aria-label="Scatterplot office">
+            <button type="button" class="chip" data-scatter-mode="senate" aria-pressed="true">Senate <span class="cnt">35</span></button>
+            <button type="button" class="chip" data-scatter-mode="governors" aria-pressed="false">Governors <span class="cnt">36</span></button>
+            <button type="button" class="chip" data-scatter-mode="both" aria-pressed="false">Both <span class="cnt">71</span></button>
+          </div>
+          <svg id="swing-scatter-svg" viewBox="0 0 560 380" role="img" aria-label="Scatterplot comparing 2024 presidential margin to 2026 statewide margin"></svg>
+          <div class="src">Points above the dashed parity line outperformed Kamala Harris's 2024 margin. Click any point to inspect that state.</div>
+        </div>
+
+        <div class="viz-box" data-maximizable data-zoom-title="Largest Statewide Swings From 2024">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">Largest Swings From 2024</h3>
+              <p class="fig-sub">Two-candidate margin shift relative to the 2024 presidential vote in the same state.</p>
+            </div>
+          </div>
+          <div id="swing-top-list" class="scroll-y"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · THE HOUSE -->
+    <section id="house" class="col">
+      <h2 class="sec-h2"><span class="n">02 · The House</span>A double-digit popular-vote wave across 435 districts</h2>
+      <p id="house-prose"></p>
+    </section>
+
+    <section class="wide">
+      <div class="viz-box" data-maximizable data-zoom-title="The House, Mapped by District">
+        <div class="fig-head">
+          <div>
+            <h3 class="fig-title" id="hexmap-title">The swing, mapped: how far each district moved from 2024</h3>
+            <p class="fig-sub">Every district is one hexagon of equal size, placed roughly where it sits within its state. Heavy lines are state borders; diagonal stripes mark a seat that changed party.</p>
+          </div>
+        </div>
+        <div class="chips" id="hexmap-mode" role="group" aria-label="Map coloring">
+          <button type="button" class="chip" aria-pressed="true" data-hm="swing">Swing from 2024</button>
+          <button type="button" class="chip" aria-pressed="false" data-hm="margin">2026 margin</button>
+        </div>
+        <div class="lg" id="hexmap-legend" style="margin:0 0 10px"></div>
+        <div id="hexmap" class="hexmap"></div>
+        <div class="src">Hex positions are a cartogram, not real geography. Placement within each state uses Census district locations and is approximate where lines were redrawn for 2026. Swing compares the 2026 House margin with Trump's 2024 margin on the same lines (The Downballot). Gray: uncontested, same-party or top-four races with no comparison.</div>
+      </div>
+
+      <div class="viz-box" data-maximizable data-zoom-title="All 435 U.S. House Districts">
+        <div class="fig-head">
+          <div>
+            <h3 class="fig-title">All 435 districts</h3>
+            <p class="fig-sub">Shade shows margin size. Diagonal stripes mark a seat that changed party; an outlined square is still uncalled, shaded for whoever leads.</p>
+          </div>
+        </div>
+        <div class="chips" id="hgrid-filters" role="group" aria-label="Filter 435 House districts">
+          <button type="button" class="chip" aria-pressed="true" data-hf="all">All <span class="cnt">435</span></button>
+          <button type="button" class="chip" aria-pressed="false" data-hf="flip" data-tip="31 seats projected to change party">Flipped <span class="cnt">31</span></button>
+          <button type="button" class="chip" aria-pressed="false" data-hf="unc" data-tip="53 districts still counting votes">Uncalled <span class="cnt">53</span></button>
+          <button type="button" class="chip" aria-pressed="false" data-hf="close" data-tip="Districts within a 3-point two-party margin">&lt;3 pts</button>
+        </div>
+        <div class="lg" id="hgrid-legend" style="margin:0 0 16px"></div>
+        <div class="hgrid" id="hgrid"></div>
+        <div class="src">Source: NBC News Decision Desk / AP district counts. Same-party general elections shaded by party only.</div>
+      </div>
+
+      <div class="two-col-viz">
+        <div class="viz-box" data-maximizable data-zoom-title="State 2026 House Vote vs. 2024 Presidential Vote">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">Every state's 2026 House vote vs. its 2024 presidential vote</h3>
+              <p class="fig-sub">Points above the diagonal moved toward Democrats. Circle area is proportional to House votes counted so far.</p>
+            </div>
+          </div>
+          <div id="house-state-scatter"></div>
+          <div class="src">Excludes Louisiana, Alaska, and states where over half of seats were uncontested or single-party. California is roughly half counted.</div>
+        </div>
+
+        <div class="viz-box" data-maximizable data-zoom-title="House Seats That Changed Hands & Challenger Leads">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">The seats that changed hands</h3>
+              <p class="fig-sub">Projected flips plus uncalled districts where the Democratic challenger currently leads.</p>
+            </div>
+          </div>
+          <div class="chips" role="group" aria-label="Filter House pickups">
+            <button type="button" class="chip" data-house-filter="all" aria-pressed="true">All <span class="cnt">36</span></button>
+            <button type="button" class="chip" data-house-filter="called" aria-pressed="false" data-tip="25 called Democratic pickups">Called <span class="cnt">25</span></button>
+            <button type="button" class="chip" data-house-filter="uncalled" aria-pressed="false" data-tip="11 uncalled GOP-held seats where a Democrat leads">Leading <span class="cnt">11</span></button>
+            <button type="button" class="chip" data-house-filter="incumbent" aria-pressed="false" data-tip="Seats where a sitting Republican incumbent lost or trails">Incumbents <span class="cnt">27</span></button>
+          </div>
+          <div class="scroll-y">
+            <table class="compact-table" id="house-flips-table"></table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · THE SENATE -->
+    <section id="senate" class="col">
+      <h2 class="sec-h2"><span class="n">03 · The Senate</span>Seven seats gained, five in states Trump won by double digits</h2>
+      <p>
+        Starting from a 47–53 deficit on a Class 2 map concentrated in Republican states, Democrats held all 13 of their own seats and flipped <b>North Carolina</b>, <b>Texas</b>, <b>Maine</b>, <b>Ohio</b>, <b>Kansas</b>, <b>South Carolina</b>, and <b>Iowa</b> for a <b>54–44</b> majority with Alaska and Mississippi still counting. Republicans held Florida's special election by 2.9 points and Nebraska by 6.7 points against independent Dan Osborn.
+      </p>
+    </section>
+
+    <section class="wide">
+      <div class="two-col-viz">
+        <div class="viz-box" data-maximizable data-zoom-title="The 100-Seat U.S. Senate">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">The 100-Seat Chamber</h3>
+              <p class="fig-sub">Starred seats mark the 7 Republican seats flipped by Democrats; dashed outlines mark uncalled contests in Alaska and Mississippi.</p>
+            </div>
+          </div>
+          <svg id="senate-hemicycle" viewBox="0 0 440 215" role="img" aria-label="100-seat Senate diagram: 54 Democrats, 44 Republicans, 2 uncalled"></svg>
+          <div class="hemicycle-stats">
+            <div><strong style="color:var(--D)">47</strong><br>Dem Held / Not Up</div>
+            <div><strong style="color:var(--D)">+7</strong><br>Dem Flips</div>
+            <div><strong style="color:var(--R)">44</strong><br>GOP Held / Not Up</div>
+          </div>
+        </div>
+
+        <div class="viz-box" data-maximizable data-zoom-title="Competitive Senate Margins (Under 20 Points)">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">Competitive Senate Margins (Under 20 Points)</h3>
+              <p class="fig-sub">Two-candidate margin relative to even. Hover any row for full vote shares and 2024 shift.</p>
+            </div>
+          </div>
+          <div id="senate-margin-ladder" class="margin-ladder"></div>
+        </div>
+      </div>
+
+      <div class="spotlight-grid">
+        <article class="spot-card">
+          <div class="spot-top">
+            <span class="spot-state">Texas</span>
+            <span class="badge badge-flip"><svg class="ico-star" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.3l2.02 4.1 4.53.66-3.28 3.19.77 4.51L8 11.63l-4.04 2.13.77-4.51L1.45 6.06l4.53-.66L8 1.3z"/></svg> D+11.7</span>
+          </div>
+          <div class="spot-matchup"><strong>James Talarico (D) <span class="mono">55.1%</span></strong> vs. Ken Paxton (R) <span class="mono">43.0%</span></div>
+          <p class="spot-note">Paxton had ousted John Cornyn in the GOP primary. Talarico is the first Democrat elected to the Senate from Texas since 1988.</p>
+        </article>
+
+        <article class="spot-card">
+          <div class="spot-top">
+            <span class="spot-state">Kansas &amp; S. Carolina</span>
+            <span class="badge badge-flip"><svg class="ico-star" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.3l2.02 4.1 4.53.66-3.28 3.19.77 4.51L8 11.63l-4.04 2.13.77-4.51L1.45 6.06l4.53-.66L8 1.3z"/></svg> +4.8 / +4.4</span>
+          </div>
+          <div class="spot-matchup"><strong>Adam Hamilton (D) <span class="mono">50.9%</span></strong> · <strong>Annie Andrews (D) <span class="mono">51.1%</span></strong></div>
+          <p class="spot-note">Hamilton defeated Roger Marshall in Kansas (first Democratic senator since 1932); Andrews defeated interim appointee Darline Graham in South Carolina.</p>
+        </article>
+
+        <article class="spot-card">
+          <div class="spot-top">
+            <span class="spot-state">Maine, N.C. &amp; Ohio</span>
+            <span class="badge badge-flip"><svg class="ico-star" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.3l2.02 4.1 4.53.66-3.28 3.19.77 4.51L8 11.63l-4.04 2.13.77-4.51L1.45 6.06l4.53-.66L8 1.3z"/></svg> +7.4 / +19.6 / +4.8</span>
+          </div>
+          <div class="spot-matchup"><strong>Jackson <span class="mono">53.7%</span></strong> · <strong>Cooper <span class="mono">58.7%</span></strong> · <strong>Brown <span class="mono">50.0%</span></strong></div>
+          <p class="spot-note">Troy Jackson ended Susan Collins's five-term run in Maine; Roy Cooper carried North Carolina by 19.6 points; Sherrod Brown won Ohio's special election.</p>
+        </article>
+
+        <article class="spot-card unc-card">
+          <div class="spot-top">
+            <span class="spot-state">Mississippi &amp; Alaska</span>
+            <span class="badge badge-uncalled"><svg class="ico-star" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.8V8l2.2 1.4" stroke-linecap="round"/></svg> Uncalled</span>
+          </div>
+          <div class="spot-matchup"><strong>MS:</strong> <span class="mono">48.9%–48.9%</span> · <strong>AK:</strong> <span class="mono">48.2%–47.9%</span></div>
+          <p class="spot-note">Scott Colom (D) and Cindy Hyde-Smith (R) are tied at 48.9% with 96% counted; Mississippi holds no runoff, so the plurality leader wins. Mary Peltola (D) leads Dan Sullivan (R) ahead of Alaska's ranked-choice count.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 04 · GOVERNORS & SPLIT TICKETS -->
+    <section id="governors" class="col">
+      <h2 class="sec-h2"><span class="n">04 · Governors &amp; Split Tickets</span>Five governorships flipped, and where voters split their ballots</h2>
+      <p>
+        Democrats defeated Republican incumbents in <b>Texas</b> (Greg Abbott) and <b>Nevada</b> (Joe Lombardo), won open Republican-held seats in <b>Iowa</b>, <b>Georgia</b>, and <b>Ohio</b>, and defended every called Democratic seat for a <b>27–20</b> majority with Democratic leads in Alaska, Kansas, and Oregon. Across the 26 states with both Senate and governor races on Tuesday's ballot, voters split party winners in New Hampshire (18.3-point gap) and South Carolina (8.9-point gap).
+      </p>
+    </section>
+
+    <section class="wide">
+      <div class="viz-box" data-maximizable data-zoom-title="Same-Ballot Gap: Senate (●) vs. Governor (◆)">
+        <div class="fig-head">
+          <div>
+            <h3 class="fig-title">Same-Ballot Gap: Senate (●) vs. Governor (◆)</h3>
+            <p class="fig-sub">16 largest margin differences among the 26 states holding both elections on Nov. 3. Left of center = Republican margin; right = Democratic margin.</p>
+          </div>
+        </div>
+        <div class="lg" style="margin:0 0 12px">
+          <span><i style="background:var(--ink);border-radius:50%;inline-size:10px;block-size:10px"></i>Senate margin</span>
+          <span><i style="background:var(--ink);transform:rotate(45deg);border-radius:1px;inline-size:9px;block-size:9px"></i>Governor margin</span>
+        </div>
+        <div id="ticket-split-chart" class="dumbbell-wrap"></div>
+      </div>
+
+      <div class="spotlight-grid">
+        <article class="spot-card">
+          <div class="spot-top">
+            <span class="spot-state">Texas</span>
+            <span class="badge badge-flip"><svg class="ico-star" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.3l2.02 4.1 4.53.66-3.28 3.19.77 4.51L8 11.63l-4.04 2.13.77-4.51L1.45 6.06l4.53-.66L8 1.3z"/></svg> D+7.1</span>
+          </div>
+          <div class="spot-matchup"><strong>Gina Hinojosa (D) <span class="mono">52.8%</span></strong> vs. Greg Abbott (R) <span class="mono">45.7%</span></div>
+          <p class="spot-note">Defeats three-term incumbent Greg Abbott; first Democratic governor of Texas since Ann Richards left office in 1995.</p>
+        </article>
+
+        <article class="spot-card">
+          <div class="spot-top">
+            <span class="spot-state">Iowa &amp; Ohio</span>
+            <span class="badge badge-flip"><svg class="ico-star" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.3l2.02 4.1 4.53.66-3.28 3.19.77 4.51L8 11.63l-4.04 2.13.77-4.51L1.45 6.06l4.53-.66L8 1.3z"/></svg> +11.0 / +7.9</span>
+          </div>
+          <div class="spot-matchup"><strong>Rob Sand (D) <span class="mono">55.5%</span></strong> · <strong>Amy Acton (D) <span class="mono">52.3%</span></strong></div>
+          <p class="spot-note">State Auditor Rob Sand won Iowa's open seat by 11.0 points; Amy Acton defeated Vivek Ramaswamy (44.4%) in Ohio.</p>
+        </article>
+
+        <article class="spot-card">
+          <div class="spot-top">
+            <span class="spot-state">Georgia &amp; Nevada</span>
+            <span class="badge badge-flip"><svg class="ico-star" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.3l2.02 4.1 4.53.66-3.28 3.19.77 4.51L8 11.63l-4.04 2.13.77-4.51L1.45 6.06l4.53-.66L8 1.3z"/></svg> +8.6 / +7.5</span>
+          </div>
+          <div class="spot-matchup"><strong>Bottoms (D) <span class="mono">54.3%</span></strong> · <strong>Ford (D) <span class="mono">51.7%</span></strong></div>
+          <p class="spot-note">Keisha Lance Bottoms won Georgia's open seat; Nevada AG Aaron Ford defeated first-term incumbent Joe Lombardo.</p>
+        </article>
+
+        <article class="spot-card rep-card">
+          <div class="spot-top">
+            <span class="spot-state">Florida, N.H. &amp; Vermont</span>
+            <span class="badge badge-rep">GOP Holds</span>
+          </div>
+          <div class="spot-matchup"><strong>Donalds <span class="mono">50.0%</span></strong> · <strong>Ayotte <span class="mono">51.2%</span></strong> · <strong>Scott <span class="mono">52.6%</span></strong></div>
+          <p class="spot-note">Byron Donalds held Florida by 1.3 points. Republicans Kelly Ayotte (NH) and Phil Scott (VT) won re-election in states Kamala Harris carried in 2024.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 05 · EXPLORE BY STATE -->
+    <section id="map" class="col">
+      <h2 class="sec-h2"><span class="n">05 · Explore by State</span>Every state's 2026 results in one grid</h2>
+      <p>
+        One square per state. Select any state to inspect its 2024 presidential baseline alongside Tuesday's Senate, gubernatorial, House pickup, and ballot-measure returns.
+      </p>
+    </section>
+
+    <section class="wide">
+      <div class="viz-box" data-maximizable data-zoom-title="50-State Results Grid & State Detail">
+        <div class="fig-head">
+          <div>
+            <div class="chips" role="group" aria-label="Map view">
+              <button type="button" class="chip" data-map-mode="senate" aria-pressed="true">Senate <span class="cnt">35</span></button>
+              <button type="button" class="chip" data-map-mode="governors" aria-pressed="false">Governors <span class="cnt">36</span></button>
+              <button type="button" class="chip" data-map-mode="house" aria-pressed="false" data-tip="Democratic House flips and leads by state">House Pickups <span class="cnt">36</span></button>
+              <button type="button" class="chip" data-map-mode="swing" aria-pressed="false" data-tip="Margin shift from 2024 presidential vote">Shift vs. '24</button>
+              <button type="button" class="chip" data-map-mode="wave" aria-pressed="false" data-tip="Total Senate, Governor, and House pickups combined">All Pickups</button>
+            </div>
+            <div id="map-legend" class="lg" style="margin:4px 0 8px" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="map-explorer">
+          <div class="cartogram-panel">
+            <div id="cartogram-grid" class="cartogram-grid" role="listbox" aria-label="50-state grid"></div>
+          </div>
+          <aside id="state-inspector" class="inspector-card" aria-live="polite"></aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · STILL COUNTING & SIMULATOR -->
+    <section id="uncalled" class="col">
+      <h2 class="sec-h2"><span class="n">06 · Still Counting</span>The closest uncalled races, and how the chambers settle</h2>
+      <p>
+        Fifty-three House seats, two Senate contests, and three governorships remain uncalled. California and Washington tabulate mail ballots for days after Election Day; Alaska runs its ranked-choice rounds in mid-November; Mississippi's Senate race is tied with no runoff to fall back on.
+      </p>
+    </section>
+
+    <section class="wide">
+      <div class="two-col-viz">
+        <div class="viz-box" data-maximizable data-zoom-title="Closest Uncalled Races Across All Chambers">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">The closest uncalled races</h3>
+              <p class="fig-sub">Sorted by current percentage-point gap across Senate, governor, and two-party House contests.</p>
+            </div>
+          </div>
+          <div class="scroll-y">
+            <table class="compact-table" id="uncalled-table"></table>
+          </div>
+          <button type="button" class="more-btn" id="uncalled-more-btn">Show all uncalled races</button>
+        </div>
+
+        <div class="viz-box sim-callout" data-maximizable data-zoom-title="Uncalled Race Simulator (120th Congress & Governors)">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">Uncalled Race Simulator</h3>
+              <p class="fig-sub">Defaults reflect current vote leaders and NBC's 258-seat House projection.</p>
+            </div>
+          </div>
+
+          <div class="sim-control-row">
+            <span><strong>Alaska Senate</strong> <span class="mono" style="font-size:12px;color:var(--mut)">48.2%–47.9%</span></span>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip" data-sim-key="akSen" data-sim-val="D" aria-pressed="true" data-tip="Mary Peltola (D) leads first-choice count 48.2% to 47.9%">D</button>
+              <button type="button" class="chip" data-sim-key="akSen" data-sim-val="R" aria-pressed="false" data-tip="Assign Alaska Senate to Dan Sullivan (R)">R</button>
+            </div>
+          </div>
+
+          <div class="sim-control-row">
+            <span><strong>Mississippi Senate</strong> <span class="mono" style="font-size:12px;color:var(--mut)">48.9%–48.9%</span></span>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip" data-sim-key="msSen" data-sim-val="D" aria-pressed="true" data-tip="Too close to call; Mississippi has no runoff">D</button>
+              <button type="button" class="chip" data-sim-key="msSen" data-sim-val="R" aria-pressed="false" data-tip="Assign Mississippi Senate to Cindy Hyde-Smith (R)">R</button>
+            </div>
+          </div>
+
+          <div class="sim-control-row">
+            <span><strong>Governors</strong> <span class="mono" style="font-size:12px;color:var(--mut)">AK · KS · OR</span></span>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip" data-sim-key="akGov" data-sim-val="D" aria-pressed="true" data-tip="Alaska Gov: Tom Begich (D) leads 49.4%–46.8%">AK·D</button>
+              <button type="button" class="chip" data-sim-key="akGov" data-sim-val="R" aria-pressed="false" data-tip="Assign Alaska Gov to Bernadetta Click (R)">AK·R</button>
+              <button type="button" class="chip" data-sim-key="ksGov" data-sim-val="D" aria-pressed="true" data-tip="Kansas Gov: Ethan Corson (D) leads 50.1%–48.4%">KS·D</button>
+              <button type="button" class="chip" data-sim-key="ksGov" data-sim-val="R" aria-pressed="false" data-tip="Assign Kansas Gov to Vicki Schmidt (R)">KS·R</button>
+              <button type="button" class="chip" data-sim-key="orGov" data-sim-val="D" aria-pressed="true" data-tip="Oregon Gov: Tina Kotek (D) leads 49.6%–47.8%">OR·D</button>
+              <button type="button" class="chip" data-sim-key="orGov" data-sim-val="R" aria-pressed="false" data-tip="Assign Oregon Gov to Christine Drazan (R)">OR·R</button>
+            </div>
+          </div>
+
+          <div class="sim-control-row">
+            <label for="sim-house-slider"><strong>House Democratic Seats</strong> <span class="mono" style="font-size:12px;color:var(--mut)">236 + 53 unc.</span></label>
+            <div style="display:flex;align-items:center;gap:8px">
+              <input type="range" id="sim-house-slider" min="242" max="270" value="258" style="inline-size:115px">
+              <span id="sim-house-slider-val" style="font-family:var(--mono);font-size:12.5px;font-weight:600;min-inline-size:44px">258 D</span>
+            </div>
+          </div>
+
+          <div class="sim-readout-strip">
+            <div><span style="font-family:var(--mono);font-size:10.5px;color:var(--mut)">SENATE</span><div id="sim-sen-out"></div></div>
+            <div><span style="font-family:var(--mono);font-size:10.5px;color:var(--mut)">HOUSE</span><div id="sim-house-out"></div></div>
+            <div><span style="font-family:var(--mono);font-size:10.5px;color:var(--mut)">GOVERNORS</span><div id="sim-gov-out"></div></div>
+          </div>
+          <p id="sim-governance-note" style="font-family:var(--sans);font-size:13px;color:var(--mut);margin:12px 0 0;line-height:1.45"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · THE ELECTORATE -->
+    <section id="electorate" class="col">
+      <h2 class="sec-h2"><span class="n">07 · The Electorate</span>Who voted how, and why</h2>
+      <p>
+        Six in ten voters said Donald Trump was a factor in their House vote, and those voting to oppose him outnumbered those voting to support him nearly three to one (<b>44%</b> to <b>16%</b>). Women backed Democrats by 19 points and voters under 30 by 48 points, while independents broke <b>58%–38%</b> Democratic. Voters naming the economy first favored Democrats 52%–46%, reversing 2024.
+      </p>
+    </section>
+
+    <section class="wide">
+      <div class="tiles" id="exit-tiles"></div>
+
+      <div class="two-col-viz" style="align-items:start">
+        <div class="viz-box" data-maximizable data-zoom-title="Democratic Margin by Demographic Group (National & 45 States)">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">Democratic margin by group</h3>
+              <p class="fig-sub" id="exit-groups-sub">National U.S. House exit poll · Dot size shows share of electorate.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-block-end:12px">
+            <label class="select-wrap" for="exit-state-select" data-tip="Switch between national exit poll and 45 state exit polls">
+              <span class="sr-only">Select state exit poll</span>
+              <select id="exit-state-select" name="exit_state" class="ed-select"></select>
+            </label>
+
+            <div class="chips" style="margin:0" role="group" aria-label="Filter demographic categories">
+              <button type="button" class="chip" data-exit-cat="all" aria-pressed="true">All</button>
+              <button type="button" class="chip" data-exit-cat="demog" aria-pressed="false" data-tip="Gender, age, and race/ethnicity">Demographics</button>
+              <button type="button" class="chip" data-exit-cat="ses" aria-pressed="false" data-tip="Education, community type, and household income">Class &amp; Area</button>
+              <button type="button" class="chip" data-exit-cat="party" aria-pressed="false" data-tip="Party ID, first-time midterm voters, and 2024 presidential vote">Party &amp; '24</button>
+            </div>
+          </div>
+
+          <div id="exit-bench-legend" class="lg" style="margin:0 0 8px;display:none">
+            <span><i style="background:var(--D);border-radius:50%;inline-size:10px;block-size:10px"></i>Selected state</span>
+            <span><i style="border:1.5px solid var(--mut);background:var(--bg);border-radius:50%;inline-size:9px;block-size:9px"></i>National House benchmark</span>
+          </div>
+
+          <div id="exit-groups-dotplot"></div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:38px">
+          <div class="viz-box" data-maximizable data-zoom-title="The Most Important Issue (NBC / SSRS Exit Poll)">
+            <div class="fig-head">
+              <div>
+                <h3 class="fig-title">The most important issue</h3>
+                <p class="fig-sub">Share of voters naming each issue, and how they voted for U.S. House.</p>
+              </div>
+            </div>
+            <div id="exit-issues-svg"></div>
+          </div>
+
+          <div class="viz-box" data-maximizable data-zoom-title="Which Party Would Better Handle Each Issue">
+            <div class="fig-head">
+              <div>
+                <h3 class="fig-title">Which party would better handle…</h3>
+                <p class="fig-sub">Democratic Party (blue), neither (gray), Republican Party (red).</p>
+              </div>
+            </div>
+            <div id="exit-trust-svg"></div>
+          </div>
+        </div>
+      </div>
+      <div class="src">Source: NBC News Exit Poll conducted by SSRS across 45 states (in-person, mail, phone, and online interviews). State polls measure the marquee Senate or gubernatorial contest in each state.</div>
+    </section>
+
+    <!-- 08 · ON THE BALLOT -->
+    <section id="measures" class="col">
+      <h2 class="sec-h2"><span class="n">08 · On the Ballot</span>Abortion protections pass in every test; voter ID passes in eight states</h2>
+      <p>
+        Voters approved constitutional abortion-rights measures in <b>Virginia</b> (62.4%) and <b>Nevada</b> (63.3%), rejected a repeal of <b>Missouri</b>'s 2024 abortion amendment (44.5% Yes), and defeated an abortion-restriction measure in <b>Idaho</b>. On the same ballots, eight states passed citizenship or photo voter-ID rules, Missouri voters rejected the 2025 congressional map (38.2% Yes), and California's one-time billionaire tax trails at 44.4%.
+      </p>
+    </section>
+
+    <section class="wide">
+      <div class="viz-box" data-maximizable data-zoom-title="33 Statewide Ballot Measures">
+        <div class="fig-head">
+          <div>
+            <h3 class="fig-title">Statewide ballot measures</h3>
+            <p class="fig-sub">Bar shows the "Yes" vote share; vertical tick marks 50%.</p>
+          </div>
+        </div>
+        <div class="chips" role="group" aria-label="Filter ballot measures">
+          <button type="button" class="chip" data-measure-topic="all" aria-pressed="true">All <span class="cnt">33</span></button>
+          <button type="button" class="chip" data-measure-topic="Abortion" aria-pressed="false">Abortion <span class="cnt">4</span></button>
+          <button type="button" class="chip" data-measure-topic="Redistricting" aria-pressed="false">Redistricting <span class="cnt">2</span></button>
+          <button type="button" class="chip" data-measure-topic="Voting rules" aria-pressed="false">Voting rules <span class="cnt">13</span></button>
+          <button type="button" class="chip" data-measure-topic="Taxes" aria-pressed="false">Taxes <span class="cnt">5</span></button>
+          <button type="button" class="chip" data-measure-topic="Gender & sexuality" aria-pressed="false">Gender &amp; sexuality <span class="cnt">5</span></button>
+          <button type="button" class="chip" data-measure-topic="Other" aria-pressed="false">Other <span class="cnt">4</span></button>
+        </div>
+        <div id="measures-container"></div>
+      </div>
+    </section>
+
+    <!-- 09 · HISTORY & 2028 -->
+    <section id="history" class="col">
+      <h2 class="sec-h2"><span class="n">09 · History &amp; 2028</span>Nine midterms since 1994, state trifectas, and the 270 map</h2>
+      <p>
+        At NBC's projected 42-seat Republican House loss, 2026 matches 2018 (-41) and trails 2010 (-63) and 1994 (-54). What sets 2026 apart is the Senate: losing at least seven seats puts 2026 alongside 1994 (-8) and 2014 (-9) among the largest upper-chamber midterm losses in three decades. In the states, NCSL's preliminary count gives Democrats new trifectas in Michigan, Minnesota, Nevada, Pennsylvania and Wisconsin, and breaks Republican trifectas in Georgia, Iowa, Ohio and Texas.
+      </p>
+    </section>
+
+    <section class="wide">
+      <div class="two-col-viz">
+        <div class="viz-box" data-maximizable data-zoom-title="Midterm Elections Since 1994: Seat Changes for the President's Party">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">Nine Midterms Since 1994</h3>
+              <p class="fig-sub">Seat changes for the president's party and net Gallup/exit-poll job approval.</p>
+            </div>
+          </div>
+          <div id="history-grid"></div>
+          <div class="src">*2026 uses NBC's 258–177 House projection (-42 from 219 GOP seats) and called Senate/governor flips.</div>
+        </div>
+
+        <div class="viz-box" data-maximizable data-zoom-title="2028 Electoral Map & State Trifecta Changes">
+          <div class="fig-head">
+            <div>
+              <h3 class="fig-title">2028 Electoral Votes by 2026 Statewide Winners</h3>
+              <p class="fig-sub">Adding the 7 core 2024 battlegrounds won statewide by Democrats on Tuesday (93 EV) to Harris's 226 EV reaches 319 EV, before TX (40), OH (17), SC (9), IA (6), or KS (6).</p>
+            </div>
+          </div>
+          <svg id="ev2028-svg" viewBox="0 0 800 72" role="img" aria-label="538 Electoral Votes grouped by 2026 results"></svg>
+
+          <h3 class="fig-title" style="margin-block-start:16px">State Trifecta Shifts (Nov. 3, 2026)</h3>
+          <div id="trifecta-grid" class="trifecta-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 · REFERENCE TABLE -->
+    <section id="ledger" class="col">
+      <h2 class="sec-h2"><span class="n">10 · Reference Table</span>All 71 Senate and gubernatorial contests</h2>
+      <p>Filter by office, party flips, uncalled counts, or single-digit margins, or search by state or candidate.</p>
+    </section>
+
+    <section class="wide">
+      <div class="viz-box" data-maximizable data-zoom-title="Complete 2026 Statewide Results Table">
+        <div class="fig-head">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;inline-size:100%;justify-content:space-between">
+            <div class="chips" style="margin:0" role="group" aria-label="Select chamber">
+              <button type="button" class="chip" data-table-chamber="senate" aria-pressed="true">Senate <span class="cnt">35</span></button>
+              <button type="button" class="chip" data-table-chamber="governors" aria-pressed="false">Governors <span class="cnt">36</span></button>
+              <button type="button" class="chip" data-table-chamber="both" aria-pressed="false">Both <span class="cnt">71</span></button>
+            </div>
+
+            <div class="chips" style="margin:0" role="group" aria-label="Filter rows">
+              <button type="button" class="chip" data-table-filter="all" aria-pressed="true">All</button>
+              <button type="button" class="chip" data-table-filter="flips" aria-pressed="false" data-tip="Show only seats that changed party"><svg class="ico-star" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.3l2.02 4.1 4.53.66-3.28 3.19.77 4.51L8 11.63l-4.04 2.13.77-4.51L1.45 6.06l4.53-.66L8 1.3z"/></svg> Flips</button>
+              <button type="button" class="chip" data-table-filter="uncalled" aria-pressed="false" data-tip="Show races still counting votes"><svg class="ico-star" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.8V8l2.2 1.4" stroke-linecap="round"/></svg> Uncalled</button>
+              <button type="button" class="chip" data-table-filter="close" aria-pressed="false" data-tip="Show contests decided by under 10 percentage points">&lt;10 pts</button>
+            </div>
+
+            <label>
+              <span class="sr-only">Search state or candidate</span>
+              <input type="search" id="ledger-search" class="search-input" placeholder="Search state or candidate…">
+            </label>
+          </div>
+        </div>
+
+        <div tabindex="0" role="region" aria-labelledby="ledger-caption" class="table-wrapper">
+          <table class="data-table">
+            <caption id="ledger-caption">2026 U.S. Senate · 35 of 35 contests</caption>
+            <thead>
+              <tr>
+                <th scope="col">State</th>
+                <th scope="col">Status</th>
+                <th scope="col">Winner / Leader</th>
+                <th scope="col">Runner-Up</th>
+                <th scope="col">2026</th>
+                <th scope="col">2024 Pres.</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody id="ledger-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="methodology-stack">
+        <details class="ed-disclosure">
+          <summary>Notes on Tabulation, Runoffs, and Ranked-Choice Voting</summary>
+          <div class="disclosure-body">
+            <p style="margin-top:0">
+              <strong>Preliminary returns:</strong> Vote shares, district tallies, and race calls reflect NBC News Decision Desk, Associated Press, and CBS News counts on Wednesday, Nov. 4, 2026. Mail, provisional, and overseas ballots continue to be tabulated.
+            </p>
+            <p style="margin-bottom:0">
+              <strong>Runoff &amp; RCV rules:</strong> In <strong>Alaska</strong> (Senate and Governor), no candidate cleared 50% of first-choice votes; ranked-choice rounds occur roughly 15 days after Election Day. In <strong>Mississippi</strong> (Senate), there is no runoff in midterm general elections; Scott Colom and Cindy Hyde-Smith are tied at 48.9% with 96% counted. Independents Bernie Sanders (VT) and Angus King (ME) caucus with Senate Democrats and are included in Democratic Senate totals.
+            </p>
+          </div>
+        </details>
+
+        <details class="ed-disclosure">
+          <summary>Sources &amp; Dataset</summary>
+          <div class="disclosure-body">
+            <ul style="margin:0;padding-inline-start:18px">
+              <li><a href="https://www.nbcnews.com/politics/2026-elections/senate-results" rel="noopener" target="_blank">NBC News / Associated Press 2026 Senate, House &amp; Governor Results</a></li>
+              <li><a href="https://www.nbcnews.com/politics/2026-elections/exit-polls" rel="noopener" target="_blank">NBC News National &amp; 45-State Exit Polls conducted by SSRS (Nov. 3, 2026)</a></li>
+              <li><a href="https://www.cbsnews.com/live-updates/election-day-2026-midterms/" rel="noopener" target="_blank">CBS News Data Desk House Projections</a></li>
+              <li><a href="https://www.ncsl.org/" rel="noopener" target="_blank">National Conference of State Legislatures (NCSL) 2026 Trifecta Tracking</a></li>
+              <li><a href="https://ballotpedia.org/Election_results,_2026" rel="noopener" target="_blank">Ballotpedia 2026 Statewide Ballot Measures</a></li>
+              <li>Complete JSON dataset: <a href="./data.json" download="election2026-data.json"><code>sadh.app/election2026/data.json</code></a></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <footer class="ed-footer col">
+      <div>Built with Gemini, Antigravity &amp; Claude Code by <a href="https://nafsadh.com/"><b>nafSadh</b></a> · <a href="../">more on sadh.app</a> · Data preliminary as of Nov. 4, 2026, 12:44 p.m. ET</div>
+    </footer>
+  </main>
+
+  <!-- Native Modal Dialog for Maximizing Any Chart Box -->
+  <dialog id="box-zoom-dialog" closedby="any" aria-labelledby="box-zoom-title">
+    <div class="zoom-dialog-bar">
+      <h2 id="box-zoom-title">Expanded View</h2>
+      <form method="dialog" style="margin:0">
+        <button type="submit" class="zoom-close-btn" autofocus aria-label="Close expanded view" data-tip="Close (Esc)">
+          <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+        </button>
+      </form>
+    </div>
+    <div id="box-zoom-stage" class="zoom-stage"></div>
+  </dialog>
+
+  <div id="tip" role="tooltip"></div>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
