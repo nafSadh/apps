@@ -383,6 +383,57 @@
     /* ----------------------------------------------------------------------
        0. Stacked Balance of Power + 5-Stat Strip + Narrative Prose
        ---------------------------------------------------------------------- */
+    function renderMetaText() {
+      const lbl = (data.meta.as_of_label || "").split(" (")[0].replace(" · ", ", ");
+      document.querySelectorAll("[data-asof]").forEach((el) => { el.textContent = lbl; });
+      const setCnt = (sel, n, tip) => {
+        const b = document.querySelector(sel);
+        if (!b) return;
+        const c = b.querySelector(".cnt");
+        if (c) c.textContent = n;
+        if (tip) b.dataset.tip = tip;
+      };
+      const fl = data.house.flips || [];
+      const nFlip = DISTRICTS.filter((d) => d.flip).length;
+      const nUnc = DISTRICTS.filter((d) => !d.called).length;
+      setCnt('[data-hf="flip"]', nFlip, `${nFlip} seats projected to change party`);
+      setCnt('[data-hf="unc"]', nUnc, `${nUnc} districts still counting votes`);
+      setCnt('[data-house-filter="all"]', fl.length);
+      setCnt('[data-house-filter="called"]', fl.filter((f) => f.called).length, `${fl.filter((f) => f.called).length} called Democratic pickups`);
+      setCnt('[data-house-filter="uncalled"]', fl.filter((f) => !f.called).length, `${fl.filter((f) => !f.called).length} uncalled GOP-held seats where a Democrat leads`);
+      setCnt('[data-house-filter="incumbent"]', fl.filter((f) => f.type === "incumbent").length);
+      setCnt('[data-map-mode="house"]', fl.length);
+      const races = { sen: new Map(data.senate.races.map((r) => [r.st, r])), gov: new Map(data.governors.races.map((r) => [r.st, r])) };
+      document.querySelectorAll("[data-v]").forEach((el) => {
+        const [o, st, f] = el.dataset.v.split(":");
+        const r = races[o] && races[o].get(st);
+        if (!r) return;
+        const m = r.margin;
+        let t = null;
+        if (f === "wpct" || f === "rpct") t = r[f] != null ? `${Number(r[f]).toFixed(1)}%` : null;
+        else if (f === "margin") t = m != null ? fmtMargin(m, true) : null;
+        else if (f === "mabs") t = m != null ? `+${Math.abs(m).toFixed(1)}` : null;
+        else if (f === "mabsn") t = m != null ? Math.abs(m).toFixed(1) : null;
+        if (t) el.textContent = t;
+      });
+      {
+        const gc = data.governors.races.filter((r) => r.called !== false);
+        const gD = data.governors.not_up.D + gc.filter((r) => r.wp !== "R").length;
+        const gR = data.governors.not_up.R + gc.filter((r) => r.wp === "R").length;
+        document.querySelectorAll("[data-gov-tally]").forEach((el) => { el.textContent = `${gD}–${gR}`; });
+        document.querySelectorAll("[data-gov-unc]").forEach((el) => { el.textContent = String(data.governors.races.length - gc.length); });
+      }
+      const uc = document.getElementById("uncalled-prose");
+      if (uc) {
+        const hU = DISTRICTS.filter((d) => !d.called).length;
+        const sU = data.senate.races.filter((r) => r.called === false);
+        const gU = data.governors.races.filter((r) => r.called === false);
+        const n = (k, one, many) => `${k} ${k === 1 ? one : many}`;
+        uc.textContent = `${n(hU, "House seat", "House seats")}, ${n(sU.length, "Senate contest", "Senate contests")} and ${n(gU.length, "governorship", "governorships")} remain uncalled. California and Washington tabulate mail ballots for days after Election Day; Alaska runs its ranked-choice rounds in mid-November; Mississippi holds no runoff, so its plurality leader wins.`;
+      }
+    }
+    renderMetaText();
+
     function renderHeroBOP() {
       const bopEl = document.getElementById("bop");
       const lgEl = document.getElementById("boplg");
@@ -395,45 +446,24 @@
       const hDl = hUnc.filter((d) => d.lead.p === "D").length;
       const hRl = hUnc.length - hDl;
 
-      // Senate: 54 D called, 44 R called, AK (Peltola +0.3 D lead), MS (~43 votes apart, <0.05% tossup/D edge)
+      const tally = (races, notUp) => {
+        const called = races.filter((r) => r.called !== false);
+        const unc = races.filter((r) => r.called === false);
+        return {
+          D: notUp.D + called.filter((r) => r.wp === "D" || r.wp === "I").length,
+          R: notUp.R + called.filter((r) => r.wp === "R").length,
+          Dl: unc.filter((r) => r.wp !== "R" && r.wpct !== r.rpct).length,
+          Rl: unc.filter((r) => r.wp === "R" && r.wpct !== r.rpct).length,
+          tied: unc.filter((r) => r.wpct === r.rpct).length,
+          unc: unc.length
+        };
+      };
+      const sT = tally(data.senate.races, data.senate.not_up);
+      const gT = tally(data.governors.races, data.governors.not_up);
       const rows = [
-        {
-          ch: "House",
-          D: data.house.called.D,
-          R: data.house.called.R,
-          Dl: hDl,
-          Unc: 0,
-          Rl: hRl,
-          tot: 435,
-          mk: 218,
-          mkl: "218 for majority",
-          ct: `${hUnc.length} uncalled`
-        },
-        {
-          ch: "Senate",
-          D: data.senate.after.D,
-          R: data.senate.after.R,
-          Dl: 1,
-          Unc: 1,
-          Rl: 0,
-          tot: 100,
-          mk: 51,
-          mkl: "51 for majority",
-          ct: "incl. 34 D, 31 R not up",
-          uncNote: "Mississippi (tied at 48.9%, no runoff)"
-        },
-        {
-          ch: "Governors",
-          D: 27,
-          R: 20,
-          Dl: 3,
-          Unc: 0,
-          Rl: 0,
-          tot: 50,
-          mk: 26,
-          mkl: "26 for majority",
-          ct: "3 uncalled"
-        }
+        { ch: "House", D: data.house.called.D, R: data.house.called.R, Dl: hDl, Unc: 0, Rl: hRl, tot: 435, mk: 218, mkl: "218 for majority", ct: `${hUnc.length} uncalled` },
+        { ch: "Senate", D: sT.D, R: sT.R, Dl: sT.Dl, Unc: sT.tied, Rl: sT.Rl, tot: 100, mk: 51, mkl: "51 for majority", ct: `incl. ${data.senate.not_up.D} D, ${data.senate.not_up.R} R not up` },
+        { ch: "Governors", D: gT.D, R: gT.R, Dl: gT.Dl, Unc: gT.tied, Rl: gT.Rl, tot: 50, mk: 26, mkl: "26 for majority", ct: `${gT.unc} uncalled` }
       ];
 
       rows.forEach((r) => {
@@ -496,11 +526,17 @@
       const shiftedDem = allStatewide.filter((x) => x.swing > 0).length;
 
       if (statsEl) {
+        const senFl = data.senate.races.filter((r) => r.flip && r.wp === "D");
+        const senFlR = data.senate.races.filter((r) => r.flip && r.wp === "R");
+        const govFl = data.governors.races.filter((r) => r.flip && r.wp === "D");
+        const govFlR = data.governors.races.filter((r) => r.flip && r.wp === "R");
+        const senUnc = data.senate.races.filter((r) => r.called === false).length;
+        const signed = (n) => (n >= 0 ? `+${n}` : `${n}`);
         const items = [
           [fmtMargin(natVote.margin, true), `House two-party vote counted so far (2024 president: R+1.5)`],
-          ["+7", `Senate seats gained by Democrats, 2 still uncalled`],
-          [`+${natVote.flips_projected}`, `House seats flipped so far; NBC projects ~258 D seats`],
-          ["+5", `Governorships gained: TX, IA, GA, OH, and NV`],
+          [signed(senFl.length - senFlR.length), `Senate seats gained by Democrats${senUnc ? `, ${senUnc} still uncalled` : ""}`],
+          [`+${natVote.flips_projected}`, `House seats flipped so far; NBC projects ~${data.house.projection.D} D seats`],
+          [signed(govFl.length - govFlR.length), `Governorships gained${govFl.length ? `: ${govFl.map((r) => r.st).join(", ")}` : ""}`],
           [`${shiftedDem}/${allStatewide.length}`, `Senate & governor races that shifted toward Democrats from 2024`]
         ];
         statsEl.innerHTML = items

@@ -1,0 +1,67 @@
+name: Election 2026 results refresh
+
+# Every 20 minutes: pull NBC News / AP results from the 50 state pages
+# (election2026/scripts/update.py), refresh Senate, governor, House district and
+# ballot-measure numbers in election2026/data.json + data.js, and commit + push only
+# when results changed so GitHub Pages serves them.
+#
+# update.py exits non-zero (and writes nothing) if more than 3 states fail to load,
+# so a blocked or broken run leaves the last good data live. After 2026-12-15 it
+# exits 0 without fetching; disable this workflow once counting is final.
+#
+# GitHub may delay scheduled runs by several minutes under load; that is fine here.
+
+on:
+  workflow_dispatch: {}            # run on demand from the Actions tab
+  schedule:
+    - cron: "7,27,47 * * * *"      # every 20 min, offset from :00 to dodge the top-of-hour queue
+
+permissions:
+  contents: write
+
+concurrency:
+  group: election2026-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch results
+        run: python3 election2026/scripts/update.py
+
+      - name: Sanity-check the data
+        run: |
+          python3 - <<'PY'
+          import json
+          d = json.load(open("election2026/data.json", encoding="utf-8"))
+          js = open("election2026/data.js", encoding="utf-8").read()
+          assert js.startswith("window.ELECTION_DATA = "), "data.js header missing"
+          assert len(d["house"]["districts"]) == 435, "district count"
+          assert len(d["senate"]["races"]) == 35 and len(d["governors"]["races"]) == 36, "race count"
+          c = d["house"]["called"]
+          assert 0 <= c["D"] + c["R"] <= 435, "house totals"
+          print("ok:", d["meta"].get("as_of_label"), "House", c)
+          PY
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name  "election2026-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add election2026/data.json election2026/data.js
+          if git diff --cached --quiet; then
+            echo "Results unchanged."; exit 0
+          fi
+          git commit -m "election2026: results refresh $(date -u +'%F %H:%M') UTC"
+          for i in 1 2 3; do
+            if git push; then echo "pushed."; exit 0; fi
+            echo "push rejected; rebasing onto origin/${GITHUB_REF_NAME} (attempt $i)"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          done
+          echo "::error::push still failing after 3 attempts"; exit 1
