@@ -384,7 +384,13 @@
        0. Stacked Balance of Power + 5-Stat Strip + Narrative Prose
        ---------------------------------------------------------------------- */
     function renderMetaText() {
-      const lbl = (data.meta.as_of_label || "").split(" (")[0].replace(" · ", ", ");
+      let lbl = (data.meta.as_of_label || "").split(" (")[0].replace(" · ", ", ");
+      const t = data.meta.as_of ? new Date(data.meta.as_of) : null;
+      if (t && !isNaN(t)) {
+        const part = (o) => new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", ...o }).format(t);
+        const hm = part({ hour: "numeric", minute: "2-digit" }).replace(/\s?AM$/, " a.m.").replace(/\s?PM$/, " p.m.");
+        lbl = `${part({ month: "short" })}. ${part({ day: "numeric" })}, ${part({ year: "numeric" })}, ${hm} PT`;
+      }
       document.querySelectorAll("[data-asof]").forEach((el) => { el.textContent = lbl; });
       const setCnt = (sel, n, tip) => {
         const b = document.querySelector(sel);
