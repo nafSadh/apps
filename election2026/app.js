@@ -931,8 +931,10 @@
         const d = distById.get(k), x = cx(v), y = cy(v);
         const pts = [0, 1, 2, 3, 4, 5].map((i) => corner(x, y, i, sz * 0.97).join(",")).join(" ");
         const fill = hexFill(d);
-        const h = S("polygon", { points: pts, style: `fill:${d.called ? fill : `color-mix(in srgb, ${fill} 55%, var(--bg))`};stroke:var(--bg);stroke-width:0.6;cursor:pointer`, tabindex: "0", "aria-label": d.id }, gH);
-        if (d.flip) S("polygon", { points: [0, 1, 2, 3, 4, 5].map((i) => corner(x, y, i, sz * 0.97).join(",")).join(" "), fill: "url(#hex-flip-stripes)" }, gF);
+        const dim = state.selectedSt && state.selectedSt !== d.st;
+        const h = S("polygon", { points: pts, "data-st": d.st, style: `fill:${d.called ? fill : `color-mix(in srgb, ${fill} 55%, var(--bg))`};stroke:var(--bg);stroke-width:0.6;cursor:pointer;opacity:${dim ? 0.22 : 1}`, tabindex: "0", "aria-label": d.id }, gH);
+        h.addEventListener("click", () => selectState(state.selectedSt === d.st ? null : d.st));
+        if (d.flip) S("polygon", { points: [0, 1, 2, 3, 4, 5].map((i) => corner(x, y, i, sz * 0.97).join(",")).join(" "), fill: "url(#hex-flip-stripes)", opacity: dim ? 0.22 : 1 }, gF);
         for (let i = 0; i < 6; i++) {
           if (at[nbKey(v, i)] === d.st) continue;
           const a = corner(x, y, i, sz), b = corner(x, y, (i + 1) % 6, sz);
@@ -957,7 +959,7 @@
         t.textContent = st;
       });
       const title = document.getElementById("hexmap-title");
-      if (title) title.textContent = state.hexMode === "swing" ? "The swing, mapped: how far each district moved from 2024" : "The 2026 House result, mapped";
+      if (title) title.textContent = state.hexMode === "swing" ? "House districts: swing from 2024" : "House districts: 2026 margin";
       const lg = document.getElementById("hexmap-legend");
       const flipKey = `<span><i class="flip-swatch"></i>Flipped</span>`;
       if (lg) lg.innerHTML = state.hexMode === "swing"
@@ -1489,6 +1491,7 @@
         });
       }
       renderInspector(st);
+      drawHexMap();
       const clr = inspectorEl && inspectorEl.querySelector("[data-clear-state]");
       if (clr) clr.addEventListener("click", () => selectState(null));
     }

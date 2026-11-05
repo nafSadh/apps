@@ -153,22 +153,6 @@
     </section>
 
     <section class="wide">
-      <div class="viz-box" data-maximizable data-zoom-title="The House, Mapped by District">
-        <div class="fig-head">
-          <div>
-            <h3 class="fig-title" id="hexmap-title">The swing, mapped: how far each district moved from 2024</h3>
-            <p class="fig-sub">Every district is one hexagon of equal size, placed roughly where it sits within its state. Heavy lines are state borders; diagonal stripes mark a seat that changed party.</p>
-          </div>
-        </div>
-        <div class="chips" id="hexmap-mode" role="group" aria-label="Map coloring">
-          <button type="button" class="chip" aria-pressed="true" data-hm="swing">Swing from 2024</button>
-          <button type="button" class="chip" aria-pressed="false" data-hm="margin">2026 margin</button>
-        </div>
-        <div class="lg" id="hexmap-legend" style="margin:0 0 10px"></div>
-        <div id="hexmap" class="hexmap"></div>
-        <div class="src">Hex positions are a cartogram, not real geography. Placement within each state uses Census district locations and is approximate where lines were redrawn for 2026. Swing compares the 2026 House margin with Trump's 2024 margin on the same lines (The Downballot). Gray: uncontested, same-party or top-four races with no comparison.</div>
-      </div>
-
       <div class="viz-box" data-maximizable data-zoom-title="All 435 U.S. House Districts">
         <div class="fig-head">
           <div>
@@ -358,14 +342,14 @@
 
     <!-- 05 · EXPLORE BY STATE -->
     <section id="map" class="col">
-      <h2 class="sec-h2"><span class="n">05 · Explore by State</span>Every state's 2026 results in one grid</h2>
+      <h2 class="sec-h2"><span class="n">05 · Explore by State</span>Every state and every district, side by side</h2>
       <p>
-        One square per state. Select any state to inspect its 2024 presidential baseline alongside Tuesday's Senate, gubernatorial, House pickup, and ballot-measure returns.
+        One square per state on the left, one hexagon per House district on the right. Select a state on either map to see its 2024 presidential baseline alongside Tuesday's Senate, governor, House and ballot-measure results; select it again or press Esc to clear.
       </p>
     </section>
 
     <section class="wide">
-      <div class="viz-box" data-maximizable data-zoom-title="50-State Results Grid & State Detail">
+      <div class="viz-box" data-maximizable data-zoom-title="States and House Districts">
         <div class="fig-head">
           <div>
             <div class="chips" role="group" aria-label="Map view">
@@ -379,11 +363,23 @@
           </div>
         </div>
 
-        <div class="map-explorer">
+        <div class="map-explorer map-duo">
           <div class="cartogram-panel">
             <div id="cartogram-grid" class="cartogram-grid" role="listbox" aria-label="50-state grid"></div>
           </div>
-          <aside id="state-inspector" class="inspector-card" aria-live="polite"></aside>
+          <div class="duo-right">
+            <div class="duo-head">
+              <h4 class="duo-title" id="hexmap-title">House districts: swing from 2024</h4>
+              <div class="chips" id="hexmap-mode" role="group" aria-label="District map coloring">
+                <button type="button" class="chip" aria-pressed="true" data-hm="swing">Swing from 2024</button>
+                <button type="button" class="chip" aria-pressed="false" data-hm="margin">2026 margin</button>
+              </div>
+              <div class="lg" id="hexmap-legend"></div>
+            </div>
+            <div id="hexmap" class="hexmap"></div>
+            <div class="src">One equal-size hexagon per district, placed roughly where it sits within its state; heavy lines are state borders and diagonal stripes mark seats that changed party. Placement uses Census district locations and is approximate where lines were redrawn for 2026. Swing compares the 2026 House margin with Trump's 2024 margin on the same lines (The Downballot). Gray: no comparable 2024 race.</div>
+            <aside id="state-inspector" class="inspector-card" aria-live="polite"></aside>
+          </div>
         </div>
       </div>
     </section>
