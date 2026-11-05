@@ -363,23 +363,23 @@
           </div>
         </div>
 
-        <div class="map-explorer map-duo">
+        <div class="map-explorer">
           <div class="cartogram-panel">
             <div id="cartogram-grid" class="cartogram-grid" role="listbox" aria-label="50-state grid"></div>
           </div>
-          <div class="duo-right">
-            <div class="duo-head">
-              <h4 class="duo-title" id="hexmap-title">House districts: swing from 2024</h4>
-              <div class="chips" id="hexmap-mode" role="group" aria-label="District map coloring">
-                <button type="button" class="chip" aria-pressed="true" data-hm="swing">Swing from 2024</button>
-                <button type="button" class="chip" aria-pressed="false" data-hm="margin">2026 margin</button>
-              </div>
-              <div class="lg" id="hexmap-legend"></div>
-            </div>
-            <div id="hexmap" class="hexmap"></div>
-            <div class="src">One equal-size hexagon per district, placed roughly where it sits within its state; heavy lines are state borders and diagonal stripes mark seats that changed party. Placement uses Census district locations and is approximate where lines were redrawn for 2026. Swing compares the 2026 House margin with Trump's 2024 margin on the same lines (The Downballot). Gray: no comparable 2024 race.</div>
-            <aside id="state-inspector" class="inspector-card" aria-live="polite"></aside>
+          <aside id="state-inspector" class="inspector-card" aria-live="polite"></aside>
+        </div>
+        <div class="map-stack-hex">
+        <div class="duo-head">
+          <h4 class="duo-title" id="hexmap-title">House districts: swing from 2024</h4>
+          <div class="chips" id="hexmap-mode" role="group" aria-label="District map coloring">
+            <button type="button" class="chip" aria-pressed="true" data-hm="swing">Swing from 2024</button>
+            <button type="button" class="chip" aria-pressed="false" data-hm="margin">2026 margin</button>
           </div>
+          <div class="lg" id="hexmap-legend"></div>
+        </div>
+        <div id="hexmap" class="hexmap"></div>
+        <div class="src">One equal-size hexagon per district, placed roughly where it sits within its state; heavy lines are state borders and diagonal stripes mark seats that changed party. Placement uses Census district locations and is approximate where lines were redrawn for 2026. Swing compares the 2026 House margin with Trump's 2024 margin on the same lines (The Downballot). Gray: no comparable 2024 race.</div>
         </div>
       </div>
     </section>

@@ -906,7 +906,7 @@
       const cs = ent.map(([, v]) => v[0] + 0.5 * (v[1] & 1));
       const rs = ent.map(([, v]) => v[1]);
       const c0 = Math.min(...cs), c1 = Math.max(...cs), r0 = Math.min(...rs), r1 = Math.max(...rs);
-      const W = Math.min(box.clientWidth || 900, 1000);
+      const W = Math.min(box.clientWidth || 900, 1120);
       const sq3 = Math.sqrt(3);
       const sz = (W - 8) / ((c1 - c0 + 1) * sq3);
       const Hh = Math.ceil((r1 - r0) * 1.5 * sz + 2 * sz + 6);

@@ -2056,3 +2056,8 @@ footer.ed-footer {
   .state-tile .flip-star { display: none; }
   .state-tile.tone-dem-flip { box-shadow: inset 0 0 0 2px #e8b53a; }
 }
+
+/* stacked: state grid + panel, then the district map full width */
+.map-stack-hex { margin-block-start: 34px; padding-block-start: 22px; border-block-start: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.map-stack-hex .duo-head { display: flex; flex-direction: column; gap: 6px; }
+.map-stack-hex #hexmap { inline-size: 100%; }
