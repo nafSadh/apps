@@ -13,10 +13,10 @@ name: Election 2026 results refresh
 
 on:
   workflow_dispatch: {}            # run on demand from the Actions tab
-  # schedule removed 2026-11-04: GitHub never fired it; refreshes now run locally via
-  # election2026/scripts/refresh-local.sh (launchd, every 20 min). Re-add if needed:
-  # schedule:
-  #   - cron: "7,27,47 * * * *"
+  schedule:
+    - cron: "7,27,47 * * * *"      # every 20 min, offset from :00 to dodge the top-of-hour queue
+  # Fallback if GitHub's scheduler stalls: election2026/scripts/refresh-local.sh via launchd
+  # (app.sadh.election2026.plist) runs the same update from a Mac.
 
 permissions:
   contents: write
