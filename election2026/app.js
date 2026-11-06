@@ -1056,9 +1056,11 @@
         const hideIdx = new Uint8Array(m.states.length);
         m.states.forEach((st, i) => { hideIdx[i] = shown(st) ? 0 : 1; });
         // dot size in CSS px: area grows with votes per dot; zoomed-in views get bigger dots
-        const base = scale === 1000 ? 0.62 : scale === 10000 ? 1.55 : 3.4;
+        // small and translucent, so dense mixed areas blend toward purple instead of one side painting over the other
+        const base = scale === 1000 ? 0.5 : scale === 10000 ? 1.3 : 3.0;
         const r = sel ? base * Math.min(scale === 1000 ? 3.2 : 2.2, Math.max(1, Math.sqrt(k) * 0.75))
                       : base * Math.max(scale === 1000 ? 0.42 : 0.6, Math.min(1.35, k));
+        const alpha = scale === 1000 ? (sel ? 0.55 : 0.62) : scale === 10000 ? 0.7 : 0.8;
         const toView = () => ctx.setTransform(dpr * k, 0, 0, dpr * k, dpr * ox, dpr * oy);
         function ground() {
           ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -1087,7 +1089,7 @@
         // dots are pre-shuffled; draw them in that order so neither party paints over the other
         function dots(i0, i1) {
           ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-          const sq = scale === 1000, a = scale === 1000 ? 0.9 : 0.85;
+          const sq = scale === 1000, a = alpha;
           let lastP = -1, lastA = -1;
           for (let i = i0; i < i1; i++) {
             const x = d.x[i] * k + ox, y = d.y[i] * k + oy;

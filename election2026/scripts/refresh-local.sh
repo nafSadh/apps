@@ -3,7 +3,7 @@
 # and push them. Run by launchd every 20 minutes (app.sadh.election2026.plist).
 # Only election2026/data.json, data.js and the dot map (election2026/dots/) are ever
 # committed; anything else you have uncommitted in the repo is left alone.
-# The dot map rebuilds on the first run each hour and needs: pip3 install numpy shapely pyshp
+# The dot map rebuilds on the first run each hour and needs: pip3 install numpy scipy shapely pyshp
 set -u
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
@@ -17,10 +17,10 @@ git fetch -q origin && git merge -q --ff-only "origin/$(git rev-parse --abbrev-r
 python3 election2026/scripts/update.py || { echo "update.py failed; nothing pushed"; exit 1; }
 
 if [ "$(date +%M)" -lt 20 ]; then
-  if python3 -c "import numpy, shapely, shapefile" 2>/dev/null; then
+  if python3 -c "import numpy, scipy, shapely, shapefile" 2>/dev/null; then
     python3 election2026/scripts/build_dots.py || echo "dot map rebuild failed; keeping the last good one"
   else
-    echo "dot map: skipped (pip3 install numpy shapely pyshp to enable)"
+    echo "dot map: skipped (pip3 install numpy scipy shapely pyshp to enable)"
   fi
 fi
 

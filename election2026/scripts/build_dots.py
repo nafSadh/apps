@@ -2,15 +2,18 @@
 """Build the dot-density layers for election2026 (Senate, House, governor).
 
 Each dot stands for a block of votes (1,000 / 10,000 / 100,000) for one party,
-dropped at a random spot inside the smallest unit NBC News / AP report:
+colored by the result of the smallest unit NBC News / AP report:
 
   Senate, governor  county (town in New England, municipality in RI,
-                    state House district in Alaska), colored by that unit's result.
-  House             district (2026 lines), colored by the district result. Inside a
-                    district, dots are spread over its counties in proportion to
-                    each county's turnout in that state's Senate or governor race,
-                    so a district's dots land where its voters live. States with no
-                    statewide race (IN, MO, ND, UT, WA) spread them evenly.
+                    state House district in Alaska)
+  House             district (2026 lines)
+
+Inside that unit, dots are placed where people live: the unit's votes are shared
+out across its Census block groups (about 240,000 nationwide, ~1,000 people each)
+in proportion to population, and each dot is scattered a little around its block
+group's population center, by about half the distance to the neighboring block
+groups, so dense city blocks stay tight and rural ones spread out. Dots are kept
+inside the unit and on land.
 
 Counts use stochastic rounding (a unit with 1,400 D votes at 1k/dot gets 1 dot
 60% of the time and 2 dots 40%), with a fixed seed, so totals stay unbiased at
@@ -23,12 +26,13 @@ Output (next to index.html):
 Coordinates are Albers USA (same constants as d3.geoAlbersUsa) in a 960x500
 frame, quantized x*64 and y*24.
 
-Needs numpy, shapely, pyshp:  pip install numpy shapely pyshp
+Needs numpy, scipy, shapely, pyshp:  pip install numpy scipy shapely pyshp
 Usage: python3 election2026/scripts/build_dots.py [--cached]
 (about 2.5 minutes: 121 pages, one second apart)
 """
 import io, json, math, os, re, sys, tempfile, time, urllib.request, zipfile
 import numpy as np
+from scipy.spatial import cKDTree
 import shapefile
 import shapely
 from shapely.geometry import Polygon, MultiPolygon, shape
@@ -41,6 +45,7 @@ CACHE = os.environ.get("DOTS_CACHE", os.path.join(tempfile.gettempdir(), "electi
 UA = "sadh.app-election2026-dots"
 SCALES = [1000, 10000, 100000]
 STATES_ZIP = "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_20m.zip"
+BLOCKGROUPS = "https://www2.census.gov/geo/docs/reference/cenpop2020/blkgrp/CenPop2020_Mean_BG.txt"
 
 NAMES = {'AL':'alabama','AK':'alaska','AZ':'arizona','AR':'arkansas','CA':'california','CO':'colorado','CT':'connecticut','DE':'delaware','FL':'florida','GA':'georgia','HI':'hawaii','ID':'idaho','IL':'illinois','IN':'indiana','IA':'iowa','KS':'kansas','KY':'kentucky','LA':'louisiana','ME':'maine','MD':'maryland','MA':'massachusetts','MI':'michigan','MN':'minnesota','MS':'mississippi','MO':'missouri','MT':'montana','NE':'nebraska','NV':'nevada','NH':'new-hampshire','NJ':'new-jersey','NM':'new-mexico','NY':'new-york','NC':'north-carolina','ND':'north-dakota','OH':'ohio','OK':'oklahoma','OR':'oregon','PA':'pennsylvania','RI':'rhode-island','SC':'south-carolina','SD':'south-dakota','TN':'tennessee','TX':'texas','UT':'utah','VT':'vermont','VA':'virginia','WA':'washington','WV':'west-virginia','WI':'wisconsin','WY':'wyoming'}
 ST = sorted(NAMES)
@@ -214,7 +219,87 @@ def party_votes(cands):
     return v
 
 
-# ---------------------------------------------------------------- sampling
+# ---------------------------------------------------------------- block groups (where people live)
+class BlockGroups:
+    """Census 2020 block-group population centers, projected; one KD-tree per state."""
+    def __init__(self, fips2st):
+        os.makedirs(CACHE, exist_ok=True)
+        fn = os.path.join(CACHE, "blockgroups.txt")
+        if not os.path.exists(fn):
+            open(fn, "wb").write(urllib.request.urlopen(BLOCKGROUPS, timeout=120).read())
+        raw = np.genfromtxt(fn, delimiter=",", skip_header=1, dtype=str, encoding="utf-8-sig")
+        stf, pop = raw[:, 0], raw[:, 4].astype(float)
+        lat, lon = raw[:, 5].astype(float), raw[:, 6].astype(float)
+        keep = pop > 0
+        self.st = np.array([ST.index(fips2st[f]) if f in fips2st else -1 for f in stf])
+        keep &= self.st >= 0
+        self.st, self.pop, self.cty = self.st[keep], pop[keep], np.array([a + b for a, b in zip(raw[keep, 0], raw[keep, 1])])
+        lat, lon = lat[keep], lon[keep]
+        self.x = np.zeros(len(lat)); self.y = np.zeros(len(lat))
+        self.r = np.zeros(len(lat))
+        for si, st in enumerate(ST):
+            m = self.st == si
+            if not m.any():
+                continue
+            x, y = proj_for(st)(lon[m], lat[m])
+            self.x[m], self.y[m] = x, y
+            # scatter radius: ~half the distance to the 3rd nearest block group, so dots fill the
+            # block group's own patch without piling onto the centroid or bleeding far past it
+            pts = np.column_stack([x, y])
+            k = min(4, len(pts))
+            d, _ = cKDTree(pts).query(pts, k=k)
+            self.r[m] = np.clip(0.55 * d[:, -1], 0.04, 6.0)
+        self.pts = shapely.points(self.x, self.y)
+
+    def assign(self, geoms):
+        """For a list of unit geoms (one state, one layer): list of index arrays, every populated
+        block group of that state landing in exactly one unit (nearest unit if it falls just outside)."""
+        if not geoms:
+            return []
+        tree = shapely.STRtree(geoms)
+        res = [[] for _ in geoms]
+        hit = np.zeros(len(self.pts), dtype=bool)
+        # restrict to the state(s) these units are in via bounds
+        minx, miny, maxx, maxy = unary_union(geoms).bounds if len(geoms) > 1 else geoms[0].bounds
+        cand = np.where((self.x >= minx - 8) & (self.x <= maxx + 8) & (self.y >= miny - 8) & (self.y <= maxy + 8))[0]
+        if len(cand) == 0:
+            return res
+        pi, gi = tree.query(self.pts[cand], predicate="within")
+        seen = set()
+        for a, b in zip(pi, gi):
+            idx = cand[a]
+            if idx in seen:
+                continue
+            seen.add(idx); res[b].append(idx); hit[idx] = True
+        return [np.array(r, dtype=int) for r in res]
+
+BG = None
+
+def place(geom, bgidx, n, rng):
+    """n points inside geom, spread over its block groups by population, scattered around each center."""
+    if n <= 0:
+        return np.empty((0, 2))
+    if bgidx is None or len(bgidx) == 0:
+        return sample_in(geom, n, rng)
+    w = BG.pop[bgidx]
+    alloc = rng.multinomial(n, w / w.sum())
+    rep = np.repeat(bgidx, alloc)
+    cx, cy, rr = BG.x[rep], BG.y[rep], BG.r[rep]
+    out = np.empty((n, 2))
+    todo = np.arange(n)
+    for shrink in (1.0, 0.4, 0.0):
+        if len(todo) == 0:
+            break
+        ang = rng.uniform(0, 2 * np.pi, len(todo))
+        rad = rr[todo] * shrink * np.sqrt(rng.uniform(0, 1, len(todo)))
+        x = cx[todo] + rad * np.cos(ang); y = cy[todo] + rad * np.sin(ang)
+        ok = shapely.contains_xy(geom, x, y) if shrink > 0 else np.ones(len(todo), dtype=bool)
+        out[todo[ok], 0] = x[ok]; out[todo[ok], 1] = y[ok]
+        todo = todo[~ok]
+    return out
+
+
+# ---------------------------------------------------------------- sampling (fallback for units with no block group)
 def sample_in(geom, n, rng):
     if n <= 0 or geom is None:
         return np.empty((0, 2))
@@ -285,30 +370,28 @@ def main():
     sf = shapefile.Reader(shp=io.BytesIO(z.read(base + ".shp")), dbf=io.BytesIO(z.read(base + ".dbf")),
                           shx=io.BytesIO(z.read(base + ".shx")))
     state_shape = {}
+    fips2st = {}
     for rec, shp in zip(sf.records(), sf.shapes()):
         st = rec["STUSPS"]
         if st not in NAMES:
             continue
+        fips2st[str(rec["STATEFP"]).zfill(2)] = st
         gj = shp.__geo_interface__
         polys = gj["coordinates"] if gj["type"] == "MultiPolygon" else [gj["coordinates"]]
         g = to_shape([[np.array(r) for r in p] for p in polys], st)
         state_shape[st] = g
         LAND[st] = g
 
-    # turnout weights for House placement: statewide-race units with total votes
-    turnout = {}
+    global BG
+    BG = BlockGroups(fips2st)
+    print(f"block groups: {len(BG.pop):,} with population")
+
     unit_cache = {}
     for st in ST:
         for off in ("senate", "governor"):
             pg = pages.get((st, off))
-            if not pg:
-                continue
-            by, keymap, missing = unit_shapes(pg, st)
-            unit_cache[(st, off)] = (by, keymap, missing)
-            if st not in turnout:
-                md = pg["mapData"]
-                turnout[st] = [(by[s], sum(sum(party_votes(md[k]["candidates"])) for k in ks))
-                               for s, ks in keymap.items()]
+            if pg:
+                unit_cache[(st, off)] = unit_shapes(pg, st)
 
     meta = {"scales": SCALES, "frame": [960, 500], "quant": [64, 24], "states": ST,
             "as_of": max(last) if last else None, "layers": {}, "outline": {}}
@@ -316,24 +399,23 @@ def main():
 
     for layer in ("senate", "governor", "house"):
         rng = np.random.default_rng(2026 + len(layer))
-        groups = []                   # (state_idx, party, geom-or-pieces, votes)
+        groups = []                   # (state_idx, party, geom, block-group idx, votes)
         dropped = 0
         for si, st in enumerate(ST):
             pg = pages.get((st, layer))
             if not pg:
                 continue
             md = pg["mapData"]
+            units = []                # (geom, [D, R, other])
             if layer != "house":
                 by, keymap, missing = unit_cache[(st, layer)]
                 dropped += sum(sum(party_votes(md[k]["candidates"])) for k in missing)
-                for s, ks in keymap.items():
+                for s_, ks in keymap.items():
                     v = [0, 0, 0]
                     for k in ks:
                         pv = party_votes(md[k]["candidates"])
                         v = [a + b for a, b in zip(v, pv)]
-                    for p in range(3):
-                        if v[p]:
-                            groups.append((si, p, [(by[s], 1.0)], v[p]))
+                    units.append((by[s_], v))
             else:
                 geoms = topo_geoms(pg["counties"], "districts")
                 dshape = {}
@@ -349,40 +431,28 @@ def main():
                     if g is None:
                         dropped += sum(v)
                         continue
-                    pieces = []
-                    if st in turnout:
-                        for ug, tv in turnout[st]:
-                            if tv <= 0 or not ug.intersects(g):
-                                continue
-                            part = ug.intersection(g)
-                            if part.is_empty or part.area <= 0:
-                                continue
-                            pieces.append((part, tv * part.area / ug.area))
-                    if not pieces or sum(w for _, w in pieces) <= 0:
-                        pieces = [(g, 1.0)]
-                    for p in range(3):
-                        if v[p]:
-                            groups.append((si, p, pieces, v[p]))
+                    units.append((g, v))
+            bgs = BG.assign([g for g, _ in units])
+            for (g, v), idx in zip(units, bgs):
+                for p in range(3):
+                    if v[p]:
+                        groups.append((si, p, g, idx, v[p]))
 
         tot = [0, 0, 0]
         by_state = {}
-        for si, p, _, v in groups:
+        for si, p, _, _, v in groups:
             tot[p] += v
             by_state.setdefault(ST[si], [0, 0, 0])[p] += v
         meta["layers"][layer] = {"votes": tot, "dropped_votes": dropped, "by_state": by_state, "dots": {}}
         for s in SCALES:
             xs, ys, ps, ss = [], [], [], []
-            for si, p, pieces, v in groups:
+            for si, p, g, idx, v in groups:
                 n = sround(v, s, rng)
                 if n <= 0:
                     continue
-                w = np.array([pw for _, pw in pieces], dtype=float)
-                alloc = rng.multinomial(n, w / w.sum()) if len(pieces) > 1 else [n]
-                for (pg_, _), k in zip(pieces, alloc):
-                    if k:
-                        pts = sample_in(pg_, int(k), rng)
-                        xs.append(pts[:, 0]); ys.append(pts[:, 1])
-                        ps.append(np.full(len(pts), p)); ss.append(np.full(len(pts), si))
+                pts = place(g, idx, n, rng)
+                xs.append(pts[:, 0]); ys.append(pts[:, 1])
+                ps.append(np.full(len(pts), p)); ss.append(np.full(len(pts), si))
             x = np.concatenate(xs); y = np.concatenate(ys)
             p = np.concatenate(ps).astype(np.uint16); si = np.concatenate(ss).astype(np.uint8)
             order = rng.permutation(len(x))                        # random draw order for the animation
