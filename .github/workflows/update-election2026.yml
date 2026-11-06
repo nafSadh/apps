@@ -28,7 +28,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,6 +37,15 @@ jobs:
 
       - name: Fetch results
         run: python3 election2026/scripts/update.py
+
+      - name: Rebuild the dot map (hourly, or on manual runs)
+        run: |
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] && [ "$(date -u +%M)" -ge 20 ]; then
+            echo "Dot map: skipped this run (rebuilds on the first run each hour)."; exit 0
+          fi
+          pip install --quiet numpy shapely pyshp
+          DOTS_CACHE="$RUNNER_TEMP/dots" python3 election2026/scripts/build_dots.py \
+            || echo "::warning::dot map rebuild failed; keeping the last good one"
 
       - name: Sanity-check the data
         run: |
@@ -56,7 +65,7 @@ jobs:
         run: |
           git config user.name  "election2026-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add election2026/data.json election2026/data.js
+          git add election2026/data.json election2026/data.js election2026/dots
           if git diff --cached --quiet; then
             echo "Results unchanged."; exit 0
           fi

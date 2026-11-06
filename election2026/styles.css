@@ -2061,3 +2061,11 @@ footer.ed-footer {
 .map-stack-hex { margin-block-start: 34px; padding-block-start: 22px; border-block-start: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
 .map-stack-hex .duo-head { display: flex; flex-direction: column; gap: 6px; }
 .map-stack-hex #hexmap { inline-size: 100%; }
+
+/* Dot-density map */
+.map-stack-dots { margin-block-start: 34px; padding-block-start: 22px; border-block-start: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.map-stack-dots .duo-head { display: flex; flex-direction: column; gap: 6px; }
+.dot-controls { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.dotmap { inline-size: 100%; min-inline-size: 0; position: relative; }
+.dotmap canvas { display: block; max-inline-size: 100%; touch-action: manipulation; }
+.dot-controls .chip[hidden] { display: none; }

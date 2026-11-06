@@ -974,6 +974,234 @@
       });
     });
 
+    /* ----------------------------------------------------------------------
+       Dot-density map: one dot per N votes (scripts/build_dots.py → dots/)
+       ---------------------------------------------------------------------- */
+    const DOT = { meta: null, bins: {}, layer: "house", scale: 1000, raf: 0, loading: null, paths: null, played: {} };
+    const DOT_LAYER_NAME = { house: "House", senate: "Senate", governor: "Governor" };
+    function dotBase() {
+      const s = document.querySelector('script[src*="app.js"]');
+      return s ? s.src.replace(/app\.js.*$/, "dots/") : "dots/";
+    }
+    function loadDotMeta() {
+      if (!DOT.loading) DOT.loading = fetch(dotBase() + "meta.json").then((r) => r.json()).then((m) => {
+        DOT.meta = m;
+        DOT.paths = {};
+        Object.entries(m.outline).forEach(([st, d]) => { DOT.paths[st] = new Path2D(d); });
+        return m;
+      });
+      return DOT.loading;
+    }
+    function loadDotBin(layer, scale) {
+      const k = layer + "-" + scale;
+      if (!DOT.bins[k]) DOT.bins[k] = fetch(dotBase() + k + ".bin").then((r) => r.arrayBuffer()).then((buf) => {
+        const n = Math.floor(buf.byteLength / 5);
+        const xy = new Uint16Array(buf, 0, n * 2);
+        const st = new Uint8Array(buf, n * 4, n);
+        const x = new Float32Array(n), y = new Float32Array(n), p = new Uint8Array(n);
+        for (let i = 0; i < n; i++) { x[i] = xy[2 * i] / 64; y[i] = (xy[2 * i + 1] & 16383) / 24; p[i] = xy[2 * i + 1] >> 14; }
+        return { n, x, y, p, st };
+      });
+      return DOT.bins[k];
+    }
+    const fmtM = (v) => v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : v >= 1e3 ? Math.round(v / 1e3) + "K" : String(v);
+    function drawDotMap(animate) {
+      const box = document.getElementById("dotmap");
+      if (!box || !DOT.meta) return;
+      const layer = DOT.layer, scale = DOT.scale, m = DOT.meta, L = m.layers[layer];
+      const sel = state.selectedSt && m.bbox && m.bbox[state.selectedSt] ? state.selectedSt : null;
+      DOT.drawnSel = sel;
+      const back = document.getElementById("dotmap-back");
+      if (back) back.hidden = !sel;
+      const cityBtn = document.getElementById("dotmap-cities");
+      if (cityBtn) { cityBtn.hidden = !sel || !(m.cities && m.cities[sel]); cityBtn.setAttribute("aria-pressed", String(DOT.showCities !== false)); }
+      loadDotBin(layer, scale).then((d) => {
+        if (layer !== DOT.layer || scale !== DOT.scale || sel !== DOT.drawnSel) return;
+        cancelAnimationFrame(DOT.raf);
+        const cv = box.querySelector("canvas");
+        const W = Math.max(280, box.clientWidth || 900);
+        const [FW, FH] = m.frame;
+        // view: frame coords -> CSS px. Whole country fits the width; a selected state fills it.
+        let k, ox = 0, oy = 0, H;
+        if (!sel) { k = W / FW; H = Math.round(FH * k); }
+        else {
+          const [x0, y0, x1, y1] = m.bbox[sel];
+          const pad = Math.max(x1 - x0, y1 - y0) * 0.06 + 2;
+          const bw = x1 - x0 + 2 * pad, bh = y1 - y0 + 2 * pad;
+          const maxH = Math.max(320, Math.min(window.innerHeight * 0.8, W * 0.9));
+          k = Math.min(W / bw, maxH / bh, 60);
+          H = Math.max(260, Math.round(Math.min(maxH, bh * k)));
+          ox = (W - (x1 - x0) * k) / 2 - x0 * k;
+          oy = (H - (y1 - y0) * k) / 2 - y0 * k;
+        }
+        DOT.view = { k, ox, oy };
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+        cv.style.width = W + "px"; cv.style.height = H + "px";
+        const ctx = cv.getContext("2d");
+        const col = ["--D", "--R", "--I"].map(cssColor);
+        const cBg = cssColor("--bg"), cAlt = cssColor("--alt"), cLine = cssColor("--mut"), cGrid = cssColor("--line"), cInk = cssColor("--ink");
+        const has = new Set(Object.keys(L.by_state));
+        const selIdx = sel ? m.states.indexOf(sel) : -1;
+        // zoomed in, show only the selected state's own map (lower 48, or the Alaska / Hawaii inset)
+        const grp = (st) => (st === "AK" || st === "HI" ? st : "L48");
+        const shown = (st) => !sel || grp(st) === grp(sel);
+        const hideIdx = new Uint8Array(m.states.length);
+        m.states.forEach((st, i) => { hideIdx[i] = shown(st) ? 0 : 1; });
+        // dot size in CSS px: area grows with votes per dot; zoomed-in views get bigger dots
+        const base = scale === 1000 ? 0.62 : scale === 10000 ? 1.55 : 3.4;
+        const r = sel ? base * Math.min(scale === 1000 ? 3.2 : 2.2, Math.max(1, Math.sqrt(k) * 0.75))
+                      : base * Math.max(scale === 1000 ? 0.42 : 0.6, Math.min(1.35, k));
+        const toView = () => ctx.setTransform(dpr * k, 0, 0, dpr * k, dpr * ox, dpr * oy);
+        function ground() {
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          ctx.clearRect(0, 0, W, H);
+          toView();
+          Object.entries(DOT.paths).forEach(([st, p]) => {
+            if (!shown(st)) return;
+            ctx.fillStyle = has.has(st) ? cAlt : cBg;
+            ctx.globalAlpha = sel && sel !== st ? 0.55 : 1;
+            ctx.fill(p);
+          });
+          ctx.globalAlpha = 1;
+        }
+        function outlines() {
+          toView();
+          ctx.lineJoin = "round";
+          Object.entries(DOT.paths).forEach(([st, p]) => {
+            if (!shown(st)) return;
+            ctx.globalAlpha = sel && sel !== st ? 0.5 : 0.9;
+            ctx.strokeStyle = has.has(st) ? cLine : cGrid;
+            ctx.lineWidth = (sel === st ? 1.8 : sel ? 1 : 0.6) / k;
+            ctx.stroke(p);
+          });
+          ctx.globalAlpha = 1;
+        }
+        // dots are pre-shuffled; draw them in that order so neither party paints over the other
+        function dots(i0, i1) {
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          const sq = scale === 1000, a = scale === 1000 ? 0.9 : 0.85;
+          let lastP = -1, lastA = -1;
+          for (let i = i0; i < i1; i++) {
+            const x = d.x[i] * k + ox, y = d.y[i] * k + oy;
+            if (x < -4 || y < -4 || x > W + 4 || y > H + 4 || hideIdx[d.st[i]]) continue;
+            const pi = d.p[i], al = selIdx >= 0 && d.st[i] !== selIdx ? 0.12 : a;
+            if (pi !== lastP) { ctx.fillStyle = col[pi]; lastP = pi; }
+            if (al !== lastA) { ctx.globalAlpha = al; lastA = al; }
+            if (sq) ctx.fillRect(x - r, y - r, 2 * r, 2 * r);
+            else { ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill(); }
+          }
+          ctx.globalAlpha = 1;
+        }
+        // city labels for the selected state (NBC's picks): biggest first, skip any that would collide
+        function cities() {
+          const list = DOT.showCities !== false && sel && m.cities && m.cities[sel];
+          if (!list) return;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          const ff = getComputedStyle(document.body).fontFamily;
+          const boxes = [];
+          list.forEach(([name, fx, fy, tier, pos]) => {
+            const x = fx * k + ox, y = fy * k + oy;
+            const fs = W < 520 ? (tier === 0 ? 12 : 11) : (tier === 0 ? 14 : tier === 1 ? 13 : 12);
+            ctx.font = `${tier === 0 ? 700 : 600} ${fs}px ${ff}`;
+            const tw = ctx.measureText(name).width, g = 7;
+            let tx = x + g, ty = y, align = "left", base = "middle";
+            if (pos === "L") { tx = x - g; align = "right"; }
+            else if (pos === "T") { tx = x; ty = y - g; align = "center"; base = "bottom"; }
+            else if (pos === "B") { tx = x; ty = y + g; align = "center"; base = "top"; }
+            const bx0 = align === "left" ? tx : align === "right" ? tx - tw : tx - tw / 2;
+            const by0 = base === "middle" ? ty - fs / 2 : base === "bottom" ? ty - fs : ty;
+            const bb = [bx0 - 3, by0 - 2, bx0 + tw + 3, by0 + fs + 2];
+            if (bb[0] < 2 || bb[2] > W - 2 || bb[1] < 2 || bb[3] > H - 2) return;
+            if (boxes.some((o) => !(bb[2] < o[0] || bb[0] > o[2] || bb[3] < o[1] || bb[1] > o[3]))) return;
+            boxes.push(bb, [x - 4, y - 4, x + 4, y + 4]);
+            ctx.beginPath(); ctx.arc(x, y, tier === 0 ? 3.6 : 3, 0, 6.2832);
+            ctx.fillStyle = cBg; ctx.fill(); ctx.lineWidth = 1.6; ctx.strokeStyle = cInk; ctx.stroke();
+            ctx.textAlign = align; ctx.textBaseline = base;
+            ctx.lineJoin = "round"; ctx.lineWidth = 4; ctx.strokeStyle = cBg; ctx.strokeText(name, tx, ty);
+            ctx.fillStyle = cInk; ctx.fillText(name, tx, ty);
+          });
+        }
+        ground(); dots(0, d.n); outlines(); cities();
+        // hit-testing for tooltip / click
+        const tipFor = (st) => {
+          const v = L.by_state[st];
+          if (!v) return `<div class="h">${esc(STATE_NAMES[st])}</div><div class="m">No ${DOT_LAYER_NAME[layer]} race in 2026</div>`;
+          const t = v[0] + v[1] + v[2];
+          const row = (pi, lab) => v[pi] ? `<div class="r"><span><i style="background:var(--${["D", "R", "I"][pi]})"></i>${lab}</span><span>${v[pi].toLocaleString()} · ${(100 * v[pi] / t).toFixed(1)}%</span></div>` : "";
+          return `<div class="h">${esc(STATE_NAMES[st])} · ${DOT_LAYER_NAME[layer]}</div>${row(0, "Democrats")}${row(1, "Republicans")}${row(2, "Other")}<div class="m">≈ ${Math.round(t / scale).toLocaleString()} dots${st === sel ? "" : " · click to zoom in"}</div>`;
+        };
+        cv.onmousemove = (ev) => {
+          const st = dotStateAt(ev, cv);
+          if (!st) { hideTip(); cv.style.cursor = sel ? "zoom-out" : "default"; return; }
+          cv.style.cursor = st === sel ? "zoom-out" : "zoom-in";
+          showTip(tipFor(st), ev);
+        };
+        cv.onmouseleave = hideTip;
+        cv.onclick = (ev) => {
+          const st = dotStateAt(ev, cv);
+          hideTip();
+          selectState(!st || st === state.selectedSt ? null : st);
+        };
+        // legend + title
+        const dd = L.dots[String(scale)];
+        const lg = document.getElementById("dotmap-legend");
+        const v = sel ? (L.by_state[sel] || [0, 0, 0]) : L.votes;
+        const nd = sel ? Math.round((v[0] + v[1] + v[2]) / scale) : dd.n;
+        const tail = sel ? (L.by_state[sel] ? `≈ ${nd.toLocaleString()} dots in ${esc(STATE_NAMES[sel])}` : `No ${DOT_LAYER_NAME[layer]} race in ${esc(STATE_NAMES[sel])}`)
+          : `${dd.n.toLocaleString()} dots · ${has.size} ${has.size === 50 ? "states" : "states with a race"} · click a state to zoom in`;
+        if (lg) lg.innerHTML = `<span><i style="background:var(--D)"></i>Democrat ${fmtM(v[0])}</span><span><i style="background:var(--R)"></i>Republican ${fmtM(v[1])}</span>${v[2] ? `<span><i style="background:var(--I)"></i>Other ${fmtM(v[2])}</span>` : ""}<span style="color:var(--mut)">${tail}</span>`;
+        const ti = document.getElementById("dotmap-title");
+        if (ti) ti.textContent = sel ? `Every ${DOT_LAYER_NAME[layer]} vote in ${STATE_NAMES[sel]}, as dots` : `Every ${DOT_LAYER_NAME[layer]} vote, as dots`;
+        const asof = document.getElementById("dotmap-asof");
+        if (asof && m.as_of) {
+          const dt = new Date(m.as_of);
+          if (isNaN(dt)) asof.textContent = m.as_of;
+          else {
+            const pt = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).formatToParts(dt).map((x) => [x.type, x.value]));
+            asof.textContent = `as of ${pt.month}. ${pt.day}, ${pt.hour}:${pt.minute} ${pt.dayPeriod === "PM" ? "p.m." : "a.m."} PT`;
+          }
+        }
+      });
+    }
+    // canvas can't parse light-dark()/var(); resolve through a probe element
+    function cssColor(v) {
+      let pr = document.getElementById("dot-color-probe");
+      if (!pr) { pr = document.createElement("span"); pr.id = "dot-color-probe"; pr.style.display = "none"; document.getElementById("dotmap").appendChild(pr); }
+      pr.style.color = `var(${v})`;
+      return getComputedStyle(pr).color;
+    }
+    function dotStateAt(ev, cv) {
+      if (!DOT.paths || !DOT.view) return null;
+      const b = cv.getBoundingClientRect(), V = DOT.view;
+      const x = (ev.clientX - b.left - V.ox) / V.k, y = (ev.clientY - b.top - V.oy) / V.k;
+      const ctx = cv.getContext("2d");
+      ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+      let hit = null;
+      const g = (st) => (st === "AK" || st === "HI" ? st : "L48"), sel = DOT.drawnSel;
+      for (const [st, p] of Object.entries(DOT.paths)) { if ((!sel || g(st) === g(sel)) && ctx.isPointInPath(p, x, y)) { hit = st; break; } }
+      ctx.restore();
+      return hit;
+    }
+    function setDotChips() {
+      document.querySelectorAll("#dotmap-layer .chip").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.dl === DOT.layer)));
+      document.querySelectorAll("#dotmap-scale .chip").forEach((x) => x.setAttribute("aria-pressed", String(+x.dataset.ds === DOT.scale)));
+    }
+    document.querySelectorAll("#dotmap-layer .chip").forEach((b) => b.addEventListener("click", () => { DOT.layer = b.dataset.dl; setDotChips(); drawDotMap(true); }));
+    document.querySelectorAll("#dotmap-scale .chip").forEach((b) => b.addEventListener("click", () => { DOT.scale = +b.dataset.ds; setDotChips(); drawDotMap(true); }));
+    const dotBack = document.getElementById("dotmap-back");
+    if (dotBack) dotBack.addEventListener("click", () => selectState(null));
+    const dotCities = document.getElementById("dotmap-cities");
+    if (dotCities) dotCities.addEventListener("click", () => { DOT.showCities = DOT.showCities === false; drawDotMap(false); });
+    (function lazyDots() {
+      const box = document.getElementById("dotmap");
+      if (!box) return;
+      const go = () => loadDotMeta().then(() => drawDotMap(true)).catch((e) => { box.innerHTML = `<p class="src">Dot map data did not load (${esc(String(e))}).</p>`; });
+      if (!("IntersectionObserver" in window)) return go();
+      const io = new IntersectionObserver((ents) => { if (ents.some((e) => e.isIntersecting)) { io.disconnect(); go(); } }, { rootMargin: "300px" });
+      io.observe(box);
+    })();
+
     function filterHouse435() {
       const f = state.hgridFilter;
       DISTRICTS.forEach((d) => {
@@ -1492,6 +1720,7 @@
       }
       renderInspector(st);
       drawHexMap();
+      drawDotMap(false);
       const clr = inspectorEl && inspectorEl.querySelector("[data-clear-state]");
       if (clr) clr.addEventListener("click", () => selectState(null));
     }
@@ -2127,6 +2356,7 @@
     function redrawResponsiveCharts() {
       drawArrowSwing();
       drawHexMap();
+      drawDotMap(false);
       renderSwingScatter();
       drawHouseScatter();
       drawExitGroups();
@@ -2136,7 +2366,7 @@
 
     redrawResponsiveCharts();
     initMaximizeBoxes(redrawResponsiveCharts);
-    initThemeControls();
+    initThemeControls(() => drawDotMap(false));
     bindStaticTips();
 
     let resizeTimer;

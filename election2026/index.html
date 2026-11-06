@@ -342,9 +342,9 @@
 
     <!-- 05 · EXPLORE BY STATE -->
     <section id="map" class="col">
-      <h2 class="sec-h2"><span class="n">05 · Explore by State</span>Every state and every district, side by side</h2>
+      <h2 class="sec-h2"><span class="n">05 · Explore by State</span>Every state, every district, every vote</h2>
       <p>
-        One square per state on the left, one hexagon per House district on the right. Select a state on either map to see its 2024 presidential baseline alongside Tuesday's Senate, governor, House and ballot-measure results; select it again or press Esc to clear.
+        One square per state, one hexagon per House district, then every vote counted as a dot. Select a state on any map to see its 2024 presidential baseline alongside Tuesday's Senate, governor, House and ballot-measure results; select it again or press Esc to clear.
       </p>
     </section>
 
@@ -380,6 +380,28 @@
         </div>
         <div id="hexmap" class="hexmap"></div>
         <div class="src">One equal-size hexagon per district, placed roughly where it sits within its state; heavy lines are state borders and diagonal stripes mark seats that changed party. Placement uses Census district locations and is approximate where lines were redrawn for 2026. Swing compares the 2026 House margin with Trump's 2024 margin on the same lines (The Downballot). Gray: no comparable 2024 race.</div>
+        </div>
+        <div class="map-stack-dots">
+          <div class="duo-head">
+            <h4 class="duo-title" id="dotmap-title">Every House vote, as dots</h4>
+            <div class="dot-controls">
+              <div class="chips" id="dotmap-layer" role="group" aria-label="Dot map race">
+                <button type="button" class="chip" aria-pressed="true" data-dl="house">House</button>
+                <button type="button" class="chip" aria-pressed="false" data-dl="senate">Senate</button>
+                <button type="button" class="chip" aria-pressed="false" data-dl="governor">Governor</button>
+              </div>
+              <div class="chips" id="dotmap-scale" role="group" aria-label="Votes per dot">
+                <button type="button" class="chip" aria-pressed="true" data-ds="1000">1 dot = 1,000</button>
+                <button type="button" class="chip" aria-pressed="false" data-ds="10000">10,000</button>
+                <button type="button" class="chip" aria-pressed="false" data-ds="100000">100,000</button>
+              </div>
+              <button type="button" class="chip" id="dotmap-cities" aria-pressed="true" hidden>City labels</button>
+              <button type="button" class="chip" id="dotmap-back" hidden>← Whole country</button>
+            </div>
+            <div class="lg" id="dotmap-legend" aria-live="polite"></div>
+          </div>
+          <div id="dotmap" class="dotmap" role="img" aria-label="Dot density map of votes by party"><canvas></canvas></div>
+          <div class="src">Each dot is a block of votes for one party, dropped at a random spot in the county where they were cast (towns in New England, state House districts in Alaska). House dots use each district's result and are spread across the district's counties by turnout in that state's Senate or governor race; in states with neither race (IN, MO, ND, UT, WA) they are spread evenly. Purple dots are independents and third parties. Blank states had no race of that kind. Click a state to zoom in and see its cities; click again or press Esc to zoom out. Dots show votes, not land, so empty space means few voters. Results: NBC News / AP, <span id="dotmap-asof"></span>.</div>
         </div>
       </div>
     </section>
