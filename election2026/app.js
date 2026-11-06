@@ -984,24 +984,31 @@
       return s ? s.src.replace(/app\.js.*$/, "dots/") : "dots/";
     }
     function loadDotMeta() {
-      if (!DOT.loading) DOT.loading = fetch(dotBase() + "meta.json").then((r) => r.json()).then((m) => {
+      if (!DOT.loading) DOT.loading = fetch(dotBase() + "meta.json", { cache: "no-cache" }).then((r) => {
+        if (!r.ok) throw new Error("meta.json " + r.status);
+        return r.json();
+      }).then((m) => {
         DOT.meta = m;
         DOT.paths = {};
         Object.entries(m.outline).forEach(([st, d]) => { DOT.paths[st] = new Path2D(d); });
         return m;
-      });
+      }).catch((e) => { DOT.loading = null; throw e; });      // let the next attempt retry
       return DOT.loading;
     }
     function loadDotBin(layer, scale) {
       const k = layer + "-" + scale;
-      if (!DOT.bins[k]) DOT.bins[k] = fetch(dotBase() + k + ".bin").then((r) => r.arrayBuffer()).then((buf) => {
+      const ver = encodeURIComponent((DOT.meta && DOT.meta.as_of) || "");   // pairs each file with this meta
+      if (!DOT.bins[k]) DOT.bins[k] = fetch(dotBase() + k + ".bin?v=" + ver).then((r) => {
+        if (!r.ok) throw new Error(k + ".bin " + r.status);
+        return r.arrayBuffer();
+      }).then((buf) => {
         const n = Math.floor(buf.byteLength / 5);
         const xy = new Uint16Array(buf, 0, n * 2);
         const st = new Uint8Array(buf, n * 4, n);
         const x = new Float32Array(n), y = new Float32Array(n), p = new Uint8Array(n);
         for (let i = 0; i < n; i++) { x[i] = xy[2 * i] / 64; y[i] = (xy[2 * i + 1] & 16383) / 24; p[i] = xy[2 * i + 1] >> 14; }
         return { n, x, y, p, st };
-      });
+      }).catch((e) => { delete DOT.bins[k]; throw e; });
       return DOT.bins[k];
     }
     const fmtM = (v) => v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : v >= 1e3 ? Math.round(v / 1e3) + "K" : String(v);
@@ -1162,6 +1169,9 @@
             asof.textContent = `as of ${pt.month}. ${pt.day}, ${pt.hour}:${pt.minute} ${pt.dayPeriod === "PM" ? "p.m." : "a.m."} PT`;
           }
         }
+      }).catch((e) => {
+        const lg = document.getElementById("dotmap-legend");
+        if (lg) lg.innerHTML = `<span style="color:var(--mut)">The dot data didn't load (${esc(String(e.message || e))}). Click a race or dot size to try again.</span>`;
       });
     }
     // canvas can't parse light-dark()/var(); resolve through a probe element
