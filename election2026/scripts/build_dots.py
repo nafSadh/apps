@@ -11,8 +11,8 @@ colored by the result of the smallest unit NBC News / AP report:
 Inside that unit, dots are placed where people live: the unit's votes are shared
 out across its Census block groups (about 240,000 nationwide, ~1,000 people each)
 in proportion to population, and each dot is scattered a little around its block
-group's population center, by about half the distance to the neighboring block
-groups, so dense city blocks stay tight and rural ones spread out. Dots are kept
+group's population center (within about a third of the distance to the neighboring
+block groups, denser toward the center), so dots trace where people actually are. Dots are kept
 inside the unit and on land.
 
 Counts use stochastic rounding (a unit with 1,400 D votes at 1k/dot gets 1 dot
@@ -21,10 +21,10 @@ every scale and rebuilds are stable.
 
 Output (next to index.html):
   dots/meta.json            scales, per-layer totals, as-of, state outline paths
-  dots/<layer>-<scale>.bin  per dot: uint16 x, uint16 y|party<<14, uint8 state
+  dots/<layer>-<scale>.bin  per dot: uint32 x*4096, uint32 y*4096, uint8 party<<6|state
 
 Coordinates are Albers USA (same constants as d3.geoAlbersUsa) in a 960x500
-frame, quantized x*64 and y*24.
+frame; 1/4096 px keeps dots off a visible grid even zoomed in to a metro.
 
 Needs numpy, scipy, shapely, pyshp:  pip install numpy scipy shapely pyshp
 Usage: python3 election2026/scripts/build_dots.py [--cached]
@@ -46,6 +46,7 @@ UA = "sadh.app-election2026-dots"
 SCALES = [1000, 10000, 100000]
 STATES_ZIP = "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_20m.zip"
 BLOCKGROUPS = "https://www2.census.gov/geo/docs/reference/cenpop2020/blkgrp/CenPop2020_Mean_BG.txt"
+PLACES_ZIP = "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_place_national.zip"
 
 NAMES = {'AL':'alabama','AK':'alaska','AZ':'arizona','AR':'arkansas','CA':'california','CO':'colorado','CT':'connecticut','DE':'delaware','FL':'florida','GA':'georgia','HI':'hawaii','ID':'idaho','IL':'illinois','IN':'indiana','IA':'iowa','KS':'kansas','KY':'kentucky','LA':'louisiana','ME':'maine','MD':'maryland','MA':'massachusetts','MI':'michigan','MN':'minnesota','MS':'mississippi','MO':'missouri','MT':'montana','NE':'nebraska','NV':'nevada','NH':'new-hampshire','NJ':'new-jersey','NM':'new-mexico','NY':'new-york','NC':'north-carolina','ND':'north-dakota','OH':'ohio','OK':'oklahoma','OR':'oregon','PA':'pennsylvania','RI':'rhode-island','SC':'south-carolina','SD':'south-dakota','TN':'tennessee','TX':'texas','UT':'utah','VT':'vermont','VA':'virginia','WA':'washington','WV':'west-virginia','WI':'wisconsin','WY':'wyoming'}
 ST = sorted(NAMES)
@@ -248,7 +249,7 @@ class BlockGroups:
             pts = np.column_stack([x, y])
             k = min(4, len(pts))
             d, _ = cKDTree(pts).query(pts, k=k)
-            self.r[m] = np.clip(0.55 * d[:, -1], 0.04, 6.0)
+            self.r[m] = np.clip(0.38 * d[:, -1], 0.03, 4.0)
         self.pts = shapely.points(self.x, self.y)
 
     def assign(self, geoms):
@@ -291,7 +292,9 @@ def place(geom, bgidx, n, rng):
         if len(todo) == 0:
             break
         ang = rng.uniform(0, 2 * np.pi, len(todo))
-        rad = rr[todo] * shrink * np.sqrt(rng.uniform(0, 1, len(todo)))
+        # density falls off from the center (radius ~ u rather than sqrt(u)), so dots trace the
+        # settled spots instead of filling a flat disk
+        rad = rr[todo] * shrink * rng.uniform(0, 1, len(todo)) ** 1.0
         x = cx[todo] + rad * np.cos(ang); y = cy[todo] + rad * np.sin(ang)
         ok = shapely.contains_xy(geom, x, y) if shrink > 0 else np.ones(len(todo), dtype=bool)
         out[todo[ok], 0] = x[ok]; out[todo[ok], 1] = y[ok]
@@ -327,6 +330,63 @@ def sround(v, s, rng):
     q = v / s
     f = math.floor(q)
     return f + (1 if rng.random() < q - f else 0)
+
+
+# ---------------------------------------------------------------- place labels for deep zoom
+PLACE_SUFFIX = re.compile(r"\s+(city|town|village|borough|CDP|municipality|comunidad|zona urbana|urban county|consolidated government|metropolitan government|metro government|unified government|city and borough|\(balance\)|city \(balance\))\s*$", re.I)
+
+PLACE_COUNTY = {("CA", "San Francisco city"): "06075"}
+PLACE_RENAME = {"Urban Honolulu": "Honolulu", "Nashville-Davidson metropolitan government": "Nashville",
+                "Louisville/Jefferson County metro government": "Louisville", "Lexington-Fayette": "Lexington",
+                "Indianapolis city (balance)": "Indianapolis", "Augusta-Richmond County consolidated government": "Augusta"}
+
+def places(fips2st):
+    """[name, x, y, people, state] for every Census place with roughly 15,000+ people nearby.
+    People = block-group population within the place's own land radius, which tracks the
+    place's population closely enough to rank labels (the Gazetteer carries no population)."""
+    zp = os.path.join(CACHE, "places.zip")
+    if not os.path.exists(zp):
+        open(zp, "wb").write(urllib.request.urlopen(PLACES_ZIP, timeout=120).read())
+    z = zipfile.ZipFile(zp)
+    txt = z.read([n for n in z.namelist() if n.endswith(".txt")][0]).decode("utf-8-sig")
+    rows = [r.split("\t") for r in txt.splitlines()[1:]]
+    out = []
+    trees = {}
+    for r in rows:
+        st, name, aland, lat, lon = r[0].strip(), r[3].strip(), float(r[6]), float(r[10]), float(r[11].strip())
+        if st not in NAMES:
+            continue
+        si = ST.index(st)
+        if si not in trees:
+            m = BG.st == si
+            trees[si] = (cKDTree(np.column_stack([BG.x[m], BG.y[m]])), BG.pop[m])
+        tree, pop = trees[si]
+        x, y = proj_for(st)(np.array([lon]), np.array([lat]))
+        x, y = float(x[0]), float(y[0])
+        rad = max(0.35, math.sqrt(aland / math.pi) / 4800)          # metres -> frame px (~4.8 km per px)
+        if (st, name) in PLACE_COUNTY:
+            # consolidated city-county whose Census point is offshore (San Francisco's is on the
+            # Farallon Islands): use the county's population center and total instead
+            cm = BG.cty == PLACE_COUNTY[(st, name)]
+            w = BG.pop[cm]
+            x, y = float((BG.x[cm] * w).sum() / w.sum()), float((BG.y[cm] * w).sum() / w.sum())
+            people = int(w.sum())
+        else:
+            near = tree.query_ball_point([x, y], rad)
+            people = int(pop[near].sum()) if near else 0
+        if people < 15000:
+            continue
+        nm = PLACE_SUFFIX.sub("", name).strip()
+        nm = PLACE_RENAME.get(nm, PLACE_RENAME.get(name, nm))
+        out.append([nm, round(x, 2), round(y, 2), people, st])
+    out.sort(key=lambda p: -p[3])
+    # drop near-duplicates (a city and its CDP twin, or two places on top of each other)
+    kept = []
+    for p in out:
+        if all(abs(p[1] - q[1]) > 0.25 or abs(p[2] - q[2]) > 0.25 for q in kept[-400:]):
+            kept.append(p)
+    print(f"places: {len(kept)} labels")
+    return kept
 
 
 # ---------------------------------------------------------------- build
@@ -393,7 +453,7 @@ def main():
             if pg:
                 unit_cache[(st, off)] = unit_shapes(pg, st)
 
-    meta = {"scales": SCALES, "frame": [960, 500], "quant": [64, 24], "states": ST,
+    meta = {"scales": SCALES, "fmt": 2, "frame": [960, 500], "quant": 4096, "states": ST,
             "as_of": max(last) if last else None, "layers": {}, "outline": {}}
     os.makedirs(OUT, exist_ok=True)
 
@@ -457,9 +517,9 @@ def main():
             p = np.concatenate(ps).astype(np.uint16); si = np.concatenate(ss).astype(np.uint8)
             order = rng.permutation(len(x))                        # random draw order for the animation
             x, y, p, si = x[order], y[order], p[order], si[order]
-            qx = np.clip(np.round(x * 64), 0, 65535).astype(np.uint16)
-            qy = np.clip(np.round(y * 24), 0, 16383).astype(np.uint16) | (p << 14)
-            buf = np.column_stack([qx, qy]).astype("<u2").tobytes() + si.tobytes()
+            qx = np.clip(np.round(x * 4096), 0, 2**32 - 1).astype("<u4")
+            qy = np.clip(np.round(y * 4096), 0, 2**32 - 1).astype("<u4")
+            buf = np.column_stack([qx, qy]).tobytes() + (si | (p.astype(np.uint8) << 6)).astype(np.uint8).tobytes()
             open(os.path.join(OUT, f"{layer}-{s}.bin"), "wb").write(buf)
             meta["layers"][layer]["dots"][str(s)] = {"n": int(len(x)),
                                                    "by_party": [int((p == i).sum()) for i in range(3)]}
@@ -483,6 +543,7 @@ def main():
                         {"national": 0, "primary": 1}.get(pr.get("TYPE"), 2), pr.get("POSITION") or "R"])
         if out:
             meta["cities"][st] = sorted(out, key=lambda c: c[3])
+    meta["places"] = places(fips2st)
     json.dump(meta, open(os.path.join(OUT, "meta.json"), "w"), separators=(",", ":"))
     print("wrote", OUT)
 

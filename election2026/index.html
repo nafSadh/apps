@@ -396,12 +396,19 @@
                 <button type="button" class="chip" aria-pressed="false" data-ds="100000">100,000</button>
               </div>
               <button type="button" class="chip" id="dotmap-cities" aria-pressed="true" hidden>City labels</button>
-              <button type="button" class="chip" id="dotmap-back" hidden>← Whole country</button>
             </div>
             <div class="lg" id="dotmap-legend" aria-live="polite"></div>
           </div>
-          <div id="dotmap" class="dotmap" role="img" aria-label="Dot density map of votes by party"><canvas></canvas></div>
-          <div class="src">Each dot is a block of votes for one party, colored by the result of the county where they were cast (towns in New England, state House districts in Alaska; districts for the House) and placed where people live: votes are shared out across the county's Census block groups by population, and each dot lands near its block group's population center. Purple dots are independents and third parties. Blank states had no race of that kind. Click a state to zoom in and see its cities; click again or press Esc to zoom out. Dots show votes, not land, so empty space means few voters. Results: NBC News / AP, <span id="dotmap-asof"></span>.</div>
+          <div id="dotmap" class="dotmap" role="img" aria-label="Dot density map of votes by party">
+            <canvas></canvas>
+            <div class="map-ctl" role="group" aria-label="Map zoom">
+              <button type="button" data-dz="in" title="Zoom in" aria-label="Zoom in"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button>
+              <button type="button" data-dz="out" title="Zoom out" aria-label="Zoom out"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10"/></svg></button>
+              <button type="button" id="dotmap-zoom" title="Reset zoom" aria-label="Reset zoom" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/></svg></button>
+              <button type="button" id="dotmap-back" title="Whole country" aria-label="Back to the whole country" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8l6-5.5L14 8M4 7v6.5h8V7"/></svg></button>
+            </div>
+          </div>
+          <div class="src">Each dot is a block of votes for one party, colored by the result of the county where they were cast (towns in New England, state House districts in Alaska; districts for the House) and placed where people live: votes are shared out across the county's Census block groups by population, and each dot lands near its block group's population center. Purple dots are independents and third parties. Blank states had no race of that kind. Click a state to open it and see its cities. Inside a state, scroll, pinch or double-click to zoom further, down to a single metro, and drag to pan; more town labels appear as you go. Esc resets the zoom, then leaves the state. On the national map, hold ⌘ or Ctrl while scrolling to zoom. Dots show votes, not land, so empty space means few voters. Results: NBC News / AP, <span id="dotmap-asof"></span>.</div>
         </div>
       </div>
     </section>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try { document.querySelector('meta[name="color-scheme"]').content = localStorage.getItem("color-scheme") ?? "light dark"; } catch (e) {}
+  </script>
+  <title>Fifty Years of Votes · sadh.app</title>
+  <meta name="description" content="Every presidential vote since 1976 and every House vote since 1976 as dots, how each county moved between any two elections, and the House seat by seat, election by election.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='30' cy='35' r='12' fill='%232f6fde'/%3E%3Ccircle cx='68' cy='30' r='9' fill='%23d9433b'/%3E%3Ccircle cx='55' cy='68' r='14' fill='%23d9433b'/%3E%3Ccircle cx='25' cy='72' r='7' fill='%232f6fde'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500;600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-in">
+      <div class="crumb"><a href="../"><b>sadh</b>.app</a><span aria-hidden="true">/</span><span>election-history</span></div>
+      <nav class="nav" aria-label="Sections">
+        <a href="#dots">Dots</a><a href="#shift">Shift</a><a href="#house">House</a><a href="../election2026/">2026 →</a>
+      </nav>
+      <button type="button" class="theme" id="theme" aria-label="Switch color theme" title="Theme"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z"/></svg></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="kicker">1976 – 2026</p>
+      <h1>Fifty years of American votes</h1>
+      <p class="dek">Every presidential election since Carter–Ford and every House election since 1976, as dots placed where people live, as county arrows showing which way each place moved, and as the House drawn seat by seat.</p>
+    </section>
+
+    <section id="dots" class="sec">
+      <p class="sec-n">01 · Dots</p>
+      <h2 id="dots-title">Every vote for president, 1976</h2>
+      <div class="controls">
+        <div class="chips" role="group" aria-label="Race">
+          <button type="button" class="chip" data-race="pres" aria-pressed="true">President</button>
+          <button type="button" class="chip" data-race="house" aria-pressed="false">House</button>
+        </div>
+        <div class="chips" role="group" aria-label="Votes per dot">
+          <button type="button" class="chip" data-scale="1000" aria-pressed="true">1 dot = 1,000</button>
+          <button type="button" class="chip" data-scale="10000" aria-pressed="false">10,000</button>
+          <button type="button" class="chip" data-scale="100000" aria-pressed="false">100,000</button>
+        </div>
+        <button type="button" class="chip" id="dots-cities" aria-pressed="true">City labels</button>
+      </div>
+      <div class="timeline" id="dots-tl">
+        <button type="button" class="play" data-play aria-label="Play through the years"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg></button>
+        <div class="tl-track"><input type="range" id="dots-year" min="0" max="12" step="1" value="0" aria-label="Election year"><div class="tl-ticks" id="dots-ticks"></div></div>
+      </div>
+      <div class="legend" id="dots-legend" aria-live="polite"></div>
+      <div class="map" id="dots-map" role="img" aria-label="Dot density map of votes by party">
+        <canvas></canvas>
+        <div class="map-ctl" role="group" aria-label="Map zoom">
+          <button type="button" data-z="in" title="Zoom in" aria-label="Zoom in"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></button>
+          <button type="button" data-z="out" title="Zoom out" aria-label="Zoom out"><svg viewBox="0 0 16 16"><path d="M3 8h10"/></svg></button>
+          <button type="button" data-z="home" title="Whole country" aria-label="Back to the whole country" hidden><svg viewBox="0 0 16 16"><path d="M2 8l6-5.5L14 8M4 7v6.5h8V7"/></svg></button>
+        </div>
+      </div>
+      <p class="note" id="dots-note"></p>
+    </section>
+
+    <section id="shift" class="sec">
+      <p class="sec-n">02 · Shift</p>
+      <h2 id="shift-title">How every county moved</h2>
+      <p class="lede">Each arrow is a county. It points left when the county moved toward the Democrat and right when it moved toward the Republican, and its length is the change in margin. Thicker arrows are bigger counties.</p>
+      <div class="pair">
+        <label class="pick"><span>From</span><select id="shift-from" aria-label="From election"></select></label>
+        <span class="arrow-sep" aria-hidden="true">→</span>
+        <label class="pick"><span>To</span><select id="shift-to" aria-label="To election"></select></label>
+        <div class="chips" role="group" aria-label="Quick pairs">
+          <button type="button" class="chip" data-pair="2020,2024">2020 → 24</button>
+          <button type="button" class="chip" data-pair="2012,2016">2012 → 16</button>
+          <button type="button" class="chip" data-pair="1988,1992">1988 → 92</button>
+          <button type="button" class="chip" data-pair="1976,2024">1976 → 2024</button>
+        </div>
+      </div>
+      <div class="legend" id="shift-legend" aria-live="polite"></div>
+      <div class="map" id="shift-map" role="img" aria-label="Map of county arrows showing the shift in presidential margin">
+        <canvas></canvas>
+        <div class="map-ctl" role="group" aria-label="Map zoom">
+          <button type="button" data-z="in" title="Zoom in" aria-label="Zoom in"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></button>
+          <button type="button" data-z="out" title="Zoom out" aria-label="Zoom out"><svg viewBox="0 0 16 16"><path d="M3 8h10"/></svg></button>
+          <button type="button" data-z="home" title="Whole country" aria-label="Back to the whole country" hidden><svg viewBox="0 0 16 16"><path d="M2 8l6-5.5L14 8M4 7v6.5h8V7"/></svg></button>
+        </div>
+      </div>
+      <p class="note">Margin is the two-party gap (Republican share minus Democratic share of the two-party vote). Third-party votes, like Perot's in 1992 and 1996, are left out of the margin, so a county can shift without either party gaining votes.</p>
+    </section>
+
+    <section id="house" class="sec">
+      <p class="sec-n">03 · House</p>
+      <h2 id="house-title">The House, 1976</h2>
+      <div class="controls">
+        <div class="chips" role="group" aria-label="What the hexagons show">
+          <button type="button" class="chip" data-hmode="won" aria-pressed="true">Who won</button>
+          <button type="button" class="chip" data-hmode="shift" aria-pressed="false">Shift since…</button>
+        </div>
+        <label class="pick" id="house-base-pick" hidden><span>Since</span><select id="house-base" aria-label="Compare with"></select></label>
+      </div>
+      <div class="timeline" id="house-tl">
+        <button type="button" class="play" data-play aria-label="Play through the years"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg></button>
+        <div class="tl-track"><input type="range" id="house-year" min="0" max="25" step="1" value="0" aria-label="Election year"><div class="tl-ticks" id="house-ticks"></div></div>
+      </div>
+      <div class="seatbar" id="house-bar" aria-live="polite"></div>
+      <div class="hexwrap"><svg id="hexmap" role="img" aria-label="Hexagon map of House seats"></svg></div>
+      <div class="hlegend" id="house-legend"></div>
+      <p class="note" id="house-note"></p>
+    </section>
+
+    <footer class="foot">
+      <p><b>Sources.</b> President by county: Algara &amp; Hale, county presidential returns 1868–2020 (Harvard Dataverse); MIT Election Data + Science Lab, county presidential returns 2000–2024; Alaska 1976–96 from the Alaska Division of Elections. House: MIT Election Data + Science Lab, U.S. House 1976–2024; 2026 from NBC News / AP. District lines: Lewis, DeVine, Pritcher &amp; Martis (UCLA), 1976–2024; NBC News, 2026. Dot placement: Census 2020 block-group population centers.</p>
+      <p>Built with Claude Code by <a href="https://nafsadh.com/"><b>nafSadh</b></a> · companion to <a href="../election2026/">election2026</a></p>
+    </footer>
+  </main>
+  <div class="tip" id="tip" role="tooltip"></div>
+  <script src="./app.js"></script>
+</body>
+</html>

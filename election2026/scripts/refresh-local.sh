@@ -1,4 +1,7 @@
 #!/bin/bash
+# DISABLED: the GitHub Action refreshes results; running both made the two fight over data.json.
+# Remove these two lines (and `launchctl load` the plist) to turn the Mac job back on.
+echo "refresh-local.sh is disabled; the GitHub Action handles refreshes."; exit 0
 # Local stand-in for the GitHub schedule: refresh election2026 results from NBC/AP
 # and push them. Run by launchd every 20 minutes (app.sadh.election2026.plist).
 # Only election2026/data.json, data.js and the dot map (election2026/dots/) are ever

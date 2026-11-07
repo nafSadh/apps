@@ -977,7 +977,9 @@
     /* ----------------------------------------------------------------------
        Dot-density map: one dot per N votes (scripts/build_dots.py → dots/)
        ---------------------------------------------------------------------- */
-    const DOT = { meta: null, bins: {}, layer: "house", scale: 1000, raf: 0, loading: null, paths: null, played: {} };
+    const DOT = { meta: null, bins: {}, layer: "house", scale: 1000, raf: 0, loading: null, paths: null, played: {},
+      user: null /* {z, ox, oy}: wheel/pinch zoom on top of the base view */, base: null, cur: null };
+    const DOT_MAX_Z = 400;
     const DOT_LAYER_NAME = { house: "House", senate: "Senate", governor: "Governor" };
     function dotBase() {
       const s = document.querySelector('script[src*="app.js"]');
@@ -1002,11 +1004,11 @@
         if (!r.ok) throw new Error(k + ".bin " + r.status);
         return r.arrayBuffer();
       }).then((buf) => {
-        const n = Math.floor(buf.byteLength / 5);
-        const xy = new Uint16Array(buf, 0, n * 2);
-        const st = new Uint8Array(buf, n * 4, n);
-        const x = new Float32Array(n), y = new Float32Array(n), p = new Uint8Array(n);
-        for (let i = 0; i < n; i++) { x[i] = xy[2 * i] / 64; y[i] = (xy[2 * i + 1] & 16383) / 24; p[i] = xy[2 * i + 1] >> 14; }
+        const n = Math.floor(buf.byteLength / 9), q = DOT.meta.quant || 4096;
+        const xy = new Uint32Array(buf, 0, n * 2);
+        const ps = new Uint8Array(buf, n * 8, n);
+        const x = new Float32Array(n), y = new Float32Array(n), p = new Uint8Array(n), st = new Uint8Array(n);
+        for (let i = 0; i < n; i++) { x[i] = xy[2 * i] / q; y[i] = xy[2 * i + 1] / q; p[i] = ps[i] >> 6; st[i] = ps[i] & 63; }
         return { n, x, y, p, st };
       }).catch((e) => { delete DOT.bins[k]; throw e; });
       return DOT.bins[k];
@@ -1021,7 +1023,7 @@
       const back = document.getElementById("dotmap-back");
       if (back) back.hidden = !sel;
       const cityBtn = document.getElementById("dotmap-cities");
-      if (cityBtn) { cityBtn.hidden = !sel || !(m.cities && m.cities[sel]); cityBtn.setAttribute("aria-pressed", String(DOT.showCities !== false)); }
+      if (cityBtn) { cityBtn.hidden = !(sel || (DOT.user && DOT.user.z > 1.02)); cityBtn.setAttribute("aria-pressed", String(DOT.showCities !== false)); }
       loadDotBin(layer, scale).then((d) => {
         if (layer !== DOT.layer || scale !== DOT.scale || sel !== DOT.drawnSel) return;
         cancelAnimationFrame(DOT.raf);
@@ -1041,7 +1043,22 @@
           ox = (W - (x1 - x0) * k) / 2 - x0 * k;
           oy = (H - (y1 - y0) * k) / 2 - y0 * k;
         }
-        DOT.view = { k, ox, oy };
+        // the base view (whole country or one state) plus whatever the viewer has zoomed/panned
+        const baseKey = `${sel || "US"}:${W}`;
+        if (DOT.base !== baseKey) { DOT.base = baseKey; DOT.user = null; }
+        const extent = sel ? m.bbox[sel] : [0, 0, FW, FH];
+        if (!DOT.user) DOT.user = { z: 1, ox, oy };
+        else {
+          // keep the map under the viewport: the visible center must stay inside the base extent
+          const kz = k * DOT.user.z;
+          DOT.user.ox = Math.min(W / 2 - extent[0] * kz, Math.max(W / 2 - extent[2] * kz, DOT.user.ox));
+          DOT.user.oy = Math.min(H / 2 - extent[1] * kz, Math.max(H / 2 - extent[3] * kz, DOT.user.oy));
+        }
+        k *= DOT.user.z; ox = DOT.user.ox; oy = DOT.user.oy;
+        DOT.view = { k, ox, oy, W, H };
+        const zoomed = DOT.user.z > 1.02;
+        const zb = document.getElementById("dotmap-zoom");
+        if (zb) zb.hidden = !zoomed;
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
         cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
         cv.style.width = W + "px"; cv.style.height = H + "px";
@@ -1057,10 +1074,10 @@
         m.states.forEach((st, i) => { hideIdx[i] = shown(st) ? 0 : 1; });
         // dot size in CSS px: area grows with votes per dot; zoomed-in views get bigger dots
         // small and translucent, so dense mixed areas blend toward purple instead of one side painting over the other
-        const base = scale === 1000 ? 0.5 : scale === 10000 ? 1.3 : 3.0;
-        const r = sel ? base * Math.min(scale === 1000 ? 3.2 : 2.2, Math.max(1, Math.sqrt(k) * 0.75))
-                      : base * Math.max(scale === 1000 ? 0.42 : 0.6, Math.min(1.35, k));
-        const alpha = scale === 1000 ? (sel ? 0.55 : 0.62) : scale === 10000 ? 0.7 : 0.8;
+        const base = scale === 1000 ? 0.42 : scale === 10000 ? 1.3 : 3.0;
+        const r = (sel || zoomed) ? base * Math.min(scale === 1000 ? 3.2 : 2.2, Math.max(1, Math.sqrt(k) * 0.75))
+                                  : base * Math.max(scale === 1000 ? 0.42 : 0.6, Math.min(1.35, k));
+        const alpha = scale === 1000 ? ((sel || zoomed) ? 0.55 : 0.62) : scale === 10000 ? 0.7 : 0.8;
         const toView = () => ctx.setTransform(dpr * k, 0, 0, dpr * k, dpr * ox, dpr * oy);
         function ground() {
           ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -1104,13 +1121,26 @@
         }
         // city labels for the selected state (NBC's picks): biggest first, skip any that would collide
         function cities() {
-          const list = DOT.showCities !== false && sel && m.cities && m.cities[sel];
-          if (!list) return;
+          if (DOT.showCities === false || !(sel || zoomed)) return;
+          const list = [];
+          const nbc = new Set();
+          if (sel && m.cities && m.cities[sel]) m.cities[sel].forEach((c) => { list.push(c); nbc.add(c[0]); });
+          // Census places: label when the place has enough people for this zoom level (k is px per frame unit)
+          const need = Math.max(15000, 2.2e6 / k);
+          (m.places || []).forEach(([name, fx, fy, people, st]) => {
+            if (people < need || nbc.has(name)) return;
+            const x = fx * k + ox, y = fy * k + oy;
+            if (x < -40 || y < -20 || x > W + 40 || y > H + 20) return;
+            if (sel && !shown(st)) return;
+            list.push([name, fx, fy, people >= 1e6 ? 1 : 2, "R"]);
+          });
+          if (!list.length) return;
           ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
           const ff = getComputedStyle(document.body).fontFamily;
           const boxes = [];
           list.forEach(([name, fx, fy, tier, pos]) => {
             const x = fx * k + ox, y = fy * k + oy;
+            if (x < -40 || y < -20 || x > W + 40 || y > H + 20) return;
             const fs = W < 520 ? (tier === 0 ? 12 : 11) : (tier === 0 ? 14 : tier === 1 ? 13 : 12);
             ctx.font = `${tier === 0 ? 700 : 600} ${fs}px ${ff}`;
             const tw = ctx.measureText(name).width, g = 7;
@@ -1131,6 +1161,7 @@
             ctx.fillStyle = cInk; ctx.fillText(name, tx, ty);
           });
         }
+        DOT.cur = d;
         ground(); dots(0, d.n); outlines(); cities();
         // hit-testing for tooltip / click
         const tipFor = (st) => {
@@ -1138,19 +1169,29 @@
           if (!v) return `<div class="h">${esc(STATE_NAMES[st])}</div><div class="m">No ${DOT_LAYER_NAME[layer]} race in 2026</div>`;
           const t = v[0] + v[1] + v[2];
           const row = (pi, lab) => v[pi] ? `<div class="r"><span><i style="background:var(--${["D", "R", "I"][pi]})"></i>${lab}</span><span>${v[pi].toLocaleString()} · ${(100 * v[pi] / t).toFixed(1)}%</span></div>` : "";
-          return `<div class="h">${esc(STATE_NAMES[st])} · ${DOT_LAYER_NAME[layer]}</div>${row(0, "Democrats")}${row(1, "Republicans")}${row(2, "Other")}<div class="m">≈ ${Math.round(t / scale).toLocaleString()} dots${st === sel ? "" : " · click to zoom in"}</div>`;
+          return `<div class="h">${esc(STATE_NAMES[st])} · ${DOT_LAYER_NAME[layer]}</div>${row(0, "Democrats")}${row(1, "Republicans")}${row(2, "Other")}<div class="m">≈ ${Math.round(t / scale).toLocaleString()} dots · click to open</div>`;
         };
+        // national view: hover for totals, click to pick a state. Inside a state or zoomed in: a grab
+        // hand, drag to pan, and no hover card or click-to-leave (Esc / the chips do that), so the
+        // gestures never fight each other
+        const explore = !sel && !zoomed;
+        cv.style.cursor = explore ? "default" : "grab";
+        cv.style.touchAction = explore ? "pan-y" : "none";
         cv.onmousemove = (ev) => {
+          if (!explore || DOT.dragging) { hideTip(); return; }
           const st = dotStateAt(ev, cv);
-          if (!st) { hideTip(); cv.style.cursor = sel ? "zoom-out" : "default"; return; }
-          cv.style.cursor = st === sel ? "zoom-out" : "zoom-in";
+          if (!st) { hideTip(); cv.style.cursor = "default"; return; }
+          cv.style.cursor = "pointer";
           showTip(tipFor(st), ev);
         };
         cv.onmouseleave = hideTip;
         cv.onclick = (ev) => {
+          if (DOT.dragged) { DOT.dragged = false; return; }
+          if (zoomed) return;
           const st = dotStateAt(ev, cv);
           hideTip();
-          selectState(!st || st === state.selectedSt ? null : st);
+          if (explore) { if (st) selectState(st); }
+          else if (st && st !== state.selectedSt) selectState(st);
         };
         // legend + title
         const dd = L.dots[String(scale)];
@@ -1158,7 +1199,7 @@
         const v = sel ? (L.by_state[sel] || [0, 0, 0]) : L.votes;
         const nd = sel ? Math.round((v[0] + v[1] + v[2]) / scale) : dd.n;
         const tail = sel ? (L.by_state[sel] ? `≈ ${nd.toLocaleString()} dots in ${esc(STATE_NAMES[sel])}` : `No ${DOT_LAYER_NAME[layer]} race in ${esc(STATE_NAMES[sel])}`)
-          : `${dd.n.toLocaleString()} dots · ${has.size} ${has.size === 50 ? "states" : "states with a race"} · click a state to zoom in`;
+          : `${dd.n.toLocaleString()} dots · ${has.size} ${has.size === 50 ? "states" : "states with a race"} · click a state · ${navigator.platform && /Mac/.test(navigator.platform) ? "⌘" : "Ctrl"}+scroll, pinch or double-click to zoom`;
         if (lg) lg.innerHTML = `<span><i style="background:var(--D)"></i>Democrat ${fmtM(v[0])}</span><span><i style="background:var(--R)"></i>Republican ${fmtM(v[1])}</span>${v[2] ? `<span><i style="background:var(--I)"></i>Other ${fmtM(v[2])}</span>` : ""}<span style="color:var(--mut)">${tail}</span>`;
         const ti = document.getElementById("dotmap-title");
         if (ti) ti.textContent = sel ? `Every ${DOT_LAYER_NAME[layer]} vote in ${STATE_NAMES[sel]}, as dots` : `Every ${DOT_LAYER_NAME[layer]} vote, as dots`;
@@ -1203,6 +1244,66 @@
     document.querySelectorAll("#dotmap-scale .chip").forEach((b) => b.addEventListener("click", () => { DOT.scale = +b.dataset.ds; setDotChips(); drawDotMap(true); }));
     const dotBack = document.getElementById("dotmap-back");
     if (dotBack) dotBack.addEventListener("click", () => selectState(null));
+    (function dotZoomControls() {
+      const box = document.getElementById("dotmap");
+      if (!box) return;
+      const cv = box.querySelector("canvas");
+      let raf = 0;
+      const redraw = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; drawDotMap(false); }); };
+      function zoomAt(f, mx, my) {
+        const u = DOT.user; if (!u || !DOT.view) return;
+        const z = Math.min(DOT_MAX_Z, Math.max(1, u.z * f)); f = z / u.z;
+        if (f === 1) return;
+        u.z = z; u.ox = mx - (mx - u.ox) * f; u.oy = my - (my - u.oy) * f;
+        if (z === 1) DOT.user = null;                   // back to the base view exactly
+        redraw();
+      }
+      cv.addEventListener("wheel", (ev) => {
+        if (!DOT.view) return;
+        const inside = DOT.drawnSel || (DOT.user && DOT.user.z > 1.02);
+        if (!inside && !ev.ctrlKey && !ev.metaKey) return;      // let the page scroll past the national map
+        ev.preventDefault();
+        const b = cv.getBoundingClientRect();
+        const f = Math.exp(-(ev.deltaMode === 1 ? ev.deltaY * 16 : ev.deltaY) * 0.0022);
+        zoomAt(f, ev.clientX - b.left, ev.clientY - b.top);
+      }, { passive: false });
+      cv.addEventListener("dblclick", (ev) => {
+        ev.preventDefault();
+        const b = cv.getBoundingClientRect();
+        zoomAt(2, ev.clientX - b.left, ev.clientY - b.top);
+      });
+      // drag to pan, pinch to zoom (pointer events)
+      const pts = new Map(); let last = null, pinch = null;
+      cv.addEventListener("pointerdown", (ev) => {
+        pts.set(ev.pointerId, [ev.clientX, ev.clientY]); cv.setPointerCapture(ev.pointerId); last = [ev.clientX, ev.clientY]; DOT.moved = 0; pinch = null;
+        if (DOT.drawnSel || (DOT.user && DOT.user.z > 1.02)) { DOT.dragging = true; cv.style.cursor = "grabbing"; hideTip(); }
+      });
+      cv.addEventListener("pointermove", (ev) => {
+        if (!pts.has(ev.pointerId)) return;
+        pts.set(ev.pointerId, [ev.clientX, ev.clientY]);
+        if (pts.size === 2) {
+          const [a, c] = [...pts.values()];
+          const dist = Math.hypot(a[0] - c[0], a[1] - c[1]), cx = (a[0] + c[0]) / 2, cy = (a[1] + c[1]) / 2;
+          const b = cv.getBoundingClientRect();
+          if (pinch) { zoomAt(dist / pinch.d, cx - b.left, cy - b.top); if (DOT.user) { DOT.user.ox += cx - pinch.cx; DOT.user.oy += cy - pinch.cy; } }
+          pinch = { d: dist, cx, cy }; DOT.moved = 99;
+          return;
+        }
+        if (!last || !DOT.user) return;
+        const dx = ev.clientX - last[0], dy = ev.clientY - last[1];
+        last = [ev.clientX, ev.clientY];
+        DOT.moved = (DOT.moved || 0) + Math.abs(dx) + Math.abs(dy);
+        if (DOT.user.z > 1) { DOT.user.ox += dx; DOT.user.oy += dy; hideTip(); redraw(); }
+      });
+      const up = (ev) => { pts.delete(ev.pointerId); if (!pts.size) { last = null; pinch = null; DOT.dragged = (DOT.moved || 0) > 4; DOT.dragging = false; if (cv.style.cursor === "grabbing") cv.style.cursor = "grab"; } };
+      cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+      const zb = document.getElementById("dotmap-zoom");
+      if (zb) zb.addEventListener("click", () => { DOT.user = null; drawDotMap(false); });
+      document.querySelectorAll("[data-dz]").forEach((b) => b.addEventListener("click", () => {
+        const V = DOT.view; if (!V) return;
+        zoomAt(b.dataset.dz === "in" ? 2 : 0.5, V.W / 2, V.H / 2);
+      }));
+    })();
     const dotCities = document.getElementById("dotmap-cities");
     if (dotCities) dotCities.addEventListener("click", () => { DOT.showCities = DOT.showCities === false; drawDotMap(false); });
     (function lazyDots() {
@@ -1777,7 +1878,11 @@
 
     renderCartogram();
     selectState(state.selectedSt);
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && state.selectedSt && !document.querySelector("dialog[open]")) selectState(null); });
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape" || document.querySelector("dialog[open]")) return;
+      if (DOT.user && DOT.user.z > 1.02) { DOT.user = null; drawDotMap(false); return; }   // first Esc: reset the zoom
+      if (state.selectedSt) selectState(null);                                               // second: leave the state
+    });
 
     /* ----------------------------------------------------------------------
        6. Closest Uncalled Races Table + Uncalled Simulator

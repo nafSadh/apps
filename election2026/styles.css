@@ -2069,3 +2069,11 @@ footer.ed-footer {
 .dotmap { inline-size: 100%; min-inline-size: 0; position: relative; }
 .dotmap canvas { display: block; max-inline-size: 100%; touch-action: manipulation; }
 .dot-controls .chip[hidden] { display: none; }
+.map-ctl { position: absolute; inset-block-start: 10px; inset-inline-start: 10px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); box-shadow: 0 1px 4px rgb(0 0 0 / .12); overflow: hidden; }
+.map-ctl button { inline-size: 32px; block-size: 32px; display: grid; place-items: center; border: 0; border-block-start: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; padding: 0; }
+.map-ctl button:first-child { border-block-start: 0; }
+.map-ctl button:hover { background: var(--alt); }
+.map-ctl button:focus-visible { outline: 2px solid var(--D); outline-offset: -2px; }
+.map-ctl button[hidden] { display: none; }
+.map-ctl svg { inline-size: 16px; block-size: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.dotmap canvas { touch-action: pan-y; }
