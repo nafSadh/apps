@@ -1,0 +1,3157 @@
+<!doctype html>
+<html lang="en" data-surface="parchment">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sushi Jose — South Bay, Peninsula &amp; SF Sushi Guide</title>
+<meta name="description" content="32 Bay Area sushi spots across San Jose, South Bay, Redwood City/Peninsula &amp; San Francisco (plus a Michelin-selected Palo Alto Indian backup) with photos, Google &amp; Yelp ratings, reviews, and an interactive map.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sushi Jose — South Bay, Peninsula &amp; SF Sushi Guide">
+<meta property="og:description" content="32 Bay Area sushi spots across San Jose, Redwood/Peninsula &amp; SF (plus Ettan Palo Alto Indian backup) with photos, ratings, reviews &amp; interactive map.">
+<meta property="og:url" content="https://sadh.app/misc/sushi-jose.html">
+<meta property="og:image" content="https://sadh.app/misc/sushi-jose-img/sushi-shin.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sushi Jose — South Bay, Peninsula &amp; SF Sushi Guide">
+<meta name="twitter:description" content="32 Bay Area sushi spots across San Jose, Redwood/Peninsula &amp; SF + Ettan Indian backup — photos, ratings, reviews &amp; map.">
+<meta name="twitter:image" content="https://sadh.app/misc/sushi-jose-img/sushi-shin.jpg">
+<meta name="theme-color" content="#faf8f3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='86'%3E%F0%9F%8D%A3%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+try {
+  const s = localStorage.getItem("sadh-sushi-surface");
+  if (s === "parchment" || s === "studio" || s === "night") {
+    document.documentElement.dataset.surface = s;
+  }
+} catch {}
+</script>
+<style>
+:root {
+  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --body: "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --in-oklab: ;
+}
+@supports (background: linear-gradient(in oklab, white, black)) {
+  :root { --in-oklab: in oklab; }
+}
+
+html[data-surface="parchment"] {
+  --s-bg: #faf8f3;
+  --s-bg2: #ffffff;
+  --s-bg3: #f2efe8;
+  --s-ink: #141a1e;
+  --s-text: #363b48;
+  --s-muted: #5f6974;
+  --s-faint: #847d74;
+  --s-rule: #d6d0c4;
+  --s-rule-hi: #b5ae9e;
+  --s-accent: #7c3aed;
+  --s-link: #2e6ab4;
+  --s-bruple: #5250cb;
+  --s-green: #2e6e3e;
+  --s-amber: #996d15;
+  --s-ruby: #b4233b;
+  --s-grain: 0.018;
+  --s-wash: 0;
+  color-scheme: light;
+}
+
+html[data-surface="studio"] {
+  --s-bg: #f5f7fb;
+  --s-bg2: #ffffff;
+  --s-bg3: #e8ecf5;
+  --s-ink: #10141d;
+  --s-text: #2a3140;
+  --s-muted: #556075;
+  --s-faint: #758098;
+  --s-rule: #d7dce8;
+  --s-rule-hi: #b5bfd4;
+  --s-accent: #6d3be0;
+  --s-link: #2e6ab4;
+  --s-bruple: #5250cb;
+  --s-green: #2e6e3e;
+  --s-amber: #8a6e1e;
+  --s-ruby: #b4233b;
+  --s-grain: 0.014;
+  --s-wash: 0.55;
+  color-scheme: light;
+}
+
+html[data-surface="night"] {
+  --s-bg: #0b0e18;
+  --s-bg2: #121728;
+  --s-bg3: #182038;
+  --s-ink: #eef1fa;
+  --s-text: #c2cbe0;
+  --s-muted: #8b97b3;
+  --s-faint: #67769b;
+  --s-rule: #1e2745;
+  --s-rule-hi: #2f3e68;
+  --s-accent: #a688fa;
+  --s-link: #7aa2f7;
+  --s-bruple: #8d8bf1;
+  --s-green: #4ee8a8;
+  --s-amber: #e8c870;
+  --s-ruby: #f07b8f;
+  --s-grain: 0.025;
+  --s-wash: 1;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0; }
+html { background: var(--s-bg); scroll-behavior: smooth; }
+
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--s-wash);
+  background:
+    radial-gradient(ellipse 75% 60% at 12% 16% var(--in-oklab), color-mix(in oklab, var(--s-link), transparent 86%), transparent 64%),
+    radial-gradient(ellipse 70% 55% at 88% 28% var(--in-oklab), color-mix(in oklab, var(--s-accent), transparent 86%), transparent 66%),
+    radial-gradient(ellipse 78% 68% at 76% 88% var(--in-oklab), color-mix(in oklab, var(--s-bruple), transparent 88%), transparent 70%);
+}
+
+body {
+  background: transparent;
+  color: var(--s-text);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--s-grain);
+  z-index: 60;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+.shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding-inline: max(14px, env(safe-area-inset-left, 0px));
+  padding-bottom: 88px;
+}
+
+/* Compact Phone-First Masthead */
+.mast {
+  padding-top: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--s-rule);
+}
+.mast-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.crumb {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--s-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.crumb a {
+  color: var(--s-ink);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--s-accent);
+}
+.crumb a:hover { color: var(--s-accent); }
+
+.surf-sw {
+  display: inline-flex;
+  border: 1px solid var(--s-rule);
+}
+.surf-btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--s-muted);
+  padding: 6px 8px;
+  min-height: 30px;
+  cursor: pointer;
+}
+.surf-btn:not(:first-child) { border-left: 1px solid var(--s-rule); }
+.surf-btn.on {
+  background: color-mix(in oklab, var(--s-accent), transparent 88%);
+  color: var(--s-accent);
+  font-weight: 500;
+}
+.surf-btn:focus-visible { outline: 2px solid var(--s-accent); outline-offset: -2px; }
+
+h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(32px, 8vw, 44px);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+  color: var(--s-ink);
+}
+h1 em { font-style: italic; color: var(--s-accent); }
+.sub {
+  margin-top: 7px;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--s-muted);
+  line-height: 1.42;
+}
+
+/* Shared Shortlist Banner */
+.shared-banner {
+  margin-top: 12px;
+  padding: 9px 12px;
+  border: 1px solid var(--s-accent);
+  background: color-mix(in oklab, var(--s-accent), transparent 92%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--s-ink);
+}
+.shared-banner[hidden] { display: none; }
+.shared-acts { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* Sticky Mobile Utility Dock */
+.dock {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin-inline: calc(-1 * max(14px, env(safe-area-inset-left, 0px)));
+  padding: 10px max(14px, env(safe-area-inset-left, 0px)) 8px;
+  background: color-mix(in oklab, var(--s-bg) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--s-rule);
+}
+
+.dock-row1 {
+  display: flex;
+  align-items: stretch;
+  gap: 7px;
+}
+.search-box {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+.search-in {
+  appearance: none;
+  width: 100%;
+  min-height: 40px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--s-ink);
+  background: var(--s-bg2);
+  border: 1px solid var(--s-rule);
+  padding: 6px 28px 6px 10px;
+  outline: none;
+}
+.search-in::placeholder { color: var(--s-faint); }
+.search-in:focus { border-color: var(--s-accent); }
+.search-clr {
+  position: absolute;
+  right: 4px;
+  appearance: none;
+  background: none;
+  border: 0;
+  min-width: 30px;
+  min-height: 36px;
+  color: var(--s-muted);
+  font-family: var(--mono);
+  font-size: 15px;
+  cursor: pointer;
+}
+.search-clr:hover { color: var(--s-ruby); }
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--s-rule);
+  background: var(--s-bg2);
+  flex: none;
+}
+.seg-btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  min-height: 38px;
+  padding: 0 11px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--s-muted);
+  cursor: pointer;
+}
+.seg-btn:not(:first-child) { border-left: 1px solid var(--s-rule); }
+.seg-btn.on {
+  background: var(--s-ink);
+  color: var(--s-bg);
+  font-weight: 500;
+}
+.seg-btn:focus-visible { outline: 2px solid var(--s-accent); outline-offset: -2px; }
+
+.saved-toggle {
+  appearance: none;
+  flex: none;
+  min-height: 40px;
+  padding: 0 10px;
+  background: var(--s-bg2);
+  border: 1px solid var(--s-rule);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--s-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.saved-toggle.on {
+  border-color: var(--s-accent);
+  color: var(--s-accent);
+  background: color-mix(in oklab, var(--s-accent), transparent 90%);
+  font-weight: 500;
+}
+.saved-toggle:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+
+/* Swipeable Pill Rails */
+.rail-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 8px;
+  padding-bottom: 2px;
+}
+.rail-scroll::-webkit-scrollbar { display: none; }
+
+.pill {
+  appearance: none;
+  flex: none;
+  min-height: 34px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid var(--s-rule);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--s-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .14s, border-color .14s, background .14s;
+}
+.pill:hover { color: var(--s-ink); border-color: var(--s-rule-hi); }
+.pill.on {
+  color: var(--s-accent);
+  border-color: var(--s-accent);
+  background: color-mix(in oklab, var(--s-accent), transparent 90%);
+  font-weight: 500;
+}
+.pill.pill-ruby.on {
+  color: var(--s-ruby);
+  border-color: var(--s-ruby);
+  background: color-mix(in oklab, var(--s-ruby), transparent 91%);
+}
+.pill:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+
+.dock-row3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 7px;
+}
+.vibe-rail {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.vibe-rail::-webkit-scrollbar { display: none; }
+.vpill {
+  appearance: none;
+  flex: none;
+  min-height: 30px;
+  padding: 4px 8px;
+  background: transparent;
+  border: 1px dotted var(--s-rule-hi);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--s-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.vpill.on {
+  border-style: solid;
+  border-color: var(--s-ink);
+  color: var(--s-ink);
+  background: color-mix(in oklab, var(--s-bg3), transparent 20%);
+  font-weight: 500;
+}
+.vpill:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+
+.sort-sel {
+  flex: none;
+  min-height: 32px;
+  max-width: 146px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--s-ink);
+  background: var(--s-bg2);
+  border: 1px solid var(--s-rule);
+  padding: 4px 6px;
+  cursor: pointer;
+}
+.sort-sel:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+
+/* Shortlist Share Drawer */
+.shortlist-bar {
+  margin-top: 10px;
+  padding: 9px 11px;
+  border: 1px solid var(--s-rule);
+  background: var(--s-bg2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.shortlist-bar[hidden] { display: none; }
+.sl-txt {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--s-text);
+  min-width: 0;
+}
+.sl-txt strong { color: var(--s-ink); }
+.sl-btns { display: flex; gap: 6px; flex: none; }
+.btn-sm {
+  appearance: none;
+  min-height: 32px;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid var(--s-rule-hi);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--s-ink);
+  cursor: pointer;
+}
+.btn-sm.pri {
+  border-color: var(--s-accent);
+  color: var(--s-accent);
+  background: color-mix(in oklab, var(--s-accent), transparent 90%);
+  font-weight: 500;
+}
+.btn-sm.danger:hover { color: var(--s-ruby); border-color: var(--s-ruby); }
+.btn-sm:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+
+/* Quick Crew Cheat Sheet & Methodology Disclosure */
+.intro-strip {
+  margin-top: 14px;
+  border-top: 1px solid var(--s-rule);
+  border-bottom: 1px solid var(--s-rule);
+  padding: 12px 0;
+}
+.intro-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.kicker {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--s-accent);
+  font-weight: 500;
+}
+.count-lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--s-muted);
+}
+
+.crew-picks {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+.crew-picks::-webkit-scrollbar { display: none; }
+.cpick {
+  appearance: none;
+  flex: none;
+  width: 178px;
+  text-align: left;
+  padding: 9px 10px;
+  background: var(--s-bg2);
+  border: 1px solid var(--s-rule);
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.cpick:hover { border-color: var(--s-accent); }
+.cpick:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+.cp-k {
+  font-family: var(--mono);
+  font-size: 8.8px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--s-accent);
+}
+.cp-n {
+  font-family: var(--display);
+  font-size: 15.5px;
+  color: var(--s-ink);
+  margin-top: 2px;
+  line-height: 1.18;
+}
+.cp-s {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--s-muted);
+  margin-top: 3px;
+}
+
+details.method {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dotted var(--s-rule);
+}
+details.method summary {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--s-muted);
+  cursor: pointer;
+  list-style: none;
+  padding: 4px 0;
+}
+details.method summary::-webkit-details-marker { display: none; }
+details.method summary::after { content: " +"; color: var(--s-accent); }
+details.method[open] summary::after { content: " −"; }
+.method-body {
+  padding-top: 8px;
+  font-size: 13px;
+  color: var(--s-text);
+  line-height: 1.5;
+  display: grid;
+  gap: 6px;
+}
+.method-body a { color: var(--s-link); }
+
+/* Feed Cards (Michelin-Inspired Mobile Layout) */
+.feed[hidden], .map-view[hidden] { display: none; }
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.card {
+  background: var(--s-bg2);
+  border: 1px solid var(--s-rule);
+  transition: border-color .25s, box-shadow .3s;
+  scroll-margin-top: 176px;
+}
+.card.is-tried { border-top: 2.5px solid var(--s-accent); }
+.card.is-michelin { border-top: 2.5px solid var(--s-ruby); }
+.card.pulse {
+  border-color: var(--s-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--s-accent), transparent 76%);
+}
+
+.card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--s-bg3);
+  overflow: hidden;
+}
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(10,12,18,.42) 0%, rgba(10,12,18,0) 42%, rgba(10,12,18,.45) 100%);
+}
+.badge-stack {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 92px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  z-index: 2;
+}
+.mbadge {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 4px 7px;
+  background: rgba(14, 17, 26, .84);
+  color: #eef1fa;
+  border: 1px solid rgba(255,255,255,.22);
+  backdrop-filter: blur(6px);
+}
+.mbadge.mich {
+  background: #b4233b;
+  border-color: rgba(255,255,255,.35);
+  color: #ffffff;
+  font-weight: 500;
+}
+.mbadge.tried {
+  background: #5b21b6;
+  border-color: rgba(255,255,255,.35);
+  color: #ffffff;
+  font-weight: 500;
+}
+.mbadge.radar {
+  background: rgba(15, 23, 42, .88);
+  border-color: #7aa2f7;
+  color: #dbeafe;
+}
+
+.save-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  appearance: none;
+  min-height: 36px;
+  min-width: 68px;
+  padding: 5px 10px;
+  background: rgba(14, 17, 26, .82);
+  color: #eef1fa;
+  border: 1px solid rgba(255,255,255,.28);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+.save-btn.on {
+  background: var(--s-accent);
+  border-color: #ffffff;
+  color: #ffffff;
+  font-weight: 500;
+}
+.save-btn:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }
+
+.photo-credit {
+  position: absolute;
+  right: 8px;
+  bottom: 7px;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.88);
+  background: rgba(10,12,18,.58);
+  padding: 2px 6px;
+}
+
+.card-body { padding: 14px 15px 15px; }
+.card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.card-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.card-idx {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--s-accent);
+  flex: none;
+}
+.card-name {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--s-ink);
+  line-height: 1.15;
+}
+.card-meta-sub {
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--s-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+/* 3-Cell Ratings Bar */
+.rate-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 11px;
+  border-top: 1px dotted var(--s-rule);
+  border-bottom: 1px dotted var(--s-rule);
+}
+.rc { padding: 7px 8px 7px 0; }
+.rc:not(:first-child) {
+  padding-left: 9px;
+  border-left: 1px dotted var(--s-rule);
+}
+.rc-k {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--s-faint);
+}
+.rc-v {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--s-ink);
+  margin-top: 1px;
+}
+.rc-s {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--s-muted);
+  line-height: 1.3;
+  margin-top: 1px;
+}
+
+.hist-note {
+  margin-top: 10px;
+  padding: 7px 10px;
+  background: color-mix(in oklab, var(--s-accent), transparent 93%);
+  border-left: 2px solid var(--s-accent);
+  font-size: 13px;
+  color: var(--s-ink);
+  line-height: 1.42;
+}
+.hist-note.radar-note {
+  background: color-mix(in oklab, var(--s-link), transparent 93%);
+  border-left-color: var(--s-link);
+}
+
+.dishes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.dish {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--s-text);
+  background: color-mix(in oklab, var(--s-bg3), transparent 20%);
+  border: 1px solid var(--s-rule);
+  padding: 3px 7px;
+}
+
+.quote-box {
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: var(--s-text);
+  line-height: 1.48;
+}
+.quote-box blockquote {
+  font-style: italic;
+  color: var(--s-ink);
+}
+.quote-src {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--s-muted);
+  margin-top: 3px;
+}
+.caveat-line {
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--s-amber);
+  line-height: 1.42;
+}
+
+.best-for {
+  margin-top: 10px;
+  padding-left: 10px;
+  border-left: 1.5px solid var(--s-accent);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--s-ink);
+  line-height: 1.45;
+}
+.best-for strong {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 8.8px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--s-accent);
+  margin-right: 6px;
+}
+
+.card-acts {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.act-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--s-ink);
+  border: 1px solid var(--s-rule-hi);
+  background: transparent;
+  cursor: pointer;
+}
+.act-btn:hover { border-color: var(--s-accent); color: var(--s-accent); }
+.act-btn.mich { border-color: color-mix(in oklab, var(--s-ruby), transparent 35%); color: var(--s-ruby); }
+.act-btn:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+
+details.card-more {
+  margin-top: 10px;
+  border-top: 1px dotted var(--s-rule);
+  padding-top: 7px;
+}
+details.card-more summary {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--s-muted);
+  cursor: pointer;
+  list-style: none;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+details.card-more summary::-webkit-details-marker { display: none; }
+details.card-more summary::after { content: "▾"; color: var(--s-accent); }
+details.card-more[open] summary::after { content: "▴"; }
+.more-kv {
+  padding-top: 6px;
+  display: grid;
+  gap: 4px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--s-text);
+  line-height: 1.48;
+}
+.more-kv strong { color: var(--s-ink); font-weight: 500; }
+
+/* Detour Banner */
+.detour-wrap {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 2px solid var(--s-rule-hi);
+}
+.detour-wrap[hidden] { display: none; }
+.detour-head { margin-bottom: 12px; }
+.detour-head h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--s-ink);
+  margin-top: 3px;
+}
+.detour-head h2 em { font-style: italic; color: var(--s-ruby); }
+.detour-sub { font-size: 13.5px; color: var(--s-muted); margin-top: 3px; }
+
+.empty-box {
+  margin-top: 20px;
+  padding: 26px 16px;
+  border: 1px dotted var(--s-rule-hi);
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--s-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.empty-box[hidden] { display: none; }
+
+/* Portrait Corridor Map Tab */
+.map-view { margin-top: 14px; }
+.map-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 8px;
+}
+.map-zones {
+  display: inline-flex;
+  border: 1px solid var(--s-rule);
+  background: var(--s-bg2);
+}
+.mz-btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  min-height: 34px;
+  padding: 5px 10px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--s-muted);
+  cursor: pointer;
+}
+.mz-btn:not(:first-child) { border-left: 1px solid var(--s-rule); }
+.mz-btn.on {
+  background: color-mix(in oklab, var(--s-accent), transparent 88%);
+  color: var(--s-accent);
+  font-weight: 500;
+}
+.mz-btn:focus-visible { outline: 2px solid var(--s-accent); outline-offset: -2px; }
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--s-muted);
+  margin-bottom: 8px;
+}
+.lg { display: inline-flex; align-items: center; gap: 4px; }
+.lg i { display: inline-block; width: 9px; height: 9px; border: 1.5px solid; }
+.lg-o { border-color: var(--s-ruby); }
+.lg-t { border-color: var(--s-green); }
+.lg-c { border-color: var(--s-amber); }
+.lg-h { border-color: var(--s-accent); transform: rotate(45deg); width: 8px; height: 8px; }
+
+.map-frame {
+  border: 1px solid var(--s-rule);
+  background: var(--s-bg2);
+}
+svg.pmap {
+  width: 100%;
+  height: auto;
+  display: block;
+  font-family: var(--mono);
+  touch-action: manipulation;
+}
+.m-grid { stroke: var(--s-rule); stroke-width: .5; stroke-dasharray: 2,4; opacity: .65; }
+.m-water { fill: color-mix(in oklab, var(--s-link), transparent 88%); stroke: color-mix(in oklab, var(--s-link), transparent 52%); stroke-width: 1; }
+.m-park { fill: color-mix(in oklab, var(--s-green), transparent 90%); stroke: color-mix(in oklab, var(--s-green), transparent 65%); stroke-width: .9; }
+.m-road { fill: none; stroke: var(--s-rule-hi); stroke-width: 1.15; opacity: .7; }
+.m-road-sub { fill: none; stroke: var(--s-rule); stroke-width: .9; stroke-dasharray: 4,3; opacity: .75; }
+.m-city { fill: var(--s-faint); font-size: 7.5px; letter-spacing: .08em; text-transform: uppercase; pointer-events: none; }
+.m-water-lbl { fill: color-mix(in oklab, var(--s-link), var(--s-muted) 35%); font-size: 8px; letter-spacing: .16em; text-transform: uppercase; pointer-events: none; }
+
+.mpin { cursor: pointer; transition: opacity .15s; }
+.mpin.dim { opacity: .2; }
+.mpin-hit { fill: transparent; }
+.mpin-box { fill: var(--s-bg); stroke-width: 1.6; }
+.mpin.t-omakase .mpin-box { stroke: var(--s-ruby); }
+.mpin.t-traditional .mpin-box { stroke: var(--s-green); }
+.mpin.t-casual .mpin-box { stroke: var(--s-amber); }
+.mpin.t-detour .mpin-box { stroke: var(--s-ruby); stroke-dasharray: 2,1; }
+.mpin-num { font-size: 9px; font-weight: 500; text-anchor: middle; dominant-baseline: central; }
+.mpin.t-omakase .mpin-num { fill: var(--s-ruby); }
+.mpin.t-traditional .mpin-num { fill: var(--s-green); }
+.mpin.t-casual .mpin-num { fill: var(--s-amber); }
+.mpin.t-detour .mpin-num { fill: var(--s-ruby); }
+.mpin-ring { fill: none; stroke: var(--s-accent); stroke-width: 1.3; }
+.mpin-lbl { fill: var(--s-ink); font-size: 9.5px; font-weight: 500; }
+.mpin-sub { fill: var(--s-muted); font-size: 8px; }
+.mpin.sel .mpin-box { fill: var(--s-ink); stroke: var(--s-ink); }
+.mpin.sel .mpin-num { fill: var(--s-bg); }
+.mpin.tried.sel .mpin-box { fill: var(--s-accent); stroke: var(--s-accent); }
+
+/* Docked Map Bottom Preview Card */
+.map-preview {
+  margin-top: 10px;
+  border: 1px solid var(--s-rule);
+  background: var(--s-bg2);
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 12px;
+  padding: 10px;
+  align-items: center;
+}
+.mp-img {
+  width: 112px;
+  height: 82px;
+  object-fit: cover;
+  display: block;
+  background: var(--s-bg3);
+}
+.mp-info { min-width: 0; }
+.mp-k {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--s-accent);
+}
+.mp-name {
+  font-family: var(--display);
+  font-size: 18px;
+  color: var(--s-ink);
+  line-height: 1.15;
+  margin-top: 2px;
+}
+.mp-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--s-muted);
+  margin-top: 2px;
+}
+.mp-fit {
+  font-size: 12.5px;
+  color: var(--s-text);
+  margin-top: 4px;
+  line-height: 1.36;
+}
+.mp-acts {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 440px) {
+  .rate-bar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rc-v { font-size: 11px; }
+  .map-preview { grid-template-columns: 92px 1fr; gap: 10px; }
+  .mp-img { width: 92px; height: 74px; }
+}
+
+footer {
+  margin-top: 42px;
+  padding-top: 14px;
+  border-top: 1px solid var(--s-rule);
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--s-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+footer a { color: var(--s-link); text-decoration: none; border-bottom: 1px dotted var(--s-rule-hi); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <header class="mast">
+    <div class="mast-top">
+      <div class="crumb"><a href="/">sadh.app</a><span>/</span><span>misc</span><span>/</span><span>sushi-jose</span></div>
+      <div class="surf-sw" role="group" aria-label="Color surface">
+        <button type="button" class="surf-btn on" data-set-surface="parchment">Parchment</button>
+        <button type="button" class="surf-btn" data-set-surface="studio">Studio</button>
+        <button type="button" class="surf-btn" data-set-surface="night">Night</button>
+      </div>
+    </div>
+    <h1>Sushi <em>Jose</em></h1>
+    <p class="sub">32 Bay Area sushi spots across San Jose, Redwood City/Peninsula &amp; San Francisco &mdash; plus Ettan Indian backup &mdash; with photos, ratings &amp; real reviews.</p>
+    <div class="shared-banner" id="shared-banner" hidden>
+      <span id="shared-banner-txt">Viewing friend's shortlist</span>
+      <div class="shared-acts">
+        <button type="button" class="btn-sm pri" id="shared-only-btn">Saved Only</button>
+        <button type="button" class="btn-sm" id="shared-all-btn">Browse All</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dock">
+    <div class="dock-row1">
+      <div class="search-box">
+        <label for="search-input" class="sr">Search restaurants, cities, or dishes</label>
+        <input id="search-input" class="search-in" type="search" placeholder="Search spot, city, roll..." autocomplete="off">
+        <button type="button" class="search-clr" id="search-clr" aria-label="Clear search" hidden>&times;</button>
+      </div>
+      <div class="seg" role="tablist" aria-label="View mode">
+        <button type="button" class="seg-btn on" id="tab-feed" role="tab" aria-selected="true">Feed</button>
+        <button type="button" class="seg-btn" id="tab-map" role="tab" aria-selected="false">Map</button>
+      </div>
+      <button type="button" class="saved-toggle" id="btn-saved-toggle">Saved (0)</button>
+    </div>
+
+    <div class="rail-scroll" id="filter-rail" role="group" aria-label="Category filters">
+      <button type="button" class="pill on" data-filter="all">All (32)</button>
+      <button type="button" class="pill" data-filter="tried">&#9733; Tried (6)</button>
+      <button type="button" class="pill" data-filter="radar">&#8982; On the Radar (4)</button>
+      <button type="button" class="pill pill-ruby" data-filter="michelin">&#10022; Michelin (5)</button>
+      <button type="button" class="pill" data-filter="south-bay">South Bay (21)</button>
+      <button type="button" class="pill" data-filter="peninsula">Redwood &amp; Peninsula (6)</button>
+      <button type="button" class="pill" data-filter="sf">San Francisco (5)</button>
+      <button type="button" class="pill" data-filter="san-jose">San Jose (8)</button>
+      <button type="button" class="pill" data-filter="omakase">Omakase (9)</button>
+      <button type="button" class="pill" data-filter="traditional">Traditional (11)</button>
+      <button type="button" class="pill" data-filter="casual">Casual &amp; Rolls (12)</button>
+      <button type="button" class="pill" data-filter="walk-in">Walk-in (22)</button>
+      <button type="button" class="pill pill-ruby" data-filter="detour">Indian Backup (Ettan)</button>
+    </div>
+
+    <div class="dock-row3">
+      <div class="vibe-rail" id="vibe-rail" role="group" aria-label="Craving or vibe">
+        <button type="button" class="vpill on" data-vibe="all">Any Vibe</button>
+        <button type="button" class="vpill" data-vibe="fatty">Fatty Cuts &amp; Nigiri</button>
+        <button type="button" class="vpill" data-vibe="clean">Old-School Clean</button>
+        <button type="button" class="vpill" data-vibe="splurge">Omakase Splurge</button>
+        <button type="button" class="vpill" data-vibe="rolls">Rolls &amp; Grill</button>
+        <button type="button" class="vpill" data-vibe="late">Late Night</button>
+        <button type="button" class="vpill" data-vibe="value">Best Value</button>
+      </div>
+      <label for="sort-sel" class="sr">Sort order</label>
+      <select id="sort-sel" class="sort-sel">
+        <option value="recommended">Recommended</option>
+        <option value="rating">Google Rating &darr;</option>
+        <option value="volume">Most Reviewed &darr;</option>
+        <option value="price-asc">Price &uarr;</option>
+        <option value="price-desc">Price &darr;</option>
+        <option value="tried">Tried First</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="shortlist-bar" id="shortlist-bar" hidden>
+    <div class="sl-txt" id="sl-txt"></div>
+    <div class="sl-btns">
+      <button type="button" class="btn-sm pri" id="btn-share-picks">Share Picks</button>
+      <button type="button" class="btn-sm danger" id="btn-clear-picks">Clear</button>
+    </div>
+  </div>
+
+  <section class="feed" id="view-feed">
+    <div class="intro-strip">
+      <div class="intro-head">
+        <span class="kicker">Quick Picks for the Crew</span>
+        <span class="count-lbl" id="count-lbl">Showing 32 of 32 sushi spots + Ettan backup</span>
+      </div>
+      <div class="crew-picks">
+        <button type="button" class="cpick" data-jump="robin-sf">
+          <div class="cp-k">&#10022; 1 Michelin Star (SF)</div>
+          <div class="cp-n">#02 Robin (SF)</div>
+          <div class="cp-s">Hayes Valley &middot; $119–$219+</div>
+        </button>
+        <button type="button" class="cpick" data-jump="the-roll-sf">
+          <div class="cp-k">SF Temaki &amp; Nigiri</div>
+          <div class="cp-n">#11 The Roll</div>
+          <div class="cp-s">SoMa &middot; 4.7&#9733;G / 4.7&#9733;Y</div>
+        </button>
+        <button type="button" class="cpick" data-jump="nara-sf">
+          <div class="cp-k">SF Sake &amp; Late Night</div>
+          <div class="cp-n">#23 Nara Restaurant</div>
+          <div class="cp-s">Lower Haight &middot; til 12a wknd</div>
+        </button>
+        <button type="button" class="cpick" data-jump="robin-mp">
+          <div class="cp-k">Redwood / Menlo Omakase</div>
+          <div class="cp-n">#07 Robin (Menlo)</div>
+          <div class="cp-s">Springline &middot; $119–$219</div>
+        </button>
+        <button type="button" class="cpick" data-jump="sushi-adachi">
+          <div class="cp-k">South Bay Elite Omakase</div>
+          <div class="cp-n">#05 Sushi Adachi</div>
+          <div class="cp-s">Mountain View &middot; Resy 4.7&#9733;</div>
+        </button>
+        <button type="button" class="cpick" data-jump="sushi-tomi">
+          <div class="cp-k">&#9733; Tried Benchmark</div>
+          <div class="cp-n">#13 Sushi Tomi</div>
+          <div class="cp-s">Old-school nigiri &middot; No res.</div>
+        </button>
+        <button type="button" class="cpick" data-jump="sen-dai">
+          <div class="cp-k">Roll &amp; Value Upgrade</div>
+          <div class="cp-n">#22 Sen Dai Sushi</div>
+          <div class="cp-s">Milpitas &middot; 6,100+ reviews</div>
+        </button>
+        <button type="button" class="cpick" data-jump="kenji">
+          <div class="cp-k">SJ Late Night til 11:45p</div>
+          <div class="cp-n">#27 Kenji Sushi</div>
+          <div class="cp-s">Winchester SJ &middot; Spicy rolls</div>
+        </button>
+        <button type="button" class="cpick" data-jump="ettan">
+          <div class="cp-k">&#10022; Indian Backup</div>
+          <div class="cp-n">Ettan (Palo Alto)</div>
+          <div class="cp-s">Michelin Selected &middot; $$$</div>
+        </button>
+      </div>
+
+      <details class="method">
+        <summary>How ratings, Michelin status &amp; Zagat (N/A) work here</summary>
+        <div class="method-body">
+          <p><strong>Google Maps vs. Yelp:</strong> Google runs ~0.3–0.5 stars warmer and captures newer 2026 openings (like Sushi Adachi), while Yelp reflects massive multi-year South Bay &amp; SF volume (2,200+ reviews on Nara; 3,900+ on Sen Dai and Cha Cha). Small 8–12 seat omakase counters naturally have fewer total reviews (~70–500) than busy roll rooms.</p>
+          <p><strong>Michelin Guide Accuracy:</strong> Per the 2025–2026 <a href="https://guide.michelin.com/us/en/selection/united-states/restaurants/sushi" target="_blank" rel="noopener noreferrer">Michelin Guide California</a>, <strong>Robin (SF)</strong> holds <em>1 Michelin Star</em>; <strong>Saru Sushi Bar (SF)</strong> and <strong>Ettan (Palo Alto)</strong> are <em>Michelin Selected</em>; and <strong>Sushi Yoshizumi (San Mateo)</strong>, <strong>Sushi Shin (Redwood City)</strong>, and <strong>jū-ni (SF)</strong> are currently <em>Michelin Selected</em> (each formerly held 1 Star).</p>
+          <p><strong>Why Zagat = N/A:</strong> Zagat retired its classic 30-point crowd-scored ratings after joining The Infatuation (which focuses heavily on SF rather than San Jose). This guide blends Google Maps, Yelp, Michelin, Resy/Tock, and local <code>r/SanJose</code> / <code>r/bayarea</code> consensus instead.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="empty-box" id="empty-box" hidden>
+      <span>No spots match your current filter, vibe, or search.</span>
+      <button type="button" class="btn-sm pri" id="btn-reset-empty">Reset All Filters</button>
+    </div>
+
+    <div class="feed-list" id="feed-list"></div>
+
+    <div class="detour-wrap" id="detour-wrap">
+      <div class="detour-head">
+        <div class="kicker">Off-Menu Backup &middot; Palo Alto</div>
+        <h2>If the Crew Wants <em>Indian Instead</em></h2>
+        <p class="detour-sub">One block from Iki Omakase on Bryant St — Michelin Guide Selected Cal-Indian by two-star chef Srijith Gopinathan.</p>
+      </div>
+      <div id="detour-slot"></div>
+    </div>
+  </section>
+
+  <section class="map-view" id="view-map" hidden>
+    <div class="map-head">
+      <span class="kicker" id="map-kicker">South Bay &amp; Peninsula (27)</span>
+      <div class="map-zones" role="group" aria-label="Map region zoom">
+        <button type="button" class="mz-btn on" data-map-zone="south">South Bay &amp; Peninsula (27)</button>
+        <button type="button" class="mz-btn" data-map-zone="sf">San Francisco (5)</button>
+      </div>
+    </div>
+    <div class="map-legend">
+      <span class="lg"><i class="lg-o"></i> Omakase</span>
+      <span class="lg"><i class="lg-t"></i> Traditional</span>
+      <span class="lg"><i class="lg-c"></i> Casual</span>
+      <span class="lg"><i class="lg-h"></i> Tried/Radar</span>
+    </div>
+    <div class="map-frame">
+      <svg id="portrait-map" class="pmap" viewBox="0 0 420 560" aria-label="Bay Area sushi corridor map"></svg>
+    </div>
+    <div class="map-preview" id="map-preview" aria-live="polite"></div>
+  </section>
+
+  <footer>
+    <div><a href="/">&larr; sadh.app</a> &middot; Sushi Jose &middot; South Bay, Peninsula &amp; SF Sushi Guide</div>
+    <div>Ratings, review volumes &amp; hours reflect Nov 2026 snapshots &middot; Tap <strong>+ Save</strong> then <strong>Share Picks</strong> for group chat links &middot; Key <strong>T</strong> switches theme</div>
+  </footer>
+</div>
+
+<script>
+const SPOTS = [
+  {
+    id: "01",
+    slug: "sushi-yoshizumi",
+    name: "Sushi Yoshizumi",
+    region: "peninsula",
+    tier: "omakase",
+    tierLabel: "Edomae Omakase",
+    city: "San Mateo",
+    area: "San Mateo",
+    address: "325 E 4th Ave, San Mateo, CA 94401",
+    lat: 37.5653, lon: -122.3238,
+    mxOff: -10, myOff: 10,
+    gRating: 4.8, gDisp: "~4.8★", gCount: "~266 reviews",
+    yRating: 4.6, yDisp: "~4.6★", yCount: "~360 reviews",
+    vol: 626,
+    guideShort: "Michelin Selected",
+    guideSub: "Former 1★ · Tock prepaid",
+    priceDisp: "$403 / pp (incl. 22% svc)",
+    priceShort: "$$$$ · $403",
+    priceMid: 403,
+    hours: "Wed–Sun seatings (check Tock)",
+    booking: "Prepaid via Tock (strict Edomae seating)",
+    walkIn: false,
+    michelin: true,
+    michelinBadge: "Michelin Selected · Former 1★",
+    michelinUrl: "https://guide.michelin.com/us/en/california/san-mateo/restaurant/sushi-yoshizumi",
+    website: "https://www.exploretock.com/sushiyoshizumi",
+    websiteLabel: "Book on Tock ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Representative dish",
+    vibes: ["fatty", "clean", "splurge"],
+    dishes: ["Kohada (Gizzard Shad)", "Sake-Steamed Kinki", "Kuruma Ebi", "Akasu & Komesu Shari"],
+    quote: "“The major highlight of the evening might have been the absolutely wonderful kohada nigiri... The five taste sensations were all present in that one bite, but never fought each other for dominance.”",
+    quoteSrc: "The Sushi Geek · plus SF Chronicle praising kinki as “firm and fatty, squeaking like a cheese curd”",
+    caveat: "Zero shortcuts — no torching, no truffle, no fusion. Worth driving north when everyone wants pure, hushed Edomae tradition.",
+    bestFor: "The Peninsula purist bucket-list splurge when clean nigiri craft and warm red-vinegar shari are the entire event."
+  },
+  {
+    id: "02",
+    slug: "robin-sf",
+    name: "Robin (SF)",
+    region: "sf",
+    tier: "omakase",
+    tierLabel: "Modern Omakase",
+    city: "San Francisco",
+    area: "San Francisco (Hayes Valley)",
+    address: "620 Gough St, San Francisco, CA 94102",
+    lat: 37.7791, lon: -122.4235,
+    mxOff: 0, myOff: 0,
+    gRating: 4.7, gDisp: "~4.7★", gCount: "Thousands of Resy/Google ratings",
+    yRating: 4.5, yDisp: "~4.5★+", yCount: "High multi-year SF volume",
+    vol: 2100,
+    guideShort: "1 Michelin Star",
+    guideSub: "Sliding-scale omakase · Sake list",
+    priceDisp: "$119–$219+ / pp (pick your tier)",
+    priceShort: "$$$$ · $119–$219+",
+    priceMid: 175,
+    hours: "Wed–Sun 5:00p–9:30p · Mon–Tue closed",
+    booking: "Resy reservations (choose budget tier)",
+    walkIn: false,
+    michelin: true,
+    michelinBadge: "1 Michelin Star",
+    michelinUrl: "https://guide.michelin.com/us/en/california/san-francisco/restaurant/robin",
+    website: "https://www.robinomakase.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "splurge"],
+    dishes: ["Custom Sliding-Scale Tasting", "Uni & Caviar Bites", "Shaved Truffle Courses", "Craft Sake Flights"],
+    quote: "Acclaimed across Michelin and SF dining guides (~4.7★ across thousands of ratings) for turning stuffy omakase on its head with playful California flair, lively music, and customizable price tiers.",
+    quoteSrc: "MICHELIN Guide (1 Star) & Resy / Google Consensus",
+    caveat: "Playful modern style (truffles, caviar, eclectic toppings) — pick jū-ni or Yoshizumi instead if you want strict quiet Tokyo tradition.",
+    bestFor: "The most fun 1-Michelin-Star dinner for a crew in SF — you set your own spend ($119–$219+) and tailor dishes to your table."
+  },
+  {
+    id: "03",
+    slug: "ju-ni-sf",
+    name: "jū-ni",
+    region: "sf",
+    tier: "omakase",
+    tierLabel: "Edomae Omakase",
+    city: "San Francisco",
+    area: "San Francisco (NoPa)",
+    address: "1335 Fulton St, San Francisco, CA 94117",
+    lat: 37.7765, lon: -122.4388,
+    mxOff: 0, myOff: 0,
+    gRating: 4.7, gDisp: "~4.7★", gCount: "500+ reviews",
+    yRating: 4.6, yDisp: "~4.6★", yCount: "500+ reviews",
+    vol: 750,
+    guideShort: "Michelin Selected",
+    guideSub: "Former 1★ (2017–21) · 12-seat counter",
+    priceDisp: "$238 / pp (extended ~$370)",
+    priceShort: "$$$$ · $238",
+    priceMid: 238,
+    hours: "Tue–Sat seatings (5:30/5:45/8:00/8:15p) · Sun–Mon closed",
+    booking: "Tock reservations required",
+    walkIn: false,
+    michelin: true,
+    michelinBadge: "Michelin Selected · Former 1★",
+    michelinUrl: "https://guide.michelin.com/us/en/california/san-francisco/restaurant/ju-ni",
+    website: "https://www.junisf.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "clean", "splurge"],
+    dishes: ["12-Seat Nigiri Progression", "Precision Shari Temp", "Seasonal Seafood", "Sake Pairings"],
+    quote: "A NoPa staple holding ~4.7★ across 500+ reviews, celebrated by SF food guides for intimate 12-seat counter choreography and obsessive shari temperature.",
+    quoteSrc: "Eater SF, Tock & 500+ Reviews",
+    caveat: "Note: its former sister counter Handroll Project in the Mission is permanently closed; the NoPa flagship remains open.",
+    bestFor: "A true intimate 12-seat SF omakase classic when you want precision nigiri craft without Yoshizumi's $403 ticket."
+  },
+  {
+    id: "04",
+    slug: "sushi-shin",
+    name: "Sushi Shin",
+    region: "peninsula",
+    tier: "omakase",
+    tierLabel: "Edomae Omakase",
+    city: "Redwood City",
+    area: "Redwood City",
+    address: "312 Arguello St, Redwood City, CA 94063",
+    lat: 37.4878, lon: -122.2305,
+    mxOff: -6, myOff: -4,
+    gRating: 4.4, gDisp: "~4.4★", gCount: "~230 reviews",
+    yRating: 4.6, yDisp: "~4.6★", yCount: "~158 reviews",
+    vol: 388,
+    guideShort: "Michelin Selected",
+    guideSub: "Former 1★ (2021–23) · Tock ~4.9★",
+    priceDisp: "$275–$350+ / pp",
+    priceShort: "$$$$ · $275+",
+    priceMid: 315,
+    hours: "Dinner seatings (book via Tock)",
+    booking: "Tock weeks ahead · strict dietary policy",
+    walkIn: false,
+    michelin: true,
+    michelinBadge: "Michelin Selected · Former 1★",
+    michelinUrl: "https://guide.michelin.com/us/en/california/redwood-city/restaurant/sushi-shin",
+    website: "https://www.sushishinredwoodcity.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "clean", "splurge"],
+    dishes: ["Otoro & Hokkaido Uni", "Hairy Crab Chawanmushi", "Horse Mackerel", "Tempura Greeneye"],
+    quote: "Intimate 9-seat L-shaped cypress counter by Chef Jason Zhan; reviewers rave about melt-in-your-mouth otoro, sweet Hokkaido uni, and intricate crab-and-scallop starters.",
+    quoteSrc: "Michelin Guide & Tock (~4.9★ diner consensus)",
+    caveat: "Strict dietary policy — generally cannot accommodate no-raw-fish, vegan, or multiple allergies.",
+    bestFor: "The flagship Redwood City omakase — closer to San Jose than San Mateo while hitting the same uncompromising Edomae level."
+  },
+  {
+    id: "05",
+    slug: "sushi-adachi",
+    name: "Sushi Adachi",
+    region: "south-bay",
+    tier: "omakase",
+    tierLabel: "Toyosu Omakase",
+    city: "Mountain View",
+    area: "Mountain View",
+    address: "409 San Antonio Rd #56, Mountain View, CA 94040",
+    lat: 37.4050, lon: -122.1105,
+    mxOff: -8, myOff: -8,
+    gRating: 4.6, gDisp: "~4.6★", gCount: "<35 indexed (opened 2026)",
+    yRating: null, yDisp: "Emerging", yCount: "<30 reviews (opened 2026)",
+    vol: 165,
+    guideShort: "Resy 4.7★ (130+)",
+    guideSub: "Toyosu Market Direct · Amex Resy",
+    priceDisp: "$160 std / $225 prem",
+    priceShort: "$$$$ · $160–$225",
+    priceMid: 190,
+    hours: "Dinner seatings (check Resy)",
+    booking: "Resy reservations required",
+    walkIn: false,
+    michelin: false,
+    website: "https://sushiadachi.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "clean", "splurge"],
+    dishes: ["Hokkaido Bafun Uni", "24h Toyosu Air-Flown Cuts", "17-Course Standard", "20-Course Premium"],
+    quote: "Pairs Silicon Valley pioneer Chef Masaki Sasaki (ex-Maruya & Omakase SF) with Tokyo veteran Yoshikazu Adachi; early Resy diners (4.7★ across 130+ ratings) praise its authentic Tokyo counter pace.",
+    quoteSrc: "Resy Diner Reviews & SF Food Press",
+    caveat: "Opened early 2026 so Google/Yelp counts are still small — check Resy for real booking feedback.",
+    bestFor: "The highest-pedigree omakase right inside the South Bay without driving up the Peninsula."
+  },
+  {
+    id: "06",
+    slug: "iki-omakase",
+    name: "Iki Omakase",
+    region: "south-bay",
+    tier: "omakase",
+    tierLabel: "Modern Edomae",
+    city: "Palo Alto",
+    area: "Palo Alto",
+    address: "460 Ramona St, Palo Alto, CA 94301",
+    lat: 37.4455, lon: -122.1627,
+    mxOff: -6, myOff: 0,
+    gRating: 4.6, gDisp: "~4.6★", gCount: "~72 reviews",
+    yRating: 4.3, yDisp: "~4.0–4.6★", yCount: "~101 reviews",
+    vol: 173,
+    guideShort: "Tock · 8-Seat Counter",
+    guideSub: "Downtown Palo Alto · Lunch option",
+    priceDisp: "$125 lunch / $235–$350 dinner",
+    priceShort: "$$$$ · $125–$350",
+    priceMid: 235,
+    hours: "Lunch & Dinner seatings (check Tock)",
+    booking: "Tock reservations required",
+    walkIn: false,
+    michelin: false,
+    website: "https://www.ikiomakasepaloalto.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "splurge"],
+    dishes: ["Uni Soba", "Ankimo", "Akasu Red-Vinegar Shari", "Lunch Tasting ($125)"],
+    quote: "Led by Chef Jiabo (JB) Li (formerly SF's Sushi Hon & Sato Omakase); diners love the artistic pacing balancing akasu-seasoned nigiri with standout uni soba.",
+    quoteSrc: "Local Omakase Reviews & Tock",
+    caveat: "Only 8 seats on Ramona St; the $125 lunch tasting is a smart entry point.",
+    bestFor: "Date-night Palo Alto counter when you want serious Edomae fish plus playful visual flourishes."
+  },
+  {
+    id: "07",
+    slug: "robin-mp",
+    name: "Robin (Menlo Park)",
+    region: "peninsula",
+    tier: "omakase",
+    tierLabel: "Modern Omakase",
+    city: "Menlo Park",
+    area: "Menlo Park (Springline)",
+    address: "1300 El Camino Real #C, Menlo Park, CA 94025",
+    lat: 37.4567, lon: -122.1869,
+    mxOff: 12, myOff: 6,
+    gRating: 4.6, gDisp: "~4.6★", gCount: "~150 reviews",
+    yRating: 4.5, yDisp: "~4.5★", yCount: "~165+ reviews",
+    vol: 315,
+    guideShort: "1★ Robin SF Outpost",
+    guideSub: "Customizable tier · Easy parking",
+    priceDisp: "$119–$219 / pp",
+    priceShort: "$$$$ · $119–$219",
+    priceMid: 165,
+    hours: "Tue–Sat 5:00p–9:30p · Sun–Mon closed",
+    booking: "Resy reservations required",
+    walkIn: false,
+    michelin: false,
+    website: "https://www.robinomakase.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "splurge"],
+    dishes: ["Sliding-Scale Omakase", "Truffle & Uni Courses", "Highball & Liquor Program", "Wagyu Accents"],
+    quote: "Peninsula diners (~4.6★ Google / 4.5★ Yelp) praise Robin Menlo Park for bringing the creative Hayes Valley omakase energy right next to Redwood City, plus a stronger cocktail bar and easy parking.",
+    quoteSrc: "Google, Yelp & 7x7 Reviews",
+    caveat: "Closed Sunday & Monday; interactive pricing scales up quickly if the table adds luxury extras.",
+    bestFor: "Right next door to Redwood City when you want Michelin-pedigree creativity without driving to San Francisco."
+  },
+  {
+    id: "08",
+    slug: "sushi-jin",
+    name: "Sushi Jin",
+    region: "south-bay",
+    tier: "omakase",
+    tierLabel: "Edomae Omakase",
+    city: "Mountain View",
+    area: "Mountain View",
+    address: "580 N Rengstorff Ave #J, Mountain View, CA 94043",
+    lat: 37.4063, lon: -122.0952,
+    mxOff: 12, myOff: -4,
+    gRating: 4.5, gDisp: "~4.5★", gCount: "~240+ reviews",
+    yRating: 4.5, yDisp: "~4.5★", yCount: "~150+ reviews",
+    vol: 390,
+    guideShort: "4.5★ Google & Yelp",
+    guideSub: "Entry Omakase · Team opened Haru",
+    priceDisp: "$135–$155+ / pp",
+    priceShort: "$$$$ · $135–$155",
+    priceMid: 145,
+    hours: "Dinner seatings (check site)",
+    booking: "Reservations required",
+    walkIn: false,
+    michelin: false,
+    website: "https://www.sushijinmtv.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Representative counter",
+    vibes: ["fatty", "clean", "splurge"],
+    dishes: ["Hokkaido Uni", "Fatty Toro", "Edomae Omakase Tasting", "À La Carte Nigiri"],
+    quote: "Long-respected Mountain View counter praised for generous seasonal fish variety and balanced Edomae tastings starting around $135.",
+    quoteSrc: "Google & Yelp Diner Consensus",
+    caveat: "Do not confuse with Vancouver's Sushi Jin; the MV team also opened Haru in downtown Los Altos in May 2026.",
+    bestFor: "The gentlest price ramp into true Edomae omakase right next door to Sushi Tomi."
+  },
+  {
+    id: "09",
+    slug: "hiroshi",
+    name: "Hiroshi",
+    region: "south-bay",
+    tier: "omakase",
+    tierLabel: "Luxury Wagyu & Fish",
+    city: "Los Altos",
+    area: "Los Altos",
+    address: "328 Main St, Los Altos, CA 94022",
+    lat: 37.3788, lon: -122.1162,
+    mxOff: -12, myOff: 8,
+    gRating: 4.5, gDisp: "~4.5★", gCount: "Sparse (ultra-private)",
+    yRating: 4.35, yDisp: "~4.2–4.5★", yCount: "Sparse (ultra-private)",
+    vol: 60,
+    guideShort: "Tock · Ultra-Private",
+    guideSub: "A5 Wagyu + Toyosu Fish",
+    priceDisp: "$400–$575+ / pp",
+    priceShort: "$$$$ · $400+",
+    priceMid: 485,
+    hours: "Private evening seatings (check Tock)",
+    booking: "Tock strictly required (11- or 17-course)",
+    walkIn: false,
+    michelin: false,
+    website: "https://www.hiroshi328.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "splurge"],
+    dishes: ["A5 Miyazaki Wagyu", "Toyosu Rare Fish", "Uni & Caviar Pairings", "17-Course Tasting"],
+    quote: "Known across Silicon Valley for ultra-private seating where Toyosu Market seafood meets rich A5 Miyazaki Wagyu, uni, and caviar.",
+    quoteSrc: "Bay Area Luxury Dining Features",
+    caveat: "Very small public review footprint due to its private format and $400–$575+ price tier.",
+    bestFor: "When the occasion calls for maximum luxury (A5 Wagyu + caviar + private room) rather than quiet sushi purism."
+  },
+  {
+    id: "10",
+    slug: "saru-sf",
+    name: "Saru Sushi Bar",
+    region: "sf",
+    tier: "traditional",
+    tierLabel: "À La Carte Edomae",
+    city: "San Francisco",
+    area: "San Francisco (Noe Valley)",
+    address: "3856 24th St, San Francisco, CA 94114",
+    lat: 37.7517, lon: -122.4285,
+    mxOff: 0, myOff: 0,
+    gRating: 4.7, gDisp: "~4.7★", gCount: "~800 reviews",
+    yRating: 4.5, yDisp: "~4.5★+", yCount: "Strong SF neighborhood volume",
+    vol: 800,
+    guideShort: "Michelin Selected",
+    guideSub: "The Infatuation favorite · Walk-in only",
+    priceDisp: "$$–$$$ (À la carte · ~$45–$75)",
+    priceShort: "$$–$$$ · ~$60",
+    priceMid: 60,
+    hours: "Wed 5:30–9:30p · Thu & Sun 12–2p, 5:30–9:30p · Fri–Sat 12–2p, 5:30–10p · Mon–Tue closed",
+    booking: "Walk-ins only (no dine-in reservations)",
+    walkIn: true,
+    michelin: true,
+    michelinBadge: "Michelin Selected",
+    michelinUrl: "https://guide.michelin.com/us/en/california/san-francisco/restaurant/saru-sushi-bar",
+    website: "https://www.sarusushisf.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "clean"],
+    dishes: ["À La Carte Seasonal Nigiri", "Crudo & Small Plates ($6–$36)", "No Omakase Minimum"],
+    quote: "Routinely cited by The Infatuation and Michelin Guide (~4.7★ across ~800 reviews) as SF's gold-standard neighborhood sushi bar for pristine à la carte nigiri without $300 omakase stiffness.",
+    quoteSrc: "MICHELIN Guide & The Infatuation",
+    caveat: "Walk-ins only and closed Mon–Tue — put your name in early in Noe Valley.",
+    bestFor: "The SF equivalent of Sushi Tomi dialed up a notch: Michelin-vetted fish you order piece by piece without a $250 commitment."
+  },
+  {
+    id: "11",
+    slug: "the-roll-sf",
+    name: "The Roll",
+    region: "sf",
+    tier: "traditional",
+    tierLabel: "Temaki & Edomae Nigiri",
+    city: "San Francisco",
+    area: "San Francisco (SoMa)",
+    address: "921 Folsom St, San Francisco, CA 94107",
+    lat: 37.7797, lon: -122.4041,
+    mxOff: 0, myOff: 0,
+    gRating: 4.65, gDisp: "~4.6–4.7★", gCount: "~150–170 reviews",
+    yRating: 4.7, yDisp: "~4.7★", yCount: "~126+ reviews",
+    vol: 290,
+    guideShort: "4.7★ Google & Yelp",
+    guideSub: "By Sushi Hakko Omakase team",
+    priceDisp: "$$–$$$ ($20–$60 / pp)",
+    priceShort: "$$–$$$ · ~$42",
+    priceMid: 42,
+    hours: "Daily ~5:00p–10:00p (verify online)",
+    booking: "Walk-in / online reservations",
+    walkIn: true,
+    michelin: false,
+    website: "https://therollsf.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Representative dish",
+    vibes: ["fatty", "clean", "rolls", "value"],
+    dishes: ["Crisp-Nori Temaki Hand Rolls", "Edomae Nigiri", "Futomaki Rolls", "Premium Inari"],
+    quote: "Created by the team behind Sushi Hakko Omakase; diners (~4.7★ on both Yelp and Google) rave about the ultra-fresh omakase-grade fish, snappy roasted nori, and focused menu.",
+    quoteSrc: "Google (~4.6–4.7★) & Yelp (~4.7★)",
+    caveat: "Focused dinner-leaning schedule in SoMa — check online booking slots before heading up.",
+    bestFor: "Easily one of SF's highest-rated casual-upscale spots right now if you want crisp hand rolls and Edomae nigiri without omakase prices."
+  },
+  {
+    id: "12",
+    slug: "sushi-maruyama",
+    name: "Sushi Maruyama",
+    region: "peninsula",
+    tier: "traditional",
+    tierLabel: "Small Plates & Nigiri",
+    city: "San Mateo",
+    area: "San Mateo",
+    address: "279 Baldwin Ave, San Mateo, CA 94401",
+    lat: 37.5681, lon: -122.3230,
+    mxOff: 18, myOff: 10,
+    gRating: 4.7, gDisp: "~4.7★", gCount: "~500+ reviews",
+    yRating: null, yDisp: "Highly rated", yCount: "Strong Peninsula base",
+    vol: 550,
+    guideShort: "4.7★ Gourmet Favorite",
+    guideSub: "Relaxed room · Creative small plates",
+    priceDisp: "$$$ (~$45–$85)",
+    priceShort: "$$$ · ~$65",
+    priceMid: 65,
+    hours: "Tue–Thu 5:30–9:30p · Fri–Sat til 10p · Sun 5–9p · Mon closed",
+    booking: "Reservations recommended",
+    walkIn: false,
+    michelin: false,
+    website: "https://www.sushimaruyama.com/",
+    websiteLabel: "Website ↗",
+    historyType: "radar",
+    historyNote: "On the radar: high-scoring Peninsula option if the group wants upscale small plates and serious nigiri without formal omakase rigidity.",
+    photoLabel: "Representative dish",
+    vibes: ["fatty", "clean", "rolls"],
+    dishes: ["Wagyu Tacos w/ Truffle Aioli", "Kinmedai (Golden Eye Snapper)", "Ankimo w/ Ponzu", "Miso Black Cod"],
+    quote: "Diners praise the sweet delicacy of golden eye snapper (kinmedai) and creamy ankimo alongside crowd-pleasing Wagyu tacos and miso black cod.",
+    quoteSrc: "San Mateo Diner Reviews (~4.7★ Google)",
+    caveat: "Dinner-only and closed Mondays; reserve ahead for weekend tables.",
+    bestFor: "A group where half the table wants top-tier kinmedai/uni nigiri and the other half wants Wagyu tacos and black cod."
+  },
+  {
+    id: "13",
+    slug: "sushi-tomi",
+    name: "Sushi Tomi",
+    region: "south-bay",
+    tier: "traditional",
+    tierLabel: "Traditional Counter",
+    city: "Mountain View",
+    area: "Mountain View",
+    address: "607 W Dana St #H, Mountain View, CA 94041",
+    lat: 37.3927, lon: -122.0837,
+    mxOff: 10, myOff: 12,
+    gRating: 4.5, gDisp: "~4.5★", gCount: "~3,300+ reviews",
+    yRating: 4.0, yDisp: "~4.0★", yCount: "~1,400+ reviews",
+    vol: 4700,
+    guideShort: "Reddit Gold Standard",
+    guideSub: "4,700+ total reviews · No Res.",
+    priceDisp: "$$ (~$15–$30)",
+    priceShort: "$$ · ~$23",
+    priceMid: 23,
+    hours: "Mon/Wed/Thu/Sun 11:30a–1:30p, 5–8p · Fri–Sat til 8:30p · Tue closed",
+    booking: "No reservations — arrive before opening",
+    walkIn: true,
+    michelin: false,
+    website: "https://sushitomi.us/",
+    websiteLabel: "Website ↗",
+    historyType: "tried",
+    historyNote: "Tried benchmark: our South Bay standard for honest cuts, clean nigiri/chirashi, and zero-gimmick Japanese counter craft.",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "clean", "value"],
+    dishes: ["Chirashi Bowls", "Classic Nigiri Sets", "Fresh Sashimi", "Weekday Lunch Bento"],
+    quote: "Widely cited across r/bayarea and r/SanJose as the quintessential South Bay traditional shop — zero cream-cheese theatrics, just crisp fish and fair prices.",
+    quoteSrc: "Reddit Consensus & 3,300+ Google Reviews",
+    caveat: "No reservations and tiny seating — show up 15–20 minutes early or expect a wait. Closed Tuesdays.",
+    bestFor: "Anyone who wants pure, unpretentious Japanese sushi craft without paying $150+ omakase prices."
+  },
+  {
+    id: "14",
+    slug: "otoko-rwc",
+    name: "Otoko Sushi",
+    region: "peninsula",
+    tier: "traditional",
+    tierLabel: "Redwood Shores Local",
+    city: "Redwood City",
+    area: "Redwood City (Redwood Shores)",
+    address: "240 Redwood Shores Pkwy, Redwood City, CA 94065",
+    lat: 37.5236, lon: -122.2562,
+    mxOff: 0, myOff: 0,
+    gRating: 4.4, gDisp: "~4.4–4.8★ (apps)", gCount: "400+ ratings across platforms",
+    yRating: 4.2, yDisp: "~4.0–4.5★", yCount: "Hundreds of local reviews",
+    vol: 650,
+    guideShort: "Redwood Shores Favorite",
+    guideSub: "Reddit local pick · Easy parking",
+    priceDisp: "$$ (~$22–$38)",
+    priceShort: "$$ · ~$30",
+    priceMid: 30,
+    hours: "Daily ~11:30a–2:30p, 5:30p–9:00p",
+    booking: "Walk-in / call ahead",
+    walkIn: true,
+    michelin: false,
+    website: "https://www.otokosushi.net/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["clean", "rolls", "value"],
+    dishes: ["Fresh Sashimi Cuts", "Neighborhood Nigiri", "Specialty Rolls", "Easy Parking"],
+    quote: "Highlighted on r/RedwoodCity and r/bayarea as the dependable Redwood Shores go-to for clean nigiri, fresh sashimi, and specialty rolls without downtown parking stress.",
+    quoteSrc: "Reddit r/RedwoodCity & 400+ Platform Ratings",
+    caveat: "Quiet suburban Redwood Shores strip center — great everyday spot rather than a bustling downtown scene.",
+    bestFor: "The top everyday sit-down option in the Redwood City area when Sushi Shin's $300 ticket is overkill."
+  },
+  {
+    id: "15",
+    slug: "sanraku",
+    name: "Sanraku",
+    region: "south-bay",
+    tier: "traditional",
+    tierLabel: "Traditional & Platters",
+    city: "San Jose",
+    area: "San Jose (Westfield Oakridge)",
+    address: "925 Blossom Hill Rd, San Jose, CA 95123",
+    lat: 37.2512, lon: -121.8634,
+    mxOff: 0, myOff: 0,
+    gRating: 4.5, gDisp: "~4.5★", gCount: "~700+ reviews",
+    yRating: 4.0, yDisp: "~4.0★", yCount: "~350–400+ reviews",
+    vol: 1075,
+    guideShort: "Reddit Sleeper Pick",
+    guideSub: "SF Sutter St sibling · Easy parking",
+    priceDisp: "$$–$$$ (~$23 rolls; $39–$64 platters)",
+    priceShort: "$$–$$$ · ~$42",
+    priceMid: 42,
+    hours: "Mon–Thu 11a–8p · Fri–Sat til 8:30p · Sun til 7:30p",
+    booking: "Walk-in or reservations",
+    walkIn: true,
+    michelin: false,
+    website: "https://www.sanraku.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "clean", "value"],
+    dishes: ["Chef's Sashimi Platters", "Nigiri Sets", "Elevated Rolls", "Lunch Boxes"],
+    quote: "Reddit's favorite 'don't judge a book by its cover' spot — locals note the knife work and fish quality punch miles above its Westfield Oakridge mall setting.",
+    quoteSrc: "r/SanJose & Bay Area Diners",
+    caveat: "Located at a shopping center (Oakridge), though easy parking makes it painless for South SJ meetups.",
+    bestFor: "South San Jose dinner when you want Sushi Tomi-level fish sourcing plus upscale platters and rolls for mixed tastes."
+  },
+  {
+    id: "16",
+    slug: "tomi-sj",
+    name: "Tomi Sushi (Moorpark)",
+    region: "south-bay",
+    tier: "traditional",
+    tierLabel: "Traditional Sit-Down",
+    city: "San Jose",
+    area: "San Jose (West SJ / Moorpark)",
+    address: "4336 Moorpark Ave, San Jose, CA 95129",
+    lat: 37.3156, lon: -121.9781,
+    mxOff: -6, myOff: 10,
+    gRating: 4.4, gDisp: "~4.4★", gCount: "~1,500+ reviews",
+    yRating: 4.0, yDisp: "~4.0★", yCount: "~1,150+ reviews",
+    vol: 2650,
+    guideShort: "2,650+ Total Reviews",
+    guideSub: "Moorpark classic · Not Eastridge buffet",
+    priceDisp: "$$–$$$ (~$25–$45)",
+    priceShort: "$$–$$$ · ~$35",
+    priceMid: 35,
+    hours: "Lunch 11:30a–1:30p · Dinner 5–8p (Fri–Sat til 8:30p)",
+    booking: "Walk-in / call ahead",
+    walkIn: true,
+    michelin: false,
+    website: "https://www.tomisushi.us/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["clean", "value"],
+    dishes: ["Sashimi Sets", "Chirashi", "Traditional Bento", "Classic Maki"],
+    quote: "A longstanding West San Jose anchor drawing crowds for fresh sashimi platters, chirashi, and reliable weekday lunch sets.",
+    quoteSrc: "2,650+ Google & Yelp Reviews",
+    caveat: "Make sure you head to Moorpark Ave — completely separate from the unrelated Eastridge buffet.",
+    bestFor: "Closest twin to Mountain View's Sushi Tomi inside San Jose when nobody wants to drive up 101."
+  },
+  {
+    id: "17",
+    slug: "yuki-sushi",
+    name: "Yuki Sushi",
+    region: "south-bay",
+    tier: "traditional",
+    tierLabel: "Old-School Shop",
+    city: "Santa Clara",
+    area: "Santa Clara (Pruneridge)",
+    address: "1827 Pruneridge Ave, Santa Clara, CA 95050",
+    lat: 37.3381, lon: -121.9571,
+    mxOff: -4, myOff: -12,
+    gRating: 4.4, gDisp: "~4.4★", gCount: "~750–800+ reviews",
+    yRating: 3.9, yDisp: "~3.9★", yCount: "~1,500+ reviews",
+    vol: 2275,
+    guideShort: "Decades-Old Staple",
+    guideSub: "Tiny Japan-style counter · Lunch value",
+    priceDisp: "$$–$$$ (~$25–$45)",
+    priceShort: "$$–$$$ · ~$35",
+    priceMid: 35,
+    hours: "Tue–Fri 11:30a–2p, 4:30–8p (Fri 8:30p) · Sat 4:30–8p · Sun til 7:30p · Mon closed",
+    booking: "Walk-in / call ahead",
+    walkIn: true,
+    michelin: false,
+    website: "https://yukisushi.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["clean", "value"],
+    dishes: ["Ikura & Classic Nigiri", "Weekday Lunch Specials", "Bento Boxes", "Traditional Dinners"],
+    quote: "Locals describe the Pruneridge/Winchester shop as feeling like a tiny neighborhood sushi room straight out of Japan, holding steady quality over decades.",
+    quoteSrc: "Bay Area Reddit & Longtime Diners",
+    caveat: "Closed Mondays; dinner only on weekends.",
+    bestFor: "Cozy old-school counter mood right on the Santa Clara/San Jose border."
+  },
+  {
+    id: "18",
+    slug: "amami",
+    name: "Amami Shima Sushi",
+    region: "south-bay",
+    tier: "traditional",
+    tierLabel: "Value Nigiri & Rolls",
+    city: "Cupertino",
+    area: "Cupertino",
+    address: "19068 Stevens Creek Blvd, Cupertino, CA 95014",
+    lat: 37.3230, lon: -122.0056,
+    mxOff: -12, myOff: -8,
+    gRating: 4.35, gDisp: "~4.2–4.5★", gCount: "~680+ reviews",
+    yRating: 4.0, yDisp: "~4.0★", yCount: "~550+ reviews",
+    vol: 1230,
+    guideShort: "Fresh Wasabi + $40 Set",
+    guideSub: "Reddit value-omakase pick",
+    priceDisp: "$$ (~$40 10-pc nigiri set)",
+    priceShort: "$$ · ~$40 set",
+    priceMid: 40,
+    hours: "Daily from 11:30a (check portal for evening close)",
+    booking: "Walk-in / online waitlist",
+    walkIn: true,
+    michelin: false,
+    website: "https://amamishimasushi.com/",
+    websiteLabel: "Website ↗",
+    historyType: "radar",
+    historyNote: "On the radar: Cupertino sleeper for getting a chef-curated 10-piece nigiri progression with real freshly grated wasabi for ~$40.",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "clean", "value"],
+    dishes: ["10-Pc Nigiri Set (~$40)", "Complimentary Fresh Wasabi", "Salmon & Tuna Cuts", "Fish Tacos"],
+    quote: "Praised on local food threads as the go-to middle ground when you want chef's-choice nigiri quality (plus real grated wasabi) without $200 omakase shock.",
+    quoteSrc: "r/SanJose & Cupertino Diners",
+    caveat: "Dining room is small and fills quickly at dinner.",
+    bestFor: "The smartest value bridge between casual Cupertino spots and serious nigiri counters."
+  },
+  {
+    id: "19",
+    slug: "seto",
+    name: "Seto Restaurant",
+    region: "south-bay",
+    tier: "traditional",
+    tierLabel: "Neighborhood Japanese",
+    city: "Sunnyvale",
+    area: "Sunnyvale",
+    address: "511 Borregas Ave, Sunnyvale, CA 94085",
+    lat: 37.3886, lon: -122.0199,
+    mxOff: 0, myOff: 0,
+    gRating: 4.3, gDisp: "~4.3★", gCount: "~650–700+ reviews",
+    yRating: 4.15, yDisp: "~4.0–4.3★", yCount: "~250+ reviews",
+    vol: 925,
+    guideShort: "Sunnyvale Hidden Gem",
+    guideSub: "Honest pricing · No pretense",
+    priceDisp: "$$ (~$20–$35)",
+    priceShort: "$$ · ~$28",
+    priceMid: 28,
+    hours: "Mon–Fri 11:30a–1:30p, 5–8p · Sat 5–8p · Sun closed",
+    booking: "Walk-in / call ahead",
+    walkIn: true,
+    michelin: false,
+    website: "https://seto-restaurant.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Representative dish",
+    vibes: ["clean", "value"],
+    dishes: ["Chirashi & Sashimi", "Comfort Japanese Plates", "Standard Rolls", "Lunch Sets"],
+    quote: "Frequently cited by Sunnyvale regulars as having honest prices, generous portions, and fresh fish without being 'hoity-toity'.",
+    quoteSrc: "Reddit Local Threads & Google Maps",
+    caveat: "Closed Sundays; note its adjacent sister Seto Fish & Chips closed previously while Seto Restaurant stays open.",
+    bestFor: "Easy mid-week Sunnyvale dinner with zero pretension and solid sashimi plus hot kitchen mains."
+  },
+  {
+    id: "20",
+    slug: "mizu",
+    name: "Mizu Sushi Bar & Grill",
+    region: "south-bay",
+    tier: "traditional",
+    tierLabel: "Sushi & Korean Grill",
+    city: "San Jose",
+    area: "San Jose (Winchester / Santana Row)",
+    address: "1035 S Winchester Blvd, San Jose, CA 95128",
+    lat: 37.3084, lon: -121.9504,
+    mxOff: 10, myOff: 10,
+    gRating: 4.3, gDisp: "~4.3★+", gCount: "1,700+ combined reviews",
+    yRating: 4.0, yDisp: "Strong local score", yCount: "High multi-year volume",
+    vol: 1700,
+    guideShort: "1,700+ Combined Reviews",
+    guideSub: "Sushi + Korean + Cocktails",
+    priceDisp: "$$–$$$ (~$30–$50)",
+    priceShort: "$$–$$$ · ~$38",
+    priceMid: 38,
+    hours: "Lunch 11:30a–2:30p · Sun–Thu 5–9p · Fri–Sat 5–10p",
+    booking: "Walk-in or reservations",
+    walkIn: true,
+    michelin: false,
+    website: "https://mizusbg.com/",
+    websiteLabel: "Website ↗",
+    historyType: "radar",
+    historyNote: "On the radar: roomy Winchester Blvd spot pairing sushi and sashimi with Korean grill plates and proper cocktails.",
+    photoLabel: "Restaurant photo",
+    vibes: ["rolls", "fatty"],
+    dishes: ["Signature Rolls", "Sashimi Platters", "Japanese & Korean Mains", "Craft Cocktails"],
+    quote: "A Silicon Valley mainstay near Santana Row praised for balancing fresh specialty rolls with Korean-Japanese hot plates and a full bar.",
+    quoteSrc: "Birdeye & Bay Area Diners (1,700+ reviews)",
+    caveat: "Priced a notch higher than strip-mall roll spots, leaning upbeat sit-down lounge rather than quiet counter.",
+    bestFor: "A group night out near Santana Row when cocktails and hot Korean/Japanese shareables matter alongside sushi."
+  },
+  {
+    id: "21",
+    slug: "sumi",
+    name: "Sumi Sushi",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Neighborhood Sushi",
+    city: "San Jose",
+    area: "San Jose (Downtown / Paseo)",
+    address: "119 Paseo de San Antonio, San Jose, CA 95112",
+    lat: 37.3338, lon: -121.8861,
+    mxOff: 12, myOff: 12,
+    gRating: 4.8, gDisp: "~4.8★", gCount: "~300 reviews",
+    yRating: 4.45, yDisp: "~4.4–4.5★", yCount: "~260–280+ reviews",
+    vol: 570,
+    guideShort: "4.8★ Google Standout",
+    guideSub: "Top-rated downtown SJ neighborhood pick",
+    priceDisp: "$$ (~$20–$30)",
+    priceShort: "$$ · ~$25",
+    priceMid: 25,
+    hours: "Daily 11:00a–9:00p",
+    booking: "Walk-in",
+    walkIn: true,
+    michelin: false,
+    website: "https://sumisj.com/",
+    websiteLabel: "Website ↗",
+    historyType: "tried",
+    historyNote: "Tried: highest-rated downtown San Jose spot in our rotation (~4.8★ Google) — fresh cuts, properly seasoned rice, zero fuss.",
+    photoLabel: "Restaurant photo",
+    vibes: ["fatty", "clean", "rolls", "value"],
+    dishes: ["Sumi Princess Roll", "Fireworks Roll", "Classic Nigiri", "Salmon & Tuna Plates"],
+    quote: "Reviewers highlight the generous flavor of rolls like the Sumi Princess (salmon, pineapple, shrimp tempura, hamachi, tuna) alongside consistently fresh fish and seasoned rice.",
+    quoteSrc: "Google (~4.8★) & Downtown SJ Reviewers",
+    caveat: "Skip the ramen if you're picky about broth — stick to the fish, nigiri, and specialty rolls here.",
+    bestFor: "Hands-down the highest-rated casual downtown San Jose spot when the group wants both clean nigiri and fun rolls."
+  },
+  {
+    id: "22",
+    slug: "sen-dai",
+    name: "Sen Dai Sushi",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Rolls & Value",
+    city: "Milpitas",
+    area: "Milpitas",
+    address: "224 N Abel St, Milpitas, CA 95035",
+    lat: 37.4342, lon: -121.9082,
+    mxOff: 0, myOff: 0,
+    gRating: 4.5, gDisp: "~4.5★", gCount: "~2,200+ reviews",
+    yRating: 4.0, yDisp: "~4.0★", yCount: "~3,900+ reviews",
+    vol: 6100,
+    guideShort: "6,100+ Total Reviews",
+    guideSub: "Reddit #1 Roll Value · No Res.",
+    priceDisp: "$–$$ (~$18–$30)",
+    priceShort: "$–$$ · ~$24",
+    priceMid: 24,
+    hours: "Daily 11:30a–2p, 5–8p",
+    booking: "No reservations (walk-in / takeout)",
+    walkIn: true,
+    michelin: false,
+    website: "https://sendai-sushi.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Representative dish",
+    vibes: ["fatty", "rolls", "value"],
+    dishes: ["Thick Salmon & Sashimi Cuts", "Specialty Roll Specials", "Bento Combos", "Generous Nigiri"],
+    quote: "Pulling over 6,000 combined reviews, Sen Dai is famous across the South Bay for oversized specialty rolls and unusually fresh, thick fish cuts for the price.",
+    quoteSrc: "Reddit South Bay Consensus & 6,100+ Reviews",
+    caveat: "No reservations and dinner closes early at 8:00 PM — get your name down early or order takeout.",
+    bestFor: "The clearest upgrade from Kaizen if you want bigger portions, higher ratings (4.5★ Google), and maximum value."
+  },
+  {
+    id: "23",
+    slug: "nara-sf",
+    name: "Nara Restaurant & Sake Bar",
+    region: "sf",
+    tier: "casual",
+    tierLabel: "Rolls & Sake Lounge",
+    city: "San Francisco",
+    area: "San Francisco (Lower Haight)",
+    address: "518 Haight St, San Francisco, CA 94117",
+    lat: 37.7721, lon: -122.4307,
+    mxOff: 0, myOff: 0,
+    gRating: 4.6, gDisp: "~4.6★", gCount: "2,200+ Yelp / strong Google ratings",
+    yRating: 4.5, yDisp: "~4.5★", yCount: "2,200+ reviews",
+    vol: 2300,
+    guideShort: "4.5★ Yelp (2,200+)",
+    guideSub: "Daily Happy Hour · til 12a Fri–Sat",
+    priceDisp: "$$–$$$ (~$30–$50)",
+    priceShort: "$$–$$$ · ~$38",
+    priceMid: 38,
+    hours: "Sun–Thu 5:00p–11:00p · Fri–Sat 5:00p–12:00a",
+    booking: "Walk-in / reservations",
+    walkIn: true,
+    michelin: false,
+    website: "https://www.naraonhaight.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Representative dish",
+    vibes: ["fatty", "rolls", "late"],
+    dishes: ["Hamachi Truffle", "Creative Fusion Rolls", "Daily Happy Hour", "Sake Flights"],
+    quote: "Holding a lofty 4.5★ across 2,200+ Yelp reviews, Lower Haight diners love its buzzy room, daily happy hours, creative fusion rolls, and signature Hamachi Truffle.",
+    quoteSrc: "2,200+ Yelp Reviews & SF Local Press",
+    caveat: "Dinner-only (opens 5 PM); note a separate sibling Nara Sushi operates at 1515 Polk St in Nob Hill.",
+    bestFor: "High-energy SF group night with great drinks, happy hour vibes, and late weekend hours (open until midnight Fri–Sat)."
+  },
+  {
+    id: "24",
+    slug: "eighty-eight",
+    name: "Eighty-Eight Sushi & Ramen",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Rolls & Ramen",
+    city: "Mountain View",
+    area: "Mountain View",
+    address: "530 Showers Dr #4, Mountain View, CA 94040",
+    lat: 37.4024, lon: -122.1095,
+    mxOff: 12, myOff: 12,
+    gRating: 4.6, gDisp: "~4.6★ (apps)", gCount: "320+ platform ratings",
+    yRating: 4.1, yDisp: "Solid local score", yCount: "Low-key MV favorite",
+    vol: 350,
+    guideShort: "4.6★ Delivery Favorite",
+    guideSub: "Rolls + Comfort Ramen",
+    priceDisp: "$$ (~$20–$32)",
+    priceShort: "$$ · ~$26",
+    priceMid: 26,
+    hours: "Mon–Fri 11a–1:45p, 4:45–8:45p · Sat–Sun 3:45–8:45p",
+    booking: "Walk-in / Toast ordering",
+    walkIn: true,
+    michelin: false,
+    website: "https://eightyeightsushi.com/",
+    websiteLabel: "Website ↗",
+    historyType: "radar",
+    historyNote: "On the radar: low-key Showers Dr spot combining a broad sushi roll lineup with warm bowls of ramen.",
+    photoLabel: "Representative dish",
+    vibes: ["rolls", "value"],
+    dishes: ["Specialty Rolls", "Shoyu & Tonkotsu Ramen", "Bento Plates", "Easy Takeout"],
+    quote: "Praised by Mountain View locals for an unpretentious menu that handles both sushi roll cravings and hot noodle soup cleanly.",
+    quoteSrc: "Local Delivery & Mountain View Reviews",
+    caveat: "Closed midday between lunch and dinner on weekdays; weekends open at 3:45 PM.",
+    bestFor: "Easy weeknight compromise when someone in the group wants ramen and someone else wants sushi rolls."
+  },
+  {
+    id: "25",
+    slug: "sushi-plus-rwc",
+    name: "Sushi Plus",
+    region: "peninsula",
+    tier: "casual",
+    tierLabel: "RWC Budget Rolls",
+    city: "Redwood City",
+    area: "Redwood City (Woodside Plaza)",
+    address: "30 Woodside Rd, Redwood City, CA 94061",
+    lat: 37.4694, lon: -122.2286,
+    mxOff: -6, myOff: 6,
+    gRating: 4.55, gDisp: "~4.5–4.8★", gCount: "600+ combined reviews",
+    yRating: 4.5, yDisp: "~4.5★", yCount: "Strong RWC strip-mall staple",
+    vol: 600,
+    guideShort: "Reddit RWC Budget Pick",
+    guideSub: "Continuous daily hours · No break",
+    priceDisp: "$–$$ (~$18–$30)",
+    priceShort: "$–$$ · ~$24",
+    priceMid: 24,
+    hours: "Daily ~11:30a–8:45p (continuous service)",
+    booking: "Walk-in / takeout",
+    walkIn: true,
+    michelin: false,
+    website: "",
+    websiteLabel: "",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Representative dish",
+    vibes: ["rolls", "value"],
+    dishes: ["Weeknight Roll Combos", "Affordable Nigiri", "No-Break Midday Lunch"],
+    quote: "Reddit's r/RedwoodCity sleeper pick for a no-frills strip-mall sushi fix that punches way above its humble Woodside Plaza setting (~4.5–4.8★ across 600+ ratings).",
+    quoteSrc: "Reddit r/RedwoodCity & Aggregated Reviews",
+    caveat: "Utterly casual takeout-oriented room — don't go here looking for ambiance.",
+    bestFor: "Fast, affordable Peninsula lunch or casual Redwood City sushi without midday closing hours."
+  },
+  {
+    id: "26",
+    slug: "sushi-maru",
+    name: "Sushi Maru",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Japantown Kaiten",
+    city: "San Jose",
+    area: "San Jose (Japantown)",
+    address: "262 Jackson St, San Jose, CA 95112",
+    lat: 37.3490, lon: -121.8942,
+    mxOff: 0, myOff: 0,
+    gRating: 4.4, gDisp: "~4.4★", gCount: "~850–900+ reviews",
+    yRating: 4.1, yDisp: "~4.1★", yCount: "~600+ reviews",
+    vol: 1475,
+    guideShort: "Japantown Kaiten",
+    guideSub: "Classic conveyor belt · Budget",
+    priceDisp: "$–$$ (~$18–$30)",
+    priceShort: "$–$$ · ~$24",
+    priceMid: 24,
+    hours: "Mon/Wed/Thu 11:30a–2p, 5:30–8:30p · Fri–Sat til 8:45p · Sun til 8:15p · Tue closed",
+    booking: "Walk-in (go right at opening)",
+    walkIn: true,
+    michelin: false,
+    website: "https://www.sushimarusj.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Representative dish",
+    vibes: ["rolls", "value"],
+    dishes: ["Conveyor-Belt Plates", "Traditional Bento", "Special Nigiri", "Quick Lunch Sets"],
+    quote: "A longtime Jackson Street fixture appreciated for classic human-scale kaitenzushi plates, warm Japantown hospitality, and easy pricing.",
+    quoteSrc: "Reddit r/SanJose & ~900 Google Reviews",
+    caveat: "Closed Tuesdays; belt seats fill fast so aim for opening time.",
+    bestFor: "Fun, affordable Japantown hangout with way more soul than chain conveyor-belt spots."
+  },
+  {
+    id: "27",
+    slug: "kenji",
+    name: "Kenji Sushi",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Late-Night Sushi",
+    city: "San Jose",
+    area: "San Jose (Winchester)",
+    address: "385 S Winchester Blvd, San Jose, CA 95128",
+    lat: 37.3210, lon: -121.9502,
+    mxOff: -12, myOff: -10,
+    gRating: 4.3, gDisp: "~4.3★", gCount: "~2,200+ reviews",
+    yRating: 4.0, yDisp: "~4.0★", yCount: "Large local crowd",
+    vol: 2300,
+    guideShort: "Open Til 11:45 PM",
+    guideSub: "2,200+ Google reviews · Mon–Sat late",
+    priceDisp: "$$ (~$22–$35)",
+    priceShort: "$$ · ~$28",
+    priceMid: 28,
+    hours: "Mon–Sat 11:30a–11:45p · Sun 12:00p–10:00p",
+    booking: "Walk-in",
+    walkIn: true,
+    michelin: false,
+    website: "https://order.mealkeyway.com/customer/release/index?mid=5676317252685a62315854444269395a636a704c54773d3d",
+    websiteLabel: "Menu & Order ↗",
+    historyType: "tried",
+    historyNote: "Tried: reliable, laid-back Santana Row-area staple that stays open til 11:45 PM Mon–Sat when almost every other sushi bar is closed.",
+    photoLabel: "Representative dish",
+    vibes: ["rolls", "late"],
+    dishes: ["Spicy & Fusion Rolls", "Dragon Roll", "Victoria Secret Roll", "Sashimi Platters"],
+    quote: "Holds a strong 4.3★ across 2,200+ Google reviews thanks to a relaxed late-night atmosphere and a deep menu of spicy, dramatic specialty rolls.",
+    quoteSrc: "2,200+ Google Reviews",
+    caveat: "Built around lively late-night rolls and drinks rather than hushed Edomae discipline.",
+    bestFor: "Post-9 PM cravings anywhere in San Jose — practically nothing else good is open until 11:45 PM."
+  },
+  {
+    id: "28",
+    slug: "hanabi",
+    name: "Hanabi Sushi",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Rolls & Patio",
+    city: "Mountain View",
+    area: "Mountain View",
+    address: "1040 N Rengstorff Ave #A1, Mountain View, CA 94043",
+    lat: 37.4128, lon: -122.0942,
+    mxOff: 14, myOff: -16,
+    gRating: 4.3, gDisp: "~4.3★", gCount: "~650+ reviews",
+    yRating: 3.7, yDisp: "~3.7★", yCount: "~320+ reviews",
+    vol: 970,
+    guideShort: "Patio & Creative Rolls",
+    guideSub: "Bento + herb/salmon rolls",
+    priceDisp: "$$ (~$20–$32)",
+    priceShort: "$$ · ~$26",
+    priceMid: 26,
+    hours: "Tue–Thu 11:30a–2:30p, 4:30–8:30p · Fri til 9p · Sat 12–9p · Sun 12–8:30p · Mon closed",
+    booking: "Walk-in / online order",
+    walkIn: true,
+    michelin: false,
+    website: "https://sushihanabimv.com/",
+    websiteLabel: "Website ↗",
+    historyType: "tried",
+    historyNote: "Tried: solid Mountain View neighborhood stop — especially reliable for Cilantro Rolls, Salmon Avocado, bento boxes, and patio tables.",
+    photoLabel: "Restaurant photo",
+    vibes: ["rolls"],
+    dishes: ["Cilantro Roll", "Salmon Avocado Roll", "Bento Boxes", "Outdoor Patio Seating"],
+    quote: "Mountain View regulars appreciate Hanabi for bright herb-forward rolls, dependable bento plates, and casual outdoor patio dining.",
+    quoteSrc: "Mountain View Diners (650+ Google Reviews)",
+    caveat: "Closed Mondays; Yelp curve (3.7★) runs stricter than Google (4.3★).",
+    bestFor: "Sunny-evening patio dinner in Mountain View when you want fresh salmon/cilantro rolls without Sushi Tomi's line."
+  },
+  {
+    id: "29",
+    slug: "sushi-arashi",
+    name: "Sushi Arashi",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Willow Glen Rolls",
+    city: "San Jose",
+    area: "San Jose (Willow Glen)",
+    address: "1181 Lincoln Ave #3002, San Jose, CA 95125",
+    lat: 37.3069, lon: -121.9009,
+    mxOff: 0, myOff: 0,
+    gRating: 4.3, gDisp: "~4.3★", gCount: "~800+ reviews",
+    yRating: 3.95, yDisp: "~3.9–4.0★", yCount: "~400+ reviews",
+    vol: 1200,
+    guideShort: "Willow Glen Staple",
+    guideSub: "Open daily til 10p · Lunch combos",
+    priceDisp: "$$ (~$20–$35)",
+    priceShort: "$$ · ~$28",
+    priceMid: 28,
+    hours: "Daily ~11:00a–10:00p",
+    booking: "Walk-in",
+    walkIn: true,
+    michelin: false,
+    website: "https://sushiarashi.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["rolls", "late"],
+    dishes: ["Willow Glen Roll", "Crispy Tempura", "Noodle Bowls", "Lunch Combos"],
+    quote: "A cozy, unpretentious Lincoln Ave mainstay favored for dependable specialty rolls, tempura, and welcoming neighborhood service.",
+    quoteSrc: "800+ Google Reviews & Willow Glen Locals",
+    caveat: "Casual fusion-leaning neighborhood spot rather than a purist nigiri counter.",
+    bestFor: "The Willow Glen twin to Campbell's Kaizen — open daily until 10 PM for an effortless roll-and-tempura dinner."
+  },
+  {
+    id: "30",
+    slug: "cha-cha",
+    name: "Cha Cha Sushi",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Loaded Rolls",
+    city: "San Jose",
+    area: "San Jose (South SJ / Capitol)",
+    address: "547 W Capitol Expy, San Jose, CA 95136",
+    lat: 37.2747, lon: -121.8748,
+    mxOff: 0, myOff: 0,
+    gRating: 4.25, gDisp: "~4.2–4.3★", gCount: "~1,000+ reviews",
+    yRating: 4.0, yDisp: "~4.0★", yCount: "~3,900+ reviews",
+    vol: 4900,
+    guideShort: "~4,900 Total Reviews",
+    guideSub: "Huge specialty rolls · High energy",
+    priceDisp: "$$ (~$20–$35)",
+    priceShort: "$$ · ~$28",
+    priceMid: 28,
+    hours: "Mon–Sat 11:30a–9:00p · Sun closed",
+    booking: "Walk-in (expect peak waits)",
+    walkIn: true,
+    michelin: false,
+    website: "https://www.chachasushi.com/",
+    websiteLabel: "Website ↗",
+    historyType: null,
+    historyNote: "",
+    photoLabel: "Restaurant photo",
+    vibes: ["rolls", "value"],
+    dishes: ["Oversized Specialty Rolls", "Loaded Fusion Plates", "Group Platters"],
+    quote: "Nearly 5,000 combined Google and Yelp reviews attest to Cha Cha's crowd-pleasing formula: massive, saucy specialty rolls and loud group energy.",
+    quoteSrc: "Reddit & 3,900+ Yelp Reviews",
+    caveat: "Closed Sundays; loud and busy at dinner peaks.",
+    bestFor: "A loud, indulgent crew dinner when huge creative rolls beat quiet fish contemplation."
+  },
+  {
+    id: "31",
+    slug: "kaizen",
+    name: "Kaizen Japanese Bar & Grill",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Rolls & Grill",
+    city: "Campbell",
+    area: "Campbell",
+    address: "330 E Hamilton Ave #7, Campbell, CA 95008",
+    lat: 37.2938, lon: -121.9464,
+    mxOff: -12, myOff: 6,
+    gRating: 4.2, gDisp: "~4.2★", gCount: "~820+ reviews",
+    yRating: 3.7, yDisp: "~3.7★", yCount: "~960+ reviews",
+    vol: 1780,
+    guideShort: "1,780+ Combined Reviews",
+    guideSub: "Wrap-around bar · Rolls + hot mains",
+    priceDisp: "$$ (~$20–$30)",
+    priceShort: "$$ · ~$25",
+    priceMid: 25,
+    hours: "Daily 11:00a–2:30p, 5:00–9:30p",
+    booking: "Walk-in / call (408) 370-1600",
+    walkIn: true,
+    michelin: false,
+    website: "tel:+14083701600",
+    websiteLabel: "Call (408) 370-1600",
+    historyType: "tried",
+    historyNote: "Tried: solid Campbell bar & grill move for baked Lion King rolls, Salmon Belly Specials, and hot izakaya plates like agedashi tofu & salmon kama.",
+    photoLabel: "Representative dish",
+    vibes: ["fatty", "rolls"],
+    dishes: ["Baked Lion King Roll", "Salmon Belly Special", "Dragon & Big Daddy Rolls", "Salmon Kama & Agedashi Tofu"],
+    quote: "Known around Campbell for its wrap-around sushi bar, generous sashimi/roll pairings (Dragon, Salmon Delight, Dino Eggs), and full hot grill menu.",
+    quoteSrc: "Campbell Diners & Ordering Reviews",
+    caveat: "Yelp score (3.7★) reflects uneven peak-night pacing compared to dedicated nigiri shops.",
+    bestFor: "Campbell home-base when you want baked salmon belly rolls alongside hot grilled skewers and donburi."
+  },
+  {
+    id: "32",
+    slug: "kura",
+    name: "Kura Revolving Sushi Bar",
+    region: "south-bay",
+    tier: "casual",
+    tierLabel: "Automated Kaiten",
+    city: "Cupertino",
+    area: "Cupertino",
+    address: "19600 Vallco Pkwy #160, Cupertino, CA 95014",
+    lat: 37.3258, lon: -122.0124,
+    mxOff: -18, myOff: -18,
+    gRating: 4.2, gDisp: "~4.2★", gCount: "~2,600+ reviews",
+    yRating: 3.8, yDisp: "~3.8★", yCount: "High foot-traffic hub",
+    vol: 2800,
+    guideShort: "2,600+ Google Reviews",
+    guideSub: "Automated belt · Late-ish weekends",
+    priceDisp: "$–$$ (~$20–$32)",
+    priceShort: "$–$$ · ~$25",
+    priceMid: 25,
+    hours: "Mon–Thu 11a–9:30p · Fri til 10:30p · Sat 10:30a–10:30p · Sun til 10p",
+    booking: "App waitlist / walk-in",
+    walkIn: true,
+    michelin: false,
+    website: "https://kurasushi.com/locations/cupertino-ca/",
+    websiteLabel: "Website ↗",
+    historyType: "tried",
+    historyNote: "Tried: effortless Cupertino default when the group just wants fast, fun conveyor-belt plates without a big production.",
+    photoLabel: "Restaurant photo",
+    vibes: ["rolls", "late", "value"],
+    dishes: ["Revolving Nigiri Plates", "Express-Lane Orders", "Crispy Hand Rolls", "Udon & Tempura"],
+    quote: "Beloved by groups for zero-wait menu ordering, automated belt novelty, and consistent weekend hours past 10 PM.",
+    quoteSrc: "2,600+ Google Reviews & Local Reddit",
+    caveat: "Built for speed and novelty — use Sumi, Sushi Tomi, or Sen Dai when quality fish is the top priority.",
+    bestFor: "Quick, zero-stress group catchup or late Friday/Saturday bites in Cupertino."
+  }
+];
+
+const ETTAN = {
+  id: "B1",
+  slug: "ettan",
+  name: "Ettan",
+  region: "south-bay",
+  tier: "detour",
+  tierLabel: "Cal-Indian",
+  city: "Palo Alto",
+  area: "Downtown Palo Alto",
+  address: "518 Bryant St, Palo Alto, CA 94301",
+  lat: 37.4452, lon: -122.1618,
+  mxOff: 18, myOff: 12,
+  gRating: 4.3, gDisp: "~4.3★", gCount: "1,000+ reviews",
+  yRating: 4.0, yDisp: "~4.0★", yCount: "Hundreds+ reviews",
+  vol: 1400,
+  guideShort: "Michelin Selected",
+  guideSub: "Chef Srijith Gopinathan · Cal-Indian",
+  priceDisp: "$$$ (Upscale Cal-Indian)",
+  priceShort: "$$$ · Cal-Indian",
+  priceMid: 75,
+  hours: "Tue–Thu 5–9p · Fri 5–10p · Sat 11:30a–1:30p & 5–10p · Sun til 8:30p · Mon closed",
+  booking: "Reservations recommended",
+  walkIn: false,
+  michelin: true,
+  michelinBadge: "Michelin Selected",
+  michelinUrl: "https://guide.michelin.com/us/en/california/palo-alto/restaurant/ettan",
+  website: "https://www.ettanrestaurant.com/",
+  websiteLabel: "Website ↗",
+  historyType: null,
+  historyNote: "",
+  photoLabel: "Restaurant photo",
+  vibes: ["splurge"],
+  dishes: ["Peas & Ricotta Kulcha", "Black-Pepper Cauliflower", "Crisped Branzino", "Kerala Fried Chicken"],
+  quote: "“Kulchas are a menu highpoint, deliciously stuffed with the likes of peak-season peas and ricotta and served with a bright green kale chutney... crisped branzino with a chutney of green garlic, herbs, and chilies is all heart and soul.”",
+  quoteSrc: "MICHELIN Guide Inspectors (plus critics raving about the crispy Kerala Fried Chicken)",
+  caveat: "Closed Mondays; literally 1 block from Iki Omakase on Ramona/Bryant if the crew pivots away from sushi.",
+  bestFor: "When the group votes Indian instead of sushi — lush bi-level greenery, craft cocktails, and two-star Michelin chef pedigree."
+};
+
+const ALL_SPOTS = [...SPOTS, ETTAN];
+
+let curFilter = "all";
+let curVibe = "all";
+let curSort = "recommended";
+let curSearch = "";
+let curTab = "feed";
+let mapZone = "south";
+let selectedMapSlug = "sushi-tomi";
+
+const kept = new Set();
+
+function loadShortlist() {
+  const hash = location.hash || "";
+  const m = hash.match(/picks=([^&]+)/);
+  if (m && m[1]) {
+    const slugs = decodeURIComponent(m[1]).split(",").map((s) => s.trim()).filter((s) => ALL_SPOTS.some((x) => x.slug === s));
+    if (slugs.length > 0) {
+      slugs.forEach((s) => kept.add(s));
+      const ban = document.getElementById("shared-banner");
+      document.getElementById("shared-banner-txt").textContent = `Loaded friend's shortlist (${slugs.length} ${slugs.length === 1 ? "pick" : "picks"})`;
+      ban.hidden = false;
+      curFilter = "shortlist";
+      return;
+    }
+  }
+  try {
+    const saved = JSON.parse(localStorage.getItem("sadh-sushi-shortlist") || "[]");
+    if (Array.isArray(saved)) saved.forEach((s) => { if (ALL_SPOTS.some((x) => x.slug === s)) kept.add(s); });
+  } catch {}
+}
+
+function saveShortlist() {
+  try { localStorage.setItem("sadh-sushi-shortlist", JSON.stringify([...kept])); } catch {}
+}
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
+}
+
+function mapsUrl(s) {
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.name + " " + s.address);
+}
+
+// =========================================================================
+// SURFACE THEME
+// =========================================================================
+function applySurface(surface) {
+  document.documentElement.dataset.surface = surface;
+  try { localStorage.setItem("sadh-sushi-surface", surface); } catch {}
+  document.querySelectorAll("[data-set-surface]").forEach((b) => {
+    b.classList.toggle("on", b.dataset.setSurface === surface);
+  });
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.content = surface === "night" ? "#0b0e18" : (surface === "studio" ? "#f5f7fb" : "#faf8f3");
+}
+
+document.querySelectorAll("[data-set-surface]").forEach((b) => {
+  b.addEventListener("click", () => applySurface(b.dataset.setSurface));
+});
+applySurface(document.documentElement.dataset.surface || "parchment");
+
+// =========================================================================
+// FILTER & SORT
+// =========================================================================
+function matchesSpot(s) {
+  if (curFilter === "detour") return s.slug === "ettan";
+  if (curFilter === "shortlist") {
+    if (!kept.has(s.slug)) return false;
+  } else {
+    if (s.tier === "detour") return false;
+    if (curFilter === "tried" && s.historyType !== "tried") return false;
+    if (curFilter === "radar" && s.historyType !== "radar") return false;
+    if (curFilter === "michelin" && !s.michelin) return false;
+    if (curFilter === "south-bay" && s.region !== "south-bay") return false;
+    if (curFilter === "peninsula" && s.region !== "peninsula") return false;
+    if (curFilter === "sf" && s.region !== "sf") return false;
+    if (curFilter === "san-jose" && s.city !== "San Jose") return false;
+    if (curFilter === "omakase" && s.tier !== "omakase") return false;
+    if (curFilter === "traditional" && s.tier !== "traditional") return false;
+    if (curFilter === "casual" && s.tier !== "casual") return false;
+    if (curFilter === "walk-in" && !s.walkIn) return false;
+  }
+
+  if (curVibe !== "all" && !s.vibes.includes(curVibe)) return false;
+
+  if (curSearch.trim()) {
+    const q = curSearch.trim().toLowerCase();
+    const hay = [
+      s.id, s.name, s.city, s.area, s.address, s.tierLabel, s.region,
+      s.dishes.join(" "), s.quote, s.bestFor, s.historyNote, s.guideShort
+    ].join(" ").toLowerCase();
+    if (!hay.includes(q)) return false;
+  }
+  return true;
+}
+
+function sortList(list) {
+  const arr = [...list];
+  if (curSort === "rating") {
+    arr.sort((a, b) => (b.gRating ?? 0) - (a.gRating ?? 0) || b.vol - a.vol);
+  } else if (curSort === "volume") {
+    arr.sort((a, b) => b.vol - a.vol);
+  } else if (curSort === "price-asc") {
+    arr.sort((a, b) => a.priceMid - b.priceMid || (b.gRating ?? 0) - (a.gRating ?? 0));
+  } else if (curSort === "price-desc") {
+    arr.sort((a, b) => b.priceMid - a.priceMid || (b.gRating ?? 0) - (a.gRating ?? 0));
+  } else if (curSort === "tried") {
+    const rank = (s) => s.historyType === "tried" ? 0 : (s.historyType === "radar" ? 1 : 2);
+    arr.sort((a, b) => rank(a) - rank(b) || Number(a.id) - Number(b.id));
+  } else {
+    arr.sort((a, b) => (Number(a.id) || 99) - (Number(b.id) || 99));
+  }
+  return arr;
+}
+
+// =========================================================================
+// CARD RENDERER
+// =========================================================================
+function cardHtml(s, eager) {
+  const on = kept.has(s.slug);
+  const badges = [];
+  if (s.michelin) badges.push(`<span class="mbadge mich">&#10022; ${esc(s.michelinBadge || "Michelin Selected")}</span>`);
+  if (s.historyType === "tried") badges.push(`<span class="mbadge tried">&#9733; Tried</span>`);
+  else if (s.historyType === "radar") badges.push(`<span class="mbadge radar">&#8982; On the Radar</span>`);
+
+  const histBlock = s.historyNote
+    ? `<div class="hist-note${s.historyType === "radar" ? " radar-note" : ""}">${esc(s.historyNote)}</div>`
+    : "";
+
+  const dishHtml = s.dishes.map((d) => `<span class="dish">${esc(d)}</span>`).join("");
+  const webBtn = s.website
+    ? `<a class="act-btn" href="${esc(s.website)}"${s.website.startsWith("http") ? ' target="_blank" rel="noopener noreferrer"' : ""}>${esc(s.websiteLabel)}</a>`
+    : "";
+  const michBtn = s.michelinUrl
+    ? `<a class="act-btn mich" href="${esc(s.michelinUrl)}" target="_blank" rel="noopener noreferrer">Michelin &#8599;</a>`
+    : "";
+
+  return `
+    <article class="card${s.historyType === "tried" ? " is-tried" : ""}${s.michelin ? " is-michelin" : ""}" id="spot-${s.slug}" data-slug="${s.slug}">
+      <div class="card-media">
+        <img src="sushi-jose-img/${s.slug}.jpg" alt="${esc(s.name)} — ${esc(s.dishes[0])}" width="800" height="500" loading="${eager ? "eager" : "lazy"}">
+        <div class="media-scrim"></div>
+        <div class="badge-stack">${badges.join("")}</div>
+        <button type="button" class="save-btn${on ? " on" : ""}" data-keep="${s.slug}" aria-pressed="${on}">${on ? "Saved ✓" : "+ Save"}</button>
+        <span class="photo-credit">${esc(s.photoLabel)}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-head">
+          <div class="card-title-row">
+            <span class="card-idx">${esc(s.id)}</span>
+            <h3 class="card-name">${esc(s.name)}</h3>
+          </div>
+        </div>
+        <div class="card-meta-sub">
+          <span>${esc(s.priceShort)}</span><span>&middot;</span>
+          <span>${esc(s.tierLabel)}</span><span>&middot;</span>
+          <span>${esc(s.area)}</span>
+        </div>
+
+        <div class="rate-bar">
+          <div class="rc">
+            <div class="rc-k">Google Maps</div>
+            <div class="rc-v">${esc(s.gDisp)}</div>
+            <div class="rc-s">${esc(s.gCount)}</div>
+          </div>
+          <div class="rc">
+            <div class="rc-k">Yelp</div>
+            <div class="rc-v">${esc(s.yDisp)}</div>
+            <div class="rc-s">${esc(s.yCount)}</div>
+          </div>
+          <div class="rc">
+            <div class="rc-k">Guide &middot; Signal</div>
+            <div class="rc-v">${esc(s.guideShort)}</div>
+            <div class="rc-s">${esc(s.guideSub)}</div>
+          </div>
+        </div>
+
+        ${histBlock}
+
+        <div class="dishes">${dishHtml}</div>
+
+        <div class="quote-box">
+          <blockquote>${esc(s.quote)}</blockquote>
+          <div class="quote-src">${esc(s.quoteSrc)}</div>
+          <div class="caveat-line">Note: ${esc(s.caveat)}</div>
+        </div>
+
+        <div class="best-for"><strong>Order this if</strong>${esc(s.bestFor)}</div>
+
+        <div class="card-acts">
+          <a class="act-btn" href="${mapsUrl(s)}" target="_blank" rel="noopener noreferrer">Maps &#8599;</a>
+          ${webBtn}
+          ${michBtn}
+        </div>
+
+        <details class="card-more">
+          <summary>Address, Hours &amp; Booking</summary>
+          <div class="more-kv">
+            <div><strong>Address:</strong> ${esc(s.address)}</div>
+            <div><strong>Hours:</strong> ${esc(s.hours)}</div>
+            <div><strong>Booking:</strong> ${esc(s.booking)}</div>
+            <div><strong>Price:</strong> ${esc(s.priceDisp)} &middot; <strong>Zagat:</strong> N/A (legacy scores retired)</div>
+          </div>
+        </details>
+      </div>
+    </article>`;
+}
+
+function renderFeed() {
+  const listEl = document.getElementById("feed-list");
+  const detourWrap = document.getElementById("detour-wrap");
+  const detourSlot = document.getElementById("detour-slot");
+  const emptyBox = document.getElementById("empty-box");
+
+  const visible = sortList(SPOTS.filter(matchesSpot));
+  listEl.innerHTML = visible.map((s, i) => cardHtml(s, i < 2)).join("");
+
+  const showDetour = (curFilter === "all" && curVibe === "all" && !curSearch.trim())
+    || curFilter === "detour"
+    || (curFilter === "shortlist" && kept.has("ettan") && (!curSearch.trim() || matchesSpot(ETTAN)));
+
+  detourWrap.hidden = !showDetour;
+  if (showDetour) {
+    detourSlot.innerHTML = cardHtml(ETTAN, false);
+  }
+
+  const totalShown = visible.length + (showDetour && curFilter === "detour" ? 1 : 0);
+  emptyBox.hidden = totalShown > 0 || showDetour;
+
+  const lbl = curFilter === "detour"
+    ? "Showing Ettan (Palo Alto Indian backup)"
+    : `Showing ${visible.length} of ${SPOTS.length} sushi spots${showDetour ? " + Ettan backup" : ""}`;
+  document.getElementById("count-lbl").textContent = lbl;
+
+  renderShortlistBar();
+  renderPortraitMap();
+}
+
+// =========================================================================
+// 2-REGION PORTRAIT SVG MAP
+// =========================================================================
+function renderPortraitMap() {
+  const svg = document.getElementById("portrait-map");
+  const isSF = mapZone === "sf";
+  document.getElementById("map-kicker").textContent = isSF ? "San Francisco (5 spots)" : "South Bay & Peninsula (27 spots)";
+  document.querySelectorAll("[data-map-zone]").forEach((b) => b.classList.toggle("on", b.dataset.mapZone === mapZone));
+
+  const visibleSet = new Set(SPOTS.filter(matchesSpot).map((x) => x.slug));
+  if (curFilter === "detour" || curFilter === "all" || (curFilter === "shortlist" && kept.has("ettan"))) visibleSet.add("ettan");
+
+  let out = "";
+  let zoneSpots = [];
+
+  if (isSF) {
+    const W = 420, H = 440, PAD_X = 32, PAD_Y = 30;
+    const lon0 = -122.460, lon1 = -122.382, lat0 = 37.738, lat1 = 37.798;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const px = (lon) => PAD_X + ((lon - lon0) / (lon1 - lon0)) * (W - PAD_X * 2);
+    const py = (lat) => PAD_Y + ((lat1 - lat) / (lat1 - lat0)) * (H - PAD_Y * 2);
+    const pStr = (pts) => pts.map(([la, lo]) => `${px(lo).toFixed(1)},${py(la).toFixed(1)}`).join(" ");
+    const pathStr = (pts) => pts.map(([la, lo], i) => `${i === 0 ? "M" : "L"}${px(lo).toFixed(1)},${py(la).toFixed(1)}`).join(" ");
+
+    [-122.45, -122.43, -122.41, -122.39].forEach((lo) => {
+      out += `<line class="m-grid" x1="${px(lo).toFixed(1)}" y1="0" x2="${px(lo).toFixed(1)}" y2="${H}"/>`;
+    });
+    [37.75, 37.77, 37.79].forEach((la) => {
+      out += `<line class="m-grid" x1="0" y1="${py(la).toFixed(1)}" x2="${W}" y2="${py(la).toFixed(1)}"/>`;
+    });
+
+    // SF Bay NE shoreline + GG Park panhandle edge
+    const sfBay = [[37.800,-122.398],[37.792,-122.390],[37.775,-122.384],[37.740,-122.378],[37.740,-122.380],[37.800,-122.380]];
+    out += `<polygon class="m-water" points="${pStr(sfBay)}"/>`;
+    out += `<text class="m-water-lbl" x="${px(-122.386).toFixed(1)}" y="${py(37.768).toFixed(1)}" text-anchor="end">Bay</text>`;
+
+    const ggPark = [[37.775,-122.462],[37.775,-122.452],[37.7725,-122.452],[37.7725,-122.441],[37.771,-122.441],[37.771,-122.452],[37.765,-122.452],[37.765,-122.462]];
+    out += `<polygon class="m-park" points="${pStr(ggPark)}"/>`;
+
+    const h101sf = [[37.738,-122.404],[37.768,-122.405],[37.776,-122.421],[37.796,-122.423]];
+    const h280sf = [[37.738,-122.420],[37.755,-122.398],[37.772,-122.391]];
+    out += `<path class="m-road" d="${pathStr(h101sf)}"/>`;
+    out += `<path class="m-road-sub" d="${pathStr(h280sf)}"/>`;
+
+    const sfZones = [
+      ["NoPa", 37.783, -122.444, "middle"],
+      ["Hayes Valley", 37.784, -122.421, "middle"],
+      ["Lower Haight", 37.766, -122.431, "middle"],
+      ["SoMa", 37.785, -122.401, "middle"],
+      ["Noe Valley", 37.744, -122.430, "middle"]
+    ];
+    sfZones.forEach(([txt, la, lo, anc]) => {
+      out += `<text class="m-city" x="${px(lo).toFixed(1)}" y="${py(la).toFixed(1)}" text-anchor="${anc}">${txt}</text>`;
+    });
+
+    const sfLblPos = {
+      "ju-ni-sf": [px(-122.4388) - 14, py(37.7765) - 4, "end"],
+      "nara-sf": [px(-122.4307) - 14, py(37.7721) + 4, "end"],
+      "robin-sf": [px(-122.4235) + 14, py(37.7791) - 4, "start"],
+      "the-roll-sf": [px(-122.4041) - 14, py(37.7797) - 4, "end"],
+      "saru-sf": [px(-122.4285) + 14, py(37.7517) - 3, "start"]
+    };
+
+    zoneSpots = SPOTS.filter((s) => s.region === "sf");
+    zoneSpots.forEach((s) => {
+      const x = px(s.lon), y = py(s.lat);
+      const [lx, ly, anc] = sfLblPos[s.slug];
+      const isVis = visibleSet.has(s.slug);
+      const isSel = selectedMapSlug === s.slug;
+      out += `
+        <g class="mpin t-${s.tier}${isVis ? "" : " dim"}${isSel ? " sel" : ""}" data-mpin="${s.slug}" tabindex="0" role="button" aria-label="${esc(s.id)} ${esc(s.name)}">
+          <rect class="mpin-hit" x="${(x - 18).toFixed(1)}" y="${(y - 18).toFixed(1)}" width="36" height="36"/>
+          <rect class="mpin-box" x="${(x - 11).toFixed(1)}" y="${(y - 11).toFixed(1)}" width="22" height="22"/>
+          <text class="mpin-num" x="${x.toFixed(1)}" y="${y.toFixed(1)}">${esc(s.id)}</text>
+          <text class="mpin-lbl" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anc}">${esc(s.name)}</text>
+          <text class="mpin-sub" x="${lx.toFixed(1)}" y="${(ly + 11).toFixed(1)}" text-anchor="${anc}">${esc(s.gDisp)} &middot; ${esc(s.priceShort)}</text>
+        </g>`;
+    });
+  } else {
+    const W = 420, H = 560, PAD_X = 28, PAD_Y = 26;
+    const lon0 = -122.365, lon1 = -121.820, lat0 = 37.225, lat1 = 37.590;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const px = (lon) => PAD_X + ((lon - lon0) / (lon1 - lon0)) * (W - PAD_X * 2);
+    const py = (lat) => PAD_Y + ((lat1 - lat) / (lat1 - lat0)) * (H - PAD_Y * 2);
+    const pStr = (pts) => pts.map(([la, lo]) => `${px(lo).toFixed(1)},${py(la).toFixed(1)}`).join(" ");
+    const pathStr = (pts) => pts.map(([la, lo], i) => `${i === 0 ? "M" : "L"}${px(lo).toFixed(1)},${py(la).toFixed(1)}`).join(" ");
+
+    [-122.3, -122.1, -121.9].forEach((lo) => {
+      out += `<line class="m-grid" x1="${px(lo).toFixed(1)}" y1="0" x2="${px(lo).toFixed(1)}" y2="${H}"/>`;
+    });
+    [37.25, 37.35, 37.45, 37.55].forEach((la) => {
+      out += `<line class="m-grid" x1="0" y1="${py(la).toFixed(1)}" x2="${W}" y2="${py(la).toFixed(1)}"/>`;
+    });
+
+    const bay = [
+      [37.595,-122.30],[37.56,-122.27],[37.52,-122.23],
+      [37.48,-122.18],[37.45,-122.11],[37.44,-122.02],
+      [37.46,-121.96],[37.595,-121.96],[37.595,-121.81],[37.595,-122.30]
+    ];
+    out += `<polygon class="m-water" points="${pStr(bay)}"/>`;
+    out += `<text class="m-water-lbl" x="${px(-122.04).toFixed(1)}" y="${py(37.535).toFixed(1)}" text-anchor="middle">SF Bay</text>`;
+
+    const h101 = [[37.585,-122.322],[37.520,-122.265],[37.475,-122.208],[37.438,-122.135],[37.402,-122.078],[37.380,-121.995],[37.362,-121.915],[37.310,-121.855],[37.235,-121.825]];
+    const h280 = [[37.580,-122.360],[37.485,-122.265],[37.410,-122.185],[37.345,-122.070],[37.325,-121.985],[37.326,-121.890]];
+    const h880 = [[37.485,-121.922],[37.432,-121.902],[37.350,-121.916],[37.285,-121.946],[37.235,-121.968]];
+    const h85 = [[37.406,-122.072],[37.345,-122.055],[37.290,-122.015],[37.255,-121.925],[37.246,-121.860]];
+    out += `<path class="m-road" d="${pathStr(h101)}"/>`;
+    out += `<path class="m-road-sub" d="${pathStr(h280)}"/>`;
+    out += `<path class="m-road-sub" d="${pathStr(h880)}"/>`;
+    out += `<path class="m-road-sub" d="${pathStr(h85)}"/>`;
+
+    const cities = [
+      ["San Mateo", 37.575, -122.265, "start"],
+      ["Redwood City", 37.492, -122.295, "end"],
+      ["Palo Alto", 37.448, -122.238, "end"],
+      ["Mountain View", 37.428, -122.118, "middle"],
+      ["Milpitas", 37.452, -121.890, "start"],
+      ["Sunnyvale", 37.392, -121.992, "start"],
+      ["Cupertino", 37.324, -122.062, "end"],
+      ["Downtown SJ", 37.352, -121.865, "start"],
+      ["Campbell", 37.282, -121.988, "end"],
+      ["South SJ", 37.248, -121.838, "end"]
+    ];
+    cities.forEach(([txt, la, lo, anc]) => {
+      out += `<text class="m-city" x="${px(lo).toFixed(1)}" y="${py(la).toFixed(1)}" text-anchor="${anc}">${txt}</text>`;
+    });
+
+    zoneSpots = [...SPOTS.filter((s) => s.region !== "sf"), ETTAN];
+    zoneSpots.forEach((s) => {
+      const x = px(s.lon) + (s.mxOff || 0);
+      const y = py(s.lat) + (s.myOff || 0);
+      const isVis = visibleSet.has(s.slug);
+      const isSel = selectedMapSlug === s.slug;
+      const isTriedOrRadar = Boolean(s.historyType);
+      const ring = isTriedOrRadar
+        ? `<polygon class="mpin-ring" points="${x.toFixed(1)},${(y-14).toFixed(1)} ${(x+14).toFixed(1)},${y.toFixed(1)} ${x.toFixed(1)},${(y+14).toFixed(1)} ${(x-14).toFixed(1)},${y.toFixed(1)}"/>`
+        : "";
+      out += `
+        <g class="mpin t-${s.tier}${s.historyType === "tried" ? " tried" : ""}${isVis ? "" : " dim"}${isSel ? " sel" : ""}" data-mpin="${s.slug}" tabindex="0" role="button" aria-label="${esc(s.id)} ${esc(s.name)}">
+          <rect class="mpin-hit" x="${(x - 15).toFixed(1)}" y="${(y - 15).toFixed(1)}" width="30" height="30"/>
+          ${ring}
+          <rect class="mpin-box" x="${(x - 10).toFixed(1)}" y="${(y - 10).toFixed(1)}" width="20" height="20"/>
+          <text class="mpin-num" x="${x.toFixed(1)}" y="${y.toFixed(1)}">${esc(s.id)}</text>
+        </g>`;
+    });
+  }
+
+  svg.innerHTML = out;
+  if (!zoneSpots.some((z) => z.slug === selectedMapSlug)) {
+    selectedMapSlug = isSF ? "the-roll-sf" : "sushi-tomi";
+    svg.querySelector(`[data-mpin="${selectedMapSlug}"]`)?.classList.add("sel");
+  }
+
+  svg.querySelectorAll("[data-mpin]").forEach((g) => {
+    const pick = () => {
+      selectedMapSlug = g.dataset.mpin;
+      svg.querySelectorAll("[data-mpin]").forEach((el) => el.classList.toggle("sel", el.dataset.mpin === selectedMapSlug));
+      renderMapPreview();
+    };
+    g.addEventListener("click", pick);
+    g.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); }
+    });
+  });
+
+  renderMapPreview();
+}
+
+function renderMapPreview() {
+  const el = document.getElementById("map-preview");
+  const s = ALL_SPOTS.find((x) => x.slug === selectedMapSlug) || SPOTS[12];
+  const tag = s.michelin ? `&#10022; ${esc(s.michelinBadge || "Michelin")}` : (s.historyType === "tried" ? "&#9733; Tried" : (s.historyType === "radar" ? "&#8982; On Radar" : esc(s.tierLabel)));
+  el.innerHTML = `
+    <img class="mp-img" src="sushi-jose-img/${s.slug}.jpg" alt="${esc(s.name)}">
+    <div class="mp-info">
+      <div class="mp-k">${esc(s.id)} &middot; ${tag} &middot; ${esc(s.city)}</div>
+      <div class="mp-name">${esc(s.name)}</div>
+      <div class="mp-meta">Google ${esc(s.gDisp)} (${esc(s.gCount)}) &middot; Yelp ${esc(s.yDisp)} &middot; ${esc(s.priceShort)}</div>
+      <div class="mp-fit">${esc(s.bestFor)}</div>
+      <div class="mp-acts">
+        <a class="btn-sm" style="text-decoration:none;display:inline-flex;align-items:center;" href="${mapsUrl(s)}" target="_blank" rel="noopener noreferrer">Maps &#8599;</a>
+        <button type="button" class="btn-sm pri" id="mp-open-card">View Full Card &rarr;</button>
+      </div>
+    </div>`;
+  document.getElementById("mp-open-card").addEventListener("click", () => {
+    setTab("feed");
+    jumpToCard(s.slug);
+  });
+}
+
+// =========================================================================
+// SHORTLIST & SHAREABLE #picks=... URL
+// =========================================================================
+function toggleKeep(slug) {
+  if (kept.has(slug)) kept.delete(slug);
+  else kept.add(slug);
+  saveShortlist();
+  if (curFilter === "shortlist") {
+    renderFeed();
+  } else {
+    renderShortlistBar();
+    document.querySelectorAll(`[data-keep="${slug}"]`).forEach((btn) => {
+      const on = kept.has(slug);
+      btn.classList.toggle("on", on);
+      btn.setAttribute("aria-pressed", String(on));
+      btn.textContent = on ? "Saved ✓" : "+ Save";
+    });
+  }
+}
+
+function renderShortlistBar() {
+  const bar = document.getElementById("shortlist-bar");
+  const txt = document.getElementById("sl-txt");
+  const tog = document.getElementById("btn-saved-toggle");
+  tog.textContent = `Saved (${kept.size})`;
+  tog.classList.toggle("on", curFilter === "shortlist");
+
+  if (kept.size === 0) {
+    bar.hidden = true;
+    return;
+  }
+  bar.hidden = false;
+  const items = ALL_SPOTS.filter((s) => kept.has(s.slug));
+  txt.innerHTML = `<strong>${items.length} saved:</strong> ${esc(items.map((x) => x.name).join(" · "))}`;
+}
+
+async function sharePicks() {
+  const slugs = [...kept];
+  if (!slugs.length) return;
+  const url = `${location.origin}${location.pathname}#picks=${encodeURIComponent(slugs.join(","))}`;
+  const btn = document.getElementById("btn-share-picks");
+  const title = `Sushi Jose Picks (${slugs.length})`;
+  const text = ALL_SPOTS.filter((s) => kept.has(s.slug)).map((s) => `${s.name} (${s.city})`).join(", ");
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ title, text, url });
+      return;
+    } catch {}
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    btn.textContent = "Copied link ✓";
+    setTimeout(() => { btn.textContent = "Share Picks"; }, 2000);
+  } catch {
+    location.hash = "picks=" + encodeURIComponent(slugs.join(","));
+    btn.textContent = "URL Updated ✓";
+    setTimeout(() => { btn.textContent = "Share Picks"; }, 2000);
+  }
+}
+
+// =========================================================================
+// NAVIGATION, TABS & CONTROLS
+// =========================================================================
+function setTab(tab) {
+  curTab = tab;
+  const isMap = tab === "map";
+  document.getElementById("view-feed").hidden = isMap;
+  document.getElementById("view-map").hidden = !isMap;
+  document.getElementById("tab-feed").classList.toggle("on", !isMap);
+  document.getElementById("tab-map").classList.toggle("on", isMap);
+  document.getElementById("tab-feed").setAttribute("aria-selected", String(!isMap));
+  document.getElementById("tab-map").setAttribute("aria-selected", String(isMap));
+  if (isMap) renderPortraitMap();
+}
+
+function jumpToCard(slug) {
+  let card = document.getElementById("spot-" + slug);
+  if (!card) {
+    resetAllFilters();
+    card = document.getElementById("spot-" + slug);
+  }
+  if (!card) return;
+  card.scrollIntoView({ behavior: "smooth", block: "start" });
+  card.classList.remove("pulse");
+  void card.offsetWidth;
+  card.classList.add("pulse");
+  setTimeout(() => card.classList.remove("pulse"), 1500);
+}
+
+function resetAllFilters() {
+  curFilter = "all";
+  curVibe = "all";
+  curSearch = "";
+  document.getElementById("search-input").value = "";
+  document.getElementById("search-clr").hidden = true;
+  document.querySelectorAll("#filter-rail [data-filter]").forEach((b) => b.classList.toggle("on", b.dataset.filter === "all"));
+  document.querySelectorAll("#vibe-rail [data-vibe]").forEach((b) => b.classList.toggle("on", b.dataset.vibe === "all"));
+  renderFeed();
+}
+
+document.getElementById("tab-feed").addEventListener("click", () => setTab("feed"));
+document.getElementById("tab-map").addEventListener("click", () => setTab("map"));
+
+document.querySelectorAll("[data-map-zone]").forEach((b) => {
+  b.addEventListener("click", () => {
+    mapZone = b.dataset.mapZone;
+    renderPortraitMap();
+  });
+});
+
+document.getElementById("btn-saved-toggle").addEventListener("click", () => {
+  curFilter = curFilter === "shortlist" ? "all" : "shortlist";
+  document.querySelectorAll("#filter-rail [data-filter]").forEach((b) => b.classList.toggle("on", b.dataset.filter === curFilter));
+  renderFeed();
+});
+
+document.querySelectorAll("#filter-rail [data-filter]").forEach((b) => {
+  b.addEventListener("click", () => {
+    curFilter = b.dataset.filter;
+    document.querySelectorAll("#filter-rail [data-filter]").forEach((x) => x.classList.toggle("on", x === b));
+    if (curFilter === "sf") mapZone = "sf";
+    else if (curFilter === "south-bay" || curFilter === "peninsula" || curFilter === "san-jose" || curFilter === "detour") mapZone = "south";
+    if (curFilter === "detour") selectedMapSlug = "ettan";
+    renderFeed();
+  });
+});
+
+document.querySelectorAll("#vibe-rail [data-vibe]").forEach((b) => {
+  b.addEventListener("click", () => {
+    curVibe = b.dataset.vibe;
+    document.querySelectorAll("#vibe-rail [data-vibe]").forEach((x) => x.classList.toggle("on", x === b));
+    renderFeed();
+  });
+});
+
+document.getElementById("sort-sel").addEventListener("change", (e) => {
+  curSort = e.target.value;
+  renderFeed();
+});
+
+const searchInput = document.getElementById("search-input");
+const searchClr = document.getElementById("search-clr");
+
+searchInput.addEventListener("input", () => {
+  curSearch = searchInput.value;
+  searchClr.hidden = !curSearch;
+  renderFeed();
+});
+searchClr.addEventListener("click", () => {
+  curSearch = "";
+  searchInput.value = "";
+  searchClr.hidden = true;
+  renderFeed();
+  searchInput.focus();
+});
+
+document.getElementById("btn-share-picks").addEventListener("click", sharePicks);
+document.getElementById("btn-clear-picks").addEventListener("click", () => {
+  kept.clear();
+  saveShortlist();
+  if (curFilter === "shortlist") curFilter = "all";
+  document.querySelectorAll("#filter-rail [data-filter]").forEach((b) => b.classList.toggle("on", b.dataset.filter === curFilter));
+  document.getElementById("shared-banner").hidden = true;
+  renderFeed();
+});
+
+document.getElementById("btn-reset-empty").addEventListener("click", resetAllFilters);
+
+document.getElementById("shared-only-btn").addEventListener("click", () => {
+  curFilter = "shortlist";
+  document.querySelectorAll("#filter-rail [data-filter]").forEach((b) => b.classList.remove("on"));
+  renderFeed();
+});
+document.getElementById("shared-all-btn").addEventListener("click", () => {
+  document.getElementById("shared-banner").hidden = true;
+  resetAllFilters();
+});
+
+document.getElementById("view-feed").addEventListener("click", (e) => {
+  const kb = e.target.closest("[data-keep]");
+  if (kb) {
+    toggleKeep(kb.dataset.keep);
+    return;
+  }
+  const jb = e.target.closest("[data-jump]");
+  if (jb) {
+    jumpToCard(jb.dataset.jump);
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const tag = e.target?.tagName;
+  if (e.key === "Escape" && (tag === "INPUT" || curSearch)) {
+    curSearch = "";
+    searchInput.value = "";
+    searchClr.hidden = true;
+    renderFeed();
+    if (tag === "INPUT") searchInput.blur();
+    return;
+  }
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || e.target?.isContentEditable) return;
+  if (e.key === "/") {
+    e.preventDefault();
+    searchInput.focus();
+  } else if (e.key === "t" || e.key === "T") {
+    e.preventDefault();
+    const order = ["parchment", "studio", "night"];
+    const cur = document.documentElement.dataset.surface || "parchment";
+    applySurface(order[(order.indexOf(cur) + 1) % order.length]);
+  }
+});
+
+loadShortlist();
+if (curFilter === "shortlist") {
+  document.querySelectorAll("#filter-rail [data-filter]").forEach((b) => b.classList.remove("on"));
+}
+renderFeed();
+</script>
+</body>
+</html>
